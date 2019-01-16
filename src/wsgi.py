@@ -1,5 +1,5 @@
 """
-WSGI config for portfolioapp project.
+WSGI config for researchapp project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 

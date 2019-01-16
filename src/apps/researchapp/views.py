@@ -24,4 +24,4 @@ def home(request):
         'query': val,
     }
 
-    return render(request, 'portfolioapp/home.html', context)
+    return render(request, 'researchapp/home.html', context)
