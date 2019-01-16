@@ -1,4 +1,4 @@
-{% extends "myhome/base.html" %}
+{% extends "portfolioapp/base.html" %}
 
 {% load static %}
 
@@ -6,7 +6,7 @@
 
     {% with thispage="home" %}
 
-    {% include "myhome/default-navbar.html" %}
+    {% include "portfolioapp/default-navbar.html" %}
 
     {% endwith %}
 
@@ -16,14 +16,14 @@
   {% block bodycontent %}
 
   <ol class="breadcrumb">
-      <li><a href="{% url 'myhome:home' %}">Home</a></li>
+      <li><a href="{% url 'portfolioapp:home' %}">Home</a></li>
       <li class="active">Home</li>  
     </ol>
 
     <div class="page-header">
       <h1>Home
         {% if entities %}
-          <a class="btn btn-sm btn-default" href="{% url 'myhome:home' %}">home</a>        
+          <a class="btn btn-sm btn-default" href="{% url 'portfolioapp:home' %}">home</a>        
         {% endif %}
       </h1>
     </div>

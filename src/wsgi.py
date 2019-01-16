@@ -1,5 +1,5 @@
 """
-WSGI config for myhome project.
+WSGI config for portfolioapp project.
 
 It exposes the WSGI callable as a module-level variable named ``application``.
 
