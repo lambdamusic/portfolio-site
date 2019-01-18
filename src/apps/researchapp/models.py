@@ -329,7 +329,8 @@ class Publication(mymodels.EnhancedModel):
     get_databrowse_url.allow_tags = True
 
     def get_absolute_url(self):
-        return reverse('detail_page_dispatcher', ['papers', str(self.id)])
+        return reverse('researchapp:detail_page_dispatcher', args=['papers', str(self.id)]) # NEW WAY
+        # return reverse('researchapp:detail_page_dispatcher', ['papers', str(self.id)])
 
     # method that gives all the urls in one go!
     def all_urls(self):

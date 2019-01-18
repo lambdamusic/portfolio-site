@@ -6,6 +6,7 @@ from django.utils.http import urlquote
 from django.http import HttpResponse, HttpResponseNotFound
 from django.db.models import Q
 from django.template import RequestContext
+from django.template.loader import select_template, get_template
 
 from time import strftime
 
@@ -44,8 +45,11 @@ def dispatcher(request, pagename="", namedetail=""):
         if get_category(pagename):
             context['category'] = get_category(pagename)['name']
 
+        # return render_to_response(
+        #     mytemplate.render(context))
+
         return render_to_response(
-            mytemplate, context)
+        mytemplate, context)
 
 
 def get_category(pagename):
@@ -166,7 +170,8 @@ def get_page_contents(request, pagename, namedetail):
             "researchapp/%s/paper-item.html" % category['folder'],
             'researchapp/%s/default-item.html' % category['folder']
         ])
-        return [mytemplate.name, context]
+
+        return [mytemplate.template.name, context]
 
     # ==PROJECTS list==
 
@@ -264,7 +269,7 @@ def get_page_contents(request, pagename, namedetail):
             "researchapp/%s/%s.html" % (category['folder'], pagename),
             "researchapp/%s/default-item.html" % (category['folder'])
         ])
-        return [mytemplate.name, context]
+        return [mytemplate.template.name, context]
 
     # ==GENERIC PAGE list==
 
@@ -319,7 +324,7 @@ def get_page_contents(request, pagename, namedetail):
             "researchapp/%s/%s-list.html" % (category['folder'], pagename),
             "researchapp/%s/default-list.html" % category['folder'],
         ])
-        return [mytemplate.name, context]
+        return [mytemplate.template.name, context]
 
     # ==GENERIC PAGE Specific==
 
@@ -366,7 +371,7 @@ def get_page_contents(request, pagename, namedetail):
             "researchapp/%s/%s-item.html" % (category['folder'], pagename),
             'researchapp/%s/default-item.html' % (category['folder'], )
         ])
-        return [mytemplate.name, context]
+        return [mytemplate.template.name, context]
 
     else:
         # CATCH ALL SITUATION FOR STATIC PAGES
@@ -375,7 +380,7 @@ def get_page_contents(request, pagename, namedetail):
             "researchapp/%s/%s-item.html" % (category['folder'], pagename),
             'researchapp/%s/default-item.html' % (category['folder'], )
         ])
-        return [mytemplate.name, context]
+        return [mytemplate.template.name, context]
 
 
 def get_pubs(query):

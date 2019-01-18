@@ -1,5 +1,5 @@
 {% extends "researchapp/pages/base-default.html" %}
-
+{% load static %}
 {% load extrafilters %}
 
 
@@ -19,16 +19,6 @@
 				{% if not forloop.last %}&nbsp;|&nbsp;{% endif %}
 			{% endfor %}
 
-            {% if 0 %}Filter by keyword:
-			<form method="get" id="filter_keyword" 	action="" class="" style="display: inline;">
-                <select name="k" id="inputID" class="-form-control" onchange="$(this).closest('form').submit()">
-                	<option value="all" {% ifequal active_tag t  %}selected="selected"{% endifequal %}> all </option>
-					{% for t in tags  %}
-						<option value="{{t}}" {% ifequal active_tag t  %}selected="selected"{% endifequal %}> {{t}} </option>
-					{% endfor %}
-
-                </select>{% endif %}
-			</form>
 
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View as: <a href="?format=txt">plain-text</a>
 
@@ -42,24 +32,18 @@
 
     <div class="row" style="margin-bottom: 50px;">
 
-            {% for p in projects %}
-		  <div class="col-md-4 col-sm-4 project-thumbs">
-		    <div class="project-thumbnail">
-                <h5 class="-text-uppercase -text-muted">{{p.title}}</h5>
-			  <a href="{{p.urlstub|lower}}" class="thumbnail" title="{{p.title}}: {{p.short_title|truncatewords:10}}">
-                {# NOTE: images are managed manually in STATIC FOLDER - main.png is hardcoded as the main one #}
-				  <img src="{% static 'manual_img/{{ p.urlstub }}/{{ p.urlstub }}.jpg' %}" alt="Main image"/>
-			  </a>
-		    </div>
-		  </div>
-
-		  {% if 0 %}<div class="col-sm-10 col-md-6">
-		      <h3><a href="{{p.urlstub|lower}}" title="See details">{{p.title}}</a></h3>
-		  		<small class="text-muted">{{p.datefrom|date:"M Y"}} - {{p.dateto|date:"M Y"}}</small>
-		      <p class="lead">{{p.short_title}}</p>
-		  </div>{% endif %}
-
+        {% for p in projects %}
+			<div class="col-md-4 col-sm-4 project-thumbs">
+				<div class="project-thumbnail">
+					<h5 class="-text-uppercase -text-muted">{{p.title}}</h5>
+				<a href="{{p.urlstub|lower}}" class="thumbnail" title="{{p.title}}: {{p.short_title|truncatewords:10}}">
+					{# NOTE: images are managed manually in STATIC FOLDER - main.png is hardcoded as the main one #}
+					<img src="{% static 'manual_img/' %}{{ p.urlstub|lower }}/{{ p.urlstub }}.jpg" alt="Main image"/>
+				</a>
+				</div>
+			</div>
 		  {% endfor %}
+
 		</div>
 
 

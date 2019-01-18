@@ -27,7 +27,7 @@
 				Next:&nbsp;
 			</small>
 			<small class="nextitemlink">
-				<a href="{{next.get_absolute_url}}" title="View next">{{next.title|truncatewords:6}}&nbsp;
+				<a href="{{next.get_absolute_url}}" class="bluelink" title="View next">{{next.title|truncatewords:6}}&nbsp;
 				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				</a>
 			</small>
@@ -39,65 +39,68 @@
 		<br />
 		<br />
 
-
-		<p class="text-muted">Title:</p>
-
-		<div class="lead -well">
-			<h3><b>{{itemtitle}}</b></h3>
-			{# <h2><b>{{itemtitle}}</b></h2> #}
-		</div>
-
-		<br />
-
-		{% if all_urls %}
-		<p class="text-muted">Download:</p>
-
-		<div class="lead">
-
-			{% for x in all_urls  %}
-			<a href="{{x.0}}">{{x.1}}</a>
-				{% if not forloop.last %} | {% endif %}
-			{% endfor %}
-
-		</div>
-		<br />
-		{% endif %}
+		<div class="col-md-10">
 
 
+			<p class="text-muted">Title:</p>
 
-		<p class="text-muted">Full reference:</p>
-
-		<div class="well well-big lead">
-			{{summary}}
-		</div>
-
-		<br />
-
-
-		{% if abstract %}
-
-			<p class="text-muted">Abstract:</p>
-
-			<blockquote class="lead">{{abstract|linebreaksbr}}</blockquote>
+			<div class="lead -well">
+				<h3><b>{{itemtitle}}</b></h3>
+				{# <h2><b>{{itemtitle}}</b></h2> #}
+			</div>
 
 			<br />
-		{% endif %}
 
+			{% if all_urls %}
+			<p class="text-muted">Download:</p>
 
-		<br /><br />
+			<div class="lead">
 
+				{% for x in all_urls  %}
+				<a href="{{x.0}}">{{x.1}}</a>
+					{% if not forloop.last %} | {% endif %}
+				{% endfor %}
 
-		{% if itemembed1 %}
-
-			<div class="paragraph">
-				{# <br /> #}
-				{{itemembed1|safe}}
 			</div>
-		{% endif %}
+			<br />
+			{% endif %}
 
 
-		<br /><br />
 
+
+
+			{% if abstract %}
+
+				<p class="text-muted">Abstract:</p>
+
+				<blockquote class="lead">{{abstract|linebreaksbr}}</blockquote>
+
+				<br />
+			{% endif %}
+
+
+			<p class="text-muted">Full reference:</p>
+
+			<div class="well well-big lead">
+				{{summary}}
+			</div>
+
+			<br /><br />
+
+
+			{% if itemembed1 %}
+
+				<div class="paragraph">
+					{# <br /> #}
+					{{itemembed1|safe}}
+				</div>
+			{% endif %}
+
+
+			<br /><br />
+
+
+		</div>
 
 		{# {% include "researchapp/pages/disqus_snippet.html" %} #}
 
