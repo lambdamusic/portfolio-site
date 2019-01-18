@@ -1,27 +1,51 @@
-#!/usr/bin/env python
-# encoding: utf-8
+# MAIN VIEWS FOR RESEARCHER APP
 
-from django.shortcuts import render, redirect, get_object_or_404, render_to_response
-from django.utils.http import urlquote
-from django.http import HttpResponse, HttpResponseNotFound
-from django.db.models import Q
+import os
+
+from django.http import HttpResponse, Http404
 from django.template import RequestContext
+from django.template.loader import select_template
+from django.shortcuts import get_object_or_404, redirect, render_to_response
+from django.core.paginator import Paginator, InvalidPage, EmptyPage
+from django.db.models import Q
+from django.core.mail import send_mail, EmailMessage
 
-from time import strftime
+from settings import printDebug, STATICFILES_DIRS
 
-from render_block import render_block_to_string
+from random import choice
+from datetime import datetime
 
-from . import *  #  various settings in ==> __INIT__.PY
-from .models import *
+from researchapp import *
+from researchapp.models import *
+
+from myutils.myutils import *
+from myutils.color_gradation import *
+from myutils.template import render_block_to_string
+
+from feedsreader.reader import *
+
+# ===========================
+#
+
+#########
+# note: various settings in ==> __INIT__.PY
+# eg RSS FEEDS, VALID_PAGES_RESEARCH etc.
+#########
 
 #########
 # VIEWS: everything is managed using the dynamic dispatcher
 # ===> (r'^'+prefix+'(?P<category>\w+)/(?P<name>\w+)/$', 'researchapp.views.dispatcher'),
+#########
+
+#########
 # THen unless explicilty defined, the template is chosen dynamically using this formula:
 # mytemplate = select_template([ "researchapp/%s/%s.html" % (category, name),
 #								"researchapp/%s/default-item.html" % category,
 #								'researchapp/default-item.html'])
 #########
+
+#
+# ===========================
 
 
 def dispatcher(request, pagename="", namedetail=""):
@@ -45,7 +69,7 @@ def dispatcher(request, pagename="", namedetail=""):
             context['category'] = get_category(pagename)['name']
 
         return render_to_response(
-            mytemplate, context)
+            mytemplate, context, context_instance=RequestContext(request))
 
 
 def get_category(pagename):
@@ -87,7 +111,6 @@ def get_menu_tree():
     ]
 
     return tree
-
 
 
 def get_page_contents(request, pagename, namedetail):

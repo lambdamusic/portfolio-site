@@ -1,0 +1,104 @@
+{# this is the default template that gets called if no other relevant template is found #}
+
+{% extends "researchapp/pages/base-default.html" %}
+
+{% load extrafilters %}
+
+
+{# {% block extra_js %} #}
+	{# this applies only to music, but we're loading it anyways.. #}
+{# 	<script type="text/javascript" src="http://webplayer.yahooapis.com/player.js"></script> #}
+{# {% endblock %} #}
+
+
+{% block page_specific_inner %}
+
+  		<h1>{{category|upper}} / <a href="/{{urlname}}">{{urlname|capfirst}}</a> / {{itemtitle}}</h1>
+
+		<div class="col-md-6">
+			<small class="nextitemlink">
+				 {# 2015-10-06: disabled #}
+				{% if 0 and prev %}
+					<a href="{{prev.get_absolute_url}}" title="View previous"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;
+						{{prev.title|truncatewords:6}}
+					&nbsp;
+					</a>
+				{% endif %}
+
+			</small>
+		</div>
+		<div class="col-md-6 text-right">
+			{% if next %}
+			<small class="text-muted">
+				Next:&nbsp;
+			</small>
+			<small class="nextitemlink">
+				<a href="{{next.get_absolute_url}}" title="View next">{{next.title|truncatewords:6}}&nbsp;
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				</a>
+			</small>
+			{% endif %}
+		</div>
+
+
+		<br />
+		<br />
+		<br />
+
+
+		<div class="well lead">
+			{# <small> #}
+			{% if  datefrom and dateto %}
+				<span class="muted">DATE&nbsp;:</span>
+				&nbsp;&nbsp;{{datefrom|date:"M Y"}} - {{dateto|date:"M Y"}}  <br />
+			{% else %}
+				{% if  datefrom %}
+					<span class="muted">DATE&nbsp;:</span>
+					&nbsp;&nbsp;{{datefrom|date:"M Y"}} <br />
+				{% endif %}
+			{% endif %}
+
+					{% if  all_urls %}
+						{% for u in all_urls %}
+							<span class="muted">Link&nbsp;&nbsp;&nbsp;:</span>
+							&nbsp;&nbsp;<a class='url' href="{{u.0}}" target="_blank"> {{u.1}}</a><br />
+						{% endfor %}
+					{% else %}
+						<span class="muted">Link&nbsp;&nbsp;&nbsp;:</span>
+						&nbsp;&nbsp;not available yet
+					{% endif %}
+			{# </small> #}
+		</div>
+
+		<br />
+
+		<div class="paragraph lead">
+			{{itemdesc|safe}}
+		</div>
+
+		<br /><br />
+		{% if itemembed1 %}
+
+			<div class="paragraph lead ">
+				{# <br /> #}
+				{{itemembed1|safe}}
+			</div>
+			<br />
+		{% endif %}
+
+		{% if itemembed2 %}
+			<div class="paragraph lead">
+				<br />
+				{{itemembed2|safe}}
+			</div>
+			<br />
+		{% endif %}
+
+
+
+
+		{# {% include "researchapp/pages/disqus_snippet.html" %} #}
+
+
+
+{% endblock %}

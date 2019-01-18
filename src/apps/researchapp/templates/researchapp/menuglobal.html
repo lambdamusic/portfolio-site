@@ -1,0 +1,107 @@
+
+{% load extrafilters %}
+
+
+<div id="menulist">
+	
+	
+	{% for tuple  in menuitems  %}
+
+		{% with tuple.0 as item %}
+		{% with tuple.1 as subitems_list %}
+
+		    <ul>
+
+				<li>{{item.0|format_menuitem|safe}}
+
+
+					<ul>
+
+					{% for subitem in subitems_list  %}
+
+						{% ifequal item.1 "/" %}   
+					
+							{# if the second part of menu category means it's a subpage #}
+						
+							<li><a  
+								{% ifequal subitem.1|lower urlname  %}class="active"{% endifequal %}					
+								 href="/{{subitem.1|lower}}/">{{subitem.0}}</a>
+							</li>
+						{% else %}
+					
+							{# we have an external link #}
+					
+				            <li><a 
+								{% ifequal subitem.1|lower urlname  %}class="active" {% endifequal %}
+								href="{{subitem.1}}">{{subitem.0}}</a>
+							
+								{# {% ifnotequal subitem.1|lower "/"  %}target="_blank" #}
+								{# 												{% endifnotequal %} #}
+							
+							</li>
+						{% endifequal %}
+
+
+					{% endfor %}
+
+					</ul>
+				</li>
+			</ul>
+
+			<!-- <br /><br /> -->
+
+
+		{% endwith %}
+		{% endwith %}
+		
+	{% endfor %}
+	
+	{# the static stuff #}
+		
+	<ul>
+		<li><b>ME</b> / ELSEWHERE
+		<ul class="outlinks">
+		 <li><a href="http://kcl.academia.edu/MichelePasin" target="_blank">Academia</a>
+		 </li>
+			{% comment %} <li><a href="https://bitbucket.org/magicrebirth/" target="_blank">BitBucket</a>
+				</li> {% endcomment %}
+		 <li><a href="http://www.flickr.com/photos/mikele/" target="_blank">Flickr</a>
+			</li>	
+			<li><a href="https://github.com/lambdamusic" target="_blank">GitHub</a>
+				</li>
+			<li><a href="http://goo.gl/mCy51" target="_blank">IMdb</a>
+			</li>	
+			<li><a href="https://www.instagram.com/lambdamusic/" target="_blank">Instagram</a>
+			</li>
+		     <li><a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0" target="_blank">LinkedIn</a>
+			</li>	
+			<li><a href="http://www.mendeley.com/profiles/michele-pasin/" target="_blank">Mendeley</a>
+				</li>
+			<li><a href="http://orcid.org/0000-0001-8909-7766" target="_blank">Orcid</a>
+				</li>	
+			<li><a href="http://www.slideshare.net/mpasin" target="_blank">SlideShare</a>
+				</li>				
+			<li><a href="https://soundcloud.com/magicrebirth" target="_blank">Soundcloud</a>
+				</li>	
+			<li><a href="http://stackoverflow.com/users/109304/magicrebirth" target="_blank">StackOverflow</a>
+				</li>	
+ 		   <li><a href="http://twitter.com/#!/lambdaman" target="_blank">Twitter</a>		
+ 			</li>	
+  		   {% comment %} <li><a href="https://www.youtube.com/channel/UC4ThOTBGPJs6xEADnnALIwA" target="_blank">YouTube</a>		
+  			</li>			 {% endcomment %}
+  		   <li><a href="https://vimeo.com/lambdamusic" target="_blank">Vimeo</a>		
+  			</li>
+			
+			
+			
+
+			</ul>
+		</li>
+	</ul>	
+	
+</div>
+
+
+
+
+

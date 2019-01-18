@@ -1,0 +1,57 @@
+{% load extrafilters %}
+
+
+<div class="row" style="">
+
+    {# --------------------------------- #}
+    {# BLOG POSTS FEED - 2015-02-05: this is updated via AJAX! #}
+    {# --------------------------------- #}
+
+    <div class="col-sm-3 col-md-3"></div>
+
+    <div class="col-sm-6 col-md-6 ">
+
+            <h5 class="-text-muted text-uppercase">Latest blogs
+
+            </h5>
+            <hr>
+
+
+            <div id="blogposts_div">
+
+                
+
+                {% block blogposts %}
+
+
+                    {% if not allfeeds %}
+
+                        <hr>
+                        <h4 class="text-muted">Loading... <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></h4>
+
+                    {% else %}
+                        
+                        {% for entry in allfeeds  %}
+                            &gt;&nbsp;<a href={{entry.url}} target="blank" class="-text-info">{{entry.title}}</a>
+                            <br />
+                        {% endfor %}   
+
+                    {% endif %}
+
+
+
+                {% endblock  %}
+
+
+
+
+
+
+            </div> <!-- end of blogposts_div -->
+
+
+    </div>
+
+</div>
+
+

@@ -1,0 +1,28 @@
+
+{% load extrafilters %}
+
+<h1>Michele Pasin</h1>
+<h3>www.michelepasin.org</h3>
+<i>Projects list as of {% now "jS F Y" %}</i>
+	<br />	<br />
+	
+		<div class="paragraph">
+		
+		
+			{% for p in projects %}
+	
+			<li class="imagelistitem">		
+				<span>
+					<a href="{{p.urlstub|lower}}" title="See details">{{p.title}}</a> - <em>{{p.datefrom|date:"M Y"}} - {{p.dateto|date:"M Y"}}</em> 
+					<br />{{p.short_title}}
+				</span>
+			</li>
+	
+	
+			{% endfor %}
+		
+		</div>
+
+
+			
+

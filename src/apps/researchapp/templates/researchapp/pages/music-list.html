@@ -1,0 +1,139 @@
+{% extends "researchapp/pages/base-default.html" %}
+
+{% load extrafilters %}
+
+
+{% block extra_js %}
+	{# this applies only to music, but we're loading it anyways.. #}
+	<script type="text/javascript" src="http://webplayer.yahooapis.com/player.js"></script>
+{% endblock %}
+
+
+{% block page_specific_inner %}
+
+
+		<h1>{{category|upper}} / {{urlname|capfirst}} / {{itemtitle|default:"..."}}</h1>
+		
+		<div class="text-muted text-right">Subscribe to the <a href="http://michelepasin.org/{{urlname|lower}}/feed/" class="feedlink">feed</a></div>
+
+		<hr>
+		<br />
+		
+		
+		
+		{% for p in items %}
+		<div class="row" style="margin-bottom: 80px;">
+				  
+		  <div class="col-sm-4 col-md-4">
+		      <h4><a href="{{p.urlstub|lower}}" title="See details">{{p.title}}</a></h4>
+		  		<small class="text-muted">{{p.date|date:"M Y"}}</small>
+		      <p class="-lead">{{p.short_title}}</p>
+		  </div>
+		  
+		  <div class="col-md-8">
+			  {% if p.embedcode1 %}
+		    {{p.embedcode1|safe}}
+			{% endif %}
+		  </div>
+		  
+		  
+		</div>
+		{% endfor %}
+		
+			
+		
+		{# 2016-01-18: old view #}
+		
+		{# {% for p in items %} #}
+		{# <div class="row" style="margin-bottom: 30px;"> #}
+		{#   <div class="col-md-2"> #}
+		{#     <div class=""> #}
+		{# 	  <a href="{{p.urlstub|lower}}" class="thumbnail"> #}
+		{# 		  <img src="{% if p.img %}{{p.img.url}}{% endif %}" alt="Icon"/> #}
+		{# 	  </a> #}
+		{#     </div> #}
+		{#   </div> #}
+		{#    #}
+		{#   <div class="col-sm-8 col-md-8"> #}
+		{#       <h4><a href="{{p.urlstub|lower}}" title="See details">{{p.title}}</a></h4> #}
+		{#   		<small class="text-muted">{{p.date|date:"M Y"}}</small> #}
+		{#       <p class="-lead">{{p.short_title}}</p> #}
+		{#   </div> #}
+		{#    #}
+		{#    #}
+		{# </div> #}
+		{# {% endfor %} #}
+		
+		
+
+
+		
+		{#  #}
+		{#  #}
+		{# 	{% for p in items %} #}
+		{# 	{% ifnotequal p.atype.name "performance" %} #}
+		{#  #}
+		{# 	<div class="media"> #}
+		{# 		<a class="pull-left" href="{{p.urlstub|lower}}"><img  src="{% if p.img %}{{p.img.url}}{% endif %}" class="media-object" alt="Icon" height='35' width='45' /> #}
+		{# 		</a> #}
+		{# 	 #}
+		{# 	 #}
+		{# 	  <div class="media-body"> #}
+		{# 	   #}
+		{# 	    <h4 class="media-heading"><a href="{{p.urlstub|lower}}" title="See details">{{p.title}}</a> #}
+		{# 			<small>{{p.date|date:"M Y"}}&nbsp;</small> #}
+		{# 			mp3 url - for yahoo mp3 player #}
+		{# 			{% if p.mp3url %} #}
+		{# 				&nbsp;&nbsp;<a href="{{p.mp3url}}"></a> #}
+		{# 			{% endif %} #}
+		{# 		</h4> #}
+		{# 					 #}
+		{# 	    <span class="lead">{{p.short_title}}</span> #}
+		{#  #}
+		{# 	  </div> #}
+		{# 	</div> #}
+		{# 	<br> #}
+		{# 	 #}
+		{# 	{% endifnotequal %} #}
+		{# 	{% endfor %} #}
+		{#  #}
+		{#  #}
+		{# <br> #}
+		{# <h3>Livecoding Performances</h3> #}
+		{# <hr > #}
+		{# <br> #}
+		{#  #}
+		{# 		 #}
+		{#  #}
+		{# {% for p in items %} #}
+		{# {% ifequal p.atype.name "performance" %} #}
+		{# 	 #}
+		{# <div class="media"> #}
+		{# 	<a class="pull-left" href="{{p.urlstub|lower}}"><img  src="{% if p.img %}{{p.img.url}}{% endif %}" class="media-object" alt="Icon" height='35' width='45' /> #}
+		{# 	</a> #}
+		{#  #}
+		{#  #}
+		{#   <div class="media-body"> #}
+		{#    #}
+		{#     <h4 class="media-heading"><a href="{{p.urlstub|lower}}" title="See details">{{p.title}}</a> #}
+		{# 		<small>{{p.date|date:"M Y"}}&nbsp;</small> #}
+		{# 	</h4> #}
+		{#  #}
+		{#     <span class="lead">{{p.short_title}}</span> #}
+		{#  #}
+		{#   </div> #}
+		{# </div> #}
+		{# <br> #}
+		{#  #}
+		{# {% endifequal %} #}
+		{# {% endfor %} #}
+		{# 	 #}
+		{# 	 #}
+	<br /><br />	
+		
+	
+{% endblock %}
+
+
+
+

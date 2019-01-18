@@ -1,0 +1,66 @@
+{# this is the default template that gets called if no other relevant template is found #}
+
+{% extends "researchapp/pages/base-default.html" %}
+
+{% load extrafilters %}
+
+
+{% block page_specific_inner %}
+	
+
+		<h1>{{category|upper}} / {{urlname|capfirst}}</h1>
+		<br /><br />
+
+
+		
+		{% for p in items %}
+		
+		
+		 <div class="row">
+		 	 
+			{% ifchanged p.soft_type %}
+				{% if not forloop.first %}<hr>{% endif %}
+			{% endifchanged %}
+			
+		 	<div class="col-sm-2 col-md-3">
+				{% ifchanged p.soft_type %}
+		 		<h3 class="well"><span>{{p.soft_type.description|capfirst}}</span></h3>
+				{% endifchanged %}
+		 	</div>
+		
+		
+		 	<div class="col-sm-7 col-md-9">
+			
+	  		    <div class="row">
+		
+					<br />
+					
+	  	  		  <div class="col-md-2 col-md-offset-1">
+
+	  	  			  <a href="{{p.urlstub|lower}}" class="thumbnail">
+	  	  				  <img src="{% if p.img %}{{p.img.url}}{% endif %}" alt="Icon"/>
+	  	  			  </a>
+				  
+	  	  		  </div>
+		  
+	  	  		  <div class="col-md-8">
+	  	  		      <h4><a href="{{p.urlstub|lower}}" title="See details">{{p.title}}</a></h4>
+	  	  		  		<small class="text-muted">{{p.date|date:"M Y"}}</small>
+	  	  		      <p class="">{{p.short_title}}</p>
+	  	  		  </div>
+				  
+				</div> {# end of inner row #}
+
+			</div> {# end of second column #}
+			
+		</div>	{# end of outer row #}
+			
+
+		{% endfor %}
+		
+
+	
+	
+	
+{% endblock %}
+

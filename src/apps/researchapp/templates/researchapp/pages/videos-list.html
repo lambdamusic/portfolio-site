@@ -1,0 +1,49 @@
+{% extends "researchapp/pages/base-default.html" %}
+
+{% load extrafilters %}
+
+
+{% block page_specific_inner %}
+
+
+
+		<h1>{{category|upper}} / {{urlname|capfirst}} / {{itemtitle|default:"..."}}</h1>
+		
+		{# <p class="entry_description">Click on an item in order to find out more information about it (new: subscribe to the <a href="http://michelepasin.org/{{urlname|lower}}/feed/" class="feedlink">feed</a>):</p> #}
+		
+		<br />
+		{# <hr> #}
+		<br />
+		
+		
+		{% for p in items %}
+		<div class="row" style="margin-bottom: 30px;">
+		  <div class="col-md-5">
+		    <div class="">
+			  <a href="{{p.urlstub|lower}}" class="thumbnail">
+				  <img src="{% if p.img %}{{p.img.url}}{% endif %}" alt="Icon"/>
+			  </a>
+		    </div>
+		  </div>
+		  
+		  <div class="col-md-5">
+		      <h3><a href="{{p.urlstub|lower}}" title="See details">{{p.title}}</a></h3>
+		  		<small class="text-muted">{{p.date|date:"M Y"}}</small>
+		      <p class="lead">{{p.short_title}}</p>
+		  </div>
+		  
+		  
+		</div>
+		{% endfor %}
+		
+	
+
+
+		<br />
+		<br />				
+		
+	
+{% endblock %}
+
+
+

@@ -1,0 +1,76 @@
+{% load extrafilters %}
+
+
+
+<div class="row" style="margin-top: 60px;">
+
+    {# --------------------------------- #}
+    {# OLD NEWA FEED - 2015-02-05: this is updated via AJAX! #}
+    {# --------------------------------- #}
+
+    <div class="col-sm-11 col-md-11 -col-md-offset-4" style="-display: none;">
+
+            <h5 class="-text-muted text-uppercase">Latest blogs
+            <small>&nbsp;<a href="https://twitter.com/lambdaman" target="_blank"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a></small>
+
+            </h5>
+            <hr>
+
+
+            <div id="newstable_div">
+
+
+                {% block newstable %}
+
+
+                    {% if not allfeeds %}
+
+                        <hr>
+                        <h4 class="text-muted">Loading... <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></h4>
+
+                    {% else %}
+
+
+                        <table class="table table-hover table-condensed table-striped well news medium_font" style=""> {# table-condensed table-striped #}
+
+                            <tbody>
+
+                            {% for entry in allfeeds  %}
+
+                            <tr>
+
+                                <td class="-text-muted" width="20%">
+                                    {{ entry.date|date:"M d, Y"}}
+                                </td>
+
+                                <td width="60%" class="text-muted">
+                                    {% ifequal entry.type "twitter" %}
+                                        {{entry|format_tweet|safe}}
+                                    {% else %}
+                                        <a href={{entry.url}} target="blank">{{entry.title}}</a>
+                                    {% endifequal %}
+                                </td>
+
+
+                            </tr>
+
+
+
+                            {% endfor %}
+
+
+                            </tbody>
+                        </table>
+
+                    {% endif %}
+
+
+
+                {% endblock  %}
+
+            </div> <!-- end of table -->
+
+
+    </div>
+
+</div>

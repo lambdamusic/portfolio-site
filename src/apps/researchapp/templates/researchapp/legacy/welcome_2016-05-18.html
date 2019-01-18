@@ -1,0 +1,179 @@
+{# this is the homepage: mind that the 3columns css file is used here!  #}
+
+{% extends "researchapp/base.html" %}
+{% load extrafilters %}
+
+
+{% block page_specific %}
+
+
+
+<div class="row" style="margin-top: 30px;">	
+      <div class="col-sm-4 col-md-4" style="margin-bottom: 30px;">
+		  
+		  <div class="thumbnail" style="border: none;">
+		  	<a href="/research/bio/" title="Me presenting at the International Wittgenstein Symposium"><img src="{{MEDIA_URL}}/welcome-screenshot.png" alt="that's me"></a>
+		  </div>
+
+
+      </div>
+
+      <div class="col-sm-6 col-md-6 ">  {# .col-xs-4 #}
+
+		  {# <h4>About</h4> #}
+		  <div class="-well -lead">
+			  
+			  {# <hr > #}
+			 <span class="lead" style="font-size: 25px; color: #565252;">Hi, my name is Michele Pasin. </span>
+			 <br><br>
+			 <span class="lead" style="color: #565252;">I am an information architect and digital product manager. I make a living by helping people design, structure and implement large information spaces.</span>
+			 <br><br>
+			 <span class="lead">I specialize in areas like <a href="{% url page_dispatcher 'projects' %}?k=information design" title="Click to see some recent work I've done in this area">information design</a>, data modeling, <a href="{% url page_dispatcher 'projects' %}?k=digital scholarship" title="Click to see some recent work I've done in this area">digital humanities</a>, ontology engineering and <a href="{% url page_dispatcher 'projects' %}?k=semantic web"  title="Click to see some recent work I've done in this area">semantic web</a>. I have several years of experience with web technologies and enjoy developing prototypes and data visualizations using Python and D3. </span>
+			 
+			 <br><br>
+			<span style="display: none;">I also love art, <a href="{% url page_dispatcher 'music' %}">music</a> and philosophy, so I am particularly fascinated by the opportunity of <a href="{% url page_dispatcher 'livecoding' %}">exploring</a> the possible intersections of those areas with modern digital technology.</span>
+			<!-- <br><br> -->
+			<span style="-font-size: 10px;">For more details on my background, see my <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0">CV on LinkedIn</a>. If you want to get in touch, you are very welcome to <a href="{% url page_dispatcher 'contact' %}">drop me a line</a> or leave a comment on my <a href="www.michelepasin.org/blog">blog</a>. I'm always open to discussing innovative projects & collaborations.</span> 
+
+			
+
+		  </div>
+
+      </div>
+</div>
+
+
+
+{% if 0 %}
+	
+
+<div class="row" style="margin-top: 30px;">
+	
+    <div class=" col-sm-11 col-md-11" style="margin-bottom: 30px;">
+	  
+	  
+	  <h3 class="text-muted">Latest news</h3>
+
+
+    </div>
+</div>	
+{% endif %}
+
+
+<div class="row" style="margin-top: 80px;">	
+	
+
+	{# --------------------------------- #}	
+	{# FEATURED #}
+	{# --------------------------------- #}
+
+
+	<div class="col-sm-7 col-md-7" >
+
+		<h5 class="-text-muted text-uppercase">Featured Work</h5>
+
+		{% include "researchapp/pages/featured.html" %}
+
+	</div>
+
+
+
+
+	{# --------------------------------- #}	
+	{# TWITTER FEED - 2015-02-05: this is updated via AJAX! #}
+	{# --------------------------------- #}
+
+	<div class="col-sm-4 col-md-4" >
+	
+		<h5 class="-text-muted text-uppercase">Twitter feed
+		<small>&nbsp;<a href="https://twitter.com/lambdaman" target="_blank"><span class="glyphicon glyphicon-share-alt" aria-hidden="true"></span></a></small>
+
+		</h5>
+
+	<div id="newstable_div">
+		
+		
+		
+	{% block newstable %}
+	
+
+		
+		{% if not allfeeds %}
+			
+			<hr>
+			<h4 class="text-muted">Loading... <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></h4>
+		
+		{% else %}
+			
+		
+	        <table class="table table-hover table-condensed table-striped well news small_font" style=""> {# table-condensed table-striped #}
+
+	          <tbody>
+			  
+		  		{% for entry in allfeeds  %}
+
+	            <tr>
+
+	                <td class="-text-muted" width="20%">
+						{{ entry.date|date:"M d, Y"}}
+					</td>
+
+	                <td width="60%" class="text-muted">
+						{% ifequal entry.type "twitter" %}
+							{{entry|format_tweet|safe}}
+						{% else %}
+							<a href={{entry.url}} target="blank">{{entry.title}}</a>
+						{% endifequal %}
+					</td>
+
+                         
+	            </tr>
+			
+
+								
+		  		{% endfor %}
+			
+                    
+	          </tbody>
+	        </table>
+		
+		{% endif %}
+		
+		
+
+	{% endblock  %}
+		
+		</div>
+        </div>
+</div>
+
+
+
+	
+	
+{% endblock %}
+
+
+
+
+
+{% block extra_js %}
+
+	<script type="text/javascript">
+		$(function() {
+			// add news feed table via ajax
+			$.get(
+			    "{% url get_newsfeed %}",
+			    {data : "no data for now"},
+			    function(data) {
+			       $("#newstable_div").html(data);
+			    }
+			);
+
+		});
+	</script>
+		
+
+{% endblock %}
+
+

@@ -1,0 +1,94 @@
+{% extends "researchapp/pages/base-default.html" %}
+
+{% load extrafilters %}
+
+
+{% block page_specific_inner %}
+
+
+
+	
+		<h1>{{category|upper}} / {{urlname|capfirst}}</h1>
+				
+				
+				
+
+		<div id="splashright" style="width: 930px;">
+
+			
+			<p class="entry_description_shrank">
+
+				{% for h in hyperlinks %}
+					
+					{% ifchanged h.datefull.year %}
+						<hr>
+						<h2 style="color: lightgrey;">{{h.datefull.year}}</h2>
+					{% endifchanged %}				
+				
+					{% if h.datefull %}
+											
+						<p style="{{forloop.revcounter|eventsize}}"><small style="background: lightcyan;">{{h.datefull}}</small>: <a href="{{h.url}}" target="_blank" class="eventurl">{{h.name}}</a></p>
+					{% endif %}
+				
+				{% endfor %}		
+				
+				{# past events #}
+				
+				{% for h in hyperlinks_old %}
+				
+					{% ifchanged h.datefull.year %}
+						<hr>
+						<h2 style="color: lightgrey;">{{h.datefull.year}}</h2>
+					{% endifchanged %}
+					
+					{% if h.datefull %}
+						<p><small>{{h.datefull}}</small>: <a style="background: white;" href="{{h.url}}" target="_blank" class="eventurl">{{h.name}}</a></p>
+					{% endif %}
+				
+				{% endfor %}
+			</p>
+
+		</div>
+
+
+		<br /><br /><br />
+
+		
+	
+{% endblock %}
+
+
+
+
+{% block extra_js %}
+
+
+	<script type="text/javascript">
+		
+		// default tooltips via tooltipster
+	
+		$('.jstooltip').tooltipster({
+   		 	theme: 'tooltipster-default'
+		});
+		
+		$('.eventurl').tooltipster({
+						functionInit: function(origin, content) { 
+							url = origin.attr('href');
+							return '<iframe class="previewframe" src="' + url +'">'
+						},
+						delay: 200,
+						contentAsHTML: true,
+		            });
+					
+		
+		
+	</script>
+					
+					
+{% endblock %}
+
+
+
+
+
+

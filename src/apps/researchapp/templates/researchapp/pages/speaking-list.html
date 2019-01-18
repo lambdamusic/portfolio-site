@@ -1,0 +1,86 @@
+{% extends "researchapp/pages/base-default.html" %}
+
+{% load extrafilters %}
+
+
+{% block page_specific_inner %}
+
+
+
+			<div class=" row_pubitem">
+
+ 			 	<div class="col-sm-10 col-md-10" style="-margin-top: 70px;">
+
+					<h1>{{category|upper}} / {{urlname|capfirst}} / {{itemtitle|default:"..."}}</h1>
+					<br /><br />
+
+
+					{% for pub in return_items %}
+						<div class='row speakingitem' style="margin-bottom: 10px;">
+
+							
+							<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+								{% if pub.isforthcoming %}
+									<span class='label label-warning'>forthcoming</span>
+								{% endif %}
+
+								<span class='label label-primary'>{{pub.pubdate|date:"M Y"}}</span>&nbsp;								
+							</div>
+							
+							<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11">
+								{% if  pub.conference %}<span class='conference text-black'> {{pub.conference}}</span>{% endif %}{% if  pub.pubplace %}<span class='pubplace text-black'> {{pub.pubplace}}</span>{% endif %}{% if  pub.extrainfo %}<span class='extrainfo text-black'> {{pub.extrainfo|safe}}</span>{% endif %}.
+
+								<br />
+								 "<a href="/papers/{{pub.id}}/" style="color: blue;">{{pub.title|capfirst}}</a>"								
+							</div>
+							
+
+							{% if not forloop.last %}
+								<hr>
+							{% endif %}
+
+
+						</div>
+
+					{% endfor %}
+
+ 			 	</div>
+
+
+		</div>
+
+		<br /><br /><br /><br />
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block extra_js %}
+
+
+	<script type="text/javascript">
+
+	$('#search-input').keyup(function() {
+
+	  var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+	  // var $rows = $(this).next(".entities-list").find("div");
+
+	  var $rows = $(this).parent().parent().parent().parent().find("div.pubitem");
+
+		console.log(val);
+		console.log($(this).parent().parent().parent().parent());
+
+	  $rows.show().filter(function() {
+	      var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+	      return !~text.indexOf(val);
+	  }).hide();
+	});
+
+	</script>
+
+
+{% endblock %}

@@ -1,0 +1,108 @@
+{# this is the homepage: mind that the 3columns css file is used here!  #}
+
+{% extends "researchapp/base.html" %}
+{% load extrafilters %}
+
+
+{% block page_specific %}
+
+
+<div class="row" style="margin-top: 30px;">
+
+      <div class="col-sm-4 col-md-4" style="-margin-bottom: 30px; margin-top: -25px;">
+
+		  <div class="thumbnail" style="border: none;">
+		  	<a href="#" title="Me presenting at the International Wittgenstein Symposium"><img src="{{STATIC_URL}}misc_img/me-1.jpg" alt="that's me"></a>
+		  </div>
+
+      </div>
+
+</div>
+
+<div class="row" style="margin-top: 30px;">
+
+
+      <div class="col-sm-6 col-md-6 "> 
+
+		<div class="-well -lead">
+
+			<span class="lead" style="font-size: 25px; color: #565252;">Hi, my name is Michele Pasin. </span>
+
+			<br><br>
+
+			<span class="lead">On this site you can find out more about my projects in areas like <a href="{% url page_dispatcher 'projects' %}?k=information design" title="Click to see some recent work I've done in this area">information design</a>, <a href="{% url page_dispatcher 'projects' %}?k=digital scholarship" title="Click to see some recent work I've done in this area">digital humanities</a> and <a href="{% url page_dispatcher 'projects' %}?k=semantic web"  title="Click to see some recent work I've done in this area">semantic web</a>.</span>
+
+			<br><br>
+
+			<span class="-lead">I design software for analyzing and navigating through large amounts of information, in particular by using formal ontologies and artificial intelligence technology. A bit like a 21st century librarian.</span>
+
+			 <br><br>
+			 {% if 0 %}
+			<span style="display: none;">I also love art, <a href="{% url page_dispatcher 'music' %}">music</a> and philosophy, so I am particularly fascinated by the opportunity of <a href="{% url page_dispatcher 'livecoding' %}">exploring</a> the possible intersections of those areas with modern digital technology.</span>
+			{% endif %}
+
+			<!-- <br><br> -->
+			<span style="-font-size: 10px;">For more details on my background, see my <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0">CV on LinkedIn</a>. If you want to get in touch, you are very welcome to <a href="{% url page_dispatcher 'contact' %}">drop me a line</a> or leave a comment on my <a href="http://www.michelepasin.org/blog">blog</a>. I'm always open to discussing innovative projects & collaborations.</span>
+
+
+
+		  </div>
+
+      </div>
+</div>
+
+
+
+
+
+
+
+{% if 1 %}
+
+	{% include 'researchapp/components/blogposts.html' %}
+
+{% endif %}
+
+
+
+{% if 1 %}
+
+	{% include 'researchapp/components/featured.html' %}
+
+{% endif %}
+
+
+
+
+{% if 0 %}
+
+	{% include 'researchapp/components/newstable.html' %}
+
+{% endif %}
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block extra_js %}
+
+	<script type="text/javascript">
+		$(function() {
+			// add news feed table via ajax
+			$.get(
+			    "{% url ajax_get_blogs %}",
+			    {data : "no data for now"},
+			    function(data) {
+			       $("#blogposts_div").html(data);
+			    }
+			);
+
+		});
+	</script>
+
+
+{% endblock %}

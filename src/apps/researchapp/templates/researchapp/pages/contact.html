@@ -1,0 +1,102 @@
+{% extends "researchapp/pages/base-default.html" %}
+
+{% load extrafilters %}
+
+
+{% block page_specific_inner %}
+
+
+  		<h1>{{category|upper}} / {{urlname|capfirst}} / {{itemtitle|default:"..."}}</h1>
+		
+		<br><br><br>
+
+
+
+				<iframe width="800" height="400" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.co.uk/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=&amp;q=London+N1+9XW&amp;aq=&amp;sll=51.536604,-0.225178&amp;sspn=0.023944,0.054073&amp;ie=UTF8&amp;hq=&amp;hnear=N1+9XW,+United+Kingdom&amp;t=m&amp;ll=51.53379,-0.121536&amp;spn=0.018687,0.036478&amp;z=14&amp;iwloc=A&amp;output=embed"></iframe><br /><small><a href="https://maps.google.co.uk/maps?f=q&amp;source=embed&amp;hl=en&amp;geocode=&amp;q=London+N1+9XW&amp;aq=&amp;sll=51.536604,-0.225178&amp;sspn=0.023944,0.054073&amp;ie=UTF8&amp;hq=&amp;hnear=N1+9XW,+United+Kingdom&amp;t=m&amp;ll=51.53379,-0.121536&amp;spn=0.018687,0.036478&amp;z=14&amp;iwloc=A" style="color:#0000FF;text-align:left">View Larger Map</a></small>	
+
+		<br><br>		
+	
+		
+		<div class="row">
+			
+			<div class="col-md-6">
+		
+				<h3>Office details:</h3>
+				
+				<p class="lead">
+					{# Gifts should be sent to: #}
+					{# <br /><br /> #}
+					Michele Pasin<br />
+					Springer Nature<br />
+					London The Macmillan Building<br />
+					4 Crinan Street<br />
+					London N1 9XW<br />
+
+					<br />		
+				</p>	
+		
+			</div>
+			
+
+		
+		</div>
+
+
+		
+
+
+		<div class="row" >
+						
+			<div class="col-md-8">
+				
+				<h3>Get in touch:</h3>
+				
+				<br>
+				
+				{% ifequal success "sent" %}
+				<div class="alert alert-success">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>Thanks!</strong> I'll get back to you shortly.
+				</div>
+				{% endifequal %}
+				{% ifequal success "error" %}
+				<div class="alert alert-error">
+				  <button type="button" class="close" data-dismiss="alert">&times;</button>
+				  <strong>There was an error!</strong> Fill in all the fields and try submitting again.
+				</div>
+				{% endifequal %}
+				
+								
+	            <form  role="form">
+	                <div class="form-group ">
+	                    <input id="name" name="name" type="text" class="form-control" placeholder="Name"> 
+	                </div>
+	                <div class="form-group ">
+	                    <input id="email" name="email" type="email" class="form-control"  placeholder="Email address">
+	                </div>
+	                <div  class="form-group ">
+	                    <textarea id="message" name="message" class="form-control"  placeholder="Your Message" rows="5"></textarea>
+	                </div>
+              
+			  	  	<br>
+	                <div class="form-group">
+	                    <button id="contact-submit" type="submit" class="btn btn-primary input-medium ">Send</button>
+	                </div>
+	            </form>
+	        </div>
+		</div>
+
+			
+			<br><br><br>		
+			
+
+
+	
+{% endblock %}
+
+
+
+
+
+
+

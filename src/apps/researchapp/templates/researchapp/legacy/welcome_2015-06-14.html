@@ -1,0 +1,178 @@
+{# this is the homepage: mind that the 3columns css file is used here!  #}
+
+{% extends "researchapp/base.html" %}
+{% load extrafilters %}
+
+{% block page_specific %}
+
+
+
+<div class="row" style="margin-top: 30px;">	
+      <div class="col-sm-4 col-md-4" style="margin-bottom: 30px;">
+		  
+		  <div class="thumbnail" style="border: none;">
+		  	<a href="/research/bio/" title="Me presenting at the International Wittgenstein Symposium"><img src="{{MEDIA_URL}}/welcome-screenshot.png" alt="that's me"></a>
+		  </div>
+
+
+      </div>
+
+      <div class="col-sm-6 col-md-6 ">  {# .col-xs-4 #}
+
+		  <div class="well lead">
+			  Michele Pasin is an information architect and semantic web researcher working at <a href="http://www.nature.com">Nature Publishing Group</a>, part of MacMillan Science and Education, London. 
+			  <br><br>His work focuses on issues at the intersection of information science, semantic technologies and digital humanities. Previously, he was a research associate at King's College <a href="http://www.kcl.ac.uk/artshums/depts/ddh/index.aspx">Department of Digital Humanities</a>, London, where he developed on a number of cultural informatics projects such as the <a href="http://www.poms.ac.uk/">People of Medieval Scotland</a> and the <a href="http://www.artofmaking.ac.uk/">Art of Making in Antiquity</a>. 
+			  <br><br>He holds a PhD in semantic web technologies from the <a href="http://people.kmi.open.ac.uk/index.php?member=michele-pasin">Knowledge Media Institute</a>, The Open University, UK, and advanced degrees in logic and philosophy of language from the <a href="http://venus.unive.it/philo/">University of Venice</a>, Italy. Also, he maintains an active interest in computer music and <a href="http://toplap.org/">livecoding</a>.
+		  </div>
+
+      </div>
+</div>
+
+
+
+
+<div class="row" style="margin-top: 30px;">
+	
+    <div class=" col-sm-4 col-md-4" style="margin-bottom: 30px;">
+	  
+	  <hr>
+	  <h3 class="text-muted">Latest news</h3>
+
+
+    </div>
+	
+	
+	<style type="text/css" media="screen">
+	table {
+	    table-layout: fixed;
+	    word-wrap: break-word;
+	}
+
+	table a {
+		color: black;
+		text-decoration: underline;
+	}
+	</style>
+	
+	<div class="col-sm-6 col-md-6" >
+	
+	<div id="newstable_div">
+		
+		
+		
+	{% block newstable %}
+	
+	{# --------------------------------- #}	
+	{# 2015-02-05: this is updated via AJAX! #}
+	{# --------------------------------- #}
+		
+		{% if not allfeeds %}
+			
+			<hr>
+			
+			<h4 class="text-muted">Loading... <span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></h4>
+		
+		{% else %}
+			
+			<hr>		
+		
+	        <table class="table table-hover well" style="margin-top: 20px;"> {# table-condensed table-striped #}
+
+	          <tbody>
+			  
+		  		{% for entry in allfeeds  %}
+
+	            <tr>
+	                <td width="20%">
+
+						{% ifequal entry.type "blogpost" %}
+		                <span class="label label-warning">
+		                {% endifequal %}
+
+						{% ifequal entry.type "publication" %}
+		                <span class="label label-danger">
+		                {% endifequal %}
+
+						{% ifequal entry.type "software" %}
+		                 <span class="label label-success">
+		                {% endifequal %}
+
+						{% ifequal entry.type "video" %}
+		                <span class="label label-success">
+		                {% endifequal %}
+
+						{% ifequal entry.type "music" %}
+						<span class="label label-success">
+		                {% endifequal %}
+
+						{% ifequal entry.type "twitter" %}
+		            	<span class="label label-info">
+						{% endifequal %}
+					
+						{% ifequal entry.type "undefined" %}
+						<span class="label label-default">
+						{% endifequal %}
+
+							{{entry.type}}
+						</span></td>
+	                </td>  
+				
+	                <td width="60%">
+						{% ifequal entry.type "twitter" %}
+							{{entry|format_tweet|safe}}
+						{% else %}
+							<a href={{entry.url}} target="blank">{{entry.title}}</a>
+						{% endifequal %}
+					</td>
+	                <td class="text-muted" width="20%">{{ entry.date|date:"d/m/Y"}}</td>
+                         
+	            </tr>
+			
+
+								
+		  		{% endfor %}
+			
+                    
+	          </tbody>
+	        </table>
+		
+		{% endif %}
+		
+		
+
+	{% endblock  %}
+		
+		</div>
+        </div>
+</div>
+
+
+
+	
+	
+{% endblock %}
+
+
+
+
+
+{% block extra_js %}
+
+	<script type="text/javascript">
+		$(function() {
+			// add news feed table via ajax
+			$.get(
+			    "{% url get_newsfeed %}",
+			    {data : "no data for now"},
+			    function(data) {
+			       $("#newstable_div").html(data);
+			    }
+			);
+
+		});
+	</script>
+		
+
+{% endblock %}
+
+

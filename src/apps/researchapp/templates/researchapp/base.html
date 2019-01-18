@@ -1,174 +1,358 @@
-{# Bootstrap 3.3.7 #}
-
+{% extends "researchapp/verybase.html" %}
 {% load static %}
 
-
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-	  <!-- Google Tag Manager -->
-	<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-	new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-	j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-	'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-	})(window,document,'script','dataLayer','GTM-PPRBWFF');</script>
-	<!-- End Google Tag Manager -->
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="{% static 'libs/img/favicon.ico' %} ">
-
-	{% block pagetitle %}
-		<title>researchapp</title>
-	{% endblock pagetitle %}
+{% load extrafilters %}
 
 
-	{% block bootstrap_css %}
-    <!-- Bootstrap core CSS -->
-    {# <link href="{% static 'libs/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">#}
-    <!-- Bootswatch:  -->
-    <!-- cerulean  | cyborg |  flatly |  lumen |  sandstone |   spacelab  |  yeti | cosmo |  darkly |  paper | simplex | superhero |  journal | readable  |   slate |  united -->
-    {% block bootstrap_css_bootswatch3 %}
-    <link href="{% static 'libs/bootswatch3.2/yeti/bootstrap.min.css' %}" rel="stylesheet">
-    {% endblock bootstrap_css_bootswatch3 %}
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="{% static 'libs/bootstrap-3.3.7-dist/css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+{% block pagetitle %}
+    <title>michelepasin.org/{% if category %}{{category}}{% else %}...{% endif %}{% if urlname %}/{{urlname}}{% endif %}
+    </title>
+{% endblock pagetitle %}
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css' %}" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
 
-	{% endblock bootstrap_css %}
-
+{% block extrahead %}
 
 
 <style type="text/css">
 
-  .lead-plus {font-size: 26.5px;}
-  .label-dark {background: #2c3e50; color: white; padding: 1px;}
-  .margin50 {margin-top: 50px; margin-bottom: 50px;}
-  .marginb100 {margin-bottom: 100px;}
+body {
+	font: 12px 'Andale Mono', 'Andale Mono WT', Consolas, sans-serif; 
+	}
 
-  .namespaces {background: #ced2d6; width: 100%;}
-  .footer {background-color: #3e3f3a;}
-
-  /*so that the d3plus tooltip panel doesnt cover the top banner*/
-  .navbar {z-index: 3000;}
-
-
-  .navbar-alpha {
-    font-size: 65%;
-    font-style: italic;
-    font-weight: bold;
-    color: darkgoldenrod;
-  }
-
-
-.black {
-  color: black;
+.top-row {
+	margin-top: 65px;
+	{% comment %} used in welcome page {% endcomment %}
+}
+.top-row2 {
+	margin-top: 40px;
+	{% comment %} used in other pages {% endcomment %}
 }
 
+
+.margin-top-50 {
+    margin-top: 50px;
+}
+
+
+.margin-top-100 {
+    margin-top: 100px;
+}
+
+
+.item_images img {
+    max-width: 800px;
+    border-left: 20px solid lightgrey;
+}
+
+.item_images img:hover {
+    border-left: 20px solid #89A6FF;
+{#    # royalblue #}
+}
+
+.text-black {
+    color: black;
+}
+
+/*title*/
+.menu .title { 
+	margin: 9px 0px 40px -14px;
+	color: white;
+	background-color: #F31B1B;
+	padding: 3px;
+	width: 156px;
+}
+.menu .title a {
+	background-color:#F31B1B; font-weight:bold; 
+	color:white; position:relative; left:-10px;}
+.menu .title a:visited {
+	background-color:#F31B1B; font-weight:bold; 
+	color:white; position:relative; left:-10px;}
+
+.menu  a:link{text-decoration:none;color:#06C;font-weight:bold;}
+.menu  a:hover{text-decoration:underline;font-weight:bold;color:#f31b1b; cursor:pointer;}
+.menu  a:visited{text-decoration:none;color:#06C;}
+.menu  a.active{text-decoration:none;color:white;background:#06C;padding:2px;}
+
+
+.menu  ul.outlinks a:link{text-decoration:none;color:#8F0707;font-weight:bold;}
+.menu  ul.outlinks a:hover{text-decoration:underline;font-weight:bold;color:#8F0707; cursor:pointer;}
+.menu  ul.outlinks a:visited{text-decoration:none;color:#8F0707;}
+
+
+/* li elements */
+
+ #menulist { margin-left: -10px;}
+.menu li { 	margin-left: -25px; }
+.menu ul { list-style: none; margin: 0 0 12px 0; }
+
+.leftContainer ul {list-style: none;}
+
+
+.nextitemlink, .nextitemlink a{
+	color: black;
+}
+
+.nextitemlink a:hover {
+	color: darkgrey;
+}
+
+.previewframe {
+    width: 600px;
+    height: 400px;
+}
+
+
+
+table.news {
+    table-layout: fixed;
+    word-wrap: break-word;
+
+}
+
+
+table.small_font {
+	font-size: 9px;
+}
+
+table.medium_font {
+	font-size: 12px;
+}
+
+
+
+table.news a {
+	color: black;
+	text-decoration: underline;
+}
+
+
+/* left menu fixed only for big screens */
+
+@media (min-width: 970px) {
+    .toc-container {
+        background: #fff;
+        bottom: 0;
+        left: 0;
+        overflow-y: scroll;
+        overflow-x: hidden;
+        position: fixed;
+        top: 1.5em;
+        white-space: nowrap;
+        width: 20%;
+        -webkit-overflow-scrolling: touch
+    }
+
+	.fixedContainer
+	{
+	  position: fixed;
+	}
+	.leftContainer
+	{
+	  margin-left: 200px;
+	}
+
+}
+
+
+
+div.project-thumbnail {
+	width: 300px;
+    height: 200px; /* or whatever... */
+    margin-bottom: 40px;
+    overflow: hidden;
+    float: left;
+}
+
+div.project-thumbnail-small {
+	width: 200px;
+    height: 143px; /* or whatever... */
+    margin-bottom: 20px;
+    overflow: hidden;
+    float: left;
+}
+
+.project-thumbnail img {
+    max-width: 100%;
+    height: auto;
+    opacity: 0.8;
+}
+
+.project-thumbnail img:hover {
+    opacity: 1;
+    border: 1px solid black;
+}
+
+.lihome {
+	margin-left: 10px;
+    margin-top: 10px;
+	font-size: 15px;
+	{% comment %} color: indianred; {% endcomment %}
+	{% comment %} color: white;
+	background: darkgrey; {% endcomment %}
+}
+
+.headline {
+	color: #444444;
+	font-size: 370%;
+}
+
+.belowheadline {
+	color: #b1b0b0;
+    font-size: 120%;
+}
+
+.hl {
+}
+.hl:hover {
+	color: black;
+}
+
+.bold {
+	font-weight: bold;
+}
 
 </style>
 
 
-{% block extra_head %}
-{% endblock extra_head %}
-
-  </head>
-
-  <body>
-
-
-
-{% block navbar %}
-
-
-    {% include "researchapp/default-navbar.html" %}
-
-
-
-{% endblock navbar %}
+{% endblock extrahead %}	
 
 
 
 
 
-
-    <!-- Begin page content -->
-    <div class="container">
+{% block bodycontent %}
 
 
-	{% block bodycontent %}
-
-
-
-	{% endblock bodycontent %}
-
-
-
+<div class="container-fluid">
   <div class="row">
+	  
+	  
+    <div class="col-md-2 menu fixedContainer -toc-container">
+    	<a name="menu"></a>
+		
+		<p class="title">
+			&nbsp;&nbsp;&nbsp;<a href="/" style="color: white;">MICHELEPASIN.ORG</a>
+		</p>
 
-    <hr>
+		{% include "researchapp/menuglobal.html" %}
 
 
-    <div class="col-md-12" style="margin-bottom:50px;">
-       <br />
-       <p><b class="text-muted text-uppercase">Questions?</b></p>
-       <p class="-lead">Drop us a <a href="mailto:michele.pasin@gmail.com">message</a>.</p>
     </div>
+	
+	
+    <div class="col-md-10 -col-md-offset-2 leftContainer">
+    	<a name="content"></a>
 
 
+
+
+
+		{% block page_specific %}
+
+			Implement these contents with what you need in each page
+
+		{% endblock %}
+		
+
+
+
+
+			{% comment %} 2018-05-18: display none cause I was fed up with it {% endcomment %}
+			<div style="margin-top: 600px; display: none;">	&nbsp;
+				{# ADSENSE stuff #}
+
+				<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+				<!-- basic1 -->
+				<ins class="adsbygoogle"
+					style="display:block"
+					data-ad-client="ca-pub-8108687655438913"
+					data-ad-slot="2230044782"
+					data-ad-format="auto"></ins>
+				<script>
+				(adsbygoogle = window.adsbygoogle || []).push({});
+				</script>
+
+				{# end #}
+
+			</div>
+			<br /><br />
+				
+    </div>
+	
   </div>
-
-
-
-	</div>
-
-
-  {% block abovefooter %}
-
-
-
-  {% endblock abovefooter %}
+</div>  {# end of container-fluid #}
 
 
 
 
-  <footer class="footer">
-    <div class="container">
-    {% block footer %}
-      <p class="text-muted">researchapp</p>
-    {% endblock footer %}
-    </div>
-  </footer>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="{% static 'libs/jquery/1.12.4/jquery.min.js' %}"></script>
-    <script src="{% static 'libs/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+{% endblock bodycontent %}
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{% static 'libs/bootstrap-3.3.7-dist/js/ie10-viewport-bug-workaround.js' %}"></script>
+
+	
 
 
 
-    {% block extrajs %}
 
 
 
-    {% endblock extrajs %}
 
 
-  </body>
-</html>
+
+{% block global_js  %}
+<script type="text/javascript" src="{{ STATIC_URL}}researchapp/js/utilities.js"></script>
+
+
+{#  GOOGLE STATS [activate once online]:  #}	
+
+<script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-2000254-3']);
+  _gaq.push(['_setDomainName', 'michelepasin.org']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+  
+  
+	{% if 0 and not welcomepage %}
+
+	{# scroll down to main section - for small screens eg phones #}
+
+	<script type="text/javascript">
+	
+		function scrollToAnchor(name) {
+		  	$('html, body').animate({		
+		  	        scrollTop: $('a[name="' + name + '"]').offset().top - 20
+		  	    }, 1500);
+		};
+	
+		scrollToAnchor("content");
+
+	</script>
+	
+
+	{% endif %}
+
+  
+  
+{% endblock  %}
+	
+
+
+
+{% block extra_js %}
+
+
+{% endblock %}
+
+
+
