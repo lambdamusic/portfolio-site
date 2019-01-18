@@ -11,7 +11,7 @@
 		<h1>{{category|upper}} / {{urlname|capfirst}} / {{itemtitle|default:"..."}}</h1>
 		<br /><br />
 
-		<div class="text-muted text-right">
+		<div class="text-muted -text-right">
 
 			Filter by keyword:&nbsp;
 			{% for t in tags  %}
@@ -30,9 +30,7 @@
                 </select>{% endif %}
 			</form>
 
-        {# &nbsp;&nbsp;&nbsp;#}
-				<br /><br />
-            View as: <a href="?format=txt">plain text</a>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View as: <a href="?format=txt">plain-text</a>
 
 		</div>
 		<hr>
@@ -50,7 +48,7 @@
                 <h5 class="-text-uppercase -text-muted">{{p.title}}</h5>
 			  <a href="{{p.urlstub|lower}}" class="thumbnail" title="{{p.title}}: {{p.short_title|truncatewords:10}}">
                 {# NOTE: images are managed manually in STATIC FOLDER - main.png is hardcoded as the main one #}
-				  <img src="{{ STATIC_URL}}manual_img/{{ p.urlstub }}/{{ p.urlstub }}.jpg" alt="Main image"/>
+				  <img src="{% static 'manual_img/{{ p.urlstub }}/{{ p.urlstub }}.jpg' %}" alt="Main image"/>
 			  </a>
 		    </div>
 		  </div>

@@ -6,14 +6,12 @@
 {% block page_specific_inner %}
 
 
-
-
 		<h1>{{category|upper}} / {{urlname|capfirst}} / {{itemtitle|default:"..."}}</h1>
 		<br /><br />
 
 
 		<div class="row">
-			<div class="text-muted text-right col-md-12">{# Publications #}
+			<div class="text-muted -text-right col-md-12">{# Publications #}
 
 
 				Order by:
@@ -30,7 +28,7 @@
 
 				{# <form action="" class="search-form" style="display: inline-block;">#}
 						<div class="form-group has-feedback" style="display: inline-block;">
-						<label for="search" class="sr-only">Search</label>
+						<label for="search" class="sr-only">Filter</label>
 						<input type="text" class="form-control" name="search" id="search-input" placeholder="search">
 							<span class="glyphicon glyphicon-search form-control-feedback"></span>
 					</div>
@@ -49,7 +47,7 @@
 				 <hr>
 
  			 	<div class="col-sm-2 col-md-3">
- 			 		<h2 class="well"><span>{{group_and_pubs.0}}</span></h2>
+ 			 		<h2 class="-well paper-year"><span>{{group_and_pubs.0}}</span></h2>
  			 	</div>
 
 
@@ -65,7 +63,7 @@
 							<small class="text-muted">{{pub.pubdate|date:"M Y"}}</small>
 
 							<p class='lead' style="font-size: 13px;">
-								<a href="/{{urlname|lower}}/{{pub.id}}/">{{pub.title|capfirst}}</a>.
+								<a href="/{{urlname|lower}}/{{pub.id}}/" class="bluelink">{{pub.title|capfirst}}</a>.
 								<br />
 								<span class="">{{pub|printmanyauthors}}</span>
 							</p>

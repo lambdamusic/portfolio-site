@@ -84,8 +84,8 @@
 		{% if 0 %}  {# BIG SIZES #}
         {% for img in project_images_names  %}
             <div class="col-md-4 margin-top-100 item_images">
-                <a href="{{ STATIC_URL}}manual_img/{{ project.urlstub }}/{{ img }}">
-                <img src="{{ STATIC_URL}}manual_img/{{ project.urlstub }}/{{ img }}">
+                <a href="{% static 'manual_img/{{ project.urlstub }}/{{ img }}' %}">
+                <img src="{% static 'manual_img/{{ project.urlstub }}/{{ img }}' %}">
                  </a>
             </div>
         {% endfor %}
@@ -95,8 +95,8 @@
         {% for img in project_images_names  %}
             <div class="col-md-4 col-sm-4 project-thumbs -item_images">
 				<div class="project-thumbnail">
-                <a href="{{ STATIC_URL}}manual_img/{{ project.urlstub }}/{{ img }}" class="thumbnail">
-                <img src="{{ STATIC_URL}}manual_img/{{ project.urlstub }}/{{ img }}">
+                <a href="{% static 'manual_img/{{ project.urlstub }}/{{ img }}' %}' %}" class="thumbnail">
+                <img src="{% static 'manual_img/{{ project.urlstub }}/{{ img }}' %}' %}">
                  </a>
 				 </div>
             </div>
