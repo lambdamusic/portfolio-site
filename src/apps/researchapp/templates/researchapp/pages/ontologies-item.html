@@ -34,17 +34,26 @@
 		<br />
 
 
-		<div class="well lead">
-			{# <small> #}
-			{% if  datefrom and dateto %}
-				<span class="muted">DATE&nbsp;:</span>
-				&nbsp;&nbsp;{{datefrom|date:"M Y"}} - {{dateto|date:"M Y"}}  <br />
-			{% else %}
-				{% if  datefrom %}
-					<span class="muted">DATE&nbsp;:</span>
-					&nbsp;&nbsp;{{datefrom|date:"M Y"}} <br />
-				{% endif %}
-			{% endif %}
+		<div class="row">
+
+		<hr>
+		
+				<div class="col-md-6">
+
+					<p class="bluelinks_inside">{{itemdesc|safe}}</p>
+					
+				</div>
+				<div class="col-md-6 well">
+
+					{% if  datefrom and dateto %}
+						<span class="muted">Date&nbsp;:</span>
+						&nbsp;&nbsp;{{datefrom|date:"M Y"}} - {{dateto|date:"M Y"}}  <br />
+					{% else %}
+						{% if  datefrom %}
+							<span class="muted">Date&nbsp;:</span>
+							&nbsp;&nbsp;{{datefrom|date:"M Y"}} <br />
+						{% endif %}
+					{% endif %}
 
 					{% if  all_urls %}
 						{% for u in all_urls %}
@@ -55,37 +64,41 @@
 						<span class="muted">Link&nbsp;&nbsp;&nbsp;:</span>
 						&nbsp;&nbsp;not available yet
 					{% endif %}
-			{# </small> #}
+
+				</div>
 		</div>
 
-		<br />
-
-		<div class="paragraph lead">
-			{{itemdesc|safe}}
-		</div>
-
-		<br /><br />
-		{% if itemembed1 %}
-
-			<div class="paragraph lead ">
-				{# <br /> #}
-				{{itemembed1|safe}}
-			</div>
-			<br />
-		{% endif %}
-
-		{% if itemembed2 %}
-			<div class="paragraph lead">
-				<br />
-				{{itemembed2|safe}}
-			</div>
-			<br />
-		{% endif %}
+		
+		{% if itemembed1 or itemembed2 %}
+		<div class="row">
 
 
+				<hr>
 
+				<div class="col-md-12" style="margin-top: 20px;">
 
-		{# {% include "researchapp/pages/disqus_snippet.html" %} #}
+					{% if itemembed1 %}
+
+						<div class="paragraph  ">
+							{# <br /> #}
+							{{itemembed1|safe}}
+						</div>
+						<br />
+					{% endif %}
+
+					{% if itemembed2 %}
+						<div class="paragraph ">
+							<br />
+							{{itemembed2|safe}}
+						</div>
+						<br />
+					{% endif %}
+
+					
+				</div>
+
+		</div>{% endif %}
+
 
 
 

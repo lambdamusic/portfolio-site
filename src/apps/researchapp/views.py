@@ -8,10 +8,12 @@ from django.db.models import Q
 from django.template import RequestContext
 from django.template.loader import select_template, get_template
 
+import os
 from time import strftime
 
 from render_block import render_block_to_string
 
+from settings import STATICFILES_DIRS
 from . import *  #  various settings in ==> __INIT__.PY
 from .models import *
 
@@ -48,8 +50,7 @@ def dispatcher(request, pagename="", namedetail=""):
         # return render_to_response(
         #     mytemplate.render(context))
 
-        return render_to_response(
-        mytemplate, context)
+        return render_to_response(mytemplate, context)
 
 
 def get_category(pagename):
@@ -91,7 +92,6 @@ def get_menu_tree():
     ]
 
     return tree
-
 
 
 def get_page_contents(request, pagename, namedetail):
@@ -144,11 +144,11 @@ def get_page_contents(request, pagename, namedetail):
     if pagename == "papers" and namedetail:
         # PAPERS SPECIFIC PAGE
         return_item = get_object_or_404(Publication, id=namedetail)
-        pubs = list(Publication.objects.exclude(review=True))
-        this_index = pubs.index(return_item)
-        next = pubs[this_index + 1] if len(pubs) > (
-            this_index + 1) else pubs[0]  # recursive
-        prev = pubs[this_index - 1] if (this_index - 1) >= 0 else None
+        if return_item.pubtype.id == 12:
+            # used to exclude 'INVITED TALKS' from articles list
+            next, prev = None, None
+        else:
+            next, prev = return_item.next_prev_pubs()
 
         try:  # bugfix after changing logic for speaking events
             pubtypegroup = return_item.pubtype.groupfk.name
@@ -260,8 +260,12 @@ def get_page_contents(request, pagename, namedetail):
         name = request.GET.get('name', '')
         reply_email = request.GET.get('email', '')
         message = request.GET.get('message', '')
+        test = request.GET.get('test', '')
 
-        success = trySendEmail(name, reply_email, message)
+        if test == "4":
+            success = trySendEmail(name, reply_email, message)
+        else:
+            success = False
 
         context = {'success': success}
 
@@ -271,18 +275,14 @@ def get_page_contents(request, pagename, namedetail):
         ])
         return [mytemplate.template.name, context]
 
-    # ==GENERIC PAGE list==
+    # ==GENERIC PAGE - LIST ==
 
     if pagename and not namedetail and pagename not in STATIC_PAGES:
         context, items = {}, []
-        # STUFF LIST PAGE
-        if pagename == 'code':
-            items = Software.objects.exclude(review=True).exclude(
-                soft_type__name="ontology").order_by("soft_type", "-date")
 
         if pagename == 'ontologies':
-            items = Software.objects.exclude(review=True).filter(
-                soft_type__name="ontology").order_by("soft_type", "-date")
+            items = Item.objects.exclude(review=True).filter(
+                Q(atype__name__iexact="ontology"))
 
         if pagename == 'music':
             items = Item.objects.exclude(review=True).filter(
@@ -326,36 +326,18 @@ def get_page_contents(request, pagename, namedetail):
         ])
         return [mytemplate.template.name, context]
 
-    # ==GENERIC PAGE Specific==
+    # ==GENERIC PAGE - SINGLE ITEMS ==
 
     if pagename and namedetail:
-        # STUFF SPECIFIC PAGE
-        if pagename == "code":
-            return_item = get_object_or_404(Software, urlstub=namedetail)
-            softwares = list(Software.objects.exclude(review=True))
-            this_index = softwares.index(return_item)
-            next = softwares[this_index + 1] if len(softwares) > (
-                this_index + 1) else softwares[0]  # recursive
-            prev = softwares[this_index - 1] if (this_index - 1) >= 0 else None
 
-        elif pagename == "ontologies":
-            return_item = get_object_or_404(Software, urlstub=namedetail)
-            softwares = list(
-                Software.objects.exclude(review=True).filter(
-                    soft_type__name="ontology"))
-            this_index = softwares.index(return_item)
-            next = softwares[this_index + 1] if len(softwares) > (
-                this_index + 1) else softwares[0]  # recursive
-            prev = softwares[this_index - 1] if (this_index - 1) >= 0 else None
-
-        else:  # VIDEO AND MUSIC : for the mom all together
-            return_item = get_object_or_404(Item, urlstub=namedetail)
-            # items = list(Item.objects.exclude(review=True))
-            # this_index = items.index(return_item)
-            # next = items[this_index+1] if len(items) > (this_index+1) else None
-            # prev = items[this_index-1] if (this_index-1) >= 0 else None
-            next = None
-            prev = None
+        # ONTOLOGIES, VIDEO AND MUSIC : for the mom all together
+        return_item = get_object_or_404(Item, urlstub=namedetail)
+        # items = list(Item.objects.exclude(review=True))
+        # this_index = items.index(return_item)
+        # next = items[this_index+1] if len(items) > (this_index+1) else None
+        # prev = items[this_index-1] if (this_index-1) >= 0 else None
+        next = None
+        prev = None
 
         context = {
             'itemtitle': return_item.title,

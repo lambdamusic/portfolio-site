@@ -1,5 +1,5 @@
 {% extends "researchapp/pages/base-default.html" %}
-
+{% load static %}
 {% load extrafilters %}
 
 
@@ -10,24 +10,14 @@
 		<h1>{{category|upper}} / <a href="/{{urlname}}">{{urlname|capfirst}}</a> / {{project.title}}</h1>
 
 
-		<div class="col-md-6">
-			<small class="nextitemlink">
-				 {# 2015-10-06: disabled #}
-				{% if 0 and prev %}<a href="{{prev.get_absolute_url}}" title="View previous project">
-				<span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-			&nbsp;{{prev.title}}</a>
-				{% endif %}
 
-			</small>
-		</div>
-
-		<div class="col-md-6 text-right">
+		<div class="col-md-12 text-right" style="margin-top: 10px;">
 			{% if next %}
 			<small class="text-muted">
 				Next:&nbsp;
 			</small>
 			<small class="nextitemlink">
-				<a href="{{next.get_absolute_url}}" title="View next">{{next.title|truncatewords:6}}&nbsp;
+				<a href="{{next.get_absolute_url}}" class="bluelink" title="View next">{{next.title|truncatewords:6}}&nbsp;
 				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
 				</a>
 			</small>
@@ -35,97 +25,106 @@
 
 		</div>
 
-
 		<br />
 		<br />
 		<br />
 
 
+		<div class="row">
 
-		<div class="well -lead">
-			{# <small> #}
-			{% if  project.datefrom and project.dateto %}
-				<span class="text-black">DATE&nbsp;:</span>
-				&nbsp;&nbsp;{{project.datefrom|date:"M Y"}} - {{project.dateto|date:"M Y"}}  <br />
-			{% else %}
-				{% if  project.datefrom %}
-					<span class="text-black">DATE&nbsp;:</span>
-					&nbsp;&nbsp;{{project.datefrom|date:"M Y"}} <br />
-				{% endif %}
-			{% endif %}
+		<hr>
+		
+				<div class="col-md-6">
+					{% comment %} <p class="text-muted">Description:</p> {% endcomment %}
+					<p class="bluelinks_inside">{{project.description|safe}}</p>
+					
+				</div>
+		
+				<div class="col-md-6 well">
+					{% if  project.datefrom and project.dateto %}
+						<span class="text-black">Date&nbsp;:</span>
+						&nbsp;&nbsp;{{project.datefrom|date:"M Y"}} - {{project.dateto|date:"M Y"}}  <br />
+					{% else %}
+						{% if  project.datefrom %}
+							<span class="text-black">Date&nbsp;:</span>
+							&nbsp;&nbsp;{{project.datefrom|date:"M Y"}} <br />
+						{% endif %}
+					{% endif %}
 
-            {# ROLE #}
-            <span class="text-black">ROLE&nbsp;:</span>
-				&nbsp;&nbsp;{{project.myrole|safe}}  <br />
+					{# ROLE #}
+					<span class="text-black">Role&nbsp;:</span>
+						&nbsp;&nbsp;{{project.myrole|safe}}  <br />
 
 
-            {% if  project.all_urls %}
-                {% for u in project.all_urls %}
-                    <span class="text-black">Link&nbsp;&nbsp;&nbsp;:</span>
-                    &nbsp;&nbsp;<a class='url' href="{{u.0}}" target="_blank"> {{u.1}}</a><br />
-                {% endfor %}
-            {% else %}
-                <span class="text-black">Link&nbsp;&nbsp;&nbsp;:</span>
-                &nbsp;&nbsp;not available yet
-            {% endif %}
-			{# </small> #}
+					{% if  project.all_urls %}
+						{% for u in project.all_urls %}
+							<span class="text-black">Link&nbsp;:</span>
+							&nbsp;&nbsp;<a class='url' href="{{u.0}}" target="_blank">{{u.1}}</a><br />
+						{% endfor %}
+					{% else %}
+						<span class="text-black">Link&nbsp;:</span>
+						&nbsp;&nbsp;not available yet
+					{% endif %}
+
+				</div>
+
 		</div>
 
-		<div class="paragraph lead margin-top-50">
-			{{project.description|safe}}
+		<div class="row" style="margin-top: 0px;">
+		
+			<hr>
+			
+
+			<div class="col-md-12" style="margin-top: 20px;">
+					<p>Screenshots:</p>
+					<br /><br />
+					
+
+					{% if 0 %}  {# BIG SIZES #}
+					{% for img in project_images_names  %}
+						<div class="-col-md-4 margin-top-100 item_images">
+							<a href="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}">
+							<img src="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}">
+							</a>
+						</div>
+					{% endfor %}
+					{% endif %}
+
+					{# TILED SIZES #}
+					{% for img in project_images_names  %}
+						<div class="col-md-4 col-sm-4 project-thumbs -item_images">
+							<div class="project-thumbnail">
+							<a href="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}" class="thumbnail">
+							<img src="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}">
+							</a>
+							</div>
+						</div>
+					{% endfor %}
+
+
+					{% if project.embedcode1 %}
+
+						<div class="paragraph">
+							{# <br /> #}
+							{{project.embedcode1|safe}}
+						</div>
+						<br /><br />
+					{% endif %}
+
+					{% if project.embedcode2 %}
+						<div class="paragraph">
+							<br />
+							{{project.embedcode2|safe}}
+						</div>
+						<br /><br />
+					{% endif %}
+
+
+			</div>
+		
 		</div>
 
 
-
-		<br /><br /><br />
-
-
-
-		{% if 0 %}  {# BIG SIZES #}
-        {% for img in project_images_names  %}
-            <div class="col-md-4 margin-top-100 item_images">
-                <a href="{% static 'manual_img/{{ project.urlstub }}/{{ img }}' %}">
-                <img src="{% static 'manual_img/{{ project.urlstub }}/{{ img }}' %}">
-                 </a>
-            </div>
-        {% endfor %}
-		{% endif %}
-
-		{# TILED SIZES #}
-        {% for img in project_images_names  %}
-            <div class="col-md-4 col-sm-4 project-thumbs -item_images">
-				<div class="project-thumbnail">
-                <a href="{% static 'manual_img/{{ project.urlstub }}/{{ img }}' %}' %}" class="thumbnail">
-                <img src="{% static 'manual_img/{{ project.urlstub }}/{{ img }}' %}' %}">
-                 </a>
-				 </div>
-            </div>
-        {% endfor %}
-
-
-		{% if project.embedcode1 %}
-
-			<div class="paragraph">
-				{# <br /> #}
-				{{project.embedcode1|safe}}
-			</div>
-			<br /><br />
-		{% endif %}
-
-		{% if project.embedcode2 %}
-			<div class="paragraph">
-				<br />
-				{{project.embedcode2|safe}}
-			</div>
-			<br /><br />
-		{% endif %}
-
-
-		<br /><br />
-
-
-
-		{# {% include "researchapp/pages/disqus_snippet.html" %} #}
 
 
 

@@ -119,7 +119,7 @@ class Person(mymodels.EnhancedModel):
     get_databrowse_url.allow_tags = True
 
     def get_absolute_url(self):
-        return reverse('person_detail', [str(self.id)])
+        return reverse('researchapp:person_detail', args=[str(self.id)])
 
     def full_name(self):
         try:
@@ -330,7 +330,6 @@ class Publication(mymodels.EnhancedModel):
 
     def get_absolute_url(self):
         return reverse('researchapp:detail_page_dispatcher', args=['papers', str(self.id)]) # NEW WAY
-        # return reverse('researchapp:detail_page_dispatcher', ['papers', str(self.id)])
 
     # method that gives all the urls in one go!
     def all_urls(self):
@@ -351,6 +350,23 @@ class Publication(mymodels.EnhancedModel):
         extrainfo = self.extrainfo or ""
         return "%s. %s - %s %s %s %s." % (authors, title, pubtype, pubplace,
                                           pubdate, extrainfo)
+
+
+    def next_prev_pubs(self, exclude_talks=True):
+        if exclude_talks:
+            # talks = PubType.objects.get(
+            #     pk=12)  # used to exclude 'INVITED TALKS' from articles list
+            pubs = list(
+                Publication.objects.exclude(review=True).exclude(pubtype__id=12))
+        else:
+            pubs = list(Publication.objects.exclude(review=True))
+
+        this_index = pubs.index(self)
+        next = pubs[this_index + 1] if len(pubs) > (
+            this_index + 1) else pubs[0]  # back to front
+        prev = pubs[this_index - 1] if (this_index - 1) >= 0 else None
+        return (next, prev)
+
 
     class Meta:
         ordering = ["-pubdate"]
@@ -543,7 +559,7 @@ class Project(mymodels.EnhancedModel):
     get_databrowse_url.allow_tags = True
 
     def get_absolute_url(self):
-        return reverse('detail_page_dispatcher', ['projects', str(self.urlstub)])
+        return reverse('researchapp:detail_page_dispatcher', args=['projects', str(self.urlstub)])
 
     # method that gives all the urls in one go!
     def all_urls(self):
@@ -756,7 +772,7 @@ class Item(mymodels.EnhancedModel):
     get_databrowse_url.allow_tags = True
 
     def get_absolute_url(self):
-        return reverse('detail_page_dispatcher', ['item', str(self.urlstub)])
+        return reverse('researchapp:detail_page_dispatcher', args=['item', str(self.urlstub)])
 
     # method that gives all the urls in one go!
     def all_urls(self):

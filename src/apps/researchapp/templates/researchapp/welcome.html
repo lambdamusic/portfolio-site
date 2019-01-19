@@ -1,8 +1,8 @@
 {# this is the homepage: mind that the 3columns css file is used here!  #}
 
 {% extends "researchapp/base.html" %}
-{% load extrafilters %}
 {% load static %}
+{% load extrafilters %}
 
 {% block page_specific %}
 
@@ -11,8 +11,6 @@
 
 
       <div class="col-sm-6 col-md-6" style="-margin-bottom: 30px; margin-top: -15px;"> 
-
-		<div class="-well -lead">
 
 			<span class="lead headline">Hi, I'm Michele Pasin. 
 			</span>
@@ -42,12 +40,20 @@
 				<span class="belowheadline" style="color: #908888;">Still interested?</span>
 				<br /><br />
 				Great! You can find out more by looking at my <a href="{% url 'researchapp:page_dispatcher' 'projects' %}">projects</a>, my <a href="/blog">blog</a> or my <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0">LinkedIn CV</a>.
-			</div>
 
-			<br /><br /><br /><br /><br /><br />
 		  </div>
 
       </div>
+
+
+	  <div class="col-sm-3 col-md-3">
+	  
+	  	 <div class="thumbnail" style="border: none;">
+		  	<img src="{% static 'misc_img/' %}me-5.jpg" style="border: 1px black solid;">
+		  </div>
+
+	  </div>
+
 </div>
 
 
