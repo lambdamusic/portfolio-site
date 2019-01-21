@@ -22,22 +22,19 @@
 						{% ifequal item.1 "/" %}   
 					
 							{# if the second part of menu category means it's a subpage #}
-						
 							<li><a  
 								{% ifequal subitem.1|lower urlname  %}class="active"{% endifequal %}					
-								 href="/{{subitem.1|lower}}/">{{subitem.0}}</a>
+								 href="/{{subitem.1|lower}}/" {% ifequal subitem.0|lower "blog"  %}target="_blank"{% endifequal %}>{{subitem.0}}</a>
 							</li>
+						
 						{% else %}
 					
 							{# we have an external link #}
-					
 				            <li><a 
 								{% ifequal subitem.1|lower urlname  %}class="active" {% endifequal %}
-								href="{{subitem.1}}">{{subitem.0}}</a>
+								href="{{subitem.1}}" >{{subitem.0}}</a>
 							
-								{# {% ifnotequal subitem.1|lower "/"  %}target="_blank" #}
-								{# 												{% endifnotequal %} #}
-							
+								
 							</li>
 						{% endifequal %}
 

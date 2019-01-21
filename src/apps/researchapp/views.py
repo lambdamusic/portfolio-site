@@ -89,7 +89,7 @@ def get_menu_tree():
                 ('Livecoding', "Livecoding"),
                 ('Music', "Music"),
                 ('Photos', 'Photos'),
-                # ('Videos', 'Videos'),
+                # ('Videos', 'Videos'),  # disabled on 2019-01-21
             ]),
     ]
 
@@ -412,8 +412,6 @@ def get_pubs(query):
 
     else:
         return None
-
-
 
 
 def format_feeds(allfeeds):
