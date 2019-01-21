@@ -60,26 +60,27 @@
 				<div class="col-md-6 well">
 
 					{% if  datefrom and dateto %}
-						<span class="muted">Date&nbsp;:</span>
+						<span class="muted">Date:</span>
 						&nbsp;&nbsp;{{datefrom|date:"M Y"}} - {{dateto|date:"M Y"}}  <br />
 					{% else %}
 						{% if  datefrom %}
-							<span class="muted">Date&nbsp;:</span>
+							<span class="muted">Date:</span>
 							&nbsp;&nbsp;{{datefrom|date:"M Y"}} <br />
 						{% endif %}
 					{% endif %}
 
 					{% if  all_urls %}
 						{% for u in all_urls %}
-							<span class="muted">Link&nbsp;&nbsp;&nbsp;:</span>
-							&nbsp;&nbsp;<a class='url' href="{{u.0}}" target="_blank"> {{u.1}}</a><br />
+							<span class="muted">Link:</span>
+							&nbsp;&nbsp;<a class='url' href="{{u.0}}" target="_blank">{{u.1}}</a><br />
 						{% endfor %}
 					{% else %}
-						<span class="muted">Link&nbsp;&nbsp;&nbsp;:</span>
+						<span class="muted">Link:</span>
 						&nbsp;&nbsp;not available yet
 					{% endif %}
 
 				</div>
+
 		</div>
 
 		

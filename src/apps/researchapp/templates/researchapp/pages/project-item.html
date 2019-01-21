@@ -41,28 +41,31 @@
 				</div>
 		
 				<div class="col-md-6 well">
+
+					{# ROLE #}
+					<span class="text-black">Role:</span>
+						&nbsp;&nbsp;{{project.myrole|safe}}  <br />
+
 					{% if  project.datefrom and project.dateto %}
-						<span class="text-black">Date&nbsp;:</span>
+						<span class="text-black">Date:</span>
 						&nbsp;&nbsp;{{project.datefrom|date:"M Y"}} - {{project.dateto|date:"M Y"}}  <br />
 					{% else %}
 						{% if  project.datefrom %}
-							<span class="text-black">Date&nbsp;:</span>
+							<span class="text-black">Date:</span>
 							&nbsp;&nbsp;{{project.datefrom|date:"M Y"}} <br />
 						{% endif %}
 					{% endif %}
 
-					{# ROLE #}
-					<span class="text-black">Role&nbsp;:</span>
-						&nbsp;&nbsp;{{project.myrole|safe}}  <br />
+
 
 
 					{% if  project.all_urls %}
 						{% for u in project.all_urls %}
-							<span class="text-black">Link&nbsp;:</span>
+							<span class="text-black">Link:</span>
 							&nbsp;&nbsp;<a class='url' href="{{u.0}}" target="_blank">{{u.1}}</a><br />
 						{% endfor %}
 					{% else %}
-						<span class="text-black">Link&nbsp;:</span>
+						<span class="text-black">Link:</span>
 						&nbsp;&nbsp;not available yet
 					{% endif %}
 

@@ -81,14 +81,16 @@ def get_menu_tree():
             ('Speaking', 'speaking'),
             ('Contact', 'contact'),
         ]),
-        ((FREETIME_CATEGORY['name'], "/"), [
-            ('Blog', 'blog'),
-            ('Ontologies', "ontologies"),
-            ('Livecoding', "Livecoding"),
-            ('Music', "Music"),
-            ('Photos', 'Photos'),
-            ('Videos', 'Videos'),
-        ]),
+        (
+            (FREETIME_CATEGORY['name'], "/"),
+            [
+                ('Blog', 'blog'),
+                ('Ontologies', "ontologies"),
+                ('Livecoding', "Livecoding"),
+                ('Music', "Music"),
+                ('Photos', 'Photos'),
+                # ('Videos', 'Videos'),
+            ]),
     ]
 
     return tree
@@ -294,15 +296,11 @@ def get_page_contents(request, pagename, namedetail):
                 | Q(atype__name__iexact="performance"))
 
         if pagename == 'photos':
-            # context['photoscode'] =  get_photos_preview(1)
-            items = []
-            items = Item.objects.exclude(review=True).filter(
-                atype__name__iexact="photos")
-
-            # http://stuvel.eu/media/flickrapi-docs/documentation/
+            # DOCS http://stuvel.eu/media/flickrapi-docs/documentation/
             import flickrapi
             api_key = "6b36d6a49a7abb07d8f156bbe5562380"
-            flickr = flickrapi.FlickrAPI(api_key, cache=True)
+            secret = "920639143ba2cd27"
+            flickr = flickrapi.FlickrAPI(api_key, secret, cache=True)
             sets = flickr.photosets_getList(user_id='76186999@N00')
             sets_list = []
 
@@ -416,30 +414,6 @@ def get_pubs(query):
         return None
 
 
-def get_photos_preview(npictures=1):
-    """
-	Snippet that retrieves the html code for a random picture among the ones I preselected
-	2012-09-23: TODO: fix the css in photos templates, cause if we have more than 1 image the wrapping of text is fucked....
-	"""
-
-    photoscode = ""
-    photos = Item.objects.exclude(review=True).filter(
-        atype__name__iexact="Photos_homepage")
-    if photos:
-        photoscode = photos[0].embedcode1.strip().split("****")
-        now = datetime.today()
-        n = now.hour * (float(len(photoscode)) / 24.0
-                        )  # change pic at every hour
-        # you could experiment with now.day too...
-
-        photoscode_out = ""
-        for x in range(npictures):
-            try:
-                photoscode_out += photoscode[int(n + x)]  # similar to floor..
-            except:
-                pass
-
-        return photoscode_out
 
 
 def format_feeds(allfeeds):
