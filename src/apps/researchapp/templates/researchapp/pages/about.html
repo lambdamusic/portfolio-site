@@ -1,0 +1,129 @@
+{# this is the homepage: mind that the 3columns css file is used here!  #}
+
+{% extends "researchapp/base.html" %}
+{% load static %}
+{% load extrafilters %}
+
+{% block page_specific %}
+
+
+<div class="row top-row">
+
+
+      <div class="col-sm-6 col-md-6" style="-margin-bottom: 30px; margin-top: -15px;"> 
+
+			<span class="lead headline">Hi, I'm Michele Pasin. 
+			</span>
+
+			<br>
+
+			<div class="-lead black belowheadline" style="color: black;">
+				<br />
+				<span class="belowheadline">I am a data scientist and semantic web researcher. </span> 
+				<hr>
+				<br /><br />
+				My work revolves around three  areas:
+				<br /><br>	
+				<li class="lihome">
+					<span class="hl" style="background: lightyellow;">Software tools that support research and scholarly work</span>, both in the humanities and hard sciences.
+				</li>
+				<li class="lihome">
+					<span class="hl" style="background: lightyellow;">Data Architecture and Knowledge Modeling</span> in all of its flavors: logical, relational, document oriented, ontology-based, linked data, knowledge graphs etc.. 
+				</li>
+				<li class="lihome">
+					<span class="hl" style="background: lightyellow;">Data Capture and Explorative Interfaces</span> aimed at facilitating the process of information discovery and sense-making.
+				</li>		
+
+
+				<br />
+				<br />
+				<hr>
+
+				<span class="belowheadline" style="color: #908888;">Still interested?</span>
+				<br /><br />
+				Great! You can find out more by looking at my <a href="{% url 'researchapp:page_dispatcher' 'projects' %}">projects</a>, my <a href="/blog">blog</a> or my <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0">LinkedIn CV</a>.
+
+				<br />
+				<br />
+		  </div>
+
+      </div>
+
+		
+		{% if 0 %}
+			
+		
+			
+	  <div class="col-sm-3 col-md-3">
+	  
+	  	 <div class="thumbnail" style="border: none;">
+		  	<img src="{% static 'misc_img/' %}me-5.jpg" style="border: 1px black solid;">
+		  </div>
+
+	  </div>
+	  {% endif %}
+
+</div>
+
+
+
+
+
+
+{% if 0 %}
+
+	{% include 'researchapp/components/blogposts.html' %}
+
+{% endif %}
+
+
+
+{% if 0 %}
+
+	{% include 'researchapp/components/featured.html' %}
+
+{% endif %}
+
+
+
+
+{% if 0 %}
+
+	{% include 'researchapp/components/newstable.html' %}
+
+{% endif %}
+
+
+
+{% endblock %}
+
+
+
+
+
+{% block extra_js %}
+
+	
+	{% if 0 %}
+		{% comment %} feeds disabled 2019-01-21 {% endcomment %}
+
+	<script type="text/javascript">
+		$(function() {
+			// add news feed table via ajax
+			$.get(
+			    "{% url 'researchapp:ajax_get_blogs' %}",
+			    {data : "no data for now"},
+			    function(data) {
+			       $("#blogposts_div").html(data);
+			    }
+			);
+
+		});
+	</script>
+
+	{% endif %}
+		
+
+
+
+{% endblock %}

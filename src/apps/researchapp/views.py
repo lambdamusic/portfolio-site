@@ -76,6 +76,7 @@ def get_menu_tree():
 	"""
     tree = [
         ((RESEARCH_CATEGORY['name'], "/"), [
+            ('About', 'about'),
             ('Papers', 'papers'),
             ('Projects', 'projects'),
             ('Speaking', 'speaking'),
@@ -357,9 +358,11 @@ def get_page_contents(request, pagename, namedetail):
         # CATCH ALL SITUATION FOR STATIC PAGES
         context = {}
         mytemplate = select_template([
+            'researchapp/%s/%s.html' % (category['folder'], pagename ),
             "researchapp/%s/%s-item.html" % (category['folder'], pagename),
-            'researchapp/%s/default-item.html' % (category['folder'], )
+            'researchapp/%s/default-item.html' % (category['folder'], ) ,
         ])
+        print(mytemplate.template.name)
         return [mytemplate.template.name, context]
 
 

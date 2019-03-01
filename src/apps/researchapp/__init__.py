@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 # Add Items To The List Below When Adding New Pages/urls
 # 2011-09-09: added these to filter out all 'bad' urls
 VALID_PAGES_RESEARCH = [
-    'projects', 'papers', 'code', 'hacks', 'software', 'code', 'speaking',
+    'about', 'projects', 'papers', 'code', 'hacks', 'software', 'code', 'speaking',
     'contact'
 ]
 VALID_PAGES_STUFF = [
@@ -16,7 +16,7 @@ VALID_PAGES_STUFF = [
     'videos',
     'ontologies',
 ]
-STATIC_PAGES = ['contact']
+STATIC_PAGES = ['contact', 'about']
 RESEARCH_CATEGORY = {'name': "work", 'folder': 'pages'}
 FREETIME_CATEGORY = {'name': "misc", 'folder': 'pages'}
 
