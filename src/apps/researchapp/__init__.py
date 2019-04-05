@@ -17,7 +17,7 @@ VALID_PAGES_STUFF = [
     'ontologies',
 ]
 STATIC_PAGES = ['contact', 'about']
-RESEARCH_CATEGORY = {'name': "work", 'folder': 'pages'}
+RESEARCH_CATEGORY = {'name': "me", 'folder': 'pages'}
 FREETIME_CATEGORY = {'name': "misc", 'folder': 'pages'}
 
 # note: the twitrss feed fails on local due to an old-python version issue

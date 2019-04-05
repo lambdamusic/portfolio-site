@@ -11,20 +11,10 @@
 <div class="row top-row">
 
 
-      <div class="col-sm-12 col-md-12" style="-margin-bottom: 30px; margin-top: -15px;"> 
+      <div id="outer_area" class="col-sm-12 col-md-12" style="-margin-bottom: 30px; margin-top: -15px;"> 
 
 				<div id="drawArea" style="height: 500px; border:0px solid lightgray">
 				</div>
-
-
-{% comment %} 		
-
-<div id="mainDiv" style="width:960px; height:480px">
-    <div id="drawAreaOuter" style="width:100%; height:100%;  ">
-        <div id="drawArea" style="width:100%; height:100%; border:1px solid gray">
-        </div>
-    </div>
-</div> {% endcomment %}
 
 
 
@@ -286,6 +276,22 @@ function randomIntFromInterval(min,max) // min and max included
 
     var svg = Initialize('drawArea');
     StartStopGame();
+
+		function fade() {
+			var i = 0;
+			var area = document.getElementById("outer_area");
+			area.style.opacity = 0;
+			var k = window.setInterval(function() {
+				if (i >= 10) {
+					clearInterval(k);
+				} else {
+					area.style.opacity = i / 10;
+					i++;
+				}
+			}, 1000);
+		};
+		fade()
+
 </script>
 
 {% endblock extra_js %}

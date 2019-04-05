@@ -7,6 +7,7 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.db.models import Q
 from django.template import RequestContext
 from django.template.loader import select_template, get_template
+from django.core.mail import EmailMessage
 
 import os
 from time import strftime
@@ -77,10 +78,10 @@ def get_menu_tree():
     tree = [
         ((RESEARCH_CATEGORY['name'], "/"), [
             ('About', 'about'),
+            ('Contact', 'contact'),
             ('Papers', 'papers'),
             ('Projects', 'projects'),
             ('Speaking', 'speaking'),
-            ('Contact', 'contact'),
         ]),
         (
             (FREETIME_CATEGORY['name'], "/"),
@@ -265,11 +266,14 @@ def get_page_contents(request, pagename, namedetail):
         message = request.GET.get('message', '')
         test = request.GET.get('test', '')
 
-        if test == "4":
-            success = trySendEmail(name, reply_email, message)
+        if name or reply_email or message or test:
+            if test == "4":
+                success = trySendEmail(name, reply_email, message)
+            else:
+                success = "error"
         else:
-            success = False
-
+            success = False # landing page
+        # print(success)
         context = {'success': success}
 
         mytemplate = select_template([
@@ -486,6 +490,42 @@ def ajax_get_blogs(request):
     return HttpResponse(return_str)
 
 
+def trySendEmail_DEBUG(name, reply_email, message):
+    """ sends an email"""
+
+    from_email = "communications@michelepasin.org"
+    to_email = "michele.pasin@gmail.com"
+
+    if (name or reply_email or message):
+        if name and reply_email and message:
+            # then all data have been entered
+            subject = "[michelepasin.org] eMail from %s " % reply_email
+            message = """[This is a message sent using the contact form on michelepasin.org]\n\n
+
+Sender: %s\n
+Email: %s\n
+---------------------------------\n
+Message: %s\n\n
+
+                """ % (name, reply_email, message)
+
+            headers = {'Reply-To': reply_email}
+            msg = EmailMessage(
+                subject, message, from_email, [to_email], headers=headers)
+            msg.content_subtype = "html"
+            msg.send()
+
+            success = 'sent'
+        else:
+            # missing data in the form
+            success = 'error'
+    else:
+        success = None
+
+    return success
+
+
+
 def trySendEmail(name, reply_email, message):
     """ sends an email"""
 
@@ -497,7 +537,7 @@ def trySendEmail(name, reply_email, message):
             # then all data have been entered
 
             try:
-                subject = "[michelepasin.org] New mail from %s " % reply_email
+                subject = "[michelepasin.org] eMail from %s " % reply_email
                 message = """[This is a message sent using the contact form on michelepasin.org]\n\n
 
 Sender: %s\n
