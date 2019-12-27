@@ -17,6 +17,7 @@ from render_block import render_block_to_string
 from settings import STATICFILES_DIRS
 from . import *  #  various settings in ==> __INIT__.PY
 from .models import *
+from .topics import *
 
 #########
 # VIEWS: everything is managed using the dynamic dispatcher
@@ -116,7 +117,9 @@ def get_page_contents(request, pagename, namedetail):
 
         context = {
             'welcomepage': True,  # triggers 3 columns css
-            # 'allfeeds' :	allfeeds,
+            'top_topics' :	top_topics,
+            'topics_links' :	topics_links,
+            'topics_unique' :	topics_unique,
         }
         return ['researchapp/welcome.html', context]
 

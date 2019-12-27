@@ -1,0 +1,109 @@
+{# this is the homepage: mind that the 3columns css file is used here!  #}
+
+{% extends "researchapp/base.html" %}
+{% load static %}
+{% load extrafilters %}
+
+
+{% block page_specific %}
+
+
+    <div class="row top-row">
+
+
+        <div id="mynetwork" style="width: 80%; border:1px solid white">
+        </div>
+
+
+        
+
+    </div>
+
+
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<script type="text/javascript" src="{% static 'js/vis-network.min.js' %}" ></script>
+
+
+<script type="text/javascript">
+  // create an array with nodes
+  var nodes = new vis.DataSet([
+    {id: 1, label: 'Knowledge Graphs', value : 5 },
+    {id: 2, label: 'RDF', value : 5},
+    {id: 3, label: 'Linked Data', value : 5},
+    {id: 4, label: 'Python', value : 5},
+    {id: 5, label: 'APIs', value : 5},
+    {id: 6, label: 'Information Architecture', value : 5},
+    {id: 7, label: 'Data Architecture', value : 5},
+    {id: 8, label: 'Knowledge Modeling', value : 50, color:'#7BE141'},
+    {id: 9, label: 'Web Development', value : 50},
+    {id: 10, label: 'Ontology', value : 5},
+  ]);
+
+  // create an array with edges
+  var edges = new vis.DataSet([
+    {from: 1, to: 3},
+    {from: 1, to: 2},
+    {from: 9, to: 4},
+    {from: 7, to: 5},
+    {from: 8, to: 6},
+    {from: 1, to: 8},
+    {from: 8, to: 7},
+    {from: 8, to: 9},
+    {from: 8, to: 10},
+  ]);
+
+  // create a network
+  var container = document.getElementById('mynetwork');
+  var h = window.innerHeight - 200;
+  container.style.height = h + "px";
+  //console.log(w, w-20)
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {
+    nodes: { 
+      shape: "dot",  // ellipse, circle, database, box, text, dot, square, icon
+      borderWidth: 1,
+      borderWidthSelected: 2,
+      color: {
+        border: 'grey',
+        background: 'lightgray',
+        highlight: {
+          border: '#2B7CE9',
+          background: '#D2E5FF'
+        },
+        hover: {
+          border: '#2B7CE9',
+          background: '#D2E5FF'
+        }
+      },
+      },
+    edges: {
+      shadow:{
+        enabled: true,
+        color: 'rgba(0,0,0,0.5)',
+        size:10,
+        x:5,
+        y:5
+      },
+    },
+    physics: {
+      stabilization: false,
+      barnesHut: {
+        springLength: 100
+      }
+    },
+
+  };
+  var network = new vis.Network(container, data, options);
+</script>
+
+
+
+{% endblock extra_js %}

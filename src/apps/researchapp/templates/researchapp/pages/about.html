@@ -1,129 +1,51 @@
-{# this is the homepage: mind that the 3columns css file is used here!  #}
+{% extends "researchapp/pages/base-default.html" %}
 
-{% extends "researchapp/base.html" %}
-{% load static %}
 {% load extrafilters %}
 
-{% block page_specific %}
+
+{% block page_specific_inner %}
 
 
-<div class="row top-row">
-
-
-      <div class="col-sm-6 col-md-6" style="-margin-bottom: 30px; margin-top: -15px;"> 
-
-			<span class="lead headline">Hi, I'm Michele Pasin. 
-			</span>
-
-			<br>
-
-			<div class="-lead black belowheadline" style="color: black;">
-				<br />
-				<span class="belowheadline">I'm an information & data architect with a background in ontology engineering and linked data research. </span> 
-				<hr>
-				<br /><br />
-				My work revolves around three  areas:
-				<br /><br>	
-				<li class="lihome">
-					<span class="hl" style="background: antiquewhite  ;">Data Architecture and Knowledge Modeling</span> in all of its flavors: logical, relational, document oriented, ontology-based, linked data, knowledge graphs etc.. 
-				</li>
-				<li class="lihome">
-					<span class="hl" style="background: lightyellow;">Software tools that support research and scholarly work</span>, both in the humanities and hard sciences.
-				</li>
-				<li class="lihome">
-					<span class="hl" style="background: floralwhite ;">Data Science and Exploratory Data Analysis</span> approaches aimed at facilitating the process of information discovery and sense-making.
-				</li>		
-
-
-				<br />
-				<br />
-				<hr>
-
-				<span class="belowheadline" style="color: #908888;">Still interested?</span>
-				<br /><br />
-				Great! You can find out more by looking at my <a href="{% url 'researchapp:page_dispatcher' 'projects' %}">projects</a>, my <a href="/blog">blog</a> or my <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0">LinkedIn CV</a>.
-
-				<br />
-				<br />
-		  </div>
-
-      </div>
+  		<h1>{{category|upper}} / {{urlname|capfirst}} / {{itemtitle|default:"..."}}</h1>
+		
+		<br><br><br>
 
 		
-		{% if 0 %}
+		<div class="row">
 			
+			<div class="col-md-10">
 		
+				<h5 style="color: grey;">The following bio can be used for events and workshops.</h5>
+				<hr >
+				<br />
+				
+				<p class="lead">
+
+					<a href="http://www.michelepasin.org/">Michele Pasin</a> is a data scientist with a focus on data architecture, enterprise metadata management and semantic technologies. 
+					<br /><br />
+					Michele works for <a href="https://www.digital-science.com/">Digital Science</a>, a technology company focusing on strategic investments into startup companies that support the research lifecycle. At Digital Science, Michele is the product lead for the <a href="https://www.dimensions.ai/dimensions-apis/">Dimensions Analytics API</a>, a research analytics tool that allows to draw statistics and insights from the millions of publications, grants, clinical trials and patents indexed by <a href="https://www.dimensions.ai/">Dimensions.ai</a>. 
+					<br /><br />
+					Prior to that, Michele worked at Springer Nature where he led the development of <a href="https://www.springernature.com/gp/researchers/scigraph">Springer Nature’s Scigraph</a> project, a large and highly integrated open linked data platform. Also, he was instrumental in projects like <a href="https://www.nature.com/subjects">Nature’s subject pages</a> (a dynamic section of the website that allow users to navigate content by topic) and the ontologies portal (a public repository of knowledge models used at Nature). 
+					<br /><br />
+					Michele holds a PhD in semantic web technologies from the <a href="https://kmi.open.ac.uk/">Knowledge Media Institute</a> (The Open University, UK) and advanced degrees in logic and philosophy of language from the <a href="https://www.unive.it/">University of Venice</a> (Italy). Previously, he was a research associate at <a href="https://www.kcl.ac.uk/ddh">King's College Department of Digital Humanities</a> (London), where he contributed to influential digital humanities projects such as the <a href="https://www.poms.ac.uk/">People of Medieval Scotland</a> and the <a href="http://www.artofmaking.ac.uk/">Art of Making in Antiquity</a>. 
+
+				</p>	
+		
+			</div>
 			
-	  <div class="col-sm-3 col-md-3">
-	  
-	  	 <div class="thumbnail" style="border: none;">
-		  	<img src="{% static 'misc_img/' %}me-5.jpg" style="border: 1px black solid;">
-		  </div>
 
-	  </div>
-	  {% endif %}
-
-</div>
+		
+		</div>
 
 
-
-
-
-
-{% if 0 %}
-
-	{% include 'researchapp/components/blogposts.html' %}
-
-{% endif %}
-
-
-
-{% if 0 %}
-
-	{% include 'researchapp/components/featured.html' %}
-
-{% endif %}
-
-
-
-
-{% if 0 %}
-
-	{% include 'researchapp/components/newstable.html' %}
-
-{% endif %}
-
-
-
-{% endblock %}
-
-
-
-
-
-{% block extra_js %}
+		
 
 	
-	{% if 0 %}
-		{% comment %} feeds disabled 2019-01-21 {% endcomment %}
-
-	<script type="text/javascript">
-		$(function() {
-			// add news feed table via ajax
-			$.get(
-			    "{% url 'researchapp:ajax_get_blogs' %}",
-			    {data : "no data for now"},
-			    function(data) {
-			       $("#blogposts_div").html(data);
-			    }
-			);
-
-		});
-	</script>
-
-	{% endif %}
-		
-
-
-
 {% endblock %}
+
+
+
+
+
+
+
