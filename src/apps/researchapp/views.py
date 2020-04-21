@@ -197,12 +197,12 @@ def get_page_contents(request, pagename, namedetail):
             tags = Project.all_used_tags()
             if _active_tag not in tags:
                 _active_tag = "all"
-                projects = Project.objects.all()
+                projects = Project.objects.all().order_by("-datefrom")
             else:
-                projects = Project.objects.filter(tags__name=_active_tag)
-            # templatee = 'researchapp/%s/projects-list.html' % category['folder']
-            templatee = 'researchapp/%s/projects-list-tiles.html' % category[
-                'folder']
+                projects = Project.objects.filter(tags__name=_active_tag).order_by("-datefrom")
+            templatee = 'researchapp/%s/projects-list.html' % category['folder']
+            # templatee = 'researchapp/%s/projects-list-tiles.html' % category[
+            #     'folder']
 
         context = {
             'projects': projects,
@@ -264,6 +264,7 @@ def get_page_contents(request, pagename, namedetail):
 
     if pagename == "contact":
 
+        # deprecated in favor of Google Forms 2020-04-21
         name = request.GET.get('name', '')
         reply_email = request.GET.get('email', '')
         message = request.GET.get('message', '')
