@@ -1,0 +1,85 @@
+{% extends "portfolioapp/components/base.html" %}
+
+{% load static %}
+
+{% block navbar %}
+
+    {% with thispage="photos" %}
+
+    {% include "portfolioapp/components/default-navbar.html" %}
+
+    {% endwith %}
+
+{% endblock navbar %}
+
+
+  {% block bodycontent %}
+
+  <div class="page-header">
+    Photos
+  </div>
+
+  <div class="container">
+
+
+      <div class="row">
+
+	
+			{# Flickr user ID #}
+			{#  #}
+			{# 76186999@N00 #}
+			{#  #}
+			{#  #}
+			
+
+			<div class=" col-sm-2 col-md-3 ">
+
+
+				<style type="text/css" media="screen">
+				img {padding: 10px;}
+				</style>
+				<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?
+				count=20&source=user&user=76186999@N00&size=m&display=random"></script>
+				
+				<br /><br />
+				
+			</div>
+	
+			
+			
+			<div class=" col-sm-4 col-md-7 col-sm-offset-1 col-md-offset-1">
+				
+				<h4>Albums</h4>
+				
+				{% for x in sets_list  %}
+					<a href="{{x.1|safe}}" target="_blank">{{x.0}}</a> ({{x.2}}) <br />
+					
+				{% endfor %}
+				
+				<br /><br />
+			</div>	
+			
+			<br /><br />
+	
+        
+      </div>
+
+
+
+    <div class="row" style="margin-top: 20px;">
+    
+    </div> 
+    {% comment %} second row ends {% endcomment %}
+
+
+
+  </div> <!-- /container -->
+
+
+{% endblock bodycontent %}
+
+
+
+{% block extra_js %}
+
+{% endblock extra_js %}

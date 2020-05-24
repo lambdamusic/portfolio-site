@@ -1,0 +1,142 @@
+{% extends "portfolioapp/components/base.html" %}
+
+{% load static %}
+
+{% block navbar %}
+
+    {% with thispage="papers" %}
+
+    {% include "portfolioapp/components/default-navbar.html" %}
+
+    {% endwith %}
+
+{% endblock navbar %}
+
+
+  {% block bodycontent %}
+
+  <div class="page-header">
+    Papers > {{year}} > <i>{{itemtitle}}</i>
+  </div>
+
+  <div class="container">
+
+
+      <div class="row">
+
+          <div class="col-md-6">
+            <small class="nextitemlink">
+
+              {% if 0 and prev %}<a href="{{prev.get_absolute_url}}" title="View previous paper"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;
+                {{prev.title|truncatewords:6}}
+              &nbsp;
+              </a>
+              {% endif %}
+
+            </small>
+          </div>
+          <div class="col-md-6 text-right">
+            {% if next %}
+            <small class="text-muted">
+              Next:&nbsp;
+            </small>
+            <small class="nextitemlink">
+              <a href="{{next.get_absolute_url}}" class="bluelink" title="View next">{{next.title|truncatewords:6}}&nbsp;
+              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+              </a>
+            </small>
+            {% endif %}
+
+          </div>
+        
+      </div>
+
+
+      <div class="row">
+          
+        <div class="col-md-10">
+
+
+          <p class="text-muted">Title:</p>
+
+          <div class="lead -well">
+            <h3><b>{{itemtitle}}</b></h3>
+            {# <h2><b>{{itemtitle}}</b></h2> #}
+          </div>
+
+          <br />
+
+
+
+          {% if abstract %}
+
+            <p class="text-muted">Abstract:</p>
+
+            <blockquote class="lead">{{abstract|linebreaksbr}}</blockquote>
+
+            <br />
+          {% endif %}
+
+
+
+          {% if all_urls %}
+          <p class="text-muted">Download:</p>
+
+          <div class="-lead">
+
+            {% for x in all_urls  %}
+            <li><a href="{{x.0}}">{{x.1}}</a></li>
+              {% if not forloop.last %}{% endif %}
+            {% endfor %}
+
+          </div>
+          <br />
+          {% endif %}
+
+
+          <p class="text-muted">Full reference:</p>
+
+          <div class="well well-big lead">
+            {{summary}}
+          </div>
+          <br />
+
+
+
+
+          {% if itemembed1 %}
+
+            <div class="paragraph">
+              {# <br /> #}
+              {{itemembed1|safe}}
+            </div>
+          {% endif %}
+
+
+          <br /><br />
+
+
+        </div>
+      
+      
+      </div>
+
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    {% comment %} second row ends {% endcomment %}
+
+
+
+  </div> <!-- /container -->
+
+
+{% endblock bodycontent %}
+
+
+
+{% block extra_js %}
+
+{% endblock extra_js %}

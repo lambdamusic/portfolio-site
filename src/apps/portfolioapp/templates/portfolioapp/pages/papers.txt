@@ -1,0 +1,50 @@
+
+
+
+
+{% load extrafilters %}
+
+<h1>MICHELE PASIN</h1>
+Publications list as of {% now "jS F Y" %}
+	<br />	<br />
+
+
+ {% for group_and_pubs in return_items %}
+	<br />
+	<h2 class="pubtype"><span>{{group_and_pubs.0}}</span></h2>
+
+	{% for pub in group_and_pubs.1 %}
+
+		<p class='pubitem'>
+			<span class='authors'>{{pub|printmanyauthors}}</span>.
+			<span class='title'> {{pub.title|upper}}.</span>
+			{% if  pub.journal %}
+				<span class='journal'> {{pub.journal}},</span>
+			{% endif %}
+			{% if  pub.conference %}
+				<span class='conference'> {{pub.conference}},</span>
+			{% endif %}		
+			{% if  pub.pubplace %}
+				<span class='pubplace'> {{pub.pubplace}},</span>
+			{% endif %}	
+			{% if pub.isforthcoming %}
+				<span class='forthcoming'> (forthcoming){% if pub.extrainfo %},
+					{% else %}.
+					{% endif %}</span>
+			{% else %}
+				{% if  pub.pubdate %}
+					<span class='pubdate'> {{pub.pubdate|date:"M Y"}}{% if pub.extrainfo %},
+						{% else %}.
+						{% endif %}
+					</span>
+				{% endif %}
+			{% endif %}
+			{% if  pub.extrainfo %}
+				<span class='extrainfo'> {{pub.extrainfo|safe}}.</span>
+			{% endif %}	
+
+		</p>
+
+	{% endfor %}
+
+{% endfor %}

@@ -1,0 +1,79 @@
+{% extends "portfolioapp/components/base.html" %}
+
+{% load static %}
+
+{% block navbar %}
+
+    {% with thispage="events" %}
+
+    {% include "portfolioapp/components/default-navbar.html" %}
+
+    {% endwith %}
+
+{% endblock navbar %}
+
+
+  {% block bodycontent %}
+
+  <div class="page-header">
+    Events
+  </div>
+
+  <div class="container">
+
+
+			<div class=" row_pubitem">
+
+ 			 	<div class="col-sm-10 col-md-10" style="margin-top: 30px; margin-bottom: 60px;">
+
+					{% for pub in return_items %}
+						<div class='row speakingitem' style="margin-bottom: 10px;">
+
+							
+							<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+
+								<span class='label {% if pub.isforthcoming %}label-info{% else %}label-warning{% endif %}'>{{pub.pubdate|date:"d M Y"}}</span>&nbsp;								
+							</div>
+							
+							<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11" style="padding-left: 30px";>
+								{% if  pub.pubplace %}<span class='pubplace text-black'> {{pub.pubplace}}</span>{% endif %} - {% if  pub.conference %}<span class='conference text-black'> {{pub.conference}}</span>{% endif %}{% if  pub.extrainfo %}<span class='extrainfo text-black'> {{pub.extrainfo|safe}}</span>{% endif %}. <a href="{{pub.conferenceurl}}" target="_blank" class="dimlink">{{pub.conferenceurl}}</a>
+
+								<br />
+								 "<a href="/papers/{{pub.id}}/" class="bluelink">{{pub.title|capfirst}}</a>"								
+							</div>
+							
+
+							{% if not forloop.last %}
+								<hr>
+							{% endif %}
+
+
+						</div>
+
+					{% endfor %}
+
+ 			 	</div>
+
+
+		</div>
+
+
+
+
+    <div class="row" style="margin-top: 20px;">
+    
+    </div> 
+    {% comment %} second row ends {% endcomment %}
+
+
+
+  </div> <!-- /container -->
+
+
+{% endblock bodycontent %}
+
+
+
+{% block extra_js %}
+
+{% endblock extra_js %}

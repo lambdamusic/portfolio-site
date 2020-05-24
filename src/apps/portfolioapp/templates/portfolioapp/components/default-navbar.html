@@ -1,0 +1,52 @@
+
+
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="{% url 'portfolioapp:home' %}">michelepasin<sup style="color: red;">&nbsp;.org</sup></a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+
+        <li {% if thispage == "projects" %}class="active"{% endif %}>
+          <a href="{% url 'portfolioapp:projects' %}">Projects</a></li>
+
+        <li 
+        {% if thispage == "about" %}class="active"{% endif %}
+          ><a href="{% url 'portfolioapp:about' %}">About</a></li>
+          
+        <li {% if thispage == "papers" %}class="active"{% endif %}>
+          <a href="{% url 'portfolioapp:papers' %}">Papers</a></li>
+
+        <li {% if thispage == "events" %}class="active"{% endif %}>
+          <a href="{% url 'portfolioapp:events' %}">Events</a></li>
+
+        <li {% if thispage == "ontologies" %}class="active"{% endif %}>
+          <a href="{% url 'portfolioapp:ontologies' %}">Ontologies</a></li>
+
+        <li {% if thispage == "livecoding" %}class="active"{% endif %}>
+          <a href="{% url 'portfolioapp:livecoding' %}">Livecoding</a></li>
+
+        <li {% if thispage == "music" %}class="active"{% endif %}>
+          <a href="{% url 'portfolioapp:music' %}">Music</a></li>
+
+        <li {% if thispage == "photos" %}class="active"{% endif %}>
+          <a href="{% url 'portfolioapp:photos' %}">Photos</a></li>
+
+        <li {% if thispage == "contact" %}class="active"{% endif %}>
+          <a href="{% url 'portfolioapp:contact' %}">Contact</a></li>
+
+
+      </ul>
+    </div><!--/.nav-collapse -->
+
+  </div>
+</nav>

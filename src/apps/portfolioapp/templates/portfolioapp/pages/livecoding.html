@@ -1,0 +1,79 @@
+{% extends "portfolioapp/components/base.html" %}
+
+{% load static %}
+
+{% block navbar %}
+
+    {% with thispage="livecoding" %}
+
+    {% include "portfolioapp/components/default-navbar.html" %}
+
+    {% endwith %}
+
+{% endblock navbar %}
+
+
+  {% block bodycontent %}
+
+  <div class="page-header">
+    Livecoding
+  </div>
+
+  <div class="container">
+
+
+		
+		<div class="row" style="margin-bottom: 50px;">
+			<div class="col-md-10">
+				
+			
+			<blockquote>
+			  <p>Live coding (sometimes referred to as 'on-the-fly programming', 'just in time programming' and related term 'live programming') is a programming practice centred upon the use of improvised interactive programming. Live coding is often used to create sound and image based digital media, and is particularly prevalent in computer music, combining algorithmic composition with improvisation.</p>
+			  <footer>Wikipedia <cite title="Livedoding on wikipedia"><a href="https://en.wikipedia.org/wiki/Live_coding" style="color: grey;">https://en.wikipedia.org/wiki/Live_coding</a></cite></footer>
+			</blockquote>
+			
+			</div>
+		</div>
+		
+		
+		{% for p in items %}
+		<div class="row" style="margin-bottom: 30px;">
+		  <div class="col-sm-2 col-md-3">
+		    <div class="">
+			  <a href="{{p.urlstub|lower}}" class="thumbnail">
+				  <img style="height: 200px;" src="{% static 'manual_img/livecoding/' %}{{p.urlstub|lower}}.jpg" alt="Icon"/>
+			  </a>
+		    </div>
+		  </div>
+		  
+		  <div class="col-sm-6 col-md-6 bluelinks_inside">
+		      <h4><a href="{{p.urlstub|lower}}" title="See details">{{p.title}}</a></h4>
+		  		<small class="text-muted">{{p.date|date:"M Y"}}</small>
+		      <p class="-lead">{{p.short_title}}</p>
+		  </div>
+		  
+		  
+		</div>
+		{% endfor %}
+		
+		
+
+
+
+    <div class="row" style="margin-top: 50px;">
+    &nbsp;
+    </div> 
+    {% comment %} second row ends {% endcomment %}
+
+
+
+  </div> <!-- /container -->
+
+
+{% endblock bodycontent %}
+
+
+
+{% block extra_js %}
+
+{% endblock extra_js %}

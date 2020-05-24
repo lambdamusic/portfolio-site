@@ -1,0 +1,124 @@
+{% extends "portfolioapp/components/base.html" %}
+
+{% load static %}
+
+{% block navbar %}
+
+    {% with thispage="projects" %}
+
+    {% include "portfolioapp/components/default-navbar.html" %}
+
+    {% endwith %}
+
+{% endblock navbar %}
+
+
+  {% block bodycontent %}
+
+  <div class="page-header">
+    Projects
+  </div>
+
+  <div class="container">
+
+
+    <div class="text-muted text-right">
+
+      Filter by keyword:&nbsp;
+      {% for t in tags  %}
+        <a {% ifequal active_tag t  %}href="?k=all" class="btn btn-xs active btn-danger" {% else %}href="?k={{t}}"{% endifequal %}>{{t}}</a>
+        {% if not forloop.last %}&nbsp;|&nbsp;{% endif %}
+      {% endfor %}
+
+
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View as: <a href="?format=txt">plain-text</a>
+
+    </div>
+    <hr>
+    <br />
+
+
+    {% for p in projects %}
+
+
+    {% ifchanged p.datefrom|date:"Y" %}
+
+      {% if not forloop.first %}
+        </div>
+        </div>
+      {% endif %}
+
+      <div class="row row_pubitem">
+
+      {% if not forloop.first %}
+      <hr>
+      {% endif %}
+
+      <div class="col-sm-2 col-md-3">
+        <h2 class="-well paper-year"><span>{{p.datefrom|date:"Y"}}</span></h2>
+      </div>
+
+
+      <div class="col-sm-7 col-md-9">
+
+    {% else %}
+      {% comment %} same-year divider {% endcomment %}
+      <br /><br />
+      <hr ><br />
+
+    {% endifchanged %}
+
+
+      <br />
+
+      <div class='pubitem'>
+
+        <small class="text-muted">{{p.datefrom|date:"M Y"}}-{{p.dateto|date:"M Y"}}</small>
+
+        <p class='lead' style="font-size: 16px;">
+          <a href="{{p.urlstub|lower}}" class="bluelink">{{p.title}}</a>.
+          <br />
+          <span class="">{{p.short_title|truncatewords:30}}</span>
+        </p>
+
+        <div class="pubinfo text-muted row" style="margin-top: -15px;">
+
+          <div class="col-md-6">
+          <a href="{{p.urlstub|lower}}" class="thumbnail" title="{{p.title}}: {{p.short_title|truncatewords:10}}">
+            {# NOTE: images are managed manually in STATIC FOLDER - main.png is hardcoded as the main one #}
+            <img src="{% static 'manual_img/' %}{{ p.urlstub|lower }}/{{ p.urlstub }}.jpg" alt="Main image"/ style="-height: 200px;">
+          </a>
+          </div>
+          <div class="col-md-6">
+          </div>
+
+        </div>
+
+        {% if not forloop.last %}
+          {% comment %} <hr> {% endcomment %}
+        {% endif %}
+
+
+      </div>
+
+    {% endfor %}
+
+
+
+    <div class="row" style="margin-top: 20px;">
+    
+    </div> 
+    {% comment %} second row ends {% endcomment %}
+
+
+
+  </div> <!-- /container -->
+
+
+{% endblock bodycontent %}
+
+
+
+{% block extra_js %}
+
+{% endblock extra_js %}

@@ -33,7 +33,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # ..
     'researchapp',
-    'new_researchapp',
+    'portfolioapp',
 ]
 
 MIDDLEWARE = [

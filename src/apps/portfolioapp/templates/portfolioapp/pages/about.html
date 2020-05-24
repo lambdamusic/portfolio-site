@@ -1,0 +1,165 @@
+{% extends "portfolioapp/components/base.html" %}
+
+{% load static %}
+
+{% block navbar %}
+
+    {% with thispage="about" %}
+
+    {% include "portfolioapp/components/default-navbar.html" %}
+
+    {% endwith %}
+
+{% endblock navbar %}
+
+
+  {% block bodycontent %}
+
+  <div class="page-header">
+    About :: The following bio can be used for events and workshops
+  </div>
+
+  <div class="container">
+
+      <div class="row">
+
+        <div class="col-md-6">
+
+          <p class="lead well">
+
+            <a href="http://www.michelepasin.org/">Michele Pasin</a> is a data scientist with a focus on data architecture, enterprise metadata management and semantic technologies. 
+            <br /><br />
+            Michele works for <a href="https://www.digital-science.com/">Digital Science</a>, a technology company focusing on strategic investments into startup companies that support the research lifecycle. At Digital Science, Michele is the product lead for the <a href="https://www.dimensions.ai/dimensions-apis/">Dimensions Analytics API</a>, a research analytics tool that allows to draw statistics and insights from the millions of publications, grants, clinical trials and patents indexed by <a href="https://www.dimensions.ai/">Dimensions.ai</a>. 
+            <br /><br />
+            Prior to that, Michele worked at Springer Nature where he led the development of <a href="https://www.springernature.com/gp/researchers/scigraph">Springer Nature’s Scigraph</a> project, a large and highly integrated open linked data platform. Also, he was instrumental in projects like <a href="https://www.nature.com/subjects">Nature’s subject pages</a> (a dynamic section of the website that allow users to navigate content by topic) and the ontologies portal (a public repository of knowledge models used at Nature). 
+            <br /><br />
+            Michele holds a PhD in semantic web technologies from the <a href="https://kmi.open.ac.uk/">Knowledge Media Institute</a> (The Open University, UK) and advanced degrees in logic and philosophy of language from the <a href="https://www.unive.it/">University of Venice</a> (Italy). Previously, he was a research associate at <a href="https://www.kcl.ac.uk/ddh">King's College Department of Digital Humanities</a> (London), where he contributed to influential digital humanities projects such as the <a href="https://www.poms.ac.uk/">People of Medieval Scotland</a> and the <a href="http://www.artofmaking.ac.uk/">Art of Making in Antiquity</a>. 
+
+          </p>	
+      
+        </div>
+
+
+        <div class="col-md-6">
+        
+          <div id="mynetwork" style="width: 80%; border:0px solid lightgrey;">
+          </div>
+
+        </div>
+
+      </div>
+      {% comment %} first row ends {% endcomment %}        
+
+
+      <div class="row" style="margin-top: 40px;">
+
+        &nbsp;
+      
+      </div> 
+      {% comment %} second row ends {% endcomment %}
+
+
+
+  </div> <!-- /container -->
+
+
+{% endblock bodycontent %}
+
+
+
+
+
+{% block extra_js %}
+
+<script type="text/javascript" src="{% static 'js/vis-network.min.js' %}" ></script>
+
+<script type="text/javascript">
+  // create an array with nodes
+
+  var nodes = new vis.DataSet([
+    {% for t in topics_unique %}
+        {% if t in top_topics %}
+            {id: "{{t}}", label: "{{t}}", value : 20, color:'#09ed99'},
+        {% else %}
+            {id: "{{t}}", label: "{{t}}", value : 10 },
+        {% endif %}     
+    {% endfor %}
+  ]);
+
+  // create an array with edges
+  var edges = new vis.DataSet([
+    {% for t in topics_links %}
+        {from: "{{t.0}}", to: "{{t.1}}"},
+    {% endfor %}
+  ]);
+
+  // create a network
+  var container = document.getElementById('mynetwork');
+  var h = window.innerHeight - 200;
+  container.style.height = h + "px";
+  //console.log(w, w-20)
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {
+    nodes: { 
+      shape: "dot",  // ellipse, circle, database, box, text, dot, square, icon
+      borderWidth: 1,
+      borderWidthSelected: 2,
+      color: {
+        border: 'grey',
+        background: 'lightgray',
+        highlight: {
+          border: '#2B7CE9',
+          background: '#D2E5FF'
+        },
+        hover: {
+          border: '#2B7CE9',
+          background: '#D2E5FF'
+        }
+      },
+      },
+    edges: {
+      shadow:{
+        enabled: true,
+        color: 'rgba(0,0,0,0.5)',
+        size:10,
+        x:5,
+        y:5
+      },
+    },
+    physics: {
+      stabilization: false,
+      barnesHut: {
+        springLength: 100
+      }
+    },
+  };
+  var network = new vis.Network(container, data, options);
+
+ function focusRandom() {
+    //var nodeId = Math.floor(Math.random() * amountOfNodes);
+    var ids = nodes.getIds();
+    var nodeId = ids[Math.floor(Math.random()*ids.length)];
+
+    var options = {
+        // position: {x:positionx,y:positiony}, // this is not relevant when focusing on nodes
+        scale: 1.0,
+        offset: {x:0,y:0},
+        animation: {
+            duration: 1000,
+            easingFunction: "easeInOutQuad",
+        }
+    };
+    network.focus(nodeId, options);
+    } 
+
+  // start focus loop and repeat
+  setInterval(focusRandom, 3000);
+
+</script>
+
+
+
+{% endblock extra_js %}

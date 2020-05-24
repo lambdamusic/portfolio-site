@@ -1,0 +1,67 @@
+
+{% load extrafilters %}
+
+ {% for group_and_pubs in return_items %}
+
+	{% ifequal group_and_pubs.0 "Journal Articles & Book Chapters"  %}
+
+		{% for pub in group_and_pubs.1 %}
+		{% if not pub.isforthcoming %}
+
+			@article{% templatetag openbrace %}Pasin{{pub.id}},
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	author = {{pub|printmanyauthors|replace_comma_with_and|add_braces}},
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	title = {{pub.title|capfirst|add_braces}},
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	journal = {{pub.journal|add_braces}},
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	month = "{{pub.pubdate|date:"m"}}",
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	year = "{{pub.pubdate|date:"Y"}}",
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	abstract = "{{pub.abstract|default:""}}",
+
+			<br />{% templatetag closebrace %}
+
+		<br />
+		<br />
+
+		{% endif %}{% endfor %}
+		
+	
+	{% endifequal %}
+
+
+	{% ifequal group_and_pubs.0 "Articles in Peer-Reviewed Conference/Proceedings"  %}
+
+		{% for pub in group_and_pubs.1 %}
+		{% if not pub.isforthcoming %}
+
+			@inproceedings{% templatetag openbrace %}Pasin{{pub.id}},
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	author = {{pub|printmanyauthors|replace_comma_with_and|add_braces}},
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	title = {{pub.title|capfirst|add_braces}},
+	  		  <br />&nbsp;&nbsp;&nbsp;
+	  		  	booktitle = {{pub.conference|add_braces}},			
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	month = "{{pub.pubdate|date:"m"}}",
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	year = "{{pub.pubdate|date:"Y"}}",
+  			  <br />&nbsp;&nbsp;&nbsp;
+  			  	abstract = "{{pub.abstract|default:""}}",
+				
+
+			<br />{% templatetag closebrace %}
+
+		<br />
+		<br />
+
+		{% endif %}{% endfor %}
+	
+	{% endifequal %}
+	
+
+
+{% endfor %}

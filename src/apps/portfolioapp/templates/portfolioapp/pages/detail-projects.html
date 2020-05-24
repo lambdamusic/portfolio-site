@@ -1,0 +1,150 @@
+{% extends "portfolioapp/components/base.html" %}
+
+{% load static %}
+
+{% block navbar %}
+
+    {% with thispage="projects" %}
+
+    {% include "portfolioapp/components/default-navbar.html" %}
+
+    {% endwith %}
+
+{% endblock navbar %}
+
+
+  {% block bodycontent %}
+
+  <div class="page-header">
+    Projects > {{project.title}}
+  </div>
+
+  <div class="container">
+
+
+		<div class="col-md-12 text-right" style="margin-top: 10px;">
+			{% if next %}
+			<small class="text-muted">
+				Next:&nbsp;
+			</small>
+			<small class="nextitemlink">
+				<a href="{{next.get_absolute_url}}" class="bluelink" title="View next">{{next.title|truncatewords:6}}&nbsp;
+				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
+				</a>
+			</small>
+			{% endif %}
+
+		</div>
+
+
+
+
+		<div class="row">
+
+		<hr>
+		
+				<div class="col-md-6">
+					{% comment %} <p class="text-muted">Description:</p> {% endcomment %}
+					<p class="bluelinks_inside">{{project.description|safe}}</p>
+					
+				</div>
+		
+				<div class="col-md-6 well">
+
+					{# ROLE #}
+					<span class="text-black">Role:</span>
+						&nbsp;&nbsp;{{project.myrole|safe}}  <br />
+
+					{% if  project.datefrom and project.dateto %}
+						<span class="text-black">Date:</span>
+						&nbsp;&nbsp;{{project.datefrom|date:"M Y"}} - {{project.dateto|date:"M Y"}}  <br />
+					{% else %}
+						{% if  project.datefrom %}
+							<span class="text-black">Date:</span>
+							&nbsp;&nbsp;{{project.datefrom|date:"M Y"}} <br />
+						{% endif %}
+					{% endif %}
+
+
+
+
+					{% if  project.all_urls %}
+						{% for u in project.all_urls %}
+							<span class="text-black">Link:</span>
+							&nbsp;&nbsp;<a class='url' href="{{u.0}}" target="_blank">{{u.1}}</a><br />
+						{% endfor %}
+					{% else %}
+						<span class="text-black">Link:</span>
+						&nbsp;&nbsp;not available yet
+					{% endif %}
+
+				</div>
+
+		</div>
+
+		<div class="row" style="margin-top: 0px;">
+		
+			<hr>
+			
+
+			<div class="col-md-12" style="margin-top: 20px;">
+					<p>Screenshots:</p>
+					<br /><br />
+					
+
+					{% if 0 %}  {# BIG SIZES #}
+					{% for img in project_images_names  %}
+						<div class="-col-md-4 margin-top-100 item_images">
+							<a href="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}">
+							<img src="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}">
+							</a>
+						</div>
+					{% endfor %}
+					{% endif %}
+
+					{# TILED SIZES #}
+					{% for img in project_images_names  %}
+						<div class="col-md-4 col-sm-4 project-thumbs -item_images">
+							<div class="project-thumbnail">
+							<a href="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}" class="thumbnail">
+							<img src="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}">
+							</a>
+							</div>
+						</div>
+					{% endfor %}
+
+
+					{% if project.embedcode1 %}
+
+						<div class="paragraph">
+							{# <br /> #}
+							{{project.embedcode1|safe}}
+						</div>
+						<br /><br />
+					{% endif %}
+
+					{% if project.embedcode2 %}
+						<div class="paragraph">
+							<br />
+							{{project.embedcode2|safe}}
+						</div>
+						<br /><br />
+					{% endif %}
+
+
+			</div>
+		
+		</div>
+
+
+
+  </div> <!-- /container -->
+
+
+{% endblock bodycontent %}
+
+
+
+{% block extra_js %}
+
+{% endblock extra_js %}
