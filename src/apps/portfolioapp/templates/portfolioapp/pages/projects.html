@@ -15,6 +15,36 @@
 
   {% block bodycontent %}
 
+
+
+  <style>
+
+    .thumb-div {
+      padding: 20px;
+
+    }
+
+    .thumbnail{
+      {% comment %} use to override bootstrap behaviour {% endcomment %}
+
+      {% comment %} border: 0px; {% endcomment %}
+
+    }
+
+    .thumb-img {
+      height: 200px;
+
+    }
+
+    .thumb-title b {
+      font-weight: bold;
+      color: black;
+
+    }
+
+  </style>
+
+
   <div class="page-header">
     Projects
   </div>
@@ -38,74 +68,24 @@
     <br />
 
 
+    <div class="row">
     {% for p in projects %}
 
-
-    {% ifchanged p.datefrom|date:"Y" %}
-
-      {% if not forloop.first %}
-        </div>
-        </div>
-      {% endif %}
-
-      <div class="row row_pubitem">
-
-      {% if not forloop.first %}
-      <hr>
-      {% endif %}
-
-      <div class="col-sm-2 col-md-3">
-        <h2 class="-well paper-year"><span>{{p.datefrom|date:"Y"}}</span></h2>
-      </div>
-
-
-      <div class="col-sm-7 col-md-9">
-
-    {% else %}
-      {% comment %} same-year divider {% endcomment %}
-      <br /><br />
-      <hr ><br />
-
-    {% endifchanged %}
-
-
-      <br />
-
-      <div class='pubitem'>
-
-        <small class="text-muted">{{p.datefrom|date:"M Y"}}-{{p.dateto|date:"M Y"}}</small>
-
-        <p class='lead' style="font-size: 16px;">
-          <a href="{{p.urlstub|lower}}" class="bluelink">{{p.title}}</a>.
-          <br />
-          <span class="">{{p.short_title|truncatewords:30}}</span>
-        </p>
-
-        <div class="pubinfo text-muted row" style="margin-top: -15px;">
-
-          <div class="col-md-6">
+      
+    <div class="col-md-3 thumb-div">
           <a href="{{p.urlstub|lower}}" class="thumbnail" title="{{p.title}}: {{p.short_title|truncatewords:10}}">
-            {# NOTE: images are managed manually in STATIC FOLDER - main.png is hardcoded as the main one #}
-            <img src="{% static 'manual_img/' %}{{ p.urlstub|lower }}/{{ p.urlstub }}.jpg" alt="Main image"/ style="-height: 200px;">
+            {# NOTE: images are managed manually in STATIC FOLDER - thumbnail.png is hardcoded as the main one #}
+            <img class="thumb-img" src="{% static 'manual_img/' %}{{ p.urlstub|lower }}/thumb.png" alt="Main image"/ >
           </a>
-          </div>
-          <div class="col-md-6">
-          </div>
-
-        </div>
-
-        {% if not forloop.last %}
-          {% comment %} <hr> {% endcomment %}
-        {% endif %}
-
-
-      </div>
+          <p class="text-center thumb-title"><b>{{p.title}}</b></p>
+    </div>
 
     {% endfor %}
+    </div>
 
 
 
-    <div class="row" style="margin-top: 20px;">
+    <div class="row" style="margin-top: 60px;">
     
     </div> 
     {% comment %} second row ends {% endcomment %}

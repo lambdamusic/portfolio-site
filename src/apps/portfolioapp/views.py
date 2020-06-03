@@ -165,13 +165,14 @@ def projects(request, namedetail=""):
 		# load images from manually managed folder
 
 		project_images_names = []
+		THUMBS_FILE = "thumb.png"
 
 		project_images_dir = STATICFILES_DIRS[
 			0] + "/manual_img/" + return_item.urlstub
 		if os.path.exists(project_images_dir):
 			for f in os.listdir(project_images_dir):
 				if os.path.isfile(os.path.join(project_images_dir, f)):
-					if not f.startswith("."):
+					if not f.startswith(".") and f != THUMBS_FILE:
 						project_images_names += [f]
 
 		context = {
