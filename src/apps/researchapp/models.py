@@ -328,8 +328,15 @@ class Publication(mymodels.EnhancedModel):
 
     get_databrowse_url.allow_tags = True
 
-    def get_absolute_url(self):
+    def get_absolute_url_OLD(self):
         return reverse('researchapp:detail_page_dispatcher', args=['papers', str(self.id)]) # NEW WAY
+
+    def get_absolute_url(self):
+        """
+        new version / made with layout 2020-06-07
+        """
+        return reverse('portfolioapp:papers-detail', args=[str(self.id)])
+
 
     # method that gives all the urls in one go!
     def all_urls(self):
@@ -558,8 +565,14 @@ class Project(mymodels.EnhancedModel):
 
     get_databrowse_url.allow_tags = True
 
-    def get_absolute_url(self):
+    def get_absolute_url_OLD(self):
         return reverse('researchapp:detail_page_dispatcher', args=['projects', str(self.urlstub)])
+
+    def get_absolute_url(self):
+        """
+        new version / made with layout 2020-06-07
+        """
+        return reverse('portfolioapp:projects-detail', args=[str(self.urlstub)])
 
     # method that gives all the urls in one go!
     def all_urls(self):

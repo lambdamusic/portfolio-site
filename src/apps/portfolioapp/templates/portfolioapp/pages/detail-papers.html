@@ -1,5 +1,5 @@
 {% extends "portfolioapp/components/base.html" %}
-
+{% load extrafilters %}
 {% load static %}
 
 {% block navbar %}
@@ -22,39 +22,9 @@
   <div class="container">
 
 
-      <div class="row">
-
-          <div class="col-md-6">
-            <small class="nextitemlink">
-
-              {% if 0 and prev %}<a href="{{prev.get_absolute_url}}" title="View previous paper"><span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>&nbsp;
-                {{prev.title|truncatewords:6}}
-              &nbsp;
-              </a>
-              {% endif %}
-
-            </small>
-          </div>
-          <div class="col-md-6 text-right">
-            {% if next %}
-            <small class="text-muted">
-              Next:&nbsp;
-            </small>
-            <small class="nextitemlink">
-              <a href="{{next.get_absolute_url}}" class="bluelink" title="View next">{{next.title|truncatewords:6}}&nbsp;
-              <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-              </a>
-            </small>
-            {% endif %}
-
-          </div>
-        
-      </div>
-
-
-      <div class="row">
+      <div class="row" style="margin-bottom:50px;">
           
-        <div class="col-md-10">
+        <div class="col-md-8">
 
 
           <p class="text-muted">Title:</p>
@@ -67,6 +37,14 @@
           <br />
 
 
+          <p class="text-muted">Year:</p>
+
+          <div class="lead -well">
+            <h3>{{year}}</h3>
+          </div>
+
+          <br />
+
 
           {% if abstract %}
 
@@ -78,20 +56,6 @@
           {% endif %}
 
 
-
-          {% if all_urls %}
-          <p class="text-muted">Download:</p>
-
-          <div class="-lead">
-
-            {% for x in all_urls  %}
-            <li><a href="{{x.0}}">{{x.1}}</a></li>
-              {% if not forloop.last %}{% endif %}
-            {% endfor %}
-
-          </div>
-          <br />
-          {% endif %}
 
 
           <p class="text-muted">Full reference:</p>
@@ -116,10 +80,115 @@
           <br /><br />
 
 
+        </div> 
+        {% comment %} end of left col {% endcomment %}
+      
+
+        <div class="col-md-1 col-md-offset-1">
+
+
+            {% if all_urls %}
+            <p class="text-muted">Linkout:</p>
+
+            <div class="-lead">
+
+              {% for x in all_urls  %}
+              <li><a href="{{x.0}}">{{x.1}}</a></li>
+                {% if not forloop.last %}{% endif %}
+              {% endfor %}
+
+            </div>
+            <br />
+            {% endif %}
+
+
         </div>
-      
-      
+        
       </div>
+
+
+
+
+      {% comment %} SECTION WITH FULL PAPERS LIST {% endcomment %}
+
+
+
+
+			 {% for group_and_pubs in all_papers_list %}
+
+			 <div class="row row_pubitem">
+
+				 <hr>
+
+ 			 	<div class="col-sm-2 col-md-3">
+ 			 		<h2 class="-well paper-year"><span>{{group_and_pubs.0}}</span></h2>
+ 			 	</div>
+
+
+			 	<div class="col-sm-7 col-md-9">
+
+
+					{% for pub in group_and_pubs.1 %}
+
+					<br />
+
+						<div class='pubitem'>
+
+							<small class="text-muted">{{pub.pubdate|date:"M Y"}}</small>
+
+							<p class='lead' style="font-size: 13px;">
+								<a href="{{pub.get_absolute_url}}" class="bluelink {% if pub.id == return_item.id %}paper-active{% endif %}">{{pub.title|capfirst}}</a>.
+								<br />
+								<span class="">{{pub|printmanyauthors}}</span>
+							</p>
+
+							<p class="pubinfo text-muted" style="margin-top: -15px;">
+
+								{% if  pub.journal %}
+									<span class='journal'> {{pub.journal}},</span>
+								{% endif %}
+								{% if  pub.conference %}
+									<span class='conference'> {{pub.conference}},</span>
+								{% endif %}
+								{% if  pub.pubplace %}
+									<span class='pubplace'> {{pub.pubplace}},</span>
+								{% endif %}
+								{% if pub.isforthcoming %}
+									<span class='text-warning'> (forthcoming). </span>
+								{% else %}
+									<span class='pubdate'> {{pub.pubdate|date:"M Y"}}.</span>
+								{% endif %}
+								{% if  pub.extrainfo %}
+									<span class='extrainfo'> {{pub.extrainfo|safe}}</span>
+								{% endif %}
+								{# {% for u in pub.all_urls %} #}
+								{# 	<a class='url' href="{{u.0}}" style="color: #666;"> [{{u.1}}]</a> #}
+								{# {% endfor %} #}
+
+							</p>
+
+							{% if not forloop.last %}
+								<hr>
+							{% endif %}
+
+
+						</div>
+
+					{% endfor %}
+
+
+			 	</div>
+
+
+
+			 </div>
+
+			 {% endfor %}
+
+
+
+
+
 
 
 

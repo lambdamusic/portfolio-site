@@ -17,55 +17,15 @@
 
 
 
-  <style>
-
-    .thumb-div {
-      padding: 20px;
-
-    }
-
-    .thumbnail{
-      {% comment %} use to override bootstrap behaviour {% endcomment %}
-
-      {% comment %} border: 0px; {% endcomment %}
-
-    }
-
-    .thumb-img {
-      height: 200px;
-
-    }
-
-    .thumb-title b {
-      font-weight: bold;
-      color: black;
-
-    }
-
-  </style>
 
 
   <div class="page-header">
-    Projects
+    Projects {% if active_tag != "all" %}> By Keyword: <span class="keyword">{{active_tag|capfirst}}</span> | <a href="?k=all" class="">View all</a>{% endif %}
   </div>
 
   <div class="container">
 
 
-    <div class="text-muted text-right">
-
-      Filter by keyword:&nbsp;
-      {% for t in tags  %}
-        <a {% ifequal active_tag t  %}href="?k=all" class="btn btn-xs active btn-danger" {% else %}href="?k={{t}}"{% endifequal %}>{{t}}</a>
-        {% if not forloop.last %}&nbsp;|&nbsp;{% endif %}
-      {% endfor %}
-
-
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;View as: <a href="?format=txt">plain-text</a>
-
-    </div>
-    <hr>
-    <br />
 
 
     <div class="row">
@@ -73,11 +33,17 @@
 
       
     <div class="col-md-3 thumb-div">
-          <a href="{{p.urlstub|lower}}" class="thumbnail" title="{{p.title}}: {{p.short_title|truncatewords:10}}">
+          <a href="{{p.get_absolute_url}}" class="thumbnail" title="{{p.title}}: {{p.short_title|truncatewords:10}}">
             {# NOTE: images are managed manually in STATIC FOLDER - thumbnail.png is hardcoded as the main one #}
             <img class="thumb-img" src="{% static 'manual_img/' %}{{ p.urlstub|lower }}/thumb.png" alt="Main image"/ >
           </a>
-          <p class="text-center thumb-title"><b>{{p.title}}</b></p>
+          <p class="text-center thumb-title"><a class="project-title" href="{{p.get_absolute_url}}">{{p.title}}</a>
+            <br />
+              {% for t in p.tags.all  %}
+                <a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="keyword">{{t.name|capfirst}}</a>{% if not forloop.last %},&nbsp;{% endif %}
+                    
+              {% endfor %}
+          </p>
     </div>
 
     {% endfor %}

@@ -36,9 +36,9 @@
 
 
 				{# <form action="" class="search-form" style="display: inline-block;">#}
-						<div class="form-group has-feedback" style="display: inline-block;">
+					<div class="form-group has-feedback" style="display: inline-block;">
 						<label for="search" class="sr-only">Filter</label>
-						<input type="text" class="form-control" name="search" id="search-input" placeholder="search">
+						<input type="text" class="form-control" name="search" id="search-input" placeholder="enter a keyword">
 							<span class="glyphicon glyphicon-search form-control-feedback"></span>
 					</div>
 				{# </form>#}
@@ -70,7 +70,7 @@
 							<small class="text-muted">{{pub.pubdate|date:"M Y"}}</small>
 
 							<p class='lead' style="font-size: 13px;">
-								<a href="/{{urlname|lower}}/{{pub.id}}/" class="bluelink">{{pub.title|capfirst}}</a>.
+								<a href="{{pub.get_absolute_url}}" class="bluelink">{{pub.title|capfirst}}</a>.
 								<br />
 								<span class="">{{pub|printmanyauthors}}</span>
 							</p>

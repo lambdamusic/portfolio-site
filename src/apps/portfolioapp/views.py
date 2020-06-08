@@ -30,14 +30,15 @@ def home(request):
 	"""
 	just an index of what's available  in /static for this app
 	"""
+	return redirect('/projects')
 
-	context = {
-		'top_topics' :	top_topics,
-		'topics_links' :	topics_links,
-		'topics_unique' :	topics_unique,
-	}
+	# context = {
+	# 	'top_topics' :	top_topics,
+	# 	'topics_links' :	topics_links,
+	# 	'topics_unique' :	topics_unique,
+	# }
 
-	return render(request, APP + '/home.html', context)
+	# return render(request, APP + '/home.html', context)
 
 
 def about(request):
@@ -180,6 +181,7 @@ def projects(request, namedetail=""):
 			'prev': prev,
 			'project': return_item,
 			'project_images_names': sorted(project_images_names),
+			'ALL_PROJECTS': Project.objects.all().order_by("-datefrom")
 		}
 
 		templatee = "detail-projects.html"
@@ -223,11 +225,6 @@ def papers(request, namedetail=""):
 		# PAPERS DETAILs
 
 		return_item = get_object_or_404(Publication, id=namedetail)
-		if return_item.pubtype.id == 12:
-			# used to exclude 'INVITED TALKS' from articles list
-			next, prev = None, None
-		else:
-			next, prev = return_item.next_prev_pubs()
 
 		try:  # bugfix after changing logic for speaking events
 			pubtypegroup = return_item.pubtype.groupfk.name
@@ -235,6 +232,7 @@ def papers(request, namedetail=""):
 			pubtypegroup = ""
 
 		context = {
+			'return_item' : return_item,
 			'itemtitle': return_item.title,
 			'itempubdate': return_item.pubdate,
 			'summary': return_item.pub_summary(),
@@ -243,8 +241,7 @@ def papers(request, namedetail=""):
 			'all_urls': return_item.all_urls(),
 			'type': pubtypegroup,
 			'itemembed1': return_item.embedcode1,
-			'prev': prev,
-			'next': next,
+			'all_papers_list' : get_pubs('date')
 		}
 
 		templatee = "detail-papers.html"
