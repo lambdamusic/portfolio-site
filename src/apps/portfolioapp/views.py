@@ -241,7 +241,8 @@ def papers(request, namedetail=""):
 			'all_urls': return_item.all_urls(),
 			'type': pubtypegroup,
 			'itemembed1': return_item.embedcode1,
-			'all_papers_list' : get_pubs('date')
+			'all_papers_list' : get_related_pubs(return_item),
+			# 'all_papers_list' : get_pubs('date')
 		}
 
 		templatee = "detail-papers.html"
@@ -419,6 +420,37 @@ def get_pubs(query):
 
 	else:
 		return None
+
+
+
+
+
+
+def get_related_pubs(a_pub):
+	""" retrieves pubs info - with similar title"""
+
+	talks = PubType.objects.get(
+		pk=12)  # used to exclude 'INVITED TALKS' from articles list
+
+	words = a_pub.title.split()
+	words = [x for x in words if len(x) > 3]
+
+	q = Q()
+	for word in words:
+		q |= Q(title__icontains = word)
+	pubs = Publication.objects.exclude(
+				pubtype=talks).filter(q)
+
+	valid_years = list(
+		set([
+			x[0].year for x in pubs.values_list('pubdate').distinct()
+		]))
+	return_items = []
+	valid_years.sort(reverse=True)
+	# print valid_years
+	for x in valid_years:
+		return_items.append((x, pubs.filter(pubdate__year=x)))
+	return return_items
 
 
 
