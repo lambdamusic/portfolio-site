@@ -1,0 +1,82 @@
+{% extends "portfolioapp/components/base.html" %}
+
+{% load static %}
+
+{% block navbar %}
+
+    {% with thispage="music" %}
+
+    {% include "portfolioapp/components/default-navbar.html" %}
+
+    {% endwith %}
+
+{% endblock navbar %}
+
+
+  {% block bodycontent %}
+
+
+
+    {% with thispage=sounds_subpage %}
+
+    	{% include "portfolioapp/components/sounds-navbar.html" %}
+
+    {% endwith %}
+
+
+  <div class="container">
+
+
+	<div class="row" style="margin-bottom: 50px;">
+			
+			
+		<div class="col-md-10" style="margin-top: 30px;">
+				
+			
+			<blockquote>
+			  <b>{{items.0.title}} {{items.0.datefrom}}</b>
+			  <p>{{items.0.short_title}}</p>
+			  <p>{{items.0.description}}</p>
+			  
+			  
+			  {% for u in items.0.all_urls %}
+				<footer>
+				See also: <cite title=""><a href="{{u.0}}" style="color: grey;"  target="_blank">{{u.1}}</a></cite><br />
+				</footer>
+
+			  {% endfor %}
+				  
+			</blockquote>
+			
+		</div>
+	</div>
+
+
+	<div class="row" style="margin-bottom: 50px;">
+			
+		<div class="col-md-10" style="margin-top: 30px;">
+
+
+			  {% if items.0.embedcode1 %}
+		   		{{items.0.embedcode1|safe}}
+			{% endif %}
+
+		</div>
+
+	</div>
+
+
+
+
+
+    <div class="row" style="margin-top: 40px;">
+    &nbsp;
+    </div> 
+    {% comment %} second row ends {% endcomment %}
+
+
+
+  </div> <!-- /container -->
+
+
+{% endblock bodycontent %}

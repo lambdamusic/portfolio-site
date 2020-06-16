@@ -1,0 +1,94 @@
+{% extends "portfolioapp/components/base.html" %}
+
+{% load static %}
+
+{% block navbar %}
+
+    {% with thispage="music" %}
+
+    {% include "portfolioapp/components/default-navbar.html" %}
+
+    {% endwith %}
+
+{% endblock navbar %}
+
+
+  {% block bodycontent %}
+
+
+
+    {% with thispage=sounds_subpage %}
+
+    	{% include "portfolioapp/components/sounds-navbar.html" %}
+
+    {% endwith %}
+
+
+  <div class="container">
+
+
+
+	<div class="row" style="margin-bottom: 70px;">
+			
+			
+		<div class="col-md-10" style="margin-top: 30px;">
+				
+			
+			<blockquote>
+			  <b>Miscellaneous Singles</b>
+			  <p>These songs are one-off projects or experiments that haven't made it into an album yet. Or will never be!</p>
+				  
+			</blockquote>
+			
+		</div>
+
+		
+	</div>
+
+	
+
+		{% for p in items %}
+		<div class="row" style="margin-bottom: 80px;">
+				  
+		  <div class="col-sm-4 col-md-4 bluelinks_inside">
+		      <h4><a href="{{p.urlstub|lower}}" title="See details">{{p.title}}</a></h4>
+		  		<small class="text-muted">{{p.date|date:"Y"}}</small>
+		      <p class="-lead">{{p.short_title}}</p>
+		  </div>
+		  
+		  <div class="col-md-8">
+			  {% if p.embedcode1 %}
+		    {{p.embedcode1|safe}}
+			{% endif %}
+		  </div>
+		  
+		  
+		</div>
+		{% endfor %}
+
+
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-top: 40px;">
+    &nbsp;
+    </div> 
+    {% comment %} second row ends {% endcomment %}
+
+
+
+  </div> <!-- /container -->
+
+
+{% endblock bodycontent %}
+
+
+
+{% block extra_js %}
+
+{% endblock extra_js %}

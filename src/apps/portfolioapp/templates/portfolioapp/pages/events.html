@@ -2,6 +2,11 @@
 
 {% load static %}
 
+
+{% block pagetitle %}
+  <title>Events | Michele Pasin</title>
+{% endblock pagetitle %}
+
 {% block navbar %}
 
     {% with thispage="events" %}
@@ -27,19 +32,32 @@
  			 	<div class="col-sm-10 col-md-10" style="margin-top: 30px; margin-bottom: 60px;">
 
 					{% for pub in return_items %}
+
+						
+						{% ifchanged pub.pubdate|date:"Y" %}
+	
+						<div class='row ' style="margin-bottom: 50px; {% if not forloop.first %}margin-top: 100px;{% endif %}">
+							<div class="col-md-10" style="margin-bottom: -200px; margin-top: -100px;" >
+							<p style="color: #e8e7e791; font-size: 2000%; ">{{pub.pubdate|date:"Y"}}</p>
+							</div>
+						</div>
+							
+						{% endifchanged %}
+							
+
 						<div class='row speakingitem' style="margin-bottom: 10px;">
 
 							
-							<div class="col-xs-1 col-sm-1 col-md-1 col-lg-1">
+							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="margin-bottom: 5px;">
 
 								<span class='label {% if pub.isforthcoming %}label-info{% else %}label-warning{% endif %}'>{{pub.pubdate|date:"d M Y"}}</span>&nbsp;								
 							</div>
 							
-							<div class="col-xs-11 col-sm-11 col-md-11 col-lg-11" style="padding-left: 30px";>
-								{% if  pub.pubplace %}<span class='pubplace text-black'> {{pub.pubplace}}</span>{% endif %} - {% if  pub.conference %}<span class='conference text-black'> {{pub.conference}}</span>{% endif %}{% if  pub.extrainfo %}<span class='extrainfo text-black'> {{pub.extrainfo|safe}}</span>{% endif %}. <a href="{{pub.conferenceurl}}" target="_blank" class="dimlink">{{pub.conferenceurl}}</a>
+							<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="-padding-left: 30px";>
+								{% if  pub.pubplace %}<span class='pubplace text-black'> {{pub.pubplace}}</span>{% endif %} - {% if  pub.conference %}<span class='conference -text-black'> {{pub.conference}}</span>{% endif %}{% if  pub.extrainfo %}<span class='extrainfo -text-black'> {{pub.extrainfo|safe}}</span>{% endif %}. <a href="{{pub.conferenceurl}}" target="_blank" class="ext_link">{{pub.conferenceurl}}</a>
 
 								<br />
-								 "<a href="/papers/{{pub.id}}/" class="bluelink">{{pub.title|capfirst}}</a>"								
+								 "<a href="/papers/{{pub.id}}/" >{{pub.title|capfirst}}</a>"								
 							</div>
 							
 

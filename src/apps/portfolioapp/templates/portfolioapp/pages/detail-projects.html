@@ -2,6 +2,12 @@
 
 {% load static %}
 
+
+
+{% block pagetitle %}
+  <title>Projects | Michele Pasin</title>
+{% endblock pagetitle %}
+
 {% block navbar %}
 
     {% with thispage="projects" %}
@@ -17,32 +23,23 @@
 
   <div class="page-header">
     Projects > {{project.title}}
+	    {% if admin_change_url %}
+          &nbsp;<a href="{{admin_change_url}}" target="_blanks" class="editbtn btn-xs btn-info">edit</a>
+        {% endif %}
+		
+		&nbsp;&nbsp;&nbsp;
+		{% for t in project.tags.all  %}
+			<a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="keyword">#{{t.name|capfirst}}</a>{% if not forloop.last %},&nbsp;{% endif %}
+		{% endfor %}
+			
   </div>
 
   <div class="container">
 
 
-		<div class="col-md-12 text-right" style="margin-top: 10px;">
-			{% if next %}
-			<small class="text-muted">
-				Next:&nbsp;
-			</small>
-			<small class="nextitemlink">
-				<a href="{{next.get_absolute_url}}" class="bluelink" title="View next">{{next.title|truncatewords:6}}&nbsp;
-				<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-				</a>
-			</small>
-			{% endif %}
-
-		</div>
-
-
-
-
 		<div class="row">
 
-		<hr>
-		
+				<br />
 				<div class="col-md-6">
 					{% comment %} <p class="text-muted">Description:</p> {% endcomment %}
 					<p class="bluelinks_inside">{{project.description|safe}}</p>
@@ -93,10 +90,8 @@
 							<span class="text-black">Link:</span>
 							&nbsp;&nbsp;<a class='url' href="{{u.0}}" target="_blank">{{u.1}}</a><br />
 						{% endfor %}
-					{% else %}
-						<span class="text-black">Link:</span>
-						&nbsp;&nbsp;not available yet
 					{% endif %}
+
 
 				</div>
 

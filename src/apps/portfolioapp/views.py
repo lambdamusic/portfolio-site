@@ -54,18 +54,6 @@ def about(request):
 	return render(request, APP + '/pages/about.html', context)
 
 
-def contact(request):
-	"""
-	contact page
-	"""
-
-	context = {
-	}
-
-	return render(request, APP + '/pages/contact.html', context)
-
-
-
 
 def photos(request):
 	"""
@@ -159,9 +147,9 @@ def projects(request, namedetail=""):
 		projects = list(Project.objects.all())
 		this_index = projects.index(return_item)
 
-		next = projects[this_index + 1] if len(projects) > (
-			this_index + 1) else projects[0]  # recursive
-		prev = projects[this_index - 1] if (this_index - 1) >= 0 else None
+		# next = projects[this_index + 1] if len(projects) > (
+		# 	this_index + 1) else projects[0]  # recursive
+		# prev = projects[this_index - 1] if (this_index - 1) >= 0 else None
 
 		# load images from manually managed folder
 
@@ -176,9 +164,13 @@ def projects(request, namedetail=""):
 					if not f.startswith(".") and f != THUMBS_FILE:
 						project_images_names += [f]
 
+		if request.user.is_superuser:
+			admin_change_url = return_item.get_admin_url()
+		else:
+			admin_change_url = None
+
 		context = {
-			'next': next,
-			'prev': prev,
+			'admin_change_url': admin_change_url,
 			'project': return_item,
 			'project_images_names': sorted(project_images_names),
 			'ALL_PROJECTS': Project.objects.all().order_by("-datefrom")
@@ -231,8 +223,14 @@ def papers(request, namedetail=""):
 		except:
 			pubtypegroup = ""
 
+		if request.user.is_superuser:
+			admin_change_url = return_item.get_admin_url()
+		else:
+			admin_change_url = None
+
 		context = {
 			'return_item' : return_item,
+			'admin_change_url' : admin_change_url,
 			'itemtitle': return_item.title,
 			'itempubdate': return_item.pubdate,
 			'summary': return_item.pub_summary(),
@@ -251,21 +249,52 @@ def papers(request, namedetail=""):
 
 
 
-def ontologies(request, namedetail=""):
+
+def sounds(request, namedetail=""):
 	"""
-	ontologies page
+	new sounds page
 	"""
 
+	_subpage = request.GET.get('k', 'livecoding')
+	context = {}
 
 	if not namedetail:
 
-		items = Item.objects.exclude(review=True).filter(
-			Q(atype__name__iexact="ontology"))
+		if _subpage == "livecoding":
+
+			items = Item.objects.exclude(review=True).filter(
+				Q(atype__name__iexact="livecoding")
+				| Q(atype__name__iexact="performance"))
+
+			templatee = "sounds-livecoding.html"
+
+		elif _subpage == "kryos":
+
+			items = Item.objects.filter(pk=7)
+
+			templatee = "sounds-kryos.html"
+
+		elif _subpage == "rebirth":
+
+			items = Item.objects.filter(pk=34)
+
+			templatee = "sounds-rebirth.html"
+
+		elif _subpage == "singles":
+
+			items = Item.objects.exclude(review=True).exclude(id__in=[7, 34]).filter(
+			Q(atype__name__iexact="music"))
+
+			templatee = "sounds-singles.html"
+
+		else:
+
+			return HttpResponseNotFound
 
 		context = {
-			'items' : items
+			'sounds_subpage' : _subpage,
+			'items' : items,
 		}
-		templatee = "ontologies.html"
 
 	else:
 
@@ -273,8 +302,15 @@ def ontologies(request, namedetail=""):
 		next = None
 		prev = None
 
+
+		if request.user.is_superuser:
+			admin_change_url = return_item.get_admin_url()
+		else:
+			admin_change_url = None
+
 		context = {
 			'itemtitle': return_item.title,
+			'admin_change_url' : admin_change_url,
 			'itemdesc': return_item.description,
 			'itemembed1': return_item.embedcode1,
 			'itemembed2': return_item.embedcode2,
@@ -283,54 +319,15 @@ def ontologies(request, namedetail=""):
 			'next': next,
 			'prev': prev,
 		}
-		templatee = "detail-ontologies.html"
-
-	return render(request, APP + '/pages/' + templatee, context)
-
-
-def livecoding(request, namedetail=""):
-	"""
-	livecoding page
-	"""
-
-	if not namedetail:
-
-		items = Item.objects.exclude(review=True).filter(
-			Q(atype__name__iexact="livecoding")
-			| Q(atype__name__iexact="performance"))
-
-		context = {
-			'items' : items
-		}
-
-		templatee = "livecoding.html"
-	
-	else:
-
-		return_item = get_object_or_404(Item, urlstub=namedetail)
-		next = None
-		prev = None
-
-		context = {
-			'itemtitle': return_item.title,
-			'itemdesc': return_item.description,
-			'itemembed1': return_item.embedcode1,
-			'itemembed2': return_item.embedcode2,
-			'datefrom': return_item.date,
-			'all_urls': return_item.all_urls(),
-			'next': next,
-			'prev': prev,
-		}
-		templatee = "detail-livecoding.html"
+		templatee = "detail-music.html"
 
 	return render(request, APP + '/pages/' + templatee, context)
 
 
 
-
-def music(request, namedetail=""):
+def sounds2(request, namedetail=""):
 	"""
-	music page
+	new sounds page
 	"""
 
 	if not namedetail:
@@ -342,7 +339,7 @@ def music(request, namedetail=""):
 			'items' : items
 		}
 
-		templatee = "music.html"
+		templatee = "sounds.html"
 
 	else:
 
@@ -350,8 +347,15 @@ def music(request, namedetail=""):
 		next = None
 		prev = None
 
+
+		if request.user.is_superuser:
+			admin_change_url = return_item.get_admin_url()
+		else:
+			admin_change_url = None
+
 		context = {
 			'itemtitle': return_item.title,
+			'admin_change_url' : admin_change_url,
 			'itemdesc': return_item.description,
 			'itemembed1': return_item.embedcode1,
 			'itemembed2': return_item.embedcode2,

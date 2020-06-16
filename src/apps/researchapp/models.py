@@ -109,14 +109,12 @@ class Person(mymodels.EnhancedModel):
     surname = models.CharField(max_length=255, null=True, blank=True, verbose_name="Surname",)
     institution = models.CharField(max_length=255, null=True, blank=True, verbose_name="Institution",)
 
+
     def get_admin_url(self):
-        from django.core import urlresolvers
-        return urlresolvers.reverse('admin:mainapp_person_change', args=(self.id,))
-        # return "/%sadmin/pomsapp/person/%s" % (django_settings.URL_PREFIX, self.id)
+        return reverse('admin:researchapp_person_change', args=(self.id,))
+
     get_admin_url.allow_tags = True
-    def get_databrowse_url(self):
-        return "/%sdatabrowse/mainapp/person/objects/%s" % (django_settings.URL_PREFIX,self.id)
-    get_databrowse_url.allow_tags = True
+
 
     def get_absolute_url(self):
         return reverse('researchapp:person_detail', args=[str(self.id)])
@@ -315,21 +313,10 @@ class Publication(mymodels.EnhancedModel):
     )
 
     def get_admin_url(self):
-        from django.core import urlresolvers
-        return urlresolvers.reverse(
-            'admin:mainapp_publication_change', args=(self.id, ))
-        # return "/%sadmin/pomsapp/person/%s" % (django_settings.URL_PREFIX, self.id)
+        return reverse('admin:researchapp_publication_change', args=(self.id,))
 
     get_admin_url.allow_tags = True
 
-    def get_databrowse_url(self):
-        return "/%sdatabrowse/mainapp/publication/objects/%s" % (
-            django_settings.URL_PREFIX, self.id)
-
-    get_databrowse_url.allow_tags = True
-
-    def get_absolute_url_OLD(self):
-        return reverse('researchapp:detail_page_dispatcher', args=['papers', str(self.id)]) # NEW WAY
 
     def get_absolute_url(self):
         """
@@ -552,21 +539,10 @@ class Project(mymodels.EnhancedModel):
     )
 
     def get_admin_url(self):
-        from django.core import urlresolvers
-        return urlresolvers.reverse(
-            'admin:mainapp_project_change', args=(self.id, ))
-        # return "/%sadmin/pomsapp/person/%s" % (django_settings.URL_PREFIX, self.id)
+        return reverse('admin:researchapp_project_change', args=(self.id,))
 
     get_admin_url.allow_tags = True
 
-    def get_databrowse_url(self):
-        return "/%sdatabrowse/mainapp/project/objects/%s" % (
-            django_settings.URL_PREFIX, self.id)
-
-    get_databrowse_url.allow_tags = True
-
-    def get_absolute_url_OLD(self):
-        return reverse('researchapp:detail_page_dispatcher', args=['projects', str(self.urlstub)])
 
     def get_absolute_url(self):
         """
@@ -769,20 +745,11 @@ class Item(mymodels.EnhancedModel):
         verbose_name="extra info?",
     )
 
-
     def get_admin_url(self):
-        from django.core import urlresolvers
-        return urlresolvers.reverse(
-            'admin:mainapp_item_change', args=(self.id, ))
-        # return "/%sadmin/pomsapp/person/%s" % (django_settings.URL_PREFIX, self.id)
+        return reverse('admin:researchapp_item_change', args=(self.id,))
 
     get_admin_url.allow_tags = True
 
-    def get_databrowse_url(self):
-        return "/%sdatabrowse/mainapp/item/objects/%s" % (
-            django_settings.URL_PREFIX, self.id)
-
-    get_databrowse_url.allow_tags = True
 
     def get_absolute_url(self):
         return reverse('researchapp:detail_page_dispatcher', args=['item', str(self.urlstub)])
