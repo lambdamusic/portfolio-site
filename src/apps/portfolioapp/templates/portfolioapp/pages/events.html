@@ -54,7 +54,7 @@
 							</div>
 							
 							<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="-padding-left: 30px";>
-								{% if  pub.pubplace %}<span class='pubplace text-black'> {{pub.pubplace}}</span>{% endif %} - {% if  pub.conference %}<span class='conference -text-black'> {{pub.conference}}</span>{% endif %}{% if  pub.extrainfo %}<span class='extrainfo -text-black'> {{pub.extrainfo|safe}}</span>{% endif %}. <a href="{{pub.conferenceurl}}" target="_blank" class="ext_link">{{pub.conferenceurl}}</a>
+								{% if  pub.pubplace %}<span class='pubplace text-black'> {{pub.pubplace}}</span>{% endif %} - {% if  pub.conference %}<span class='conference -text-black'> {{pub.conference}}</span>{% endif %}{% if  pub.extrainfo %}<span class='extrainfo -text-black'> {{pub.extrainfo|safe}}</span>{% endif %}. <a href="{{pub.conferenceurl}}" target="_blank" class="ext_link">{{pub.conferenceurl|truncatechars:40}}</a>
 
 								<br />
 								 "<a href="/papers/{{pub.id}}/" >{{pub.title|capfirst}}</a>"								
