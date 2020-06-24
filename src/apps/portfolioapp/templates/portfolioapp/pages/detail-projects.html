@@ -106,35 +106,36 @@
 			<div class="col-md-12" style="margin-top: 20px;">
 					<p>Screenshots:</p>
 					<br /><br />
-				
 
 					{# TILED SIZES #}
 					{% for img in project_images_names  %}
-						<div class="col-md-6 col-sm-6 project-thumbs -item_images">
+						<div class="col-md-8 col-sm-8 col-md-offset-2  ">
 							<div class="project-thumbnail">
-							<a href="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}" class="thumbnail">
-							<img src="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}">
+							<a href="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}" class="thumbnail" style="margin-bottom: 50px;">
+								<img src="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}">
 							</a>
 							</div>
 						</div>
 					{% endfor %}
 
 
-
+				
 			</div>
+
 		
 		</div>   <!-- /row -->
 
 
 		{% comment %} SECTION WITH ALL PROJECTS {% endcomment %}
 
-		
 		<div class="row" style="margin-top: 80px; margin-bottom: 60px;">
+			
 			<hr>
+			<h5 class="text-muted">All projects:</h5>
 			{% for p in ALL_PROJECTS %}
 
 			
-			<div class="col-md-3 thumb-div">
+			<div class="col-md-3 col-sm-4 col-xs-4 thumb-div">
 				<a href="{{p.get_absolute_url}}" class="thumbnail" title="{{p.title}}: {{p.short_title|truncatewords:10}}">
 					{# NOTE: images are managed manually in STATIC FOLDER - thumbnail.png is hardcoded as the main one #}
 					<img class="thumb-img" src="{% static 'manual_img/' %}{{ p.urlstub|lower }}/thumb.png" alt="Main image"/ >

@@ -57,6 +57,7 @@
     .breadcrumbs {margin-top: 80px;}
     .namespaces {background: #ced2d6; width: 100%;}
     .footer {background-color: #3e3f3a;}
+    .footer a {color: #cac0bf;}
 
     .margin50Top {margin-top: 50px;}
     .margin20Top {margin-top: 20px;}
@@ -129,6 +130,8 @@
 
     }
 
+
+
     a.project-title {
       color: black;
       font-weight: bold;
@@ -167,6 +170,10 @@
     a.sounds-active {
       background: indianred;
       color: white;
+    }
+
+    img.project-screenshots {
+      margin-botton: 30px;
     }
 
 </style>
@@ -224,7 +231,11 @@
   <footer class="footer">
     <div class="container">
     {% block footer %}
-      <p class="text-muted">michelepasin.org </p>
+      <p class="text-muted">michelepasin.org
+      &nbsp;&nbsp;
+      {% include "portfolioapp/components/outlinks.html" %}
+      
+      </p>
     {% endblock footer %}
     </div>
   </footer>
