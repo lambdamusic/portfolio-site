@@ -16,21 +16,24 @@
   {% block bodycontent %}
 
   <div class="page-header">
-    Music
-		    {% if admin_change_url %}
+	    {% if admin_change_url %}
           &nbsp;<a href="{{admin_change_url}}" target="_blanks" class="editbtn btn-xs btn-info">edit</a>
         {% endif %}
+	    Sounds > {{itemtitle}}
+
   </div>
 
   <div class="container">
 
 
 
-		<div class="row">
+		<div class="row" style="margin-top:20px;">
 
-		<hr>
+		{% comment %} <hr> {% endcomment %}
 		
 				<div class="col-md-6">
+
+					<b>{{itemtitle}}</b>
 
 					<p class="bluelinks_inside">{{itemdesc|safe}}</p>
 					

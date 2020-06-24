@@ -316,55 +316,8 @@ def sounds(request, namedetail=""):
 			'itemembed2': return_item.embedcode2,
 			'datefrom': return_item.date,
 			'all_urls': return_item.all_urls(),
-			'next': next,
-			'prev': prev,
 		}
-		templatee = "detail-music.html"
-
-	return render(request, APP + '/pages/' + templatee, context)
-
-
-
-def sounds2(request, namedetail=""):
-	"""
-	new sounds page
-	"""
-
-	if not namedetail:
-
-		items = Item.objects.exclude(review=True).filter(
-			Q(atype__name__iexact="music"))
-
-		context = {
-			'items' : items
-		}
-
-		templatee = "sounds.html"
-
-	else:
-
-		return_item = get_object_or_404(Item, urlstub=namedetail)
-		next = None
-		prev = None
-
-
-		if request.user.is_superuser:
-			admin_change_url = return_item.get_admin_url()
-		else:
-			admin_change_url = None
-
-		context = {
-			'itemtitle': return_item.title,
-			'admin_change_url' : admin_change_url,
-			'itemdesc': return_item.description,
-			'itemembed1': return_item.embedcode1,
-			'itemembed2': return_item.embedcode2,
-			'datefrom': return_item.date,
-			'all_urls': return_item.all_urls(),
-			'next': next,
-			'prev': prev,
-		}
-		templatee = "detail-music.html"
+		templatee = "detail-sounds.html"
 
 	return render(request, APP + '/pages/' + templatee, context)
 

@@ -22,15 +22,16 @@
   {% block bodycontent %}
 
   <div class="page-header">
+	{% if admin_change_url %}
+		&nbsp;<a href="{{admin_change_url}}" target="_blanks" class="editbtn btn-xs btn-info">edit</a>
+	{% endif %}
+	
     Projects > {{project.title}}
-	    {% if admin_change_url %}
-          &nbsp;<a href="{{admin_change_url}}" target="_blanks" class="editbtn btn-xs btn-info">edit</a>
-        {% endif %}
-		
-		&nbsp;&nbsp;&nbsp;
-		{% for t in project.tags.all  %}
-			<a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="keyword">#{{t.name|capfirst}}</a>{% if not forloop.last %},&nbsp;{% endif %}
-		{% endfor %}
+
+	&nbsp;&nbsp;&nbsp;
+	{% for t in project.tags.all  %}
+		<a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="">#{{t.name|capfirst}}</a>{% if not forloop.last %}&nbsp;&nbsp;{% endif %}
+	{% endfor %}
 			
   </div>
 

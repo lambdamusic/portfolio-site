@@ -54,9 +54,11 @@
 		      <h4><a href="{{p.urlstub|lower}}" title="See details">{{p.title}}</a></h4>
 		  		<small class="text-muted">{{p.date|date:"Y"}}</small>
 		      <p class="-lead">{{p.short_title}}</p>
+		      <p class="-lead">{{p.description|safe}}</p>
 		  </div>
 		  
-		  <div class="col-md-8">
+
+		  <div class="col-md-6">
 			  {% if p.embedcode1 %}
 		    {{p.embedcode1|safe}}
 			{% endif %}
@@ -64,6 +66,7 @@
 		  
 		  
 		</div>
+		<hr>
 		{% endfor %}
 
 
