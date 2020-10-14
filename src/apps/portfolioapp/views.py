@@ -54,6 +54,14 @@ def about(request):
 	return render(request, APP + '/pages/about.html', context)
 
 
+def bio(request):
+	"""
+	bio page
+	"""
+	context = {}
+	return render(request, APP + '/pages/about-bio.html', context)
+
+
 
 def photos(request):
 	"""
