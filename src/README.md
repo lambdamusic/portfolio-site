@@ -5,6 +5,12 @@ Researcher Portfolio project / http://www.michelepasin.org/
 In ascending order / todos at the bottom
 
 
+November 12, 2020
+---------------------------------
+* added covid19 project
+
+
+
 May 3, 2020
 ---------------------------------
 * new branch 2020-layout

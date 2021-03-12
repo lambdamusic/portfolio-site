@@ -435,7 +435,7 @@ def project_image_file_name(instance, filename):
 class Project(mymodels.EnhancedModel):
 
     urlstub = models.CharField(
-        max_length=255, verbose_name="url stub", help_text="No spaces please")
+        max_length=255, verbose_name="url stub", help_text="No spaces or dashes please")
     short_title = models.CharField(
         max_length=255,
         verbose_name="Short description",
@@ -448,7 +448,8 @@ class Project(mymodels.EnhancedModel):
     description = models.TextField(
         null=True,
         blank=True,
-        verbose_name="description (html welcome!)",
+        verbose_name="description (html welcome!)", 
+        help_text="Feel free to use https://html-online.com/editor",
     )
     myrole = models.TextField(
         null=True,
@@ -656,6 +657,7 @@ class Item(mymodels.EnhancedModel):
         null=True,
         blank=True,
         verbose_name="description (html welcome!)",
+        help_text="Feel free to use https://html-online.com/editor"
     )
     embedcode1 = models.TextField(
         null=True,
