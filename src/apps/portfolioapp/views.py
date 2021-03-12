@@ -30,21 +30,8 @@ def home(request):
 	"""
 	just an index of what's available  in /static for this app
 	"""
-	return redirect('/projects')
+	# return redirect('/projects')
 
-	# context = {
-	# 	'top_topics' :	top_topics,
-	# 	'topics_links' :	topics_links,
-	# 	'topics_unique' :	topics_unique,
-	# }
-
-	# return render(request, APP + '/home.html', context)
-
-
-def about(request):
-	"""
-	about page
-	"""
 	context = {
 		'top_topics' :	top_topics,
 		'topics_links' :	topics_links,
@@ -52,6 +39,16 @@ def about(request):
 	}
 
 	return render(request, APP + '/pages/about.html', context)
+
+
+
+def about(request):
+	"""
+	bio page
+	"""
+	context = {}
+	return render(request, APP + '/pages/about-bio.html', context)
+
 
 
 def bio(request):
