@@ -67,9 +67,9 @@ elif ENVIRONMENT == 'pyany':
         'default': {
             'ENGINE': 'django.db.backends.mysql',
             'NAME': 'lambdaman$researcher2019',
-            'USER': 'root',
+            'USER': 'lambdaman',
             'PASSWORD': '7df7698f',
-            'HOST': '127.0.0.1',
+            'HOST': 'lambdaman.mysql.pythonanywhere-services.com',
             'PORT': '3306',
         }
     }
