@@ -14,6 +14,8 @@ SITE_ROOT = os.path.dirname(os.path.realpath(__file__)).rsplit('/', 1)[0]
 # Location: modify as needed
 if "/michele.pasin/Dropbox/code/" in SITE_ROOT:
     ENVIRONMENT = 'local'
+elif "/home/lambdaman/" in SITE_ROOT:
+    ENVIRONMENT = 'pyany'
 else:
     ENVIRONMENT = 'production'
 
@@ -22,7 +24,7 @@ print("Environment: %s" % ENVIRONMENT)
 ALLOWED_HOSTS = [
     'localhost', '127.0.0.1', 'home.magicrebirth.webfactional.com',
     'ideaslab.magicrebirth.webfactional.com', 'magicrebirth.webfactional.com',
-    'www.michelepasin.org'
+    'www.michelepasin.org', 'lambdaman.pythonanywhere.com'
 ]
 
 # Static files (CSS, JavaScript, Images)
@@ -59,6 +61,18 @@ if ENVIRONMENT == 'local':
         }
     }
 
+elif ENVIRONMENT == 'pyany':
+
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'lambdaman$researcher2019',
+            'USER': 'root',
+            'PASSWORD': '7df7698f',
+            'HOST': '127.0.0.1',
+            'PORT': '3306',
+        }
+    }
 else:
 
     DATABASES = {
