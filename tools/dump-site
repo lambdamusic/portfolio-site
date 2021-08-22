@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+echo "================="
+echo "PREREQUISITE"
+echo "Ensure site is running on 127.0.0.1:8000..."
+echo "================="
+
+
+echo -e "\nclean up build dir"
+echo "+++++++++++++++++"
+rm -rf build/*
+
+echo -e "\nrsync /docs to /docs-prev"
+echo "+++++++++++++++++"
+rsync -av --delete docs/ docs-prev/
+
+echo -e "\ngrab site into build directory" 
+echo "+++++++++++++++++"
+wget  -P build -mkEpnp -nH http://127.0.0.1:8000/
+# add a log file
+cd build
+touch "$(date +"%Y_%m_%d_%I_%M_%p").log"
+cd ..
+
+echo -e "\rsync build directory to /docs"
+echo "+++++++++++++++++"
+rsync -av --delete --exclude '.nojekyll' build/ docs/
+
+# TODO ensure that nojekyll and other stuff is still there!
+
+
+# WGET HOWTO
+# https://www.gnu.org/software/wget/manual/wget.html
+
+# -   `--mirror` – Makes (among other things) the download recursive.
+# -   `--convert-links` – convert all the links (also to stuff like CSS stylesheets) to relative, so it will be suitable for offline viewing.
+# -   `--adjust-extension` – Adds suitable extensions to filenames (`html` or `css`) depending on their content-type.
+# -   `--page-requisites` – Download things like CSS style-sheets and images required to properly display the page offline.
+# -   `--no-parent` – When recursing do not ascend to the parent directory. It useful for restricting the download to only a portion of the site.
+# -  `--no-host-directories` – Disable generation of host-prefixed directories. By default, invoking Wget with ‘-r http://fly.srk.fer.hr/’ will create a structure of directories beginning with fly.srk.fer.hr/. This option disables such behavior.
+
