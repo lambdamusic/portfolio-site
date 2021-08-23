@@ -6,15 +6,25 @@ echo "Ensure site is running on 127.0.0.1:8000..."
 echo "================="
 
 
-echo -e "\nclean up build dir"
+if lsof -Pi :8000 -sTCP:LISTEN -t >/dev/null ; then
+    echo ">>>>>>> DJANGO is RUNNING! "
+    echo "================="
+else
+    echo "********* Django not running **********"
+    echo ".. Exiting process. Please run the django server first."
+    exit 1
+fi
+
+
+echo -e "\nCLEAN UP BUILD DIR"
 echo "+++++++++++++++++"
 rm -rf build/*
 
-echo -e "\nrsync /docs to /docs-prev"
+echo -e "\nRSYNC /DOCS TO /DOCS-PREV"
 echo "+++++++++++++++++"
 rsync -av --delete docs/ docs-prev/
 
-echo -e "\ngrab site into build directory" 
+echo -e "\nGRAB SITE INTO BUILD DIRECTORY" 
 echo "+++++++++++++++++"
 wget  -P build -mkEpnp -nH http://127.0.0.1:8000/ --wait=0.1
 # add a log file
@@ -22,11 +32,10 @@ cd build
 touch "$(date +"%Y_%m_%d_%I_%M_%p").log"
 cd ..
 
-echo -e "\rsync build directory to /docs"
+echo -e "\RSYNC BUILD DIRECTORY TO /DOCS"
 echo "+++++++++++++++++"
 rsync -av --delete --exclude '.nojekyll' --exclude 'CNAME' build/ docs/
 
-# TODO ensure that nojekyll and other stuff is still there!
 
 
 # WGET HOWTO
