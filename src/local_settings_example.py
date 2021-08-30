@@ -18,7 +18,8 @@ if True:
 else:
     ENVIRONMENT = 'production'
 
-print("Environment: %s" % ENVIRONMENT)
+sys.stderr.write("Environment: %s\n" % ENVIRONMENT)
+# print("Environment: %s" % ENVIRONMENT)
 
 ALLOWED_HOSTS = [
     'localhost', '127.0.0.1', 'my.domain.heroku.com'

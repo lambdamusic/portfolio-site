@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+echo "================="
+echo "LOAD DATA FROM LOCAL JSON DUMP"
+echo "Please pass a JSON file in /data and ensure DB is initialised and empty"
+echo "================="
+
+
+src/manage.py loaddata $1
+
+echo "DONE"
+
+
+
+############ 
+# TIP - FOR TESTING YOU MAY WANT TO DO THIS FIRST
+#
+# python manage.py reset_db
+# python manage.py migrate
+#
+############ 

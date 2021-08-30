@@ -18,7 +18,8 @@ sys.path.append(os.path.join(SITE_ROOT, "src/apps"))
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = ENVIRONMENT != 'production'
-print('DEBUG:' + str(DEBUG))
+sys.stderr.write('DEBUG:' + str(DEBUG) + "\n")
+# print('DEBUG:' + str(DEBUG))
 
 # Application definition
 
