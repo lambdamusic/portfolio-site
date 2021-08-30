@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>representations &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/representations/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Sat, 19 Nov 2011 14:44:09 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Towards a conceptual model for the domain of sculpture</title>
+		<link>http://www.michelepasin.org/blog/2011/11/19/towards-a-conceptual-model-for-the-domain-of-sculpture/</link>
+				<pubDate>Sat, 19 Nov 2011 14:44:09 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Cultural Informatics]]></category>
+		<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[mindmapping]]></category>
+		<category><![CDATA[modeling]]></category>
+		<category><![CDATA[ontology]]></category>
+		<category><![CDATA[representations]]></category>
+		<category><![CDATA[sculpture]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1704</guid>
+				<description><![CDATA[For the next two years I&#8217;ll be collaborating with the Art of Making project. The project investigates the processes involved in the carving of stone during the Roman period, in particular it aims at analysing them using the insights and understanding Peter Rockwell (son of Norman Rockwell) developed during his lifelong experience as a sculptor. [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>For the next two years I&#8217;ll be collaborating with the <a href="http://www.artofmaking.ac.uk/">Art of Making</a> project. The project investigates the processes involved in the carving of stone during the Roman period, in particular it aims at analysing them using the insights and understanding <a href="http://www.geoffreyrockwell.com/PRportfolio/">Peter Rockwell</a> (son of <a href="http://en.wikipedia.org/wiki/Norman_Rockwell">Norman Rockwell</a>) developed during his lifelong experience as a sculptor. Eventually we will present these results by means of a freely accessible online digital resource that guides users through examples of stone carving. In this post I just wanted to report on the very first discussions I had with the sculpture and art scholars I&#8217;m working with, to the purpose of creating a shared model for this  domain.   </p>
+<p>The project started this July, it is based at <a href="http://www.kcl.ac.uk/">King’s College London</a> and is funded by the Leverhulme Trust. I&#8217;m more involved with the digital aspects of the project, and as usual one of the first steps involved in the building of a digital resource (in particular, a database-backed digital resource) is the construction of a <b>conceptual model</b> that can represent the main <b>types of things</b> being dealt with. </p>
+<p>In other words, it is fundamental to identify which are the things our database and web-application should &#8216;talk about&#8217;; later on, this model can be refined and extended so to become an abstract template of the data-manipulation tasks the software application must be capable of supporting (e.g. entering data into the system, searching and visualising them). </p>
+<p>Here&#8217;s a nice example of the sculptures (a <a href="http://www.artofmaking.ac.uk/2012/01/03/image-of-the-month-january-2012/">sarcophagus from Aphrodisias</a>) that constitute our &#8216;source&#8217; materials:</p>
+<p><img src="http://www.artofmaking.ac.uk/wp-content/uploads/2012/01/7-4.jpg" /></p>
+<h3>What are the key entities in the sculpture domain?</h3>
+<p>To this purpose, a few weeks ago we had a very productive brainstorming session aimed at fleshing out the main items of interest in the world of sculpture. This is a very first step towards the construction of a formal model for this domain; nonetheless, I think that we have already managed to pin down the key elements we&#8217;re going to be dealing with in the next two years. </p>
+<p>Here&#8217;s a list of the main objects we identified:</p>
+<ul>
+<li>&#8211; <strong>People</strong>, such as craftsman&#8217;s etc..</li>
+<li>&#8211; <strong>Sculptures</strong> (of various kinds)</li>
+<li>&#8211; <strong>Materials</strong></li>
+<li>&#8211; <strong>Tools</strong></li>
+<li>&#8211; Generic <strong>processes</strong> that are part of a sculpting project, such as quarrying and transport.
+</li>
+<li>&#8211; More specific <strong>methods</strong> being used within a particular process, e.g. carving styles, or approaches to quarrying.</li>
+<li>&#8211; <strong>Traditions</strong>, conceptualisations of the &#8216;way of doing things&#8217; that, in turn, can inspire the way methods and processes are carried out nowadays.</li>
+</ul>
+<p>We encoded the results of our discussions in a <a href="http://en.wikipedia.org/wiki/Mind_map">mind map</a> for better readability, and also in order to use a technology that would make it easier to share our findings later on. I added it below.. (in case the interactive image doesn&#8217;t work, you can find it <a href="">here</a> too).</p>
+<p><iframe id='xmindshare_embedviewer' src='http://www.xmind.net/share/_embed/magicrebirth/xmind-972121/' width='600px' height='600px' frameborder='0' scrolling='no'></iframe></p>
+<h3>Fleshing out the model a bit more</h3>
+<p>After a few weeks of work we did a reiteration of the conceptual map above. The good news was that it soon became evident to us that we got it quite right on the first round; that is, we didn&#8217;t really feel like adding or removing anything from the map. </p>
+<p>On the other hand, we thought we should try to add some <b>relations</b> (= links, arcs) among the concepts (=bubbles) previously identified, so to characterize their semantics a bit more. I had a go at adding some relations first, and here&#8217;s the result:</p>
+<p><iframe id='xmindshare_embedviewer' src='http://www.xmind.net/share/_embed/magicrebirth/main-entities-relations/' width='600px' height='400px' frameborder='0' scrolling='no'></iframe></p>
+<p>I should specify that I have no knowledge whatsoever of the domain of sculpture, so the stuff I added to the map came out entirely from the (little) research I&#8217;ve been doing on the subject (on and off) during the last weeks. </p>
+<p>At the same time, also Will and Ben (the art historians I&#8217;m collaborating with) worked independently at the task of fleshing out the mind map with more relations. Needeless to say, what they came up with is way more dense and intricate than what I could have ever imagined! This is probably not surprising, as one would expect to see a significant difference between a non-expert&#8217;s representation of a subject domain and another one which is instead created by experts. Still, it was interesting to see it happening with my own eyes!<br />
+Here it is: </p>
+<p><iframe id='xmindshare_embedviewer' src='http://www.xmind.net/share/_embed/magicrebirth/the-art-of-making-structure/' width='600px' height='400px' frameborder='0' scrolling='no'></iframe></p>
+<p>The next step will be trying to reduce the (natural) complexity of the portion of the world we are representing to a more manageable size… then, formalize it, and start building our database based on that..  stay tuned for more! </p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1704</post-id>	</item>
+		<item>
+		<title>Modeling Representations (take 2)</title>
+		<link>http://www.michelepasin.org/blog/2007/03/30/modeling-representations-take-2/</link>
+				<pubDate>Fri, 30 Mar 2007 12:32:50 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[ontology]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[representations]]></category>
+
+		<guid isPermaLink="false">http://people.kmi.open.ac.uk/mikele/blog/?p=224</guid>
+				<description><![CDATA[I wrote something in the last weeks about the difficulties related to the modeling of representations and their contents. So today I just read this article by Stefano Mazzocchi, which basically hints at the same issue, but from an &#8216;RDF perspective&#8217;. It&#8217;s a very interesting article, so I just wanted to quote and comment a [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I <a href="http://www.michelepasin.org/blog/2007/03/05/ontology-of-representations/">wrote something</a> in the last weeks about the difficulties related to the modeling of representations and their contents. So today I just read this <a href="http://www.betaversion.org/~stefano/linotype/news/101/">article by Stefano Mazzocchi</a>, which basically hints at the same issue, but from an &#8216;RDF perspective&#8217;. It&#8217;s a very interesting article, so I just wanted to quote and comment a few  passages</p>
+<blockquote>
+<p>The concept of <strong>data integration</strong> is even older than computers, it&#8217;s as old as the idea of data itself: all datasets that we use today, from a book to a collection of pictures, from a library catalog to census data, had to be collected by different people/entities and integrated.</p>
+</blockquote>
+<p>Very true! I always thought that a &#8220;lessons learned from the (far away) past&#8221; class would be extremely useful to SW people. Maybe in a future SW academic course&#8230;</p>
+<blockquote>
+<p>There is an implicit assumption among semantic web practitioners that once the data is in RDF and it&#8217;s using different ontologies, all it&#8217;s left to do is to find a way to map the various ontologies together and voila&#8217;, data integration at a global scale!</p>
+<p>RDF might help simplify certain operations but the problem of integration is not about just the identifiers used by the data models but also by <strong>the act of modeling itself</strong>!</p>
+</blockquote>
+<p>Very true. This is lessons learned #2. Philosophers spent two thousand years (in the western world only) trying to do this mapping, without success (or even the desire for it in some cases).</p>
+<blockquote>
+<p>There are modeling mismatches that simply cannot be solved with ontological mappings alone.</p>
+<p>This is a form of &#8216;undermodeling&#8217;, similar to the concept of aliasing and artifacts introduced by sampling: a data model is a way of sampling an information space. In audio processing, it&#8217;s obvious that mixing two samples with different sampling resolutions would result in total garbage no matter how one decides to align them in time.</p>
+<p>We have a similar problem here: given a set of images of paintings where only one image per painting existed, the data model &#8216;undersamples&#8217; that information space collapsing the two into one concept.</p>
+<p>Following the same sampling rationale, we need to &#8216;<strong>resample</strong>&#8216; the data model and decouple the &#8216;works&#8217; from the &#8216;images&#8217;, or convert the Museum location into coordinates. But this is far from trivial and clearly not something that can be done without intimate domain knowledge.</p>
+</blockquote>
+<p>I really like this <em>sampling &#8211; modeling </em>metaphor! That&#8217;s really it! And here&#8217;s the conclusion:</p>
+<blockquote>
+<p>This &#8216;resampling&#8217; facility, in its most abstract shape, is nothing but a transformation stage: RDF comes in, RDF comes out, possibly different and more aligned with the rest we have to integrate.</p>
+<p>Also while some of such transformation operations can be done unsupervised, in general <strong>human intervention</strong> (by an individual or either a voting group) <strong>will be required</strong>.</p>
+<p>Also the <strong>ability to turn supervision into a &#8216;scripted&#8217; set of transformation operations will be required</strong>. For XML one would use XSLT, but for RDF there is no such thing (there are rule languages on the horizon, but they hardly seem to fit these needs&#8230; even if XSLT wasn&#8217;t properly designed for XML transformations either).</p>
+<p>I honestly don&#8217;t know how these tools will work , what shape they&#8217;ll have and how much automation they will be able to provide to human users, but one thing is for sure, while declarative equivalences help data integration with RDF, they are far from being enough and we can no longer afford to ignore this problem.</p>
+</blockquote>
+<p>I don&#8217;t know either &#8211; but this seems a very clear problem definition. And often that&#8217;s the most important thing we need to get going in the right direction!
+</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">224</post-id>	</item>
+	</channel>
+</rss>

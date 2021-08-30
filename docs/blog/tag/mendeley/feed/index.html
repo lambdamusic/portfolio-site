@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>mendeley &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/mendeley/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Sun, 18 Nov 2012 00:19:49 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Using Mendeley and Dropbox to sync your pdf library across computers</title>
+		<link>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/</link>
+				<comments>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/#comments</comments>
+				<pubDate>Tue, 07 Aug 2012 11:35:54 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[mendeley]]></category>
+		<category><![CDATA[reference]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1964</guid>
+				<description><![CDATA[Mendeley is a pdf and reference manager software that has a number of cool features: online/offline support, tools for creating public groups (=collections of references), and last but not least, it&#8217;s fast and easy to use. Since your references are synchronised via the online service, you can run Mendeley on more than one computer/device. However [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://www.michelepasin.org/blog/2009/08/21/social-reference-manager-mendeley/">Mendeley</a> is a pdf and reference manager software that has a number of cool <a href="http://www.mendeley.com/features/">features</a>: online/offline support, tools for creating public groups (=collections of references), and last but not least, it&#8217;s fast and easy to use. Since your references are synchronised via the online service, you can run Mendeley on more than one computer/device. However unless you pay for a fee you will be able to synchronise only up to 1 gig of data through it, which is probably <a href="http://feedback.mendeley.com/forums/4941-mendeley-feedback/suggestions/301592-pdfs-should-be-attached-with-paths-relative-to-a-u?ref=title">not enough for some people</a>. So here&#8217;s a simple method for using a cloud service like Dropbox to sync your entire pdf library without having to pay a cent. </p>
+<p>The <strong>basic idea</strong>: keep all of your pdf files in the cloud using a Dropbox folder; also, keep the Mendeley database and preferences in the cloud, so that they are shared across computers. Finally, point Mendeley to that Dropbox folder and let it do the rest for us (e.g. keeping it organised etc.). </p>
+<blockquote><p><strong>Warning</strong>: since with this method the preferences and database are shared across computers, you must make sure you don&#8217;t use Mendeley at the same time on both computers as that could lead to some conflict!</p></blockquote>
+<p>This recipe assumes that you have two macs and both <a href="https://www.dropbox.com/">Dropbox</a> and <a href="http://www.mendeley.com/">Mendeley</a> <strong>installed</strong> on both of them. We&#8217;ll call one of the two machines <em>mac-1</em>, and the other one <em>mac-2</em>.<br />
+Also, the method <strong>requires</strong> that you are using the <strong>same username</strong> on both macs. I know, this is a big limitation, but since Mendeley indexes pdf files using their full path that&#8217;s the only way for things to be wired up correctly (otherwise on one of the two macs the path of the pdf files will be broken).  </p>
+<h3>1. Set up Mendeley and DropBox on mac-1</h3>
+<p>On Mac-1, create a <span style="font-family:monospace;color:#000000; ">Mendeley</span> folder in your Dropbox. Within that, create two new folders, <span style="font-family:monospace;color:#000000; ">pdf</span> and <span style="font-family:monospace;color:#000000; ">db</span>.<br />
+Now launch Mendeley Desktop and in the preferences panel set the pdf-files location to the <span style="font-family:monospace;color:#000000; ">pdf</span> folder you just created. After clicking on &#8216;apply&#8217; Mendeley will move your existing library (if you have one) into the new folder. Wait till that&#8217;s finished before moving on to step 2. </p>
+<p><a href="http://www.flickr.com/photos/mikele/7738619978/" title="Mendeley Prefs by MagIcReBirth, on Flickr"><img src="http://farm8.staticflickr.com/7107/7738619978_0762a77e91.jpg" width="500" height="364" alt="Mendeley Prefs"></a></p>
+<h3>2. Add Mendeley database to DropBox on mac-1</h3>
+<p>Close Mendeley Desktop on mac-1. Now open up the terminal and <a href="http://en.wikipedia.org/wiki/Symbolic_link">symlink</a> the <span style="font-family:monospace;color:#000000; ">~/Library/Application Support/Mendeley Desktop</span> folder to the <span style="font-family:monospace;color:#000000; ">db</span> folder just created in Dropbox. This way the DB and preferences can be shared across computers. </p>
+<pre><span style="font-family:monospace;color:#000000; ">
+[mac]@mac1:~/Library/Application Support>cp -r Mendeley\ Desktop/ ~/Dropbox/Mendeley/db/
+[mac]@mac1:~/Library/Application Support>mv Mendeley\ Desktop/ _backup_Mendeley_Desktop/
+[mac]@mac1:~/Library/Application Support>ln -s ~/Dropbox/Mendeley/db/Mendeley\ Desktop .</span></pre>
+<p>Dropbox will start cloud-syncing the new folder we added. In the meantime, you can try launching Mendeley and checking that everything works at it should. </p>
+<h3>3. Set things up on mac-2</h3>
+<p>Put to sleep mac-1 and wake up mac-2. If you&#8217;re online, Dropbox on mac-2 will immediately start downloading all the new stuff you previously added to it (via mac-1). In the meantime, quickly open up Mendely and update the preferences as we did in step 1 above. Then closed it down.</p>
+<p>Once the Dropbox download is finished, we can set up the symlink to the Mendeley database  as we did in step 2 (no need to copy the <span style="font-family:monospace;color:#000000; ">db</span> folder this time, because we&#8217;re using the folder already present in <span style="font-family:monospace;color:#000000; ">Dropbox/Mendeley/db</span>): </p>
+<pre><span style="font-family:monospace;color:#000000; ">
+[mac]@mac2:~/Library/Application Support>mv Mendeley\ Desktop/ _backup_Mendeley_Desktop/
+[mac]@mac2:~/Library/Application Support>ln -s ~/Dropbox/Mendeley/db/Mendeley\ Desktop .</span></pre>
+<p><strong>That&#8217;s it</strong>. You now should be able to open up Mendeley and have your entire library synchronised across the two computers (effectively, you&#8217;re working on a <em>single</em> library since your database is shared too).</p>
+<p>Obviously you can still use the <strong>web-sync</strong> service, which is handy for example if you use also some mobile device. There you&#8217;ll still have the 1gig limitation for the pdf files, but at least for me that&#8217;s hardly a problem cause I don&#8217;t need to have my entire library on the go all the time (I just have a folder called &#8216;syncedStuff&#8217; in Mendeley Desktop and synchronise only the files attached to that). </p>
+<h3>If things go wrong..</h3>
+<p>Well, I&#8217;d expect any wise pdf-collectors to make <strong>regular backups</strong> of their precious databases. In some cases though it&#8217;s not just a matter of putting things back as they were; for example once I moved the pdf source files to a different location, launched Mendeley and discovered that although my library was still there all the pdf links were broken.<br />
+Since I wanted to keep the new paths for all the pdf files, as a last resort I tried to <strong>hack into Mendeley&#8217;s own</strong> <a href="http://en.wikipedia.org/wiki/SQLite">SQLite</a> database and clean things up myself.</p>
+<blockquote><p>Here&#8217;s another post that explains how to modify Mendeley&#8217;s database manually: <a href="http://n30bli7z.blogspot.co.uk/2009/10/using-mendeley-effectivey-on-multiple.html">Using Mendeley effectively on multiple systems using an external storage drive</a></p></blockquote>
+<p>This is pretty easy actually. Mendeley stores the <strong>full file paths</strong> to your files in its database. In particular, the database file can be found in <span style="font-family:monospace;color:#000000; ">/Application Support/Mendeley Desktop</span>, and it is named like this: <span style="font-family:monospace;color:#000000; ">youremail@www.mendeley.com.sqlite</span>. </p>
+<p>All you have to do is this: close down Mendeley (if it&#8217;s running), make a backup copy of the database file for safety purposes, then open it up using a SQLite GUI (e.g. on mac you can use <a href="http://sourceforge.net/projects/sqlitebrowser/">SQLite Browser</a> which is free). You&#8217;ll see that the <strong>Files table</strong> contains all the (wrong) paths to your pdf files; now you can update these paths by launching a simple &#8216;execute&#8217; command, e.g.: </p>
+<pre><span style="font-family:monospace;color:#000000; ">
+update Files set 
+  localurl = replace(localurl, '/Users/me/Dropbox/Mendeley/old/path/', '/Users/me/Dropbox/Mendeley/new/path/');
+</span></pre>
+<p>Make sure the command did its job by checking the Files table contents; if that&#8217;s the case, the next time you launch Mendeley it won&#8217;t have no broken links anymore! </p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/feed/</wfw:commentRss>
+		<slash:comments>44</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1964</post-id>	</item>
+	</channel>
+</rss>

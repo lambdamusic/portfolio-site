@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>query &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/query/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Thu, 06 Jun 2013 13:47:41 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>The power of django&#8217;s Q objects</title>
+		<link>http://www.michelepasin.org/blog/2010/07/20/the-power-of-djangos-q-objects/</link>
+				<comments>http://www.michelepasin.org/blog/2010/07/20/the-power-of-djangos-q-objects/#comments</comments>
+				<pubDate>Tue, 20 Jul 2010 00:46:44 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[q_objects]]></category>
+		<category><![CDATA[query]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=755</guid>
+				<description><![CDATA[I&#8217;ve been spending some time today doing research on how to best use django&#8217;s Q objects. Then I did a bit of testing myself and decided to put this whole thing together for future&#8217;s sake, you know, for the time when I&#8217;ll find myself lost and in need some coding recipe. First things first: the [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I&#8217;ve been spending some time today doing research on how to best use django&#8217;s Q objects. Then I did a bit of testing myself and decided to put this whole thing together for future&#8217;s sake, you know, for the time when I&#8217;ll find myself lost and in need some coding recipe.</p>
+<p>First things first: the <strong>official documentation</strong>.</p>
+<li>Django doc: <a href="http://docs.djangoproject.com/en/dev/topics/db/queries/#complex-lookups-with-q-objects">Complex lookups with Q objects</a><br />
+The main intro</li>
+<li>Django doc: <a href="http://www.djangoproject.com/documentation/models/or_lookups/">OR lookups</a><br />
+More in-depth examples</li>
+<p>Now&#8230; let&#8217;s get started by resurrecting the simple <a href="">model</a> used in the <a href="http://docs.djangoproject.com/en/dev/intro/tutorial01/"> django  Tutorial</a>, <strong>Polls</strong>, and adding a few <strong>instances</strong> to play with:</p>
+<div style='color:#000000;background:lavender;overflow:auto; width: 1100px;'>
+<pre>
+<font color="#0000ff"># ==&gt; in models.py</font>
+from django.db import models
+import datetime
+
+class Poll(models.Model):
+        question = models.CharField(max_length=200)
+        pub_date = models.DateTimeField(<font color="#ff00ff">'date published'</font>)
+
+
+<font color="#0000ff"># ==&gt; add some instances from the shell</font>
+&gt;&gt;&gt; p = Poll(question=<font color="#ff00ff">'what shall I make for dinner'</font>, pub_date=datetime.date.today())
+&gt;&gt;&gt; p.save()
+&gt;&gt;&gt; p = Poll(question=<font color="#ff00ff">'what is your favourite meal?'</font>, pub_date=datetime.datetime(2009, 7, 19, 0, 0)) <font color="#0000ff">#one year ago</font>
+&gt;&gt;&gt; p.save()
+&gt;&gt;&gt; p = Poll(question=<font color="#ff00ff">'how do you make omelettes?'</font>, pub_date=datetime.date.today())
+&gt;&gt;&gt; p.save()
+
+</pre>
+</div>
+<h2>What are Q Objects Handy for?</h2>
+<p>In a nutshell, the main reason why you might want to use them is because you need to do <strong>complex queries</strong>, for example involving OR and AND statements a the same time.</p>
+<p>Imagine that you want to retrieve all polls whose question <strong>contains the word &#8216;dinner&#8217; OR &#8216;meal&#8217;</strong>. The usual &#8216;filter&#8217; option lets you do the following:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>
+&gt;&gt;&gt; Poll.objects.filter(question__contains='<font color="#ff00ff">dinner</font>').filter(question__contains='<font color="#ff00ff">meal</font>')
+[]
+
+</pre>
+</div>
+<p>But this is <strong>not really what we want</strong>, is it? We just got a <strong>concatenation of AND</strong> statements (= all constraints need to be satisfied), while <strong>we wanted an OR</strong> (=at least one of the constraints needs to be satisfied).<br />
+This is where Q objects become useful:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>&gt;&gt;&gt; <font color="#a520f7">from</font> django.db.models <font color="#a520f7">import</font> Q
+<font color="#0000ff"># a simple query</font>
+&gt;&gt;&gt; Poll.objects.filter(Q(question__contains='<font color="#ff00ff">dinner</font>'))
+[&lt;Poll: what shall I make <font color="#a52829"><b>for</b></font> dinner&gt;]
+<font color="#0000ff"># two constraints linked by AND</font>
+&gt;&gt;&gt; Poll.objects.filter(Q(question__contains='<font color="#ff00ff">dinner</font>') &amp; Q(question__contains='<font color="#ff00ff">meal</font>'))
+[]
+<font color="#0000ff"># two constraints linked by OR - that's it!</font>
+&gt;&gt;&gt; Poll.objects.filter(Q(question__contains='<font color="#ff00ff">dinner</font>') | Q(question__contains='<font color="#ff00ff">meal</font>'))
+[&lt;Poll: what shall I make <font color="#a52829"><b>for</b></font> dinner&gt;, &lt;Poll: what <font color="#a52829"><b>is</b></font> your favourite meal?&gt;]</pre>
+</div>
+<p>Note that if you don&#8217;t specify any logical connector the Q sequence is implicitly interpreted as AND:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>
+<font color="#0000ff"># no logical connector is interpreted as AND</font>
+&gt;&gt;&gt; Poll.objects.filter(Q(question__contains='<font color="#ff00ff">dinner</font>'), Q(question__contains='<font color="#ff00ff">meal</font>'))
+[]
+</pre>
+</div>
+<p>Things start getting more interesting when creating complex queries:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre><font color="#0000ff"># eg (A OR B) AND C:</font>
+&gt;&gt;&gt; Poll.objects.filter((Q(question__contains='<font color="#ff00ff">dinner</font>') | Q(question__contains='<font color="#ff00ff">meal</font>')) &amp; Q(pub_date=datetime.date.today()))
+[&lt;Poll: what shall I make <font color="#a52829"><b>for</b></font> dinner&gt;]
+</pre>
+</div>
+<h2>Dynamic Query Building</h2>
+<p>Now, it is likely that you want to build up queries like the ones above dynamically. This is another place where Q objects can save lots of time&#8230;.for example, when constructing <strong>search engines</strong> or <strong>faceted browsers</strong> where the interface lets a user <strong>accumulate search filters</strong> in an incremental manner.</p>
+<p>One way to handle this situation is by creating <strong>lists of Q objects</strong>, and then <strong>combining them together</strong> using python&#8217;s <a href="http://docs.python.org/library/operator.html#operator.and_">operator</a> and <a href="http://docs.python.org/library/functions.html#reduce">reduce</a> methods:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>&gt;&gt;&gt; <font color="#a520f7">import</font> operator
+<font color="#0000ff"># create a list of Q objects</font>
+&gt;&gt;&gt; mylist = [Q(question__contains='<font color="#ff00ff">dinner</font>'), Q(question__contains='<font color="#ff00ff">meal</font>')]
+<font color="#0000ff"># OR</font>
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.or_, mylist))
+[&lt;Poll: what shall I make <font color="#a52829"><b>for</b></font> dinner&gt;, &lt;Poll: what <font color="#a52829"><b>is</b></font> your favourite meal?&gt;]
+<font color="#0000ff"># AND</font>
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.and_, mylist))
+[]
+</pre>
+</div>
+<p>Now, if you&#8217;re building the query dynamically you probably won&#8217;t know in advance which are the filters you have to use. It is likely instead that you find yourself having to <strong>generate a list of Q objects programatically</strong> from a list of strings representing queries to your models:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>
+<font color="#0000ff"># string representation of our queries</font>
+&gt;&gt;&gt; predicates = [('<font color="#ff00ff">question__contains</font>', '<font color="#ff00ff">dinner</font>'), ('<font color="#ff00ff">question__contains</font>', '<font color="#ff00ff">meal</font>')]
+<font color="#0000ff"># create the list of Q objects and run the queries as above..</font>
+&gt;&gt;&gt; q_list = [Q(x) <font color="#a52829"><b>for</b></font> x <font color="#a52829"><b>in</b></font> predicates]
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.or_, q_list))
+[&lt;Poll: what shall I make <font color="#a52829"><b>for</b></font> dinner&gt;, &lt;Poll: what <font color="#a52829"><b>is</b></font> your favourite meal?&gt;]
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.and_, q_list))
+[]
+
+<font color="#0000ff"># now let's append another filter to the query-strings..</font>
+&gt;&gt;&gt; predicates.append(('<font color="#ff00ff">pub_date</font>', datetime.date.today()))
+&gt;&gt;&gt; predicates
+[('<font color="#ff00ff">question__contains</font>', '<font color="#ff00ff">dinner</font>'), ('<font color="#ff00ff">question__contains</font>', '<font color="#ff00ff">meal</font>'), ('<font color="#ff00ff">pub_date</font>', datetime.date(2010, 7, 19))]
+<font color="#0000ff"># .. and the results will change too</font>
+&gt;&gt;&gt; q_list = [Q(x) <font color="#a52829"><b>for</b></font> x <font color="#a52829"><b>in</b></font> predicates]
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.or_, q_list))
+[&lt;Poll: what shall I make <font color="#a52829"><b>for</b></font> dinner&gt;, &lt;Poll: what <font color="#a52829"><b>is</b></font> your favourite meal?&gt;, &lt;Poll: how do you make omelettes?&gt;]
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.and_, q_list))
+[]
+</pre>
+</div>
+<h2>Query Expansion and Q Objects</h2>
+<p>Using query expansion syntax you could normally do things <strong>like this</strong>:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>&gt;&gt;&gt; mydict = {'<font color="#ff00ff">question__contains</font>': '<font color="#ff00ff">omelette</font>', '<font color="#ff00ff">pub_date</font>' : datetime.date.today()}
+&gt;&gt;&gt; Poll.objects.filter(**mydict)
+[&lt;Poll: how do you make omelettes?&gt;]
+</pre>
+</div>
+<p>Here you are basically <strong>sequencing AND statements which are built dynamically</strong> from some string values. </p>
+<p>A really cool feature of django ORM is that you can <strong>keep doing this</strong> even <strong>while using Q objects</strong>. In other words, you can delegate all the &#8216;normal&#8217; stuff to the query expansion mechanism, while instead resorting to Q objects whenever you need more complex queries, such an OR statement. </p>
+<p>For example (remember to put the dictionary always in second position):</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>
+<font color="#0000ff"># OR plus query expansion</font>
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.or_, q_list), **mydict)
+[&lt;Poll: how do you make omelettes?&gt;]
+<font color="#0000ff"># AND plus query expansion</font>
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.and_, q_list), **mydict)
+[]
+</pre>
+</div>
+<p>In the <strong>first</strong> case, we have one result only because, although the OR constraint on <em>q_list</em> is would match more stuff by itself, <em>**mydict</em> is exploded as a series of constraints connected by AND, thus making <em>[Poll: how do you make omelettes?]</em> the only matchable object.<br />
+In the <strong>second</strong> case instead there are no results at all simply because we are asking for a Poll instance that satisfies simultaneously all the constraints (which doesn&#8217;t exist)!</p>
+<h2>Other Resources</h2>
+<p>That&#8217;s all for now! As I said, I found quite a <strong>few very good posts</strong> about the subject online and I strongly advise you to<strong> check them out too</strong> in order to have a clearer picture of how Q objects work. </p>
+<li><a href="http://bradmontgomery.blogspot.com/2009/06/adding-q-objects-in-django.html">Adding Q objects in Django</a><br />
+Shows another method to chain Q objects together using &#8216;add&#8217;</li>
+<li><a href="http://jehiah.cz/archive/django-q-objects">A Tip on Complex Django Queries</a><br />
+Discusses how queries need to be written in order to produce the expected mySQL code</li>
+<li><a href="http://www.djangozen.com/blog/the-power-of-q">The power of Q</a><br />
+Really nice article that overviews all the major features of Q objects (and, or, negation, picking)</li>
+<li><a href="http://www.nomadjourney.com/2009/04/dynamic-django-queries-with-kwargs/">Dynamic Django queries (or why kwargs is your friend)</a><br />
+Overview of dynamic querying with django </li>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2010/07/20/the-power-of-djangos-q-objects/feed/</wfw:commentRss>
+		<slash:comments>18</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">755</post-id>	</item>
+	</channel>
+</rss>

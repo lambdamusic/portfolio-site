@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>pitfall &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/pitfall/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 18 May 2009 15:18:24 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Python pitfall: Passing Mutable Objects as Default Args</title>
+		<link>http://www.michelepasin.org/blog/2009/05/18/python-pitfall-passing-mutable-objects-as-default-args/</link>
+				<pubDate>Mon, 18 May 2009 15:18:24 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[pitfall]]></category>
+		<category><![CDATA[python]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=157</guid>
+				<description><![CDATA[I have a long and nested lists of parameters to throw out with a django template, but the visualization routine in the template processes them better if the parameters are ordered two by two. So I was trying to put together a simple function for reordering the original list accordingly. This is what I came [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I have a long and nested lists of parameters to throw out with a django template, but the visualization routine in the template processes them better if the parameters are ordered two by two. So I was trying to put together a simple function for reordering the original list accordingly. This is what I came up with:</p>
+<pre style='color:#000000;background:#f1f0f0;font-size:12px;'><span style='color:#400000; font-weight:bold; '>def</span> group_list_items_by_two<span style='color:#806030; '>(</span>lista<span style='color:#806030; '>,</span> listaexit<span style='color:#806030; '>=</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>]</span><span style='color:#806030; '>)</span><span style='color:#806030; '>:</span>
+    lista_x <span style='color:#806030; '>=</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>]</span>
+    <span style='color:#400000; font-weight:bold; '>if</span> lista<span style='color:#806030; '>:</span>
+        lista_x<span style='color:#806030; '>.</span>extend<span style='color:#806030; '>(</span>lista<span style='color:#806030; '>)</span>
+        lista_x<span style='color:#806030; '>.</span>reverse<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span>
+
+        first_el <span style='color:#806030; '>=</span> lista_x<span style='color:#806030; '>.</span>pop<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span>
+        <span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#e34adc; '>len</span><span style='color:#806030; '>(</span>lista_x<span style='color:#806030; '>)</span> <span style='color:#806030; '>=</span><span style='color:#806030; '>=</span> <span style='color:#c00000; '>0</span><span style='color:#806030; '>:</span>
+            second_el <span style='color:#806030; '>=</span> <span style='color:#e34adc; '>None</span>
+        <span style='color:#400000; font-weight:bold; '>else</span><span style='color:#806030; '>:</span>
+            second_el <span style='color:#806030; '>=</span> lista_x<span style='color:#806030; '>.</span>pop<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span>
+        listaexit<span style='color:#806030; '>.</span>append<span style='color:#806030; '>(</span><span style='color:#806030; '>[</span>first_el<span style='color:#806030; '>,</span> second_el<span style='color:#806030; '>]</span><span style='color:#806030; '>)</span>
+        <span style='color:#400000; font-weight:bold; '>if</span> lista<span style='color:#806030; '>[</span><span style='color:#c00000; '>2</span><span style='color:#806030; '>:</span><span style='color:#806030; '>]</span><span style='color:#806030; '>:</span>
+            group_list_items_by_two<span style='color:#806030; '>(</span>lista<span style='color:#806030; '>[</span><span style='color:#c00000; '>2</span><span style='color:#806030; '>:</span><span style='color:#806030; '>]</span><span style='color:#806030; '>,</span> listaexit<span style='color:#806030; '>)</span>
+        <span style='color:#c34e00; '>#print(listaexit)</span>
+        <span style='color:#400000; font-weight:bold; '>return</span> listaexit
+</pre>
+<p>Nothing too extraordinary till here -I&#8217;m quite sure I could have done this in a better way (been wondering if there is a way to iterate over a list two elements at a time..but hey.. still learning python!) &#8211; <strong>however</strong> the function had a <strong>weird behaviour</strong>:</p>
+<pre style='color:#000000;background:#f1f0f0;font-size:12px;'><span style='color:#806030; '>></span><span style='color:#806030; '>></span><span style='color:#806030; '>></span> x <span style='color:#806030; '>=</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'aaaa'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>6</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>(</span><span style='color:#e60000; '>'bbbb'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>7</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>(</span><span style='color:#e60000; '>'cccc'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>8</span><span style='color:#806030; '>)</span><span style='color:#806030; '>]</span>
+<span style='color:#806030; '>></span><span style='color:#806030; '>></span><span style='color:#806030; '>></span> group_list_items_by_two<span style='color:#806030; '>(</span>x<span style='color:#806030; '>)</span>
+<span style='color:#806030; '>[</span><span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'aaaa'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>6</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>(</span><span style='color:#e60000; '>'bbbb'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>7</span><span style='color:#806030; '>)</span><span style='color:#806030; '>]</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'cccc'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>8</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#e34adc; '>None</span><span style='color:#806030; '>]</span><span style='color:#806030; '>]</span>
+<span style='color:#806030; '>></span><span style='color:#806030; '>></span><span style='color:#806030; '>></span> group_list_items_by_two<span style='color:#806030; '>(</span>x<span style='color:#806030; '>)</span>
+<span style='color:#806030; '>[</span><span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'aaaa'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>6</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>(</span><span style='color:#e60000; '>'bbbb'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>7</span><span style='color:#806030; '>)</span><span style='color:#806030; '>]</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'cccc'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>8</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#e34adc; '>None</span><span style='color:#806030; '>]</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'aaaa'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>6</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>(</span><span style='color:#e60000; '>'bbbb'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>7</span><span style='color:#806030; '>)</span><span style='color:#806030; '>]</span><span style='color:#806030; '>,</span>
+ <span style='color:#806030; '>.</span><span style='color:#806030; '>.</span><span style='color:#806030; '>.</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'cccc'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>8</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#e34adc; '>None</span><span style='color:#806030; '>]</span><span style='color:#806030; '>]</span>
+<span style='color:#806030; '>></span><span style='color:#806030; '>></span><span style='color:#806030; '>></span> group_list_items_by_two<span style='color:#806030; '>(</span>x<span style='color:#806030; '>)</span>
+<span style='color:#806030; '>[</span><span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'aaaa'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>6</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>(</span><span style='color:#e60000; '>'bbbb'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>7</span><span style='color:#806030; '>)</span><span style='color:#806030; '>]</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'cccc'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>8</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#e34adc; '>None</span><span style='color:#806030; '>]</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'aaaa'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>6</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>(</span><span style='color:#e60000; '>'bbbb'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>7</span><span style='color:#806030; '>)</span><span style='color:#806030; '>]</span><span style='color:#806030; '>,</span>
+<span style='color:#806030; '>.</span><span style='color:#806030; '>.</span><span style='color:#806030; '>.</span><span style='color:#806030; '>.</span><span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'cccc'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>8</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#e34adc; '>None</span><span style='color:#806030; '>]</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'aaaa'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>6</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>(</span><span style='color:#e60000; '>'bbbb'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>7</span><span style='color:#806030; '>)</span><span style='color:#806030; '>]</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'cccc'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>8</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#e34adc; '>None</span><span style='color:#806030; '>]</span><span style='color:#806030; '>]</span>
+<span style='color:#806030; '>></span><span style='color:#806030; '>></span><span style='color:#806030; '>></span> x
+<span style='color:#806030; '>[</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>'aaaa'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>6</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>(</span><span style='color:#e60000; '>'bbbb'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>7</span><span style='color:#806030; '>)</span><span style='color:#806030; '>,</span> <span style='color:#806030; '>(</span><span style='color:#e60000; '>'cccc'</span><span style='color:#806030; '>,</span> <span style='color:#c00000; '>8</span><span style='color:#806030; '>)</span><span style='color:#806030; '>]</span>
+</pre>
+<p>Basically &#8211; python is not using the default argument I&#8217;m passing (listaexit= []) and instead it keeps adding to the same variable. WHY IS this totally counter-intuitive behaviour happening?</p>
+<p>A little bit of googling gave me an answer&#8230;</p>
+<blockquote><p><a href="http://boodebr.org/main/python/tourist/mutable-obj-as-default-arg">When you use a mutable object as a default arg, Python creates a single object, and reuses that same object on every call. I find this non-intuitive, personally, but that&#8217;s the way Python works. </a></p></blockquote>
+<p>The reason for this behaviour is that <strong>expressions in default arguments are calculated when the function is defined, not when it’s called </strong>(<a href="http://www.deadlybloodyserious.com/2008/05/default-argument-blunders/">read this as well</a>).<br />
+The solution is to <strong>pass None as the default value, and then add a line &#8216;listaexit = listaexit or []&#8217; to avoid None type floating around</strong>&#8230;.</p>
+<p>And here&#8217;s a working version of the function above:</p>
+<pre style='color:#000000;background:#f1f0f0;font-size:12px;'><span style='color:#400000; font-weight:bold; '>def</span> group_list_items_by_two<span style='color:#806030; '>(</span>lista<span style='color:#806030; '>,</span> listaexit<span style='color:#806030; '>=</span> <span style='color:#e34adc; '>None</span><span style='color:#806030; '>)</span><span style='color:#806030; '>:</span>
+    lista_x <span style='color:#806030; '>=</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>]</span>
+    listaexit <span style='color:#806030; '>=</span> listaexit <span style='color:#400000; font-weight:bold; '>or</span> <span style='color:#806030; '>[</span><span style='color:#806030; '>]</span>
+    <span style='color:#400000; font-weight:bold; '>if</span> lista<span style='color:#806030; '>:</span>
+        lista_x<span style='color:#806030; '>.</span>extend<span style='color:#806030; '>(</span>lista<span style='color:#806030; '>)</span>
+        lista_x<span style='color:#806030; '>.</span>reverse<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span>
+
+        first_el <span style='color:#806030; '>=</span> lista_x<span style='color:#806030; '>.</span>pop<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span>
+        <span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#e34adc; '>len</span><span style='color:#806030; '>(</span>lista_x<span style='color:#806030; '>)</span> <span style='color:#806030; '>=</span><span style='color:#806030; '>=</span> <span style='color:#c00000; '>0</span><span style='color:#806030; '>:</span>
+            second_el <span style='color:#806030; '>=</span> <span style='color:#e34adc; '>None</span>
+        <span style='color:#400000; font-weight:bold; '>else</span><span style='color:#806030; '>:</span>
+            second_el <span style='color:#806030; '>=</span> lista_x<span style='color:#806030; '>.</span>pop<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span>
+        listaexit<span style='color:#806030; '>.</span>append<span style='color:#806030; '>(</span><span style='color:#806030; '>[</span>first_el<span style='color:#806030; '>,</span> second_el<span style='color:#806030; '>]</span><span style='color:#806030; '>)</span>
+        <span style='color:#400000; font-weight:bold; '>if</span> lista<span style='color:#806030; '>[</span><span style='color:#c00000; '>2</span><span style='color:#806030; '>:</span><span style='color:#806030; '>]</span><span style='color:#806030; '>:</span>
+            group_list_items_by_two<span style='color:#806030; '>(</span>lista<span style='color:#806030; '>[</span><span style='color:#c00000; '>2</span><span style='color:#806030; '>:</span><span style='color:#806030; '>]</span><span style='color:#806030; '>,</span> listaexit<span style='color:#806030; '>)</span>
+        <span style='color:#c34e00; '>#print(listaexit)</span>
+        <span style='color:#400000; font-weight:bold; '>return</span> listaexit
+</pre>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">157</post-id>	</item>
+	</channel>
+</rss>

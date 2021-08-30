@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>drawing &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/drawing/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Thu, 25 Aug 2011 14:47:35 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>First steps with Canvas and HTML5</title>
+		<link>http://www.michelepasin.org/blog/2011/08/25/first-steps-with-canvas-and-html5/</link>
+				<pubDate>Thu, 25 Aug 2011 14:47:35 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[canvas]]></category>
+		<category><![CDATA[drawing]]></category>
+		<category><![CDATA[html5]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1503</guid>
+				<description><![CDATA[I&#8217;ve been postponing experimenting with HTML5 for quite a while, so today I finally set aside a few hours to play with it. This is a very simple example of the graphic effects you can create using javascript and the HTML5 canvas element.. Note that the examples below will work only on HTML5-compatible browsers, such [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I&#8217;ve been postponing experimenting with <a href="http://en.wikipedia.org/wiki/HTML5">HTML5</a> for quite a while, so today I finally set aside a few hours to play with it. This is a very simple example of the graphic effects you can create using javascript and the HTML5 canvas element.. </p>
+<p>Note that the examples below will work only on HTML5-compatible browsers, such as the latest versions of Chrome or Firefox..</p>
+<h3>1. Setting up a canvas and drawing some lines on it.</h3>
+<p>This is easily done using the <em>moveTo</em> and <em>lineTo</em> functions. So let&#8217;s create a simple symmetrical geometrical shape..</p>
+<p></p>
+<p><canvas id="myCanvas1" width="800" height="400" style="border:1px dashed #c3c3c3;"><br />
+Your browser does not support the canvas element.<br />
+</canvas></p>
+<p>[inline]</p>
+<p>[script type=&#8221;text/javascript&#8221;]</p>
+<p>var c=document.getElementById(&#8220;myCanvas1&#8221;);<br />
+var cxt=c.getContext(&#8220;2d&#8221;);<br />
+var i=0;</p>
+<p>for (i=1;i<=5;i++)
+{
+cxt.moveTo(0, 400);
+cxt.lineTo(100, i * 40);
+cxt.lineTo(300, i * 60);
+cxt.lineTo(400, i * 30);
+cxt.lineTo(500, i * 60);
+cxt.lineTo(700, i * 40);
+cxt.lineTo(800, 400);
+}
+
+cxt.stroke();
+
+[/script]
+
+[/inline]
+
+
+
+
+
+
+
+
+
+
+<p>Here&#8217;s the source code:</p>
+<pre style='overflow:auto; color:#000020;background:#f6f8ff;'><span style='color:#004a43; '>&lt;!DOCTYPE HTML></span>
+<span style='color:#0057a6; '>&lt;</span><span style='color:#200080; font-weight:bold; '>html</span><span style='color:#0057a6; '>></span>
+<span style='color:#0057a6; '>&lt;</span><span style='color:#200080; font-weight:bold; '>body</span><span style='color:#0057a6; '>></span>
+
+<span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>canvas</span><span style='color:#474796; '> </span><span style='color:#074726; '>id</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"myCanvas1"</span><span style='color:#474796; '> </span><span style='color:#074726; '>width</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"800"</span><span style='color:#474796; '> </span><span style='color:#074726; '>height</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"400"</span><span style='color:#474796; '> </span><span style='color:#074726; '>style</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"</span><span style='color:#7779bb; font-weight:bold; '>border</span><span style='color:#308080; '>:</span><span style='color:#008c00; '>1</span><span style='color:#006600; '>px</span><span style='color:#474796; '> </span><span style='color:#074726; '>dashed</span><span style='color:#474796; '> </span><span style='color:#008c00; '>#</span><span style='color:#008000; '>c3c3c3</span><span style='color:#406080; '>;</span><span style='color:#1060b6; '>"</span><span style='color:#0057a6; '>></span>
+Your browser does not support the canvas element<span style='color:#008c00; '>.</span>
+<span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>canvas</span><span style='color:#0057a6; '>></span>
+
+<span style='color:#0057a6; '>&lt;</span><span style='color:#200080; font-weight:bold; '>script type="text/javascript"</span><span style='color:#0057a6; '>></span>
+
+<span style='color:#200080; font-weight:bold; '>var</span> c<span style='color:#308080; '>=</span>document<span style='color:#308080; '>.</span>getElementById<span style='color:#308080; '>(</span><span style='color:#1060b6; '>"myCanvas1"</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+<span style='color:#200080; font-weight:bold; '>var</span> cxt<span style='color:#308080; '>=</span>c<span style='color:#308080; '>.</span>getContext<span style='color:#308080; '>(</span><span style='color:#1060b6; '>"2d"</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+<span style='color:#200080; font-weight:bold; '>var</span> i<span style='color:#308080; '>=</span><span style='color:#008c00; '>0</span><span style='color:#406080; '>;</span>
+
+<span style='color:#200080; font-weight:bold; '>for</span> <span style='color:#308080; '>(</span>i<span style='color:#308080; '>=</span><span style='color:#008c00; '>1</span><span style='color:#406080; '>;</span>i<span style='color:#308080; '>&lt;=</span><span style='color:#008c00; '>5</span><span style='color:#406080; '>;</span>i<span style='color:#308080; '>++</span><span style='color:#308080; '>)</span>
+<span style='color:#406080; '>{</span>
+cxt<span style='color:#308080; '>.</span>moveTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>0</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>400</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>100</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>40</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>300</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>60</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>400</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>30</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>500</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>60</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>700</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>40</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>800</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>400</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+<span style='color:#406080; '>}</span>
+
+cxt<span style='color:#308080; '>.</span>stroke<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+
+<span style='color:#0057a6; '>&lt;/</span><span style='color:#200080; font-weight:bold; '>script</span><span style='color:#0057a6; '>></span>
+
+<span style='color:#0057a6; '>&lt;/</span><span style='color:#200080; font-weight:bold; '>body</span><span style='color:#0057a6; '>></span>
+<span style='color:#0057a6; '>&lt;/</span><span style='color:#200080; font-weight:bold; '>html</span><span style='color:#0057a6; '>></span>
+</pre>
+<p>&nbsp;</p>
+<h3>2. Creating a mirroring effect</h3>
+<p>Now we can increase the size of the canvas to 800 and replicate these lines at the bottom of the canvas so to achieve a &#8216;mirroring&#8217; effect.. since we know the max Y value of the canvas (800), let&#8217;s just add another loop that draws the same lines but <em>inverts</em> the Y position. This is easily achieved by subtracting the constant-dependent parameter from the max value of Y.</p>
+<p></p>
+<p><canvas id="myCanvas2" width="800" height="800" style="border:1px dashed #c3c3c3;"><br />
+Your browser does not support the canvas element.<br />
+</canvas></p>
+<p>[inline]</p>
+<p>[script type=&#8221;text/javascript&#8221;]</p>
+<p>var c=document.getElementById(&#8220;myCanvas2&#8221;);<br />
+var cxt=c.getContext(&#8220;2d&#8221;);<br />
+var i=0;</p>
+<p>for (i=1;i<=5;i++)
+{
+cxt.moveTo(0, 400);
+cxt.lineTo(100, i * 40);
+cxt.lineTo(300, i * 60);
+cxt.lineTo(400, i * 30);
+cxt.lineTo(500, i * 60);
+cxt.lineTo(700, i * 40);
+cxt.lineTo(800, 400);
+}
+
+
+for (i=5;i>=1;i&#8211;)<br />
+{<br />
+cxt.moveTo(0, 400);<br />
+cxt.lineTo(100, 800 &#8211; (i * 40));<br />
+cxt.lineTo(300, 800 &#8211; (i * 60));<br />
+cxt.lineTo(400, 800 &#8211; (i * 30));<br />
+cxt.lineTo(500, 800 &#8211; (i * 60));<br />
+cxt.lineTo(700, 800 &#8211; (i * 40));<br />
+cxt.lineTo(800, 400);<br />
+}</p>
+<p>cxt.stroke();</p>
+<p>[/script]</p>
+<p>[/inline]</p>
+<p>This is how the new source code looks like:</p>
+<pre style='overflow: auto; color:#000020;background:#f6f8ff;'><span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>canvas</span><span style='color:#474796; '> </span><span style='color:#074726; '>id</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"myCanvas2"</span><span style='color:#474796; '> </span><span style='color:#074726; '>width</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"800"</span><span style='color:#474796; '> </span><span style='color:#074726; '>height</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"800"</span><span style='color:#474796; '> </span><span style='color:#074726; '>style</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"</span><span style='color:#7779bb; font-weight:bold; '>border</span><span style='color:#308080; '>:</span><span style='color:#008c00; '>1</span><span style='color:#006600; '>px</span><span style='color:#474796; '> </span><span style='color:#074726; '>dashed</span><span style='color:#474796; '> </span><span style='color:#008c00; '>#</span><span style='color:#008000; '>c3c3c3</span><span style='color:#406080; '>;</span><span style='color:#1060b6; '>"</span><span style='color:#0057a6; '>></span>
+Your browser does not support the canvas element<span style='color:#008c00; '>.</span>
+<span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>canvas</span><span style='color:#0057a6; '>></span>
+
+<span style='color:#0057a6; '>&lt;</span><span style='color:#200080; font-weight:bold; '>script type="text/javascript"</span><span style='color:#0057a6; '>></span>
+
+<span style='color:#200080; font-weight:bold; '>var</span> c<span style='color:#308080; '>=</span>document<span style='color:#308080; '>.</span>getElementById<span style='color:#308080; '>(</span><span style='color:#1060b6; '>"myCanvas2"</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+<span style='color:#200080; font-weight:bold; '>var</span> cxt<span style='color:#308080; '>=</span>c<span style='color:#308080; '>.</span>getContext<span style='color:#308080; '>(</span><span style='color:#1060b6; '>"2d"</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+<span style='color:#200080; font-weight:bold; '>var</span> i<span style='color:#308080; '>=</span><span style='color:#008c00; '>0</span><span style='color:#406080; '>;</span>
+
+<span style='color:#200080; font-weight:bold; '>for</span> <span style='color:#308080; '>(</span>i<span style='color:#308080; '>=</span><span style='color:#008c00; '>1</span><span style='color:#406080; '>;</span>i<span style='color:#308080; '>&lt;=</span><span style='color:#008c00; '>5</span><span style='color:#406080; '>;</span>i<span style='color:#308080; '>++</span><span style='color:#308080; '>)</span>
+<span style='color:#406080; '>{</span>
+cxt<span style='color:#308080; '>.</span>moveTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>0</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>400</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>100</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>40</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>300</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>60</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>400</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>30</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>500</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>60</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>700</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>40</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>800</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>400</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+<span style='color:#406080; '>}</span>
+
+
+<span style='color:#200080; font-weight:bold; '>for</span> <span style='color:#308080; '>(</span>i<span style='color:#308080; '>=</span><span style='color:#008c00; '>5</span><span style='color:#406080; '>;</span>i<span style='color:#308080; '>>=</span><span style='color:#008c00; '>1</span><span style='color:#406080; '>;</span>i<span style='color:#308080; '>--</span><span style='color:#308080; '>)</span>
+<span style='color:#406080; '>{</span>
+cxt<span style='color:#308080; '>.</span>moveTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>0</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>400</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>100</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>800</span> <span style='color:#308080; '>-</span> <span style='color:#308080; '>(</span>i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>40</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>300</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>800</span> <span style='color:#308080; '>-</span> <span style='color:#308080; '>(</span>i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>60</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>400</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>800</span> <span style='color:#308080; '>-</span> <span style='color:#308080; '>(</span>i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>30</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>500</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>800</span> <span style='color:#308080; '>-</span> <span style='color:#308080; '>(</span>i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>60</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>700</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>800</span> <span style='color:#308080; '>-</span> <span style='color:#308080; '>(</span>i <span style='color:#308080; '>*</span> <span style='color:#008c00; '>40</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>800</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>400</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+<span style='color:#406080; '>}</span>
+
+cxt<span style='color:#308080; '>.</span>stroke<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+
+<span style='color:#0057a6; '>&lt;/</span><span style='color:#200080; font-weight:bold; '>script</span><span style='color:#0057a6; '>></span>
+</pre>
+<p>&nbsp;</p>
+<h3>3. Adding more graphical interest</h3>
+<p>Finally, let&#8217;s parametrize a bit more the construction of this geometrical pattern by including everything into another loop, and using this new counter to increment the points ordinate position. We&#8217;ll add a new variable y and use it to run the external loop 20 times. Here&#8217;s the result:</p>
+<p></p>
+<p><canvas id="myCanvas3" width="800" height="800" style="border:1px dashed #c3c3c3;"><br />
+Your browser does not support the canvas element.<br />
+</canvas></p>
+<p>[inline]</p>
+<p>[script type=&#8221;text/javascript&#8221;]</p>
+<p>var c=document.getElementById(&#8220;myCanvas3&#8221;);<br />
+var cxt=c.getContext(&#8220;2d&#8221;);<br />
+var i=0;<br />
+var y=0;</p>
+<p>for (y=1;y<=20;y++)
+{
+	
+	for (i=1;i<=5;i++)
+	{
+	cxt.moveTo(0, 400+y);
+	cxt.lineTo(100, i * (40+y));
+	cxt.lineTo(300, i * (60+y));
+	cxt.lineTo(400, i * (30+y));
+    cxt.lineTo(500, i * (60+y));
+	cxt.lineTo(700, i * (40+y));
+	cxt.lineTo(800, 400+y);
+	}
+
+
+	for (i=5;i>=1;i&#8211;)<br />
+	{<br />
+	cxt.moveTo(0, 400);<br />
+	cxt.lineTo(100, 800 &#8211; (i * (40+y)));<br />
+	cxt.lineTo(300, 800 &#8211; (i * (60+y)));<br />
+	cxt.lineTo(400, 800 &#8211; (i * (30+y)));<br />
+	cxt.lineTo(500, 800 &#8211; (i * (60+y)));<br />
+	cxt.lineTo(700, 800 &#8211; (i * (40+y)));<br />
+	cxt.lineTo(800, 400+y);<br />
+	}</p>
+<p>}</p>
+<p>cxt.stroke();</p>
+<p>[/script]</p>
+<p>[/inline]</p>
+<p>Not too bad uh? This last modification to the code looks like this:</p>
+<pre style='overflow:auto; color:#000020;background:#f6f8ff;'><span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>canvas</span><span style='color:#474796; '> </span><span style='color:#074726; '>id</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"myCanvas3"</span><span style='color:#474796; '> </span><span style='color:#074726; '>width</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"800"</span><span style='color:#474796; '> </span><span style='color:#074726; '>height</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"800"</span><span style='color:#474796; '> </span><span style='color:#074726; '>style</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"</span><span style='color:#7779bb; font-weight:bold; '>border</span><span style='color:#308080; '>:</span><span style='color:#008c00; '>1</span><span style='color:#006600; '>px</span><span style='color:#474796; '> </span><span style='color:#074726; '>dashed</span><span style='color:#474796; '> </span><span style='color:#008c00; '>#</span><span style='color:#008000; '>c3c3c3</span><span style='color:#406080; '>;</span><span style='color:#1060b6; '>"</span><span style='color:#0057a6; '>></span>
+Your browser does not support the canvas element<span style='color:#008c00; '>.</span>
+<span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>canvas</span><span style='color:#0057a6; '>></span>
+
+<span style='color:#0057a6; '>&lt;</span><span style='color:#200080; font-weight:bold; '>script type="text/javascript"</span><span style='color:#0057a6; '>></span>
+
+<span style='color:#200080; font-weight:bold; '>var</span> c<span style='color:#308080; '>=</span>document<span style='color:#308080; '>.</span>getElementById<span style='color:#308080; '>(</span><span style='color:#1060b6; '>"myCanvas3"</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+<span style='color:#200080; font-weight:bold; '>var</span> cxt<span style='color:#308080; '>=</span>c<span style='color:#308080; '>.</span>getContext<span style='color:#308080; '>(</span><span style='color:#1060b6; '>"2d"</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+<span style='color:#200080; font-weight:bold; '>var</span> i<span style='color:#308080; '>=</span><span style='color:#008c00; '>0</span><span style='color:#406080; '>;</span>
+<span style='color:#200080; font-weight:bold; '>var</span> y<span style='color:#308080; '>=</span><span style='color:#008c00; '>0</span><span style='color:#406080; '>;</span>
+
+<span style='color:#200080; font-weight:bold; '>for</span> <span style='color:#308080; '>(</span>y<span style='color:#308080; '>=</span><span style='color:#008c00; '>1</span><span style='color:#406080; '>;</span>y<span style='color:#308080; '>&lt;=</span><span style='color:#008c00; '>20</span><span style='color:#406080; '>;</span>y<span style='color:#308080; '>++</span><span style='color:#308080; '>)</span>
+<span style='color:#406080; '>{</span>
+    
+    <span style='color:#200080; font-weight:bold; '>for</span> <span style='color:#308080; '>(</span>i<span style='color:#308080; '>=</span><span style='color:#008c00; '>1</span><span style='color:#406080; '>;</span>i<span style='color:#308080; '>&lt;=</span><span style='color:#008c00; '>5</span><span style='color:#406080; '>;</span>i<span style='color:#308080; '>++</span><span style='color:#308080; '>)</span>
+    <span style='color:#406080; '>{</span>
+    cxt<span style='color:#308080; '>.</span>moveTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>0</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>400</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>100</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span><span style='color:#008c00; '>40</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>300</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span><span style='color:#008c00; '>60</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>400</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span><span style='color:#008c00; '>30</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>500</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span><span style='color:#008c00; '>60</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>700</span><span style='color:#308080; '>,</span> i <span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span><span style='color:#008c00; '>40</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>800</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>400</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    <span style='color:#406080; '>}</span>
+
+
+    <span style='color:#200080; font-weight:bold; '>for</span> <span style='color:#308080; '>(</span>i<span style='color:#308080; '>=</span><span style='color:#008c00; '>5</span><span style='color:#406080; '>;</span>i<span style='color:#308080; '>>=</span><span style='color:#008c00; '>1</span><span style='color:#406080; '>;</span>i<span style='color:#308080; '>--</span><span style='color:#308080; '>)</span>
+    <span style='color:#406080; '>{</span>
+    cxt<span style='color:#308080; '>.</span>moveTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>0</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>400</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>100</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>800</span> <span style='color:#308080; '>-</span> <span style='color:#308080; '>(</span>i <span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span><span style='color:#008c00; '>40</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>300</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>800</span> <span style='color:#308080; '>-</span> <span style='color:#308080; '>(</span>i <span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span><span style='color:#008c00; '>60</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>400</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>800</span> <span style='color:#308080; '>-</span> <span style='color:#308080; '>(</span>i <span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span><span style='color:#008c00; '>30</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>500</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>800</span> <span style='color:#308080; '>-</span> <span style='color:#308080; '>(</span>i <span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span><span style='color:#008c00; '>60</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>700</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>800</span> <span style='color:#308080; '>-</span> <span style='color:#308080; '>(</span>i <span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span><span style='color:#008c00; '>40</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    cxt<span style='color:#308080; '>.</span>lineTo<span style='color:#308080; '>(</span><span style='color:#008c00; '>800</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>400</span><span style='color:#308080; '>+</span>y<span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+    <span style='color:#406080; '>}</span>
+
+<span style='color:#406080; '>}</span>
+
+cxt<span style='color:#308080; '>.</span>stroke<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span><span style='color:#406080; '>;</span>
+
+<span style='color:#0057a6; '>&lt;/</span><span style='color:#200080; font-weight:bold; '>script</span><span style='color:#0057a6; '>></span>
+</pre>
+<p>&nbsp;</p>
+<h3>Cool! I&#8217;d like to know more..</h3>
+<p>Yes, I agree. This opens up a new world for web-based graphics.. and I just scratched the surface of it! In particular I&#8217;d like to see how this type of graphical components can be used to compose visualizations in the digital humanities &#8211; provided more interactivity is added to them.</p>
+<p>Here are a couple if learning resources I found useful:</p>
+<li><a href="http://www.netmagazine.com/tutorials/learning-basics-html5-canvas">Learning the basics of HTML5</a> canvas on .Net magazine online</li>
+<li><a href="https://developer.mozilla.org/en/canvas_tutorial">Canvas tutorial</a> on Mozilla.org (more advanced)</li>
+<li><a href="http://ajaxpatterns.org/Javascript_Graphics_and_Effects_Frameworks">Javascript Graphics and Effects Frameworks</a>: useful document providing a list of the most common libraries for doing javascript-based graphics</li>
+<li><a href="http://billmill.org/static/canvastutorial/index.html">Canvas and interactivity tutorial</a>: a step by step discussion on how to create a &#8216;breakout&#8217; game clone that you can play in your browser, using javascript and the canvas element</li>
+<li><a href="http://dev.opera.com/articles/view/html5-canvas-painting/">Creating an HTML 5 canvas painting application</a>: nice tutorial that shows how to put together several canvas drawing techniques so to build a basic &#8216;painting&#8217; application</li>
+<li><a href="http://net.tutsplus.com/articles/web-roundups/21-ridiculously-impressive-html5-canvas-experiments/">21 Ridiculously Impressive HTML5 Canvas Experiments</a>: a collection of some state-of-the-art HTML5 canvas-based experiments that will make you say, “Wow!”</li>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1503</post-id>	</item>
+	</channel>
+</rss>

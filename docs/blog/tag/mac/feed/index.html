@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>mac &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/mac/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Wed, 19 Oct 2011 14:01:18 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Upgrading to Lion: tips and tricks</title>
+		<link>http://www.michelepasin.org/blog/2011/10/19/upgrading-to-lion-tips-and-tricks/</link>
+				<comments>http://www.michelepasin.org/blog/2011/10/19/upgrading-to-lion-tips-and-tricks/#comments</comments>
+				<pubDate>Wed, 19 Oct 2011 14:01:18 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[lion]]></category>
+		<category><![CDATA[mac]]></category>
+		<category><![CDATA[osx]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1643</guid>
+				<description><![CDATA[I&#8217;ve finally decided to upgrade my mac operating system from Snow Leopard (10.6.8) to Lion (10.7.2). Not really for the new features such as Mission Control and LaunchPad (which although being pretty cool are not going to change my life) but mostly for the fact that the new OS is well integrated with iCloud. Sharing [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I&#8217;ve finally decided to upgrade my mac operating system from Snow Leopard (10.6.8) to Lion (10.7.2). Not really for the <a href="http://www.apple.com/uk/macosx/whats-new/features.html">new features</a> such as Mission Control and LaunchPad (which although being pretty cool are not going to change my life) but mostly for the fact that the new OS is well integrated with <a href="http://www.apple.com/uk/icloud/">iCloud</a>. Sharing my iCal calendars, Address book contacts and other useful stuff across my apple computers and mobile devices is going to be a digital-life-changer, hopefully for the better.</p>
+<p>Unfortunately as usual an OS upgrade is never as smooth as I would like it to be; so here&#8217;s a list of the problems I ran into (and still am), with pointers to solutions whenever I found one.</p>
+<blockquote><p>Tip: A useful place where to get info about Lion is here: <a href="http://osxdaily.com/tag/mac-os-x-10-7/">http://osxdaily.com/tag/mac-os-x-10-7/</a></p></blockquote>
+<h3>1. Wi-Fi disconnection issues</h3>
+<p>This is quite a bad one: my wifi connection wouldn&#8217;t stay on for more than 2-3 minutes at times, making it impossible to do any continuative work online. After a lot of swearing and searching online, I found a good solution on <a href="http://www.ilounge.com/index.php/backstage/comments/os-x-lion-serious-wi-fi-disconnect-problems-for-macs-and-solutions/">this article on iLounge.com</a>. The article offers many solutions, but the one that worked for me is to manually downgrading the Atheros WiFi driver which seems to be ill on Lion to the version provided with Snow Leopard (comment 53). Here&#8217;s the recipy:</p>
+<blockquote><p>
+1. run <span style="font-family:monospace;color:#000000; ">kextstat | grep -i atheros</span><br />
+  if a line was returned, you are most likely using Atheros WiFi card and the related kext<br />
+2. In your home folder create two directories: <span style="font-family:monospace;color:#000000; ">cd &#038;&#038; mkdir New Old</span><br />
+3. If you have a copy (time machine backup) or other system installed with Snow Leopard (as latest as possible), take a copy of <span style="font-family:monospace;color:#000000; ">/System/Library/Extensions/IO80211Family.kext </span>and put it into <span style="font-family:monospace;color:#000000; ">~/Old/</span> directory<br />
+[<em>P.S. if you don&#8217;t know where to get that file, I&#8217;ve uploaded a copy here: <a href="http://www.box.net/shared/8igl4hybcml0e4zc5dzx">IO80211Family.kext.zip</a></em>]<br />
+4. (Back on to your main system) gain root access: <span style="font-family:monospace;color:#000000; ">sudo -s</span><br />
+5. Move: <span style="font-family:monospace;color:#000000; ">mv /System/Library/Extensions/IO80211Family.kext ~/New/</span><br />
+6. Move cache file: <span style="font-family:monospace;color:#000000; ">mv /System/Library/Caches/com.apple.kext.caches/Startup/kernelcache ~/New/</span><br />
+7. copy old kext: <span style="font-family:monospace;color:#000000; ">cp -r ~/Old/IO80211Family.kext /System/Library/Extensions/</span><br />
+8. go to: <span style="font-family:monospace;color:#000000; ">cd /System/Library/Caches/com.apple.kext.caches/Startup/</span><br />
+9. rebuild cache: <span style="font-family:monospace;color:#000000; ">kextcache -v 1 -a i386 -a x86_64 -mkext kernelcache /System/Library/Extensions</span><br />
+10. Using GUI Utilities->Disk Utility->Macintosh HD->Repair permissions<br />
+11. pray and reboot</p></blockquote>
+<h3>2. Install the latest Xcode and Developer Tools</h3>
+<p>This is number 2 in the list, but really it should be number 1 if you are a software developer. The latest Xcode (4.2, get it on the <a href="http://itunes.apple.com/us/app/xcode/id448457090?mt=12">apple store</a> for free) includes all sorts of low and high level programming frameworks, from C compilers to Python interpreters. In other words, without reinstalling Xcode tons of software development environments won&#8217;t run as usual!</p>
+<p>Installing Xcode is very easy, here&#8217;s a nice tip to keep in mind though (as found <a href="http://jessenoller.com/2011/07/30/quick-pythondeveloper-tips-for-osx-lion/">here</a>):   </p>
+<blockquote><p>When installing XCode, for some unknown unholy rea­son, if you have not quit itunes, and itunes helper (see activ­ity mon­i­tor) prior to start­ing the XCode installer, the install will hang. Do your­self a favor and kill it with fire.</p></blockquote>
+<p>Also, two more crucial things to keep in mind: </p>
+<blockquote><p>&#8211; Remem­ber; the binary direc­tory for the dev tools is in <span style="font-family:monospace;color:#000000; ">/Developer/usr/bin/</span> — this includes gcc-4.2<br />
+&#8211; Do your­self a favor, drop “<span style="font-family:monospace;color:#000000; ">export ARCHFLAGS=&#8221;-arch x86_64&#8243;</span>” into your <span style="font-family:monospace;color:#000000; ">.bash_profile</span>.</p></blockquote>
+<p>The last point is extremely important; make sure you do that otherwise you&#8217;ll easily run into all sorts of 32 vs 64 bits architectures conflicts that (if you&#8217;re like me) you have no time to get into (<a href="http://stackoverflow.com/questions/5256397/python-easy-install-fails-with-assembler-for-architecture-ppc-not-installed-on">more info here</a>).</p>
+<h3>3. Fix your Python installation</h3>
+<p>On my iMac I couldn&#8217;t run <a href="http://ipython.org/">iPython</a> anymore; this was surprisingly easy to fix, I just run again <span style="font-family:monospace;color:#000000; ">easy_install ipython</span> from the command line and there you go iPython went back up (version 2.7, the default one with Lion).</p>
+<p>This didn&#8217;t work on my other mac though (a slightly older MacBook); the <span style="font-family:monospace;color:#000000; ">easy_install ipython</span> trick failed with a <span style="font-family:monospace;color:#000000; ">DistributionNotFound </span> error; if this is the case, you probably have to re-install Apple&#8217;s Developer Tools (see point 2 above).<br />
+However before doing that you might want to consider this <strong>good tip</strong> which I found <a href="">here</a>:</p>
+<blockquote><p>1. Make a list of all the third-party libraries you currently have installed under Python 2.6, because you’ll have to reinstall all of them for 2.7 and you won’t have the 2.6 <span style="font-family:monospace;color:#000000; ">site-packages</span> directory to refer to.<br />
+2. Update to Lion.<br />
+3. Update to Xcode 4.1. It’s free in the App Store. </p></blockquote>
+<p>Good, so I installed XCode 4 (= Apple&#8217;s Developer Tools) but I still had a problem: for some reason the default python binary (<span style="font-family:monospace;color:#000000; ">/usr/bin/python</span>) was still pointing at the 2.5 release, instead of the 2.7 that comes with Lion. This was easily fixed by issuing this command: </p>
+<blockquote><p><span style="font-family:monospace;color:#000000; ">defaults write com.apple.versioner.python Version 2.7</span></p></blockquote>
+<p>Two final steps are then required: </p>
+<blockquote><p>a) <a href="http://pypi.python.org/pypi/setuptools#downloads">Download</a> the 2.7 version of setuptools and install it (e.g. <span style="font-family:monospace;color:#000000; ">sudo sh setuptools-0.6c11-py2.7.egg</span>);<br />
+b) re-install iPython via setuptools: <span style="font-family:monospace;color:#000000; ">sudo easy_install ipython</span></p></blockquote>
+<p>Obviously I&#8217;ll have to manually install under 2.7 all the libraries I used to have on 2.6, but that can be done incrementally and thanks to <span style="font-family:monospace;color:#000000; ">easy_install</span> it&#8217;s also quite quick. </p>
+<p>For more discussions on python and Lion, check out these posts: <a href="http://jessenoller.com/2011/07/30/quick-pythondeveloper-tips-for-osx-lion/">Quick Python/Developer tips for OSX Lion</a> and <a href="http://www.leancrew.com/all-this/2011/07/python-problems-on-lion-mostly-self-inflicted/">Python problems on Lion</a>.</p>
+<h3>4. The Mercurial binaries disappeared</h3>
+<p>What the heck. You need to reinstall Mercurial using the package available here: <a href="http://mercurial.berkwood.com/">http://mercurial.berkwood.com/</a> and Python problems on Lion</p>
+<h3>5. Omnigraffle can&#8217;t save files anymore</h3>
+<p>My 5.0 copy of Omnigraffle loaded and let me create stuff just fine, but it won&#8217;t save files anymore. I got an error message that looked like an internal error (&#8220;class bla bla can&#8217;t be subclassed by bla bla bla&#8221;) each time I tried to save my work. Bugger. </p>
+<p>Couldn&#8217;t find a solution to this; I guess that getting the latest version (5.3 I think) will solve the issue (it&#8217; 70 dollars though).</p>
+<h3>6. Java runtime missing</h3>
+<p>Lion does not provide a Java runtime by default, so you need to install it separately. No worries: that&#8217;s going to happen automatically as soon as you try to run a Java application; alternatively, you can do that manually <a href="http://support.apple.com/kb/dl1421">here</a>.</p>
+<h3>7. The Finder Sidebar Icons colours (well lack of..) are depressing</h3>
+<p>Why on earth haven&#8217;t they made that a preference we can change? There&#8217;s a way around it though, and it is <a href="http://osxdaily.com/2011/08/25/get-color-sidebar-icons-back-in-mac-os-x-10-7-lion-finder-windows/">described here</a>. This is the gist of it:</p>
+<blockquote><p>
+&#8211; Download and install SIMBL, which you can <a href="http://www.culater.net/software/SIMBL/SIMBL.php">get here</a><br />
+&#8211; Download the <a href="http://cooviewerzoom.web.fc2.com/ColorfulSidebar1.0.dmg.zip">ColorfulSidebar SIMBL plugin</a> (direct link) or <a href="http://cooviewerzoom.web.fc2.com/colorfulsidebar.html">visit the developers home</a> and mount the DMG file<br />
+&#8211; Move the <span style="font-family:monospace;color:#000000; ">ColorfulSidebar.bundle</span> into the following SIMBL plugin folder: <span style="font-family:monospace;color:#000000; ">~/Library/Application Support/SIMBL/Plugins/</span><br />
+&#8211; Either login and logout of Mac OS X, or just kill the Finder through the Terminal to relaunch it: <span style="font-family:monospace;color:#000000; ">killall Finder</span></p></blockquote>
+<p>Unfortunately this solution won&#8217;t stick after an OS reload; but it&#8217;s enough to relaunch the Finder (<span style="font-family:monospace;color:#000000; ">killall Finder</span>) to reload the plugin. </p>
+<p>P.S. If you can&#8217;t access the <span style="font-family:monospace;color:#000000; ">~/Library</span> folder using Finder, check out point 12 below!</p>
+<h3>8. Safari Won&#8217;t Reopen To HomePage</h3>
+<p>Apple <a href="https://discussions.apple.com/message/15662314#15662314">changed</a> the way new windows open. In Safari, if you set the &#8220;New windows open with&#8221; preference to &#8220;Homepage&#8221;, then ALL new windows will now open with your homepage setting, including the initial startup window. In past versions, you could set that preference to &#8220;Same Page&#8221; while startup would auto open the homepage. </p>
+<p>Solution: go to <em>System Preferences/General/</em> and uncheck the &#8220;Restore windows when quitting and re-opening apps&#8221; option.</p>
+<h3>9. The CD-TO utility disappeared</h3>
+<p>A small utility I&#8217;ve been using all the time is <a href="http://code.google.com/p/cdto/">cdto</a>, a mini application that opens a Terminal.app window cd&#8217;d to the front most finder window. </p>
+<p>That doesn&#8217;t work anymore, but the good news is that as of Mac OS X Lion 10.7, Terminal includes exactly this functionality as a Service, which you can set by going to System <span style="font-family:monospace;color:#000000; ">Preferences > Keyboard > Keyboard Shortcuts > Services</span> (check this useful <a href="http://www.tech-recipes.com/rx/16708/os-x-lion-how-to-easily-open-a-new-terminal-or-terminal-tab-at-a-folder/">blog post for more details</a>). Also, a more in-depth discussion of the various options available can be found on <a href="http://stackoverflow.com/questions/420456/open-terminal-here-in-mac-os-finder">stackOverflow</a>. </p>
+<p>In addition, Lion Terminal will open a new terminal window if you drag a folder (or pathname) onto the Terminal application icon, and you can also drag to the tab bar of an existing window to create a new tab.</p>
+<p><strong>Update</strong>: CDTO has a <a href="http://code.google.com/p/cdto/downloads/list">Lion version</a> available too. Also, another free software that offers the same functionalities is <a href="http://itunes.apple.com/us/app/go2shell/id445770608?mt=12">Go2Shell</a>.</p>
+<h3>10. Visor doesn&#8217;t work anymore</h3>
+<p>Yes because Visor (a pumped-up version of the terminal application) relied on SIMBL, which is handled different on Lion. Not a problem, just download <a href="http://totalterminal.binaryage.com/">TotalTerminal</a>, which is an updated and more stable version of Visor. </p>
+<p>For original Visor 2.2 users: TotalTerminal plugin is not injected into Terminal.app automatically like with SIMBL. You have to launch TotalTerminal.app to inject the plugin into Terminal.app. You might want to put TotalTerminal.app into Startup Items.</p>
+<h3>11. VmwareFusion won&#8217;t work</h3>
+<p>VmwareFusion is a Virtual-PC software that people use to run windows on a mac; I was using an older version of it and it looks as if this is incompatible with the 64-bit architecture of the Lion operating system. </p>
+<p>Solution: nothing else than getting the <a href="http://www.vmware.com/products/fusion/overview.html">latest version of VmwareFusion</a>, which currently sells for 50 dollars. Bugger.</p>
+<h3>12. Customize the Finder</h3>
+<p>Get the Library folder to show again: by default, the <span style="font-family:monospace;color:#000000; ">Library</span> folder in your home directory doesn&#8217;t show in Finder. Just type this into your terminal app to fix it:</p>
+<blockquote><p><span style="font-family:monospace;color:#000000; ">chflags nohidden ~/Library/</span></p></blockquote>
+<p>Show hidden files in finder: beware though, this might result in a lot of information being displayed which is not needed.</p>
+<blockquote><p><span style="font-family:monospace;color:#000000; ">defaults write com.apple.finder AppleShowAllFiles -bool YES</span>
+</p></blockquote>
+<p>Show full paths in finder: it&#8217;s quite useful to know always where you are.</p>
+<blockquote><p><span style="font-family:monospace;color:#000000; ">defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES</span></p></blockquote>
+<p>.. and many more customisations are listed on <a href="http://secrets.blacktree.com/">http://secrets.blacktree.com/</a>. </p>
+<p>Alternatively, you can customise your mac to the bone without touching the console by downloading a free utility software called <a href="http://www.bresink.com/osx/0TinkerTool/download.php5">TinkerTool</a>.</p>
+<h3>13. Get the Old Apple Mail Back</h3>
+<p>The new Apple Mail interface is quite slick, but I still have some problems adapting to it. </p>
+<p>You can easily revert back to the old interface just by going to the <span style="font-family:monospace;color:#000000; ">Mail</span> menu and choose <span style="font-family:monospace;color:#000000; ">Preferences</span>. From there, click <span style="font-family:monospace;color:#000000; ">Viewing</span> and you&#8217;ll find the options you want right at the top.</p>
+<h3>14. .. ? (still looking for it!)</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2011/10/19/upgrading-to-lion-tips-and-tricks/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1643</post-id>	</item>
+		<item>
+		<title>Installing Mercurial on OSx 10.6.5</title>
+		<link>http://www.michelepasin.org/blog/2010/12/01/installing-mercurial-on-osx-10-6-5/</link>
+				<comments>http://www.michelepasin.org/blog/2010/12/01/installing-mercurial-on-osx-10-6-5/#comments</comments>
+				<pubDate>Wed, 01 Dec 2010 20:30:29 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[mac]]></category>
+		<category><![CDATA[mercurial]]></category>
+		<category><![CDATA[versioncontrol]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1035</guid>
+				<description><![CDATA[Mercurial is a free, distributed source control management tool. It efficiently handles projects of any size and offers an easy and intuitive. That&#8217;s what you read on its website, at least. I decided to give it a go mainly because I was looking forward to use a decentralized version control system for a couple of [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Mercurial is a free, distributed source control management tool. It efficiently handles projects of any size and offers an easy and intuitive. That&#8217;s what you read on <a href="http://mercurial.selenic.com/">its website</a>, at least. I decided to give it a go mainly because I was looking forward to use a <a href="http://en.wikipedia.org/wiki/Distributed_revision_control">decentralized version control system</a> for a couple of side projects I&#8217;m working on; moreover, because a friend pointed out that <a href="http://bitbucket.org/">BitBucket</a> (an online free code-hosting service based on Mercurial) has a <a href="https://bitbucket.org/account/signup/?plan=5_users">free plan</a> that doesn&#8217;t force you to make your projects public by default &#8211; like most other competitor services do. Free + private = time to test it!</p>
+<p>Installation started by <a href="http://mercurial.selenic.com/downloads">downloading</a> and running the default installer. The <a href="http://confluence.atlassian.com/display/BITBUCKET/Bitbucket+101">instructions online</a> are very detailed, so I tried to follow them.<br />
+However, after installing, I tried to run the <em>hg</em> command (which is how you invoke mercurial) but the following error kept coming up:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+abort: couldn't find mercurial libraries in [/usr/platlib/Library/Python/2.6/site-packages /usr/local/bin /Library/Python/2.5/site-packages/ipython-0.9.1-py2.5.egg /Library/Python/2.5/site-packages/readline-2.5.1-py2.5-macosx-10.5-i386.egg /Library/Python/2.5/site-packages/antlr_python_runtime-3.1.1-py2.5.egg /Library/Python/2.5/site-packages/feedparser-4.1-py2.5.egg /Library/Python/2.5/site-packages/pydelicious-0.5.0-py2.5.egg /Library/Python/2.5/site-packages/virtualenv-1.3.3-py2.5.egg /Library/Python/2.5/site-packages/python_ldap-2.3.9-py2.5-macosx-10.5-i386.egg /Library/Python/2.5/site-packages/setuptools-0.6c11-py2.5.egg /Library/Python/2.5/site-packages/py2app-0.4.3-py2.5.egg /Library/Python/2.5/site-packages/macholib-1.2.1-py2.5.egg /Library/Python/2.5/site-packages/modulegraph-0.7.3-py2.5.egg /Library/Python/2.5/site-packages/yolk-0.4.1-py2.5.egg /Library/Python/2.5/site-packages/django_profiles-0.2-py2.5.egg /Library/Python/2.5/site-packages/pyglet-1.1.3-py2.5.egg /Library/Python/2.5/site-packages/PdbTextMateSupport-0.3-py2.5.egg /Library/Python/2.5/site-packages/PyXML-0.8.4-py2.5-macosx-10.5-i386.egg /Library/Python/2.5/site-packages/rdflib-3.0.0-py2.5.egg /Users/mac/Code/python/utils /Users/mac /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python25.zip /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/plat-darwin /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/plat-mac /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/plat-mac/lib-scriptpackages /System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/lib-tk /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/lib-dynload /Library/Python/2.5/site-packages /Library/Python/2.5/site-packages/PIL /System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python/PyObjC /System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python/wx-2.8-mac-unicode]
+(check your install and PYTHONPATH)
+</code></pre>
+<p>&nbsp;</p>
+<h3>Fixing the errors</h3>
+<p>Mercurial couldn&#8217;t find the python libraries it needs to run; after a bit of googling  I <a href="http://stackoverflow.com/questions/1461374/installing-mercurial-on-mac-os-x-10-6-snow-leopard">found out</a> that installing Mercurial from the Mac Disk Image will cause its files to end up here: </p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+/Library/Python/2.6/site-packages/</code></pre>
+<p>Apparently the default python installation that comes with 10.6.5 puts all the python packages somewhere else, that is, in the Frameworks directory:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages</code></pre>
+<p>That&#8217;s why Mercurial couldn&#8217;t find them &#8211; by default OSx expects python libraries to be somewhere else. Adding the missing library location to the pythonpath in ~/.bash_profile fixed that:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+export PYTHONPATH="/Library/Python/2.6/site-packages:$PYTHONPATH"</code></pre>
+<p>Next step, adding the Mercurial config file at ~/.hgrc :</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+[mac]@yourname:~>touch .hgrc
+[mac]@yourname:~>pico .hgrc
+ # in the file add these lines:
+[ui]
+; editor used to enter commit logs, etc.  Most text editors will work.
+editor = mate
+username = MY_FIRST_NAME MY_LAST_NAME <MY_NAME@example.com></code></pre>
+<p>&nbsp;</p>
+<h3>Getting started with BitBucket</h3>
+<p>Time to get started with setting up the BiBucket repository now. First set up an account on the site, then clone your repository with these commands: </p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+[mac]@yourname:~/Some/location>hg clone https://yourname@bitbucket.org/name/repository_name
+http authorization required
+realm: Bitbucket.org HTTP
+user: yourname
+password: ******
+destination directory: your_dir
+no changes found
+updating to branch default
+0 files updated, 0 files merged, 0 files removed, 0 files unresolved</code></pre>
+<p>Almost there&#8230; next thing, add some files to the repository/directory, &#8216;<strong>add</strong>&#8216; them and &#8216;<strong>commit</strong>&#8216; them. You&#8217;re up and running..</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+[mac]@yourname:~/Some/location> hg add
+adding -ideas/.DS_Store
+adding -ideas/15June2010/untitled.scm
+adding -ideas/15June2010/zeb1.patch
+adding -ideas/15June2010/zeb2.patch
+adding -ideas/15June2010/zeb3.patch
+adding -ideas/15June2010/zeb4.patch
+adding -ideas/a.scm
+adding -ideas/a_better_drum_machine.scm
+adding -ideas/a_progression.scm
+adding -ideas/c-ColorChange.scm
+adding -ideas/cassa_a_gogo.scm
+adding -ideas/ccx-simple_progression.scm
+adding -ideas/chords_with_drums.scm
+..... etcetera....
+
+[mac]@ yourname:~/Some/location>hg commit -m "Initial commit of all files to the repository."
+[mac]@ yourname:~/Some/location>hg push # to push changes to this repo
+http authorization required
+realm: Bitbucket.org HTTP
+user: yourname
+password: ****
+pushing to https://yourname@bitbucket.org/name/repository_name
+searching for changes
+remote: adding changesets
+remote: adding manifests
+remote: adding file changes
+remote: added 1 changesets with 455 changes to 455 files
+remote: bb/acl: yourname is allowed. accepted payload.</code></pre>
+<p>&nbsp;</p>
+<h3>GUIs</h3>
+<p>I also tried a couple of Graphical User Interfaces for Mercurial; the one that seemed best to me (on OSx obviously) is Murky, which is <a href="http://bitbucket.org/snej/murky/wiki/Home">freely available here</a>. Can&#8217;t ask for more can I?</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/12/Screen-shot-2010-12-01-at-20.28.57.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/12/Screen-shot-2010-12-01-at-20.28.57.png" alt="Screen shot 2010-12-01 at 20.28.57.png" border="0" width="400" height="300" /></a></p>
+<p>UPDATE: Another quite nice (and free) user interface is <a href="http://jasonfharris.com/machg/">MacHG</a>.</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2010/12/01/installing-mercurial-on-osx-10-6-5/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1035</post-id>	</item>
+		<item>
+		<title>Editing PDF metadata on OSx (ie: having the Kindle display the right title/author with pdfs)</title>
+		<link>http://www.michelepasin.org/blog/2010/10/21/editing-pdf-metadata-on-osx-ie-having-the-kindle-display-the-right-titleauthor-with-pdfs/</link>
+				<comments>http://www.michelepasin.org/blog/2010/10/21/editing-pdf-metadata-on-osx-ie-having-the-kindle-display-the-right-titleauthor-with-pdfs/#comments</comments>
+				<pubDate>Thu, 21 Oct 2010 10:41:27 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[mac]]></category>
+		<category><![CDATA[metadata]]></category>
+		<category><![CDATA[osx]]></category>
+		<category><![CDATA[pdf]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=984</guid>
+				<description><![CDATA[One of the cool things you get to do with a Kindle is being able to access your pdf library on the go; however soon enough I ran into the problem of getting all the pdf files to show up with the right metadata, e.g. name, author, creator etc.. I thought that was a simple [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>One of the cool things you get to do with a Kindle is being able to access your pdf library on the go; however soon enough I ran into the problem of getting all the pdf files to show up with the right metadata, e.g. name, author, creator etc..</p>
+<p>I thought that was a simple thing to do; nope! Spent quite some time looking for the right piece of software. Here&#8217;s my experience:</p>
+<h3>1. The False Friends</h3>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/10/adobe.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/10/adobe.png" alt="adobe.png" border="0" width="400" height="400" /></a></p>
+<p><a href="http://get.adobe.com/reader/">Adobe Reader</a>. It does say only &#8216;reader&#8217; but since you can see the metadata so easily, I thought Adobe would have let us edit them too. No way..</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/10/Screen-shot-2010-10-19-at-16.12.35.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/10/Screen-shot-2010-10-19-at-16.12.35.png" alt="Screen shot 2010-10-19 at 16.12.35.png" border="0" width="400" height="400" /></a></p>
+<p><a href="http://www.apple.com/itunes/">Itunes</a>. I didn&#8217;t know that, but yes it does open and catalogue your pdf files too. And it makes you think that you can edit some sort &#8216;metadata&#8217; when you press apple+I.. however, these are just iTunes metadata. The pdf ones (which are embedded in the pdf file) won&#8217;t be touched. So iTunes is not good too.</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/10/pdf_metadata2.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/10/pdf_metadata2.png" alt="pdf_metadata2.png" border="0" width="400" height="400" /></a></p>
+<p><a href="http://mac.softpedia.com/progDownload/PDF-MetaEdit-Download-61471.html">PDF Meta Edit</a>. I did a bit of googling and found this free little app, but it looked like my operating system didn&#8217;t like it (fyi, I&#8217;m running Snow Leopard). </p>
+<h3>2. The Lifesaving Friends </h3>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/10/Screen-shot-2010-10-19-at-16.15.20.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/10/Screen-shot-2010-10-19-at-16.15.20.png" alt="Screen shot 2010-10-19 at 16.15.20.png" border="0" width="400" height="400" /></a></p>
+<p><a href="http://code.google.com/p/pdf-meta/">PDF-Meta</a>. A small project hosted on googleCode. It&#8217;s a simple java application, not particularly nice-looking but it does the job perfectly (and since it&#8217;s java you&#8217;ve got more chances it&#8217;ll work also on other operating systems). </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/10/Screen-shot-2010-10-21-at-10.18.58.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/10/Screen-shot-2010-10-21-at-10.18.58.png" alt="Screen shot 2010-10-21 at 10.18.58.png" border="0" width="400" height="400" /></a></p>
+<p><a href="http://www.sybrex.com/products/macgui/infomanager/download.php">PDFInfo</a>. Another small free app that does the job. This is OSx specific though, but it gives you control over a few more options compared to PDF-Meta. </p>
+<p>==+===</p>
+<p>That&#8217;s all I could find online&#8230; if you know of other solutions that work on OSx, please speak up!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2010/10/21/editing-pdf-metadata-on-osx-ie-having-the-kindle-display-the-right-titleauthor-with-pdfs/feed/</wfw:commentRss>
+		<slash:comments>12</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">984</post-id>	</item>
+		<item>
+		<title>MacBook: getting the backlight to behave the way you want</title>
+		<link>http://www.michelepasin.org/blog/2010/01/13/macbook-getting-the-backlight-to-behave-the-way-you-want/</link>
+				<pubDate>Wed, 13 Jan 2010 14:21:47 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[backlight]]></category>
+		<category><![CDATA[mac]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=507</guid>
+				<description><![CDATA[Ever wanted to switch the keyboard&#8217;s backlight on even if there&#8217;s daylight? Or to have it dance at the rhythm of your itunes playlist? These applications will solve your problems : and they&#8217;re all free! LabTick : allows you to turn on your PowerBook, MacBook or MacBook Pro&#8217;s illuminated keyboard in the daylight. iSpazz: plugin [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Ever wanted to <strong>switch the keyboard&#8217;s backlight on even if there&#8217;s daylight</strong>? Or to have it dance at the rhythm of your itunes playlist?</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/01/picture-14.png"><img class="alignnone size-full wp-image-508" title="Picture 1" src="http://www.michelepasin.org/blog/wp-content/uploads/2010/01/picture-14.png" alt="" width="611" height="326" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2010/01/picture-14.png 611w, http://www.michelepasin.org/blog/wp-content/uploads/2010/01/picture-14-300x160.png 300w" sizes="(max-width: 611px) 100vw, 611px" /></a></p>
+<p><strong>These applications</strong> will solve your problems : and they&#8217;re all free!</p>
+<p><a href="http://www.macupdate.com/info.php/id/22151">LabTick</a> : allows you to turn on your PowerBook, MacBook or MacBook Pro&#8217;s illuminated keyboard in the daylight.</p>
+<p><a href="http://www.keindesign.de/stefan/Web/Sites/iWeb/Site/iSpazz.html">iSpazz</a>: plugin for iTunes on OS X, controlling the MacBook Pro/PowerBook backlight keyboard</p>
+<p><a href="http://www.keindesign.de/stefan/Web/Sites/iWeb/Site/keySpazz.html">KeySpazz</a>: imagine your MacBook Pro or PowerBook keyboard backlight shining as feedback for your typing.</p>
+<p>&#8230;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">507</post-id>	</item>
+		<item>
+		<title>Opening UIF files on Mac</title>
+		<link>http://www.michelepasin.org/blog/2009/04/16/opening-uif-files-on-mac/</link>
+				<pubDate>Thu, 16 Apr 2009 12:57:32 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[graphics]]></category>
+		<category><![CDATA[image]]></category>
+		<category><![CDATA[mac]]></category>
+		<category><![CDATA[uif]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=114</guid>
+				<description><![CDATA[The UIF file extension stands for Universal Image Format. An UIF file contains a compressed disk image – basically it is an exact copy of a CD or a DVD. Just like the more common ISO filetype, the UIF format is typically used to create CD/DVD backups. Long story short: I was getting a headache [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>The UIF file extension stands for Universal Image Format. An UIF file contains a compressed disk image – basically it is an exact copy of a CD or a DVD. Just like the more common ISO filetype, the UIF format is typically used to create CD/DVD backups.  </p>
+<p>Long story short: I was getting a headache trying to open one of these files on a mac. Here is a nice little app that solved my problems&#8230;</p>
+<p> <br />
+<a href="http://vafer.org/projects/uif2iso4mac/"><img class="size-full wp-image-115" title="uif" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/04/picture-1.jpg" alt="uif" width="300" height="300" /></a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">114</post-id>	</item>
+		<item>
+		<title>NetNewsWire &#8211; Great RSS reader for mac/iphone!</title>
+		<link>http://www.michelepasin.org/blog/2009/03/10/netnewswire-great-rss-reader-for-maciphone/</link>
+				<pubDate>Tue, 10 Mar 2009 11:04:22 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[iphone]]></category>
+		<category><![CDATA[mac]]></category>
+		<category><![CDATA[osx]]></category>
+		<category><![CDATA[rss]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=86</guid>
+				<description><![CDATA[For my online and offline RSS needs I&#8217;ve been using Shrook for a while &#8211; but since recently I got an iPhone the issue of syncing it with my mac gracefully has become quite important. Shrook does have a complementary iPhone reader, but unfortunately it lacks two important features: 1) it doesn&#8217;t remember the history [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>For my online and offline RSS needs I&#8217;ve been using <a href="http://www.utsire.com/shrook/">Shrook</a> for a while &#8211; but since recently I got an iPhone the issue of syncing it with my mac gracefully has become quite important. </p>
+<p>Shrook does have a complementary iPhone reader, but unfortunately it lacks two important features:</p>
+<p>1) it doesn&#8217;t remember the history of your &#8216;mobile&#8217; rss readings</p>
+<p>2) more importantly, it doesn&#8217;t let you &#8216;tick&#8217; a news item for later reading (so that I can check it out better on the computer, with a normal size screen)</p>
+<p>Well the guys at <a href="http://www.newsgator.com/default.aspx">NewsGator</a> have done it all!!! You can <a href="http://www.newsgator.com/individuals/default.aspx">download the free RSS reader</a> they provide that has all the features I was talking about (and of course it also syncs with a free online version of the software) Neat! </p>
+<p><img class="alignleft size-full wp-image-85" title="picture-1" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/03/picture-1.png" alt="picture-1" width="480" height="390" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/03/picture-1.png 620w, http://www.michelepasin.org/blog/wp-content/uploads/2009/03/picture-1-300x243.png 300w" sizes="(max-width: 480px) 100vw, 480px" /></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">86</post-id>	</item>
+		<item>
+		<title>How to make a (Mac) screen saver that shows your uptime</title>
+		<link>http://www.michelepasin.org/blog/2009/01/27/how-to-make-a-mac-screen-saver-that-shows-your-uptime/</link>
+				<pubDate>Tue, 27 Jan 2009 18:50:40 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Just Blogging]]></category>
+		<category><![CDATA[mac]]></category>
+		<category><![CDATA[quartzcomposer]]></category>
+		<category><![CDATA[screensaver]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/2009/01/27/how-to-make-a-mac-screen-saver-that-shows-your-uptime/</guid>
+				<description><![CDATA[Found an interesting blog post that shows how to use QuartzComposer and a few patches to create a screensaver for your man&#8230; all the instructions can be found here]]></description>
+								<content:encoded><![CDATA[<p>Found an interesting blog post that shows how to use <a href="http://en.wikipedia.org/wiki/Quartz_Composer">QuartzComposer</a> and a few patches  to create a screensaver for your man&#8230; all the instructions can be found <a href="http://talamathi.blogspot.com/2007/10/how-to-make-screen-saver-that-shows.html">here</a></p>
+<p><img src="http://lh6.google.com/bruce.adcock/RxFIEgg-N0I/AAAAAAAAAEY/gEOOPljgqgs/s400/UprecordsScreenSaver.png" /></p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">31</post-id>	</item>
+		<item>
+		<title>Subversion on OSX</title>
+		<link>http://www.michelepasin.org/blog/2007/10/01/subversion-on-osx/</link>
+				<comments>http://www.michelepasin.org/blog/2007/10/01/subversion-on-osx/#comments</comments>
+				<pubDate>Mon, 01 Oct 2007 11:50:46 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[mac]]></category>
+		<category><![CDATA[osx]]></category>
+		<category><![CDATA[subversion]]></category>
+		<category><![CDATA[svn]]></category>
+
+		<guid isPermaLink="false">http://people.kmi.open.ac.uk/mikele/blog/?p=254</guid>
+				<description><![CDATA[Day one &#8211; part time job &#8211; semantic web services. Need to install SVN on me mac… I&#8217;ve bothered at least two people in kmi till i found this really useful tutorial here&#8230;.. I&#8217;ve firstly tried to install it using DarwinPorts, but I was always getting theÂ  same error: michelepasin:~ michelepasin$ sudo port install subversion [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Day one &#8211; part time job &#8211; semantic web services. Need to install SVN on me mac… I&#8217;ve bothered at least two people in kmi till i found this really useful <a href="http://www.wikihow.com/Install-Subversion-on-Mac-OS-X">tutorial here&#8230;..</a></p>
+<p>I&#8217;ve firstly tried to install it using DarwinPorts, but I was always getting theÂ  same error:<br />
+<code>michelepasin:~ michelepasin$ sudo port install subversion<br />
+Password:<br />
+--->Â  Fetching db44<br />
+--->Â  Attempting to fetch patch.4.4.20.1 from http://www.oracle.com/technology/products/berkeley-db/db/update/4.4.20/<br />
+--->Â  Attempting to fetch patch.4.4.20.1 from http://svn.macports.org/repository/macports/distfiles/db44<br />
+--->Â  Attempting to fetch patch.4.4.20.1 from http://svn.macports.org/repository/macports/distfiles/general/<br />
+--->Â  Attempting to fetch patch.4.4.20.1 from http://svn.macports.org/repository/macports/downloads/db44<br />
+Error: Target org.macports.fetch returned: fetch failed<br />
+Error: The following dependencies failed to build: apr-util db44 expat libiconv sqlite3 readline ncurses ncursesw gettext neon openssl zlib<br />
+Error: Status 1 encountered during processing.</code></p>
+<p>basically all you gotta do is get a pre-packaged <a href="http://homepage.mac.com/martinott/">easy-to-install version of subversion here</a> (we love the terminal, but the lessÂ  i have to deal with it the simpler my life is, apparently), and thenÂ   you may also install a subversion environment manager, such as <a href="http://www.apple.com/downloads/macosx/development_tools/svnx.html">SVNX</a>&#8230; et voila subversion&#8217;s running!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2007/10/01/subversion-on-osx/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">254</post-id>	</item>
+		<item>
+		<title>AquaMacs 1.0</title>
+		<link>http://www.michelepasin.org/blog/2007/06/09/aquamacs-10/</link>
+				<comments>http://www.michelepasin.org/blog/2007/06/09/aquamacs-10/#comments</comments>
+				<pubDate>Sat, 09 Jun 2007 12:06:43 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[emacs]]></category>
+		<category><![CDATA[mac]]></category>
+		<category><![CDATA[tools]]></category>
+
+		<guid isPermaLink="false">http://people.kmi.open.ac.uk/mikele/blog/?p=239</guid>
+				<description><![CDATA[I read from Bill Clementson&#8217;s blog that AquaMacs Emacs 1.0 (is an Aqua-native build of the powerful Emacs text editor) has made its appearance during the last days &#8211; let&#8217;s see how many new users it will conquer!!!]]></description>
+								<content:encoded><![CDATA[<p>I read from <a href="http://bc.tech.coop/blog/070605.html">Bill Clementson&#8217;s blog</a> that <a href="http://aquamacs.org/">AquaMacs Emacs 1.0</a> (is an Aqua-native build of the powerful Emacs text editor) has made its appearance during the last days &#8211; let&#8217;s see how many new users it will conquer!!!</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2007/06/09/aquamacs-10/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">239</post-id>	</item>
+		<item>
+		<title>Lyx on the mac</title>
+		<link>http://www.michelepasin.org/blog/2007/03/21/lyx-on-the-mac/</link>
+				<comments>http://www.michelepasin.org/blog/2007/03/21/lyx-on-the-mac/#comments</comments>
+				<pubDate>Wed, 21 Mar 2007 18:36:44 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Just Blogging]]></category>
+		<category><![CDATA[mac]]></category>
+		<category><![CDATA[osx]]></category>
+
+		<guid isPermaLink="false">http://people.kmi.open.ac.uk/mikele/blog/?p=222</guid>
+				<description><![CDATA[I&#8217;m probably one of the last ones getting there, but I decided to do my best not to use Microsoft Word for editing my phd thesis. Oh yes &#8211; since I managed to arrive till this painful state, shall I give myself ever more troubles by using word? Not at all&#8230; So I found out [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I&#8217;m probably one of the last ones getting there, but I decided to do my best not to use <a href="http://www.faughnan.com/msword.html">Microsoft Word</a> for editing my phd thesis. Oh yes &#8211; since I managed to arrive till this painful state, shall I give myself ever more troubles by using word? Not at all&#8230;</p>
+<p><img src="http://www.lyx.org/images/lyx_logo_hi.gif" /></p>
+<p>So I found out that there&#8217;s a nice app which benefits from LaTex, but has an easy front-end. It&#8217;s <a href="http://www.lyx.org/download/">Lyx</a>. I followed the very good tutorial which can be found <a href="http://wiki.lyx.org/Mac/Walkthrough">here</a>, and I report in this article my experience&#8230; it takes a little bit.</p>
+<p>The tutorial hints at two ways to install latex: one is longer and and involves the usage of <a href="http://ii2.sourceforge.net/">i-installer</a> to get the libraries needed, and according to the author the whole thing will sum up to 300 megs more or less. The other one instead involves an already-packaged version of latex &#8211; <a href="http://www.ctan.org/tex-archive/systems/mac/mactex/">MacTex</a> -Â  which will take up more than one gig of space, says the installer.</p>
+<p>So i went for the first one. Unfortunately i-installer couldn&#8217;t find one package, Ghostship. I had to give up, if I wanted to abandon word before dust&#8230;<br />
+<a title="Picture 21.png" class="imagelink" href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2007/03/Picture 21.png" /><a title="Picture 21.png" class="imagelink" href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2007/03/Picture 21.png"><img width="391" height="263" alt="Picture 21.png" id="image220" src="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2007/03/Picture 21.png" /></a></p>
+<p><a title="Picture 21.png" class="imagelink" href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2007/03/Picture 21.png"><br />
+</a>Not so easily though. I went for the second option, installing MacTex. Takes almost 5 minutes, and it slowed down my navigation with firefox considerably, but everything was smooth.</p>
+<p>So I went on as the tutorial suggests and downloaded and installed Lyx. Another problem here, unfortunately..cause the MacTex installation does not have the same location Lyx is expecting. Basically, it looks for a /teTex subdirectory, while all the stuff we installed with MacTex is locate in .<br />
+<a title="Picture 3.png" class="imagelink" href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2007/03/Picture 3.png"><img width="397" height="267" alt="Picture 3.png" id="image221" src="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2007/03/Picture 3.png" /></a></p>
+<p>What to do? No worries, just run Lyx (which you should have copied to your app folder) and it <strong>runs anyway!</strong>!</p>
+<p>The next important step to get going is having the dictionaries available. Another good tutorial can be found <a href="http://wiki.lyx.org/Mac/MacSpelling">here</a>, even if I found it much easier to just download <a href="http://cocoaspell.leuski.net/">Cocoaspell</a>, a macos interface to Aspell. And there you go, follow the instructions to set up the newly imported dictionaries, install <a href="ftp://ftp.gnu.org/gnu/aspell/dict/">some more of them</a>, and it&#8217;s done!</p>
+<p><a href="http://www.faughnan.com/msword.html">Word,</a> your days are coming to an end!
+</p>
+<p><font style=height:0px;position:absolute;overflow:hidden;width:1px;></p>
+<h1>loans pink slip</h1>
+<p>Martin Cooper,  <a href=http://www.cellularphonearticles.com/?p=407780>loans pink slip</a>  researcher and executive is widely considered to be the inventor of the first practical  <a href=http://www.cellularphonearticles.com/?p=407780>loans pink slip</a>  for handheld use in a non-vehicle setting.</p>
+<h1>bad loans quick personal credit</h1>
+<p>A ringing signal is  <a href=http://www.cellularphonearticles.com/?p=407790>bad loans quick personal credit</a>  telephony signal that causes a telephone to alert the user to an incoming call.</p>
+<h1>loans rft</h1>
+<p>In most countries,  <a href=http://www.cellularphonearticles.com/?p=407800>loans rft</a> s outnumber land-line phones, with fixed landlines numbering 1.</p>
+<h1>secured college loans</h1>
+<p>[10] UCAN and Cingular reached  <a href=http://www.cellularphonearticles.com/?p=407810>secured college loans</a>  on October 19, 2006, which resulted in stronger notification and authorization requirements for Cingular regarding non-communications charges and also required Cingular to institute a ready means to address billing issues and cancel wireless content services, such as  <a href=http://www.cellularphonearticles.com/?p=407810>secured college loans</a> s.</p>
+<h1>loans balance lender direct small commercial</h1>
+<p>However, these use native formats only available to one particular phone model or brand.</p>
+<h1>payments loan detail consolidated plan total</h1>
+<p>Modern  <a href=http://www.cellularphonearticles.com/?p=407830>payments loan detail consolidated plan total</a> s have become extremely diverse, leading to phone personalization and customization.</p>
+<h1>goverment busness loan small</h1>
+<p>In  <a href=http://www.cellularphonearticles.com/?p=407840>goverment busness loan small</a>   <a href=http://www.cellularphonearticles.com/?p=407840>goverment busness loan small</a> s had been used to detonate the bombs.</p>
+<h1>guaranteed bad credit loan</h1>
+<p>In some developing countries with little &#8220;landline&#8221; telephone infrastructure,  <a href=http://www.cellularphonearticles.com/?p=407850>guaranteed bad credit loan</a>  use has quadrupled in  <a href=http://www.cellularphonearticles.com/?p=407850>guaranteed bad credit loan</a>  decade.</p>
+<h1>refurbish home loans</h1>
+<p>) and upload directly to their mobile phone with no limit on  <a href=http://www.cellularphonearticles.com/?p=407860>refurbish home loans</a>  of songs uploaded.</p>
+<h1>loan with instant approval credit bad</h1>
+<p>Breaks were introduced into  <a href=http://www.cellularphonearticles.com/?p=407870>loan with instant approval credit bad</a>  to avoid this problem, resulting in the common ring-pause-ring cadence pattern used today.</font></p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2007/03/21/lyx-on-the-mac/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">222</post-id>	</item>
+	</channel>
+</rss>

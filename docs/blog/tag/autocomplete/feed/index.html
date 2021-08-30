@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>autocomplete &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/autocomplete/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 12 Oct 2009 11:30:47 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Autocomplete in Django #2</title>
+		<link>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/</link>
+				<comments>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/#comments</comments>
+				<pubDate>Mon, 12 Oct 2009 11:30:47 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[autocomplete]]></category>
+		<category><![CDATA[django]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=359</guid>
+				<description><![CDATA[[Update 14/09/11 : If you&#8217;re using Django 1.3 you can also skip point -4- below, as the &#8216;cut&#8217; filter is included in Django by default now!] [Update 15/2/10 : I added a small example that shows how to make this work with Inlines too, see point 6 below&#8230;] [Update 18/10/09 : please note that the [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><em>[<span style="background:orange;">Update 14/09/11 </span> : If you&#8217;re using Django 1.3 you can also skip point -4- below, as the &#8216;cut&#8217; filter is included in Django by default now!]<br />
+[<span style="background:orange;">Update 15/2/10 </span> : I added a small example that shows how to make this work with Inlines too, see point 6 below&#8230;]<br />
+[<span style="background:orange;">Update 18/10/09 </span> : please note that the code has been tested on django1.1! Check the comments below if you&#8217;re running 1.0&#8230;]</em><br />
+In a<a href="http://www.michelepasin.org/blog/?p=345"> previous post</a> I was talking about <strong>using autocomplete fields in django&#8217;s admin</strong>, and how this feature was missing for inlines. I sorted this out and put together an essential bunch of files you can easily include in your project to that purpose. Nothing final or too wonderful but just a hack that&#8217;ll get you going&#8230;</p>
+<p>You can <a href="http://www.box.net/shared/ugyoeqrdae">download it here</a> (in the image below you can see the autocomplete for Inline fields in action).</p>
+<p><img src="http://www.michelepasin.org/blog/wp-content/uploads/2009/10/picture-2.png" alt="Picture 2" title="Picture 2" width="662" height="253" class="alignnone size-full wp-image-361" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/10/picture-2.png 662w, http://www.michelepasin.org/blog/wp-content/uploads/2009/10/picture-2-300x114.png 300w" sizes="(max-width: 662px) 100vw, 662px" /></p>
+<p>In order to <strong>use it</strong>, here&#8217;re a few simple steps:</p>
+<p> 1. <strong>Put</strong> the autocomplete_admin.py file somewhere in your <strong>application</strong> folder</p>
+<p> 2. <strong>Add</strong> the &#8216;autocomplete&#8217; folder with the media files to your usual <strong>media</strong> folder</p>
+<p> 3. <strong>Add</strong> the &#8216;admin/autocomplete&#8217; folder to your <strong>templates</strong> folder</p>
+<p> 4. <em>[Only if you use a version of django less recent than 1.3]</em> <strong>Add</strong> the extrafilters.py file in the <strong>templatetags</strong> directory of your application (or just add its contents to  your custom template tags if you already have some).  All is needed is the <strong>&#8216;cut&#8217; filter</strong>, for making the code used in the inline-autocomplete form javascript-friendly. Basically the automatically generated code in the case of inlines wasn&#8217;t valid javascript because of the use of <a href="http://mrrena.blogspot.com/2009/02/invalid-range-in-character-class.html">dashes which in js are interpreted as minus signs</a>. There can be lots of solutions for this problem, but that&#8217;s what worked better for me (moreover the cut filter can be used elsewhere).</p>
+<p>5. When defining your models admin, <strong>import</strong> the relevant admin and use it:</p>
+<pre style='color:#000020;background:#f6f8ff;overflow:auto;'><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span>
+<span style='color:#200080; font-weight:bold; '>from</span> myproject<span style='color:#308080; '>.</span>mypackage<span style='color:#308080; '>.</span>autocomplete_admin <span style='color:#200080; font-weight:bold; '>import</span> FkAutocompleteAdmin
+ <span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span>
+ <span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span>
+<span style='color:#200080; font-weight:bold; '>class</span> Admin <span style='color:#308080; '>(</span>FkAutocompleteAdmin<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+    related_search_fields <span style='color:#308080; '>=</span> <span style='color:#406080; '>{</span> <span style='color:#1060b6; '>'person'</span><span style='color:#308080; '>:</span> <span style='color:#308080; '>(</span><span style='color:#1060b6; '>'name'</span><span style='color:#308080; '>,</span><span style='color:#308080; '>)</span><span style='color:#406080; '>}</span>
+ <span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span>
+</pre>
+<p>6. Mind that if you&#8217;re using <strong>inlines</strong> and want the autocomplete to work there too, you&#8217;ve got to make sure that you&#8217;re subclassing an AutocompleteInline class on both a) the inline admin class, and b) the main admin class of the model the inline is attached to. Example:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow:auto;'><span style='color:#200080; font-weight:bold; '>class</span> Document<span style='color:#308080; '>(</span>someUpperClass<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+    <span style='color:#595979; '>"""a usual model """</span>
+    authors <span style='color:#308080; '>=</span> models<span style='color:#308080; '>.</span>ManyToManyField<span style='color:#308080; '>(</span>Person<span style='color:#308080; '>,</span> through<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'AssocDocPerson'</span><span style='color:#308080; '>,</span><span style='color:#308080; '>)</span>
+
+    <span style='color:#595979; '># ********************************************</span>
+    <span style='color:#595979; '># if you want the related inline autocomplete to work, the following admin must be one of</span>
+    <span style='color:#595979; '># ForeignKeyAutocompleteAdmin or AutocompleteModelAdmin or NoLookupsForeignKeyAutocompleteAdmin</span>
+    <span style='color:#595979; '># ********************************************</span>
+    <span style='color:#200080; font-weight:bold; '>class</span> Admin <span style='color:#308080; '>(</span>AutocompleteModelAdmin<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+
+        inlines <span style='color:#308080; '>=</span> <span style='color:#308080; '>(</span>AssocPersonDocInline<span style='color:#308080; '>,</span> <span style='color:#308080; '>)</span>
+
+        fieldsets <span style='color:#308080; '>=</span> <span style='color:#308080; '>[</span>
+            <span style='color:#308080; '>(</span><span style='color:#1060b6; '>'Administration'</span><span style='color:#308080; '>,</span>
+                <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'fields'</span><span style='color:#308080; '>:</span>
+                    <span style='color:#308080; '>[</span><span style='color:#1060b6; '>'editedrecord'</span><span style='color:#308080; '>,</span> <span style='color:#1060b6; '>'review'</span><span style='color:#308080; '>,</span> <span style='color:#1060b6; '>'internal_notes'</span><span style='color:#308080; '>,</span> <span style='color:#308080; '>(</span><span style='color:#1060b6; '>'created_at'</span><span style='color:#308080; '>,</span> <span style='color:#1060b6; '>'created_by'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                      <span style='color:#308080; '>(</span><span style='color:#1060b6; '>'updated_at'</span><span style='color:#308080; '>,</span> <span style='color:#1060b6; '>'updated_by'</span><span style='color:#308080; '>)</span>
+                     <span style='color:#308080; '>]</span><span style='color:#308080; '>,</span>
+                <span style='color:#1060b6; '>'classes'</span><span style='color:#308080; '>:</span> <span style='color:#308080; '>[</span><span style='color:#1060b6; '>'collapse'</span><span style='color:#308080; '>]</span>
+                <span style='color:#406080; '>}</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+        <span style='color:#595979; '># etc. etc.</span>
+
+<span style='color:#200080; font-weight:bold; '>class</span> AssocPersonDocument<span style='color:#308080; '>(</span>someUpperClass<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+    document <span style='color:#308080; '>=</span> models<span style='color:#308080; '>.</span>ForeignKey<span style='color:#308080; '>(</span><span style='color:#1060b6; '>'Document'</span><span style='color:#308080; '>)</span>
+    person <span style='color:#308080; '>=</span> models<span style='color:#308080; '>.</span>ForeignKey<span style='color:#308080; '>(</span><span style='color:#1060b6; '>'Person'</span><span style='color:#308080; '>)</span>
+    <span style='color:#595979; '># etc. etc.</span>
+
+<span style='color:#200080; font-weight:bold; '>class</span> AssocPersonDocInline<span style='color:#308080; '>(</span>InlineAutocompleteAdmin<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+
+    model <span style='color:#308080; '>=</span> AssocPersonDocument
+    extra <span style='color:#308080; '>=</span> <span style='color:#008c00; '>4</span>
+    related_search_fields <span style='color:#308080; '>=</span> <span style='color:#406080; '>{</span>  <span style='color:#1060b6; '>'person'</span><span style='color:#308080; '>:</span> <span style='color:#308080; '>(</span><span style='color:#1060b6; '>'persondisplayname'</span><span style='color:#308080; '>,</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span> <span style='color:#406080; '>}</span>
+</pre>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/feed/</wfw:commentRss>
+		<slash:comments>35</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">359</post-id>	</item>
+		<item>
+		<title>Using jquery&#8217;s autocomplete in django admin: how about inlines?</title>
+		<link>http://www.michelepasin.org/blog/2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/</link>
+				<comments>http://www.michelepasin.org/blog/2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/#comments</comments>
+				<pubDate>Wed, 30 Sep 2009 11:13:47 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[admin]]></category>
+		<category><![CDATA[autocomplete]]></category>
+		<category><![CDATA[django]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=345</guid>
+				<description><![CDATA[I still haven&#8217;t solved this problem entirely, and I&#8217;ll tell you why. Well the issue has been addressed by many, and among them probably the first and most influential solution is Jannis Leidel&#8217;s &#8216;An autocomplete form widget for ForeignKey model fields&#8217;. Leidel says: [..] my question is, if this could be done on a more [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I still haven&#8217;t solved this problem entirely, and I&#8217;ll tell you why. Well the issue has been addressed by many, and among them probably the first and most influential solution is Jannis Leidel&#8217;s <a href="http://jannisleidel.com/2008/11/autocomplete-form-widget-foreignkey-model-fields/">&#8216;An autocomplete form widget for ForeignKey model fields&#8217;</a>.</p>
+<p>Leidel says:</p>
+<blockquote><p>[..] my question is, if this could be done on a more abstract level for enhancing relations. when having a foreignkey, you get the browse-icon (lens) right near the input-field. it´d be awesome to search the relations just by typing something into the field … the autocomplete-functionality should then search the related entries on the basis of the defined search-fields.</p></blockquote>
+<p>Here&#8217;s a nice <strong>screencast</strong> of the the result [<span style="background:red;">UPDATE</span>: unfortunately the screencast is not available anymore]:</p>
+<p><a href="http://www.flickr.com/photos/jannis/3028766217/"><img class="alignnone size-full wp-image-348" title="Picture 1" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/09/picture-11.png" alt="Picture 1" width="500" height="300" /></a></p>
+<p><strong>Leidel&#8217;s solution is not a copy&amp;paste type of thing</strong>, however it&#8217;s very useful to study his code so to understand what&#8217;s going on there, and then replicate it in your specific user-scenario. That&#8217;s exactly what several people have done. </p>
+<p>Nonetheless, <strong>reusing is more agile that doing things from scratch</strong>, isn&#8217;t it? So, after a bit of research I reached the conclusion that the most interesting and reusable (meaning, plug-and-play) django implementations of jquery&#8217;s autocomplete are two:</p>
+<ol>
+<li> the <a href="http://code.google.com/p/django-command-extensions/wiki/AdminExtensions"><em>admin extensions</em> section of the django-extensions project</a> on google code</li>
+<p><strong>PROs</strong>: it extends django&#8217;s raw_input widget, so while you can make use of the autocomplete you can still click on the lens and select the object you want from a new objects-list window (see screencast below). Also, you can enter the id of the object and the autocomplete will fill in straightaway the human-readable form of it (not sure how useful it is, but I like it)<br />
+<strong>CONs</strong>: supports only one-2-many relationships, that is, it doesn&#8217;t work with many2many or inlines</p>
+<li> another project on google code called &#8211; surprise &#8211; <a href="http://code.google.com/p/django-autocomplete/">django-autocomplete</a> !</li>
+<p><strong>PROs</strong>: very compact (just one file, no new apps to include). Works with one2many AND many2many<br />
+<strong>CONs</strong>: again, no support for inlines&#8230;</p>
+<p>After having a go with both of them I decided to use the first one [the admin extensions section of the <a href="http://code.google.com/p/django-command-extensions/wiki/AdminExtensions">django-extensions project</a>], cause I don&#8217;t need many2many support and I really liked the fact that the standard &#8216;raw-id&#8217; behaviour is still available. Here&#8217;s a nice screencast (by the way I just realized that this one has been made by Jannis Leidel too, so I guess it&#8217;s sort of an evolution of the previous one) [UPDATE #2: also this screencast is not available anymore! what&#8217;s going on with mr Leidel?]:</p>
+<p><a href="http://www.flickr.com/photos/jannis/3246408003/"><img class="alignnone size-full wp-image-350" title="Picture 3" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/09/picture-31.png" alt="Picture 3" width="513" height="234" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/09/picture-31.png 513w, http://www.michelepasin.org/blog/wp-content/uploads/2009/09/picture-31-300x136.png 300w" sizes="(max-width: 513px) 100vw, 513px" /></a></p>
+<p>Conclusion: there&#8217;s only one BIG problem &#8211; <strong>it doesn&#8217;t work with <a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects">inlines</a></strong> out-of-the-box ! I&#8217;m looking at extending it now&#8230; will keep you posted!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">345</post-id>	</item>
+	</channel>
+</rss>

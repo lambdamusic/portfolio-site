@@ -1,0 +1,579 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>triplestore &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/triplestore/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 10 Nov 2014 13:53:52 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Installing Stardog triplestore on mac os</title>
+		<link>http://www.michelepasin.org/blog/2014/11/06/installing-stardog-triplestore-on-mac-os/</link>
+				<pubDate>Thu, 06 Nov 2014 16:02:49 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[stardog]]></category>
+		<category><![CDATA[triplestore]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2530</guid>
+				<description><![CDATA[Stardog is an enterprise-level triplestore developed by clarkparsia.com. It combines tools to store and query RDF data with more advanced features for inference and data analytics &#8211; in particular via the built-in Pellet Java reasoner. All of this, combineded with a user experience which is arguably the best you can currently find in the market. [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://www.stardog.com/">Stardog</a> is an enterprise-level triplestore developed by <a href="http://clarkparsia.com/">clarkparsia.com</a>. It combines tools to store and query RDF data with more advanced features for inference and data analytics &#8211; in particular via the built-in <a href="http://clarkparsia.com/pellet/">Pellet Java reasoner</a>. All of this, combineded with a user experience which is arguably the best you can currently find in the market. </p>
+<h3>1. Requirements</h3>
+<p><strong>OSX</strong>: Mavericks 10.9.5 (that&#8217;s what I used, but it&#8217;ll work on older versions too).<br />
+<strong>JAVA</strong>: available <a href="http://support.apple.com/kb/dl1572">from Apple</a>.<br />
+<strong>Stardog</strong>: grab the free <em>community</em> edition at <a href="http://www.stardog.com/">http://www.stardog.com/</a> (you can also get the &#8216;developer&#8217; version for a 30-days trial, which is actually what I did). </p>
+<h3>2. Setting up</h3>
+<p>Good news, it can&#8217;t get any simpler than this. Just unpack the Stardog installer, and you&#8217;re pretty much done (see the <a href="http://docs.stardog.com/quick-start/">online docs</a> for more info). </p>
+<p>Stardog needs to know where to store its databases, so you do that by adding a couple of lines to your <span style="font-family:monospace;color:#000000; ">.bash_profile</span> file:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+
+export STARDOG_HOME="/Users/michele.pasin/Data/Stardog"  # databases will be stored here
+export PATH="/Applications/stardog-2.2.2/bin:$PATH"  # add stardog commands to the path
+alias cdstardog="cd /Applications/stardog-2.2.2"  # just a handy shortcut
+
+</pre>
+<p>Finally, copy the license key file (which should have come together with the installer) into the data folder:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+$ cp stardog-license-key.bin $STARDOG_HOME
+</pre>
+<h3>3. Running Stardog</h3>
+<p>The <span style="font-family:monospace;color:#000000; ">stardog-admin server start</span> command is used to start and stop the server. Then you can use the <span style="font-family:monospace;color:#000000; ">stardog-admin db create</span> command to create a DB and load some data. For example: </p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+
+[michele.pasin]@Tartaruga:~>cdstardog 
+
+[michele.pasin]@l5611:/Applications/stardog-2.2.2>stardog-admin server start
+
+************************************************************
+This copy of Stardog is licensed to MIk (michele.pasin@gmail.com), michelepasin.org
+This is a Community license
+This license does not expire.
+************************************************************
+
+                                                             :;   
+                                      ;;                   `;`:   
+  `'+',    ::                        `++                    `;:`  
+ +###++,  ,#+                        `++                    .     
+ ##+.,',  '#+                         ++                     +    
+,##      ####++  ####+:   ##,++` .###+++   .####+    ####++++#    
+`##+     ####+'  ##+#++   ###++``###'+++  `###'+++  ###`,++,:     
+ ####+    ##+        ++.  ##:   ###  `++  ###  `++` ##`  ++:      
+  ###++,  ##+        ++,  ##`   ##;  `++  ##:   ++; ##,  ++:      
+    ;+++  ##+    ####++,  ##`   ##:  `++  ##:   ++' ;##'#++       
+     ;++  ##+   ###  ++,  ##`   ##'  `++  ##;   ++:  ####+        
+,.   +++  ##+   ##:  ++,  ##`   ###  `++  ###  .++  '#;           
+,####++'  +##++ ###+#+++` ##`   :####+++  `####++'  ;####++`      
+`####+;    ##++  ###+,++` ##`    ;###:++   `###+;   `###++++      
+                                                    ##   `++      
+                                                   .##   ;++      
+                                                    #####++`      
+                                                     `;;;.        
+
+************************************************************
+Stardog server 2.2.2 started on Thu Nov 06 16:41:23 GMT 2014.
+
+Stardog server is listening on all network interfaces.
+SNARL server available at snarl://localhost:5820.
+HTTP server available at http://localhost:5820.
+
+STARDOG_HOME=/Users/michele.pasin/Data/Stardog 
+
+LOG_FILE=/Users/michele.pasin/Data/Stardog/stardog.log
+
+
+[michele.pasin]@l5611:/Applications/stardog-2.2.2>stardog-admin db create -n myDB examples/data/University0_0.owl
+Bulk loading data to new database.
+Parsing triples: 100% complete in 00:00:00 (8.6K triples - 13.2K triples/sec)
+Parsing triples finished in 00:00:00.646
+Creating index: 100% complete in 00:00:00 (93.0K triples/sec)
+Creating index finished in 00:00:00.092
+Computing statistics: 100% complete in 00:00:00 (60.9K triples/sec)
+Computing statistics finished in 00:00:00.140
+Loading complete.
+Inserted 8,521 unique triples from 8,555 read triples in 00:00:01.050 at 8.1K triples/sec
+Bulk load complete.  Loaded 8,521 triples from 1 file(s) in 00:00:01 @ 8.4K triples/sec.
+
+Successfully created database 'myDB'.
+
+[michele.pasin]@Tartaruga:/Applications/stardog-2.2.2>stardog query myDB "SELECT DISTINCT ?s WHERE { ?s ?p ?o } LIMIT 10"
++--------------------------------------------------------+
+|                           s                            |
++--------------------------------------------------------+
+| tag:stardog:api:                                       |
+| http://www.University0.edu                             |
+| http://www.Department0.University0.edu                 |
+| http://www.Department0.University0.edu/FullProfessor0  |
+| http://www.Department0.University0.edu/Course0         |
+| http://www.Department0.University0.edu/GraduateCourse0 |
+| http://www.Department0.University0.edu/GraduateCourse1 |
+| http://www.University84.edu                            |
+| http://www.University875.edu                           |
+| http://www.University241.edu                           |
++--------------------------------------------------------+
+
+Query returned 10 results in 00:00:00.061
+</pre>
+<p>In the snippet above, I&#8217;ve just loaded the test dataset that comes with Stardog into the <span style="font-family:monospace;color:#000000; ">myDB</span> database, then queried it using the <span style="font-family:monospace;color:#000000; ">stardog query</span> command. </p>
+<p>There&#8217;s a <strong>fancy user interface</strong> too, which can be accessed by going to <span style="font-family:monospace;color:#000000; ">http://localhost:5820 </span>(note: by default, you can log in with usr/psw = admin).</p>
+<p><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/11/stardog1.png" alt="Stardog1" title="stardog1.png" border="0" width="900" height="596" /></p>
+<p><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/11/stardog2.png" alt="Stardog2" title="stardog2.png" border="0" width="900" height="647" /></p>
+<h3>4. Loading a big dataset</h3>
+<p>As in my <a href="http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/">previous post</a>, I&#8217;ve tried loading the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com&#8217;s legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>. The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that&#8217;s been published by NPG and Scientific American from 1845 till nowadays. The file size is <strong>~6 gigs</strong> so it&#8217;s not a huge dataset. Still, something big enough to pose a challenge to my macbook pro (8gigs RAM). </p>
+<p>First off, I tried loading the dataset via the command line by passing an extra argument when creating a new database: </p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+[michele.pasin]@Tartaruga:~/Downloads/NPGcitationsGraph/articles.2012-07-16>stardog-admin db create -n npgArticles articles.nq 
+Bulk loading data to new database.
+Parsing triples: 100% complete in 00:01:48 (10.1M triples - 93.3K triples/sec)
+Parsing triples finished in 00:01:48.678
+Creating index: 100% complete in 00:00:19 (525.1K triples/sec)
+Creating index finished in 00:00:19.311
+Computing statistics: 100% complete in 00:00:05 (1748.1K triples/sec)
+Computing statistics finished in 00:00:05.782
+Loading complete.
+Inserted 10,107,653 unique triples from 10,140,000 read triples in 00:02:16.178 at 74.5K triples/sec
+Bulk load complete.  Loaded 10,107,653 triples from 1 file(s) in 00:02:16 @ 74.3K triples/sec.
+
+Errors were encountered during loading:
+File: /Users/michele.pasin/Downloads/NPGcitationsGraph/articles.2012-07-16/articles.nq Message: '2000-13-01' is not a valid value for datatype http://www.w3.org/2001/XMLSchema#date [line 10144786]
+Successfully created database 'npgArticles'.
+
+</pre>
+<p>As you can see, that didn&#8217;t work as expected: only 10M out of the 40M triples were loaded, because of an <strong>XML parsing error</strong> the installer encountered. </p>
+<p>After some googling and pinging the mailing list, I discover that Stardog is actually right: the parsing error derives from the fact that <a href="http://www.w3.org/TR/xmlschema-2/#isoformats">valid values for XMLSchema#date are ISO8601 Dates</a>. My data contained an XML date <span style="font-family:monospace;color:#000000; ">2000-13-01</span> which is wrong &#8211; that should be <span style="font-family:monospace;color:#000000; ">2000-01-13</span> instead. </p>
+<p>What&#8217;s interesting is that I&#8217;ve previously managed to load the same dataset with other triple stores without any problems. <strong>How was that possible</strong>? </p>
+<p>The <a href="http://docs.stardog.com/using/#sd-Updating">online documentation</a> provides the answer: </p>
+<blockquote><p>RDF parsing in Stardog is strict: it requires typed RDF literals to match their explicit datatypes, URIs to be well-formed, etc. In some cases, strict parsing isn&#8217;t ideal, so it may be disabled using the <span style="font-family:monospace;color:#000000; ">&#8211;strict-parsing=FALSE</span> to disable it.</p></blockquote>
+<p>Also, from the <a href="https://groups.google.com/a/clarkparsia.com/forum/#!searchin/stardog/strict$20parsing/stardog/EiMLvJkN8MM/kELB3d3iC80J">mailing list</a>: </p>
+<blockquote><p>By default, if you say <span style="font-family:monospace;color:#000000; ">&#8220;1.5&#8221;^^xsd:int</span> or <span style="font-family:monospace;color:#000000; ">&#8220;twelve point four&#8221;^^xsd:float</span>, Stardog is going to complain.  While it&#8217;s perfectly legal to have that in RDF, you can run into trouble later on, particularly when doing query evaluation with filters that would handle those literal values where you will hit the dark corners of the SPARQL spec.
+</p></blockquote>
+<p>So, the way to load a (partially or potentially broken) dataset without having to worry about it too much is to use the <span style="font-family:monospace;color:#000000; ">strict.parsing=false</span> flag:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+>stardog-admin db create -o strict.parsing=false -n articlesNPG2 articles.nq
+Bulk loading data to new database.
+Parsing triples: 100% complete in 00:05:55 (39.4M triples - 110.7K triples/sec)
+Parsing triples finished in 00:05:55.643
+Creating index: 100% complete in 00:01:17 (510.7K triples/sec)
+Creating index finished in 00:01:17.122
+Computing statistics: 100% complete in 00:00:21 (1789.2K triples/sec)
+Computing statistics finished in 00:00:21.944
+Loading complete.
+Inserted 39,262,620 unique triples from 39,384,548 read triples in 00:07:51.402 at 83.5K triples/sec
+Bulk load complete.  Loaded 39,262,620 triples from 1 file(s) in 00:07:51 @ 83.3K triples/sec.
+
+Successfully created database 'articlesNPG2'.
+</pre>
+<p>Job done in around <strong>7 minutes</strong>!</p>
+<p>&nbsp;</p>
+<h4>Conclusion:</h4>
+<p>Extremely <strong>easy to install</strong>, <strong>efficient</strong> and packed with <strong>advanced features</strong> (inferencing and data-checking among the most useful ones imho). Also, as far as the UX and web interface goes, I doubt you can get any better than this with triplestores.</p>
+<p>It&#8217;s a commercial product, of course, so you may not expect anything less than that. However the community edition (which is free) allows for 10 databases &#038; 25M triples per db &#8211; which may be just fine for many projects. </p>
+<p>If we had more tools as accessible as this one, I do think rdf triplestores would have a much higher uptake by now!</p>
+<p>&nbsp;</p>
+<h3>5. Useful resources</h3>
+<p><strong>> Documentation</strong></p>
+<li><a href="http://docs.stardog.com/">http://docs.stardog.com/</a></li>
+<p><strong>> Mailing list</strong></p>
+<li><a href="https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog">https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog</a></li>
+<p><strong>> Python API</strong></p>
+<li>If you&#8217;re a <em>pythonista</em>, this small library can be useful: <a href="https://github.com/knorex/pystardog/wiki">https://github.com/knorex/pystardog/wiki</a></li>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2530</post-id>	</item>
+		<item>
+		<title>Installing ClioPatria triplestore on mac os</title>
+		<link>http://www.michelepasin.org/blog/2014/10/27/getting-started-with-a-triplestore-on-mac-os-cliopatria/</link>
+				<comments>http://www.michelepasin.org/blog/2014/10/27/getting-started-with-a-triplestore-on-mac-os-cliopatria/#comments</comments>
+				<pubDate>Mon, 27 Oct 2014 11:53:48 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[cliopatria]]></category>
+		<category><![CDATA[graph]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[triplestore]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2521</guid>
+				<description><![CDATA[ClioPatria is a &#8220;SWI-Prolog application that integrates SWI-Prolog&#8217;s the SWI-Prolog libraries for RDF and HTTP services into a ready to use (semantic) web server&#8221;. It is actively developed by the folks at the VU University of Amsterdam and is freely available online. While at a conference last week I saw a pretty cool demo (DIVE) [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>ClioPatria is a &#8220;<a href="http://www.swi-prolog.org/">SWI-Prolog</a> application that integrates SWI-Prolog&#8217;s the SWI-Prolog libraries for RDF and HTTP services into a ready to use (semantic) web server&#8221;. It is actively developed by the folks at the <a href="http://www.cs.vu.nl/en/index.asp">VU University of Amsterdam</a> and is <a href="">freely available online</a>.</p>
+<p>While at a conference last week I saw a pretty cool demo (<a href="http://dive.beeldengeluid.nl/">DIVE</a>) which, I later learned, is powered by the ClioPatria triplestore. So I thought I&#8217;d give it a try and by doing so write a follow up on my recent post on <a href="http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/">installing OWLIM on Mac OS</a>. </p>
+<h3>1. Requirements</h3>
+<p><strong>OSX</strong>: Mavericks 10.9.5<br />
+<strong>XCode</strong>: latest version <a href="https://developer.apple.com/xcode/downloads/">available from Apple</a><br />
+<strong>HOMEBREW</strong>: <span style="font-family:monospace;color:#000000; ">ruby -e &#8220;$(curl -fsSkL raw.github.com/mxcl/homebrew/go)&#8221;</span><br />
+<strong>Prolog</strong>: build it from source <a href="http://www.swi-prolog.org/build/macos.html">using brew</a>: <span style="font-family:monospace;color:#000000; ">brew install swi-prolog</span><br />
+<strong>ClioPatria</strong>: <span style="font-family:monospace;color:#000000; ">git clone https://github.com/ClioPatria/ClioPatria.git</span></p>
+<h3>2. Setting up</h3>
+<p>After you have downloaded and unpacked the archive, all you need to do is <a href="http://cliopatria.swi-prolog.org/help/source/doc/home/vnc/prolog/src/ClioPatria/web/help/CreateProject.html">start a new project</a> using the ClioPatria script. In short, this is done by creating a new directory and telling ClioPatria to <span style="font-family:monospace;color:#000000; ">configure</span> it as a project:</p>
+<p><span style="font-family:monospace;color:#000000; ">[michele.pasin]:~/Documents/ClioPatriaProjects/firstproject> ../path/to/ClioPatria/configure</span></p>
+<p>A bunch of files are created, including a script <span style="font-family:monospace;color:#000000; ">run.pl</span> which you can use later to run the server. </p>
+<h3>3. Running ClioPatria</h3>
+<p>I tried running the <span style="font-family:monospace;color:#000000; ">run.pl</span> as per documentation but that didn&#8217;t work: </p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+[michele.pasin]@Tartaruga:~/Documents/ClioPatriaProjects/firstproject>./run.pl 
+./run.pl: line 3: :-: command not found
+./run.pl: line 5: /Applications: is a directory
+./run.pl: line 6: This: command not found
+./run.pl: line 8: syntax error near unexpected token `('
+./run.pl: line 8: `    % ./configure			(Unix)'
+</pre>
+<p>According to a thread on stack overflow, the <a href="http://stackoverflow.com/questions/25467090/how-to-run-swi-prolog-from-the-command-line">Prolog shebang line isn&#8217;t interpreted correctly by OSx</a>, meaning that Mac OS doesn&#8217;t recognise that script as a Prolog program. </p>
+<p>That can be easily <strong>solved</strong> by calling the Prolog interpreter (<span style="font-family:monospace;color:#000000; ">swipl</span>) explicitly:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>[michele.pasin]@Tartaruga:~/Documents/ClioPatriaProjects/firstproject>swipl run.pl 
+ERROR: /Applications/-Other-Apps/8-Languages-IDEs/ClioPatria/rdfql/sparql_runtime.pl:1246:14: Syntax error: Operator expected
+% run.pl compiled 1.64 sec, 25,789 clauses
+% Started ClioPatria server at port 3020
+% You may access the server at http://tartaruga.local:3020/
+% Loaded 0 graphs (0 triples) in 0.00 sec. (0% CPU = 0.00 sec.)
+Welcome to SWI-Prolog (Multi-threaded, 64 bits, Version 6.6.6)
+Copyright (c) 1990-2013 University of Amsterdam, VU Amsterdam
+SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software,
+and you are welcome to redistribute it under certain conditions.
+Please visit http://www.swi-prolog.org for details. </pre>
+<p>You should be able to access the server with your browser on <strong>port 3020</strong> (ps: the previous command caused a syntax error too, but luckily that isn&#8217;t a game stopper).</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/cliopatria.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/cliopatria.png"  alt="Cliopatria" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<h4>First impression:</h4>
+<p>Super-easy to install, <strong>clean</strong> and <strong>intuitive</strong> user interface. I subsequently added a couple of RDF datasets and it all went very very smoothy. </p>
+<p>One cool feature is the fact that ClioPatria has a <a href="http://cliopatria.swi-prolog.org/help/source/doc/home/vnc/prolog/src/ClioPatria/web/help/cpack/index.txt">built-in package management system</a>, which allows you to easily install <strong>extensions</strong> to the application. For example what follows allows one to quickly extend the UI with a couple of &#8216;intelligent&#8217; SPARQL query interfaces (<a href="http://yasqe.yasgui.org/">Yasque</a> and <a href="http://openuplabs.tso.co.uk/demos/sparqleditor">Flint</a>): </p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+[michele.pasin]@Tartaruga:/Applications/ClioPatria>sudo git submodule update --init web/yasqe web/yasr
+Password:
+
+
+[michele.pasin]@Tartaruga:/Applications/ClioPatria>sudo git submodule update --init web/FlintSparqlEditor
+</pre>
+<p>&nbsp;</p>
+<h3>4. Loading a big dataset</h3>
+<p>As in my <a href="http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/">previous post</a>, I&#8217;ve tried loading the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com&#8217;s legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>. The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that&#8217;s been published by NPG and Scientific American from 1845 till nowadays. The file size is <strong>~6 gigs</strong> so it&#8217;s not a huge dataset. Still, something big enough to pose a challenge to my macbook pro (8gigs RAM). </p>
+<p>I used the <strong>web UI</strong> (&#8216;load local file&#8217;) to load the dataset but I quickly ran into a <strong>&#8216;not enough memory&#8217; error</strong>. Tried fiddling with the settings accessible via the web interface (<em>Stack limit</em>, <em>Time limit</em>), but that didn&#8217;t seem to do much.<br />
+So I <strong>increased the memory allocated to the Prolog process</strong> (more info <a href="http://www.swi-prolog.org/FAQ/StackSizes.html">here</a>) however this wasn&#8217;t enough since after around 20mins the whole thing crashed again due to an <em>out of memory</em> error. </p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>[michele.pasin]@Tartaruga:~/Documents/ClioPatriaProjects/firstproject>swipl -G6g run.pl</pre>
+<p>In the end I got in touch with the ClioPatria creators via the <a href="http://mailman.few.vu.nl/pipermail/cliopatria-list/">mailing list</a>: in their (incredibly fast) reply they suggested to <strong>load the dataset manually using the server Prolog console</strong>. You&#8217;d do that simply by using the <span style="font-family:monospace;color:#000000; ">rdf_load</span> command after starting the ClioPatria server (as shown above):</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+?- rdf_load('/Users/michele.pasin/Downloads/NPGcitationsGraph/articles.2012-07-16/articles.nq')
+|    .
+% Parsed "articles.nq" in 1149.71 sec; 0 triples
+</pre>
+<p><strong>That worked</strong>: the dataset was loaded in around 20 mins. Job done! </p>
+<p><strong>However</strong> when I tried to run some queries the application became very slow and ultimately <strong>not responding</strong> (especially with queries like trying to retrieve all named classes from the graph). I tried <strong>restarting the triplestore</strong>, and realised that  once you do that, ClioPatria begins by re-loading all repositories previously created &#8211; which, in the case of my 40M triples repo, would take around 10-15 minutes. </p>
+<p>After restarting the server, queries were a bit faster but in many cases still pretty slowish on my 8G ram laptop.</p>
+<p>&nbsp;</p>
+<h4>Conclusion:</h4>
+<p>I am sure there are many more things which could be optimised, however I&#8217;m no Prolog expert nor I could figure out where to start just based on the online documentation. So I kind of gave up on using it to work on large datasets on my macbook for now.</p>
+<p>On the other hand, I <strong>really liked</strong> ClioPatria&#8217;s intuitive and simple UI, its ease of installation and the fact you can perform operations transparently and interactively via a Prolog-console (assuming you know how to do that). </p>
+<p>All in all, ClioPatria seems to me a really good option if you want to get up and running quickly e.g. in order to prototype linked data applications or explore small to medium-sized RDF datasets (10M triples or so I guess). For bigger datasets, you better <a href="http://mac.appstorm.net/how-to/hardware-how-to/how-and-why-to-upgrade-your-macs-ram/">equip your mac</a> with a few gigs of extra RAM! </p>
+<h3>5. Useful resources</h3>
+<p><strong>> Whitepaper with technical analysis</strong></p>
+<li><a href="http://cliopatria.swi-prolog.org/help/whitepaper.html">http://cliopatria.swi-prolog.org/help/whitepaper.html</a></li>
+<p><strong>> Mailing list</strong></p>
+<li><a href="http://mailman.few.vu.nl/mailman/listinfo/cliopatria-list">http://mailman.few.vu.nl/mailman/listinfo/cliopatria-list</a></li>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2014/10/27/getting-started-with-a-triplestore-on-mac-os-cliopatria/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2521</post-id>	</item>
+		<item>
+		<title>Installing GraphDB (aka OWLIM) triplestore on mac os</title>
+		<link>http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/</link>
+				<pubDate>Thu, 16 Oct 2014 19:05:38 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[graph]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[sparql]]></category>
+		<category><![CDATA[triplestore]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2507</guid>
+				<description><![CDATA[GraphDB (formerly called OWLIM) is an RDF triplestore which is used &#8211; among others &#8211; by large organisations like the BBC or the British Museum. I&#8217;ve recently installed the LITE release of this graph database on my mac, so what follows is a simple write up of the steps that worked for me. Haven&#8217;t played [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://www.ontotext.com/products/ontotext-graphdb/">GraphDB</a> (formerly called OWLIM) is an RDF triplestore which is used &#8211; among others &#8211; by large organisations like the <a href="http://www.ontotext.com/customers/">BBC or the British Museum</a>. I&#8217;ve recently installed the LITE release of this graph database on my mac, so what follows is a simple write up of the steps that worked for me. </p>
+<p>Haven&#8217;t played much with the database yet, but all in all, the installation was much simpler than expected (ps: this old <a href="https://code.google.com/p/sgvizler/wiki/HowTo_MacOWLIMLiteTomcat7Apache">recipe on google code</a> was very helpful in steering me in the right direction with the whole Tomcat/Java setup).</p>
+<h3>1. Requirements</h3>
+<p><strong>OSX</strong>: Mavericks 10.9.5<br />
+<strong>XCode</strong>: latest version <a href="https://developer.apple.com/xcode/downloads/">available from Apple</a><br />
+<strong>HOMEBREW</strong>: <span style="font-family:monospace;color:#000000; ">ruby -e &#8220;$(curl -fsSkL raw.github.com/mxcl/homebrew/go)&#8221;</span><br />
+<strong>Tomcat7</strong>: <span style="font-family:monospace;color:#000000; ">brew install tomcat</span><br />
+<strong>JAVA</strong>: available <a href="http://support.apple.com/kb/dl1572">from Apple</a> </p>
+<p>Finally &#8211; we obviously want to get a copy of <strong>OWLIM-Lite</strong> too: <a href="http://www.ontotext.com/owlim/downloads">http://www.ontotext.com/owlim/downloads</a></p>
+<h3>2. Setting up</h3>
+<p>After you have downloaded and unpacked the archive, you must simply <strong>copy</strong> these two files:</p>
+<p><span style="font-family:monospace;color:#000000; ">owlim-lite/sesame_owlim/openrdf-sesame.war </span><br />
+<span style="font-family:monospace;color:#000000; ">owlim-lite/sesame_owlim/openrdf-workbench.war </span></p>
+<p>..to the Tomcat <span style="font-family:monospace;color:#000000; ">webapps</span> folder:</p>
+<p><span style="font-family:monospace;color:#000000; ">/usr/local/Cellar/tomcat/7.0.29/libexec/webapps/ </span></p>
+<p>Essentially that&#8217;s because OWLIM-Lite is packaged as a storage and inference layer for the <a href="http://rdf4j.org/">Sesame RDF framework</a>, which runs here as a component within the <a href="http://tomcat.apache.org/">Tomcat</a> server (note: there are <a href="https://confluence.ontotext.com/display/OWLIMv53/OWLIM-Lite+Installation#OWLIM-LiteInstallation-Usefulinformation">other ways to run OWLIM</a>, but this one seemed the quickest).</p>
+<h3>3. Starting Tomcat</h3>
+<p>First I created a symbolic link in my <span style="font-family:monospace;color:#000000; ">~/Library</span> folder, so to better manage new versions (as suggested <a href="http://wolfpaulus.com/jounal/mac/tomcat7">here</a>).</p>
+<p><span style="font-family:monospace;color:#000000; ">sudo ln -s /usr/local/Cellar/tomcat/7.0.39 ~/Library/Tomcat</span></p>
+<p>Then in order to start/stop Tomcat it&#8217;s enough to use the <span style="font-family:monospace;color:#000000; ">catalina</span> command:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+[michele.pasin]@here:~/Library/Tomcat/bin>./catalina start
+Using CATALINA_BASE:   /usr/local/Cellar/tomcat/7.0.39/libexec
+Using CATALINA_HOME:   /usr/local/Cellar/tomcat/7.0.39/libexec
+Using CATALINA_TMPDIR: /usr/local/Cellar/tomcat/7.0.39/libexec/temp
+Using JRE_HOME:        /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+Using CLASSPATH:       /usr/local/Cellar/tomcat/7.0.39/libexec/bin/bootstrap.jar:/usr/local/Cellar/tomcat/7.0.39/libexec/bin/tomcat-juli.jar
+
+[michele.pasin]@here:~/Library/Tomcat/bin>./catalina stop
+Using CATALINA_BASE:   /usr/local/Cellar/tomcat/7.0.39/libexec
+Using CATALINA_HOME:   /usr/local/Cellar/tomcat/7.0.39/libexec
+Using CATALINA_TMPDIR: /usr/local/Cellar/tomcat/7.0.39/libexec/temp
+Using JRE_HOME:        /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+Using CLASSPATH:       /usr/local/Cellar/tomcat/7.0.39/libexec/bin/bootstrap.jar:/usr/local/Cellar/tomcat/7.0.39/libexec/bin/tomcat-juli.jar
+</pre>
+<blockquote><p>Tip: Tomcat runs by default on port 8080. That can be changed pretty easily by modifying a parameter in <span style="font-family:monospace;color:#000000; ">server.xml</span> in <span style="font-family:monospace;color:#000000; ">{Tomcat installation folder}/libexec/conf/</span> more <a href="http://www.mkyong.com/tomcat/how-to-change-tomcat-default-port/">details here</a>.
+</p></blockquote>
+<p>&nbsp;</p>
+<h3>4. Testing the Graph database</h3>
+<p>Start a browser and go to the Workbench Web application using a URL of this form: <span style="font-family:monospace;color:#000000; ">http://localhost:8080/openrdf-workbench/</span> (substituting localhost and the 8080 port number as appropriate). You should see something like this:</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/SesameWorkbench.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/SesameWorkbench.png"  alt="SesameWorkbench" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p>After selecting a server, click ‘New repository’.</p>
+<p>Select ‘<strong>OWLIM-Lite</strong>’ from the drop-down and enter the repository ID and description. Then click ‘next’.</p>
+<p>Fill in the fields as required and click ‘create’.</p>
+<p>That&#8217;s it! A message should be displayed that gives details of the new repository and this should also appear in the repository list (click ‘repositories’ to see this).</p>
+<h3>5. Loading a big dataset</h3>
+<p>I&#8217;ve set out to load the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com&#8217;s legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>.</p>
+<p>The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that&#8217;s been published by NPG and Scientific American from 1845 till nowadays. The file size is <strong>~6 gigs</strong> so it&#8217;s not a huge dataset. Still, something big enough to pose a challenge to my macbook pro (8gigs RAM). </p>
+<p>First, I <strong>increased the memory</strong> allocated to the Tomcat application to 5G. It was enough to create a <span style="font-family:monospace;color:#000000; ">setenv.sh</span> file in the <span style="font-family:monospace;color:#000000; ">${tomcat-folder}\bin\</span> folder. The file contains this line: </p>
+<p><span style="font-family:monospace;color:#000000; ">CATALINA_OPTS=&#8221;$CATALINA_OPTS -server -Xms5g -Xmx5g&#8221;</span></p>
+<blockquote><p>More details on Tomcat&#8217;s and Java memory issues are<a href="http://www.mkyong.com/tomcat/tomcat-javalangoutofmemoryerror-permgen-space/"> available here</a>.</p></blockquote>
+<p>Then I used OWLIM&#8217;s <strong>web interface</strong> to create a new graph repository and upload the dataset file into it (I previously downloaded a copy of the dataset to my computer so to work with local files only). </p>
+<p>It took around 10 minutes for the application to upload the file into the triplestore, and 2-3 minutes for OWLIM to process it. <strong>Much much faster than what I expected</strong>. Only minor issue, the lack of notifications (in the UI) of what was going on. Not a big deal in my case, but with larger dataset uploads it might be a potential downer. </p>
+<p>Note: I used the web form to upload the dataset, but there are also <a href="http://answers.ontotext.com/questions/1045/archive-loading-a-large-triple-store-using-owlim-se">ways to do that from the command line</a> (which will probably result in even faster uploads).</p>
+<h3>6. Useful information</h3>
+<p><strong>> Sparql endpoints</strong></p>
+<p>All of your repositories come also with a handy SPARQL endpoint, which is available at this url: <span style="font-family:monospace;color:#000000; ">http://localhost:8080/openrdf-sesame/repositories/test1</span> (just change the last bit so that it matches your repository name).</p>
+<p><strong>> Official documentation</strong></p>
+<li><a href="https://confluence.ontotext.com/display/GraphDB6/">https://confluence.ontotext.com/display/GraphDB6</a></li>
+<p><strong>> Ontotext&#8217;s Q&#038;A forum</strong></p>
+<li><a href="http://answers.ontotext.com">http://answers.ontotext.com</a></li>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2507</post-id>	</item>
+		<item>
+		<title>RDF programming with AllegroCL and AllegroGraph</title>
+		<link>http://www.michelepasin.org/blog/2011/04/14/allegro-cl-graph/</link>
+				<pubDate>Thu, 14 Apr 2011 14:19:46 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[ide]]></category>
+		<category><![CDATA[lisp]]></category>
+		<category><![CDATA[triplestore]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1274</guid>
+				<description><![CDATA[Allegro Common Lisp (wikipedia) is a commercial implementation of the Common Lisp programming language developed by Franz Inc. Allegro CL provides the full ANSI Common Lisp standard &#8211; but more interestingly for me, it also provides a very comprehensive suite of tools for semantic web programming. So I decided to give it a go, in [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Allegro Common Lisp (<a href="http://en.wikipedia.org/wiki/Allegro_Common_Lisp">wikipedia</a>) is a commercial implementation of the <a href="http://en.wikipedia.org/wiki/Common_Lisp">Common Lisp</a> programming language developed by <a href="http://www.franz.com/">Franz Inc</a>. Allegro CL provides the full ANSI Common Lisp standard &#8211; but more interestingly for me, it also provides a very comprehensive suite of tools for semantic web programming. So I decided to give it a go, in what follows I just put together some notes on how to get started quickly.</p>
+<p>Franz Inc. offers a whole bunch of semantic technologies, including: </p>
+<li><strong>AllegroCL</strong>: a Common <strong>Lisp implementation </strong>(<a href="http://www.franz.com/products/allegro-common-lisp/">homepage</a> | <a href="http://www.franz.com/downloads/clp/validate_survey">install</a> | <a href="http://www.franz.com/support/faq//">faq</a> | <a href="http://www.franz.com/support/documentation/8.2/doc/introduction.htm">documentation</a>) described as the &#8220;<em>most powerful dynamic object-oriented development system available today</em>&#8220;. It runs on all major operating systems, and it includes a cross-platform GUI too (which is not always the case for Lisp implementations!).</li>
+<li><strong>AllegroGraph</strong>: (<a href="http://www.franz.com/agraph/allegrograph/">home</a> | <a href="http://www.franz.com/agraph/support/documentation/v4/agraph-introduction.html">docs</a> | <a href="http://www.franz.com/agraph/downloads/">install</a>) this is a high-performance, persistent RDF <strong>triplestore</strong>. It allegedly can &#8220;<em>scale to billions of triples while maintaining superior performance</em>&#8221; and supports SPARQL, RDFS++, and Prolog reasoning from numerous client applications (python too, as discussed in a <a href="http://www.michelepasin.org/blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/">previous post</a>).</li>
+<li><strong>AllegroCache</strong>: (<a href="http://www.franz.com/products/allegrocache/">home</a> | <a href="http://www.franz.com/products/allegrocache/acache_docs.lhtml">docs</a> | <a href="http://www.franz.com/products/allegrocache/download/dist/download">install</a>) this is a dynamic object caching <strong>database</strong> system. It allows programmers to work directly with objects as if they were in memory while in fact the object data is always stored persistently. It supports a full transaction model with long and short transactions, and meets the classic ACID requirements for a reliable and robust database. </li>
+<li><strong>Gruff</strong>: (<a href="http://www.franz.com/agraph/gruff/">home</a> | <a href="http://www.franz.com/agraph/gruff/gruff_documentation.html">docs</a> | <a href="http://www.franz.com/agraph/gruff/index.lhtml#download">install</a>) is an rdf <strong>graphical browser</strong> that attempts to make data retrieval more pleasant and powerful with a variety of tools for laying out cyclical graphs, displaying tables of properties, managing queries, and building queries as visual diagrams (btw thanks to <a href="http://twitter.com/mr56k">Matteo</a> for mentioning Gruff to me!)</li>
+<h3>Installing AllegroCL</h3>
+<p>The <strong>good news</strong> is that if you follow the installation instructions for AllegroCL, this will include also AllegroGraph and AllegroCache. Long story short, I was able to get started with this environment <em>surprisingly</em> quickly. The <a href="http://www.franz.com/downloads/clp/validate_survey">installation</a> on OSX involves only two steps (after filling out a form): getting the GTK+ framework (a <a href="http://en.wikipedia.org/wiki/GTK%2B">cross-platform graphical toolkit</a>) and then downloading the Lisp image. Double-click, install, and et-voila&#8217; you&#8217;re done with it.</p>
+<p>Here&#8217;s how the Lisp IDE looks like: </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.46.491.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.46.491.png" alt="Screen shot 2011 04 14 at 13 46 49" border="0" width="400" height="300" /></a></p>
+<p>The IDE includes also an integrated patches-loading tool, which you should run straightaway to get the latest versions of several libraries needed by AllegroCL (wonder whether it&#8217;s <em>that</em> easy to install all the standard Lisp packages too..):</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.31.431.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.31.431.png" alt="Screen shot 2011 04 14 at 13 31 43" border="0" width="400" height="300" /></a></p>
+<p>Finally, in order to run AllegroGraph too it&#8217;s necessary to invoke an update command manually, which is easily done:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow:auto;'>CG-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>3</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>SYSTEM.UPDATE:INSTALL-ALLEGROGRAPH</span><span style='color:#308080; '>)</span>
+Checking available AllegroGraph versions<span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span>
+Making temporary directory <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>/tmp/tempa18825120705a/</span><span style='color:#308080; '>)</span>
+Retrieving agraph-<span style='color:#008000; '>3.3</span>-acl8<span style='color:#308080; '>.</span><span style='color:#008c00; '>2</span>-macosx86<span style='color:#308080; '>.</span>tgz into temporary directory
+Extracting tar archive <span style='color:#308080; '>/</span>tmp<span style='color:#308080; '>/</span>tempa18825120705a<span style='color:#308080; '>/</span>agraph-<span style='color:#008000; '>3.3</span>-acl8<span style='color:#308080; '>.</span><span style='color:#008c00; '>2</span>-macosx86<span style='color:#308080; '>.</span>tgz
+Installing <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>code<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>.</span>fasl
+Installing <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span>
+
+*********************
+
+To use the newly downloaded AllegroGraph you can load it by
+evaluating the following forms<span style='color:#400000; '>:</span>
+
+  <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>REQUIRE</span> <span style='color:#400000; '>:AGRAPH</span><span style='color:#308080; '>)</span>
+
+Ancillary files are located in ``<span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#406080; '>'</span><span style='color:#406080; '>'</span><span style='color:#308080; '>.</span>
+</pre>
+<h3>Installing Gruff</h3>
+<p>I also downloaded <a href="http://www.franz.com/agraph/gruff/">Gruff</a> and ran it. Again, on OSx the whole process was very very straightforward. I loaded up an ontology stored in an RDF/XML file and here&#8217;s the result:</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-14.18.561.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-14.18.561.png" alt="Screen shot 2011 04 14 at 14 18 56" border="0" width="400" height="300" /></a></p>
+<p>Very very impressive &#8211; that&#8217;s my conclusion. <a href="http://www.franz.com/agraph/gruff/">Gruff</a> offers plenty of features for viewing and also editing the rdf graph (check out the <a href="http://www.franz.com/agraph/gruff/index.lhtml#download">video tutorials on the homepage</a>); with a little practice, I think it wouldn&#8217;t be that difficult to use it for creating rdf models by hand (eg as an alternative to tools like Protege). The main advantage in my view is that it&#8217;s highly interactive: being able to switch very quickly from a graph-view to a tabular one is extremely practical when inspecting or creating an rdf model.</p>
+<h3>Time to write some code</h3>
+<p>Haven&#8217;t been writing Lisp in a while, but since we&#8217;ve got till here it would be a shame not to get our hands dirty a little, right?</p>
+<li><strong>Tip</strong>: a nice folk named <a href="http://www.markwatson.com/">Mark Watson</a> has written a couple of books that show how to use Allegro Graph, and he&#8217;s making them available for free on his website (thanks!). Check them out: <a href="http://www.markwatson.com/opencontent/book_lisp.pdf">Practical Semantic Web and Linked Data Applications, Common Lisp Edition</a>, and <a href="http://www.markwatson.com/opencontent/book_java.pdf">Practical Semantic Web and Linked Data Applications, Java, Scala, Clojure, and JRuby Edition</a> </li>
+<p>I had a quick look at the first book mentioned (&#8220;<em>Practical Semantic Web and Linked Data Applications, Common Lisp Edition</em>&#8220;), and tried to follow the examples presented. Here&#8217;s the result..</p>
+<p>First, let&#8217;s load up AllegroGraph from AllegroCL and set up a Lisp reader macro (named &#8216;!&#8217;) that makes it easier to enter URIs and literals: </p>
+<pre style='color:#000020;background:#f6f8ff; overflow:auto; height:300px;'>CG-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>2</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>REQUIRE</span> <span style='color:#400000; '>:AGRAPH</span><span style='color:#308080; '>)</span>
+<span style='color:#595979; '>; Fast loading /Applications/AllegroCL/code/AGRAPH.fasl</span>
+<span style='color:#595979; '>;   Fast loading</span>
+<span style='color:#595979; '>;      /Applications/AllegroCL/code/acache-2.1.12.fasl</span>
+AllegroCache version <span style='color:#008000; '>2.1</span><span style='color:#308080; '>.</span><span style='color:#008c00; '>12</span>
+<span style='color:#595979; '>;     Fast loading /Applications/AllegroCL/code/SAX.001</span>
+<span style='color:#595979; '>;;; Installing sax patch, version 1.</span>
+<span style='color:#595979; '>;       Fast loading from bundle code/ef-e-anynl.fasl.</span>
+<span style='color:#595979; '>;         Fast loading from bundle code/ef-e-crlf.fasl.</span>
+<span style='color:#595979; '>;         Fast loading from bundle code/ef-e-cr.fasl.</span>
+<span style='color:#595979; '>;   Fast loading from bundle code/streamp.fasl.</span>
+<span style='color:#595979; '>;   Fast loading /Applications/AllegroCL/code/ACLRPC.fasl</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>pim001<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+<span style='color:#595979; '>;   Fast loading /Applications/AllegroCL/code/PROLOG.001</span>
+<span style='color:#595979; '>;;; Installing prolog patch, version 1.</span>
+<span style='color:#595979; '>;   Fast loading /Applications/AllegroCL/code/DATETIME.001</span>
+<span style='color:#595979; '>;;; Installing datetime patch, version 1.</span>
+<span style='color:#595979; '>;   Fast loading /Applications/AllegroCL/code/streamc.002</span>
+<span style='color:#595979; '>;;; Installing streamc patch, version 2.</span>
+<span style='color:#595979; '>;     Fast loading from bundle code/efft-utf8-base.fasl.</span>
+<span style='color:#595979; '>;     Fast loading from bundle code/efft-void.fasl.</span>
+<span style='color:#595979; '>;     Fast loading from bundle code/efft-latin1-base.fasl.</span>
+<span style='color:#595979; '>;   Fast loading from bundle code/streamm.fasl.</span>
+<span style='color:#595979; '>;   Fast loading from bundle code/ef-e-crcrlf.fasl.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio001<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio002<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio003<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio004<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio005<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio006<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio007<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio008<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio009<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio010<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio011<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio012<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio013<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio014<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio015<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio016<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio017<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio018<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio019<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+AllegroGraph Lisp Edition <span style='color:#008000; '>3.3</span> <span style='color:#308080; '>[</span>built on February <span style='color:#008c00; '>17</span><span style='color:#0066ee; '>,</span> <span style='color:#008c00; '>2010</span> <span style='color:#008c00; '>13</span><span style='color:#400000; '>:53</span><span style='color:#400000; '>:35</span> GMT-<span style='color:#008c00; '>0800</span><span style='color:#308080; '>]</span>
+Copyright <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>c</span><span style='color:#308080; '>)</span> <span style='color:#008c00; '>2005</span>-<span style='color:#008c00; '>2010</span> Franz Inc<span style='color:#308080; '>.</span>  All Rights Reserved<span style='color:#308080; '>.</span>
+AllegroGraph contains patent-pending technology<span style='color:#308080; '>.</span>
+With patches<span style='color:#400000; '>:</span> io001<span style='color:#0066ee; '>,</span> io002<span style='color:#0066ee; '>,</span> io003<span style='color:#0066ee; '>,</span> io004<span style='color:#0066ee; '>,</span> io005<span style='color:#0066ee; '>,</span> io996<span style='color:#0066ee; '>,</span> io007<span style='color:#0066ee; '>,</span> io008<span style='color:#0066ee; '>,</span> io009<span style='color:#0066ee; '>,</span> io010<span style='color:#0066ee; '>,</span> io011<span style='color:#0066ee; '>,</span> io012<span style='color:#0066ee; '>,</span> io013<span style='color:#0066ee; '>,</span> io014<span style='color:#0066ee; '>,</span> io015<span style='color:#0066ee; '>,</span> io016<span style='color:#0066ee; '>,</span> io017<span style='color:#0066ee; '>,</span> io018<span style='color:#0066ee; '>,</span> io019<span style='color:#308080; '>.</span>
+<span style='color:#7d0045; '>T</span>
+CG-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>3</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>in-package</span> <span style='color:#400000; '>:db</span><span style='color:#308080; '>.</span>agraph<span style='color:#308080; '>.</span>user<span style='color:#308080; '>)</span>
+#<span style='color:#308080; '>&lt;</span>The DB<span style='color:#308080; '>.</span>AGRAPH<span style='color:#308080; '>.</span>USER package<span style='color:#308080; '>></span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>4</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>enable-!-reader</span><span style='color:#308080; '>)</span>
+#<span style='color:#308080; '>&lt;</span>Function READ-TOKEN<span style='color:#308080; '>></span>
+<span style='color:#7d0045; '>T</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>5</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>enable-print-decoded</span> <span style='color:#7d0045; '>t</span><span style='color:#308080; '>)</span>
+<span style='color:#7d0045; '>T</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>6</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:display-namespaces</span><span style='color:#308080; '>)</span>
+rdfs <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2000</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>01</span><span style='color:#308080; '>/</span>rdf-schema#
+err <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2005</span><span style='color:#308080; '>/</span>xqt-errors#
+fn <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2005</span><span style='color:#308080; '>/</span>xpath-functions#
+rdf <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>1999</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>02</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>22</span>-rdf-syntax-ns#
+xs <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2001</span><span style='color:#308080; '>/</span>XMLSchema#
+xsd <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2001</span><span style='color:#308080; '>/</span>XMLSchema#
+owl <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2002</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>07</span><span style='color:#308080; '>/</span>owl#
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>9</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>!</span>rdfs<span style='color:#400000; '>:class</span>
+<span style='color:#308080; '>!</span>rdfs<span style='color:#400000; '>:class</span>
+</pre>
+<p>Next thing, we want to <strong>create a local triplestore</strong>, <strong>register</strong> a dummy <strong>namespace</strong> and <strong>add</strong> a couple of <strong>triples</strong> to it. Finally, we <strong>dump</strong> the whole triplestore in a <strong>file</strong>.</p>
+<pre style='color:#000020;background:#f6f8ff; overflow:auto;'>TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>10</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:create-triple-store</span> <span style='color:#1060b6; '>"~/tmp/rdfstore_1"</span><span style='color:#308080; '>)</span>
+#<span style='color:#308080; '>&lt;</span>DB<span style='color:#308080; '>.</span>AGRAPH<span style='color:#400000; '>:</span><span style='color:#400000; '>:TRIPLE-DB</span> <span style='color:#308080; '>/</span>Users<span style='color:#308080; '>/</span>mac<span style='color:#308080; '>/</span>tmp<span style='color:#308080; '>/</span>rdfstore_1<span style='color:#0066ee; '>,</span> open @ #x21dfc80a<span style='color:#308080; '>></span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>11</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>register-namespace</span> <span style='color:#1060b6; '>"kb"</span> <span style='color:#1060b6; '>"http://michelepasin.org/rdfs#"</span><span style='color:#308080; '>)</span>
+<span style='color:#1060b6; '>"http://michelepasin.org/rdfs#"</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>12</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:display-namespaces</span><span style='color:#308080; '>)</span>
+rdfs <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2000</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>01</span><span style='color:#308080; '>/</span>rdf-schema#
+err <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2005</span><span style='color:#308080; '>/</span>xqt-errors#
+fn <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2005</span><span style='color:#308080; '>/</span>xpath-functions#
+rdf <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>1999</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>02</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>22</span>-rdf-syntax-ns#
+xs <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2001</span><span style='color:#308080; '>/</span>XMLSchema#
+xsd <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2001</span><span style='color:#308080; '>/</span>XMLSchema#
+owl <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2002</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>07</span><span style='color:#308080; '>/</span>owl#
+kb <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>rdfs#
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>13</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>defvar</span> *doc1* <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>resource</span> <span style='color:#1060b6; '>"http://www.michelepasin.org/research/"</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span>
+*DOC1*
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>14</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> *doc1*
+<span style='color:#308080; '>!</span><span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>research<span style='color:#308080; '>/</span><span style='color:#308080; '>></span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>15</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:add-triple</span> *doc1* <span style='color:#308080; '>!</span>rdf<span style='color:#400000; '>:type</span> <span style='color:#308080; '>!</span>kb<span style='color:#400000; '>:article</span><span style='color:#308080; '>)</span>
+<span style='color:#008c00; '>1</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>16</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:add-triple</span> *doc1* <span style='color:#308080; '>!</span>rdf<span style='color:#400000; '>:comment</span> <span style='color:#308080; '>!</span><span style='color:#1060b6; '>"what a wonderful book"</span><span style='color:#308080; '>)</span>
+<span style='color:#008c00; '>2</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>17</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:get-triples-list</span><span style='color:#308080; '>)</span>
+<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>&lt;</span> type article<span style='color:#308080; '>></span> <span style='color:#308080; '>&lt;</span> comment what a wonderful book<span style='color:#308080; '>></span><span style='color:#308080; '>)</span>
+<span style='color:#7d0045; '>NIL</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>18</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>print-triples</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:get-triples-list</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span>
+<span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>research<span style='color:#308080; '>/</span><span style='color:#308080; '>></span> <span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>1999</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>02</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>22</span>-rdf-syntax-ns#type<span style='color:#308080; '>></span> <span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>rdfs#article<span style='color:#308080; '>></span> <span style='color:#308080; '>.</span>
+<span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>research<span style='color:#308080; '>/</span><span style='color:#308080; '>></span> <span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>1999</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>02</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>22</span>-rdf-syntax-ns#comment<span style='color:#308080; '>></span> <span style='color:#1060b6; '>"what a wonderful book"</span> <span style='color:#308080; '>.</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>19</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>with-open-file</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>output</span> <span style='color:#1060b6; '>"~/tmp/testoutput"</span> <span style='color:#400000; '>:direction</span> <span style='color:#400000; '>:output</span> <span style='color:#400000; '>:if-does-not-exist</span> <span style='color:#400000; '>:create</span><span style='color:#308080; '>)</span>
+<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>print-triples</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:get-triples-list</span><span style='color:#308080; '>)</span> <span style='color:#400000; '>:stream</span> output <span style='color:#400000; '>:format</span> <span style='color:#400000; '>:ntriple</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span>
+</pre>
+<p>If we open the contents of the newly created &#8220;~/tmp/testoutput&#8221; file, here&#8217;s what we would find:</p>
+<pre style='color:#000000;background:#f1f0f0; overflow:auto;'><span style='color:#806030; '>&lt;</span>http<span style='color:#806030; '>:</span><span style='color:#806030; '>/</span><span style='color:#806030; '>/</span>www<span style='color:#806030; '>.</span>michelepasin<span style='color:#806030; '>.</span>org<span style='color:#806030; '>/</span>research<span style='color:#806030; '>/</span><span style='color:#806030; '>></span>
+    <span style='color:#806030; '>&lt;</span>http<span style='color:#806030; '>:</span><span style='color:#806030; '>/</span><span style='color:#806030; '>/</span>www<span style='color:#806030; '>.</span>w3<span style='color:#806030; '>.</span>org<span style='color:#806030; '>/</span><span style='color:#c00000; '>1999</span><span style='color:#806030; '>/</span><span style='color:#c00000; '>02</span><span style='color:#806030; '>/</span><span style='color:#c00000; '>22</span><span style='color:#806030; '>-</span>rdf<span style='color:#806030; '>-</span>syntax<span style='color:#806030; '>-</span>ns<span style='color:#c34e00; '>#type> </span>
+        <span style='color:#806030; '>&lt;</span>http<span style='color:#806030; '>:</span><span style='color:#806030; '>/</span><span style='color:#806030; '>/</span>michelepasin<span style='color:#806030; '>.</span>org<span style='color:#806030; '>/</span>rdfs<span style='color:#c34e00; '>#article> .</span>
+<span style='color:#806030; '>&lt;</span>http<span style='color:#806030; '>:</span><span style='color:#806030; '>/</span><span style='color:#806030; '>/</span>www<span style='color:#806030; '>.</span>michelepasin<span style='color:#806030; '>.</span>org<span style='color:#806030; '>/</span>research<span style='color:#806030; '>/</span><span style='color:#806030; '>></span>
+    <span style='color:#806030; '>&lt;</span>http<span style='color:#806030; '>:</span><span style='color:#806030; '>/</span><span style='color:#806030; '>/</span>www<span style='color:#806030; '>.</span>w3<span style='color:#806030; '>.</span>org<span style='color:#806030; '>/</span><span style='color:#c00000; '>1999</span><span style='color:#806030; '>/</span><span style='color:#c00000; '>02</span><span style='color:#806030; '>/</span><span style='color:#c00000; '>22</span><span style='color:#806030; '>-</span>rdf<span style='color:#806030; '>-</span>syntax<span style='color:#806030; '>-</span>ns<span style='color:#c34e00; '>#comment> </span>
+        <span style='color:#e60000; '>"what a wonderful book"</span> <span style='color:#806030; '>.</span>
+</pre>
+<p>Finally, let&#8217;s use <a href="http://www.xml.com/pub/a/2005/11/16/introducing-sparql-querying-semantic-web-tutorial.html?page=1">SPARQL</a> to launch a (quite dumb) query that retrieves all triples from the triplestore :</p>
+<pre style='color:#000020;background:#f6f8ff; overflow:auto; height:400px;'>TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>53</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>sparql:run-sparql</span> 
+ " PREFIX kb<span style='color:#400000; '>:</span> <span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>research#<span style='color:#308080; '>></span> 
+   SELECT <span style='color:#308080; '>?</span>article_uri <span style='color:#308080; '>?</span>pred <span style='color:#308080; '>?</span>obj WHERE <span style='color:#308080; '>{</span>
+   <span style='color:#308080; '>?</span>article_uri <span style='color:#308080; '>?</span>pred <span style='color:#308080; '>?</span>obj <span style='color:#308080; '>.</span> 
+   <span style='color:#308080; '>}</span>"
+ <span style='color:#308080; '>)</span>
+<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>?</span>xml version<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"1.0"</span><span style='color:#308080; '>?</span><span style='color:#308080; '>></span>
+<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>!</span>-- Generated by AllegroGraph <span style='color:#008000; '>3.3</span> --<span style='color:#308080; '>></span>
+<span style='color:#308080; '>&lt;</span>sparql xmlns<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://www.w3.org/2005/sparql-results#"</span><span style='color:#308080; '>></span>
+  <span style='color:#308080; '>&lt;</span>head<span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span>variable name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"article_uri"</span><span style='color:#308080; '>/</span><span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span>variable name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"pred"</span><span style='color:#308080; '>/</span><span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span>variable name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"obj"</span><span style='color:#308080; '>/</span><span style='color:#308080; '>></span>
+  <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>head<span style='color:#308080; '>></span>
+  <span style='color:#308080; '>&lt;</span>results<span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span>result<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span>binding name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"article_uri"</span><span style='color:#308080; '>></span>
+        <span style='color:#308080; '>&lt;</span>uri<span style='color:#308080; '>></span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>research<span style='color:#308080; '>/</span><span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>uri<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>binding<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span>binding name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"pred"</span><span style='color:#308080; '>></span>
+        <span style='color:#308080; '>&lt;</span>uri<span style='color:#308080; '>></span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>1999</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>02</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>22</span>-rdf-syntax-ns#type<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>uri<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>binding<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span>binding name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"obj"</span><span style='color:#308080; '>></span>
+        <span style='color:#308080; '>&lt;</span>uri<span style='color:#308080; '>></span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>rdfs#article<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>uri<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>binding<span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>result<span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span>result<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span>binding name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"article_uri"</span><span style='color:#308080; '>></span>
+        <span style='color:#308080; '>&lt;</span>uri<span style='color:#308080; '>></span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>research<span style='color:#308080; '>/</span><span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>uri<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>binding<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span>binding name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"pred"</span><span style='color:#308080; '>></span>
+        <span style='color:#308080; '>&lt;</span>uri<span style='color:#308080; '>></span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>1999</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>02</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>22</span>-rdf-syntax-ns#comment<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>uri<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>binding<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span>binding name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"obj"</span><span style='color:#308080; '>></span>
+        <span style='color:#308080; '>&lt;</span>literal<span style='color:#308080; '>></span>what a wonderful book<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>literal<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>binding<span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>result<span style='color:#308080; '>></span>
+  <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>results<span style='color:#308080; '>></span>
+<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>sparql<span style='color:#308080; '>></span>
+<span style='color:#7d0045; '>T</span>
+<span style='color:#400000; '>:SELECT</span>
+<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>|?article_uri|</span> <span style='color:#308080; '>|</span><span style='color:#308080; '>?</span>pred<span style='color:#308080; '>|</span> <span style='color:#308080; '>|</span><span style='color:#308080; '>?</span>obj<span style='color:#308080; '>|</span><span style='color:#308080; '>)</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>54</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span>
+</pre>
+<p>That&#8217;s all for now; this is enough to get started with Allegro-CL and the semantic web programming libraries it contains. </p>
+<p>Mind that I&#8217;ve only scratched the surface here, there&#8217;s <strong>lots and lots more</strong> that can be done with this environment. If you want to explore these topics further make sure you have a look at <a href="http://www.markwatson.com/opencontent/book_lisp.pdf">Watson&#8217;s book</a>, &#8217;cause that&#8217;s a great (and free) resource, really! </p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1274</post-id>	</item>
+	</channel>
+</rss>

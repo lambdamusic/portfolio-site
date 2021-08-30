@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>jquery &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/jquery/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Wed, 27 Feb 2008 18:14:30 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>AJAX in Lisp with JQuery</title>
+		<link>http://www.michelepasin.org/blog/2008/02/27/ajax-in-lisp-with-jquery/</link>
+				<pubDate>Wed, 27 Feb 2008 18:14:30 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[jquery]]></category>
+		<category><![CDATA[lisp]]></category>
+		<category><![CDATA[web]]></category>
+
+		<guid isPermaLink="false">http://people.kmi.open.ac.uk/mikele/blog/?p=271</guid>
+				<description><![CDATA[I was asked to give an example of lisp+ajax, so once I prepared it I thought it could be of help to other people too :-) First of all, I am not a professional lisper at all, just got to know it a little during the last two years. The code I&#8217;m presenting here might [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I was asked to give an example of lisp+ajax, so once I prepared it I thought it could be of help to other people too :-)</p>
+<p>First of all, I am not a professional lisper at all, just got to know it a little during the last two years. The code I&#8217;m presenting here might not be the best one, but it works and essentially shows you how to do cool ajax stuff by using lisp [btw, some of this code comes from somebody who knows about lisp much more than I do, <a href="http://www.kmi.open.ac.uk/people/dave/">this guy here</a>].</p>
+<p>Anyways, let&#8217;s get going: we want to create a very very simple webapp that changes the color of some text in the page, using an ajax call. So we&#8217;ll have <strong>one main page</strong>, another <strong>page which gives back the code for updating the main page</strong> through ajax, and a <strong>couple of js files </strong>we want to use for the front-end functionality (among them, the fantastic <a href="http://jquery.com/">jquery</a>).</p>
+<p>First of all, we&#8217;ll need two handy packages for setting up a fully-working lisp server: <a href="http://www.weitz.de/hunchentoot/">hunchentoot</a> and <a href="http://weitz.de/cl-who/">cl-who</a> (the more you learn  about these packages, the better it is &#8211; and go through the examples &#8211; they&#8217;re really useful!). Once you&#8217;ve installed them, using <a href="http://www.cliki.net/ASDF-Install">asdf-install</a> or whatever-you-like, let&#8217;s load them up and set a couple of environment variables.</p>
+<pre><font size="2">(asdf:operate 'asdf:load-op :hunchentoot)
+(asdf:operate 'asdf:load-op :cl-who)
+
+(use-package :cl-who)
+(setq hunchentoot:*catch-errors-p* nil
+hunchentoot:*log-lisp-backtraces-p* t)</font></pre>
+<p>Then we define a couple of functions for starting/stopping the server and setting up the dispatcher table, which is where the mapping between web-pages in the application and lisp functions in the backend is specified. We&#8217;ll have three of these mappings: one for the <strong>main</strong> page, one for the page that serves the ajax changes (<strong>what-color?</strong>), and one for passing the static files, such as js and css (<strong>static/</strong>).</p>
+<pre><font size="2">
+
+(defvar *web-server* nil)
+
+(defun start-server ()
+(setq hunchentoot:*dispatch-table*
+(nconc
+(mapcar (lambda (args)
+(apply #'hunchentoot:create-prefix-dispatcher args))
+'(("/static/" serve-static)
+("/what-color" what-color?)
+("/main" main)))
+(list #'hunchentoot:default-dispatcher)))
+(setf *web-server* (hunchentoot:start-server :port 3000)))
+
+(defun stop-server ()
+(hunchentoot:stop-server *web-server*))
+
+</font></pre>
+<p>When the start-server function is called, it&#8217;ll load the dispatch table and start the sever on port 3000.</p>
+<p>The hardest thing to do now, before creating the functions that output the web-pages, is to set up the functions that handle the static files. First of all define your <strong>location</strong>, so that lisp knows where the root folder of the webapp is. That&#8217;s how it looks on my mac &#8211; you probably want to change that according to needs.</p>
+<pre><font size="2">
+
+(defvar *location* "/Users/myname/dev-try/hunchentoot-examples/")
+
+</font></pre>
+<p>Then the function for serving the static files (<strong>serve-static</strong>). In this example web-app we&#8217;ll only have two of them (see below), but you might want to have more (e.g. css, jpg etc..). The other three functions below basically retrieve the static file, check its mime-type and pass it back to the  dispatcher.</p>
+<pre><font size="2">
+
+(defun serve-static ()
+(let* ((uri (hunchentoot:request-uri))
+(file (subseq uri (length "/static/"))))
+(format *error-output* "serve-static: file=~S~%" file)
+(http-write-file file (mime-types file))))
+
+(defun http-write-file (filename mime-type)
+"Send contents of FILENAME to the HTTP stream, along with its MIME-TYPE."
+(setf (hunchentoot:content-type) mime-type)
+(let* ((stream (hunchentoot:send-headers))
+(buffer (make-array 1024 :element-type '(unsigned-byte 8 )))
+(local-filename (format nil "~astatic/~a" *location* filename)))
+(with-open-file (in local-filename :element-type '(unsigned-byte 8 ))
+(loop for pos = (read-sequence buffer in)
+until (zerop pos)
+do (write-sequence buffer stream :end pos)))))
+
+(defun mime-types (filename)
+(let ((ext (subseq filename (+ 1 (position #. filename :from-end t)))))
+(second (assoc ext '(("txt" "text/plain")
+("css" "text/css")
+("lisp" "text/plain")
+("html" "text/html")
+("js" "text/javascript")
+("png" "image/png"))
+:test #'string=))))
+
+(defun write-http-stream (mime-type payload)
+(setf (hunchentoot:content-type) mime-type)
+(write-sequence payload (hunchentoot:send-headers)))
+
+</font></pre>
+<p>That was the  trickiest part. Now let&#8217;s just create the functions that produce the html code to be passed to the browser/javascript. Before that, just a couple of useful macros that wrap the standard cl-who functions. <strong>With-html</strong> for creating html code without a header, and <strong>with-html-top</strong> for creating also the header.</p>
+<pre><font size="2">
+
+(defmacro with-html (&body body)
+`(with-html-output-to-string
+(*standard-output* nil :prologue nil :indent nil)
+(htm ,@body)))
+
+(defmacro with-html-top (&body body)
+`(with-html-output-to-string
+(*standard-output* nil :prologue t :indent nil)
+,@body))
+
+</font></pre>
+<p>Finally, the pages we can call from the browser. <strong>Main</strong> creates the main page of the app, linking to the javascript files. <strong>what-color?</strong> just outputs a random color name out of a predefined list:</p>
+<pre><font size="2">
+
+(defun main ()
+(with-html-top
+(:html (:head
+(:title "Home page")
+(:script :type "text/javascript" :src "/static/jquery.pack.js")
+(:script :type "text/javascript" :src "/static/my_functions.js"))
+(:body
+(:p :id "text" "Hi there - this is the only page for now")
+(:a :href "javascript:changeColor()" "click here to change the color!")))))
+
+(defun what-color? ()
+(let ((color-list '("blue" "red" "lavender" "black" "yellow"
+"orange" "mandarin" "MistyRose" "Olive")))
+(nth (random (length color-list)) color-list)))
+
+</font></pre>
+<p>That&#8217;s it really, for the backend. Now all you have to do is to create a <strong>folder called &#8216;static&#8217;</strong> wherever you specified the *location* variable to point at. Inside the folder, put a copy of <a href="http://docs.jquery.com/Downloading_jQuery">the latest JQuery code</a> (<strong>jquery.pack.js</strong>), and create a new file called <strong>my_functions.js</strong> with this elementary function (sorry  &#8211; that&#8217;s all the ajax we&#8217;re getting for now&#8230;) . It&#8217;s a simple function that calls the server for getting a color name, and uses it to change the color of a dom element.</p>
+<pre><font size="2">
+
+function changeColor() {
+$.get("what-color",
+function(data){
+$("#text").css("color",data);
+}
+);
+}
+
+</font></pre>
+<p>Almost done. Enter <strong>(start-server) </strong>in the lisp listener, and go to <strong>http://localhost:3000/main</strong> to see your first lisp-ajax application! [if the colors don&#8217;t show properly, make sure you are using Firefox]</p>
+<p>Have fun!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">271</post-id>	</item>
+		<item>
+		<title>Jquery library gets me going</title>
+		<link>http://www.michelepasin.org/blog/2007/02/12/jquery-library-gets-me-going/</link>
+				<pubDate>Mon, 12 Feb 2007 15:42:25 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[javascript]]></category>
+		<category><![CDATA[jquery]]></category>
+
+		<guid isPermaLink="false">http://people.kmi.open.ac.uk/mikele/blog/?p=206</guid>
+				<description><![CDATA[Following suggestions which turned out to be really good, I&#8217;ve found myself having a lot of fun with the JQuery library. It&#8217;s immensely easy to use, and beautiful to see its results. Plenty of tutorials around, and people developing widgets. Have a look at the interface elements, for example. Or at the cool fisheye menu..or [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Following suggestions which turned out to be really good, I&#8217;ve found myself having a lot of fun with the <a href="http://jquery.com/">JQuery</a> library. It&#8217;s immensely easy to use, and beautiful to see its results. Plenty of <a href="http://docs.jquery.com/Tutorials">tutorials</a> around, and people developing widgets. Have a look at the <a href="http://interface.eyecon.ro/demos">interface elements</a>, for example. Or at the cool <a href="http://interface.eyecon.ro/docs/fisheye">fisheye menu</a>..or the handy <a href="http://bassistance.de/jquery-plugins/jquery-plugin-treeview/">TreeView. </a><br />
+<img width="269" height="249" src="http://www.javascriptsearch.com/images/news/jquery.jpg" /></p>
+<p>And I also have a first screenshot of the PhiloSurfical system!!</p>
+<p><a title="Picture 11.png" class="imagelink" href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2007/02/Picture%2011.png"><img width="361" height="210" alt="Picture 11.png" id="image205" src="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2007/02/Picture%2011.png" /></a></p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1335</post-id>	</item>
+	</channel>
+</rss>

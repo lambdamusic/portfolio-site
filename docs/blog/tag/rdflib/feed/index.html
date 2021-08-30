@@ -1,0 +1,502 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>rdflib &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/rdflib/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Wed, 29 Jul 2015 11:08:04 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Inspecting an ontology with RDFLib</title>
+		<link>http://www.michelepasin.org/blog/2011/07/18/inspecting-an-ontology-with-rdflib/</link>
+				<comments>http://www.michelepasin.org/blog/2011/07/18/inspecting-an-ontology-with-rdflib/#comments</comments>
+				<pubDate>Mon, 18 Jul 2011 14:59:05 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[ontology]]></category>
+		<category><![CDATA[owl]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[rdflib]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1261</guid>
+				<description><![CDATA[RDFLib (homepage) is a pretty solid and comprehensive rdf-programming kit for Python. In a previous post I already discussed what pythonic options are currently available out there for doing semantic web programming; after some more in depth testing I realized that Rdflib is the most accessible and complete of them all (in fact many of [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>RDFLib (<a href="http://www.rdflib.net/">homepage</a>) is a pretty solid and comprehensive rdf-programming kit for Python. In a <a href="http://www.michelepasin.org/blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/">previous post</a> I already discussed what pythonic options are currently available out there for doing semantic web programming; after some more in depth testing I realized that Rdflib is the most accessible and complete of them all (in fact many of the available libraries are based on Rdflib&#8217;s APIs). So.. here we go: in this post I&#8217;m giving an overview of some of the things you can do with this library. </p>
+<p><em><b>Update 2014-10-04</b>: the latest version of the Python library described in this post is available on <a href="https://github.com/lambdamusic/ontosPy">GitHub</a></em></p>
+<p>The <a href="http://linkeddata.org/">Linked Data</a> world is <em>primarily</em> made up of <a href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>, many would say, so the most important thing is being able to parse and extract information from this simple but versatile language. A quite well known mantra in this community is the &#8216;<a href="http://www.cs.rpi.edu/~hendler/LittleSemanticsWeb.html">a little semantics goes a long way</a>&#8216;, which expresses succinctly the idea that there&#8217;s no need to fixate on the construction of large-scale <a href="http://en.wikipedia.org/wiki/Cyc">CYC</a>-like knowledge-based systems in order to get something going in an open-world scenario such as the web (of data). </p>
+<p>In other words, this idea suggests that (for now) it&#8217;s enough to make your application spit out structured data using a standard data model (RDF, that is), and possibly connect your RDF dataset to other datasets in the &#8216;<a href="http://richard.cyganiak.de/2007/10/lod/">cloud</a>&#8216; by creating <a href="http://linkeddatabook.com/editions/1.0/#htoc18">rdf-links</a>. Once you&#8217;ve done that, you can take it easy and stop worrying about the data integration problems your RDF might generate, or the &#8216;big picture&#8217;. Others will figure out how to use your data; <strong>it&#8217;s an incremental approach</strong>, there will be some sort of snowball effect at some stage, semantic web enthusiasts seem to suggest. This and other arguments are a bit make-believe, I have to say; but at the same time they also do make some sense: unless we have some real stuff to play with out there on the data-web, not much will <em>ever</em> happen!</p>
+<h3>Hullo, RDFlib</h3>
+<p>After quickly ascertaining that it&#8217;s not a total waste of time to work with RDF, it&#8217;s now time to get practical and experiment a bit with RDFlib. This is a great python library for it lets you process RDF data <em>very very easily</em>. Example: </p>
+<pre class="prettyprint">
+	<code>
+# open a graph
+>>> import rdflib
+>>> graph = rdflib.Graph()
+
+
+# load some data
+>>> graph.parse('http://dbpedia.org/resource/Semantic_Web')
+<Graph identifier=pDZkOGzl0 (<class 'rdflib.graph.Graph'>)>
+>>> len(graph)
+98
+
+
+# query the data
+>>> list(graph)[:10]
+[(rdflib.term.URIRef('http://dbpedia.org/resource/SUPER'), rdflib.term.URIRef('http://dbpedia.org/property/keywords'),
+rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_internet'),
+rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageRedirects'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')),
+(rdflib.term.URIRef('http://dbpedia.org/resource/SW'), rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageDisambiguates'),
+rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_integrity'),
+rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageRedirects'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')),
+(rdflib.term.URIRef('http://dbpedia.org/resource/Ontotext'), rdflib.term.URIRef('http://dbpedia.org/ontology/industry'),
+rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://mpii.de/yago/resource/Semantic_Web'),
+rdflib.term.URIRef('http://www.w3.org/2002/07/owl#sameAs'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')),
+(rdflib.term.URIRef('http://dbpedia.org/resource/Deborah_McGuinness'), rdflib.term.URIRef('http://dbpedia.org/ontology/knownFor'),
+rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/The_semantic_web'),
+rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageRedirects'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')),
+(rdflib.term.URIRef('http://dbpedia.org/resource/Access-eGov'), rdflib.term.URIRef('http://dbpedia.org/property/keywords'),
+rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/SOA4All'),
+rdflib.term.URIRef('http://dbpedia.org/property/keywords'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web'))]
+
+
+# print out some triples
+>>> for s, p, o in graph:
+...     print s, "n--- ", p, "n------ ", o
+...
+
+http://dbpedia.org/resource/SUPER
+---  http://dbpedia.org/property/keywords 
+------  http://dbpedia.org/resource/Semantic_Web
+http://dbpedia.org/resource/Semantic_internet
+---  http://dbpedia.org/ontology/wikiPageRedirects 
+------  http://dbpedia.org/resource/Semantic_Web
+http://dbpedia.org/resource/SW
+---  http://dbpedia.org/ontology/wikiPageDisambiguates 
+------  http://dbpedia.org/resource/Semantic_Web
+http://dbpedia.org/resource/Semantic_integrity
+---  http://dbpedia.org/ontology/wikiPageRedirects 
+------  http://dbpedia.org/resource/Semantic_Web
+http://dbpedia.org/resource/Semantic_Web 
+---  http://dbpedia.org/ontology/abstract 
+------  Con il termine web semantico, termine coniato dal suo ideatore, Tim Berners-Lee, si intende la trasformazione del World Wide Web in un ambiente dove i documenti pubblicati (pagine HTML, file, immagini, e così via) siano associati ad informazioni e dati che ne specifichino il contesto semantico in un formato adatto all'interrogazione, all'interpretazione e, più in generale, all'elaborazione automatica. Con l'interpretazione del contenuto dei documenti che il Web Semantico propugna, saranno possibili ricerche molto più evolute delle attuali, basate sulla presenza nel documento di parole chiave, ed altre operazioni specialistiche come la costruzione di reti di relazioni e connessioni tra documenti secondo logiche più elaborate del semplice link ipertestuale.
+http://dbpedia.org/resource/Semantic_Web 
+--- etc. etc etc................
+</code></pre>
+<p>Pretty straightforward uh? In a nutshell, what we&#8217;ve just done is:<br />
+<br />
+<strong>a)</strong> loading the RDF description of the &#8216;Semantic Web&#8217; page on <a href="http://dbpedia.org/About">DBPedia</a> (<span style="font-family:monospace;color:#000000;">http://dbpedia.org/resource/Semantic_Web</span>);<br />
+<strong>b)</strong> showing the first 10 triples in that RDF graph;<br />
+<strong>c)</strong> iterating through all the triples in the graph and printing them out in a format that reflects the subject-predicate-object structure of RDF.</p>
+<p><strong>However we still don&#8217;t know much about those data</strong>. Meaning: what is the abstract structure used to define them? Do they conform to some sound and thorough data-model or is it just some automatically-generated messy agglomerate of database records? In other words, what I want to know is, what&#8217;s the <a href="http://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a> behind these data? How can I see it? Shall I reuse it (and thus endorse it) within my own application, or does my application require something slightly different?</p>
+<p>I&#8217;m probably biased here, cause I personally get much more satisfaction from creating and thinking about ontologies rather than fiddling with large quantities of rdf-xml triples. Still, <strong>I think that being able to evaluate the ontology a bunch of rdf refers to is of vital importance</strong>, in order to judge whether that RDF is what you&#8217;re looking for or not, and how to best integrate it in your application.</p>
+<p><strong>Long story short, I couldn&#8217;t find anything in RdfLib that would let me print out the hierarchy tree</strong> of an ontology and other related information. So I thought, here&#8217;s a good candidate-task for me to learn how to use the library better. </p>
+<h3>Inspecting an ontology using RDFLib</h3>
+<p>I created a small class called &#8216;<strong>OntoInspector</strong>&#8216; that you can instantiate with an RDFS/OWL ontology and then query to find out basic information about that ontology. I know &#8211; all of this could have been done using one of the many (and constantly increasing) ontology editing tools &#8211; but hey this is all about learning isn&#8217;t it?<br />
+You can find all the source code on <strike>BitBucket</strike> <a href="https://github.com/lambdamusic/ontosPy">GitHub</a>. Feel free to get it and modify as needed. Also, I integrated this python toolkit within a <strong>django application</strong> that let you browse ontologies online (beware &#8211; it&#8217;s just a hack really). This is called (surprise) <b>OntoView</b>, and it&#8217;s <a href="http://www.michelepasin.org/hacks/ontoview/">accessible here</a>.</p>
+<p>The first thing to do in our class definition is (obviously) loading up the RDFLib library. I&#8217;ve developed this using RDFlib 2.4, but recently tested it with 3.0 (the latest release available) and it all still works fine. By loading up the <span style="font-family:monospace;color:#000000; ">RDF</span> and <span style="font-family:monospace;color:#000000; ">RDFS</span> modules we&#8217;ll have access to all the constants needed to query for classes and subclasses. Note that I added an <span style="font-family:monospace;color:#000000; ">OWL</span> module as that is not part of RDFLib. You can find it in the source code, it&#8217;s just a list of all predicates in the <a href="http://www.w3.org/TR/owl-guide/">OWL vocabulary</a>. </p>
+<pre class="prettyprint">
+	<code>from rdflib import ConjunctiveGraph, Namespace, exceptions
+
+from rdflib import URIRef, RDFS, RDF, BNode
+
+import OWL</code></pre>
+<p>Now let&#8217;s set up the basic structure of the OntoInspector class. In principle, an <span style="font-family:monospace;color:#000000; ">OntoInspector</span> object should contain all the information necessary to query an ontology. An ontology is referred to using its URI, so that&#8217;s all is needed for creating an instance of OntoInspector too:</p>
+<pre class="prettyprint"><code>class OntoInspector(object):
+
+    """Class that includes methods for querying an RDFS/OWL ontology"""        
+
+    def __init__(self, uri, language=""):
+        super(OntoInspector, self).__init__()
+
+        self.rdfGraph = ConjunctiveGraph()
+        try:
+            self.rdfGraph.parse(uri, format="xml")
+        except:
+            try:
+                self.rdfGraph.parse(uri, format="n3")
+            except:
+                raise exceptions.Error("Could not parse the file! Is it a valid RDF/OWL ontology?")
+
+        finally:
+            # let's cache some useful info for faster access
+            self.baseURI = self.get_OntologyURI() or uri            
+            self.allclasses = self.__getAllClasses(classPredicate)
+            self.toplayer = self.__getTopclasses()
+            self.tree = self.__getTree()
+
+
+    def get_OntologyURI(self, ....):
+        # todo
+        pass
+
+    def __getAllClasses(self, ....):
+        # todo
+        pass
+       
+
+    def __getTopclasses(self, ....):
+        pass
+
+
+    def __getTree(self, ....):
+        # todo
+        pass</code></pre>
+<p>As you can see the <span style="font-family:monospace;color:#000000; ">__init__</span> method tries to load the ontology file (which can be expressed in either rdf/xml or n3 format) and then sets up 4 class attributes. These attributes will contain some key information about the ontology: its <strong>URI</strong>, a list of <strong>all the classes</strong> available, the classes in the <strong>top layer</strong> and the main <strong>taxonomical tree</strong> of the ontology.<br />
+We&#8217;re now going to implement the methods needed to fill out these 4 attributes.</p>
+<h3>Getting the ontology URI</h3>
+<p>If we&#8217;re dealing with an OWL ontology, it may be the case that the URI we have just used to retrieve the ontology file is not the &#8216;official&#8217; URI of the ontology. In fact OWL provides a construct that can be used to &#8216;state&#8217; which is the base URI of an ontology (essentially, this is equivalent to stating that an RDF resource has <span style="font-family:monospace;color:#000000; ">rdf:type</span> <span style="font-family:monospace;color:#000000; ">http://www.w3.org/2002/07/owl#Ontology</span>).<br />
+So in the following method first we check if an URI of <span style="font-family:monospace;color:#000000; ">rdf:type</span> <span style="font-family:monospace;color:#000000; ">OWL:Ontology</span> exists, and return that if available (when we return None, the URI value defaults to the URI originally provided when creating the OntoInspector object &#8211; see the constructor code above): </p>
+<pre class="prettyprint"><code>def get_OntologyURI(self, return_as_string=True):
+    """ 
+    In [15]: [x for x in o.rdfGraph.triples((None, RDF.type, OWL.Ontology))]
+    Out[15]: 
+    [(rdflib.URIRef('http://purl.com/net/sails'),
+      rdflib.URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
+      rdflib.URIRef('http://www.w3.org/2002/07/owl#Ontology'))]
+
+    Mind that this will work only for OWL ontologies.
+    In other cases we just return None, and use the URI passed at loading time
+    """
+
+    test = [x for x, y, z in self.rdfGraph.triples((None, RDF.type, OWL.Ontology))]
+
+    if test:
+        if return_as_string:
+            return str(test[0])
+        else:
+            return test[0]
+    else:
+        return None</code></pre>
+<h3>Extracting all the classes</h3>
+<p>Essentially, there are only <strong>two ways to define a class</strong>: you can either specify that an entity has a property <span style="font-family:monospace;color:#000000; ">RDF:type</span> with value <span style="font-family:monospace;color:#000000; ">rdfs:Class</span>, or that it has a property <span style="font-family:monospace;color:#000000; ">RDF:type</span> with value <span style="font-family:monospace;color:#000000; ">owl:Class</span>. Note that the <span style="font-family:monospace;color:#000000; ">owl:Class</span> predicate is defined as a <em>subclass</em> of <span style="font-family:monospace;color:#000000; ">rdfs:Class</span>. The rationale for having a separate OWL class construct lies in the restrictions on OWL DL (and thus also on OWL Lite), which imply that not all RDFS classes are legal OWL DL classes. In OWL Full these restrictions do not exist and therefore <span style="font-family:monospace;color:#000000; ">owl:Class</span> and <span style="font-family:monospace;color:#000000; ">rdfs:Class</span> are equivalent in OWL Full (more info here: <a href="http://www.w3.org/TR/owl-ref/">http://www.w3.org/TR/owl-ref/</a>, section 3.1).</p>
+<p>Thus, In order to retrieve all the classes defined in an ontology we can just query the RDF graph for triples that have this form:</p>
+<p><span style="font-family:monospace;color:#000000; ">someURI</span> &#8211; <span style="font-family:monospace;color:#000000; ">rdf:type</span> &#8211; <span style="font-family:monospace;color:#000000; ">rdf:Class</span> OR <span style="font-family:monospace;color:#000000; ">owl:Class</span> . </p>
+<p>This approach will work in the majority of cases. However, things are complicated by the fact that people are sometimes sloppy when they define ontologies, or because they use different tools that automatically generate different styles of RDF code. For example, often an entity is defined as being an <span style="font-family:monospace;color:#000000; ">rdfs:subclassOf</span> another entity, without explicitly declaring that both of them are (rdfs, or owl) classes; another common case is that one of classes mentioned in the domain/range values of properties (via the <span style="font-family:monospace;color:#000000; ">rdfs.domain</span> and <span style="font-family:monospace;color:#000000; ">rdfs.range</span> properties) but not declared explicitly. </p>
+<p>Since we want to be as comprehensive as possible when looking for *all* the classes present in an ontology, I added a couple of methods that deal with these borderline cases. If you don&#8217;t want to include all of this stuff, you can still bypass these extra checks by using the <em>classPredicate</em> argument. </p>
+<pre class="prettyprint"><code>def __getAllClasses(self, classPredicate = "", removeBlankNodes = True):
+    """  
+    Extracts all the classes from a model
+    We use the RDFS and OWL predicate by default; also, we extract non explicitly declared classes
+    """
+
+    rdfGraph = self.rdfGraph
+    exit = []       
+
+    if not classPredicate:          
+        for s, v, o in rdfGraph.triples((None, RDF.type , OWL.Class)): 
+            exit.append(s)
+        for s, v, o in rdfGraph.triples((None, RDF.type , RDFS.Class)):
+            exit.append(s)
+
+        # this extra routine makes sure we include classes not declared explicitly
+        # eg when importing another onto and subclassing one of its classes...
+        for s, v, o in rdfGraph.triples((None, RDFS.subClassOf , None)):
+            if s not in exit:
+                exit.append(s)
+            if o not in exit:
+                exit.append(o)
+
+        # this extra routine includes classes found only in rdfs:domain and rdfs:range definitions
+        for s, v, o in rdfGraph.triples((None, RDFS.domain , None)):
+            if o not in exit:
+                exit.append(o)
+        for s, v, o in rdfGraph.triples((None, RDFS.range , None)):
+            if o not in exit:
+                exit.append(o)
+
+    else:
+        if classPredicate == "rdfs" or classPredicate == "rdf":
+            for s, v, o in rdfGraph.triples((None, RDF.type , RDFS.Class)):
+                exit.append(s)
+        elif classPredicate == "owl":
+            for s, v, o in rdfGraph.triples((None, RDF.type , OWL.Class)): 
+                exit.append(s)
+        else:
+            raise exceptions.Error("ClassPredicate must be either rdf, rdfs or owl")
+
+    exit = remove_duplicates(exit)
+
+    if removeBlankNodes:
+        exit = [x for x in exit if not self.__isBlankNode(x)]
+
+    return sort_uri_list_by_name(exit)</code></pre>
+<p>You probably noticed that there are a couple of other methods mentioned in the snippet above: they are used for checking if a URI is a <span style="font-family:monospace;color:#000000; ">BlankNode</span> (which we&#8217;re normally not interested in, when dealing with ontologies) and for other utility functions, such as sorting and removing duplicates from our list of classes. You&#8217;ll find all the details about this stuff in the source code obviously..</p>
+<p>Next, we want to be able to <strong>move around the ontology hierarchy</strong>. So we need methods to get <em>super</em> and <em>sub</em> classes from a given class. This is easily done by querying the graph for triples containing the <span style="font-family:monospace;color:#000000; ">rdfs.subClassOf</span> predicate:</p>
+<pre class="prettyprint"><code># methods for getting ancestores and descendants of classes: by default, we do not include blank nodes
+
+def get_classDirectSupers(self, aClass, excludeBnodes = True):
+    returnlist = []
+    for s, v, o in self.rdfGraph.triples((aClass, RDFS.subClassOf , None)):
+        if excludeBnodes:
+            if not self.__isBlankNode(o):
+                returnlist.append(o)
+        else:
+            returnlist.append(o)
+
+    return sort_uri_list_by_name(remove_duplicates(returnlist)) 
+
+
+def get_classDirectSubs(self, aClass, excludeBnodes = True):
+    returnlist = []
+    for s, v, o in self.rdfGraph.triples((None, RDFS.subClassOf , aClass)):
+        if excludeBnodes:
+            if not self.__isBlankNode(s):
+                returnlist.append(s)
+
+        else:
+            returnlist.append(s)
+
+    return sort_uri_list_by_name(remove_duplicates(returnlist))
+
+
+def get_classAllSubs(self, aClass, returnlist = [], excludeBnodes = True):
+    for sub in self.get_classDirectSubs(aClass, excludeBnodes):
+        returnlist.append(sub)
+        self.get_classAllSubs(sub, returnlist, excludeBnodes)
+    return sort_uri_list_by_name(remove_duplicates(returnlist))
+
+
+
+def get_classAllSupers(self, aClass, returnlist = [], excludeBnodes = True ):
+    for ssuper in self.get_classDirectSupers(aClass, excludeBnodes):
+        returnlist.append(ssuper)
+        self.get_classAllSupers(ssuper, returnlist, excludeBnodes)
+    return sort_uri_list_by_name(remove_duplicates(returnlist))
+
+
+
+def get_classSiblings(self, aClass, excludeBnodes = True):
+    returnlist = []
+    for father in self.get_classDirectSupers(aClass, excludeBnodes):
+        for child in self.get_classDirectSubs(father, excludeBnodes):
+            if child != aClass:
+                returnlist.append(child)
+
+    return sort_uri_list_by_name(remove_duplicates(returnlist))
+</code></pre>
+<h3>Getting the top layer</h3>
+<p>We&#8217;re now all set for retrieving the classes at the top of the taxonomic hierarchy of our ontology, that is, its &#8216;top-layer&#8217;. This can be done by reusing the <span style="font-family:monospace;color:#000000; ">get_classDirectSupers</span> method previously defined, so to search for all classes that have no superclasses:</p>
+<pre class="prettyprint"><code>def __getTopclasses(self, classPredicate = ''):
+
+    """ Finds the topclass in an ontology (works also when we have more than on superclass)
+    """
+
+    returnlist = []
+
+    # gets all the classes
+    for eachclass in self.__getAllClasses(classPredicate):
+        x = self.get_classDirectSupers(eachclass)
+        if not x:
+            returnlist.append(eachclass)
+
+    return sort_uri_list_by_name(returnlist)</code></pre>
+<h3>Reconstructing the ontology tree</h3>
+<p>Now that we know which are the top classes in our taxonomy, we can parse the tree recursively using the <span style="font-family:monospace;color:#000000; ">get_classDirectSubs</span> method defined above, and reconstruct the whole taxonomical structure of the ontology.</p>
+<pre class="prettyprint"><code>def __getTree(self, father=None, out=None):
+
+    """ Reconstructs the taxonomical tree of an ontology, from the 'topClasses' (= classes with no supers, see below)
+        Returns a dictionary in which each class is a key, and its direct subs are the values.
+        The top classes have key = 0
+
+        Eg.
+        {'0' : [class1, class2], class1: [class1-2, class1-3], class2: [class2-1, class2-2]}
+    """
+
+    if not father:
+        out = {}
+        topclasses = self.toplayer
+        out[0] = topclasses
+
+        for top in topclasses:
+            children = self.get_classDirectSubs(top)
+            out[top] = children
+            for potentialfather in children:
+                self.__getTree(potentialfather, out)
+
+        return out
+
+    else:
+        children = self.get_classDirectSubs(father)
+        out[father] = children
+        for ch in children:
+            self.__getTree(ch, out)</code></pre>
+<p>That&#8217;s it really. Given this abstract tree representation, it can be printed out differently depending on the context (html, command line) but the core will remain intact. </p>
+<h3>Wrapping up</h3>
+<p>The <a href="https://github.com/lambdamusic/ontosPy">source code on GitHub</a> contains also other utilities I added, eg for handling class comments, namespaces, for nice-printing of classes&#8217; names, and for outputting the ontology tree as an image, using the <a href="http://www.graphviz.org/">Graphviz</a> library (which needs to be installed separately).</p>
+<p>Here&#8217;s an example of how OntoInspector can be used in the python interactive shell for inspecting the <a href="http://xmlns.com/foaf/spec/">Friend Of A Friend</a> lightweight ontology:</p>
+<pre class="prettyprint"><code>In [1]: from onto_inspector import *
+
+In [2]: onto = OntoInspector("http://xmlns.com/foaf/spec/20100809.rdf")         
+
+In [3]: onto.toplayer
+
+Out[3]: 
+[rdflib.URIRef('http://xmlns.com/foaf/0.1/Agent'),
+ rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#Class'),
+ rdflib.URIRef('http://www.w3.org/2004/02/skos/core#Concept'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/Document'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/LabelProperty'),
+ rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#Literal'),
+ rdflib.URIRef('http://www.w3.org/2000/10/swap/pim/contact#Person'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/Project'),
+ rdflib.URIRef('http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing'),
+ rdflib.URIRef('http://www.w3.org/2002/07/owl#Thing')]
+
+In [4]: onto.printTree()
+foaf:Agent
+----foaf:Group
+----foaf:Organization
+----foaf:Person
+rdfs:Class
+http://www.w3.org/2004/02/skos/core#Concept
+foaf:Document
+----foaf:Image
+----foaf:PersonalProfileDocument
+foaf:LabelProperty
+rdfs:Literal
+http://www.w3.org/2000/10/swap/pim/contact#Person
+----foaf:Person
+foaf:Project
+http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
+----foaf:Person
+owl:Thing
+----foaf:OnlineAccount
+--------foaf:OnlineChatAccount
+--------foaf:OnlineEcommerceAccount
+--------foaf:OnlineGamingAccount
+
+In [5]: document = onto.find_class_byname("document")
+
+In [6]: document
+Out[6]: 
+[rdflib.URIRef('http://xmlns.com/foaf/0.1/Document'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/PersonalProfileDocument')]
+
+In [7]: document = document[0]
+
+In [8]: document
+Out[8]: rdflib.URIRef('http://xmlns.com/foaf/0.1/Document')
+
+In [9]: onto.get_classAllSubs(document)
+Out[9]: 
+[rdflib.URIRef('http://xmlns.com/foaf/0.1/Image'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/PersonalProfileDocument')]
+
+In [10]: onto.get_classAllSupers(document)
+Out[10]: []
+
+In [11]: onto.get_classComment(document)
+Out[11]: rdflib.Literal('A document.', language=None, datatype=None)</code></pre>
+<p>Any comments? As I said I&#8217;m still learning/improving this&#8230; so any feedback is welcome!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2011/07/18/inspecting-an-ontology-with-rdflib/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1261</post-id>	</item>
+		<item>
+		<title>Survey of Pythonic tools for RDF and Linked Data programming</title>
+		<link>http://www.michelepasin.org/blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/</link>
+				<comments>http://www.michelepasin.org/blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/#comments</comments>
+				<pubDate>Thu, 24 Feb 2011 15:21:27 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[linkeddata]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[rdflib]]></category>
+		<category><![CDATA[semanticweb]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1110</guid>
+				<description><![CDATA[In this post I&#8217;m reporting on a recent survey I made in the context of a Linked Data project I&#8217;m working on, SAILS. The Resource Description Framework (RDF) is a data model and language which is quickly gaining momentum in the open-data and data-integration worlds. In SAILS we&#8217;re developing a prototype for rdf-data manipulation and [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>In this post I&#8217;m reporting on a recent survey I made in the context of a <a href="http://en.wikipedia.org/wiki/Linked_Data">Linked Data</a> project I&#8217;m working on, <a href="http://sailsproject.cerch.kcl.ac.uk/">SAILS</a>. The <a href="http://en.wikipedia.org/wiki/Resource_Description_Framework">Resource Description Framework</a> (RDF) is a data model and language which is quickly gaining momentum in the open-data and data-integration worlds. In SAILS we&#8217;re developing a prototype for rdf-data manipulation and querying, but since the final application (of which the rdf-components is part of) will be written in Python and Django, in what follows I tried to gather information about all the existing libraries and frameworks for doing rdf-programming using python. </p>
+<h2>1. Python libraries for working with Rdf</h2>
+<h3> RdfLib <a style="font-size: 14px;" href="http://www.rdflib.net/">http://www.rdflib.net/</a></h3>
+<p>RdfLib (<a href="http://www.rdflib.net/rdflib-3.0.0.tar.gz">download</a>) is a pretty solid and extensive rdf-programming kit for python. It contains parsers and serializers for RDF/XML, N3, NTriples, Turtle, TriX and RDFa. The library presents a Graph interface which can be backed by any one of a number of store implementations, including, memory, MySQL, Redland, SQLite, Sleepycat, ZODB and SQLObject.</p>
+<p>The latest release is <strong> RdfLib 3.0</strong>, although I have the feeling that many are still using the previous release, <strong>2.4</strong>. One big difference between the two is that in 3.0 some libraries have been separated into another package (called <a href="http://code.google.com/p/rdfextras/">rdfextras</a>); among these libraries there&#8217;s also the one you need for processing <a href="http://en.wikipedia.org/wiki/SPARQL">sparql</a> queries (the rdf query language), so it&#8217;s likely that you want to install that too.<br />
+A short overview of the difference between these two recent releases of RdfLib can be found <a href="http://code.google.com/p/rdflib/wiki/UpgradingToVersion3">here</a>. The APIs documentation for RdfLib 2.4 is available <a href="http://www.rdflib.net/rdflib-2.4.0/html/index.html">here</a>, while the one for RdfLib 3.0 can be found <a href="http://code.alcidesfonseca.com/docs/rdflib/index.html">here</a>. Finally, there are also some other (a bit older, but possibly useful) docs on the <a href="http://code.google.com/p/rdflib/w/list">wiki</a>.</p>
+<p>Next thing, you might want to check out these tutorials:</p>
+<li><a href="http://semanticweb.org/wiki/Getting_data_from_the_Semantic_Web.html">Getting data from the Semantic Web</a>: a nice example of how to use RdfLib and python in order to get data from  <a href="http://dbpedia.org/">DBPedia</a>, the Semantic Web version of Wikipedia.</li>
+<li><a href="http://johngoodwin225.wordpress.com/2011/01/18/how-can-i-use-the-ordnance-survey-linked-data-a-python-rdflib-example/">How can I use the Ordnance Survey Linked Data</a>: shows how to install RdfLib and query the linked data offered by <a href="http://blog.ordnancesurvey.co.uk/2011/01/how-linked-data-can-reap-benefits/">Ordnance Survey</a>.</li>
+<li><a href="http://gromgull.net/blog/2011/01/a-quick-and-dirty-guide-to-your-first-time-with-rdf/">A quick and dirty guide to YOUR first time with RDF</a>: another example of querying Uk government data found on <a href="http://data.gov.uk/">data.gov.uk</a> using RdfLib and Berkely/Sleepycat DB.</li>
+<h3>RdfAlchemy <a style="font-size: 14px;" href="http://www.openvest.com/trac/wiki/RDFAlchemy">http://www.openvest.com/trac/wiki/RDFAlchemy</a></h3>
+<p>The goal of RDFAlchemy (<a href="http://www.openvest.com/trac/wiki/RDFAlchemy#Installation">install</a> | <a href="http://www.openvest.com/public/docs/rdfalchemy/api/">apidocs</a> | <a href="http://groups.google.com/group/rdfalchemy-dev">usergroup</a>) is to allow anyone who uses  python to have a object type API access to an RDF Triplestore. In a nutshell, the same way that <a href="http://www.sqlalchemy.org/">SQLAlchemy</a> is an ORM (Object Relational Mapper) for relational database users, RDFAlchemy is an ORM (Object RDF Mapper) for semantic web users.</p>
+<p>RdfAlchemy can also work in conjunction with other datastores, including rdflib, Sesame, and Jena. Support for SPARQL is present, although it seems less stable than the rest of the library.</p>
+<h3>Fuxi <a style="font-size: 14px;" href="http://code.google.com/p/fuxi/">http://code.google.com/p/fuxi/</a></h3>
+<p>FuXi is a Python-based, bi-directional logical reasoning system for the semantic web. It <strong>requires</strong> rdflib 2.4.1 or 2.4.2 and it is <strong>not</strong> compatible with rdflib 3. FuXi aims to be the &#8216;engine for contemporary expert systems based on the Semantic Web technologies&#8217;. The documentation can be found <a href="http://fuxi.googlecode.com/hg/documentation/html/index.html">here</a>; it might be useful also to look at the <a href="http://code.google.com/p/fuxi/wiki/FuXiUserManual">user-manual</a> and the <a href="http://groups.google.com/group/fuxi-discussion">discussion group</a>.  </p>
+<p>In general, it looks as if Fuxi can offer a complete solution for knowledge representation and reasoning over the semantic web; it is quite sophisticated and well documented (partly via several academic articles). The downside is that to the end of hacking together a linked data application.. well Fuxi is probably just too complex and difficult to learn.</p>
+<li><a href="http://blog.okfn.org/2010/08/02/about-inferencing/">About Inferencing</a>: a very short introduction to what Fuxi inferencing capabilities can do in the context of an rdf application.</li>
+<h3>ORDF <a style="font-size: 14px;" href="http://ordf.org/">ordf.org</a></h3>
+<p>ORDF (<a href="http://packages.python.org/ordf/administration.html#installation">download</a> | <a href="http://packages.python.org/ordf/index.html">docs</a>) is the <a href="http://okfn.org/">Open Knowledge Foundation</a>‘s library of support infrastructure for RDF. It is <strong>based</strong> on RDFLib and contains an object-description mapper, support for multiple back-end indices, message passing, revision history and provenance, a namespace library and a variety of helper functions and modules to ease integration with the <a href="http://pylonshq.com/">Pylons</a> framework.</p>
+<p>The current version of this library is 0.35. You can have a peek at some of its key functionalities by checking out the &#8216;<a href="http://packages.python.org/ordf/odm.html">Object Description Mapper</a>&#8216; &#8211; an equivalent to what an Object-Relational Mapper would give you in the context of a relational database. The library seems to be pretty solid; for an example of a system built on top of ORDF you can see <a href="http://bibliographica.org/">Bibliographica</a>, an online open catalogue of cultural works.</p>
+<li>Why using RDF? The <a href="http://packages.python.org/ordf/design_considerations.html">Design Considerations</a> section in the ORDF documentation discusses the reasons that led to the development of this library in a clear and practical fashion.</li>
+<h3>Django-rdf <a style="font-size: 14px;" href="http://code.google.com/p/django-rdf/">http://code.google.com/p/django-rdf/</a></h3>
+<p>Django-RDF (<a href="http://code.google.com/p/django-rdf/downloads/list">download</a> | <a href="http://code.google.com/p/django-rdf/wiki/FAQ">faq</a> | <a href="http://groups.google.com/group/django-rdf">discussiongroup</a>) is an RDF engine implemented in a generic, reusable <a href="http://www.djangoproject.com/">Django</a> app, providing complete RDF support to Django projects without requiring any modifications to existing framework or app source code. The philosophy is simple: do your web development using Django just like you&#8217;re used to, then turn the knob and &#8211; with no additional effort &#8211; expose your project on the semantic web.</p>
+<p>Django-RDF can expose models from any other app as RDF data. This makes it easy to write new views that return RDF/XML data, and/or query existing models in terms of RDFS or OWL classes and properties using (a variant of) the SPARQL query language. SPARQL in, RDF/XML out &#8211; two basic semantic web necessities. Django-RDF also implements an RDF store using its internal models such as Concept, Predicate, Resource, Statement, Literal, Ontology, Namespace, etc. The SPARQL query engine returns query sets that can freely mix data in the RDF store with data from existing Django models.</p>
+<p>The major <strong>downside</strong> of this library is that it doesn&#8217;t seem to be maintained anymore; the last release is from 2008, and there seem to be various conflicts with recent versions of Django. A real shame!</p>
+<h3>Djubby <a style="font-size: 14px;" href="http://code.google.com/p/djubby/">http://code.google.com/p/djubby/</a></h3>
+<p>Djubby (<a href="http://code.google.com/p/djubby/downloads/list">download</a> | <a href="http://code.google.com/p/djubby/wiki/GettingStarted">docs</a>) is a Linked Data frontend for SPARQL endpoints for the <a href="http://www.djangoproject.com/">Django</a> Web framework, adding a Linked Data interface to any existing SPARQL-capable triple stores. </p>
+<p>Djubby is quite inspired by Richard Cyganiak&#8217;s <a href="http://www4.wiwiss.fu-berlin.de/pubby/">Pubby</a> (written in Java): it provides a Linked Data interface to local or remote SPARQL protocol servers, it provides dereferenceable URIs by rewriting URIs found in the SPARQL-exposed dataset into the djubby server&#8217;s namespace, and it provides a simple HTML interface showing the data available about each resource, taking care of handling 303 redirects and content negotiation. </p>
+<h3>Redland <a style="font-size: 14px;" href="http://librdf.org/">http://librdf.org/</a></h3>
+<p>Redland (<a href="http://download.librdf.org/">download</a> | <a href="http://librdf.org/docs/">docs</a> | <a href="http://lists.usefulinc.com/pipermail/redland-dev/">discussiongroup</a>) is an RDF library written in C and including several high-level language APIs providing RDF manipulation and storage. Redland makes available also a Python interface (<a href="http://librdf.org/docs/python.html">intro</a> | <a href="http://librdf.org/docs/pydoc/RDF.html">apidocs</a>) that can be used to manipulate RDF triples. </p>
+<p>This library seems to be quite complete and is actively maintained; only potential downside is the installation process. In order to use the python bindings you need to install the C library too (which in turns depends on other C libraries), so (depending on your programming experience and operating system used) just getting up and running might become a challenge.</p>
+<h3>SuRF <a style="font-size: 14px;" href="http://packages.python.org/SuRF/">http://packages.python.org/SuRF/</a></h3>
+<p>SuRF (<a href="http://packages.python.org/SuRF/install.html#installing-rdflib">install</a> | <a href="http://packages.python.org/SuRF/#documentation">docs</a>) is an Object &#8211; RDF Mapper based on the RDFLIB python library. It exposes the RDF triple sets as sets of resources and seamlessly integrates them into the Object Oriented paradigm of python in a similar manner as ActiveRDF does for ruby.</p>
+<h3>Other smaller (but possibly useful) python libraries for rdf:</h3>
+<li><a href="http://ivan-herman.name/2007/07/06/sparql-endpoint-interface-to-python/">Sparql Interface to python</a>: a minimalistic solution for querying sparql endpoints using python (<a href="http://www.ivan-herman.net/Misc/PythonStuff/SPARQL/">download</a> | <a href="http://www.ivan-herman.net/Misc/PythonStuff/SPARQL/Doc-SPARQL/">apidocs</a>). <em>UPDATE: Ivan Herman pointed out that this library has been discontinued and merged with the &#8216;SPARQL Endpoint interface to Python&#8217; below.</em></li>
+<li><a href="http://sparql-wrapper.sourceforge.net/">SPARQL Endpoint interface to Python</a> another little utility for talking to a SPARQL endpoint, including having select-results mapped to rdflib terms or returned in JSON format (<a href="http://sourceforge.net/projects/sparql-wrapper/">download</a>)</li>
+<li><a href="http://code.google.com/p/pysparql/source/browse/trunk/src/sparql.py">PySparql</a>: again, a minimal library that does SELECT and ASK queries on an endpoint which implements the HTTP (GET or POST) bindings of the SPARQL Protocol (<a href="http://code.google.com/p/pysparql/source/browse/trunk/src/sparql.py">code page</a>)</li>
+<li><a href="https://github.com/mnot/sparta/">Sparta</a>: Sparts is a simple, resource-centric API for RDF graphs, built on top of RDFLIB. </li>
+<li><a href="http://oort.to/">Oort</a>: another Python toolkit for accessing RDF graphs as plain objects, based on RDFLIB. The project homepage hasn&#8217;t been updated for a while, although there is trace of recent activity on its <a href="http://code.google.com/p/oort/">google project</a> page.</li>
+<p>&nbsp;</p>
+<h2>2. RDF Triplestores that are python-friendly</h2>
+<p>An important component of a linked-data application is the <a href="http://en.wikipedia.org/wiki/Triplestore">triplestore</a> (that is, an RDF database): many commercial and non-commercial triplestores are available, but only a few offer out-of-the-box python interfaces. Here&#8217;s a list of them:</p>
+<h3>Allegro Graph <a style="font-size: 14px;" href="http://www.franz.com/agraph/allegrograph/">http://www.franz.com/agraph/allegrograph/</a></h3>
+<p><a href="http://www.franz.com/agraph/allegrograph/">AllegroGraph</a> RDFStore is a high-performance, persistent RDF graph database. AllegroGraph uses disk-based storage, enabling it to scale to billions of triples while maintaining superior performance. Unfortunately, the official version of AllegroGraph is not free, but it is possible to get a <a href="http://www.franz.com/agraph/allegrograph/ag_commercial_edition.lhtml">free version</a> of it (it limits the DB to 50 million triples, so although useful for testing or development it doesn&#8217;t seem a good solution for a production environment).</p>
+<p>The Allegro Graph Python API (<a href="http://www.franz.com/agraph/allegrograph/clients.lhtml">download</a> | <a href="http://www.franz.com/agraph/support/documentation/current/python-tutorial/python-tutorial-40.html">docs</a> | <a href="http://www.franz.com/agraph/support/documentation/v4/python-tutorial/python-API-40.html">reference</a>) offers convenient and efficient access to an <a href="http://www.franz.com/agraph/allegrograph/">AllegroGraph</a> server from a Python-based application. This API provides methods for creating, querying and maintaining RDF data, and for managing the stored triples.</p>
+<li>A hands-on overview of what&#8217;s like to work with AllegroGraph and python can be found here: <a href="http://www.snee.com/bobdc.blog/2009/04/getting-started-with-allegrogr.html">Getting started with AllegroGraph</a>.</li>
+<h3>Open Link Virtuoso <a style="font-size: 14px;" href="http://virtuoso.openlinksw.com/">http://virtuoso.openlinksw.com/</a></h3>
+<p><a href="http://en.wikipedia.org/wiki/Virtuoso_Universal_Server">Virtuoso Universal Server</a> is a middleware and database engine hybrid that combines the functionality of a traditional RDBMS, ORDBMS, virtual database, RDF, XML, free-text, web application server and file server functionality in a single system. Rather than have dedicated servers for each of the aforementioned functionality realms, Virtuoso is a &#8220;universal server&#8221;; it enables a single multithreaded server process that implements multiple protocols. The open source edition of Virtuoso Universal Server is also known as <a href="http://virtuoso.openlinksw.com/dataspace/dav/wiki/Main/VOSIntro">OpenLink Virtuoso</a>.</p>
+<p><a href="http://packages.python.org/virtuoso/">Virtuoso from Python</a> is intended to be a collection of modules for interacting with OpenLink Virtuoso from python. The goal is to provide drivers for `SQLAlchemy` and `RDFLib`. The package is installable from the <a href="http://pypi.python.org/pypi/virtuoso">Python Package Index</a> and source code for development is available in a mercurial repository on <a href="http://bitbucket.org/ww/virtuoso">BitBucket</a>. </p>
+<li>A possibly useful example of using Virtuoso from python: <a href="http://www.openlinksw.com/dataspace/kidehen@openlinksw.com/weblog/kidehen@openlinksw.com%27s%20BLOG%20%5B127%5D/1651">SPARQL Guide for Python Developer</a>.</li>
+<h3>Sesame <a style="font-size: 14px;" href="http://www.openrdf.org/">http://www.openrdf.org/</a></h3>
+<p><a href="http://en.wikipedia.org/wiki/Sesame_(framework)">Sesame</a> is an open-source framework for querying and analyzing RDF data (<a href="http://www.openrdf.org/download.jsp">download</a> | <a href="http://www.openrdf.org/documentation.jsp">documentation</a>). Sesame supports two query languages: SeRQL and Sparql. Sesame&#8217;s API differs from comparable solutions in that it offers a (stackable) interface through wich functionality can be added, and the storage engine is abstracted from the query interface (many other Triplestores can in fact be used through the Sesame API).</p>
+<p>It looks as if the best way to interact with Sesame is by using Java; however there is also a pythonic API called <a href="http://pysesame.projects.semwebcentral.org/">pySesame</a>. This is essentially a python wrapper for Sesame&#8217;s REST HTTP API, so the range of operations supported (Log in, Log out, Request a list of available repositories, Evaluate a SeRQL-select, RQL or RDQL query, Extract/upload/remove RDF from a repository) are somehow limited (for example, there does not seem to be any native SPARQL support).</p>
+<li>A nice introduction to using Sesame with Python (without pySesame though) can be found in this article: <a href="http://www.jenitennison.com/blog/node/153">Getting Started with RDF and SPARQL Using Sesame and Python</a>.</li>
+<h3>Talis platform <a style="font-size: 14px;" href="http://www.talis.com/platform/">http://www.talis.com/platform/</a></h3>
+<p>The Talis Platform (<a href="http://docs.api.talis.com/getting-started/platform-faq#TOC-What-is-the-Talis-Platform-">faq</a> | <a href="http://docs.api.talis.com/">docs</a>)is an environment for building next generation applications and services based on Semantic Web technologies. It is a <strong>hosted</strong> system which provides an efficient, robust storage infrastructure. Both arbitrary documents and RDF-based semantic content are supported, with sophisticated query, indexing and search features. Data uploaded on the Talis platform are organized into stores: a <strong>store</strong> is a grouping of related data and metadata. For convenience each store is assigned one or more owners who are the people who have rights to configure the access controls over that data and metadata. Each store provides a uniform REST interface to the data and metadata it manages.</p>
+<p>Stores don&#8217;t come free of charge, but through the <a href="http://www.talis.com/platform/cc/">Talis Connected Commons scheme</a> it is possible have quite large amounts of store space for free. The scheme is intended to support a wide range of different forms of data publishing. For example scientific researchers seeking to share their research data; dissemination of public domain data from a variety of different charitable, public sector or volunteer organizations; open data enthusiasts compiling data sets to be shared with the web community.</p>
+<p>Good news for pythonistas too: <a href="http://code.google.com/p/pynappl/">pynappl</a> is a simple client library for the Talis Platform. It relies on <a href="http://code.google.com/p/rdflib/">rdflib 3.0</a> and draws inspiration from other similar client libraries.  Currently it is focussed mainly on managing data loading and manipulation of Talis Platform stores (<a href="http://blogs.talis.com/n2/archives/887">this blog post</a> says more about it). </p>
+<li>Before trying out the Talis platform you might find useful this blog post: <a href="http://www.jenitennison.com/blog/node/109">Publishing Linked Data on the Talis Platform</a>.</li>
+<h3>4store <a style="font-size: 14px;" href="http://4store.org/">http://4store.org/</a></h3>
+<p>4store (<a href="http://4store.org/trac/wiki/Download">download</a> | <a href="http://4store.org/about">features</a> | <a href="http://4store.org/trac/wiki/Documentation">docs</a>) is a database storage and query engine that holds RDF data. It has been used by <a href="http://www.garlik.com/">Garlik</a> as their primary RDF platform for three years, and has proved itself to be robust and secure.<br />
+4store&#8217;s main strengths are its performance, scalability and stability. It does not provide many features over and above RDF storage and SPARQL queries, but if your are looking for a scalable, secure, fast and efficient RDF store, then 4store should be on your shortlist.</p>
+<p>4store offers a number of <a href="http://4store.org/trac/wiki/ClientLibraries">client libraries</a>, among them there are two for python: first, <a href="http://pypi.python.org/pypi/HTTP4Store/0.2">HTTP4Store</a> is a client for the 4Store httpd service &#8211; allowing for easy handling of sparql results, and adding, appending and deleting graphs. Second, <a href="https://github.com/wwaites/py4s">py4s</a>, although this seems to be a much more experimental library (geared towards multi process queries).<br />
+Furthemore, there is also an application for the Django web framework called <a href="https://github.com/66laps/django-4store#readme">django-4store</a> that makes it easier to query and load rdf data into 4store when running Django. The application offers some support for constructing sparql-based Django <a href="https://github.com/66laps/django-4store/blob/master/src/fourstore/views.py">views</a>.</p>
+<li>This blog post shows how to install 4store: <a href="http://www.jenitennison.com/blog/node/152">Getting Started with RDF and SPARQL Using 4store and RDF.rb </a>.</li>
+<p>&nbsp;</p>
+<p>End of the survey.. <em>have I missed out on something</em>? Please let me know if I did &#8211; I&#8217;ll try to keep adding stuff to this list as I move on with my project work!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/feed/</wfw:commentRss>
+		<slash:comments>24</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1110</post-id>	</item>
+	</channel>
+</rss>

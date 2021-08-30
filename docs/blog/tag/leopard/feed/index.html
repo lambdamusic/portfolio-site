@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>leopard &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/leopard/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Sun, 30 Aug 2009 18:28:24 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>MySQL-Python and Apple OSX 10.5 (Leopard)</title>
+		<link>http://www.michelepasin.org/blog/2009/08/30/mysql-python-and-apple-osx-10-5-leopard/</link>
+				<pubDate>Sun, 30 Aug 2009 18:28:24 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[leopard]]></category>
+		<category><![CDATA[mysql]]></category>
+		<category><![CDATA[mysqldb]]></category>
+		<category><![CDATA[python]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=304</guid>
+				<description><![CDATA[UPDATE 30/12/09 : Snow Leopard and most recent versions of MySQL-python have broken the recipe below: you&#8217;d better check this blog post for an updated version (it worked for me). In a nutshell, the new method involves using the Macports installation if you&#8217;re on Leopard, or specifying your 64-bit architecture during the compile process if [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><span style="background:#FFFF33;color:#0000FF;">UPDATE 30/12/09 </strong>:</span> Snow Leopard and most recent versions of MySQL-python have broken the recipe below: you&#8217;d better check <a href="http://birdhouse.org/blog/2009/02/21/python-mysql-connections-on-mac-os/comment-page-1/">this blog post</a> for an updated version (it worked for me). In a nutshell, the new method involves using the Macports installation if you&#8217;re on Leopard, or  specifying your 64-bit architecture during the compile process if you&#8217;re on Snow Leopard&#8230; but if you&#8217;re still getting errors, there&#8217;s nothing else to do than <a href="http://www.google.com/search?hl=en&amp;rls=en&amp;q=install+MySQLdb+python&amp;aq=f&amp;aqi=g4&amp;oq=">invoking the almighty google</a> for help . .</p>
+<p>&gt;&gt;&gt;</p>
+<p>Hey there &#8211; just a quick sunday post (oh god what a nerd I am) to report on my latest experience <strong>installing the usual stack for python/django web development </strong>on my MacBookPro: <strong>MySQL</strong> [handy links: <a href="http://dev.mysql.com/doc/refman/5.0/en/mac-os-x-installation.html">install info</a> | <a href="http://dev.mysql.com/downloads/mysql/5.1.html#downloads">download page</a> | <a href="http://www.stata.com/support/faqs/win/64bit.html">do I need the 64 bit mac package?</a>], the <strong>python bindings</strong> to MySQL (<a href="http://sourceforge.net/projects/mysql-python/files/">MySQL-Python</a>) and <strong><a href="http://www.djangoproject.com/download/">Django</a></strong>. Apache is not needed for now as I&#8217;ll be using the django builtin server for development (and it should be already installed on your mac). Well anyways, there&#8217;s lots of posts on how to install the whole thing, I tried a couple of times in the past but <strong>always got stuck with a bloody MySQLdb error</strong> [<em>EnvironmentError: mysql_config not found</em>]. So I always resorted to the <strong>ready-made-stack solutions</strong> &#8211; which, by the way, work fantastically &#8211; I&#8217;m talking here about things such as <a href="http://bitnami.org/stack/djangostack">Bitnami&#8217;s DjangoStack</a>.</p>
+<p>&gt;&gt;&gt;</p>
+<p>However, this time I decided to crack the problem. I installed <a href="http://dev.mysql.com/doc/refman/5.0/en/mac-os-x-installation.html">MySQL</a>, then downloaded the <a href="http://sourceforge.net/projects/mysql-python/files/">MySQLdb package</a> manually (you can try install it using <em>easy-install</em>, but it <strong>wont work</strong> cause you gotta edit a couple of things first). Then followed the clear and useful instructions outlined on <a href="http://www.keningle.com/?p=11">this blog post by Ken Ingle</a> (another useful post is also <a href="http://www.djangrrl.com/view/installing-django-with-mysql-on-mac-os-x/">this one</a>). Summing them up:</p>
+<p>After unpacking the files, in the <em>MySQL-python-1.2.2</em> directory <strong>edit</strong> the <em>_mysql.c</em> file and do the following:</p>
+<p>1) <strong>Remove</strong> these lines [34 +]:</p>
+<pre style='color:#000000;background:#f1f0f0;'><span style='color:#004a43; '>#</span><span style='color:#004a43; '>ifndef</span><span style='color:#004a43; '> uint</span>
+<span style='color:#004a43; '>#</span><span style='color:#004a43; '>define</span><span style='color:#004a43; '> uint unsigned int</span>
+<span style='color:#004a43; '>#</span><span style='color:#004a43; '>endif</span>
+</pre>
+<p>2) <strong>Change</strong> the following [484 +]</p>
+<pre style='color:#000000;background:#f1f0f0;'>uint port <span style='color:#806030; '>=</span> MYSQL_PORT<span style='color:#806030; '>;</span>
+uint client_flag <span style='color:#806030; '>=</span> <span style='color:#c00000; '>0</span><span style='color:#806030; '>;</span>
+</pre>
+<p>with this:</p>
+<pre style='color:#000000;background:#f1f0f0;'><span style='color:#400000; font-weight:bold; '>unsigned</span> <span style='color:#400000; font-weight:bold; '>int</span> port <span style='color:#806030; '>=</span> MYSQL_PORT<span style='color:#806030; '>;</span>
+<span style='color:#400000; font-weight:bold; '>unsigned</span> <span style='color:#400000; font-weight:bold; '>int</span> client_flag <span style='color:#806030; '>=</span> <span style='color:#c00000; '>0</span><span style='color:#806030; '>;</span>
+</pre>
+<p>3) Then in order to avoid the irritating <strong><em>EnvironmentError: mysql_config not found</em></strong> just <strong>edit</strong> the <em>setup_posix.py</em> file and change the <em>mysql_config.path</em> into this [line 27]:</p>
+<pre style='color:#000000;background:#f1f0f0;'>mysql_config<span style='color:#806030; '>.</span>path <span style='color:#806030; '>=</span> <span style='color:#800000; '>"</span><span style='color:#e60000; '>/usr/local/mysql/bin/mysql_config</span><span style='color:#800000; '>"</span>
+</pre>
+<p>4) <strong>Create</strong> a symlink:</p>
+<pre style='color:#000000;background:#f1f0f0;'>$ sudo ln <span style='color:#806030; '>-</span>s <span style='color:#806030; '>/</span>usr<span style='color:#806030; '>/</span>local<span style='color:#806030; '>/</span>mysql<span style='color:#806030; '>/</span>lib <span style='color:#806030; '>/</span>usr<span style='color:#806030; '>/</span>local<span style='color:#806030; '>/</span>mysql<span style='color:#806030; '>/</span>lib<span style='color:#806030; '>/</span>mysql
+</pre>
+<p>5) <strong>Build</strong> and <strong>install</strong> (and don&#8217;t let the warnings scare you)</p>
+<pre style='color:#000000;background:#f1f0f0;'>$ sudo python setup<span style='color:#806030; '>.</span>py build
+$ sudo python setup<span style='color:#806030; '>.</span>py install
+</pre>
+<p>6) Test</p>
+<pre style='color:#000000;background:#f1f0f0;'><span style='color:#806030; '>></span><span style='color:#806030; '>></span><span style='color:#806030; '>></span> <span style='color:#400000; font-weight:bold; '>import</span> MySQLdb
+<span style='color:#806030; '>></span><span style='color:#806030; '>></span><span style='color:#806030; '>></span> MySQLdb<span style='color:#806030; '>.</span>apilevel
+<span style='color:#008000; '>'2.0'</span>
+</pre>
+<p>7) Enjoy (here&#8217;s the <a href="http://mysql-python.sourceforge.net/MySQLdb.html">user-guide</a> and an <a href="http://www.wellho.net/resources/ex.php4?item=y115/sql1a.py">example</a>) ):</p>
+<pre style='color:#000000;background:#f1f0f0;overflow:auto;'><span style='color:#400000; font-weight:bold; '>import</span> MySQLdb
+
+conn <span style='color:#806030; '>=</span> MySQLdb<span style='color:#806030; '>.</span>connect<span style='color:#806030; '>(</span>host<span style='color:#806030; '>=</span><span style='color:#e60000; '>"localhost"</span><span style='color:#806030; '>,</span> user<span style='color:#806030; '>=</span><span style='color:#e60000; '>"root"</span><span style='color:#806030; '>,</span> passwd<span style='color:#806030; '>=</span><span style='color:#e60000; '>"nobodyknow"</span><span style='color:#806030; '>,</span> db<span style='color:#806030; '>=</span><span style='color:#e60000; '>"amit"</span><span style='color:#806030; '>)</span>
+cursor <span style='color:#806030; '>=</span> conn<span style='color:#806030; '>.</span>cursor<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span>
+
+stmt <span style='color:#806030; '>=</span> <span style='color:#e60000; '>"SELECT * FROM overflows"</span>
+cursor<span style='color:#806030; '>.</span>execute<span style='color:#806030; '>(</span>stmt<span style='color:#806030; '>)</span>
+
+<span style='color:#c34e00; '># Fetch and output</span>
+result <span style='color:#806030; '>=</span> cursor<span style='color:#806030; '>.</span>fetchall<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span>
+<span style='color:#400000; font-weight:bold; '>print</span> result
+
+<span style='color:#c34e00; '># get the number of rows</span>
+numrows <span style='color:#806030; '>=</span> <span style='color:#e34adc; '>int</span><span style='color:#806030; '>(</span>cursor<span style='color:#806030; '>.</span>rowcount<span style='color:#806030; '>)</span>
+
+<span style='color:#c34e00; '># Close connection</span>
+conn<span style='color:#806030; '>.</span>close<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span>
+</pre>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">304</post-id>	</item>
+		<item>
+		<title>MacPython/Leopard &#8211; PythonInfo Wiki</title>
+		<link>http://www.michelepasin.org/blog/2009/02/25/macpythonleopard-pythoninfo-wiki/</link>
+				<pubDate>Wed, 25 Feb 2009 15:43:09 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[ide]]></category>
+		<category><![CDATA[idle]]></category>
+		<category><![CDATA[leopard]]></category>
+		<category><![CDATA[macpython]]></category>
+		<category><![CDATA[python]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/2009/02/25/macpythonleopard-pythoninfo-wiki/</guid>
+				<description><![CDATA[Some people have legitimate reasons for wanting to install IDLE on Leopard. E.g., even though Leopard&apos;s Xcode 3.0 (and later) supports Python development, it does so in a heavyweight, support-all-of-Cocoa fashion. And educators teaching Python who wish to do so in a platform-agnostic way may also be best served by IDLE. The following steps will [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Some people have legitimate reasons for wanting to install IDLE on Leopard. E.g., even though Leopard&apos;s Xcode 3.0 (and later) supports Python development, it does so in a heavyweight, support-all-of-Cocoa fashion. And educators teaching Python who wish to do so in a platform-agnostic way may also be best served by IDLE.</p>
+<p>The following steps will allow the installation of IDLE.app (and other MacPython 2.5 extras, such as Build Applet.app) on a Leopard machine without any redundant elements and without any conflicts with the pre-installed Python environment&#8230;. continues on <a href="http://wiki.python.org/moin/MacPython/Leopard">http://wiki.python.org/moin/MacPython/Leopard</a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">75</post-id>	</item>
+	</channel>
+</rss>

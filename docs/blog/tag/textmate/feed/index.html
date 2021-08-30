@@ -1,0 +1,218 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>textmate &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/textmate/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Tue, 22 Oct 2013 01:09:29 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Textmate bundle for Turtle and Sparql</title>
+		<link>http://www.michelepasin.org/blog/2013/08/13/textmate-bundle-for-turtle-and-sparql/</link>
+				<pubDate>Tue, 13 Aug 2013 17:07:34 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[semanticweb]]></category>
+		<category><![CDATA[sparql]]></category>
+		<category><![CDATA[textmate]]></category>
+		<category><![CDATA[turtle]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2392</guid>
+				<description><![CDATA[I recently ran into the Textmate bundle for Turtle, an extension for the Textmate osx editor aimed at facilitating working with RDF and SPARQL. If you happen to be using these technologies, well I&#8217;d suggest you take a look at the following post. The Resource Description Framework is a general-purpose language for representing information which [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I recently ran into the Textmate <a href="https://github.com/peta/turtle.tmbundle">bundle for Turtle</a>, an extension for the <a href="https://github.com/textmate/textmate">Textmate</a> osx editor aimed at facilitating working with RDF and SPARQL. If you happen to be using these technologies, well I&#8217;d suggest you take a look at the following post.  </p>
+<p>The Resource Description Framework is a <em>general-purpose language for representing information</em> which is widely used on the web in order to encode metadata in a machine-interoperable format. </p>
+<p>Turtle, the <a href="http://www.w3.org/TeamSubmission/turtle/">terse RDF Triple Language</a>, is a textual syntax for RDF which aims at human readability and compactness (among other things).<br />
+This is what it looks like:</p>
+<pre><code>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@base <http://example.org/schemas/vehicles>
+
+:MotorVehicle a rdfs:Class.
+
+:PassengerVehicle a rdfs:Class;
+   rdfs:subClassOf :MotorVehicle.
+
+:Person a rdfs:Class.
+
+xsd:integer a rdfs:Datatype.
+
+:registeredTo a rdf:Property;
+   rdfs:domain :MotorVehicle;
+   rdfs:range  :Person.
+
+:myLittleCar a PassengerVehicle
+</code></pre>
+<p>The termite library in question, in a nutshell, provides a bunch of snippets and query mechanisms that make it easier to work with Turtle RDF and related technologies.<br />
+More precisely, here&#8217;s the official features breakdown:</p>
+<blockquote>
+<li>Language grammar for Turtle and SPARQL 1.1</li>
+<li>Powerful (!) auto-completion (live-aggregated)</li>
+<li>Documentation for classes and roles/properties at your fingertips (live-aggregated)</li>
+<li>Interactive SPARQL query scratchpad</li>
+<li>Some snippets (prefixes and document skeleton)</li>
+<li>Solid syntax validation</li>
+<li>Commands for instant graph visualization of a knowledge base (requires <a href="http://www.graphviz.org/">Graphviz</a> and <a href="http://librdf.org/raptor/">Raptor</a>)</li>
+<li>Conversion between all common RDF formats</li>
+</blockquote>
+<h3>Example</h3>
+<p>In order to query a SPARQL endpoint (eg DBPedia) just type this in and run it (apple-R):</p>
+<pre><code>
+#QUERY &lt;http://dbpedia.org/sparql&gt;                    
+SELECT DISTINCT ?s ?label                             
+WHERE {                                               
+    ?s &lt;http://dbpedia.org/property/season&gt; ?o .      
+}  
+</code></pre>
+<p>Obviously you can query any endpoint, e.g. <a href="http://data.nature.com/query">data.nature.com</a>: </p>
+<pre><code>
+
+#QUERY &lt;http://data.nature.com/sparql&gt;
+
+PREFIX bibo:&lt;http://purl.org/ontology/bibo/&gt;
+PREFIX dc:&lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX dcterms:&lt;http://purl.org/dc/terms/&gt;
+PREFIX foaf:&lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX npg:&lt;http://ns.nature.com/terms/&gt;
+PREFIX npgg:&lt;http://ns.nature.com/graphs/&gt;
+PREFIX npgx:&lt;http://ns.nature.com/extensions/&gt;
+PREFIX owl:&lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX prism:&lt;http://prismstandard.org/namespaces/basic/2.1/&gt;
+PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX sc:&lt;http://purl.org/science/owl/sciencecommons/&gt;
+PREFIX skos:&lt;http://www.w3.org/2004/02/skos/core#&gt;
+PREFIX void:&lt;http://rdfs.org/ns/void#&gt;
+PREFIX xsd:&lt;http://www.w3.org/2001/XMLSchema#&gt;
+
+
+SELECT *                            
+WHERE {                                                
+    ?doi a npg:Article . 
+    ?doi dc:title ?title .
+    ?doi prism:publicationDate ?date
+} 
+limit 100 
+
+</code></pre>
+<p>And this is just the tip of the iceberg. Autocompletion, visualisations etc… it may be the Textmate-Semantic Web swiss army knife you&#8217;ve been looking for. </p>
+<p><img src="https://raw.github.com/peta/turtle.tmbundle/master/Support/img/screenshot-editor.png" alt="" title="" border="0" width="" height="700px" style="float:left;" /></p>
+<p>&nbsp;</p>
+<p><img src="https://raw.github.com/peta/turtle.tmbundle/master/Support/img/screenshot-sparql.png" alt="" title="" border="0" width="" height="700px" style="float:left;" /></p>
+<p>&nbsp;</p>
+<p><img src="https://raw.github.com/peta/turtle.tmbundle/master/Support/img/screenshot-visu.png" alt="" title="" border="0" width="" height="700px" style="float:left;" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2392</post-id>	</item>
+		<item>
+		<title>Python debugging and Textmate</title>
+		<link>http://www.michelepasin.org/blog/2010/02/12/python-debugging-and-textmate/</link>
+				<pubDate>Fri, 12 Feb 2010 13:23:29 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[debug]]></category>
+		<category><![CDATA[pdb]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[textmate]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=546</guid>
+				<description><![CDATA[I&#8217;ve never realized that among the many things Textmate does well there&#8217;s also python debugging. Well, to be precise Textmate doesn&#8217;t do much as it just relies on python&#8217;s default debugger, called PDB. Ok, probably PDB isn&#8217;t the cutting edge debugger you&#8217;re looking for, but it&#8217;s worth a try imho. Nothing to install in order [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I&#8217;ve never realized that among the <a href="http://manual.macromates.com/en/">many things Textmate does well</a> there&#8217;s also python debugging. Well, to be precise Textmate doesn&#8217;t do much as it just relies on <strong>python&#8217;s default debugger, called <a href="http://docs.python.org/library/pdb.html">PDB</a></strong>. Ok, probably PDB isn&#8217;t the cutting edge debugger you&#8217;re looking for, but it&#8217;s worth a try imho.</p>
+<p>Nothing to install in order to try: just open up a python script with textmate, hit <strong>cmd+shift+D</strong> and a debug-terminal window will open. The <strong>essential commands for Pdb</strong> are (the first letter is the one to digit):</p>
+<li>s(tep): Execute the current line, stop at the first possible occasion (either in a function that is called or on the next line in the current function).</li>
+<li>r(eturn): Continue execution until the current subroutine returns.</li>
+<li>n(ext): Continue execution until the next line in the current function is reached or it returns.</li>
+<li>p(rint) expression: Evaluate the expression in the current context and print its value.</li>
+<li>a(rgs): Print the argument list of the current function.</li>
+<li>q(uit): Quit from the debugger</li>
+<li>c(ont(inue)): Instead of quitting, Continue execution, only stop when a breakpoint is encountered.</li>
+<p>A nice and clear crash course of Pbd can also be found <a href="http://pythonconquerstheuniverse.wordpress.com/category/the-python-debugger/">here</a>.</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-12.png"><img class="alignnone size-medium wp-image-547" title="Picture 1" src="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-12.png?w=300" alt="" width="300" height="189" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-12.png 1068w, http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-12-300x189.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-12-1024x648.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>&#8230;</p>
+<p>OTHER TEXTMATE TIPS AND TRICKS: </p>
+<li> <a href="http://pypi.python.org/pypi/PdbTextMateSupport/0.3">PdbTextMateSupport</a> is a plugin that gives you a more powerful debugger within Textmate: a <a href="http://www.libertypages.com/clarktech/?p=192">detailed description of its (simple) installation is here.</a></li>
+<li> a nice post about <a href="http://domhay.com/blog/2009/10-cool-textmate-tips">10 cool TextMate tips</a>: most of them are HTML/CSS related, but worth checking out!</li>
+<li>Textmate basic <a href="http://projects.serenity.de/textmate/tutorials/basics/">tutorial</a>. This is a must for everyone who wants to use TextMate seriously (available also in Japanese!) </li>
+<li><a href="http://al3x.net/2008/12/03/how-i-use-textmate.html">Three plugins</a> that&#8217;ll make textmate shine even more: <strong>Project Plus </strong>(adds extra functionalities to the project drawer), <strong>GetBundles</strong> (a better version of the old GetBundle), <strong>Ack In Project</strong> (a much faster &#8216;search in project&#8217; function). </li>
+<li>Nice <a href="http://screencasts.textmate.org/math_and_column_selections.mov">screencast</a> on how to use the <strong>Math</strong> bundle</li>
+<p>&#8230;</p>
+]]></content:encoded>
+							<enclosure url="http://screencasts.textmate.org/math_and_column_selections.mov" length="27615540" type="video/quicktime" />
+		<post-id xmlns="com-wordpress:feed-additions:1">546</post-id>	</item>
+		<item>
+		<title>TextMate Basics Tutorial</title>
+		<link>http://www.michelepasin.org/blog/2009/02/26/textmate-basics-tutorial/</link>
+				<pubDate>Thu, 26 Feb 2009 15:28:57 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[textmate]]></category>
+		<category><![CDATA[tutorial]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=78</guid>
+				<description><![CDATA[TextMate software &#8220;brings Apple&#8217;s approach to operating systems into the world of text editors. By bridging UNIX underpinnings and GUI, TextMate cherry-picks the best of both worlds to the benefit of expert scripters and novice users alike.&#8221; If you are using Textmate this tutorial will show you around the basic features of TextMate and also [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://macromates.com/">TextMate</a> software &#8220;brings Apple&#8217;s approach to operating systems into the world of text editors. By bridging UNIX underpinnings and GUI, TextMate cherry-picks the best of both worlds to the benefit of expert scripters and novice users alike.&#8221; If you are using Textmate  <a href="http://projects.serenity.de/textmate/tutorials/basics/">this tutorial</a> will show you around the basic features of TextMate and also some of the most advanced ones!</p>
+<p><a href="http://projects.serenity.de/textmate/tutorials/basics/"><img title="picture-1" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/02/picture-1.png" alt="picture-1" width="321" height="660" /></a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">78</post-id>	</item>
+		<item>
+		<title>pysmell &#8211; Python auto-complete &#8211; works with TextMate too!</title>
+		<link>http://www.michelepasin.org/blog/2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/</link>
+				<comments>http://www.michelepasin.org/blog/2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/#comments</comments>
+				<pubDate>Sun, 15 Feb 2009 17:34:09 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[autocompletion]]></category>
+		<category><![CDATA[ide]]></category>
+		<category><![CDATA[pysmell]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[textmate]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/</guid>
+				<description><![CDATA[One of the reasons that kept me away (sigh) from TextMate is the lack of autocompletion support.. especially in Python. Seems like those days have ended &#8211; I just downloaded and installed Pysmell, and it works great!!! The instructions are very clear, you install it, dbl click the TextMate bundle file and you&#8217;re already half [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>One of the reasons that kept me away (sigh) from TextMate is the lack of autocompletion support.. especially in Python. Seems like those days have ended &#8211; I just downloaded and installed <a href="http://code.google.com/p/pysmell/">Pysmell</a>, and it works great!!!</p>
+<p>The <a href="http://code.google.com/p/pysmell/">instructions</a> are very clear, you install it, dbl click the TextMate bundle file and you&#8217;re already half way through. Just remember that you always need to generate a a PYSMELLTAGS file from your project, and put it at the root level so that TextMate finds it:</p>
+<p><code><br />
+cd /root/of/project<br />
+pysmell .<br />
+</code></p>
+<p>For example, I wanted to add the django package to my &#8216;tags&#8217; library:</p>
+<p><code>[mac]@ego:/Library/Python/2.5/site-packages/django&gt;pysmell . -o ~/PYSMELLTAGS.djangolib</code></p>
+<p>And generate tags for the standard Python lib:</p>
+<p><code>[mac]@ego:/System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5&gt;pysmell *.py -o ~/PYSMELLTAGS.stndlib</code></p>
+<p>Then I just moved these files to the root of my python project.. and it magically works!</p>
+<p><img class="alignnone size-full wp-image-71" title="picture-22" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/02/picture-22.png" alt="picture-22" width="480" height="389" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/02/picture-22.png 506w, http://www.michelepasin.org/blog/wp-content/uploads/2009/02/picture-22-300x243.png 300w" sizes="(max-width: 480px) 100vw, 480px" /></p>
+<p>&gt;&gt;&gt;</p>
+<p>At first sight, the main drawbacks seem to be:</p>
+<p>1) the &#8216;tags&#8217; file you generate needs to be put into the project directory, not really handy if you have multiple projects.. (or if you say &#8211; update a library)</p>
+<p>2) it may be slow (of course, depending on the size of the TAGS file you generate)</p>
+<p>However &#8211; it&#8217;s great stuff, can&#8217;t wait to test it further!!!!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/feed/</wfw:commentRss>
+		<slash:comments>6</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">67</post-id>	</item>
+	</channel>
+</rss>

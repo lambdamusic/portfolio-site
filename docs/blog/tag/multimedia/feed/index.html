@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>multimedia &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/multimedia/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Sat, 12 Dec 2009 21:05:02 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Pyglet: multimedia library for python</title>
+		<link>http://www.michelepasin.org/blog/2009/12/12/pyglet-multimedia-library-for-python/</link>
+				<pubDate>Sat, 12 Dec 2009 21:05:02 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[graphics]]></category>
+		<category><![CDATA[multimedia]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[sound]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=462</guid>
+				<description><![CDATA[UPDATE 30/03/1: Just realized that unfortunately pyglet doesn&#8217;t play well with the latest 64bit architecture of oSX. A real shame, as this obviously breaks Pyglet&#8217;s famed run-anywhere feature. There are reasons to think that the next version will fix this problem (check out this thread for more info).. but for the moment, I guess that [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><span style="color:#ff0000;">UPDATE 30/03/1</span>: Just realized that unfortunately pyglet doesn&#8217;t play well with the latest 64bit architecture of oSX. A real shame, as this obviously breaks Pyglet&#8217;s famed run-anywhere feature. There are reasons to think that the next version will fix this problem (check out <a href="http://code.google.com/p/pyglet/issues/detail?id=438">this thread</a> for more info).. but for the moment, I guess that the only alternative is falling back to <a href="http://pyopengl.sourceforge.net/">PyOpenGl</a>.<br />
+<span style="color:#ff0000;">UPDATE 14/12/09</span>: <a href="http://code.google.com/p/pyprocessing/">pyProcessing</a> is a project building on pyglet that that creates an environment for graphics applications that closely resembles that of the <a href="http://www.processing.org/">Processing</a> system. Quite neat uh?</p>
+<p><strong><a href="http://www.pyglet.org/index.html">Pyglet</a></strong> provides an object-oriented programming interface for developing games and other visually-rich applications for Windows, Mac OS X and Linux. I&#8217;ve been playing with it for an hour or so, and was surprised of how <strong>quickly</strong> it can let you create a python-based multimedia application. </p>
+<p>Some of the features of pyglet are:</p>
+<blockquote><p> <strong>No external dependencies or installation requirements</strong>. For most application and game requirements, pyglet needs nothing else besides Python, simplifying distribution and installation.<br />
+<strong>Take advantage of multiple windows and multi-monitor desktops.</strong> pyglet allows you to use as many windows as you need, and is fully aware of multi-monitor setups for use with fullscreen games.<br />
+<strong>Load images, sound, music and video in almost any format.</strong> pyglet can optionally use AVbin to play back audio formats such as MP3, OGG/Vorbis and WMA, and video formats such as DivX, MPEG-2, H.264, WMV and Xvid.</p></blockquote>
+<p>Two possibly useful tips when getting started:</p>
+<p>&#8211; Go get <a href="http://code.google.com/p/avbin/"><strong>AVBIN</strong></a> without hesitations, as you&#8217;ll need it. <strong>MP3</strong> and other compressed audio formats <strong>require</strong> AVbin to be <strong>installed</strong> (this is the default for the Windows and Mac OS X installers). Uncompressed WAV files can be played without AVbin.</p>
+<p>&#8211; [<em>tested on <strong>OSx leopard</strong> only</em>] If you try running the <strong>hello-world example</strong> from the console, after hitting<em> window = pyglet.window.Window()</em> you&#8217;ll see a new window appearing on your screen. That looks like good news obviously, but soon you&#8217;ll find out that the <strong>Finder doesn&#8217;t like that</strong>, and apparently the Python launcher results being as &#8216;not responding&#8217; on the Force Quit Application menu. Well nothing to worry there: it&#8217;s because you haven&#8217;t issued the <em>pyglet.app.run()</em> command yet (which is where the main event loop gets handled).</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2009/12/screen-shot-2009-12-12-at-21-06-22.png"><img class="alignnone size-medium wp-image-465" title="Screen shot 2009-12-12 at 21.06.22" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/12/screen-shot-2009-12-12-at-21-06-22.png?w=300" alt="" width="300" height="236" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/12/screen-shot-2009-12-12-at-21-06-22.png 638w, http://www.michelepasin.org/blog/wp-content/uploads/2009/12/screen-shot-2009-12-12-at-21-06-22-300x236.png 300w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>The screenshot above is taken from one of the example apps you can download. Balls keeps bouncing around in a window, playing a sound when they hit the border. Check out the code:</p>
+<pre style='color:#000020;background:#f6f8ff;overflow:auto;font-size:12px;'><span style='color:#200080; font-weight:bold; '>import</span> os
+<span style='color:#200080; font-weight:bold; '>import</span> random
+<span style='color:#200080; font-weight:bold; '>import</span> sys
+
+<span style='color:#200080; font-weight:bold; '>from</span> pyglet<span style='color:#308080; '>.</span>gl <span style='color:#200080; font-weight:bold; '>import</span> <span style='color:#308080; '>*</span>
+<span style='color:#200080; font-weight:bold; '>import</span> pyglet
+<span style='color:#200080; font-weight:bold; '>from</span> pyglet<span style='color:#308080; '>.</span>window <span style='color:#200080; font-weight:bold; '>import</span> key
+
+BALL_IMAGE <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'ball.png'</span>
+BALL_SOUND <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'ball.wav'</span>
+
+<span style='color:#200080; font-weight:bold; '>if</span> <span style='color:#e34adc; '>len</span><span style='color:#308080; '>(</span>sys<span style='color:#308080; '>.</span>argv<span style='color:#308080; '>)</span> <span style='color:#308080; '>></span> <span style='color:#008c00; '>1</span><span style='color:#308080; '>:</span>
+    BALL_SOUND <span style='color:#308080; '>=</span> sys<span style='color:#308080; '>.</span>argv<span style='color:#308080; '>[</span><span style='color:#008c00; '>1</span><span style='color:#308080; '>]</span>
+
+sound <span style='color:#308080; '>=</span> pyglet<span style='color:#308080; '>.</span>resource<span style='color:#308080; '>.</span>media<span style='color:#308080; '>(</span>BALL_SOUND<span style='color:#308080; '>,</span> streaming<span style='color:#308080; '>=</span><span style='color:#e34adc; '>False</span><span style='color:#308080; '>)</span>
+
+<span style='color:#200080; font-weight:bold; '>class</span> Ball<span style='color:#308080; '>(</span>pyglet<span style='color:#308080; '>.</span>sprite<span style='color:#308080; '>.</span>Sprite<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+    ball_image <span style='color:#308080; '>=</span> pyglet<span style='color:#308080; '>.</span>resource<span style='color:#308080; '>.</span>image<span style='color:#308080; '>(</span>BALL_IMAGE<span style='color:#308080; '>)</span>
+    width <span style='color:#308080; '>=</span> ball_image<span style='color:#308080; '>.</span>width
+    height <span style='color:#308080; '>=</span> ball_image<span style='color:#308080; '>.</span>height
+
+    <span style='color:#200080; font-weight:bold; '>def</span> <span style='color:#e34adc; '>__init__</span><span style='color:#308080; '>(</span>self<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+        x <span style='color:#308080; '>=</span> random<span style='color:#308080; '>.</span>random<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span> <span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span>window<span style='color:#308080; '>.</span>width <span style='color:#308080; '>-</span> self<span style='color:#308080; '>.</span>width<span style='color:#308080; '>)</span>
+        y <span style='color:#308080; '>=</span> random<span style='color:#308080; '>.</span>random<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span> <span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span>window<span style='color:#308080; '>.</span>height <span style='color:#308080; '>-</span> self<span style='color:#308080; '>.</span>height<span style='color:#308080; '>)</span>
+
+        <span style='color:#e34adc; '>super</span><span style='color:#308080; '>(</span>Ball<span style='color:#308080; '>,</span> self<span style='color:#308080; '>)</span><span style='color:#308080; '>.</span><span style='color:#e34adc; '>__init__</span><span style='color:#308080; '>(</span>self<span style='color:#308080; '>.</span>ball_image<span style='color:#308080; '>,</span> x<span style='color:#308080; '>,</span> y<span style='color:#308080; '>,</span> batch<span style='color:#308080; '>=</span>balls_batch<span style='color:#308080; '>)</span>
+
+        self<span style='color:#308080; '>.</span>dx <span style='color:#308080; '>=</span> <span style='color:#308080; '>(</span>random<span style='color:#308080; '>.</span>random<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span> <span style='color:#308080; '>-</span> <span style='color:#008000; '>0.5</span><span style='color:#308080; '>)</span> <span style='color:#308080; '>*</span> <span style='color:#008c00; '>1000</span>
+        self<span style='color:#308080; '>.</span>dy <span style='color:#308080; '>=</span> <span style='color:#308080; '>(</span>random<span style='color:#308080; '>.</span>random<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span> <span style='color:#308080; '>-</span> <span style='color:#008000; '>0.5</span><span style='color:#308080; '>)</span> <span style='color:#308080; '>*</span> <span style='color:#008c00; '>1000</span>
+
+    <span style='color:#200080; font-weight:bold; '>def</span> update<span style='color:#308080; '>(</span>self<span style='color:#308080; '>,</span> dt<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+        <span style='color:#200080; font-weight:bold; '>if</span> self<span style='color:#308080; '>.</span>x <span style='color:#308080; '>=</span> window<span style='color:#308080; '>.</span>width<span style='color:#308080; '>:</span>
+            self<span style='color:#308080; '>.</span>dx <span style='color:#308080; '>*</span><span style='color:#308080; '>=</span> <span style='color:#308080; '>-</span><span style='color:#008c00; '>1</span>
+            sound<span style='color:#308080; '>.</span>play<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span>
+        <span style='color:#200080; font-weight:bold; '>if</span> self<span style='color:#308080; '>.</span>y <span style='color:#308080; '>=</span> window<span style='color:#308080; '>.</span>height<span style='color:#308080; '>:</span>
+            self<span style='color:#308080; '>.</span>dy <span style='color:#308080; '>*</span><span style='color:#308080; '>=</span> <span style='color:#308080; '>-</span><span style='color:#008c00; '>1</span>
+            sound<span style='color:#308080; '>.</span>play<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span>
+        self<span style='color:#308080; '>.</span>x <span style='color:#308080; '>+</span><span style='color:#308080; '>=</span> self<span style='color:#308080; '>.</span>dx <span style='color:#308080; '>*</span> dt
+        self<span style='color:#308080; '>.</span>y <span style='color:#308080; '>+</span><span style='color:#308080; '>=</span> self<span style='color:#308080; '>.</span>dy <span style='color:#308080; '>*</span> dt
+
+        self<span style='color:#308080; '>.</span>x <span style='color:#308080; '>=</span> <span style='color:#e34adc; '>min</span><span style='color:#308080; '>(</span><span style='color:#e34adc; '>max</span><span style='color:#308080; '>(</span>self<span style='color:#308080; '>.</span>x<span style='color:#308080; '>,</span> <span style='color:#008c00; '>0</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span> window<span style='color:#308080; '>.</span>width <span style='color:#308080; '>-</span> self<span style='color:#308080; '>.</span>width<span style='color:#308080; '>)</span>
+        self<span style='color:#308080; '>.</span>y <span style='color:#308080; '>=</span> <span style='color:#e34adc; '>min</span><span style='color:#308080; '>(</span><span style='color:#e34adc; '>max</span><span style='color:#308080; '>(</span>self<span style='color:#308080; '>.</span>y<span style='color:#308080; '>,</span> <span style='color:#008c00; '>0</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span> window<span style='color:#308080; '>.</span>height <span style='color:#308080; '>-</span> self<span style='color:#308080; '>.</span>height<span style='color:#308080; '>)</span>
+
+window <span style='color:#308080; '>=</span> pyglet<span style='color:#308080; '>.</span>window<span style='color:#308080; '>.</span>Window<span style='color:#308080; '>(</span><span style='color:#008c00; '>640</span><span style='color:#308080; '>,</span> <span style='color:#008c00; '>480</span><span style='color:#308080; '>)</span>
+
+@window<span style='color:#308080; '>.</span>event
+<span style='color:#200080; font-weight:bold; '>def</span> on_key_press<span style='color:#308080; '>(</span>symbol<span style='color:#308080; '>,</span> modifiers<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+    <span style='color:#200080; font-weight:bold; '>if</span> symbol <span style='color:#308080; '>=</span><span style='color:#308080; '>=</span> key<span style='color:#308080; '>.</span>SPACE<span style='color:#308080; '>:</span>
+        balls<span style='color:#308080; '>.</span>append<span style='color:#308080; '>(</span>Ball<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span>
+    <span style='color:#200080; font-weight:bold; '>elif</span> symbol <span style='color:#308080; '>=</span><span style='color:#308080; '>=</span> key<span style='color:#308080; '>.</span>BACKSPACE<span style='color:#308080; '>:</span>
+        <span style='color:#200080; font-weight:bold; '>if</span> balls<span style='color:#308080; '>:</span>
+            <span style='color:#200080; font-weight:bold; '>del</span> balls<span style='color:#308080; '>[</span><span style='color:#308080; '>-</span><span style='color:#008c00; '>1</span><span style='color:#308080; '>]</span>
+    <span style='color:#200080; font-weight:bold; '>elif</span> symbol <span style='color:#308080; '>=</span><span style='color:#308080; '>=</span> key<span style='color:#308080; '>.</span>ESCAPE<span style='color:#308080; '>:</span>
+        window<span style='color:#308080; '>.</span>has_exit <span style='color:#308080; '>=</span> <span style='color:#e34adc; '>True</span>
+
+@window<span style='color:#308080; '>.</span>event
+<span style='color:#200080; font-weight:bold; '>def</span> on_draw<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+    window<span style='color:#308080; '>.</span>clear<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span>
+    balls_batch<span style='color:#308080; '>.</span>draw<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span>
+    label<span style='color:#308080; '>.</span>draw<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span>
+
+<span style='color:#200080; font-weight:bold; '>def</span> update<span style='color:#308080; '>(</span>dt<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+    <span style='color:#200080; font-weight:bold; '>for</span> ball <span style='color:#200080; font-weight:bold; '>in</span> balls<span style='color:#308080; '>:</span>
+        ball<span style='color:#308080; '>.</span>update<span style='color:#308080; '>(</span>dt<span style='color:#308080; '>)</span>
+pyglet<span style='color:#308080; '>.</span>clock<span style='color:#308080; '>.</span>schedule_interval<span style='color:#308080; '>(</span>update<span style='color:#308080; '>,</span> <span style='color:#008c00; '>1</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>30</span><span style='color:#308080; '>.</span><span style='color:#308080; '>)</span>
+
+balls_batch <span style='color:#308080; '>=</span> pyglet<span style='color:#308080; '>.</span>graphics<span style='color:#308080; '>.</span>Batch<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span>
+balls <span style='color:#308080; '>=</span> <span style='color:#308080; '>[</span><span style='color:#308080; '>]</span>
+label <span style='color:#308080; '>=</span> pyglet<span style='color:#308080; '>.</span>text<span style='color:#308080; '>.</span>Label<span style='color:#308080; '>(</span><span style='color:#1060b6; '>'Press space to add a ball, backspace to remove'</span><span style='color:#308080; '>,</span>
+                          font_size<span style='color:#308080; '>=</span><span style='color:#008c00; '>14</span><span style='color:#308080; '>,</span>
+                          x<span style='color:#308080; '>=</span>window<span style='color:#308080; '>.</span>width <span style='color:#308080; '>/</span><span style='color:#308080; '>/</span> <span style='color:#008c00; '>2</span><span style='color:#308080; '>,</span> y<span style='color:#308080; '>=</span><span style='color:#008c00; '>10</span><span style='color:#308080; '>,</span>
+                          anchor_x<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'center'</span><span style='color:#308080; '>)</span>
+
+<span style='color:#200080; font-weight:bold; '>if</span> <span style='color:#e34adc; '>__name__</span> <span style='color:#308080; '>=</span><span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'__main__'</span><span style='color:#308080; '>:</span>
+    pyglet<span style='color:#308080; '>.</span>app<span style='color:#308080; '>.</span>run<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span>
+</pre>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">462</post-id>	</item>
+	</channel>
+</rss>

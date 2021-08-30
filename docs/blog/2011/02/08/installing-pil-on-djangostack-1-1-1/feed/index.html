@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	
+	>
+<channel>
+	<title>
+	Comments on: Installing PIL on Djangostack 1.1.1/1.2/1.3	</title>
+	<atom:link href="http://www.michelepasin.org/blog/2011/02/08/installing-pil-on-djangostack-1-1-1/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog/2011/02/08/installing-pil-on-djangostack-1-1-1/</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Tue, 31 Jan 2012 11:27:42 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+			<item>
+				<title>
+				By: mike				</title>
+				<link>http://www.michelepasin.org/blog/2011/02/08/installing-pil-on-djangostack-1-1-1/comment-page-1/#comment-194</link>
+		<dc:creator><![CDATA[mike]]></dc:creator>
+		<pubDate>Tue, 31 Jan 2012 11:27:42 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1095#comment-194</guid>
+					<description><![CDATA[Thanks Victoria, that&#039;s highly informative and clear. When it comes to compiler issues and the like, I don&#039;t really have a solid understanding of things so I end up opting for a trial-and-error approach... and I suppose that&#039;s why I like djangostack: it lets me focus on the things I do know.
+About the new DjangoStack: great news! definitely looking forward to try it out.]]></description>
+		<content:encoded><![CDATA[<p>Thanks Victoria, that&#8217;s highly informative and clear. When it comes to compiler issues and the like, I don&#8217;t really have a solid understanding of things so I end up opting for a trial-and-error approach&#8230; and I suppose that&#8217;s why I like djangostack: it lets me focus on the things I do know.<br />
+About the new DjangoStack: great news! definitely looking forward to try it out.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: kaysa				</title>
+				<link>http://www.michelepasin.org/blog/2011/02/08/installing-pil-on-djangostack-1-1-1/comment-page-1/#comment-193</link>
+		<dc:creator><![CDATA[kaysa]]></dc:creator>
+		<pubDate>Tue, 31 Jan 2012 10:20:16 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1095#comment-193</guid>
+					<description><![CDATA[Hi,
+
+Thanks for putting this article together. Here at BitNami we have followed these steps, to try and figure out how to avoid these issues when trying to install PIL to the BitNami users. I&#039;d like to share a few comments:
+
+* The problem: missing gcc compiler (Mac OS X 10.6)
+
+The issue is not really that it is trying to use an older compiler. The problem is that some macros are not defined when compiling with the new compiler. As you mention, a possible solution is to use an old compiler.
+
+* _imaging.so: mach-o, but wrong architecture (Mac OS X 10.7)
+
+As the message states, the problem is the wrong architecture of the library. It is not related to a wrong compiler version but that by default the library has been compiled for a 64 bits architecture. The current version of Python in BitNami Django stack is 32 bits and therefore it requires the libraries to be compiled for that platform.
+
+The error can be avoided by setting the ARCHFLAGS environment
+variable before installing PIL.
+
+export ARCHFLAGS=&quot;-arch i386&quot;
+
+And then installing PIL from source (using python setup.py install, not with easy_install).
+
+Also when you need to compile a module on top of the BitNami DjangoStack and you want to link it to the libraries included in the stack instead of the system libraries you should first load the BitNami environment. To do so execute the following:
+
+. /scripts/setenv.sh &#060;-- notice the space between the dot and the path to the setenv.sh scripts.
+
+In any case I&#039;m glad of letting you know that we have released a new version of the BitNami DjangoStack that already includes PIL (only for Linux and Mac OS X) so the users don&#039;t need to workaround the installation. Thanks again for taking the time to write the guide, it made realize the issue and was a great help to fix it.
+
+Best regards,
+
+Victoria.]]></description>
+		<content:encoded><![CDATA[<p>Hi,</p>
+<p>Thanks for putting this article together. Here at BitNami we have followed these steps, to try and figure out how to avoid these issues when trying to install PIL to the BitNami users. I&#8217;d like to share a few comments:</p>
+<p>* The problem: missing gcc compiler (Mac OS X 10.6)</p>
+<p>The issue is not really that it is trying to use an older compiler. The problem is that some macros are not defined when compiling with the new compiler. As you mention, a possible solution is to use an old compiler.</p>
+<p>* _imaging.so: mach-o, but wrong architecture (Mac OS X 10.7)</p>
+<p>As the message states, the problem is the wrong architecture of the library. It is not related to a wrong compiler version but that by default the library has been compiled for a 64 bits architecture. The current version of Python in BitNami Django stack is 32 bits and therefore it requires the libraries to be compiled for that platform.</p>
+<p>The error can be avoided by setting the ARCHFLAGS environment<br />
+variable before installing PIL.</p>
+<p>export ARCHFLAGS=&#8221;-arch i386&#8243;</p>
+<p>And then installing PIL from source (using python setup.py install, not with easy_install).</p>
+<p>Also when you need to compile a module on top of the BitNami DjangoStack and you want to link it to the libraries included in the stack instead of the system libraries you should first load the BitNami environment. To do so execute the following:</p>
+<p>. /scripts/setenv.sh &lt;&#8211; notice the space between the dot and the path to the setenv.sh scripts.</p>
+<p>In any case I&#039;m glad of letting you know that we have released a new version of the BitNami DjangoStack that already includes PIL (only for Linux and Mac OS X) so the users don&#039;t need to workaround the installation. Thanks again for taking the time to write the guide, it made realize the issue and was a great help to fix it.</p>
+<p>Best regards,</p>
+<p>Victoria.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: mike				</title>
+				<link>http://www.michelepasin.org/blog/2011/02/08/installing-pil-on-djangostack-1-1-1/comment-page-1/#comment-192</link>
+		<dc:creator><![CDATA[mike]]></dc:creator>
+		<pubDate>Wed, 28 Dec 2011 12:40:25 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1095#comment-192</guid>
+					<description><![CDATA[no problem - glad it helped!]]></description>
+		<content:encoded><![CDATA[<p>no problem &#8211; glad it helped!</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Javier Muñoz				</title>
+				<link>http://www.michelepasin.org/blog/2011/02/08/installing-pil-on-djangostack-1-1-1/comment-page-1/#comment-191</link>
+		<dc:creator><![CDATA[Javier Muñoz]]></dc:creator>
+		<pubDate>Tue, 13 Dec 2011 09:03:35 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1095#comment-191</guid>
+					<description><![CDATA[Thanks, you&#039;ve made my day!
+
+Same problem with bitnami + lion + PIL. The trick also worked for me :)]]></description>
+		<content:encoded><![CDATA[<p>Thanks, you&#8217;ve made my day!</p>
+<p>Same problem with bitnami + lion + PIL. The trick also worked for me :)</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

@@ -1,0 +1,719 @@
+/*  
+Theme Name: Upstart Blogger Modio
+Theme URI: http://www.upstartblogger.com/
+Description: A simple, clean, minimal, spacious design. Widgetized, with optional rollover side menu and home page.
+Version: 0.4
+Author: Robert Ellis
+Author URI: http://www.upstartblogger.com/
+License: Creative Commons Attribution-Share Alike 3.0 (http://creativecommons.org/licenses/by-sa/3.0/. Feel free to make any changes, but please keep a link back to Upstart Blogger in your sidebar or footer.
+
+Based on Kubrick v1.5, designed by Michael Heilemann, http://binarybonsai.com/kubrick/.
+*/
+
+/*  
+Changelog [mikele]
+
+2013-02-07: commented the max-width on p img
+*/
+
+
+/* [mikele] 2015-01-23 */
+pre.prettyprint {
+   max-height: 800px; 
+   width: 900px; 
+   overflow:auto; 
+   font-size:13px;"
+}
+
+
+/* @group Normalize */
+
+/* Normalizes margin, padding */
+
+body, div, dl, dt, dd, ul, ol, li, h1, h2, h3, h4, h5, h6, pre, form, fieldset, input, p, blockquote, th, td {
+	margin: 0;
+	padding: 0;
+}
+
+/* Normalizes font-size for headers */
+
+h1,h2,h3,h4,h5,h6 {
+	font-size: 100%;
+        margin-bottom: 15px;
+}
+
+/* Removes list-style from lists */
+
+ol,ul {
+	list-style: none;
+}
+
+/* Normalizes font-style and font-weight to normal */
+
+address, caption, cite, code, dfn, em, strong, th, var {
+	font-style: normal;
+	font-weight: normal;
+}
+
+/* Removes list-style from lists */
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+/* Removes border from fieldset and img */
+
+fieldset,img {
+	border: 0;
+}
+
+/* Left-aligns text in caption and th */
+
+caption,th {
+	text-align: left;
+}
+
+/* Removes quotation marks from q */
+
+q:before, q:after {
+	content: '';
+}
+
+/* @end */
+
+/* @group Sticky Footer */
+
+* {
+	margin: 0;
+}
+
+html, body, .page {
+	min-height: 100%;
+	width: 100%;
+	height: 100%;
+}
+
+html>body, html>body .page {
+	height: auto;
+}
+
+.page {
+	position: absolute;
+	top: 0;
+	left: 0;
+	margin-bottom: 3em;
+}
+
+/* @end */
+
+/* @group Layout */
+
+body {
+	font-size: 62.5%;
+	font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+	color: #fff;
+	text-align: center;
+	line-height: 150%;
+}
+
+#header {
+	margin-left: 265px;
+	padding-top: 20px;
+	font-size: 1.2em;
+	text-transform: uppercase;
+	width: 468px;
+}
+
+#header a {
+	font-weight: bold;
+	color: #000;
+}
+
+.page {
+	background-color: white;
+	padding: 0;
+	width: 894px;
+	color: #000;
+	text-align: left;
+}
+
+#content {
+	position: relative;
+	padding-bottom: 100px;
+}
+
+.narrowcolumn {
+	float: left;
+	padding: 0 0 20px 45px;
+	width: 450px;
+}
+
+.widecolumn {
+	padding: 15px 0 20px 0;
+	margin-left: 265px;
+	width: 450px;
+}
+
+.widecolumn .post {
+	margin: 0;
+}
+
+.narrowcolumn .postmetadata {
+	padding-top: 5px;
+	text-align: center;
+}
+
+.widecolumn .postmetadata {
+	padding: 30px 0;
+}
+
+.widecolumn .smallattachment {
+	text-align: center;
+	float: left;
+	width: 128px;
+	padding: 5px 5px 5px 0px;
+}
+
+.widecolumn .attachment {
+	text-align: center;
+	margin: 5px 0px;
+}
+
+.widecolumn .entry p {
+	font-weight: normal;
+	padding: 1em 0;
+	color: #444;
+}
+
+.widecolumn .post .entry blockquote p {
+	font-weight: normal;
+	font-size: 1em;
+}
+
+/* ==> was trying to have the homepage use a custom font...
+div .post {
+	margin-top: 50px;
+	margin-left: 265px;
+	font-size: 2.0em;
+	line-height: 150%;
+	width: 650px;
+} */
+
+.post {
+	margin-top: 50px;
+	margin-left: 265px;
+	font-size: 1.8em;
+	line-height: 150%;
+	width: 650px;
+}
+
+
+ul.post {
+    font-size: 1.2em;
+}
+
+.entry p:first-child {
+	font-size: 1.1em;
+	font-weight: bold;
+}
+
+.entry p a:visited {
+	color: #265090;
+}
+
+.footer {
+	position: absolute;
+	bottom: -50px;
+	width: 100%;
+	color: #000;
+	text-align: left;
+	margin: 0 auto;
+	line-height: 150%;
+	font-size: 1.2em;
+}
+
+.footer p {
+	width: 468px;
+	margin-left: 265px;
+	padding: 20px 0;
+}
+
+/* @end */
+
+/* @group Headers */
+
+h1, h2, h3 {
+	font-weight: bold;
+}
+
+h1 {
+	font-size: 4em;
+	padding-top: 70px;
+	margin: 0;
+	line-height: 100%;
+}
+
+h2 {
+	padding: 30px 0 0;
+	font-size: 1.6em;
+}
+
+h2, h2 a, h2 a:visited, h3, h3 a, h3 a:visited {
+	color: #000;
+}
+
+h2.pagetitle {
+	padding-top: 30px;
+	text-align: center;
+}
+
+#sidebar h2 {
+	padding: 5px 0 0;
+}
+
+h3 {
+	padding: 30px 0 0;
+	font-size: 1.3em;
+}
+
+h3.comments {
+	padding: 20px 0;
+}
+
+/* @end */
+
+/* @group Sidebar */
+
+#sidebar {
+	font-size: 1.2em;
+}
+
+#sidebar form {
+	padding: 5px 0 0;
+}
+
+#sidebar {
+	position: fixed;
+	top: 5px;
+	left: -170px;
+	padding: 10px;
+	color: #fff;
+	text-align: right;
+	font-weight: bold;
+	width: 160px;
+}
+
+#sidebar p.menu {
+	background-color: #f31b1b;
+	padding: 5px;
+	font-weight: bold;
+	color: #fff;
+	position: relative;
+	left: -20px;
+	width: 250px
+}
+
+#sidebar p {
+	color: #000;
+	font-weight: normal;
+}
+
+#sidebar:hover {
+	left: 0px;
+	cursor: pointer;
+}
+
+#sidebar ul, #sidebar ul ol {
+	text-align: left;
+	padding: 10px 0 0;
+	color: #000;
+}
+
+#sidebar ul p, #sidebar ul select {
+	margin: 0;
+}
+
+#sidebar ul ul, #sidebar ul ol {
+	padding: 5px 0 0 10px;
+}
+
+#sidebar ul ul ul, #sidebar ul ol {
+	margin: 0 0 0 10px;
+}
+
+ol li, #sidebar ul ol li {
+	list-style: decimal outside;
+}
+
+#sidebar ul ul li, #sidebar ul ol li {
+	padding: 3px 0 0;
+}
+
+#sidebar h2 {
+	font-size: 1.2em;
+}
+
+small, #sidebar ul ul li, #sidebar ul ol li, .nocomments, .postmetadata, blockquote, strike {
+	color: #444;
+}
+
+.widget ul li {
+text-align: right;
+}
+
+h2.widgettitle {
+margin: 5px 0 0;
+text-transform: uppercase;
+}
+
+/* @end */
+
+/* @group Lists */
+
+html>body .entry ul {
+	margin-left: 0px;
+	padding: 0 0 0 30px;
+	list-style: none;
+	padding-left: 10px;
+}
+
+html>body .entry li {
+	padding: 7px 0 8px 10px;
+	font-weight: normal;
+}
+
+.entry ol {
+	padding: 0 0 0 20px;
+	margin: 0;
+}
+
+.entry ol li {
+	margin: 0;
+	padding: 0;
+}
+
+.post li p {
+	font-weight: normal;
+}
+
+li.page_item {
+	text-align: right;
+}
+
+ul.post a span {
+	display: none;
+}
+
+ul.post a:hover span {
+	display: block;
+	position: absolute;
+	top: -60px;
+	left: 265px;
+	width: 468px;
+	font-weight: normal;
+	line-height: 150%;
+	font-size: 1.1em;
+	color: #f31b1b;
+}
+
+.post li p.postmetadata {
+	font-weight: bold;
+	padding: .3em 0 2em;
+}
+
+/* @end */
+
+/* @group Forms */
+
+#searchform {
+	margin: 10px 0;
+	padding: 5px 0;
+	text-align: left;
+}
+
+#sidebar #searchform #s {
+	width: 108px;
+	padding: 2px;
+}
+
+.search_input {
+	margin-top: 5px;
+	width: 150px;
+}
+
+.entry form {
+	/
+
+* This is mainly for password protected posts, makes them look better. */
+	text-align: center;
+}
+
+select {
+	width: 130px;
+}
+
+#commentform input {
+	width: 170px;
+	padding: 2px;
+	margin: 5px 5px 1px 0;
+}
+
+#commentform textarea {
+	width: 100%;
+	padding: 2px;
+}
+
+#commentform #submit {
+	margin: 0;
+	float: right;
+}
+
+/* @end */
+
+/* @group Comments */
+
+/* Normal Bubble */
+
+div.bubble {
+	width: auto;
+	margin-bottom: 24px;
+}
+
+div.bubble blockquote {
+	margin: 0px;
+	padding: 0px;
+	border: 1px solid #c9c2c1;
+}
+
+div.bubble blockquote p {
+	margin: 10px;
+	padding: 0px;
+}
+
+div.bubble cite {
+	position: relative;
+	margin: -7px;
+	padding: 7px 0px 10px 15px;
+	top: 5px;
+	background: transparent url('images/tip.gif') no-repeat 20px 0;
+	font-style: normal;
+	font-size: 1.2em;
+	display: block;
+}
+
+.alt {
+	margin: 0;
+	padding: 0;
+}
+
+#commentform p {
+	padding: 5px 0;
+	font-size: 1.2em;
+}
+
+.nocomments {
+	text-align: center;
+	margin: 0;
+	padding: 0;
+}
+
+.commentmetadata {
+	margin: 0;
+	display: block;
+}
+
+/* @end */
+
+/* @group Images */
+
+#header img {
+	position: absolute;
+	top: 20px;
+}
+
+p img {
+	padding: 0;
+/*	max-width: 100%;*/
+}
+
+img.centered {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+img.alignright {
+	padding: 4px;
+	margin: 0 0 2px 7px;
+	display: inline;
+}
+
+img.alignleft {
+	padding: 4px;
+	margin: 0 7px 2px 0;
+	display: inline;
+}
+
+.alignright {
+	float: right;
+}
+
+.alignleft {
+	float: left
+}
+
+/* @end */
+
+/* @group Calendar */
+
+#wp-calendar {
+	empty-cells: show;
+	margin: 10px auto 0;
+	width: 155px;
+	color: #000;
+}
+
+#wp-calendar #next a {
+	padding-right: 10px;
+	text-align: right;
+}
+
+#wp-calendar #prev a {
+	padding-left: 10px;
+	text-align: left;
+}
+
+#wp-calendar a {
+	display: block;
+}
+
+#wp-calendar caption {
+	text-align: center;
+	width: 100%;
+}
+
+#wp-calendar td {
+	padding: 3px 0;
+	text-align: center;
+}
+
+/* Doesn't work in IE */
+
+#wp-calendar td.pad:hover {
+	background-color: #fff;
+}
+
+#wp-calendar #prev a, #wp-calendar #next a {
+	font-size: 9pt;
+}
+
+#wp-calendar a {
+	text-decoration: none;
+}
+
+#wp-calendar caption {
+	font: bold 1.3em "Helvetica Neue", Helvetica, Arial, Sans-Serif;
+	text-align: center;
+}
+
+#wp-calendar th {
+	font-style: normal;
+	text-transform: capitalize;
+}
+
+/* @end */
+
+/* @group Miscellaneous */
+
+* a {
+	text-decoration: none;
+}
+
+code {
+	border: solid 1px grey;
+	background: #f8f8f8;
+	font: 1.0em 'Courier New', Courier, Fixed;
+	padding: 15px;
+	margin-left: 10px;
+	color: #333333;
+	width: auto;
+	height: auto;
+	display: block;
+	overflow: auto;
+}
+
+acronym, abbr, span.caps {
+	font-size: 0.9em;
+	letter-spacing: .07em;
+}
+
+a, h2 a:hover, h3 a:hover {
+	color: #06c;
+	font-weight: bold;
+}
+
+a:hover {
+	color: #f31b1b;
+}
+
+acronym, abbr, span.caps {
+	cursor: help;
+}
+
+acronym, abbr {
+	border-bottom: 1px dashed #999;
+}
+
+blockquote {
+	margin: 30px 30px 0 10px;
+	padding-left: 20px;
+	border-left: 5px solid #ddd;
+	font-size: 1.2em;
+	font-weight: normal;
+}
+
+.center {
+	text-align: center;
+}
+
+em {
+	font-style: italic;
+}
+
+hr {
+	display: none;
+}
+
+a img {
+	border: none;
+}
+
+.navigation {
+	display: block;
+	text-align: center;
+	padding: 20px 0 60px 0;
+}
+
+small {
+	font-size: 0.9em;
+	line-height: 1.5em;
+	font-weight: normal;
+}
+
+strong {
+	font-weight: bold;
+}
+
+
+/*2013-01-31: mikele*/
+
+pre {
+	margin-top: 30px;
+	margin-bottom: 30px;
+}
+
+
+
+
+/* @end */

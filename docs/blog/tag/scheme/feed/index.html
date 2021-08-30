@@ -1,0 +1,480 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>scheme &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/scheme/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Sat, 29 Jan 2011 23:00:15 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Opening a Finder&#8217;s window from Impromptu (alas how to use the applescript bridge..)</title>
+		<link>http://www.michelepasin.org/blog/2011/01/30/opening-a-finders-window-from-impromptu-alas-how-to-use-the-applescript-bridge/</link>
+				<pubDate>Sat, 29 Jan 2011 23:00:15 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[applescript]]></category>
+		<category><![CDATA[finder]]></category>
+		<category><![CDATA[impromptu]]></category>
+		<category><![CDATA[objc]]></category>
+		<category><![CDATA[programming]]></category>
+		<category><![CDATA[scheme]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=982</guid>
+				<description><![CDATA[Imagine you&#8217;ve got a bunch of audio samples you want to load up while livecoding with Impromptu but you can&#8217;t remember exactly their names &#8211; it&#8217;d be handy to be able to open up the corresponding Finder window directly from scheme, without too much clicking around. Do-able or not? I spent some time trying to [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Imagine you&#8217;ve got a bunch of audio samples you want to load up while livecoding with <a href="http://impromptu.moso.com.au/">Impromptu</a> but you can&#8217;t remember exactly their names &#8211; it&#8217;d be handy to be able to open up the corresponding Finder window directly from scheme, without too much clicking around. Do-able or not? </p>
+<p>I spent some time trying to figure this out, and the answer is yes! Quite a nice learning experience&#8230; although it came with a <strong>surprise</strong> at the end.</p>
+<p>Originally I thought, let&#8217;s do it via impromptu&#8217;s <a href="http://moso.com.au/wiki/index.php?title=ObjC_Functions">ObjC bridge</a>. I don&#8217;t know much about ObjC but after a bit of googling it seemed evident that the <a href="http://stackoverflow.com/questions/1446814/open-a-terminal-window-to-a-specified-folder-from-a-cocoa-app">quickest way to accomplish this</a> is by writing ObjC code that, in turns, runs a simple <a href="http://www.macosxautomation.com/applescript/">applescript</a> command that opens a window:</p>
+<p>&nbsp;</p>
+<div class="objc" style="font-family:monospace;font-size:13px;padding:10px; overflow:auto;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;"><a style="color: #000060;" href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/"><span style="color: #400080;">NSString</span></a> <span style="color: #002200;">*</span>s <span style="color: #002200;">=</span> <span style="color: #002200;">&#91;</span><a style="color: #000060;" href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/"><span style="color: #400080;">NSString</span></a> stringWithFormat<span style="color: #002200;">:</span><br />
+&nbsp; &nbsp; &nbsp;<span style="color: #bf1d1a;">@</span><span style="color: #bf1d1a;">&quot;tell application <span style="color: #2400d9;">&quot;</span>Terminal<span style="color: #2400d9;">&quot;</span> to do script <span style="color: #2400d9;">&quot;</span>cd %@<span style="color: #2400d9;">&quot;</span>&quot;</span>, folderPath<span style="color: #002200;">&#93;</span>;</p>
+<p><a style="color: #000060;" href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSAppleScript_Class/"><span style="color: #400080;">NSAppleScript</span></a> <span style="color: #002200;">*</span>as <span style="color: #002200;">=</span> <span style="color: #002200;">&#91;</span><span style="color: #002200;">&#91;</span><a style="color: #000060;" href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSAppleScript_Class/"><span style="color: #400080;">NSAppleScript</span></a> alloc<span style="color: #002200;">&#93;</span> initWithSource<span style="color: #002200;">:</span> s<span style="color: #002200;">&#93;</span>;<br />
+<span style="color: #002200;">&#91;</span>as executeAndReturnError<span style="color: #002200;">:</span><span style="color: #a61390;">nil</span><span style="color: #002200;">&#93;</span>;</div>
+<p>&nbsp;</p>
+<p>So I translated the bottom part of the code above into impromptu/scheme:</p>
+<p>&nbsp;</p>
+<div class="scheme" style="font-family:monospace;font-size:13px;padding:10px; overflow:auto;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;"><span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">define</span> run_applescript<br />
+&nbsp; &nbsp;<span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">lambda</span> <span style="color: #66cc66;">&#40;</span>script<span style="color: #66cc66;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&#40;</span>objc:call <span style="color: #66cc66;">&#40;</span>objc:call <span style="color: #66cc66;">&#40;</span>objc:call <span style="color: #ff0000;">&quot;NSAppleScript&quot;</span> <span style="color: #ff0000;">&quot;alloc&quot;</span><span style="color: #66cc66;">&#41;</span> <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff0000;">&quot;initWithSource:&quot;</span> <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; script<span style="color: #66cc66;">&#41;</span> <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="color: #ff0000;">&quot;executeAndReturnError:&quot;</span> <span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span></div>
+<p>&nbsp;</p>
+<p>That is a generic script-running function, that is, you can pass any script and it&#8217;ll run it, eg:</p>
+<p>&nbsp;</p>
+<div class="scheme" style="font-family:monospace;font-size:13px;padding:10px; overflow:auto;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;"><span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">define</span> script0 <span style="color: #ff0000;">&quot;<span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp;tell application <span style="color: #000099; font-weight: bold;">&quot;</span>Finder<span style="color: #000099; font-weight: bold;">&quot;</span> to open folder <span style="color: #000099; font-weight: bold;">&quot;</span>Macintosh HD:Users<span style="color: #000099; font-weight: bold;">&quot;</span> <br />
+&nbsp; &nbsp;tell application <span style="color: #000099; font-weight: bold;">&quot;</span>Finder<span style="color: #000099; font-weight: bold;">&quot;</span> to activate&quot;</span><span style="color: #66cc66;">&#41;</span></p>
+<p>
+<span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">define</span> script1 <span style="color: #ff0000;">&quot;<span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp;tell application <span style="color: #000099; font-weight: bold;">&quot;</span>Terminal<span style="color: #000099; font-weight: bold;">&quot;</span> to do script <span style="color: #000099; font-weight: bold;">&quot;</span>cd ~; open .<span style="color: #000099; font-weight: bold;">&quot;</span>&quot;</span><span style="color: #66cc66;">&#41;</span></p>
+<p>
+<span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">define</span> script2 <span style="color: #ff0000;">&quot;<span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tell application <span style="color: #000099; font-weight: bold;">&quot;</span>System Events<span style="color: #000099; font-weight: bold;">&quot;</span><span style="color: #000099; font-weight: bold;">n</span><span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tell dock preferences<span style="color: #000099; font-weight: bold;">n</span><span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; set properties to {autohide:false}<span style="color: #000099; font-weight: bold;">n</span><span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; end tell<span style="color: #000099; font-weight: bold;">n</span><span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; end tell&quot;</span><span style="color: #66cc66;">&#41;</span></p>
+<p><span style="color: #808080; font-style: italic;">;; finally, let&#8217;s choose randomly one of the scripts above and run it</span><br />
+<span style="color: #66cc66;">&#40;</span>run_applescript <span style="color: #66cc66;">&#40;</span>random &#8216;<span style="color: #66cc66;">&#40;</span>script0 script1 script2<span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span></div>
+<p>&nbsp;</p>
+<p>Now, back to the original problem: in order to open a Finder&#8217;s window at a specified location we need to pass the location variable to our function <em>run_applescript</em>; also, we want to be able to pass unix path expressions (eg &#8216;/Users/mike/music/&#8217;), so we&#8217;ve got to transform that path syntax into the semicolon-delimited macintosh syntax (&#8220;Macintosh HD:Users:mike:music&#8221;) needed by the applescript function we&#8217;re using. That&#8217;s easily done with <em>string-replace</em>, so here we go:</p>
+<p>&nbsp;</p>
+<div class="scheme" style="font-family:monospace;font-size:13px;padding:10px; overflow:auto;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;"><span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">define</span> open_finder_at <br />
+&nbsp; &nbsp;<span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">lambda</span> <span style="color: #66cc66;">&#40;</span>location<span style="color: #66cc66;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">let*</span> <span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#40;</span>llocation <span style="color: #66cc66;">&#40;</span>string<span style="color: #66cc66;">&#8211;</span>replace location <span style="color: #ff0000;">&quot;/&quot;</span> <span style="color: #ff0000;">&quot;:&quot;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&#40;</span>script <span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">string-append</span> <span style="color: #ff0000;">&quot;tell application <span style="color: #000099; font-weight: bold;">&quot;</span>Finder<span style="color: #000099; font-weight: bold;">&quot;</span> to activate open folder <span style="color: #000099; font-weight: bold;">&quot;</span>Macintosh HD&quot;</span> llocation <span style="color: #ff0000;">&quot;<span style="color: #000099; font-weight: bold;">&quot;</span>&quot;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="color: #66cc66;">&#40;</span>objc:call <span style="color: #66cc66;">&#40;</span>objc:call <span style="color: #66cc66;">&#40;</span>objc:call <span style="color: #ff0000;">&quot;NSAppleScript&quot;</span> <span style="color: #ff0000;">&quot;alloc&quot;</span><span style="color: #66cc66;">&#41;</span> <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="color: #ff0000;">&quot;initWithSource:&quot;</span> <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;script<span style="color: #66cc66;">&#41;</span> <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff0000;">&quot;executeAndReturnError:&quot;</span> <span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span></p>
+<p>
+<span style="color: #66cc66;">&#40;</span>open_finder_at <span style="color: #ff0000;">&quot;/Users/me/&quot;</span><span style="color: #66cc66;">&#41;</span></div>
+<p>&nbsp;</p>
+<p>That&#8217;s pretty much it really&#8230; now we can easily open OsX Finder&#8217;s windows from within Impromptu.</p>
+<p>But as I said above, there&#8217;s a surprise: after getting this far I thought I&#8217;d search impromptu&#8217;s mailing list for more examples of <a href="http://moso.com.au/wiki/index.php?title=ObjC_Functions">obj:call</a> &#8230;. and guess what, there&#8217;s already a system function that runs applescripts, it&#8217;s called <a href="http://moso.com.au/wiki/index.php?title=Sys:run-applescript">sys:run-applescript</a> ! </p>
+<p>Too bad, it&#8217;s been a rewarding learning experience anyways&#8230;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2188</post-id>	</item>
+		<item>
+		<title>Scheme and Lisp</title>
+		<link>http://www.michelepasin.org/blog/2010/11/08/scheme-and-lisp/</link>
+				<pubDate>Mon, 08 Nov 2010 12:57:13 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[code]]></category>
+		<category><![CDATA[comparison]]></category>
+		<category><![CDATA[lisp]]></category>
+		<category><![CDATA[programming]]></category>
+		<category><![CDATA[scheme]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=866</guid>
+				<description><![CDATA[If you&#8217;re coming from Lisp, and then start using Scheme (or the other way around) there are a few small differences between the two languages that it&#8217;s useful to always keep in mind. I tried to do that a number of times, but inevitably I find myself once again wondering: how do you say &#8216;progn&#8217; [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>If you&#8217;re coming from Lisp, and then start using Scheme (or the other way around) there are a few small differences between the two languages that it&#8217;s useful to always keep in mind. I tried to do that a number of times, but inevitably I find myself once again wondering: how do you say &#8216;progn&#8217; in scheme? </p>
+<p>So, since I recently found online a <a href="http://www.cs.utexas.edu/~novak/schemevscl.html">succinct table</a> that sums up the differences, I thought I&#8217;d pass it on to posterity here too. </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/11/Screen-shot-2010-11-08-at-14.29.12.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/11/Screen-shot-2010-11-08-at-14.29.12.png" alt="Screen shot 2010-11-08 at 14.29.12.png" border="0" width="200" height="300" /></a></p>
+<p>By the way, on the same site the authors report of a small scheme library (<a href="ftp://ftp.cs.utexas.edu/pub/novak/cs307/initdr.scm">initdr.scm</a>) that implements a few very common Lisp functions. Including [dotimes dolist intersection, union set-difference copy-list subset every some copy-tree subst sublis nconc nreverse]&#8230; Quite useful too!</p>
+<h3>UPDATE 28/11/10:</h3>
+<p> I realized that most of these lisp functions are <strong>already available</strong> in Impromptu, under the <em>cl:</em> namespace (check out the <a href="http://moso.com.au/wiki/index.php?title=Common_Lisp_Library_Functions">common-lisp library functions</a> section on the wiki). Below are just a couple of additions to that, based on the <em>initdr.scm</em> library I was mentioning.. apologies for the confusion! </p>
+<pre style='color:#000000;background:#ffffff; overflow:auto;font-size:13px;'><span style='color:#c34e00; '>;;;;;;;;;;;;;;;;</span>
+<span style='color:#c34e00; '>;;; LISP ADDITIONS </span>
+<span style='color:#c34e00; '>;; the rest of this is in the cl: impromptu library</span>
+<span style='color:#c34e00; '>;;;;;;;;;;;;;;;;</span>
+
+
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> cl<span style='color:#800000; font-weight:bold; '>:first</span> car<span style='color:#806030; '>)</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> cl<span style='color:#800000; font-weight:bold; '>:rest</span> cdr<span style='color:#806030; '>)</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> cl<span style='color:#800000; font-weight:bold; '>:count</span> length<span style='color:#806030; '>)</span>
+
+<span style='color:#c34e00; '>;; reverse of cons: (cons 'b '(a))</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> cl<span style='color:#800000; font-weight:bold; '>:l-put</span>
+   <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>lambda</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>obj</span> lst<span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>reverse</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cons</span> obj <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>reverse</span> lst<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+
+<span style='color:#c34e00; '>;; dont know why but I like it reversed..</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> cl<span style='color:#800000; font-weight:bold; '>:nth</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>lambda</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>x</span> lst<span style='color:#806030; '>)</span>
+               <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>list-ref</span> lst x<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+
+
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>1+</span> n<span style='color:#806030; '>)</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>+</span> n <span style='color:#c00000; '>1</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>1-</span> n<span style='color:#806030; '>)</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>-</span> n <span style='color:#c00000; '>1</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+
+
+<span style='color:#c34e00; '>;; (subst 9 7 '(5 (5 6 7(6 7))))    =>  (5 (5 6 9 (6 9)))      </span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cl:subst</span> new old tree<span style='color:#806030; '>)</span>
+  <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>pair?</span> tree<span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>let</span> <span style='color:#806030; '>(</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>left</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>subst</span> new old <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>car</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>right</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>subst</span> new old <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+        <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>and</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>eq?</span> left <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>car</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+                 <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>eq?</span> right <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            tree
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cons</span> left right<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>eqv?</span> old tree<span style='color:#806030; '>)</span>
+          new
+          tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+
+
+
+<span style='color:#c34e00; '>;; (sublis '((6 . 9) (7 . 10)) '(5 (5 6 7 (6 7)))))  => (5 (5 9 10 (9 10)))</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cl:sublis</span> alist tree<span style='color:#806030; '>)</span>
+  <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>pair?</span> tree<span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>let</span> <span style='color:#806030; '>(</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>left</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>sublis</span> alist <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>car</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>right</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>sublis</span> alist <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+        <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>and</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>eq?</span> left <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>car</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+                 <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>eq?</span> right <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            tree
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cons</span> left right<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>let</span> <span style='color:#806030; '>(</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>new</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>assv</span> tree alist<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+        <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> new
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> new<span style='color:#806030; '>)</span>
+            tree<span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span>
+
+
+<span style='color:#c34e00; '>;; (copy-tree '(5 (5 6 7(6 7))))</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cl:copy-tree</span> x<span style='color:#806030; '>)</span>
+  <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>pair?</span> x<span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cons</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>copy-tree</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>car</span> x<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>copy-tree</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> x<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+      x<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+
+
+<span style='color:#c34e00; '>; Convert a floating-point number to a string of sign and at most 4 characters.</span>
+<span style='color:#c34e00; '>; Rounds the number so that 1.999 will come out as 2.00 , very small as 0.0 .</span>
+<span style='color:#c34e00; '>; numstring is written assuming that num is not too large or too small,</span>
+<span style='color:#c34e00; '>; i.e. num must be printable in 4 digits.</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cl:numstring</span> num<span style='color:#806030; '>)</span>
+  <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>let*</span> <span style='color:#806030; '>(</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>numc</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>abs</span> num<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>sign</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>&lt;</span> num <span style='color:#c00000; '>0</span><span style='color:#806030; '>)</span> -<span style='color:#c00000; '>1</span> <span style='color:#c00000; '>1</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>exponent</span> <span style='color:#c00000; '>0</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+    <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>&lt;</span> numc <span style='color:#800000; '>1.0e-6</span><span style='color:#806030; '>)</span>
+    <span style='color:#e60000; '>"0.0"</span>
+    <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>begin</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>&lt;</span> numc <span style='color:#800000; '>1.0</span><span style='color:#806030; '>)</span>
+          <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>begin</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>while</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>&lt;</span> numc <span style='color:#c00000; '>100</span><span style='color:#806030; '>)</span>
+                <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>set!</span> numc <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>*</span> numc <span style='color:#c00000; '>10</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+                <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>set!</span> exponent <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>1-</span> exponent<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+             <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>set!</span> numc <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>*</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>round</span> numc<span style='color:#806030; '>)</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>expt</span> <span style='color:#c00000; '>10</span> exponent<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span>
+          <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>set!</span> numc <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>*</span> numc <span style='color:#800000; '>1.0001</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>&lt;</span> sign <span style='color:#c00000; '>0</span><span style='color:#806030; '>)</span>
+          <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>string-append</span> <span style='color:#e60000; '>"-"</span>
+                 <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>substring</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>number->string</span> numc<span style='color:#806030; '>)</span> <span style='color:#c00000; '>0</span>
+                   <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>min</span> <span style='color:#c00000; '>4</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>string-length</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>number->string</span> numc<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+          <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>substring</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>number->string</span> numc<span style='color:#806030; '>)</span> <span style='color:#c00000; '>0</span>
+             <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>min</span> <span style='color:#c00000; '>4</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>string-length</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>number->string</span> numc<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+
+
+
+
+<span style='color:#c34e00; '>;(list-flatten '(9 9 (9 9 9 ))))  = (9 9 9 9 9)</span>
+
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> cl<span style='color:#800000; font-weight:bold; '>:list-flatten</span> 
+   <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>lambda</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>l</span><span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cond</span> <span style='color:#806030; '>(</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>null?</span> l<span style='color:#806030; '>)</span>
+             <span style='color:#806030; '>'</span><span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            <span style='color:#806030; '>(</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>atom?</span> l<span style='color:#806030; '>)</span>
+             <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>list</span> l<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>#t</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>append</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cl:list-flatten</span>  <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>car</span> l<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cl:list-flatten</span>  <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> l<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+</pre>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">866</post-id>	</item>
+		<item>
+		<title>A video that may convince you that LISPers are a bit crazy</title>
+		<link>http://www.michelepasin.org/blog/2010/10/29/a-video-that-may-convince-you-that-lispers-are-a-bit-crazy/</link>
+				<pubDate>Fri, 29 Oct 2010 14:25:26 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[funny]]></category>
+		<category><![CDATA[lisp]]></category>
+		<category><![CDATA[programming]]></category>
+		<category><![CDATA[scheme]]></category>
+		<category><![CDATA[video]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=860</guid>
+				<description><![CDATA[Actually it&#8217;s not just a video, there&#8217;s a book too: Land of Lisp, Learn to Program in Lisp, One Game at a Time! by Conrad Barski, M.D. &#8230;]]></description>
+								<content:encoded><![CDATA[<p>Actually it&#8217;s not just a video, there&#8217;s a book too:</p>
+<p> <a href="http://nostarch.com/lisp.htm">Land of Lisp</a>, <em>Learn to Program in Lisp, One Game at a Time!</em> by Conrad Barski, M.D.</p>
+<p>&#8230;</p>
+<p><object width="300" height="250"><param name="movie" value="http://www.youtube.com/v/HM1Zb3xmvMc?fs=1&amp;hl=en_US&amp;rel=0&amp;color1=0xe1600f&amp;color2=0xfebd01"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param></object></p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">860</post-id>	</item>
+		<item>
+		<title>Learning resources about Scheme</title>
+		<link>http://www.michelepasin.org/blog/2010/08/10/learning-resources-about-scheme/</link>
+				<pubDate>Tue, 10 Aug 2010 17:27:17 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[books]]></category>
+		<category><![CDATA[impromptu]]></category>
+		<category><![CDATA[learning]]></category>
+		<category><![CDATA[scheme]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=808</guid>
+				<description><![CDATA[&#8230; So you&#8217;ve decided to know everything about scheme and rock the world using fast-paced programming environments like Impromptu. Well, I confess I did think that on several occasions, but still I haven&#8217;t made it even half way through the schemer pilgmim&#8217;s path. But I&#8217;ve collected quite a few useful resources in the process, and [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/3eangz5w.jpg"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/3eangz5w.jpg" alt="3eangz5w.jpg" border="0" width="200" height="200" /></a><br />
+&#8230;</p>
+<p>So you&#8217;ve decided to know everything about scheme and rock the world using fast-paced programming environments like <a href="http://impromptu.moso.com.au/">Impromptu</a>.<br />
+Well, I confess I did think that on several occasions, but still I haven&#8217;t made it even half way through the <em>schemer pilgmim&#8217;s path</em>. But I&#8217;ve collected quite a few useful resources in the process, and those I can certainly share! </p>
+<p>So in what follows I&#8217;ve put together a list of learning resources about Scheme that I found useful.. First off, two links that might be useful in all situations:</p>
+<li><a href="http://www.crockford.com/javascript/scheme.html">Little Scheme</a>, an online interpreter that you can use for testing things out while you&#8217;re on holidays</li>
+<li><a href="http://www.schemers.org/">Schemers.org</a>, semi-official website containing news and lots of links to other resources</li>
+<p>Now, why don&#8217;t we start with the definition offered by the self-regulating <a href="http://en.wikipedia.org/wiki/Scheme_programming_language">wikipedia</a> collective intelligence? Here we go:</p>
+<blockquote><p>Scheme is one of the two main <strong>dialects</strong> of the programming language <strong>Lisp</strong>. Unlike Common Lisp, the other main dialect, Scheme follows a <strong>minimalist design philosophy</strong> specifying a small standard core with powerful tools for language extension. Its compactness and elegance have made it <strong>popular with educators, language designers, programmers, implementors, and hobbyists</strong>, and this diverse appeal is seen as both a strength and, because of the diversity of its constituencies and the wide divergence between implementations, one of its weaknesses</p></blockquote>
+<p>If this blurb hasn&#8217;t made you proud of learning such a slick language, you&#8217;ll surely find more interesting ideas in what follows. I divided up the list in two sections, generic learning materials about scheme, and tutorials about specific topics (for now, only macros are included).<br />
+&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-</p>
+<h3>1. Learning Resources About Scheme:</h3>
+<li><a href="http://www.accesscom.com/~darius/writings/scheme-for-lispers.html">Scheme for Common Lispers</a>, article<br />
+<blockquote><p>The Scheme dialect of Lisp was created in 1975 by Guy Steele and Gerry Sussman to explore ideas in programming-language semantics. They showed that a powerful language can be made &#8220;not by piling feature on top of feature, but by removing the weaknesses and restrictions that make additional features appear necessary&#8221;. Scheme pioneered lexical scope in Lisp, first-class continuations, and tail recursion, and more recently added an advanced macro system. It&#8217;s the best-known Lisp dialect after Common Lisp (which it influenced).<br />
+<strong>This note summarizes the differences from CL that might slow down a CL programmer trying to read a Scheme program</strong>; people without a CL background, or wanting to write programs of their own, should see the references.</p></blockquote>
+</li>
+<li><a href="http://schemecookbook.org/">the Schematics Scheme Cookbook </a><br />
+<blockquote><p>The Schematics Scheme Cookbook is a <strong>collaborative effort to produce documentation and recipes for using Scheme for common tasks</strong>. See the BookIntroduction for more information on the Cookbook&#8217;s goals, and the important ContributorAgreement statement.</p></blockquote>
+</li>
+<li>Harvey, Wright, <a href="http://www.cs.berkeley.edu/~bh/ss-toc2.html">Simply Scheme: Introducing Computer Science</a>, 1999 MIT press [<em>a classic</em>]<br />
+<blockquote><p><strong>Symbolic programming</strong> is one aspect of the reason why we like to teach computer science using Scheme instead of a more traditional language. More generally, Lisp (and therefore Scheme) was designed to support what we&#8217;ve called the radical view of computer science. In this view, <strong>computer science is about tools for expressing ideas</strong>. Symbolic programming allows the computer to express ideas; other aspects of Lisp&#8217;s design help the programmer express ideas conveniently. Sometimes that goal comes in conflict with the conservative computer scientist&#8217;s goal of protection against errors.</p></blockquote>
+</li>
+<li>Felleisen, Findler, Flatt, Krishnamurthi, <a href="http://www.htdp.org/">How to Design Programs An Introduction to Computing and Programming</a>, MIT 2001<br />
+<blockquote><p>[..]  programming is more than just a vocational skill. Indeed, <strong>good programming is a fun activity, a creative outlet, and a way to express abstract ideas in a tangible form.</strong> And designing programs teaches a variety of skills that are important in all kinds of professions: critical reading, analytical thinking, creative synthesis, and attention to detail.<br />
+We therefore believe that the study of program design deserves the same central role in general education as mathematics and English. Or, put more succinctly, <strong>everyone should learn how to design programs</strong>.<br />
+On one hand, program design teaches the same analytical skills as mathematics. But, unlike mathematics, <strong>working with programs is an active approach to learning</strong>. Interacting with software provides immediate feedback and thus leads to exploration, experimentation, and self-evaluation. Furthermore, designing programs produces useful and fun things, which vastly increases the sense of accomplishment when compared to drill exercises in mathematics. On the other hand, program design teaches the same analytical reading and writing skills as English. Even the smallest programming tasks are formulated as word problems. Without critical reading skills, a student cannot design programs that match the specification. Conversely, good program design methods force a student to articulate thoughts about programs in proper English.</p></blockquote>
+</li>
+<li>Dybvig, <a href="http://www.scheme.com/tspl3/">The Scheme Programming Language</a>, 2003MIT press<br />
+<blockquote><p>This book is intended to provide an <strong>introduction to the Scheme programming language but not an introduction to programming in general</strong>. The reader is expected to have had some experience programming and to be familiar with terms commonly associated with computers and programming languages. The author recommends that readers unfamiliar with Scheme or Lisp also read The Little Schemer [<em>see below</em>]to become familiar with the concepts of list processing and recursion. Readers new to programming should begin with an introductory text on programming.</p></blockquote>
+</li>
+<li>Nils M Holm, &#8220;<a href="http://www.amazon.com/Sketchy-LISP-Nils-M-Holm/dp/1411674480">Sketchy LISP</a>&#8221; [you can <del>download the book here</del> Update 08/12: this book has become &#8216;Sketchy Scheme&#8217; and is now <a href="http://www.lulu.com/shop/nils-m-holm/sketchy-scheme/paperback/product-15591311.html">for-sale here</a>]<br />
+<blockquote><p>Sketchy LISP is a <strong>step-by-step introduction to functional programming</strong> in Scheme. It covers various aspects of the language including data types, conditional evaluation, list processing, lexical scoping, closures, recursion, dynamic typing, etc. By means of numerous examples of varying complexity, it takes the reader on an entertaining and informative tour through the language.<br />
+The Scheme language achieves what only few languages have managed before: to <strong>bring fun back to programming</strong>. Its simple syntax, clean semantics, and powerful functions open the door to a fresh perspective on program design. Programming in Scheme is fun, and this book is an attempt to share some of that fun.</p></blockquote>
+</li>
+<li>Friedman and Felleisen, <a href="http://www.ccs.neu.edu/home/matthias/BTLS/">The Little Schemer</a>, 1996 MIT press<br />
+<blockquote><p>The goal of this book is to <strong>teach the reader to think recursively</strong>. Our first task, therefore, is to decide which language to use to communicate this concept. There are three obvious choices: a natural language, such as English; formal mathematics; or a programming language. Natural languages are ambiguous, imprecise, and sometimes awkwardly verbose. These are all virtues for general communication, but something of a drawback for communicating concisely as precise a concept as the power of recursion. The language of mathematics is the opposite of natural language: it can express powerful formal ideas with only a few symbols. We could, for example, describe the entire technical content of this book in less than a page of mathematics, but the reader who understands that page has little need for this book. For most people, formal mathematics is not very intuitive. <strong>The marriage of technology and mathematics presents us with a third, almost ideal choice: a programming language.</strong> Programming languages are perhaps the best way to convey the concept of recursion. They share with mathematics the ability to give a formal meaning to a set of symbols. But unlike mathematics, programming languages can be directly experienced&#8212;you can take the programs in this book and try them, observe their behavior, modify them, and experience the effect of your modifications.</p></blockquote>
+</li>
+<li><a href="http://wla.berkeley.edu/">The Weiner Lectures Archives</a> [various videos, but not complete lectures unfortunately]<br />
+<blockquote><p>The goal of this project is to make knowledge of computer science easily available not only to the students at Berkeley, but also to the entire community. For several years, faculty members have been videotaping lectures in CS large lower division courses, mainly as an aid to students with time conflicts that prevent them from attending lectures. By <strong>hosting an archive storing all CS lectures that were recorded</strong>, we hope the computing knowledge that has been gathered can be easily shared. As a teaching aid, a &#8216;greatest hits&#8217; lecture will also be compiled for each course covering all major topics addressed in the corresponding class. The best parts of many different past lectures will be linked together and presented along with slides to make this greatest hits lecture. This lecture should represent the best teaching abilities in the lower division CS lectures and should be a valuable resource in the computer community for basic CS knowledge. Thanks to the generous donation of Larry Weiner this online site should become a permanent resource.</p></blockquote>
+</li>
+<p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-</p>
+<h3>2. Specific topics: </h3>
+<h4>On Macros and metaprogramming:</h4>
+<li><a href="http://www.ibm.com/developerworks/linux/library/l-metaprog1.html">The art of metaprogramming, Part 1: Introduction to metaprogramming</a>, IBM developer works<br />
+<blockquote><p>Summary:  One of the most under-used programming techniques is <strong>writing programs that generate programs or program parts</strong>. Learn why metaprogramming is necessary and look at some of the components of metaprogramming (textual macro languages, specialized code generators). See how to build a code generator and get a closer look at language-sensitive macro programming in Scheme.</p></blockquote>
+</li>
+<li><a href="http://nostoc.stanford.edu/Docs/livetutorials/macros.html">Lisp Macros &#8212; How to Define Entirely New Languages in Lisp</a><br />
+<blockquote><p>This is a very interesting lesson if you want to deeply understand Lisp, and some very deep things about programming, but it&#8217;s also entirely optional; We suggest that you do through it, but not worry too much about understanding it in detail. If you get very deeply into programming, you&#8217;ll find that Lisp macros are an amazing tool, but they are also somewhat <strong>mind-bending</strong>, and used rather rarely in simple programming. So, feel free to skip this lesson, or at least, if you do study it, let it flow over you, and maybe come back to it later on if you find yourself wanting to know more about some of the deep and subtle reaches of Lisp programming.</p></blockquote>
+</li>
+<li><a href="http://community.schemewiki.org/?scheme-faq-macros">Scheme FAQ Macros</a>, on schemewiki.org</li>
+<li><a href="http://stackoverflow.com/questions/131433/sources-for-learning-about-scheme-macros-define-syntax-and-syntax-rules">Sources for learning about Scheme Macros: define-syntax and syntax-rules</a>, a thread on StackOverflow</li>
+<li><a href="http://blog.willdonnelly.net/2008/09/04/a-scheme-syntax-rules-primer/">A scheme syntax rules primer</a>, an interesting blog post</li>
+<p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;-</p>
+<p>That&#8217;s all for now&#8230; I&#8217;ll be adding more stuff as I run into it!</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">808</post-id>	</item>
+		<item>
+		<title>Impromptu: access the Wiki docs from the editor</title>
+		<link>http://www.michelepasin.org/blog/2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/</link>
+				<pubDate>Mon, 15 Feb 2010 05:31:34 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[impromptu]]></category>
+		<category><![CDATA[scheme]]></category>
+		<category><![CDATA[url]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=559</guid>
+				<description><![CDATA[&#62;&#62;&#62; When you&#8217;re Impromptu-ing but don&#8217;t know the meaning or syntax of a function, the usual thing to do is calling (help function-name) to get some help about that function, or (help function-name #t) if you want to see also the examples associated with it. The help text gets displayed in the log view, so [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://magicrebirth.webfactional.com/blog/wp-content/uploads/2010/02/picture-13.png"><img class="alignnone size-medium wp-image-563" title="Picture 1" src="http://magicrebirth.webfactional.com/blog/wp-content/uploads/2010/02/picture-13.png?w=300" alt="" width="300" height="232" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-13.png 779w, http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-13-300x232.png 300w" sizes="(max-width: 300px) 100vw, 300px" /></a><br />
+&gt;&gt;&gt;<br />
+When you&#8217;re <a href="http://impromptu.moso.com.au/index.html">Impromptu</a>-ing but <strong>don&#8217;t know the meaning or syntax of a function</strong>, the usual thing to do is calling <code>(help function-name)</code> to get some help about that function, or <code>(help function-name #t)</code> if you want to see also the examples associated with it. The help text gets displayed in the log view, so that you can then copy/paste what you need from there.<br />
+Quite useful, but nonetheless I always find myself <strong>fighting with the log window</strong>: too small, hidden away by other canvases, or not readable anymore cause after calling the help function I&#8217;ve evaluated other stuff that has moved up the much needed help-text.</p>
+<p>Since a couple of months ago <a href="http://moso.com.au/wiki/index.php?title=Main_Page">Impromptu has a wiki too</a> &#8211; so I thought, it&#8217;d be nice to see a function&#8217;s help in a browser window, and possibly contribute to its explanation too..</p>
+<p>So, that&#8217;s the rationale for this little script. <strong>By calling &#8216;wiki&#8217; you can open up a web browser at the relevant Impromptu-wiki page</strong>.. as simple as that.<br />
+<a href="http://magicrebirth.webfactional.com/blog/wp-content/uploads/2010/02/picture-21.png"><img class="alignnone size-medium wp-image-568" title="Picture 2" src="http://magicrebirth.webfactional.com/blog/wp-content/uploads/2010/02/picture-21.png?w=300" alt="" width="300" height="257" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-21.png 527w, http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-21-300x257.png 300w" sizes="(max-width: 300px) 100vw, 300px" /></a><br />
+&gt;&gt;&gt;</p>
+<p>First off, we need a couple of utility functions that are not included in Impromptu by default, for better manipulating strings, lists and webpages (UPDATE 9-Nov2010: some of this symbols have been included in Improptu 2.5, so I prefixed the one below with the <em>utils:</em> namespace):</p>
+<pre style="font-size: 13px; background-color: #eeeeee; color: black; overflow: auto;"><span style="color: #0000ff;">;;;;;;;</span>
+<span style="color: #0000ff;">;; utilities</span>
+<span style="color: #0000ff;">;;;;;;;</span>
+
+<span style="color: #0000ff;">;; (utils:list-flatten '(9 9 (9 9 9 ))))  = (9 9 9 9 9)</span>
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> utils:list-flatten
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>l<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>cond</strong></span> <span style="color: #6b59ce;">((</span><span style="color: #008a8c;">null?</span> l<span style="color: #6b59ce;">)</span>
+             <span style="color: #6b59ce;">'())</span>
+            <span style="color: #6b59ce;">((</span>atom? l<span style="color: #6b59ce;">)</span>
+             <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">list</span> l<span style="color: #6b59ce;">))</span>
+            <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">#t</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">append</span> <span style="color: #6b59ce;">(</span>utils:list-flatten  <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">car</span> l<span style="color: #6b59ce;">))</span> <span style="color: #6b59ce;">(</span>utils:list-flatten  <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">cdr</span> l<span style="color: #6b59ce;">)))))))</span>
+
+<span style="color: #0000ff;">;; returns a char from a string of length 1, or a list of chars from a longer string</span>
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> utils:char
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>string_char<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>if</strong></span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string?</span> string_char<span style="color: #6b59ce;">)</span>
+          <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>if</strong></span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">&gt;</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-length</span> string_char<span style="color: #6b59ce;">)</span> <span style="color: #ff00ff;">0</span><span style="color: #6b59ce;">)</span>
+              <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>if</strong></span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">&gt;</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-length</span> string_char<span style="color: #6b59ce;">)</span> <span style="color: #ff00ff;">1</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-&gt;list</span> string_char<span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">car</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-&gt;list</span> string_char<span style="color: #6b59ce;">))))</span>
+          <span style="color: #6b59ce;">(</span>print <span style="color: #6b59ce;">'</span>please <span style="color: #6b59ce;">'</span>enter <span style="color: #6b59ce;">'</span>a <span style="color: #6b59ce;">'</span>string<span style="color: #6b59ce;">))))</span>
+
+<span style="color: #0000ff;">;; matches a single character in a string, and replaces it</span>
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> utils:string-replace
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>s match replacement<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>let</strong></span> <span style="color: #6b59ce;">((</span>ll <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-&gt;list</span> s<span style="color: #6b59ce;">))</span>
+            <span style="color: #6b59ce;">(</span>match1 <span style="color: #6b59ce;">(</span>utils:char match<span style="color: #6b59ce;">))</span>
+            <span style="color: #6b59ce;">(</span>replacement1 <span style="color: #6b59ce;">(</span>utils:char replacement<span style="color: #6b59ce;">)))</span>
+         <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>if</strong></span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">=</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-length</span> match<span style="color: #6b59ce;">)</span> <span style="color: #ff00ff;">1</span><span style="color: #6b59ce;">)</span>
+             <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>let</strong></span> <span style="color: #6b59ce;">((</span>z <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">map</span> <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>x<span style="color: #6b59ce;">)</span>
+                              <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>if</strong></span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">equal?</span> x match1<span style="color: #6b59ce;">)</span>
+                                  replacement1
+                                  x<span style="color: #6b59ce;">))</span>
+                           ll<span style="color: #6b59ce;">)))</span>
+                <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">list-&gt;string</span> <span style="color: #6b59ce;">(</span>utils:list-flatten z<span style="color: #6b59ce;">)))</span>
+                <span style="color: #0000ff;">;z)</span>
+             <span style="color: #6b59ce;">(</span>print <span style="color: #ff00ff;">"i can match only single characters for now"</span><span style="color: #6b59ce;">)))))</span>
+
+<span style="color: #0000ff;">;; makes a string upper case</span>
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> utils:string-capitalize
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>s<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-append</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">char-upcase</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-ref</span> s <span style="color: #ff00ff;">0</span><span style="color: #6b59ce;">)))</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">substring</span> s <span style="color: #ff00ff;">1</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-length</span> s<span style="color: #6b59ce;">)))))</span>
+
+<span style="color: #0000ff;">;; open-url: calls the default mac browser with a url argument </span>
+<span style="color: #0000ff;">;; disclaimer: I'm not an objc programmer... found an example at </span>
+<span style="color: #0000ff;">;; <a href="http://macosx.com/forums/software-programming-web-scripting/18422-how-do-i-launch-url-using-cocoa-objective-c.html">http://macosx.com/forums/software-programming-web-scripting/18422-how-do-i-launch-url-using-cocoa-objective-c.html</a></span>
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> utils:open-url
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>urlstring<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>let</strong></span> <span style="color: #6b59ce;">((</span>urlobj <span style="color: #6b59ce;">(</span>objc:call <span style="color: #ff00ff;">"NSURL"</span> <span style="color: #ff00ff;">"URLWithString:"</span> urlstring<span style="color: #6b59ce;">))</span>
+            <span style="color: #6b59ce;">(</span>workspace <span style="color: #6b59ce;">(</span>objc:call <span style="color: #ff00ff;">"NSWorkspace"</span> <span style="color: #ff00ff;">"sharedWorkspace"</span><span style="color: #6b59ce;">)))</span>
+         <span style="color: #6b59ce;">(</span>objc:call workspace <span style="color: #ff00ff;">"openURL:"</span> urlobj<span style="color: #6b59ce;">))))</span>
+
+<span style="color: #0000ff;"> </span></pre>
+<p>&gt;&gt;&gt;<br />
+Finally, the functions for opening the wiki page:</p>
+<pre style="font-size: 13px; background-color: #eeeeee; color: black; overflow: auto;"><span style="color: #0000ff;">;;;;;;;;;;</span>
+<span style="color: #0000ff;">;; wiki url caller</span>
+<span style="color: #0000ff;">;; e.g. (wiki objc:from-address) =&gt; goes to http://moso.com.au/wiki/index.php?title=Objc:from-address</span>
+<span style="color: #0000ff;">;;;;;;;;;;</span>
+
+<span style="color: #0000ff;">;; wiki-escape: composes the url so that it matches the ones of the online wiki </span>
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> wikiescape
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>funname<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">for-each</span> <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>x<span style="color: #6b59ce;">)</span>
+                   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>set!</strong></span> funname <span style="color: #6b59ce;">(</span>utils:string-replace funname <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">car</span> x<span style="color: #6b59ce;">)</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">cadr</span> x<span style="color: #6b59ce;">))))</span>
+                <span style="color: #6b59ce;">'((</span><span style="color: #ff00ff;">"+"</span> <span style="color: #ff00ff;">"%2B"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">"="</span> <span style="color: #ff00ff;">"%3D"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">"&lt;"</span> <span style="color: #ff00ff;">"lessthan"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">"&gt;"</span> <span style="color: #ff00ff;">"greaterthan"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">"*"</span> <span style="color: #ff00ff;">"%2A"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">"?"</span> <span style="color: #ff00ff;">"%3F"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">"!"</span> <span style="color: #ff00ff;">"%21"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">))</span>
+      <span style="color: #6b59ce;">(</span>utils:string-capitalize funname<span style="color: #6b59ce;">)))</span>
+
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> wiki-inner
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>funname<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>let*</strong></span> <span style="color: #6b59ce;">((</span>urlbase <span style="color: #ff00ff;">"<a href="http://moso.com.au/wiki/index.php?title=">http://moso.com.au/wiki/index.php?title=</a>"</span><span style="color: #6b59ce;">)</span>
+             <span style="color: #6b59ce;">(</span>newname <span style="color: #6b59ce;">(</span>wikiescape funname<span style="color: #6b59ce;">))</span>
+             <span style="color: #6b59ce;">(</span>url <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-append</span> urlbase newname<span style="color: #6b59ce;">)))</span>
+         <span style="color: #6b59ce;">(</span>utils:open-url url<span style="color: #6b59ce;">))))</span>
+
+<span style="color: #0000ff;">;; macro wrapper and main function that gets called </span>
+<span style="color: #6b59ce;">(</span>define-macro <span style="color: #6b59ce;">(</span>wiki name<span style="color: #6b59ce;">)</span>
+   <span style="color: #6b59ce;">`(</span>wiki-inner <span style="color: #6b59ce;">(</span>sexpr-&gt;string <span style="color: #6b59ce;">(</span>quote <span style="color: #6b59ce;">,</span>name<span style="color: #6b59ce;">))))</span>
+
+<span style="color: #0000ff;"> </span></pre>
+<p>&gt;&gt;&gt;<br />
+That&#8217;s it: load all of this code (or put it in a single file and load it at startup time) and you&#8217;ve got the <strong>wiki</strong> procedure available!</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">559</post-id>	</item>
+		<item>
+		<title>Impromptu: If-mod macro</title>
+		<link>http://www.michelepasin.org/blog/2009/10/29/impromptu-if-mod-macro/</link>
+				<pubDate>Thu, 29 Oct 2009 12:58:02 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[impromptu]]></category>
+		<category><![CDATA[macro]]></category>
+		<category><![CDATA[scheme]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=401</guid>
+				<description><![CDATA[hey there &#8211; this morning I checked out a nice screencast by Ben Swift and was struck by the if-mod construct he&#8217;s using. It&#8217;s a really useful shortcut that saves you from writing a few (possibly distracting) parenthesis, so I tried to recreate it myself. To recap.. normally with Impromptu if you want to play [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>hey there &#8211; this morning I checked out a nice <a href="http://www.vimeo.com/7196155">screencast by Ben Swift </a>and was struck by the <em>if-mod</em> construct he&#8217;s using. It&#8217;s a really useful shortcut that saves you from writing a few (possibly distracting) parenthesis, so I tried to recreate it myself.</p>
+<p>To recap.. normally with <a href="http://impromptu.moso.com.au/">Impromptu</a> if you want to play notes at some specific time expressed in beats with you&#8217;d have to <strong>set up a metronome</strong> first [have a look <a href="http://impromptu.moso.com.au/tutorials/making_music/Beat%20%26%20Tempo.html">here</a> for more info about how to use *metro*] and then <strong>check for the right beat</strong> using the <em>modulo</em> function.<br />
+For example, something like this will play a central C every first beat of a 4/4 measure:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+(define *metro* (make-metro 100))
+
+(define test
+   (lambda (beat)
+      (if (equal? (modulo beat 4) 0)
+          (play dls 60 60 3))
+      (callback (*metro* (+ beat (* 1/2 1/4))) 'test (+ beat 1/4))))
+
+(test (*metro* 'get-beat 4))</code></pre>
+<p>Another way of doing this is by using <em>case</em>. Same approach, but probably faster to code, as it lets you specify &#8216;multiple beats&#8217; very easily:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+(define test2
+   (lambda (beat)
+      (case (modulo beat 4)
+            ((0)
+             (play dls 60 60 3))
+            ((2 5/2)
+             (play dls 67 60 1/2)))
+      (callback (*metro* (+ beat (* 1/2 1/4))) 'test2 (+ beat 1/4))))
+
+(test2 (*metro* 'get-beat 4))
+</code></pre>
+<p>Still quite a few parenthesis though&#8230; which, especially when playing live, might mean more chances to mess up!<br />
+So when I saw Ben&#8217;s video I realized that a <strong>macro</strong> usable to facilitate the creation of <em>case/modulo</em> expressions would be quite useful..<br />
+Here is how it can be done:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+(define-macro (if-mod x y args)
+   `(for-each (lambda (step)
+                 (if (equal? (modulo beat ,x) step)
+                     ,args))
+              (if (list? ,y)
+                  ,y
+                  (list ,y))))
+</code></pre>
+<p>Now, by using the if-mod macro we&#8217;ve just created we can re-write the second example above much more concisely: </p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+(define test2-new
+   (lambda (beat)
+      (if-mod 4 0 (play dls 60 60 3))
+      (if-mod 4 '(2 5/2) (play dls 67 60 1/2))
+      (callback (*metro* (+ beat (* 1/2 1/4))) 'test2-new (+ beat 1/4))))
+
+(test2-new (*metro* 'get-beat 4))
+</code></pre>
+<p>That&#8217;s all! Notice also that the <em>if-mod</em> construct can take either a list of beats or a single one.</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">401</post-id>	</item>
+	</channel>
+</rss>

@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>scraping &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/scraping/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Tue, 28 Jul 2009 10:06:20 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Python web-parsing libraries</title>
+		<link>http://www.michelepasin.org/blog/2009/07/28/python-web-parsing-libraries/</link>
+				<pubDate>Tue, 28 Jul 2009 10:06:20 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[html]]></category>
+		<category><![CDATA[parsing]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[scraping]]></category>
+		<category><![CDATA[web]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=233</guid>
+				<description><![CDATA[While continuing the interminable search for the ideal python editor, I run into three really useful libraries for scraping information off webpages: mechanize:  Stateful programmatic web browsing in Python, after Andy Lester&#8217;s Perl module WWW::Mechanize scrape:  Python module for web browsing and scraping BeautifulSoup: a Python HTML/XML parser designed for quick turnaround projects like screen-scraping I had a quick play with the [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>While continuing the interminable search for the ideal python editor, I run into three really useful libraries for scraping information off webpages:</p>
+<ul>
+<li><a href="http://wwwsearch.sourceforge.net/mechanize/">mechanize</a>:  Stateful programmatic web browsing in Python, after Andy Lester&#8217;s Perl module <a style="text-decoration:none;font-weight:600;font-family:lucida, sans-serif;font-size:12px;color:#2d4706;" href="http://search.cpan.org/dist/WWW-Mechanize/"><code style="font-family:courier, monospace;font-size:13px;">WWW::Mechanize</code> </a></li>
+<li><a href="http://zesty.ca/python/scrape.html">scrape</a>:  Python module for web browsing and scraping</li>
+<li><a href="http://www.crummy.com/software/BeautifulSoup/">BeautifulSoup</a>: a Python HTML/XML parser designed for quick turnaround projects like screen-scraping</li>
+</ul>
+<p>I had a quick play with the last one, BeautifulSoup, following one of the examples.<br />
+Here I&#8217;m fetching the ICC Commercial Crime Services weekly piracy report, parsing it with Beautiful Soup, and pulling out the piracy incidents:</p>
+<pre style='color:#000000;background:#f1f0f0;overflow:auto;'><span style='color:#400000; font-weight:bold; '>from</span> BeautifulSoup <span style='color:#400000; font-weight:bold; '>import</span> BeautifulSoup
+<span style='color:#400000; font-weight:bold; '>import</span> urllib2
+
+page <span style='color:#806030; '>=</span> urllib2<span style='color:#806030; '>.</span>urlopen<span style='color:#806030; '>(</span>"http<span style='color:#806030; '>:</span><span style='color:#806030; '>/</span><span style='color:#806030; '>/</span>www<span style='color:#806030; '>.</span>icc<span style='color:#806030; '>-</span>ccs<span style='color:#806030; '>.</span>org<span style='color:#806030; '>/</span>index<span style='color:#806030; '>.</span>php<span style='color:#806030; '>?</span>
+            option<span style='color:#806030; '>=</span>com_fabrik<span style='color:#806030; '>&amp;</span>view<span style='color:#806030; '>=</span>table<span style='color:#806030; '>&amp;</span>tableid<span style='color:#806030; '>=</span><span style='color:#c00000; '>70</span><span style='color:#806030; '>&amp;</span>calculations<span style='color:#806030; '>=</span><span style='color:#c00000; '>0</span><span style='color:#806030; '>&amp;</span>Itemid<span style='color:#806030; '>=</span><span style='color:#c00000; '>82</span>"<span style='color:#806030; '>)</span>
+soup <span style='color:#806030; '>=</span> BeautifulSoup<span style='color:#806030; '>(</span>page<span style='color:#806030; '>)</span>
+
+<span style='color:#400000; font-weight:bold; '>for</span> incident <span style='color:#400000; font-weight:bold; '>in</span> soup<span style='color:#806030; '>(</span><span style='color:#e60000; '>'td'</span><span style='color:#806030; '>,</span>
+         <span style='color:#806030; '>{</span><span style='color:#e60000; '>"class"</span> <span style='color:#806030; '>:</span> <span style='color:#e60000; '>"fabrik_row___jos_fabrik_icc-ccs-piracymap2009_testing___narrations"</span><span style='color:#806030; '>}</span><span style='color:#806030; '>)</span><span style='color:#806030; '>:</span>
+    <span style='color:#400000; font-weight:bold; '>print</span> <span style='color:#e60000; '>"nAn incident :"</span>
+    <span style='color:#400000; font-weight:bold; '>print</span> incident<span style='color:#806030; '>.</span>next<span style='color:#806030; '>.</span>renderContents<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span>
+    <span style='color:#400000; font-weight:bold; '>print</span> incident<span style='color:#806030; '>.</span>next<span style='color:#806030; '>.</span>next<span style='color:#806030; '>.</span>next<span style='color:#806030; '>.</span>next<span style='color:#806030; '>.</span>next<span style='color:#806030; '>.</span>renderContents<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span>
+</pre>
+<p> And the result is the following:</p>
+<pre style="font-size:12px;"><code>
+An incident :
+21.07.2009: 0030 LT: Posn: 01:17.94N – 104:09.24E, Off Tanjong Stapa, Malaysia.
+Six robbers armed with long knives in a boat came alongside and boarded a product tanker at anchor.
+The robbers tied up the Master and crew members. They stole ship’s and crew properties.
+During the incident the Malaysian Marine Police boarded the product tanker and arrested five robbers.
+One robber jumped overboard and escaped.
+
+An incident :
+12.07.2009: 0330 LT: Posn: 10:16.2N - 107:04.6E, Vungtau outer anchorage, Vietnam.
+Robbers boarded a container ship at anchor. They stole ship's stores and properties and escaped.
+
+An incident :
+12.07.2009: 0200 LT: Posn: 01:08.91N – 105:45.11E, Off Raffles lighthouse, Singapore Straits.
+Five pirates armed with long knives and swords in a five meter long wooden boat approached a tug
+towing a barge. Four pirates boarded the tug, and tied up the crew. They stole ship’s properties,
+crew personal belongings and cash and escaped. No injuries to crew. VTIS and coast guard Singapore informed.
+[Task exited status=0]
+</code></pre>
+<p>Nice and easy uh?</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">233</post-id>	</item>
+	</channel>
+</rss>

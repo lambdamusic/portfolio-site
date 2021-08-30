@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>debug &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/debug/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 24 May 2010 10:46:53 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Django debug toolbar</title>
+		<link>http://www.michelepasin.org/blog/2010/05/24/django-debug-toolbar/</link>
+				<comments>http://www.michelepasin.org/blog/2010/05/24/django-debug-toolbar/#comments</comments>
+				<pubDate>Mon, 24 May 2010 10:46:53 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[debug]]></category>
+		<category><![CDATA[django]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=690</guid>
+				<description><![CDATA[Django Debug Toolbar 0.8 from Idan Gazit on Vimeo. This is just an amazingly useful application you might want to add to your django development tools. Installation is a breeze: $ easy_install django-debug-toolbar &#8230; Then you need to add some parameters to your settings.py, as explained here. It&#8217;s likely that you don&#8217;t want the debug-toolbar [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><object width="400" height="225"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=6640136&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" /></object></p>
+<p><a href="http://vimeo.com/6640136">Django Debug Toolbar 0.8</a> from <a href="http://vimeo.com/idangazit">Idan Gazit</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+<p>This is just an amazingly useful application you might want to add to your django development tools. </p>
+<p>Installation is a breeze:</p>
+<pre style="font-size:11px;background-color:#ccffff;color:black;overflow:auto;"><code>
+$ easy_install django-debug-toolbar
+</code></pre>
+<p>&#8230;</p>
+<p>Then you need to add some parameters to your <em>settings.py</em>, as explained <a href="http://github.com/robhudson/django-debug-toolbar/blob/master/README.rst">here</a>.<br />
+It&#8217;s likely that you don&#8217;t want the debug-toolbar to show on your production site as well, but only where you&#8217;re doing development. So a more portable alternative to the usual way to add the debug-toolbar parameters is the following:</p>
+<pre style="font-size:11px;background-color:#ccffff;color:black;overflow:auto;"><code>
+# set to True if you're on the production server
+LIVESERVER = False
+
+# ..... other settings....
+
+if not LIVESERVER:
+	# stuff for the debug toolbar
+	INSTALLED_APPS += 	('debug_toolbar',)
+	INTERNAL_IPS = ('127.0.0.1',)
+	MIDDLEWARE_CLASSES += ( 'debug_toolbar.middleware.DebugToolbarMiddleware', )
+
+</code></pre>
+<p>&#8230;</p>
+<p>The <em>LIVESERVER</em> variable is the only thing you&#8217;ve got to manually change when copying your code to the production server&#8230;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2010/05/24/django-debug-toolbar/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">690</post-id>	</item>
+		<item>
+		<title>Python debugging and Textmate</title>
+		<link>http://www.michelepasin.org/blog/2010/02/12/python-debugging-and-textmate/</link>
+				<pubDate>Fri, 12 Feb 2010 13:23:29 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[debug]]></category>
+		<category><![CDATA[pdb]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[textmate]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=546</guid>
+				<description><![CDATA[I&#8217;ve never realized that among the many things Textmate does well there&#8217;s also python debugging. Well, to be precise Textmate doesn&#8217;t do much as it just relies on python&#8217;s default debugger, called PDB. Ok, probably PDB isn&#8217;t the cutting edge debugger you&#8217;re looking for, but it&#8217;s worth a try imho. Nothing to install in order [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I&#8217;ve never realized that among the <a href="http://manual.macromates.com/en/">many things Textmate does well</a> there&#8217;s also python debugging. Well, to be precise Textmate doesn&#8217;t do much as it just relies on <strong>python&#8217;s default debugger, called <a href="http://docs.python.org/library/pdb.html">PDB</a></strong>. Ok, probably PDB isn&#8217;t the cutting edge debugger you&#8217;re looking for, but it&#8217;s worth a try imho.</p>
+<p>Nothing to install in order to try: just open up a python script with textmate, hit <strong>cmd+shift+D</strong> and a debug-terminal window will open. The <strong>essential commands for Pdb</strong> are (the first letter is the one to digit):</p>
+<li>s(tep): Execute the current line, stop at the first possible occasion (either in a function that is called or on the next line in the current function).</li>
+<li>r(eturn): Continue execution until the current subroutine returns.</li>
+<li>n(ext): Continue execution until the next line in the current function is reached or it returns.</li>
+<li>p(rint) expression: Evaluate the expression in the current context and print its value.</li>
+<li>a(rgs): Print the argument list of the current function.</li>
+<li>q(uit): Quit from the debugger</li>
+<li>c(ont(inue)): Instead of quitting, Continue execution, only stop when a breakpoint is encountered.</li>
+<p>A nice and clear crash course of Pbd can also be found <a href="http://pythonconquerstheuniverse.wordpress.com/category/the-python-debugger/">here</a>.</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-12.png"><img class="alignnone size-medium wp-image-547" title="Picture 1" src="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-12.png?w=300" alt="" width="300" height="189" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-12.png 1068w, http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-12-300x189.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-12-1024x648.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>&#8230;</p>
+<p>OTHER TEXTMATE TIPS AND TRICKS: </p>
+<li> <a href="http://pypi.python.org/pypi/PdbTextMateSupport/0.3">PdbTextMateSupport</a> is a plugin that gives you a more powerful debugger within Textmate: a <a href="http://www.libertypages.com/clarktech/?p=192">detailed description of its (simple) installation is here.</a></li>
+<li> a nice post about <a href="http://domhay.com/blog/2009/10-cool-textmate-tips">10 cool TextMate tips</a>: most of them are HTML/CSS related, but worth checking out!</li>
+<li>Textmate basic <a href="http://projects.serenity.de/textmate/tutorials/basics/">tutorial</a>. This is a must for everyone who wants to use TextMate seriously (available also in Japanese!) </li>
+<li><a href="http://al3x.net/2008/12/03/how-i-use-textmate.html">Three plugins</a> that&#8217;ll make textmate shine even more: <strong>Project Plus </strong>(adds extra functionalities to the project drawer), <strong>GetBundles</strong> (a better version of the old GetBundle), <strong>Ack In Project</strong> (a much faster &#8216;search in project&#8217; function). </li>
+<li>Nice <a href="http://screencasts.textmate.org/math_and_column_selections.mov">screencast</a> on how to use the <strong>Math</strong> bundle</li>
+<p>&#8230;</p>
+]]></content:encoded>
+							<enclosure url="http://screencasts.textmate.org/math_and_column_selections.mov" length="27615540" type="video/quicktime" />
+		<post-id xmlns="com-wordpress:feed-additions:1">546</post-id>	</item>
+	</channel>
+</rss>

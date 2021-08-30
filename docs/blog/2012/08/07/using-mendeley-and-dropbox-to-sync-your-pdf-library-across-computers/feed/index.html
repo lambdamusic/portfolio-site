@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	
+	>
+<channel>
+	<title>
+	Comments on: Using Mendeley and Dropbox to sync your pdf library across computers	</title>
+	<atom:link href="http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Fri, 28 Apr 2017 13:21:00 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+			<item>
+				<title>
+				By: Mikele				</title>
+				<link>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/comment-page-1/#comment-69513</link>
+		<dc:creator><![CDATA[Mikele]]></dc:creator>
+		<pubDate>Fri, 28 Apr 2017 13:21:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1964#comment-69513</guid>
+					<description><![CDATA[Bear in mind that this solution has nothing to do with mendeley.com space. In all cases, I would not recommend trying this out without backing up your Mendeley library first.]]></description>
+		<content:encoded><![CDATA[<p>Bear in mind that this solution has nothing to do with mendeley.com space. In all cases, I would not recommend trying this out without backing up your Mendeley library first.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Mikele				</title>
+				<link>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/comment-page-1/#comment-69512</link>
+		<dc:creator><![CDATA[Mikele]]></dc:creator>
+		<pubDate>Fri, 28 Apr 2017 13:19:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1964#comment-69512</guid>
+					<description><![CDATA[Did you manage to complete step 1, at least? The error message looks funny. Does it actually say &#039;username&#039; or did you change that?]]></description>
+		<content:encoded><![CDATA[<p>Did you manage to complete step 1, at least? The error message looks funny. Does it actually say &#8216;username&#8217; or did you change that?</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Dylan Simpson				</title>
+				<link>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/comment-page-1/#comment-69450</link>
+		<dc:creator><![CDATA[Dylan Simpson]]></dc:creator>
+		<pubDate>Tue, 25 Apr 2017 23:31:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1964#comment-69450</guid>
+					<description><![CDATA[Some of you have inquired as to how this can be done with two Windows computers. This was years ago, so your problems are likely solved or forgotten, but I solved it, so I&#039;ll pay it forward. I didn&#039;t know symlinks were a thing, so this solution would never have occurred to me.
+
+First thing is to make sure your computers have the same account name. Unfortunately, it has to be the name FIRST attached to the account so that the folder in C:Users... is the same. I have discovered that capitalization is not a problem (my folder name on my laptop is, for whatever reason, all lower case, but my desktop is capitalized).
+
+If they aren&#039;t already, put your pdfs in a folder on your cloud. I noticed the original author on this post tells Mendeley to copy .pdfs to a folder. I already keep all mine in one place and tell Mendeley to watch that folder. Either way, do that on the cloud.
+
+Next, open Mendeley on whichever of your computers is better organized (or organize one of them), then hit ctrl + shift + D. A little debug window should open. Click &#039;Open Data Directory.&#039; This should open the database folder referred to in the original post. With this open, CLOSE MENDELEY. Go up one folder level to Mendeley Ltd. Cut and paste the &#039;Mendeley Desktop&#039; folder to your cloud. You can rename if it if you want. Make sure to cut it (rather than copy it), because creating a directory hard link creates a new folder.
+
+Open command prompt as an admin. It should default to C:WINDOWSsystem32. If not, navigate there. Now you&#039;ll create the symlink between the folder in you cloud, which contains your database info for Mendeley, and the original folder location. This way, when Mendeley accesses it and manipulates it, it will actually be working on the cloud.
+
+The command follows the format:
+mklink /J Link Target
+
+where the Link is the &#039;fake&#039; folder that will be set in the Mendeley directory, and Target is the real folder in your cloud directory. Also, note it is a forward slash in /J. Your final command prompt line should read:
+
+mklink /J &quot;C:UsersnameAppDataLocalMendeley LtdMendeley Desktop&quot; &quot;C:UsersnameOneDriveDocumentsMendeley Database&quot;
+
+This is, of course, dependent on which cloud service you are using and your actual file path. And whatever you name the database folder in your cloud directory (mine is Mendeley Database&quot;). If there are any spaces (as there are in mine), it requires spaces. Remember that you removed the original &#039;Mendeley Desktop&#039; folder in the Mendeley directory, and so this command creates a new one. If you did not remove it you will see an error.
+
+Now go back to your ~/Mendeley Ltd folder. You should see a new &#039;Mendeley Desktop&#039; folder, and it should appear to contain all the things that were moved to your cloud folder. You can reopen Mendeley to confirm that this was successful.
+
+Next, do the same thing to your other computer, except instead of moving your Mendeley Desktop folder, just delete it (this is why I said start with your more organized computer). The command script should be identical, and you should now have the same database folder linked to the Mendeley directory on each computer.]]></description>
+		<content:encoded><![CDATA[<p>Some of you have inquired as to how this can be done with two Windows computers. This was years ago, so your problems are likely solved or forgotten, but I solved it, so I&#8217;ll pay it forward. I didn&#8217;t know symlinks were a thing, so this solution would never have occurred to me.</p>
+<p>First thing is to make sure your computers have the same account name. Unfortunately, it has to be the name FIRST attached to the account so that the folder in C:Users&#8230; is the same. I have discovered that capitalization is not a problem (my folder name on my laptop is, for whatever reason, all lower case, but my desktop is capitalized).</p>
+<p>If they aren&#8217;t already, put your pdfs in a folder on your cloud. I noticed the original author on this post tells Mendeley to copy .pdfs to a folder. I already keep all mine in one place and tell Mendeley to watch that folder. Either way, do that on the cloud.</p>
+<p>Next, open Mendeley on whichever of your computers is better organized (or organize one of them), then hit ctrl + shift + D. A little debug window should open. Click &#8216;Open Data Directory.&#8217; This should open the database folder referred to in the original post. With this open, CLOSE MENDELEY. Go up one folder level to Mendeley Ltd. Cut and paste the &#8216;Mendeley Desktop&#8217; folder to your cloud. You can rename if it if you want. Make sure to cut it (rather than copy it), because creating a directory hard link creates a new folder.</p>
+<p>Open command prompt as an admin. It should default to C:WINDOWSsystem32. If not, navigate there. Now you&#8217;ll create the symlink between the folder in you cloud, which contains your database info for Mendeley, and the original folder location. This way, when Mendeley accesses it and manipulates it, it will actually be working on the cloud.</p>
+<p>The command follows the format:<br />
+mklink /J Link Target</p>
+<p>where the Link is the &#8216;fake&#8217; folder that will be set in the Mendeley directory, and Target is the real folder in your cloud directory. Also, note it is a forward slash in /J. Your final command prompt line should read:</p>
+<p>mklink /J &#8220;C:UsersnameAppDataLocalMendeley LtdMendeley Desktop&#8221; &#8220;C:UsersnameOneDriveDocumentsMendeley Database&#8221;</p>
+<p>This is, of course, dependent on which cloud service you are using and your actual file path. And whatever you name the database folder in your cloud directory (mine is Mendeley Database&#8221;). If there are any spaces (as there are in mine), it requires spaces. Remember that you removed the original &#8216;Mendeley Desktop&#8217; folder in the Mendeley directory, and so this command creates a new one. If you did not remove it you will see an error.</p>
+<p>Now go back to your ~/Mendeley Ltd folder. You should see a new &#8216;Mendeley Desktop&#8217; folder, and it should appear to contain all the things that were moved to your cloud folder. You can reopen Mendeley to confirm that this was successful.</p>
+<p>Next, do the same thing to your other computer, except instead of moving your Mendeley Desktop folder, just delete it (this is why I said start with your more organized computer). The command script should be identical, and you should now have the same database folder linked to the Mendeley directory on each computer.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Nena Kat				</title>
+				<link>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/comment-page-1/#comment-69119</link>
+		<dc:creator><![CDATA[Nena Kat]]></dc:creator>
+		<pubDate>Thu, 06 Apr 2017 16:53:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1964#comment-69119</guid>
+					<description><![CDATA[Thanks for posting, but after I am done with all the steps for mac1, the app mendeley wont open. I get a message: &quot;The data directory is set to &#039;Users/username/Library/Application Support/Mendeley Desktop&#039;, but it could not be created.&quot; Any idea what the problem is? I have Yosemite.]]></description>
+		<content:encoded><![CDATA[<p>Thanks for posting, but after I am done with all the steps for mac1, the app mendeley wont open. I get a message: &#8220;The data directory is set to &#8216;Users/username/Library/Application Support/Mendeley Desktop&#8217;, but it could not be created.&#8221; Any idea what the problem is? I have Yosemite.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Vincent Ng				</title>
+				<link>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/comment-page-1/#comment-67251</link>
+		<dc:creator><![CDATA[Vincent Ng]]></dc:creator>
+		<pubDate>Tue, 30 Aug 2016 21:35:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1964#comment-67251</guid>
+					<description><![CDATA[Hey,
+
+I ran out of mendeley.com space and wanted to keep my desktop versions synced across platforms. I have already been saving all of my pdfs to Google Drive and I have a file folder structure, annotations, highlighting etc. I want to keep. Will doing the steps above completely screw all of that up? Thanks!]]></description>
+		<content:encoded><![CDATA[<p>Hey,</p>
+<p>I ran out of mendeley.com space and wanted to keep my desktop versions synced across platforms. I have already been saving all of my pdfs to Google Drive and I have a file folder structure, annotations, highlighting etc. I want to keep. Will doing the steps above completely screw all of that up? Thanks!</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Mikele				</title>
+				<link>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/comment-page-1/#comment-65640</link>
+		<dc:creator><![CDATA[Mikele]]></dc:creator>
+		<pubDate>Mon, 18 Apr 2016 09:31:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1964#comment-65640</guid>
+					<description><![CDATA[Very good news]]></description>
+		<content:encoded><![CDATA[<p>Very good news</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Charles Estus Jr				</title>
+				<link>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/comment-page-1/#comment-65580</link>
+		<dc:creator><![CDATA[Charles Estus Jr]]></dc:creator>
+		<pubDate>Thu, 14 Apr 2016 23:07:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1964#comment-65580</guid>
+					<description><![CDATA[Success~! Thanks.]]></description>
+		<content:encoded><![CDATA[<p>Success~! Thanks.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Charles Estus Jr				</title>
+				<link>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/comment-page-1/#comment-65579</link>
+		<dc:creator><![CDATA[Charles Estus Jr]]></dc:creator>
+		<pubDate>Thu, 14 Apr 2016 23:01:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1964#comment-65579</guid>
+					<description><![CDATA[Ian- I suspect you have found your answer by now- it is important to have the exact syntax to avoid this. See: http://superuser.com/questions/354193/cannot-cd-into-application-support-on-mac-os-x-snow-leopard
+I managed to get around by using cd to work down to the /Application Support directory. e.g. 
+cd ~/Library
+then
+cd /Application Support
+then 
+cp -r Mendeley Desktop/ ~/Dropbox/Mendeley/db/]]></description>
+		<content:encoded><![CDATA[<p>Ian- I suspect you have found your answer by now- it is important to have the exact syntax to avoid this. See: <a href="http://superuser.com/questions/354193/cannot-cd-into-application-support-on-mac-os-x-snow-leopard" rel="nofollow">http://superuser.com/questions/354193/cannot-cd-into-application-support-on-mac-os-x-snow-leopard</a><br />
+I managed to get around by using cd to work down to the /Application Support directory. e.g.<br />
+cd ~/Library<br />
+then<br />
+cd /Application Support<br />
+then<br />
+cp -r Mendeley Desktop/ ~/Dropbox/Mendeley/db/</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Charles Estus Jr				</title>
+				<link>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/comment-page-1/#comment-65529</link>
+		<dc:creator><![CDATA[Charles Estus Jr]]></dc:creator>
+		<pubDate>Wed, 13 Apr 2016 02:44:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1964#comment-65529</guid>
+					<description><![CDATA[Mikele, It seems I was able to cd down to the App Support folder. I had to go in steps: cd ~/Library then cd Application Support. From there I was able to copy, mv (rename), and link. The porlem persisted when I launched Mendeley and received an error pointing that the path was incorrect. 
+
+Now trying to find the SQLite command to view/edit content of db. 
+
+Also i cleared my .ds store files using Onyx. 
+Thanks!]]></description>
+		<content:encoded><![CDATA[<p>Mikele, It seems I was able to cd down to the App Support folder. I had to go in steps: cd ~/Library then cd Application Support. From there I was able to copy, mv (rename), and link. The porlem persisted when I launched Mendeley and received an error pointing that the path was incorrect. </p>
+<p>Now trying to find the SQLite command to view/edit content of db. </p>
+<p>Also i cleared my .ds store files using Onyx.<br />
+Thanks!</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Mikele				</title>
+				<link>http://www.michelepasin.org/blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/comment-page-1/#comment-65517</link>
+		<dc:creator><![CDATA[Mikele]]></dc:creator>
+		<pubDate>Tue, 12 Apr 2016 09:06:00 +0000</pubDate>
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1964#comment-65517</guid>
+					<description><![CDATA[Not sure what the problem is, but maybe this thread can help you: http://superuser.com/questions/354193/cannot-cd-into-application-support-on-mac-os-x-snow-leopard 
+
+I&#039;m running El Capitan and &#039;cd ~/Library/Application Support/&#039; runs as expected...]]></description>
+		<content:encoded><![CDATA[<p>Not sure what the problem is, but maybe this thread can help you: <a href="http://superuser.com/questions/354193/cannot-cd-into-application-support-on-mac-os-x-snow-leopard" rel="nofollow">http://superuser.com/questions/354193/cannot-cd-into-application-support-on-mac-os-x-snow-leopard</a> </p>
+<p>I&#8217;m running El Capitan and &#8216;cd ~/Library/Application Support/&#8217; runs as expected&#8230;</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

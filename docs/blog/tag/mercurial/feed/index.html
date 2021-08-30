@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>mercurial &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/mercurial/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Wed, 01 Dec 2010 20:30:29 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Installing Mercurial on OSx 10.6.5</title>
+		<link>http://www.michelepasin.org/blog/2010/12/01/installing-mercurial-on-osx-10-6-5/</link>
+				<comments>http://www.michelepasin.org/blog/2010/12/01/installing-mercurial-on-osx-10-6-5/#comments</comments>
+				<pubDate>Wed, 01 Dec 2010 20:30:29 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[mac]]></category>
+		<category><![CDATA[mercurial]]></category>
+		<category><![CDATA[versioncontrol]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1035</guid>
+				<description><![CDATA[Mercurial is a free, distributed source control management tool. It efficiently handles projects of any size and offers an easy and intuitive. That&#8217;s what you read on its website, at least. I decided to give it a go mainly because I was looking forward to use a decentralized version control system for a couple of [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Mercurial is a free, distributed source control management tool. It efficiently handles projects of any size and offers an easy and intuitive. That&#8217;s what you read on <a href="http://mercurial.selenic.com/">its website</a>, at least. I decided to give it a go mainly because I was looking forward to use a <a href="http://en.wikipedia.org/wiki/Distributed_revision_control">decentralized version control system</a> for a couple of side projects I&#8217;m working on; moreover, because a friend pointed out that <a href="http://bitbucket.org/">BitBucket</a> (an online free code-hosting service based on Mercurial) has a <a href="https://bitbucket.org/account/signup/?plan=5_users">free plan</a> that doesn&#8217;t force you to make your projects public by default &#8211; like most other competitor services do. Free + private = time to test it!</p>
+<p>Installation started by <a href="http://mercurial.selenic.com/downloads">downloading</a> and running the default installer. The <a href="http://confluence.atlassian.com/display/BITBUCKET/Bitbucket+101">instructions online</a> are very detailed, so I tried to follow them.<br />
+However, after installing, I tried to run the <em>hg</em> command (which is how you invoke mercurial) but the following error kept coming up:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+abort: couldn't find mercurial libraries in [/usr/platlib/Library/Python/2.6/site-packages /usr/local/bin /Library/Python/2.5/site-packages/ipython-0.9.1-py2.5.egg /Library/Python/2.5/site-packages/readline-2.5.1-py2.5-macosx-10.5-i386.egg /Library/Python/2.5/site-packages/antlr_python_runtime-3.1.1-py2.5.egg /Library/Python/2.5/site-packages/feedparser-4.1-py2.5.egg /Library/Python/2.5/site-packages/pydelicious-0.5.0-py2.5.egg /Library/Python/2.5/site-packages/virtualenv-1.3.3-py2.5.egg /Library/Python/2.5/site-packages/python_ldap-2.3.9-py2.5-macosx-10.5-i386.egg /Library/Python/2.5/site-packages/setuptools-0.6c11-py2.5.egg /Library/Python/2.5/site-packages/py2app-0.4.3-py2.5.egg /Library/Python/2.5/site-packages/macholib-1.2.1-py2.5.egg /Library/Python/2.5/site-packages/modulegraph-0.7.3-py2.5.egg /Library/Python/2.5/site-packages/yolk-0.4.1-py2.5.egg /Library/Python/2.5/site-packages/django_profiles-0.2-py2.5.egg /Library/Python/2.5/site-packages/pyglet-1.1.3-py2.5.egg /Library/Python/2.5/site-packages/PdbTextMateSupport-0.3-py2.5.egg /Library/Python/2.5/site-packages/PyXML-0.8.4-py2.5-macosx-10.5-i386.egg /Library/Python/2.5/site-packages/rdflib-3.0.0-py2.5.egg /Users/mac/Code/python/utils /Users/mac /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python25.zip /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/plat-darwin /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/plat-mac /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/plat-mac/lib-scriptpackages /System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/lib-tk /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/lib-dynload /Library/Python/2.5/site-packages /Library/Python/2.5/site-packages/PIL /System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python/PyObjC /System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python/wx-2.8-mac-unicode]
+(check your install and PYTHONPATH)
+</code></pre>
+<p>&nbsp;</p>
+<h3>Fixing the errors</h3>
+<p>Mercurial couldn&#8217;t find the python libraries it needs to run; after a bit of googling  I <a href="http://stackoverflow.com/questions/1461374/installing-mercurial-on-mac-os-x-10-6-snow-leopard">found out</a> that installing Mercurial from the Mac Disk Image will cause its files to end up here: </p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+/Library/Python/2.6/site-packages/</code></pre>
+<p>Apparently the default python installation that comes with 10.6.5 puts all the python packages somewhere else, that is, in the Frameworks directory:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages</code></pre>
+<p>That&#8217;s why Mercurial couldn&#8217;t find them &#8211; by default OSx expects python libraries to be somewhere else. Adding the missing library location to the pythonpath in ~/.bash_profile fixed that:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+export PYTHONPATH="/Library/Python/2.6/site-packages:$PYTHONPATH"</code></pre>
+<p>Next step, adding the Mercurial config file at ~/.hgrc :</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+[mac]@yourname:~>touch .hgrc
+[mac]@yourname:~>pico .hgrc
+ # in the file add these lines:
+[ui]
+; editor used to enter commit logs, etc.  Most text editors will work.
+editor = mate
+username = MY_FIRST_NAME MY_LAST_NAME <MY_NAME@example.com></code></pre>
+<p>&nbsp;</p>
+<h3>Getting started with BitBucket</h3>
+<p>Time to get started with setting up the BiBucket repository now. First set up an account on the site, then clone your repository with these commands: </p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+[mac]@yourname:~/Some/location>hg clone https://yourname@bitbucket.org/name/repository_name
+http authorization required
+realm: Bitbucket.org HTTP
+user: yourname
+password: ******
+destination directory: your_dir
+no changes found
+updating to branch default
+0 files updated, 0 files merged, 0 files removed, 0 files unresolved</code></pre>
+<p>Almost there&#8230; next thing, add some files to the repository/directory, &#8216;<strong>add</strong>&#8216; them and &#8216;<strong>commit</strong>&#8216; them. You&#8217;re up and running..</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+[mac]@yourname:~/Some/location> hg add
+adding -ideas/.DS_Store
+adding -ideas/15June2010/untitled.scm
+adding -ideas/15June2010/zeb1.patch
+adding -ideas/15June2010/zeb2.patch
+adding -ideas/15June2010/zeb3.patch
+adding -ideas/15June2010/zeb4.patch
+adding -ideas/a.scm
+adding -ideas/a_better_drum_machine.scm
+adding -ideas/a_progression.scm
+adding -ideas/c-ColorChange.scm
+adding -ideas/cassa_a_gogo.scm
+adding -ideas/ccx-simple_progression.scm
+adding -ideas/chords_with_drums.scm
+..... etcetera....
+
+[mac]@ yourname:~/Some/location>hg commit -m "Initial commit of all files to the repository."
+[mac]@ yourname:~/Some/location>hg push # to push changes to this repo
+http authorization required
+realm: Bitbucket.org HTTP
+user: yourname
+password: ****
+pushing to https://yourname@bitbucket.org/name/repository_name
+searching for changes
+remote: adding changesets
+remote: adding manifests
+remote: adding file changes
+remote: added 1 changesets with 455 changes to 455 files
+remote: bb/acl: yourname is allowed. accepted payload.</code></pre>
+<p>&nbsp;</p>
+<h3>GUIs</h3>
+<p>I also tried a couple of Graphical User Interfaces for Mercurial; the one that seemed best to me (on OSx obviously) is Murky, which is <a href="http://bitbucket.org/snej/murky/wiki/Home">freely available here</a>. Can&#8217;t ask for more can I?</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/12/Screen-shot-2010-12-01-at-20.28.57.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/12/Screen-shot-2010-12-01-at-20.28.57.png" alt="Screen shot 2010-12-01 at 20.28.57.png" border="0" width="400" height="300" /></a></p>
+<p>UPDATE: Another quite nice (and free) user interface is <a href="http://jasonfharris.com/machg/">MacHG</a>.</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2010/12/01/installing-mercurial-on-osx-10-6-5/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1035</post-id>	</item>
+	</channel>
+</rss>

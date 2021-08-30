@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>signals &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/signals/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Wed, 11 Nov 2009 16:39:27 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Django signals</title>
+		<link>http://www.michelepasin.org/blog/2009/11/11/django-signals/</link>
+				<pubDate>Wed, 11 Nov 2009 16:39:27 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[signals]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=425</guid>
+				<description><![CDATA[This is a really cool feature of django that I&#8217;ve never explored, so I though I&#8217;d made a post about it so to remind myself of using it more often! It&#8217;s discussed extensively in the docs here and here. In a nutshell: Django includes a “signal dispatcher” which helps allow decoupled applications get notified when [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>This is a really cool feature of django that I&#8217;ve never explored, so I though I&#8217;d made a post about it so to remind myself of using it more often! It&#8217;s discussed extensively in the docs <a href="http://docs.djangoproject.com/en/dev/topics/signals/#topics-signals">here</a> and <a href="http://docs.djangoproject.com/en/dev/ref/signals/#ref-signals">here</a>. In a nutshell:</p>
+<blockquote><p>Django includes a “signal dispatcher” which <strong>helps allow decoupled applications get notified when actions occur elsewhere in the framework</strong>. In a nutshell, signals allow certain senders to notify a set of receivers that some action has taken place. They’re especially useful when many pieces of code may be interested in the same events.</p>
+<p>Django provides a set of built-in signals that let user code get notified by Django itself of certain actions. These include some useful notifications:<br />
+<strong>django.db.models.signals.pre_save</strong> &amp; <strong>django.db.models.signals.post_save</strong><br />
+Sent before or after a model’s save() method is called.<br />
+<strong>django.db.models.signals.pre_delete</strong> &amp; <strong>django.db.models.signals.post_delete</strong><br />
+Sent before or after a model’s delete() method is called.<br />
+<strong>django.core.signals.request_started</strong> &amp; <strong>django.core.signals.request_finished</strong><br />
+Sent when Django starts or finishes an HTTP request.</p></blockquote>
+<h4>How to use them?</h4>
+<p>Really simple: modify the code below as needed and put it at the <strong>bottom</strong> of your models.py file (it could be located anywhere, but by putting it there we make sure it&#8217;s loaded at the right time):</p>
+<pre style='color:#000020;background:#f6f8ff;overflow:auto;'><span style='color:#200080; font-weight:bold; '>from</span> django<span style='color:#308080; '>.</span>db<span style='color:#308080; '>.</span>models<span style='color:#308080; '>.</span>signals <span style='color:#200080; font-weight:bold; '>import</span> post_save
+
+<span style='color:#200080; font-weight:bold; '>def</span> my_handler<span style='color:#308080; '>(</span>sender<span style='color:#308080; '>,</span> instance<span style='color:#308080; '>,</span> created<span style='color:#308080; '>,</span> <span style='color:#308080; '>*</span><span style='color:#308080; '>*</span>kwargs<span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+    <span style='color:#200080; font-weight:bold; '>if</span> created<span style='color:#308080; '>:</span>
+        <span style='color:#595979; '># if the instance is effectively saved</span>
+        <span style='color:#200080; font-weight:bold; '>try</span><span style='color:#308080; '>:</span>
+            <span style='color:#200080; font-weight:bold; '>if</span> instance<span style='color:#308080; '>.</span>my_favourite_method<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span><span style='color:#308080; '>:</span>
+                instance<span style='color:#308080; '>.</span>special_field <span style='color:#308080; '>=</span> instance<span style='color:#308080; '>.</span>my_favourite_method<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span>
+        <span style='color:#200080; font-weight:bold; '>except</span><span style='color:#308080; '>:</span>
+            instance<span style='color:#308080; '>.</span>special_field <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>"undefined"</span>
+        instance<span style='color:#308080; '>.</span>save<span style='color:#308080; '>(</span><span style='color:#308080; '>)</span>
+
+
+post_save<span style='color:#308080; '>.</span>connect<span style='color:#308080; '>(</span>my_handler<span style='color:#308080; '>,</span> sender<span style='color:#308080; '>=</span>SomeModel<span style='color:#308080; '>)</span>
+</pre>
+<p>Imagine that each time an instance of SomeModel gets saved you want to perform some other operation, such as adding something to one of its fields. <strong>Three simple steps</strong>: <strong>import</strong> the <em>post_save</em> signal, <strong>define</strong> a function <em>my_handler</em> that does the operation, <strong>connect</strong> your handler to a specific model.</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">425</post-id>	</item>
+	</channel>
+</rss>

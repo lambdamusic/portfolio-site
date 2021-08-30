@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>tutorial &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/tutorial/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Tue, 08 Feb 2011 12:16:20 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Installing PIL on Djangostack 1.1.1/1.2/1.3</title>
+		<link>http://www.michelepasin.org/blog/2011/02/08/installing-pil-on-djangostack-1-1-1/</link>
+				<comments>http://www.michelepasin.org/blog/2011/02/08/installing-pil-on-djangostack-1-1-1/#comments</comments>
+				<pubDate>Tue, 08 Feb 2011 12:16:20 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[image]]></category>
+		<category><![CDATA[pil]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[tutorial]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1095</guid>
+				<description><![CDATA[The popular Python Imaging Library (PIL) adds image processing capabilities to your Python interpreter. This library supports many file formats and provides powerful image processing and graphics capabilities. I normally use Bitnami Djangostack for most of my Django development, which doesn&#8217;t come with PIL installed by default so in this post I&#8217;m summing up what [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>The popular <a href="http://www.pythonware.com/products/pil/">Python Imaging Library</a> (PIL) adds image processing capabilities to your Python interpreter. This library supports many file formats and provides powerful image processing and graphics capabilities. I normally use <a href="http://bitnami.org/stack/djangostack">Bitnami Djangostack</a> for most of my Django development, which doesn&#8217;t come with PIL installed by default so in this post I&#8217;m summing up what steps I&#8217;ve taken to get that up and running.</p>
+<p>This is the <strong>preamble</strong>: I recently got a new desktop machine (an iMac Intel core i3) with the latest OS installed (10.6.4), so I had to re-install a whole bunch of stuff. In order to set up the new mac I used <a href="http://support.apple.com/kb/HT4413">Migration Assistant</a>. This neat piece of software cloned almost all I had on the previous machine onto the new one, and that worked just wonderfully. However I was expecting some troubles with low-level libraries.. and that just happened with PIL this morning. It costed a 2-3 hours headache but the web eventually stirred me in the right direction&#8230; in this post I&#8217;m just summarising how I got around the problem. </p>
+<h3>The problem: missing gcc compiler </h3>
+<p>Yeah, first of all, let&#8217;s make it clear what the problem was: I usually run my django projects using <a href="http://bitnami.org/stack/djangostack">Bitnami Djangostack</a> (a closed environment that includes ready-to-run versions of Apache, MySQL, PostgreSQL, SQLite, Python and Django and required dependencies). Today I needed to use PIL in a project of mine, so was trying to install it using <a href="http://www.michelepasin.org/blog/2009/01/27/python-easyinstall-the-peak-developers-center/">easy_install</a> within the stack:</p>
+<div style='color:#000000;background:lavender;overflow:auto;'>
+<pre>
+<font color="#008a8c">bash-3.2</font><span style="background-color: white"><font color="red">$</font></span> easy_install PIL
+<font color="#008a8c">Searching</font> for PIL
+<font color="#008a8c">Reading</font> <a href="http://pypi.python.org/simple/PIL/">http://pypi.python.org/simple/PIL/</a>
+<font color="#008a8c">Reading</font> <a href="http://www.pythonware.com/products/pil">http://www.pythonware.com/products/pil</a>
+<font color="#008a8c">Reading</font> <a href="http://effbot.org/zone/pil-changes-115.htm">http://effbot.org/zone/pil-changes-115.htm</a>
+<font color="#008a8c">Reading</font> <a href="http://effbot.org/downloads/">http://effbot.org/downloads/</a><font color="#0000ff">#Imaging</font>
+<font color="#008a8c">Best</font> match: PIL 1.1.7
+<font color="#008a8c">Downloading</font> <a href="http://effbot.org/media/downloads/PIL-1.1.7.tar.gz">http://effbot.org/media/downloads/PIL-1.1.7.tar.gz</a>
+<font color="#008a8c">Processing</font> PIL-1.1.7.tar.gz
+<font color="#008a8c">Running</font> PIL-1.1.7/setup.py <font color="#6b59ce">-q</font> bdist_egg <font color="#6b59ce">--dist-dir</font> /var/folders/kd/kdz+WPeYFKik+eU2zVQ+tE+++TI/-Tmp-/easy_install-R5yISp/PIL-1.1.7/egg-dist-tmp-crzD37
+<font color="#008a8c">WARNING:</font> <font color="#ff00ff">''</font> not a valid package name<font color="#a52829"><b>;</b></font> <font color="#008a8c">please</font> use only.-separated package names in setup.py
+<font color="#008a8c">---</font> using frameworks at /System/Library/Frameworks
+<font color="#008a8c">unable</font> to execute gcc: No such file or directory
+<font color="#008a8c">error:</font> Setup script exited with error: command <font color="#ff00ff">'gcc'</font> failed with exit status 1
+</pre>
+</div>
+<p>Apparently the key error there is &#8220;<em>unable to execute gcc: No such file or directory</em>&#8220;. The <strong>installer can&#8217;t find the C compiler</strong>. Pretty weird cause I had already installed Xcode and all the rest (I ran the iPhone simulator a couple of days ago). I thought that <strong>maybe cloning the disk caused some unwanted file-renaming</strong> and so on&#8230; so I reinstalled <a href="http://developer.apple.com/tools/">Apple&#8217;s Developer Tools</a> using the OS installation CD that came with the computer.<br />
+After 10 minutes of low screeches and CD-ROM loading, the installation was over and I had another go: </p>
+<div style='color:#000000;background:lavender;overflow:auto;'>
+<pre>
+[<font color="#008a8c">mac</font>]@macs-iMac:/Applications/djangostack-1.1.1-0/projects/ltb_project/src/ltb<font color="#a52829"><b>&gt;</b></font>usemydjangostack
+<font color="#008a8c">bash-3.2</font><span style="background-color: white"><font color="red">$</font></span> easy_install PIL
+<font color="#008a8c">Searching</font> for PIL
+<font color="#008a8c">Reading</font> <a href="http://pypi.python.org/simple/PIL/">http://pypi.python.org/simple/PIL/</a>
+<font color="#008a8c">Reading</font> <a href="http://www.pythonware.com/products/pil">http://www.pythonware.com/products/pil</a>
+<font color="#008a8c">Reading</font> <a href="http://effbot.org/zone/pil-changes-115.htm">http://effbot.org/zone/pil-changes-115.htm</a>
+<font color="#008a8c">Reading</font> <a href="http://effbot.org/downloads/">http://effbot.org/downloads/</a><font color="#0000ff">#Imaging</font>
+<font color="#008a8c">Best</font> match: PIL 1.1.7
+<font color="#008a8c">Downloading</font> <a href="http://effbot.org/media/downloads/PIL-1.1.7.tar.gz">http://effbot.org/media/downloads/PIL-1.1.7.tar.gz</a>
+<font color="#008a8c">Processing</font> PIL-1.1.7.tar.gz
+<font color="#008a8c">Running</font> PIL-1.1.7/setup.py <font color="#6b59ce">-q</font> bdist_egg <font color="#6b59ce">--dist-dir</font> /var/folders/kd/kdz+WPeYFKik+eU2zVQ+tE+++TI/-Tmp-/easy_install-oET2AJ/PIL-1.1.7/egg-dist-tmp-Ptx6Q-
+<font color="#008a8c">WARNING:</font> <font color="#ff00ff">''</font> not a valid package name<font color="#a52829"><b>;</b></font> <font color="#008a8c">please</font> use only.-separated package names in setup.py
+<font color="#008a8c">---</font> using frameworks at /System/Library/Frameworks
+<font color="#008a8c">cc1:</font> error: unrecognized command line option <font color="#ff00ff">&quot;-Wno-long-double&quot;</font>
+<font color="#008a8c">error:</font> Setup script exited with error: command <font color="#ff00ff">'gcc'</font> failed with exit status 1
+<font color="#008a8c">bash-3.2</font><span style="background-color: white"><font color="red">$</font></span>
+</pre>
+</div>
+<p>Looked like I made some progress, as <strong>the error now seemed more specific</strong>: &#8220;<em>cc1: error: unrecognized command line option &#8220;-Wno-long-double</em>&#8220;&#8221;. The reason why this is happening goes beyond my knowledge, so in desperate need of a quick fix I started a long google-journey.<br />
+Luckily I soon ran into this post on stackOverflow &#8220;<a href="http://stackoverflow.com/questions/1832665/xcode-gcc-exit-status-1">Xcode gcc exit status 1</a>&#8220;. Essentially, it suggests to run <em>setup.py</em> <strong>using to an older gcc version</strong> (gcc-4.0). Tried that and it worked just fine!</p>
+<blockquote><p>Following some blog posts, on a hunch, I ran setup.py pointing to an older gcc version (gcc-4.0).</p>
+<p><span style="font-family:monospace;color:#000000; ">CC=&#8217;/usr/bin/gcc-4.0&#8242; python setup.py build</span></p></blockquote>
+<h3>The fix</h3>
+<p>After downloading the PIL library from <a href="http://www.pythonware.com/products/pil/">here</a>, I <strong>built</strong> it:</p>
+<div style='color:#000000;background:lavender;overflow:auto;height:600px;font-size:11px;'>
+<pre>
+<font color="#008a8c">bash-3.2</font><span style="background-color: white"><font color="red">$</font></span> CC=<font color="#ff00ff">'/usr/bin/gcc-4.0'</font> python setup.py build
+<font color="#008a8c">running</font> build
+<font color="#008a8c">running</font> build_py
+<font color="#008a8c">running</font> build_ext
+<font color="#008a8c">---</font> using frameworks at /System/Library/Frameworks
+<font color="#008a8c">building</font> <font color="#ff00ff">'_imaging'</font> extension
+<font color="#008a8c">/usr/bin/gcc-4.0</font> <font color="#6b59ce">-fno-strict-aliasing</font> <font color="#6b59ce">-Wno-long-double</font> <font color="#6b59ce">-no-cpp-precomp</font> <font color="#6b59ce">-mno-fused-madd</font> <font color="#6b59ce">-DNDEBUG</font> <font color="#6b59ce">-g</font> <font color="#6b59ce">-fwrapv</font> <font color="#6b59ce">-O3</font> <font color="#6b59ce">-Wall</font> <font color="#6b59ce">-Wstrict-prototypes</font> <font color="#6b59ce">-DHAVE_LIBJPEG</font> <font color="#6b59ce">-DHAVE_LIBZ</font> <font color="#6b59ce">-I</font>/System/Library/Frameworks/Tcl.framework/Headers <font color="#6b59ce">-I</font>/System/Library/Frameworks/Tk.framework/Headers <font color="#6b59ce">-IlibImaging</font> <font color="#6b59ce">-I</font>/Applications/djangostack-1.1.1-0/python/include <font color="#6b59ce">-I</font>/usr/local/include <font color="#6b59ce">-I</font>/usr/include <font color="#6b59ce">-I</font>/Applications/djangostack-1.1.1-0/python/include/python2.5 <font color="#6b59ce">-c</font> _imaging.c <font color="#6b59ce">-o</font> build/temp.macosx-10.4-i386-2.5/_imaging.o
+<font color="#008a8c">_imaging.c:3017:</font> warning: initialization from incompatible pointer type
+<font color="#008a8c">_imaging.c:3077:</font> warning: initialization from incompatible pointer type
+<font color="#008a8c">/usr/bin/gcc-4.0</font> <font color="#6b59ce">-fno-strict-aliasing</font> <font color="#6b59ce">-Wno-long-double</font> <font color="#6b59ce">-no-cpp-precomp</font> <font color="#6b59ce">-mno-fused-madd</font> <font color="#6b59ce">-DNDEBUG</font> <font color="#6b59ce">-g</font> <font color="#6b59ce">-fwrapv</font> <font color="#6b59ce">-O3</font> <font color="#6b59ce">-Wall</font> <font color="#6b59ce">-Wstrict-prototypes</font> <font color="#6b59ce">-DHAVE_LIBJPEG</font> <font color="#6b59ce">-DHAVE_LIBZ</font> <font color="#6b59ce">-I</font>/System/Library/Frameworks/Tcl.framework/Headers <font color="#6b59ce">-I</font>/System/Library/Frameworks/Tk.framework/Headers <font color="#6b59ce">-IlibImaging</font> <font color="#6b59ce">-I</font>/Applications/djangostack-1.1.1-0/python/include <font color="#6b59ce">-I</font>/usr/local/include <font color="#6b59ce">-I</font>/usr/include <font color="#6b59ce">-I</font>/Applications/djangostack-1.1.1-0/python/include/python2.5 <font color="#6b59ce">-c</font> decode.c <font color="#6b59ce">-o</font> build/temp.macosx-10.4-i386-2.5/decode.o
+<font color="#008a8c">/usr/bin/gcc-4.0</font> <font color="#6b59ce">-fno-strict-aliasing</font> <font color="#6b59ce">-Wno-long-double</font> <font color="#6b59ce">-no-cpp-precomp</font> <font color="#6b59ce">-mno-fused-madd</font> <font color="#6b59ce">-DNDEBUG</font> <font color="#6b59ce">-g</font> <font color="#6b59ce">-fwrapv</font> <font color="#6b59ce">-O3</font> <font color="#6b59ce">-Wall</font> <font color="#6b59ce">-Wstrict-prototypes</font> <font color="#6b59ce">-DHAVE_LIBJPEG</font> <font color="#6b59ce">-DHAVE_LIBZ</font> <font color="#6b59ce">-I</font>/System/Library/Frameworks/Tcl.framework/Headers <font color="#6b59ce">-</font>
+[<font color="#008a8c">......various</font> other warnings........<font color="#298a52"><b>]</b></font>
+
+<font color="#008a8c">gcc</font> <font color="#6b59ce">-L</font>/Applications/djangostack-1.1.1-0/common/lib <font color="#6b59ce">-bundle</font> <font color="#6b59ce">-undefined</font> dynamic_lookup build/temp.macosx-10.4-i386-2.5/_imaging.o build/temp.macosx-10.4-i386-2.5/decode.o build/temp.macosx-10.4-i386-2.5/encode.o build/temp.macosx-10.4-i386-2.5/map.o build/temp.macosx-10.4-i386-2.5/display.o build/temp.macosx-10.4-i386-2.5/outline.o build/temp.macosx-10.4-i386-2.5/path.o build/temp.macosx-10.4-i386-2.5/libImaging/Access.o build/temp.macosx-10.4-i386-2.5/libImaging/Antialias.o build/temp.macosx-10.4-i386-2.5/libImaging/Bands.o build/temp.macosx-10.4-i386-2.5/libImaging/BitDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/Blend.o build/temp.macosx-10.4-i386-2.5/libImaging/Chops.o build/temp.macosx-10.4-i386-2.5/libImaging/Convert.o build/temp.macosx-10.4-i386-2.5/libImaging/ConvertYCbCr.o build/temp.macosx-10.4-i386-2.5/libImaging/Copy.o build/temp.macosx-10.4-i386-2.5/libImaging/Crc32.o build/temp.macosx-10.4-i386-2.5/libImaging/Crop.o build/temp.macosx-10.4-i386-2.5/libImaging/Dib.o build/temp.macosx-10.4-i386-2.5/libImaging/Draw.o build/temp.macosx-10.4-i386-2.5/libImaging/Effects.o build/temp.macosx-10.4-i386-2.5/libImaging/EpsEncode.o build/temp.macosx-10.4-i386-2.5/libImaging/File.o build/temp.macosx-10.4-i386-2.5/libImaging/Fill.o build/temp.macosx-10.4-i386-2.5/libImaging/Filter.o build/temp.macosx-10.4-i386-2.5/libImaging/FliDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/Geometry.o build/temp.macosx-10.4-i386-2.5/libImaging/GetBBox.o build/temp.macosx-10.4-i386-2.5/libImaging/GifDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/GifEncode.o build/temp.macosx-10.4-i386-2.5/libImaging/HexDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/Histo.o build/temp.macosx-10.4-i386-2.5/libImaging/JpegDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/JpegEncode.o build/temp.macosx-10.4-i386-2.5/libImaging/LzwDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/Matrix.o build/temp.macosx-10.4-i386-2.5/libImaging/ModeFilter.o build/temp.macosx-10.4-i386-2.5/libImaging/MspDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/Negative.o build/temp.macosx-10.4-i386-2.5/libImaging/Offset.o build/temp.macosx-10.4-i386-2.5/libImaging/Pack.o build/temp.macosx-10.4-i386-2.5/libImaging/PackDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/Palette.o build/temp.macosx-10.4-i386-2.5/libImaging/Paste.o build/temp.macosx-10.4-i386-2.5/libImaging/Quant.o build/temp.macosx-10.4-i386-2.5/libImaging/QuantHash.o build/temp.macosx-10.4-i386-2.5/libImaging/QuantHeap.o build/temp.macosx-10.4-i386-2.5/libImaging/PcdDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/PcxDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/PcxEncode.o build/temp.macosx-10.4-i386-2.5/libImaging/Point.o build/temp.macosx-10.4-i386-2.5/libImaging/RankFilter.o build/temp.macosx-10.4-i386-2.5/libImaging/RawDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/RawEncode.o build/temp.macosx-10.4-i386-2.5/libImaging/Storage.o build/temp.macosx-10.4-i386-2.5/libImaging/SunRleDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/TgaRleDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/Unpack.o build/temp.macosx-10.4-i386-2.5/libImaging/UnpackYCC.o build/temp.macosx-10.4-i386-2.5/libImaging/UnsharpMask.o build/temp.macosx-10.4-i386-2.5/libImaging/XbmDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/XbmEncode.o build/temp.macosx-10.4-i386-2.5/libImaging/ZipDecode.o build/temp.macosx-10.4-i386-2.5/libImaging/ZipEncode.o -L/usr/local/lib -L/Applications/djangostack-1.1.1-0/python/lib -L/usr/lib -ljpeg -lz -o build/lib.macosx-10.4-i386-2.5/_imaging.so
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/_imaging.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/decode.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/encode.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/map.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/display.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/outline.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/path.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/libImaging/Access.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/libImaging/Antialias.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/libImaging/Bands.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/libImaging/BitDecode.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/libImaging/Blend.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/libImaging/Chops.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/libImaging/Convert.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/libImaging/ConvertYCbCr.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/libImaging/Copy.o, file was built for i386 which is not the architecture being linked (x86_64)
+[<font color="#008a8c">...various</font> other warnings....<font color="#298a52"><b>]</b></font>
+
+<font color="#008a8c">building</font> <font color="#ff00ff">'_imagingtk'</font> extension
+<font color="#008a8c">creating</font> build/temp.macosx-10.4-i386-2.5/Tk
+<font color="#008a8c">/usr/bin/gcc-4.0</font> <font color="#6b59ce">-fno-strict-aliasing</font> <font color="#6b59ce">-Wno-long-double</font> <font color="#6b59ce">-no-cpp-precomp</font> <font color="#6b59ce">-mno-fused-madd</font> <font color="#6b59ce">-DNDEBUG</font> <font color="#6b59ce">-g</font> <font color="#6b59ce">-fwrapv</font> <font color="#6b59ce">-O3</font> <font color="#6b59ce">-Wall</font> <font color="#6b59ce">-Wstrict-prototypes</font> <font color="#6b59ce">-I</font>/System/Library/Frameworks/Tcl.framework/Headers <font color="#6b59ce">-I</font>/System/Library/Frameworks/Tk.framework/Headers <font color="#6b59ce">-IlibImaging</font> <font color="#6b59ce">-I</font>/Applications/djangostack-1.1.1-0/python/include <font color="#6b59ce">-I</font>/usr/local/include <font color="#6b59ce">-I</font>/usr/include <font color="#6b59ce">-I</font>/Applications/djangostack-1.1.1-0/python/include/python2.5 <font color="#6b59ce">-c</font> _imagingtk.c <font color="#6b59ce">-o</font> build/temp.macosx-10.4-i386-2.5/_imagingtk.o <font color="#6b59ce">-framework</font> Tcl <font color="#6b59ce">-framework</font> Tk
+<font color="#008a8c">In</font> file included from /System/Library/Frameworks/Tk.framework/Headers/tk.h:78,
+                 <font color="#008a8c">from</font> _imagingtk.c:19:
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:131:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:334:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:453:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:471:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:496:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:497:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:509:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:522:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:1056:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">i686-apple-darwin10-gcc-4.0.1:</font> <font color="#6b59ce">-framework</font>: linker input file unused because linking not done
+<font color="#008a8c">i686-apple-darwin10-gcc-4.0.1:</font> Tcl: linker input file unused because linking not done
+<font color="#008a8c">i686-apple-darwin10-gcc-4.0.1:</font> <font color="#6b59ce">-framework</font>: linker input file unused because linking not done
+<font color="#008a8c">i686-apple-darwin10-gcc-4.0.1:</font> Tk: linker input file unused because linking not done
+<font color="#008a8c">/usr/bin/gcc-4.0</font> <font color="#6b59ce">-fno-strict-aliasing</font> <font color="#6b59ce">-Wno-long-double</font> <font color="#6b59ce">-no-cpp-precomp</font> <font color="#6b59ce">-mno-fused-madd</font> <font color="#6b59ce">-DNDEBUG</font> <font color="#6b59ce">-g</font> <font color="#6b59ce">-fwrapv</font> <font color="#6b59ce">-O3</font> <font color="#6b59ce">-Wall</font> <font color="#6b59ce">-Wstrict-prototypes</font> <font color="#6b59ce">-I</font>/System/Library/Frameworks/Tcl.framework/Headers <font color="#6b59ce">-I</font>/System/Library/Frameworks/Tk.framework/Headers <font color="#6b59ce">-IlibImaging</font> <font color="#6b59ce">-I</font>/Applications/djangostack-1.1.1-0/python/include <font color="#6b59ce">-I</font>/usr/local/include <font color="#6b59ce">-I</font>/usr/include <font color="#6b59ce">-I</font>/Applications/djangostack-1.1.1-0/python/include/python2.5 <font color="#6b59ce">-c</font> Tk/tkImaging.c <font color="#6b59ce">-o</font> build/temp.macosx-10.4-i386-2.5/Tk/tkImaging.o <font color="#6b59ce">-framework</font> Tcl <font color="#6b59ce">-framework</font> Tk
+<font color="#008a8c">In</font> file included from /System/Library/Frameworks/Tk.framework/Headers/tk.h:78,
+                 <font color="#008a8c">from</font> Tk/tkImaging.c:51:
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:131:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:334:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:453:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:471:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:496:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:497:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:509:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:522:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">/System/Library/Frameworks/Tk.framework/Headers/X11/Xlib.h:1056:</font> warning: function declaration isn~Rt a prototype
+<font color="#008a8c">i686-apple-darwin10-gcc-4.0.1:</font> <font color="#6b59ce">-framework</font>: linker input file unused because linking not done
+<font color="#008a8c">i686-apple-darwin10-gcc-4.0.1:</font> Tcl: linker input file unused because linking not done
+<font color="#008a8c">i686-apple-darwin10-gcc-4.0.1:</font> <font color="#6b59ce">-framework</font>: linker input file unused because linking not done
+<font color="#008a8c">i686-apple-darwin10-gcc-4.0.1:</font> Tk: linker input file unused because linking not done
+<font color="#008a8c">gcc</font> <font color="#6b59ce">-L</font>/Applications/djangostack-1.1.1-0/common/lib <font color="#6b59ce">-bundle</font> <font color="#6b59ce">-undefined</font> dynamic_lookup build/temp.macosx-10.4-i386-2.5/_imagingtk.o build/temp.macosx-10.4-i386-2.5/Tk/tkImaging.o <font color="#6b59ce">-L</font>/usr/local/lib <font color="#6b59ce">-L</font>/Applications/djangostack-1.1.1-0/python/lib <font color="#6b59ce">-L</font>/usr/lib <font color="#6b59ce">-o</font> build/lib.macosx-10.4-i386-2.5/_imagingtk.so <font color="#6b59ce">-framework</font> Tcl <font color="#6b59ce">-framework</font> Tk
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/_imagingtk.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/Tk/tkImaging.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">building</font> <font color="#ff00ff">'_imagingmath'</font> extension
+<font color="#008a8c">/usr/bin/gcc-4.0</font> <font color="#6b59ce">-fno-strict-aliasing</font> <font color="#6b59ce">-Wno-long-double</font> <font color="#6b59ce">-no-cpp-precomp</font> <font color="#6b59ce">-mno-fused-madd</font> <font color="#6b59ce">-DNDEBUG</font> <font color="#6b59ce">-g</font> <font color="#6b59ce">-fwrapv</font> <font color="#6b59ce">-O3</font> <font color="#6b59ce">-Wall</font> <font color="#6b59ce">-Wstrict-prototypes</font> <font color="#6b59ce">-I</font>/System/Library/Frameworks/Tcl.framework/Headers <font color="#6b59ce">-I</font>/System/Library/Frameworks/Tk.framework/Headers <font color="#6b59ce">-IlibImaging</font> <font color="#6b59ce">-I</font>/Applications/djangostack-1.1.1-0/python/include <font color="#6b59ce">-I</font>/usr/local/include <font color="#6b59ce">-I</font>/usr/include <font color="#6b59ce">-I</font>/Applications/djangostack-1.1.1-0/python/include/python2.5 <font color="#6b59ce">-c</font> _imagingmath.c <font color="#6b59ce">-o</font> build/temp.macosx-10.4-i386-2.5/_imagingmath.o
+<font color="#008a8c">gcc</font> <font color="#6b59ce">-L</font>/Applications/djangostack-1.1.1-0/common/lib <font color="#6b59ce">-bundle</font> <font color="#6b59ce">-undefined</font> dynamic_lookup build/temp.macosx-10.4-i386-2.5/_imagingmath.o <font color="#6b59ce">-L</font>/usr/local/lib <font color="#6b59ce">-L</font>/Applications/djangostack-1.1.1-0/python/lib <font color="#6b59ce">-L</font>/usr/lib <font color="#6b59ce">-o</font> build/lib.macosx-10.4-i386-2.5/_imagingmath.so
+<font color="#008a8c">ld:</font> warning: in build/temp.macosx-10.4-i386-2.5/_imagingmath.o, file was built for i386 which is not the architecture being linked (x86_64)
+<font color="#008a8c">--------------------------------------------------------------------</font>
+<font color="#008a8c">PIL</font> 1.1.7 SETUP SUMMARY
+<font color="#008a8c">--------------------------------------------------------------------</font>
+<font color="#008a8c">version</font>       1.1.7
+<font color="#008a8c">platform</font>      darwin 2.5.4 (r254:67916, Nov 24 2009, 10:46:19)
+              [<font color="#008a8c">GCC</font> 4.0.1 (Apple Computer, Inc. build 5250)<font color="#298a52"><b>]</b></font>
+<font color="#008a8c">--------------------------------------------------------------------</font>
+<font color="#008a8c">---</font> TKINTER support available
+<font color="#008a8c">---</font> JPEG support available
+<font color="#008a8c">---</font> ZLIB (PNG/ZIP) support available
+*** <font color="#008a8c">FREETYPE2</font> support not available
+*** <font color="#008a8c">LITTLECMS</font> support not available
+<font color="#008a8c">--------------------------------------------------------------------</font>
+<font color="#008a8c">To</font> add a missing option, make sure you have the required
+<font color="#008a8c">library</font>, and set the corresponding ROOT variable in the
+<font color="#008a8c">setup.py</font> script.
+
+<font color="#008a8c">To</font> check the build, run the selftest.py script.
+<font color="#008a8c">running</font> build_scripts
+<font color="#008a8c">creating</font> build/scripts-2.5
+<font color="#008a8c">copying</font> and adjusting Scripts/pilconvert.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> build/scripts-2.5
+<font color="#008a8c">copying</font> and adjusting Scripts/pildriver.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> build/scripts-2.5
+<font color="#008a8c">copying</font> and adjusting Scripts/pilfile.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> build/scripts-2.5
+<font color="#008a8c">copying</font> Scripts/pilfont.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> build/scripts-2.5
+<font color="#008a8c">copying</font> and adjusting Scripts/pilprint.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> build/scripts-2.5
+<font color="#008a8c">changing</font> mode of build/scripts-2.5/pilconvert.py from 644 to 755
+<font color="#008a8c">changing</font> mode of build/scripts-2.5/pildriver.py from 644 to 755
+<font color="#008a8c">changing</font> mode of build/scripts-2.5/pilfile.py from 644 to 755
+<font color="#008a8c">changing</font> mode of build/scripts-2.5/pilfont.py from 644 to 755
+<font color="#008a8c">changing</font> mode of build/scripts-2.5/pilprint.py from 644 to 755
+</pre>
+</div>
+<p>Then I <strong>installed</strong> it:</p>
+<div style='color:#000000;background:lavender;overflow:auto;height:600px;font-size:11px;'>
+<pre>
+<font color="#008a8c">bash-3.2</font><span style="background-color: white"><font color="red">$</font></span> CC=<font color="#ff00ff">'/usr/bin/gcc-4.0'</font> python setup.py install
+<font color="#008a8c">running</font> install
+<font color="#008a8c">running</font> build
+<font color="#008a8c">running</font> build_py
+<font color="#008a8c">running</font> build_ext
+<font color="#008a8c">---</font> using frameworks at /System/Library/Frameworks
+<font color="#008a8c">--------------------------------------------------------------------</font>
+<font color="#008a8c">PIL</font> 1.1.7 SETUP SUMMARY
+<font color="#008a8c">--------------------------------------------------------------------</font>
+<font color="#008a8c">version</font>       1.1.7
+<font color="#008a8c">platform</font>      darwin 2.5.4 (r254:67916, Nov 24 2009, 10:46:19)
+              [<font color="#008a8c">GCC</font> 4.0.1 (Apple Computer, Inc. build 5250)<font color="#298a52"><b>]</b></font>
+<font color="#008a8c">--------------------------------------------------------------------</font>
+<font color="#008a8c">---</font> TKINTER support available
+<font color="#008a8c">---</font> JPEG support available
+<font color="#008a8c">---</font> ZLIB (PNG/ZIP) support available
+*** <font color="#008a8c">FREETYPE2</font> support not available
+*** <font color="#008a8c">LITTLECMS</font> support not available
+<font color="#008a8c">--------------------------------------------------------------------</font>
+<font color="#008a8c">To</font> add a missing option, make sure you have the required
+<font color="#008a8c">library</font>, and set the corresponding ROOT variable in the
+<font color="#008a8c">setup.py</font> script.
+
+<font color="#008a8c">To</font> check the build, run the selftest.py script.
+<font color="#008a8c">running</font> build_scripts
+<font color="#008a8c">running</font> install_lib
+<font color="#008a8c">creating</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/__init__.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/_imaging.so <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/_imagingmath.so <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/_imagingtk.so <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ArgImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/BdfFontFile.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/BmpImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/BufrStubImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ContainerIO.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/CurImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/DcxImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/EpsImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ExifTags.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/FitsStubImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/FliImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/FontFile.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/FpxImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/GbrImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/GdImageFile.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/GifImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/GimpGradientFile.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/GimpPaletteFile.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/GribStubImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/Hdf5StubImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/IcnsImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/IcoImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/Image.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageChops.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageCms.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageColor.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageDraw.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageDraw2.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageEnhance.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageFile.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageFileIO.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageFilter.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageFont.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageGL.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageGrab.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageMath.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageMode.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageOps.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImagePalette.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImagePath.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageQt.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageSequence.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageShow.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageStat.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageTk.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageTransform.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImageWin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/ImtImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/IptcImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/JpegImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/McIdasImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/MicImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/MpegImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/MspImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/OleFileIO.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/PaletteFile.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/PalmImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/PcdImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/PcfFontFile.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/PcxImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/PdfImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/PixarImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/PngImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/PpmImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/PsdImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/PSDraw.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/SgiImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/SpiderImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/SunImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/TarIO.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/TgaImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/TiffImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/TiffTags.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/WalImageFile.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/WmfImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/XbmImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/XpmImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">copying</font> build/lib.macosx-10.4-i386-2.5/XVThumbImagePlugin.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/__init__.py to __init__.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ArgImagePlugin.py to ArgImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/BdfFontFile.py to BdfFontFile.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/BmpImagePlugin.py to BmpImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/BufrStubImagePlugin.py to BufrStubImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ContainerIO.py to ContainerIO.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/CurImagePlugin.py to CurImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/DcxImagePlugin.py to DcxImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/EpsImagePlugin.py to EpsImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ExifTags.py to ExifTags.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/FitsStubImagePlugin.py to FitsStubImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/FliImagePlugin.py to FliImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/FontFile.py to FontFile.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/FpxImagePlugin.py to FpxImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/GbrImagePlugin.py to GbrImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/GdImageFile.py to GdImageFile.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/GifImagePlugin.py to GifImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/GimpGradientFile.py to GimpGradientFile.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/GimpPaletteFile.py to GimpPaletteFile.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/GribStubImagePlugin.py to GribStubImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/Hdf5StubImagePlugin.py to Hdf5StubImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/IcnsImagePlugin.py to IcnsImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/IcoImagePlugin.py to IcoImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/Image.py to Image.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageChops.py to ImageChops.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageCms.py to ImageCms.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageColor.py to ImageColor.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageDraw.py to ImageDraw.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageDraw2.py to ImageDraw2.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageEnhance.py to ImageEnhance.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageFile.py to ImageFile.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageFileIO.py to ImageFileIO.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageFilter.py to ImageFilter.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageFont.py to ImageFont.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageGL.py to ImageGL.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageGrab.py to ImageGrab.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageMath.py to ImageMath.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageMode.py to ImageMode.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageOps.py to ImageOps.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImagePalette.py to ImagePalette.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImagePath.py to ImagePath.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageQt.py to ImageQt.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageSequence.py to ImageSequence.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageShow.py to ImageShow.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageStat.py to ImageStat.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageTk.py to ImageTk.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageTransform.py to ImageTransform.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImageWin.py to ImageWin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImImagePlugin.py to ImImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/ImtImagePlugin.py to ImtImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/IptcImagePlugin.py to IptcImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/JpegImagePlugin.py to JpegImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/McIdasImagePlugin.py to McIdasImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/MicImagePlugin.py to MicImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/MpegImagePlugin.py to MpegImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/MspImagePlugin.py to MspImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/OleFileIO.py to OleFileIO.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/PaletteFile.py to PaletteFile.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/PalmImagePlugin.py to PalmImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/PcdImagePlugin.py to PcdImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/PcfFontFile.py to PcfFontFile.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/PcxImagePlugin.py to PcxImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/PdfImagePlugin.py to PdfImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/PixarImagePlugin.py to PixarImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/PngImagePlugin.py to PngImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/PpmImagePlugin.py to PpmImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/PsdImagePlugin.py to PsdImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/PSDraw.py to PSDraw.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/SgiImagePlugin.py to SgiImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/SpiderImagePlugin.py to SpiderImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/SunImagePlugin.py to SunImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/TarIO.py to TarIO.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/TgaImagePlugin.py to TgaImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/TiffImagePlugin.py to TiffImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/TiffTags.py to TiffTags.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/WalImageFile.py to WalImageFile.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/WmfImagePlugin.py to WmfImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/XbmImagePlugin.py to XbmImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/XpmImagePlugin.py to XpmImagePlugin.pyc
+<font color="#008a8c">byte-compiling</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/XVThumbImagePlugin.py to XVThumbImagePlugin.pyc
+<font color="#008a8c">running</font> install_scripts
+<font color="#008a8c">copying</font> build/scripts-2.5/pilconvert.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/bin
+<font color="#008a8c">copying</font> build/scripts-2.5/pildriver.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/bin
+<font color="#008a8c">copying</font> build/scripts-2.5/pilfile.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/bin
+<font color="#008a8c">copying</font> build/scripts-2.5/pilfont.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/bin
+<font color="#008a8c">copying</font> build/scripts-2.5/pilprint.py <font color="#6b59ce">-</font><font color="#a52829"><b>&gt;</b></font> /Applications/djangostack-1.1.1-0/python/bin
+<font color="#008a8c">changing</font> mode of /Applications/djangostack-1.1.1-0/python/bin/pilconvert.py to 755
+<font color="#008a8c">changing</font> mode of /Applications/djangostack-1.1.1-0/python/bin/pildriver.py to 755
+<font color="#008a8c">changing</font> mode of /Applications/djangostack-1.1.1-0/python/bin/pilfile.py to 755
+<font color="#008a8c">changing</font> mode of /Applications/djangostack-1.1.1-0/python/bin/pilfont.py to 755
+<font color="#008a8c">changing</font> mode of /Applications/djangostack-1.1.1-0/python/bin/pilprint.py to 755
+<font color="#008a8c">running</font> install_egg_info
+<font color="#008a8c">Writing</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL/PIL-1.1.7-py2.5.egg-info
+<font color="#008a8c">creating</font> /Applications/djangostack-1.1.1-0/python/lib/python2.5/site-packages/PIL.pth
+</pre>
+</div>
+<p>And <strong>that was it</strong>: djangostack&#8217;s python now has PIL available too:</p>
+<div style='color:#000000;background:lavender;overflow:auto;'>
+<pre>
+bash-3.2$ python
+Python 2.5.4 (r254:67916, Nov 24 2009, 10:46:19)
+[GCC 4.0.1 (Apple Computer, Inc. build 5250)] on darwin
+Type &quot;<font color="#ff00ff">help</font>&quot;, &quot;<font color="#ff00ff">copyright</font>&quot;, &quot;<font color="#ff00ff">credits</font>&quot; <font color="#a52829"><b>or</b></font> &quot;<font color="#ff00ff">license</font>&quot; <font color="#a52829"><b>for</b></font> more information.
+&gt;&gt;&gt; <font color="#a520f7">import</font> Image
+&gt;&gt;&gt; dir(Image)
+['<font color="#ff00ff">ADAPTIVE</font>', '<font color="#ff00ff">AFFINE</font>', '<font color="#ff00ff">ANTIALIAS</font>', '<font color="#ff00ff">BICUBIC</font>', '<font color="#ff00ff">BILINEAR</font>', '<font color="#ff00ff">CONTAINER</font>', '<font color="#ff00ff">CUBIC</font>', '<font color="#ff00ff">DEBUG</font>', '<font color="#ff00ff">EXTENSION</font>', '<font color="#ff00ff">EXTENT</font>', '<font color="#ff00ff">FLIP_LEFT_RIGHT</font>', '<font color="#ff00ff">FLIP_TOP_BOTTOM</font>', '<font color="#ff00ff">FLOYDSTEINBERG</font>', '<font color="#ff00ff">ID</font>', '<font color="#ff00ff">Image</font>', '<font color="#ff00ff">ImageMode</font>', '<font color="#ff00ff">ImagePalette</font>', '<font color="#ff00ff">ImagePointHandler</font>', '<font color="#ff00ff">ImageTransformHandler</font>', '<font color="#ff00ff">IntType</font>', '<font color="#ff00ff">LINEAR</font>', '<font color="#ff00ff">MESH</font>', '<font color="#ff00ff">MIME</font>', '<font color="#ff00ff">MODES</font>', '<font color="#ff00ff">NEAREST</font>', '<font color="#ff00ff">NONE</font>', '<font color="#ff00ff">NORMAL</font>', '<font color="#ff00ff">OPEN</font>', '<font color="#ff00ff">ORDERED</font>', '<font color="#ff00ff">PERSPECTIVE</font>', '<font color="#ff00ff">QUAD</font>', '<font color="#ff00ff">RASTERIZE</font>', '<font color="#ff00ff">ROTATE_180</font>', '<font color="#ff00ff">ROTATE_270</font>', '<font color="#ff00ff">ROTATE_90</font>', '<font color="#ff00ff">SAVE</font>', '<font color="#ff00ff">SEQUENCE</font>', '<font color="#ff00ff">StringType</font>', '<font color="#ff00ff">TupleType</font>', '<font color="#ff00ff">UnicodeStringType</font>', '<font color="#ff00ff">VERSION</font>', '<font color="#ff00ff">WEB</font>', '<font color="#ff00ff">_E</font>', '<font color="#ff00ff">_ENDIAN</font>', '<font color="#ff00ff">_ImageCrop</font>', '<font color="#ff00ff">_MAPMODES</font>', '<font color="#ff00ff">_MODEINFO</font>', '<font color="#ff00ff">_MODE_CONV</font>', '<font color="#ff00ff">__builtins__</font>', '<font color="#ff00ff">__doc__</font>', '<font color="#ff00ff">__file__</font>', '<font color="#ff00ff">__name__</font>', '<font color="#ff00ff">_conv_type_shape</font>', '<font color="#ff00ff">_fromarray_typemap</font>', '<font color="#ff00ff">_getdecoder</font>', '<font color="#ff00ff">_getencoder</font>', '<font color="#ff00ff">_getscaleoffset</font>', '<font color="#ff00ff">_imaging_not_installed</font>', '<font color="#ff00ff">_initialized</font>', '<font color="#ff00ff">_show</font>', '<font color="#ff00ff">_showxv</font>', '<font color="#ff00ff">_wedge</font>', '<font color="#ff00ff">blend</font>', '<font color="#ff00ff">byteorder</font>', '<font color="#ff00ff">composite</font>', '<font color="#ff00ff">core</font>', '<font color="#ff00ff">eval</font>', '<font color="#ff00ff">fromarray</font>', '<font color="#ff00ff">frombuffer</font>', '<font color="#ff00ff">fromstring</font>', '<font color="#ff00ff">getmodebandnames</font>', '<font color="#ff00ff">getmodebands</font>', '<font color="#ff00ff">getmodebase</font>', '<font color="#ff00ff">getmodetype</font>', '<font color="#ff00ff">init</font>', '<font color="#ff00ff">isDirectory</font>', '<font color="#ff00ff">isImageType</font>', '<font color="#ff00ff">isNumberType</font>', '<font color="#ff00ff">isSequenceType</font>', '<font color="#ff00ff">isStringType</font>', '<font color="#ff00ff">isTupleType</font>', '<font color="#ff00ff">merge</font>', '<font color="#ff00ff">new</font>', '<font color="#ff00ff">open</font>', '<font color="#ff00ff">os</font>', '<font color="#ff00ff">preinit</font>', '<font color="#ff00ff">register_extension</font>', '<font color="#ff00ff">register_mime</font>', '<font color="#ff00ff">register_open</font>', '<font color="#ff00ff">register_save</font>', '<font color="#ff00ff">string</font>', '<font color="#ff00ff">sys</font>', '<font color="#ff00ff">v</font>', '<font color="#ff00ff">warnings</font>']
+&gt;&gt;&gt;
+</pre>
+</div>
+<h3>Update 14/11/11: If you&#8217;re on 10.7 (Lion)</h3>
+<p>This recipy won&#8217;t work anymore on Lion because of the reasons pointed out in this <a href="http://stackoverflow.com/questions/6906385/mac-osx-lion-virtualenv-pil-install-gcc-error">stack-overflow article</a>:</p>
+<blockquote><p>Xcode 4.1 on OS X Lion 10.7 no longer includes gcc-4.0 as it did in earlier versions of OS X. When you install a Python package like PIL that includes a C extension module, Python&#8217;s Distutils will attempt to use the same version of the C compiler that that Python itself was build with. </p></blockquote>
+<p>Too bad. It&#8217;s very easy to circumvent the problem.. just download PIL, start the stack as you would normally (<span style="font-family:monospace;color:#000000; ">./use_djangostack</span>) and manually install the PIL package with <span style="font-family:monospace;color:#000000; ">python setup.py install</span>. </p>
+<p><strong>Warning</strong>: this will work, but you&#8217;ll be able to use only <em>some</em> of the functionalities PIL offers. E.g.: </p>
+<div style='color:#000000;background:lavender;overflow:auto;'>
+<pre>
+>>> import Image
+# works just fine
+>>> import _imaging
+dlopen("/Applications/djangostack-1.3-0/python/lib/python2.6/site-packages/PIL/_imaging.so", 2);
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+ImportError: dlopen(/Applications/djangostack-1.3-0/python/lib/python2.6/site-packages/PIL/_imaging.so, 2): no suitable image found.  Did find:
+	/Applications/djangostack-1.3-0/python/lib/python2.6/site-packages/PIL/_imaging.so: mach-o, but wrong architecture
+</pre>
+</div>
+<p>I order to understand what&#8217;s going on, you should remember that the PIL library consists of two main parts: a number of Python modules, usually stored in a PIL subdirectory, and a binary extension module called <span style="font-family:monospace;color:#000000; ">_imaging</span>. Depending on platform and version, the latter is stored in a file named <span style="font-family:monospace;color:#000000; ">_imaging.pyd</span>, <span style="font-family:monospace;color:#000000; ">_imaging.dll</span> or <span style="font-family:monospace;color:#000000; ">_imaging.so</span> (more info on all of this can be found <a href="http://effbot.org/zone/pil-imaging-not-installed.htm">here</a>).</p>
+<p>The error we got (&#8220;<span style="font-family:monospace;color:#000000; ">_imaging C module is not installed</span>&#8220;) is caused by the fact that Lion uses a different C compiler than the one used for building the python libraries in your Djangostack. That had a cascade effect on the C-imaging libraries installed by PIL (for the reason mentioned above), which, as a result, can&#8217;t be run by Lion, and thus need to be updated. </p>
+<p>The quick and dirty fix I used is this one: I installed again PIL <strong>outside</strong> the djangostack, and then copied over the newly generate C files back inside the stack. In other words, I installed again PIL using the latest C compiler that comes by default with Lion, and copied over only what I needed (the C libraries) into the stack. </p>
+<p>That is: install PIL system-wide via the usual <span style="font-family:monospace;color:#000000; ">easy_install PIL</span>. This will install the package in <span style="font-family:monospace;color:#000000; ">/Library/Python/2.7/site-packages/PIL-1.1.7-py2.7-macosx-10.7-intel.egg/</span>. Then grab the files you need from there (e.g. <span style="font-family:monospace;color:#000000; ">_imaging.so</span>, <span style="font-family:monospace;color:#000000; ">_imagingmath.so</span>, <span style="font-family:monospace;color:#000000; ">_imagingtk.so</span>) and put them into the djangostack python folder, which will be something like this: <span style="font-family:monospace;color:#000000; ">/Applications/djangostack-1.3-0/python/lib/python2.6/site-packages/PIL</span> (obviously this location varies depending on where you originally installed djangostack).</p>
+<p>That&#8217;s the end. It&#8217;s a dirty trick, but it worked for me!</p>
+<h3>References:</h3>
+<li><a href="http://passingcuriosity.com/2009/installing-pil-on-mac-os-x-leopard/">Installing the Python Imaging Library on Mac OS X Leopard</a></li>
+<li><a href="http://nathanvangheem.com/news/installing-pil-on-mac-os-x-leopard-virtualenv-with-easy_install">Installing PIL on Mac OS X Leopard virtualenv with easy_install</a></li>
+<li><a href="http://developer.apple.com/tools/gcc_overview.html">The GNU compiler collection on mac osX</a></li>
+<li><a href="http://groups.google.com/group/pygraphviz-discuss/browse_thread/thread/63d366af8fd7323b?pli=1">-Wno-long-double discussion on google groups</a></li>
+<li><a href="http://vonluck.wordpress.com/2010/05/22/mac-osx-python-build-issues-w-pil-imaging-1-1-7/">MAC OSX Python build issues /w PIL (Imaging-1.1.7)</a></li>
+<li><a href="http://jetfar.com/libjpeg-and-python-imaging-pil-on-snow-leopard/">libjpeg and Python Imaging (PIL) on Snow Leopard</a></li>
+<li><a href="http://stackoverflow.com/questions/1832665/xcode-gcc-exit-status-1">Xcode gcc exit status 1</a></li>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2011/02/08/installing-pil-on-djangostack-1-1-1/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1095</post-id>	</item>
+		<item>
+		<title>TextMate Basics Tutorial</title>
+		<link>http://www.michelepasin.org/blog/2009/02/26/textmate-basics-tutorial/</link>
+				<pubDate>Thu, 26 Feb 2009 15:28:57 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[textmate]]></category>
+		<category><![CDATA[tutorial]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=78</guid>
+				<description><![CDATA[TextMate software &#8220;brings Apple&#8217;s approach to operating systems into the world of text editors. By bridging UNIX underpinnings and GUI, TextMate cherry-picks the best of both worlds to the benefit of expert scripters and novice users alike.&#8221; If you are using Textmate this tutorial will show you around the basic features of TextMate and also [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://macromates.com/">TextMate</a> software &#8220;brings Apple&#8217;s approach to operating systems into the world of text editors. By bridging UNIX underpinnings and GUI, TextMate cherry-picks the best of both worlds to the benefit of expert scripters and novice users alike.&#8221; If you are using Textmate  <a href="http://projects.serenity.de/textmate/tutorials/basics/">this tutorial</a> will show you around the basic features of TextMate and also some of the most advanced ones!</p>
+<p><a href="http://projects.serenity.de/textmate/tutorials/basics/"><img title="picture-1" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/02/picture-1.png" alt="picture-1" width="321" height="660" /></a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">78</post-id>	</item>
+		<item>
+		<title>Using the OS X Terminal Application</title>
+		<link>http://www.michelepasin.org/blog/2009/02/24/using-the-os-x-terminal-application/</link>
+				<pubDate>Tue, 24 Feb 2009 18:44:05 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[osx]]></category>
+		<category><![CDATA[terminal]]></category>
+		<category><![CDATA[tutorial]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/2009/02/24/using-the-os-x-terminal-application/</guid>
+				<description><![CDATA[This tips page provides a detailed introduction to using the unix command line that the Terminal application provides. Check it out here: http://www.timefold.com/osx/tips/shell.html &#160;]]></description>
+								<content:encoded><![CDATA[<p>This tips page provides a detailed introduction to using the unix command line that the Terminal application provides.</p>
+<p>Check it out here: <a href="http://www.timefold.com/osx/tips/shell.html">http://www.timefold.com/osx/tips/shell.html </a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">74</post-id>	</item>
+	</channel>
+</rss>

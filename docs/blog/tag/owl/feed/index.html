@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>owl &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/owl/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Fri, 23 Jan 2015 17:15:58 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Inspecting an ontology with RDFLib</title>
+		<link>http://www.michelepasin.org/blog/2011/07/18/inspecting-an-ontology-with-rdflib/</link>
+				<comments>http://www.michelepasin.org/blog/2011/07/18/inspecting-an-ontology-with-rdflib/#comments</comments>
+				<pubDate>Mon, 18 Jul 2011 14:59:05 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[ontology]]></category>
+		<category><![CDATA[owl]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[rdflib]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1261</guid>
+				<description><![CDATA[RDFLib (homepage) is a pretty solid and comprehensive rdf-programming kit for Python. In a previous post I already discussed what pythonic options are currently available out there for doing semantic web programming; after some more in depth testing I realized that Rdflib is the most accessible and complete of them all (in fact many of [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>RDFLib (<a href="http://www.rdflib.net/">homepage</a>) is a pretty solid and comprehensive rdf-programming kit for Python. In a <a href="http://www.michelepasin.org/blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/">previous post</a> I already discussed what pythonic options are currently available out there for doing semantic web programming; after some more in depth testing I realized that Rdflib is the most accessible and complete of them all (in fact many of the available libraries are based on Rdflib&#8217;s APIs). So.. here we go: in this post I&#8217;m giving an overview of some of the things you can do with this library. </p>
+<p><em><b>Update 2014-10-04</b>: the latest version of the Python library described in this post is available on <a href="https://github.com/lambdamusic/ontosPy">GitHub</a></em></p>
+<p>The <a href="http://linkeddata.org/">Linked Data</a> world is <em>primarily</em> made up of <a href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>, many would say, so the most important thing is being able to parse and extract information from this simple but versatile language. A quite well known mantra in this community is the &#8216;<a href="http://www.cs.rpi.edu/~hendler/LittleSemanticsWeb.html">a little semantics goes a long way</a>&#8216;, which expresses succinctly the idea that there&#8217;s no need to fixate on the construction of large-scale <a href="http://en.wikipedia.org/wiki/Cyc">CYC</a>-like knowledge-based systems in order to get something going in an open-world scenario such as the web (of data). </p>
+<p>In other words, this idea suggests that (for now) it&#8217;s enough to make your application spit out structured data using a standard data model (RDF, that is), and possibly connect your RDF dataset to other datasets in the &#8216;<a href="http://richard.cyganiak.de/2007/10/lod/">cloud</a>&#8216; by creating <a href="http://linkeddatabook.com/editions/1.0/#htoc18">rdf-links</a>. Once you&#8217;ve done that, you can take it easy and stop worrying about the data integration problems your RDF might generate, or the &#8216;big picture&#8217;. Others will figure out how to use your data; <strong>it&#8217;s an incremental approach</strong>, there will be some sort of snowball effect at some stage, semantic web enthusiasts seem to suggest. This and other arguments are a bit make-believe, I have to say; but at the same time they also do make some sense: unless we have some real stuff to play with out there on the data-web, not much will <em>ever</em> happen!</p>
+<h3>Hullo, RDFlib</h3>
+<p>After quickly ascertaining that it&#8217;s not a total waste of time to work with RDF, it&#8217;s now time to get practical and experiment a bit with RDFlib. This is a great python library for it lets you process RDF data <em>very very easily</em>. Example: </p>
+<pre class="prettyprint">
+	<code>
+# open a graph
+>>> import rdflib
+>>> graph = rdflib.Graph()
+
+
+# load some data
+>>> graph.parse('http://dbpedia.org/resource/Semantic_Web')
+<Graph identifier=pDZkOGzl0 (<class 'rdflib.graph.Graph'>)>
+>>> len(graph)
+98
+
+
+# query the data
+>>> list(graph)[:10]
+[(rdflib.term.URIRef('http://dbpedia.org/resource/SUPER'), rdflib.term.URIRef('http://dbpedia.org/property/keywords'),
+rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_internet'),
+rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageRedirects'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')),
+(rdflib.term.URIRef('http://dbpedia.org/resource/SW'), rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageDisambiguates'),
+rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_integrity'),
+rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageRedirects'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')),
+(rdflib.term.URIRef('http://dbpedia.org/resource/Ontotext'), rdflib.term.URIRef('http://dbpedia.org/ontology/industry'),
+rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://mpii.de/yago/resource/Semantic_Web'),
+rdflib.term.URIRef('http://www.w3.org/2002/07/owl#sameAs'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')),
+(rdflib.term.URIRef('http://dbpedia.org/resource/Deborah_McGuinness'), rdflib.term.URIRef('http://dbpedia.org/ontology/knownFor'),
+rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/The_semantic_web'),
+rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageRedirects'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')),
+(rdflib.term.URIRef('http://dbpedia.org/resource/Access-eGov'), rdflib.term.URIRef('http://dbpedia.org/property/keywords'),
+rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/SOA4All'),
+rdflib.term.URIRef('http://dbpedia.org/property/keywords'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web'))]
+
+
+# print out some triples
+>>> for s, p, o in graph:
+...     print s, "n--- ", p, "n------ ", o
+...
+
+http://dbpedia.org/resource/SUPER
+---  http://dbpedia.org/property/keywords 
+------  http://dbpedia.org/resource/Semantic_Web
+http://dbpedia.org/resource/Semantic_internet
+---  http://dbpedia.org/ontology/wikiPageRedirects 
+------  http://dbpedia.org/resource/Semantic_Web
+http://dbpedia.org/resource/SW
+---  http://dbpedia.org/ontology/wikiPageDisambiguates 
+------  http://dbpedia.org/resource/Semantic_Web
+http://dbpedia.org/resource/Semantic_integrity
+---  http://dbpedia.org/ontology/wikiPageRedirects 
+------  http://dbpedia.org/resource/Semantic_Web
+http://dbpedia.org/resource/Semantic_Web 
+---  http://dbpedia.org/ontology/abstract 
+------  Con il termine web semantico, termine coniato dal suo ideatore, Tim Berners-Lee, si intende la trasformazione del World Wide Web in un ambiente dove i documenti pubblicati (pagine HTML, file, immagini, e così via) siano associati ad informazioni e dati che ne specifichino il contesto semantico in un formato adatto all'interrogazione, all'interpretazione e, più in generale, all'elaborazione automatica. Con l'interpretazione del contenuto dei documenti che il Web Semantico propugna, saranno possibili ricerche molto più evolute delle attuali, basate sulla presenza nel documento di parole chiave, ed altre operazioni specialistiche come la costruzione di reti di relazioni e connessioni tra documenti secondo logiche più elaborate del semplice link ipertestuale.
+http://dbpedia.org/resource/Semantic_Web 
+--- etc. etc etc................
+</code></pre>
+<p>Pretty straightforward uh? In a nutshell, what we&#8217;ve just done is:<br />
+<br />
+<strong>a)</strong> loading the RDF description of the &#8216;Semantic Web&#8217; page on <a href="http://dbpedia.org/About">DBPedia</a> (<span style="font-family:monospace;color:#000000;">http://dbpedia.org/resource/Semantic_Web</span>);<br />
+<strong>b)</strong> showing the first 10 triples in that RDF graph;<br />
+<strong>c)</strong> iterating through all the triples in the graph and printing them out in a format that reflects the subject-predicate-object structure of RDF.</p>
+<p><strong>However we still don&#8217;t know much about those data</strong>. Meaning: what is the abstract structure used to define them? Do they conform to some sound and thorough data-model or is it just some automatically-generated messy agglomerate of database records? In other words, what I want to know is, what&#8217;s the <a href="http://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a> behind these data? How can I see it? Shall I reuse it (and thus endorse it) within my own application, or does my application require something slightly different?</p>
+<p>I&#8217;m probably biased here, cause I personally get much more satisfaction from creating and thinking about ontologies rather than fiddling with large quantities of rdf-xml triples. Still, <strong>I think that being able to evaluate the ontology a bunch of rdf refers to is of vital importance</strong>, in order to judge whether that RDF is what you&#8217;re looking for or not, and how to best integrate it in your application.</p>
+<p><strong>Long story short, I couldn&#8217;t find anything in RdfLib that would let me print out the hierarchy tree</strong> of an ontology and other related information. So I thought, here&#8217;s a good candidate-task for me to learn how to use the library better. </p>
+<h3>Inspecting an ontology using RDFLib</h3>
+<p>I created a small class called &#8216;<strong>OntoInspector</strong>&#8216; that you can instantiate with an RDFS/OWL ontology and then query to find out basic information about that ontology. I know &#8211; all of this could have been done using one of the many (and constantly increasing) ontology editing tools &#8211; but hey this is all about learning isn&#8217;t it?<br />
+You can find all the source code on <strike>BitBucket</strike> <a href="https://github.com/lambdamusic/ontosPy">GitHub</a>. Feel free to get it and modify as needed. Also, I integrated this python toolkit within a <strong>django application</strong> that let you browse ontologies online (beware &#8211; it&#8217;s just a hack really). This is called (surprise) <b>OntoView</b>, and it&#8217;s <a href="http://www.michelepasin.org/hacks/ontoview/">accessible here</a>.</p>
+<p>The first thing to do in our class definition is (obviously) loading up the RDFLib library. I&#8217;ve developed this using RDFlib 2.4, but recently tested it with 3.0 (the latest release available) and it all still works fine. By loading up the <span style="font-family:monospace;color:#000000; ">RDF</span> and <span style="font-family:monospace;color:#000000; ">RDFS</span> modules we&#8217;ll have access to all the constants needed to query for classes and subclasses. Note that I added an <span style="font-family:monospace;color:#000000; ">OWL</span> module as that is not part of RDFLib. You can find it in the source code, it&#8217;s just a list of all predicates in the <a href="http://www.w3.org/TR/owl-guide/">OWL vocabulary</a>. </p>
+<pre class="prettyprint">
+	<code>from rdflib import ConjunctiveGraph, Namespace, exceptions
+
+from rdflib import URIRef, RDFS, RDF, BNode
+
+import OWL</code></pre>
+<p>Now let&#8217;s set up the basic structure of the OntoInspector class. In principle, an <span style="font-family:monospace;color:#000000; ">OntoInspector</span> object should contain all the information necessary to query an ontology. An ontology is referred to using its URI, so that&#8217;s all is needed for creating an instance of OntoInspector too:</p>
+<pre class="prettyprint"><code>class OntoInspector(object):
+
+    """Class that includes methods for querying an RDFS/OWL ontology"""        
+
+    def __init__(self, uri, language=""):
+        super(OntoInspector, self).__init__()
+
+        self.rdfGraph = ConjunctiveGraph()
+        try:
+            self.rdfGraph.parse(uri, format="xml")
+        except:
+            try:
+                self.rdfGraph.parse(uri, format="n3")
+            except:
+                raise exceptions.Error("Could not parse the file! Is it a valid RDF/OWL ontology?")
+
+        finally:
+            # let's cache some useful info for faster access
+            self.baseURI = self.get_OntologyURI() or uri            
+            self.allclasses = self.__getAllClasses(classPredicate)
+            self.toplayer = self.__getTopclasses()
+            self.tree = self.__getTree()
+
+
+    def get_OntologyURI(self, ....):
+        # todo
+        pass
+
+    def __getAllClasses(self, ....):
+        # todo
+        pass
+       
+
+    def __getTopclasses(self, ....):
+        pass
+
+
+    def __getTree(self, ....):
+        # todo
+        pass</code></pre>
+<p>As you can see the <span style="font-family:monospace;color:#000000; ">__init__</span> method tries to load the ontology file (which can be expressed in either rdf/xml or n3 format) and then sets up 4 class attributes. These attributes will contain some key information about the ontology: its <strong>URI</strong>, a list of <strong>all the classes</strong> available, the classes in the <strong>top layer</strong> and the main <strong>taxonomical tree</strong> of the ontology.<br />
+We&#8217;re now going to implement the methods needed to fill out these 4 attributes.</p>
+<h3>Getting the ontology URI</h3>
+<p>If we&#8217;re dealing with an OWL ontology, it may be the case that the URI we have just used to retrieve the ontology file is not the &#8216;official&#8217; URI of the ontology. In fact OWL provides a construct that can be used to &#8216;state&#8217; which is the base URI of an ontology (essentially, this is equivalent to stating that an RDF resource has <span style="font-family:monospace;color:#000000; ">rdf:type</span> <span style="font-family:monospace;color:#000000; ">http://www.w3.org/2002/07/owl#Ontology</span>).<br />
+So in the following method first we check if an URI of <span style="font-family:monospace;color:#000000; ">rdf:type</span> <span style="font-family:monospace;color:#000000; ">OWL:Ontology</span> exists, and return that if available (when we return None, the URI value defaults to the URI originally provided when creating the OntoInspector object &#8211; see the constructor code above): </p>
+<pre class="prettyprint"><code>def get_OntologyURI(self, return_as_string=True):
+    """ 
+    In [15]: [x for x in o.rdfGraph.triples((None, RDF.type, OWL.Ontology))]
+    Out[15]: 
+    [(rdflib.URIRef('http://purl.com/net/sails'),
+      rdflib.URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
+      rdflib.URIRef('http://www.w3.org/2002/07/owl#Ontology'))]
+
+    Mind that this will work only for OWL ontologies.
+    In other cases we just return None, and use the URI passed at loading time
+    """
+
+    test = [x for x, y, z in self.rdfGraph.triples((None, RDF.type, OWL.Ontology))]
+
+    if test:
+        if return_as_string:
+            return str(test[0])
+        else:
+            return test[0]
+    else:
+        return None</code></pre>
+<h3>Extracting all the classes</h3>
+<p>Essentially, there are only <strong>two ways to define a class</strong>: you can either specify that an entity has a property <span style="font-family:monospace;color:#000000; ">RDF:type</span> with value <span style="font-family:monospace;color:#000000; ">rdfs:Class</span>, or that it has a property <span style="font-family:monospace;color:#000000; ">RDF:type</span> with value <span style="font-family:monospace;color:#000000; ">owl:Class</span>. Note that the <span style="font-family:monospace;color:#000000; ">owl:Class</span> predicate is defined as a <em>subclass</em> of <span style="font-family:monospace;color:#000000; ">rdfs:Class</span>. The rationale for having a separate OWL class construct lies in the restrictions on OWL DL (and thus also on OWL Lite), which imply that not all RDFS classes are legal OWL DL classes. In OWL Full these restrictions do not exist and therefore <span style="font-family:monospace;color:#000000; ">owl:Class</span> and <span style="font-family:monospace;color:#000000; ">rdfs:Class</span> are equivalent in OWL Full (more info here: <a href="http://www.w3.org/TR/owl-ref/">http://www.w3.org/TR/owl-ref/</a>, section 3.1).</p>
+<p>Thus, In order to retrieve all the classes defined in an ontology we can just query the RDF graph for triples that have this form:</p>
+<p><span style="font-family:monospace;color:#000000; ">someURI</span> &#8211; <span style="font-family:monospace;color:#000000; ">rdf:type</span> &#8211; <span style="font-family:monospace;color:#000000; ">rdf:Class</span> OR <span style="font-family:monospace;color:#000000; ">owl:Class</span> . </p>
+<p>This approach will work in the majority of cases. However, things are complicated by the fact that people are sometimes sloppy when they define ontologies, or because they use different tools that automatically generate different styles of RDF code. For example, often an entity is defined as being an <span style="font-family:monospace;color:#000000; ">rdfs:subclassOf</span> another entity, without explicitly declaring that both of them are (rdfs, or owl) classes; another common case is that one of classes mentioned in the domain/range values of properties (via the <span style="font-family:monospace;color:#000000; ">rdfs.domain</span> and <span style="font-family:monospace;color:#000000; ">rdfs.range</span> properties) but not declared explicitly. </p>
+<p>Since we want to be as comprehensive as possible when looking for *all* the classes present in an ontology, I added a couple of methods that deal with these borderline cases. If you don&#8217;t want to include all of this stuff, you can still bypass these extra checks by using the <em>classPredicate</em> argument. </p>
+<pre class="prettyprint"><code>def __getAllClasses(self, classPredicate = "", removeBlankNodes = True):
+    """  
+    Extracts all the classes from a model
+    We use the RDFS and OWL predicate by default; also, we extract non explicitly declared classes
+    """
+
+    rdfGraph = self.rdfGraph
+    exit = []       
+
+    if not classPredicate:          
+        for s, v, o in rdfGraph.triples((None, RDF.type , OWL.Class)): 
+            exit.append(s)
+        for s, v, o in rdfGraph.triples((None, RDF.type , RDFS.Class)):
+            exit.append(s)
+
+        # this extra routine makes sure we include classes not declared explicitly
+        # eg when importing another onto and subclassing one of its classes...
+        for s, v, o in rdfGraph.triples((None, RDFS.subClassOf , None)):
+            if s not in exit:
+                exit.append(s)
+            if o not in exit:
+                exit.append(o)
+
+        # this extra routine includes classes found only in rdfs:domain and rdfs:range definitions
+        for s, v, o in rdfGraph.triples((None, RDFS.domain , None)):
+            if o not in exit:
+                exit.append(o)
+        for s, v, o in rdfGraph.triples((None, RDFS.range , None)):
+            if o not in exit:
+                exit.append(o)
+
+    else:
+        if classPredicate == "rdfs" or classPredicate == "rdf":
+            for s, v, o in rdfGraph.triples((None, RDF.type , RDFS.Class)):
+                exit.append(s)
+        elif classPredicate == "owl":
+            for s, v, o in rdfGraph.triples((None, RDF.type , OWL.Class)): 
+                exit.append(s)
+        else:
+            raise exceptions.Error("ClassPredicate must be either rdf, rdfs or owl")
+
+    exit = remove_duplicates(exit)
+
+    if removeBlankNodes:
+        exit = [x for x in exit if not self.__isBlankNode(x)]
+
+    return sort_uri_list_by_name(exit)</code></pre>
+<p>You probably noticed that there are a couple of other methods mentioned in the snippet above: they are used for checking if a URI is a <span style="font-family:monospace;color:#000000; ">BlankNode</span> (which we&#8217;re normally not interested in, when dealing with ontologies) and for other utility functions, such as sorting and removing duplicates from our list of classes. You&#8217;ll find all the details about this stuff in the source code obviously..</p>
+<p>Next, we want to be able to <strong>move around the ontology hierarchy</strong>. So we need methods to get <em>super</em> and <em>sub</em> classes from a given class. This is easily done by querying the graph for triples containing the <span style="font-family:monospace;color:#000000; ">rdfs.subClassOf</span> predicate:</p>
+<pre class="prettyprint"><code># methods for getting ancestores and descendants of classes: by default, we do not include blank nodes
+
+def get_classDirectSupers(self, aClass, excludeBnodes = True):
+    returnlist = []
+    for s, v, o in self.rdfGraph.triples((aClass, RDFS.subClassOf , None)):
+        if excludeBnodes:
+            if not self.__isBlankNode(o):
+                returnlist.append(o)
+        else:
+            returnlist.append(o)
+
+    return sort_uri_list_by_name(remove_duplicates(returnlist)) 
+
+
+def get_classDirectSubs(self, aClass, excludeBnodes = True):
+    returnlist = []
+    for s, v, o in self.rdfGraph.triples((None, RDFS.subClassOf , aClass)):
+        if excludeBnodes:
+            if not self.__isBlankNode(s):
+                returnlist.append(s)
+
+        else:
+            returnlist.append(s)
+
+    return sort_uri_list_by_name(remove_duplicates(returnlist))
+
+
+def get_classAllSubs(self, aClass, returnlist = [], excludeBnodes = True):
+    for sub in self.get_classDirectSubs(aClass, excludeBnodes):
+        returnlist.append(sub)
+        self.get_classAllSubs(sub, returnlist, excludeBnodes)
+    return sort_uri_list_by_name(remove_duplicates(returnlist))
+
+
+
+def get_classAllSupers(self, aClass, returnlist = [], excludeBnodes = True ):
+    for ssuper in self.get_classDirectSupers(aClass, excludeBnodes):
+        returnlist.append(ssuper)
+        self.get_classAllSupers(ssuper, returnlist, excludeBnodes)
+    return sort_uri_list_by_name(remove_duplicates(returnlist))
+
+
+
+def get_classSiblings(self, aClass, excludeBnodes = True):
+    returnlist = []
+    for father in self.get_classDirectSupers(aClass, excludeBnodes):
+        for child in self.get_classDirectSubs(father, excludeBnodes):
+            if child != aClass:
+                returnlist.append(child)
+
+    return sort_uri_list_by_name(remove_duplicates(returnlist))
+</code></pre>
+<h3>Getting the top layer</h3>
+<p>We&#8217;re now all set for retrieving the classes at the top of the taxonomic hierarchy of our ontology, that is, its &#8216;top-layer&#8217;. This can be done by reusing the <span style="font-family:monospace;color:#000000; ">get_classDirectSupers</span> method previously defined, so to search for all classes that have no superclasses:</p>
+<pre class="prettyprint"><code>def __getTopclasses(self, classPredicate = ''):
+
+    """ Finds the topclass in an ontology (works also when we have more than on superclass)
+    """
+
+    returnlist = []
+
+    # gets all the classes
+    for eachclass in self.__getAllClasses(classPredicate):
+        x = self.get_classDirectSupers(eachclass)
+        if not x:
+            returnlist.append(eachclass)
+
+    return sort_uri_list_by_name(returnlist)</code></pre>
+<h3>Reconstructing the ontology tree</h3>
+<p>Now that we know which are the top classes in our taxonomy, we can parse the tree recursively using the <span style="font-family:monospace;color:#000000; ">get_classDirectSubs</span> method defined above, and reconstruct the whole taxonomical structure of the ontology.</p>
+<pre class="prettyprint"><code>def __getTree(self, father=None, out=None):
+
+    """ Reconstructs the taxonomical tree of an ontology, from the 'topClasses' (= classes with no supers, see below)
+        Returns a dictionary in which each class is a key, and its direct subs are the values.
+        The top classes have key = 0
+
+        Eg.
+        {'0' : [class1, class2], class1: [class1-2, class1-3], class2: [class2-1, class2-2]}
+    """
+
+    if not father:
+        out = {}
+        topclasses = self.toplayer
+        out[0] = topclasses
+
+        for top in topclasses:
+            children = self.get_classDirectSubs(top)
+            out[top] = children
+            for potentialfather in children:
+                self.__getTree(potentialfather, out)
+
+        return out
+
+    else:
+        children = self.get_classDirectSubs(father)
+        out[father] = children
+        for ch in children:
+            self.__getTree(ch, out)</code></pre>
+<p>That&#8217;s it really. Given this abstract tree representation, it can be printed out differently depending on the context (html, command line) but the core will remain intact. </p>
+<h3>Wrapping up</h3>
+<p>The <a href="https://github.com/lambdamusic/ontosPy">source code on GitHub</a> contains also other utilities I added, eg for handling class comments, namespaces, for nice-printing of classes&#8217; names, and for outputting the ontology tree as an image, using the <a href="http://www.graphviz.org/">Graphviz</a> library (which needs to be installed separately).</p>
+<p>Here&#8217;s an example of how OntoInspector can be used in the python interactive shell for inspecting the <a href="http://xmlns.com/foaf/spec/">Friend Of A Friend</a> lightweight ontology:</p>
+<pre class="prettyprint"><code>In [1]: from onto_inspector import *
+
+In [2]: onto = OntoInspector("http://xmlns.com/foaf/spec/20100809.rdf")         
+
+In [3]: onto.toplayer
+
+Out[3]: 
+[rdflib.URIRef('http://xmlns.com/foaf/0.1/Agent'),
+ rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#Class'),
+ rdflib.URIRef('http://www.w3.org/2004/02/skos/core#Concept'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/Document'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/LabelProperty'),
+ rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#Literal'),
+ rdflib.URIRef('http://www.w3.org/2000/10/swap/pim/contact#Person'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/Project'),
+ rdflib.URIRef('http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing'),
+ rdflib.URIRef('http://www.w3.org/2002/07/owl#Thing')]
+
+In [4]: onto.printTree()
+foaf:Agent
+----foaf:Group
+----foaf:Organization
+----foaf:Person
+rdfs:Class
+http://www.w3.org/2004/02/skos/core#Concept
+foaf:Document
+----foaf:Image
+----foaf:PersonalProfileDocument
+foaf:LabelProperty
+rdfs:Literal
+http://www.w3.org/2000/10/swap/pim/contact#Person
+----foaf:Person
+foaf:Project
+http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
+----foaf:Person
+owl:Thing
+----foaf:OnlineAccount
+--------foaf:OnlineChatAccount
+--------foaf:OnlineEcommerceAccount
+--------foaf:OnlineGamingAccount
+
+In [5]: document = onto.find_class_byname("document")
+
+In [6]: document
+Out[6]: 
+[rdflib.URIRef('http://xmlns.com/foaf/0.1/Document'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/PersonalProfileDocument')]
+
+In [7]: document = document[0]
+
+In [8]: document
+Out[8]: rdflib.URIRef('http://xmlns.com/foaf/0.1/Document')
+
+In [9]: onto.get_classAllSubs(document)
+Out[9]: 
+[rdflib.URIRef('http://xmlns.com/foaf/0.1/Image'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/PersonalProfileDocument')]
+
+In [10]: onto.get_classAllSupers(document)
+Out[10]: []
+
+In [11]: onto.get_classComment(document)
+Out[11]: rdflib.Literal('A document.', language=None, datatype=None)</code></pre>
+<p>Any comments? As I said I&#8217;m still learning/improving this&#8230; so any feedback is welcome!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2011/07/18/inspecting-an-ontology-with-rdflib/feed/</wfw:commentRss>
+		<slash:comments>5</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1261</post-id>	</item>
+		<item>
+		<title>Getting back to the ontological work..</title>
+		<link>http://www.michelepasin.org/blog/2010/02/04/getting-back-to-the-ontological-work/</link>
+				<pubDate>Thu, 04 Feb 2010 14:00:58 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[hozo]]></category>
+		<category><![CDATA[japan]]></category>
+		<category><![CDATA[ontology]]></category>
+		<category><![CDATA[owl]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[urllib]]></category>
+		<category><![CDATA[xml]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=523</guid>
+				<description><![CDATA[I&#8217;ll be working in Osaka for three months on ontologizing a couple of datasets with the help of Riichiro Mizoguchi. This means that I&#8217;ll have enough time to revise various notions about ontology engineering during this period. Here&#8217;s a first and fundamental one, regarding the difference between ontologies and data models: The difference between ontologies [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I&#8217;ll be working in Osaka for three months on <a href="http://en.wikipedia.org/wiki/Ontology_(information_science)">ontologizing</a> a couple of datasets with the help of <a href="http://www.ei.sanken.osaka-u.ac.jp/members/miz/">Riichiro Mizoguchi</a>. This means that I&#8217;ll have enough time to revise various notions about ontology engineering during this period. Here&#8217;s a first and fundamental one, regarding the difference between <strong>ontologies and data models</strong>:</p>
+<blockquote><p>The difference between ontologies and data models does not lie in the language being used: you can deﬁne an ontology in a basic ER language (although you will be hampered in what you can say); similarly, you can write a data model with OWL.<strong> Writing something in OWL does not make it an ontology! The key difference is not the language the intended use</strong>. A data model is a model of the information in some restricted well-delimited application domain, whereas an ontology is intended to provide a set of shared concepts for multiple users and applications. To put it simply: <strong>data models live in a relatively small closed world; ontologies are meant for an open, distributed world</strong> (hence their importance for the Web).</p></blockquote>
+<p><em>Schreiber. Knowledge Engineering. <a href="http://www.elsevier.com/wps/find/bookdescription.cws_home/713675/description#description">Handbook of Knowledge Representation</a> (2007) pp. 929-946</em></p>
+<p><a href="http://www.ei.sanken.osaka-u.ac.jp/main/index-en.html"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-1.png" alt="" title="Picture 1" width="332" height="302" class="alignnone size-full wp-image-533" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-1.png 332w, http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-1-300x272.png 300w" sizes="(max-width: 332px) 100vw, 332px" /></a></p>
+<p>&nbsp;</p>
+<h4>OTHER <strong>SEMANTIC WEB</strong> LINKS THAT CAME UP TODAY:</h4>
+<li><a href="http://www.xfront.com/why-use-owl.html">Why use OWL?</a> by Adam Pease (clear presentation of the advantages of OWL over XML)</li>
+<li><a href="http://abelard.flet.keio.ac.jp/ontology/index.php?InterOntology10">Interdisciplinary Ontology Forum in Japan</a> &#8211; InterOntology10</li>
+<li>The research prototype of <a href="http://eculture.cs.vu.nl/europeana/session/search">Europeana&#8217;s semantic search engine.</a></li>
+<li><a href="http://www.hozo.jp/">Hozo</a> (a nice ontology editor) <a href="http://133.1.32.226/OntologyViewer/">online ontology viewer</a></li>
+<li><a href="http://pellet.owldl.com/ontology-browser/">OWLSight</a> &#8211; owl ontology browser (online)</li>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">523</post-id>	</item>
+	</channel>
+</rss>

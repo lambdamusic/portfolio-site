@@ -1,0 +1,615 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>semanticweb &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/semanticweb/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Wed, 29 Jul 2015 11:08:04 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>An interactive Turtle shell</title>
+		<link>http://www.michelepasin.org/blog/2014/10/12/interactive-turtle-shell/</link>
+				<comments>http://www.michelepasin.org/blog/2014/10/12/interactive-turtle-shell/#comments</comments>
+				<pubDate>Sun, 12 Oct 2014 09:21:41 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[semanticweb]]></category>
+		<category><![CDATA[turtle]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2495</guid>
+				<description><![CDATA[Wouldn&#8217;t it be nice to have an interactive environment where you quickly hack together an RDF model and then show it to your clients or colleagues in a more accessible format &#8211; i.e. a diagram? Don&#8217;t know if there&#8217;s anything like that already, but the other day while polishing up the OntosPy library I&#8217;ve taken [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Wouldn&#8217;t it be nice to have an interactive environment where you quickly hack together an RDF model and then show it to your clients or colleagues in a more accessible format &#8211; i.e. a diagram? </p>
+<p>Don&#8217;t know if there&#8217;s anything like that already, but the other day while polishing up the <a href="https://github.com/lambdamusic/ontosPy">OntosPy</a> library I&#8217;ve taken a couple of hours of fun-coding and put together a module that lets you do that. </p>
+<p>The idea is simple: load an interactive environment where you can quickly <strong>sketch out</strong> a few ideas using the (very readable) <a href="http://www.w3.org/TR/turtle/">Turtle</a> rdf format. </p>
+<p>Then <strong>export it</strong> onto a different representation e.g. a graphical one, so that it can be shown to people. Or just to keep working on it via a medium that offers different <a href="http://en.wikipedia.org/wiki/Affordance">affordances</a>.</p>
+<p>So here it is: </p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+[michele<span style='color:#008c00; '>.</span>pasin]@here:~/code/python>sketch<span style='color:#008c00; '>.</span>py 
+Good morning<span style='color:#008c00; '>.</span> Ready to Turtle away<span style='color:#008c00; '>.</span> Type docs() for help<span style='color:#008c00; '>.</span>
+In [<span style='color:#008c00; '>1</span>]: docs()
+
+====Sketch v <span style='color:#008c00; '>0.2</span>====
+
+add()  ==> add statements to the graph
+...........SHORTCUTS:
+...........'class' = owl:Class
+...........'sub' = rdfs:subClassOf
+...........TURTLE SYNTAX:  http://www<span style='color:#008c00; '>.</span>w3<span style='color:#008c00; '>.</span>org/TR/turtle/
+
+show() ==> shows the graph<span style='color:#008c00; '>.</span> Can take an OPTIONAL argument for the format<span style='color:#008c00; '>.</span>
+...........eg one of['xml', 'n3', 'turtle', 'nt', 'pretty-xml', dot']
+
+clear()	 ==> clears the graph
+...........all triples are removed
+
+omnigraffle() ==> creates a dot file and opens it with omnigraffle
+...........First you must set Omingraffle as your system default app for dot files!
+
+quit() ==> exit
+
+====Have fun!====
+
+
+In [<span style='color:#008c00; '>2</span>]: add()
+Multi-line input<span style='color:#008c00; '>.</span> Enter ### when finished<span style='color:#008c00; '>.</span>
+:person a class
+:mike a :person
+:person sub :agent
+:organization sub :agent
+:worksIn rdfs:domain :person
+:worksIn rdfs:range :organization
+:mike :worksIn :DamageInc
+:DamageInc a :organization
+
+In [<span style='color:#008c00; '>3</span>]: show()
+@prefix : <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//this</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>sketch#</span><span style='color:#0057a6; '>></span> .
+@prefix bibo: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//purl</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/ontology/bibo</span><span style='color:#0057a6; '>/></span> .
+@prefix foaf: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//xmlns</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>com/foaf/</span><span style='color:#008c00; '>0.1</span><span style='color:#0057a6; '>/></span> .
+@prefix npg: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//ns</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>nature</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>com/terms</span><span style='color:#0057a6; '>/></span> .
+@prefix npgg: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//ns</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>nature</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>com/graphs</span><span style='color:#0057a6; '>/></span> .
+@prefix npgx: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//ns</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>nature</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>com/extensions</span><span style='color:#0057a6; '>/></span> .
+@prefix owl: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//www</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>w3</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/</span><span style='color:#008c00; '>2002</span><span style='color:#474796; '>/</span><span style='color:#008c00; '>07</span><span style='color:#474796; '>/owl#</span><span style='color:#0057a6; '>></span> .
+@prefix rdf: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//www</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>w3</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/</span><span style='color:#008c00; '>1999</span><span style='color:#474796; '>/</span><span style='color:#008c00; '>02</span><span style='color:#474796; '>/</span><span style='color:#008c00; '>22</span><span style='color:#474796; '>-rdf-syntax-ns#</span><span style='color:#0057a6; '>></span> .
+@prefix rdfs: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//www</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>w3</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/</span><span style='color:#008c00; '>2000</span><span style='color:#474796; '>/</span><span style='color:#008c00; '>01</span><span style='color:#474796; '>/rdf-schema#</span><span style='color:#0057a6; '>></span> .
+@prefix skos: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//www</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>w3</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/</span><span style='color:#008c00; '>2004</span><span style='color:#474796; '>/</span><span style='color:#008c00; '>02</span><span style='color:#474796; '>/skos/core#</span><span style='color:#0057a6; '>></span> .
+@prefix xml: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//www</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>w3</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/XML/</span><span style='color:#008c00; '>1998</span><span style='color:#474796; '>/namespace</span><span style='color:#0057a6; '>></span> .
+@prefix xsd: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//www</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>w3</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/</span><span style='color:#008c00; '>2001</span><span style='color:#474796; '>/XMLSchema#</span><span style='color:#0057a6; '>></span> .
+
+:mike a :person ;
+    :worksIn :DamageInc .
+
+:worksIn rdfs:domain :person ;
+    rdfs:range :organization .
+
+:DamageInc a :organization .
+
+:organization rdfs:subClassOf :agent .
+
+:person a owl:Class ;
+    rdfs:subClassOf :agent .
+
+
+
+In [<span style='color:#008c00; '>4</span>]: show("xml")
+&lt;?xml version="<span style='color:#008c00; '>1.0</span>" encoding="UTF-<span style='color:#008c00; '>8</span>"?>
+<span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:RDF</span><span style='color:#474796; '></span>
+<span style='color:#474796; '>&#xa0;&#xa0;&#xa0;xmlns</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#"</span><span style='color:#474796; '></span>
+<span style='color:#474796; '>&#xa0;&#xa0;&#xa0;xmlns:rdf</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://www.w3.org/1999/02/22-rdf-syntax-ns#"</span><span style='color:#474796; '></span>
+<span style='color:#474796; '>&#xa0;&#xa0;&#xa0;xmlns:rdfs</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://www.w3.org/2000/01/rdf-schema#"</span><span style='color:#474796; '></span>
+<span style='color:#0057a6; '>></span>
+  <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:Description</span><span style='color:#474796; '> rdf:about</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#mike"</span><span style='color:#0057a6; '>></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:type</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#person"</span><span style='color:#0057a6; '>/></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>worksIn</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#DamageInc"</span><span style='color:#0057a6; '>/></span>
+  <span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>rdf:Description</span><span style='color:#0057a6; '>></span>
+  <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:Description</span><span style='color:#474796; '> rdf:about</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#organization"</span><span style='color:#0057a6; '>></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdfs:subClassOf</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#agent"</span><span style='color:#0057a6; '>/></span>
+  <span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>rdf:Description</span><span style='color:#0057a6; '>></span>
+  <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:Description</span><span style='color:#474796; '> rdf:about</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#DamageInc"</span><span style='color:#0057a6; '>></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:type</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#organization"</span><span style='color:#0057a6; '>/></span>
+  <span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>rdf:Description</span><span style='color:#0057a6; '>></span>
+  <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:Description</span><span style='color:#474796; '> rdf:about</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#person"</span><span style='color:#0057a6; '>></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:type</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://www.w3.org/2002/07/owl#Class"</span><span style='color:#0057a6; '>/></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdfs:subClassOf</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#agent"</span><span style='color:#0057a6; '>/></span>
+  <span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>rdf:Description</span><span style='color:#0057a6; '>></span>
+  <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:Description</span><span style='color:#474796; '> rdf:about</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#worksIn"</span><span style='color:#0057a6; '>></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdfs:domain</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#person"</span><span style='color:#0057a6; '>/></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdfs:</span><span style='color:#200080; font-weight:bold; '>range</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#organization"</span><span style='color:#0057a6; '>/></span>
+  <span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>rdf:Description</span><span style='color:#0057a6; '>></span>
+<span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>rdf:RDF</span><span style='color:#0057a6; '>></span>
+
+In [<span style='color:#008c00; '>5</span>]: omnigraffle()
+### saves a dot file and tries to open it with your default editor
+### if you're on a mac and have omnigraffle - that could be the one!
+
+In [<span style='color:#008c00; '>6</span>]: quit()
+</pre>
+<p>If you are mac based and you have <a href="http://www.dummies.com/how-to/content/how-to-assign-a-file-type-to-an-application-in-mac.html">associated</a> <span style="font-family:monospace;color:#000000; ">.dot</span> files to the excellent <a href="https://www.omnigroup.com/omnigraffle">Omnigraffle</a> app, you&#8217;d see something like this: </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/sketch_Screen-Shot-2014-10-12-at-10.12.48.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/sketch_Screen-Shot-2014-10-12-at-10.12.48.png"  alt="Sketch Screen Shot 2014 10 12 at 10 12 48" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/sketch_Screen-Shot-2014-10-12-at-10.13.32.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/sketch_Screen-Shot-2014-10-12-at-10.13.32.png"  alt="Sketch Screen Shot 2014 10 12 at 10 13 32" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p><strong>That speeded up my work quite a bit</strong> &#8211; especially in situations where you don&#8217;t mind about precision but are more interested in quickly showing the merits of a modelling approach.</p>
+<p>Any comments or ideas on how to develop this further? </p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2014/10/12/interactive-turtle-shell/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2495</post-id>	</item>
+		<item>
+		<title>Textmate bundle for Turtle and Sparql</title>
+		<link>http://www.michelepasin.org/blog/2013/08/13/textmate-bundle-for-turtle-and-sparql/</link>
+				<pubDate>Tue, 13 Aug 2013 17:07:34 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[semanticweb]]></category>
+		<category><![CDATA[sparql]]></category>
+		<category><![CDATA[textmate]]></category>
+		<category><![CDATA[turtle]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2392</guid>
+				<description><![CDATA[I recently ran into the Textmate bundle for Turtle, an extension for the Textmate osx editor aimed at facilitating working with RDF and SPARQL. If you happen to be using these technologies, well I&#8217;d suggest you take a look at the following post. The Resource Description Framework is a general-purpose language for representing information which [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I recently ran into the Textmate <a href="https://github.com/peta/turtle.tmbundle">bundle for Turtle</a>, an extension for the <a href="https://github.com/textmate/textmate">Textmate</a> osx editor aimed at facilitating working with RDF and SPARQL. If you happen to be using these technologies, well I&#8217;d suggest you take a look at the following post.  </p>
+<p>The Resource Description Framework is a <em>general-purpose language for representing information</em> which is widely used on the web in order to encode metadata in a machine-interoperable format. </p>
+<p>Turtle, the <a href="http://www.w3.org/TeamSubmission/turtle/">terse RDF Triple Language</a>, is a textual syntax for RDF which aims at human readability and compactness (among other things).<br />
+This is what it looks like:</p>
+<pre><code>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@base <http://example.org/schemas/vehicles>
+
+:MotorVehicle a rdfs:Class.
+
+:PassengerVehicle a rdfs:Class;
+   rdfs:subClassOf :MotorVehicle.
+
+:Person a rdfs:Class.
+
+xsd:integer a rdfs:Datatype.
+
+:registeredTo a rdf:Property;
+   rdfs:domain :MotorVehicle;
+   rdfs:range  :Person.
+
+:myLittleCar a PassengerVehicle
+</code></pre>
+<p>The termite library in question, in a nutshell, provides a bunch of snippets and query mechanisms that make it easier to work with Turtle RDF and related technologies.<br />
+More precisely, here&#8217;s the official features breakdown:</p>
+<blockquote>
+<li>Language grammar for Turtle and SPARQL 1.1</li>
+<li>Powerful (!) auto-completion (live-aggregated)</li>
+<li>Documentation for classes and roles/properties at your fingertips (live-aggregated)</li>
+<li>Interactive SPARQL query scratchpad</li>
+<li>Some snippets (prefixes and document skeleton)</li>
+<li>Solid syntax validation</li>
+<li>Commands for instant graph visualization of a knowledge base (requires <a href="http://www.graphviz.org/">Graphviz</a> and <a href="http://librdf.org/raptor/">Raptor</a>)</li>
+<li>Conversion between all common RDF formats</li>
+</blockquote>
+<h3>Example</h3>
+<p>In order to query a SPARQL endpoint (eg DBPedia) just type this in and run it (apple-R):</p>
+<pre><code>
+#QUERY &lt;http://dbpedia.org/sparql&gt;                    
+SELECT DISTINCT ?s ?label                             
+WHERE {                                               
+    ?s &lt;http://dbpedia.org/property/season&gt; ?o .      
+}  
+</code></pre>
+<p>Obviously you can query any endpoint, e.g. <a href="http://data.nature.com/query">data.nature.com</a>: </p>
+<pre><code>
+
+#QUERY &lt;http://data.nature.com/sparql&gt;
+
+PREFIX bibo:&lt;http://purl.org/ontology/bibo/&gt;
+PREFIX dc:&lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX dcterms:&lt;http://purl.org/dc/terms/&gt;
+PREFIX foaf:&lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX npg:&lt;http://ns.nature.com/terms/&gt;
+PREFIX npgg:&lt;http://ns.nature.com/graphs/&gt;
+PREFIX npgx:&lt;http://ns.nature.com/extensions/&gt;
+PREFIX owl:&lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX prism:&lt;http://prismstandard.org/namespaces/basic/2.1/&gt;
+PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX sc:&lt;http://purl.org/science/owl/sciencecommons/&gt;
+PREFIX skos:&lt;http://www.w3.org/2004/02/skos/core#&gt;
+PREFIX void:&lt;http://rdfs.org/ns/void#&gt;
+PREFIX xsd:&lt;http://www.w3.org/2001/XMLSchema#&gt;
+
+
+SELECT *                            
+WHERE {                                                
+    ?doi a npg:Article . 
+    ?doi dc:title ?title .
+    ?doi prism:publicationDate ?date
+} 
+limit 100 
+
+</code></pre>
+<p>And this is just the tip of the iceberg. Autocompletion, visualisations etc… it may be the Textmate-Semantic Web swiss army knife you&#8217;ve been looking for. </p>
+<p><img src="https://raw.github.com/peta/turtle.tmbundle/master/Support/img/screenshot-editor.png" alt="" title="" border="0" width="" height="700px" style="float:left;" /></p>
+<p>&nbsp;</p>
+<p><img src="https://raw.github.com/peta/turtle.tmbundle/master/Support/img/screenshot-sparql.png" alt="" title="" border="0" width="" height="700px" style="float:left;" /></p>
+<p>&nbsp;</p>
+<p><img src="https://raw.github.com/peta/turtle.tmbundle/master/Support/img/screenshot-visu.png" alt="" title="" border="0" width="" height="700px" style="float:left;" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2392</post-id>	</item>
+		<item>
+		<title>ESWC 2013 &#8211; report from the conference</title>
+		<link>http://www.michelepasin.org/blog/2013/06/05/eswc-2013-report-from-the-conference/</link>
+				<pubDate>Wed, 05 Jun 2013 17:06:43 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Just Blogging]]></category>
+		<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[conference]]></category>
+		<category><![CDATA[eswc]]></category>
+		<category><![CDATA[semanticweb]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2364</guid>
+				<description><![CDATA[Last week I attended the European Semantic Web Conference (ESWC&#8217;13) in Montpellier and had a really good time meeting old friends and catching up with the latest research in this area. In this post I&#8217;ll collect a few pointers to papers and ideas that caught my attention. For a high level summary of the talks, [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Last week I attended the European Semantic Web Conference (<a href="http://2013.eswc-conferences.org/">ESWC&#8217;13</a>) in Montpellier and had a really good time meeting old friends and catching up with the latest research in this area. In this post I&#8217;ll collect a few pointers to papers and ideas that caught my attention. </p>
+<p>For a high level summary of the talks, you can check out the <a href="http://2013.eswc-conferences.org/sites/default/files/ESWC2013_Programm_Web.pdf">pdf program</a>, the <a href="http://2013.eswc-conferences.org/program/workshops">workshops page</a> or the <a href="http://2013.eswc-conferences.org/program/tutorials">tutorials page</a>. </p>
+<p>In particular the semantic publishing workshop <a href="http://sepublica.mywikipaper.org/drupal/node/25">SEPublica13</a> was very relevant for my current work, as its stated purpose is to discuss and review &#8220;<em>accessing and reusing the computable data that the literature represents and describes</em>&#8221; &#8211; something that all digital publishers are thinking about these days.  </p>
+<p>As for the rest of the conference, here&#8217;s a more lengthy summary of (some of) the presentations I managed to attend, organised by topic. </p>
+<h2>Keynote: less <em>semantics</em> and more <em>web</em></h2>
+<p>The keynote from MIT&#8217;s <a href="http://people.csail.mit.edu/karger/">David Karger</a> was quite remarkable. In a talk titled “<a href="http://groups.csail.mit.edu/haystack/blog/2013/06/05/keynote-at-the-european-semantic-web-conference-part-1-the-state-of-end-user-information-management/">The Semantic Web for End Users</a>” he challenged several widespread assumptions about the SW (maybe most intriguingly the &#8216;<em>if it&#8217;s using RDF/OWL then it&#8217;s SW</em>&#8216; principle). Karger argued for a a less AI-oriented, more user-centric and web-centric view of semantic web research, according to which one of the key opportunities for SW practitioners is to &#8220;<strong><em>make it easier for end users to produce, share, and consume structured data</em></strong>&#8220;, irrespectively of whether these are encoded in any of the RDF family of languages. Rather, SW tools should be measured  in terms of how much they allow people to deal effectively with &#8216;<strong><em>applications whose schema is expected to change</em></strong>&#8216;.<br />
+In general, the semantic web (like the web) should not be making &#8216;new things possible&#8217; but rather &#8216;old things simpler&#8217;. </p>
+<h2>Semantic Science</h2>
+<blockquote><p>Gon, B., Porto, F., &#038; Moura, A. M. C.. <em>On the semantic engineering of scientific hypotheses as linked data</em>.</p></blockquote>
+<p>The paper addresses the <strong>engineering of hypotheses as linked data</strong>, and builds upon the <a href="http://linkedscience.org/lsc/ns/">Linked Science Core vocabulary</a> by extending it in order allow the definition of scientific hypotheses as assumptions that constrain the interpretation of observed phenomena for computer simulation. A prototype application built by eliciting and linking hypotheses in a published research in Computational <a href="http://en.wikipedia.org/wiki/Hemodynamics">Hemodynamics</a> (the study of the human cardiovascular system) is discussed to illustrate the notion of &#8216;conceptual traceability&#8217; of research statements. </p>
+<blockquote><p>Gil, Y., Ratnakar, V., &#038; Hanson, P. C.  <em>Organic Data Publishing : A Novel Approach to Scientific Data Sharing</em>.</p></blockquote>
+<p>The paper introduces an approach called &#8216;<strong>organic data sharing</strong>&#8216; that 1) links dataset contributions directly to science questions, 2) reduces the burden of data sharing by enabling any scientist to contribute metadata, and 3) tracks and exposes credit for all contributors. An initial prototype that is built as an extension of a <a href="http://en.wikipedia.org/wiki/Semantic_wiki">semantic wiki</a>, can import Linked Data, and can publish as Linked Data any new content created by users.</p>
+<blockquote><p>Zhao, J., &#038; Klyne, G. (2013). <em>How Reliable is Your workflow : Monitoring Decay in Scholarly Publications</em>.</p></blockquote>
+<p>The paper addresses the notion of <a href="http://alpha.myexperiment.org/">workflow</a> &#8216;decay&#8217;. Increasingly, <strong>scientific workflows are being treated as first-class artifacts</strong>, for exchanging and transferring actual scholarly findings, either as part of scholarly articles or as stand-alone objects. However scientific workflows are commonly subject to a decayed or reduced ability to be executed or repeated, largely due to the volatility of the external resources that are required for their executions. Based on our this hypothesis, the authors present a minimal set of information to be associated in a workflow to reduce its decay and be effectively exchanged as a reproducible research object.</p>
+<blockquote><p>Callahan, A., Cruz-toledo, J., Ansell, P., &#038; Dumontier, M. (2013). <em>Bio2RDF Release 2 : Improved coverage , interoperability and provenance of Life Science Linked Data</em>.</p></blockquote>
+<p><a href="http://bio2rdf.org/">Bio2RDF</a> is an open-source project that provides <strong>linked data for the life sciences</strong> using Semantic Web technologies. Bio2RDF scripts (available on <a href="https://github.com/bio2rdf/bio2rdf-scripts">github</a>) convert heterogeneously formatted data (e.g. flat-files, tab-delimited files, dataset specific formats, SQL, XML etc.) into a common format, RDF. The paper describes the new features of the latest Bio2RDF release, which provides a federated network of <a href="http://sourceforge.net/apps/mediawiki/bio2rdf/index.php?title=SPARQL_endpoints">SPARQL endpoints</a> over 19 datasets. Other new features include provenance information via <a href="http://www.w3.org/TR/prov-o/">PROV</a>, mapping of dataset-specific vocabulary to the <a href="https://code.google.com/p/semanticscience/wiki/SIO">Semanticscience Integrated Ontology</a> (SIO), context-sensitive SPARQL query formulation using <a href="http://sindicetech.com/sindice-suite/sparqled/">SparQLed</a> and a central registry of datasets in order to normalize generated <a href="http://en.wikipedia.org/wiki/Internationalized_Resource_Identifier">IRIs</a>. </p>
+<h2>Semantic Publishing</h2>
+<blockquote><p>T. Kuhn, P. E. Barbano, M. L. Nagy, and M. Krauthammer, <em>Broadening the Scope of Nanopublications</em>. </p></blockquote>
+<p>Traditionally, <a href="http://nanopub.org/wordpress/">nanopublications</a> are described as an approach to (1) subdivide scientific results into minimal pieces, (2) to represent these results — called assertions — in an RDF-based formal notation, (3) to attach RDF-based provenance information on this “atomic” level, and (4) to treat each of these tiny entities as a separate publication. The authors of this paper challenge assumption (2) as unrealistic, essentially due to the proven difficulties in acquiring structured, logic-based assertions from people, and propose a new system (<a href="http://purl.org/nanobrowser">nanobrowser</a>) that allows authors and curators to <strong>attach English sentences to nanopublications</strong>, thus allowing for informal representations of scientific claims.</p>
+<blockquote><p>Lord, P., &#038; Marshall, L. (2013). <em>Twenty-Five Shades of Greycite : Semantics for referencing and preservation</em>.</p></blockquote>
+<p>The paper describes two new systems: <a href="http://greycite.knowledgeblog.org/">greycite</a> and <a href="http://knowledgeblog.org/kblog-metadata">kblog-metadata</a>. The former, addresses the <strong>problem of bibliographic metadata</strong>, without resorting to a single central authority, extracting this metadata directly from URI end-points. The latter provides more specialised support for generating appropriate metadata within the popular <strong>wordpress</strong> blogging platform. The underlying rationale for both systems, claims the author, is that semantic metadata must be of value to all participants in the publishing process, most importantly the authors. </p>
+<blockquote><p>Mavergames, C., Oliver, S., &#038; Becker, L. (2013). <em>Systematic Reviews as an interface to the web of ( trial ) data : Using PICO as an ontology for knowledge synthesis in evidence-based healthcare research The Cochrane Collaboration</em></p></blockquote>
+<p>The paper describes a prototype application that makes use of linked data technologies to <strong>improve discovery of information</strong> stored in the <a href="http://www.thecochranelibrary.com/">Cochrane Database of Systematic Reviews</a>, a resource in the domain of healthcare research (in particular the area of evidence-based medicine). The approach described relies on the <a href="http://en.wikipedia.org/wiki/PICO_process">PICO framework</a> (Population, Intervention, Comparison, Outcome) as an ontology to aid in better discoverability,  presentation, and synthesis of the knowledge available in the documents offered by the database. A prototype web application based on <a href="https://groups.drupal.org/semantic-web">Drupal&#8217;s SW module</a> is presented. </p>
+<blockquote><p>Wiljes, C., Jahn, N., Lier, F., Paul-stueve, T., Vompras, J., Pietsch, C., &#038; Cimiano, P. (2013). <em>Towards Linked Research Data : An Institutional Approach. </em></p></blockquote>
+<p>The paper describes an infrastructure used that <strong>enables researchers to manage their publications</strong> and the underlying research data in an easy and efficient way within a academic institution, Bielefeld University and the associated <a href="https://www.cit-ec.de/">Center of Excellence Cognitive Interaction Technology</a>. The platform created follows a Linked Data approach and uses <a href="http://virtuoso.openlinksw.com/">Virtuoso</a> to store data sources from inside the university and outside sources like DBpedia.</p>
+<h2>NLP, knowledge extraction </h2>
+<blockquote><p>Iorio, A. Di, Nuzzolese, A. G., &#038; Peroni, S. (2013). <em>Towards the automatic identification of the nature of citations.</em></p></blockquote>
+<p>The paper presents an algorithm, called <a href="http://wit.istc.cnr.it:8080/tools/citalo">CiTalO</a>, to <strong>infer automatically the function of citations</strong> by means of Semantic Web technologies and NLP techniques. CiTalO infers the function of citations by combining techniques of ontology learning from natural language, sentiment-analysis, word-sense disambiguation, and ontology mapping. These techniques are applied in a pipeline whose input is the textual context containing the citation and the output is a one or more properties of the <a href="http://purl.org/spar/cito">CiTO</a> ontology.</p>
+<blockquote><p>Jael, L., Castro, G., Berlanga, R., Rebholz-schuhmann, D., &#038; Garcia, A. (2013). <em>Connections across scientific publications based on semantic annotations. </em></p></blockquote>
+<p>The paper presents an experiment aimed at <strong>evaluating different concept annotation solutions</strong> on full text documents to determine to which extend relatedness can be inferred from such annotations. Eleven full-text articles from the open-access subset of <a href="http://www.ncbi.nlm.nih.gov/pmc/">PubMed Central</a> have been extracted and annotated semantically using <a href="http://www.nlm.nih.gov/mesh/">MeSH</a>, <a href="http://www.nlm.nih.gov/research/umls/">UMLS</a>, and other ontologies. The authors show that connections across articles from annotations automatically identified with entity recognition tools, e.g., <a href="http://www.ebi.ac.uk/webservices/whatizit/">Whatizit</a>, <a href="http://bioportal.bioontology.org/annotator">NCBO Annotator</a>, and CMA, are similar to those connections exhibit based on the PubMed MeSH terms, thus validating their approach. </p>
+<blockquote><p>A. Gangemi, <em>A Comparison of Knowledge Extraction Tools for the Semantic Web</em>.</p></blockquote>
+<p>This article <strong>reviews a number of Natural Language Processing tools</strong> (for various purposes, such as name-entity recognition or word sense disambiguation) that have been configured for Semantic Web tasks including ontology learning, linked data population, entity resolution, NL querying to linked data and others. The tools have been compared using a sample  taken from an online article of The New York Times and the results are <a href="http://stlab.istc.cnr.it/stlab/KnowledgeExtractionToolEval">available online</a>. The tools  reviewed are: <a href="http://www.mpi-inf.mpg.de/yago-naga/aida/">AIDA</a>, <a href="http://www.alchemyapi.com/api/demo.html">AlchemyAPI</a>, <a href="http://dev.iks-project.eu:8081/enhancer">Apache Stanbol</a>, <a href="http://dbpedia-spotlight.github.com/demo">DBpedia Spotlight</a>, <a href="http://demo.languagecomputer.com/cicerolite">CiceroLite</a>, <a href="http://aksw.org/Projects/FOX.html">FOX</a>, <a href="http://wit.istc.cnr.it/stlab-tools/fred">FRED</a>, <a href="http://nerd.eurecom.fr">NERD</a>, <a href="http://viewer.opencalais.com/">Open Calais</a>, <a href="http://poolparty.biz/demozone/general">PoolParty Knowledge Discoverer</a>, <a href="http://reverb.cs.washington.edu">ReVerb</a>, <a href="http://wit.istc.cnr.it/stlab-tools/wikifier">Semiosearch Wikifier</a>, <a href="http://www.wikimeta.com/wapi/semtag.pl">Wikimeta</a>, <a href="http://www.zemanta.com/demo/">Zemanta</a>. </p>
+<blockquote><p>E. Cabrio, S. Villata, F. Gandon, and I. S. Antipolis, <em>A Support Framework for Argumentative Discussions Management in the Web</em>.</p></blockquote>
+<p>The paper presents an approach based on NLP for automatically <strong>extracting argumentative relationships from highly active wiki pages</strong>. The overall purpose is to support community managers in managing the discussions and have an overall view of the ongoing deabtes so to detect the winning arguments. Argumentative discussions are formalized using an extension of the <a href="http://rdfs.org/sioc/spec/">SIOC Argumentation vocabulary</a>.</p>
+<blockquote><p>O. Medelyan, S. Manion, J. Broekstra, A. Divoli, A. Huang, and I. H. Witten, <em>Constructing a Focused Taxonomy from a Document Collection</em></p></blockquote>
+<p>The paper describes a new method for <strong>constructing custom taxonomies from document collections</strong>, called <a href="https://sites.google.com/site/focusedtaxonomies/">F-STEP</a>. It involves identifying relevant concepts and entities in text; linking them to knowledge sources like Wikipedia, <a href="http://dbpedia.org/About">DBpedia</a>, <a href="http://www.freebase.com/">Freebase</a>, and any supplied taxonomies from related domains; disambiguating conflicting concept mappings; and selecting semantic relations that best group them hierarchically. By using this approach the authors constructed a custom taxonomy with 10,000 concepts and 12,700 relations from 2000 news articles. An evaluation with human judges has shows high rates of precision (90%) and recall (75%). </p>
+<h2>SW tech in real world systems</h2>
+<blockquote><p>P. Szekely, C. A. Knoblock, F. Yang, X. Zhu, E. E. Fink, R. Allen, and G. Goodlander, <em>Connecting the Smithsonian American Art Museum to the Linked Data Cloud</em>.</p></blockquote>
+<p>This paper describes the process and lessons learned in <strong>publishing the data from the</strong> <a href="http://americanart.si.edu/">Smithsonian American Art Museum</a>. The paper contains detailed descriptions of a) how relational data have been mapped to RDF (a system called <a href="http://www.isi.edu/integration/karma/">Karma</a> was used), b) how links to other linked data URIs have been created, and c) the process of curation to ensure that both the published information and its links to other sources within the LOD are accurate.  The dataset uses an extended version of the <a href="http://www.europeana.eu/schemas/edm/">Europeana Data Model</a>, which is the metamodel used in the <a href="http://www.europeana.eu/portal/">Europeana project</a> to represent data from Europe’s cultural heritage institutions, plus other standards like <a href="http://www.w3.org/TR/prov-o/">PROV</a> and <a href="http://schema.org/">Schema.org</a>.</p>
+<blockquote><p>L. M. Garshol and A. Borge, <em>Hafslund Sesam – an archive on semantics</em>.</p></blockquote>
+<p>The paper describes an architecture based on RDF and Virtuoso, constructed to facilitate data integration and reuse within <a href="http://www.hafslund.no/">Hafslund</a>, a <strong>Norwegian energy company</strong>. Documents are tagged with URIs from the triple store, and these URIs connect the document metadata with enterprise data extracted from backend systems. All source systems are integrated using a custom-built client-server solution based on <a href="http://www.sdshare.org/">SDShare</a>  &#8211;  a specification for synchronizing RDF data using <a href="http://en.wikipedia.org/wiki/Atom_(standard)">Atom feeds</a>.</p>
+<h2>Random notes</h2>
+<li><a href="http://sindicetech.com/sindice-suite/sparqled/">SparQLed</a> is an open source app that gives you an interactive SPARQL editor with context-aware recommendations (via autocompletion and other tricks). Definitely worth taking a look at.</li>
+<li>I missed the excellent <a href="http://www.labf.usb.ve/TUTORIAL2013/ESWC2013Tutorial/Home.html">Semantic Data Management Techniques in<br />
+Graph Databases</a> tutorial, but luckily the <a href="http://www.labf.usb.ve/TUTORIAL2013/ESWC2013Tutorial/Home_files/SlidesTutorialGraphDatabases_MAC.pdf">slides are available online</a>. If you&#8217;re interested in graph databases, check them out, they include a detailed <strong>analysis and comparison of various graph databases</strong> including Neo4j, Hypergraph and many others.</li>
+<li>David Karger pointed out a web app called <a href="https://ifttt.com">If THis Then That</a>. Rule-based reasoning on the web, without any fancy AI. Pretty cool!</li>
+<li><a href="http://identifiers.org/">identifiers.org/</a> is yet another service that aims at providing resolvable persistent URIs used to identify data for the scientific community</li>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2364</post-id>	</item>
+		<item>
+		<title>Semantic Web Cheat Sheets</title>
+		<link>http://www.michelepasin.org/blog/2012/11/27/semantic-web-cheat-sheets/</link>
+				<pubDate>Tue, 27 Nov 2012 11:45:38 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[cheatsheet]]></category>
+		<category><![CDATA[semanticweb]]></category>
+		<category><![CDATA[tools]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2269</guid>
+				<description><![CDATA[Here&#8217;re a couple of reference sheets that can become handy if you&#8217;re doing any semantic web related work. I&#8217;ve found both of them online, and will add more to this list as they come along. N3 Language Cheatsheet I found this table on this blog post: http://aabs.wordpress.com/semantic-web/the-n3-cheat-sheet/. Some of the formatting was messed up on [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Here&#8217;re a couple of reference sheets that can become handy if you&#8217;re doing any semantic web related work. I&#8217;ve found both of them online, and will add more to this list as they come along. </p>
+<h3>N3 Language Cheatsheet</h3>
+<p>I found this table on this blog post: <a href="http://aabs.wordpress.com/semantic-web/the-n3-cheat-sheet/">http://aabs.wordpress.com/semantic-web/the-n3-cheat-sheet/</a>. Some of the formatting was messed up on the original post, so I cleaned it up a little</p>
+<h3>Semantic Web Cheatsheet</h3>
+<p>Another useful cheat sheet can be found here: <a href="http://ebiquity.umbc.edu/resource/html/id/94/">http://ebiquity.umbc.edu/resource/html/id/94/</a>. The card includes RDF/RDFS/OWL vocabulary, RDF/XML reserved terms, examples and  SPARQL semantic web query language reference.</p>
+<p>&nbsp;</p>
+<p>More? Please let us know!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2269</post-id>	</item>
+		<item>
+		<title>Hack4Europe! &#8211; Europeana hackathon roadshow, June 2011</title>
+		<link>http://www.michelepasin.org/blog/2011/05/23/hack4europe-europeana-hackathon-roadshow-june-2011/</link>
+				<pubDate>Mon, 23 May 2011 21:36:14 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Cultural Informatics]]></category>
+		<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[api]]></category>
+		<category><![CDATA[europe]]></category>
+		<category><![CDATA[hackday]]></category>
+		<category><![CDATA[semanticweb]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1304</guid>
+				<description><![CDATA[Europeana is a multilingual digital collection containing more than 15 millions resources that lets you explore Europe&#8217;s history from ancient times to the modern day. Europeana API services are web services allowing search and display of Europeana collections in your website and applications. The folks at Europeana have been actively promoting the experimentation with their [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://www.europeana.eu/portal/aboutus.html">Europeana</a> is a multilingual digital collection containing more than 15 millions resources that lets you explore Europe&#8217;s history from ancient times to the modern day. Europeana API services are web services allowing search and display of Europeana collections in your website and applications. The folks at Europeana have been actively promoting the experimentation with their APIs by organizing &#8216;hackathons&#8217; &#8211; workshops for cultural informatics hackers where new ideas and discussed and implemented. </p>
+<p>Some examples of the outputs of the previous hackathon can be found <a href="http://version1.europeana.eu/web/api/hackathon-prototypes">here</a>. Hack4Europe is the most recent of these dissemination activities:</p>
+<blockquote><p>Hack4Europe! is a series of hack days organised by the Europeana Foundation and its partners Collections Trust, Museu Picasso, Poznan Supercomputing and Networking Center and Swedish National Heritage Board. The hackathon roadshow will be held simultaneously in 4 locations (London, Barcelona, Poznan and Stockholm) in the week 6 &#8211; 12 June and will provide an exciting environment to explore the potential of open cultural data for social and economic growth in Europe.</p>
+<p>Each hackathon will bring together up to 30 developers from the hosting country and the surrounding area. They will have access to the diverse and rich <a href="http://www.europeana.eu/">Europeana collections</a> containing over 18 million records, Europeana Search API (incl. a test key and <a href="http://europeanalabs.eu/wiki/EuropeanaOpenSearchAPI">technical documentation</a>) and Europeana Linked Open Data Pilot datasets which currently comprise about 3 million Europeana records available under a CC0 license.</p></blockquote>
+<p>There are four hackathons coming up, so if you&#8217;re interested make sure you sign up quickly: </p>
+<li><a title="Click here to visit the Hack4Europea! UK website" target="_blank" href="http://hack4europe.eventbrite.com/"><strong>Hack4Europe! UK</strong></a><br />
+9 June 2011, London, hosted by <a href="http://collectionstrust.org.uk/" target="_blank" title="Visit the Collections Trust website">Collections Trust</a></li>
+<li><a title="Click here to visit the Hack4Europea! Spain website" target="_blank" href="http://hack4europebcn.eventbrite.com/"><strong>Hack4Europe! Spain</strong></a><br />
+8 &#8211; 9 June 2011, Barcelona, hosted by <a title="Visit the Museu Picasso website" target="_blank" href="http://www.bcn.cat/museupicasso/en/museum/">Museu Picasso</a></li>
+<li><a title="Click here to visit the Hack4Europea! Poland website" target="_blank" href="http://hack4europepl.eventbrite.com/"><strong>Hack4Europe! Poland</strong></a><br />
+7 &#8211; 8 June 2011, Poznan, hosted by <a href="http://www.man.poznan.pl/online/en/" target="_blank" title="Visit the Poznan Supercomputing and Networking Center website">Poznan Supercomputing and Networking Center</a> and <a title="Visit the Kórnik Library of the Polish Academy of Sciences website" target="_blank" href="http://www.english.pan.pl/">Kórnik Library of the Polish Academy of Sciences</a></li>
+<li><a title="Click here to visit the Hack4Europea! Sweden website" target="_blank" href="http://hack4europese.eventbrite.com/"><strong>Hack4Europe! Sweden</strong></a><br />
+10 &#8211; 11 June 2011, Stockholm, hosted by <a href="http://www.raa.se/" target="_blank" title="Visit the Swedish National Heritage Board website">Swedish National Heritage Board</a></li>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1304</post-id>	</item>
+		<item>
+		<title>A few useful Linked Data resources</title>
+		<link>http://www.michelepasin.org/blog/2011/03/17/a-few-useful-linked-data-resources/</link>
+				<pubDate>Thu, 17 Mar 2011 11:32:00 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[linkeddata]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[semanticweb]]></category>
+		<category><![CDATA[sparql]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1135</guid>
+				<description><![CDATA[Done a bit of semantic web work in the last couple of weeks, which gave me a chance to explore better the current web-scenario around this topic. I&#8217;m working on some example applications myself, but in the meanwhile I thought I&#8217;d share here a couple of quite useful links I ran into. Development Tools: Quick [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Done a bit of semantic web work in the last couple of weeks, which gave me a chance to explore better the current web-scenario around this topic. I&#8217;m working on some example applications myself, but in the meanwhile I thought I&#8217;d share here a couple of quite useful links I ran into.</p>
+<h3>Development Tools:</h3>
+<p></p>
+<li><a href="http://graphite.ecs.soton.ac.uk/browser/">Quick and Dirty RDF browser</a>. It does just what is says: you pass it an rdf file and it helps you making sense of it. For example, check out the rdf graph describing the city of Southampton on DbPedia: <a href="http://graphite.ecs.soton.ac.uk/browser/?uri=http://dbpedia.org/resource/Southampton">http://dbpedia.org/resource/Southampton</a>. Minimal, fast and useful! </li>
+<li><a href="http://prefix.cc/">Namespace lookup service for RDF developers</a>. The intention of this service is to simplify a common task in the work of RDF developers: remembering and looking up URI prefixes.You can look up prefixes from the search box on the homepage, or directly by typing URLs into your browser bar, such as <a href="http://prefix.cc/foaf">http://prefix.cc/foaf</a> or <a href="http://prefix.cc/foaf,dc,owl.ttl">http://prefix.cc/foaf,dc,owl.ttl</a>.</li>
+<li><a href="http://www.knoodl.com/ui/home.html">Knoodl</a> Knoodl is an online tool for creating, managing, and analyzing RDF/OWL descriptions. It has several features that support collaboration in all stages of these activities (eg it lets you create quite easily discussion forums around ontological modeling decisions). It&#8217;s hosted in the Amazon EC2 cloud and can be used for free. </li>
+<li><a href="https://chrome.google.com/extensions/search?itemlang=&#038;hl=en&#038;q=rdf">Rdf Goole chrome extensions</a>. Just a list of extensions for Google Chrome that make working with rdf much simpler, for example by detecting rdf annotations embedded in HTML.</li>
+<li><a href="http://getthedata.org/">Get the data</a>. Ask and answer questions about getting, using and sharing data! A StackOverflow clone that crowd-sources the task of finding out whether the data you need are available, and where.</a></li>
+<p>&nbsp;</p>
+<h3>Articles / Tutorials</h3>
+<p></p>
+<li><a href="http://openorg.ecs.soton.ac.uk/index.php/Linked_Data_Guide_for_Newbies">Linked Data Guide for Newbies</a>. It&#8217;s primarily aimed at &#8220;<em>people who&#8217;re tasked with creating RDF and don&#8217;t have time to faff around.</em>&#8221; It&#8217;s a brief and practical introduction to some of the concepts and technical issues behind Linked Data &#8211; simple and effective, although it obviously hides all the most difficult aspects.</li>
+<li><a href="http://blogs.ecs.soton.ac.uk/webteam/2010/11/08/what-you-need-to-know-about-rdfxml/">What you need to know about RDF+XML</a>. Again, another gentle and practical intro.</li>
+<li><a href="http://www.w3.org/DesignIssues/LinkedData.html">Linked Data: design issues</a>. One of the original articles by Berners Lee. It goes a little deeper into the theoretical issues involved with the Linked Data approach.</li>
+<li><a href="http://linkeddatabook.com/editions/1.0/">Linked Data: Evolving the Web into a Global Data Space</a>. Large and thorough resource: this book is freely available online and contains all that you need to become a Linked Data expert &#8211; whatever that means!</li>
+<li><a href="http://memespring.co.uk/2011/01/linked-data-rdfsparql-documentation-challenge/">Linked Data/RDF/SPARQL Documentation Challenge</a>. A recent initiative aimed at pushing people to document the &#8216;path to rdf&#8217; with as many languages and environments as possible. The idea is to move away from some kind of academic-circles-only culture and create something &#8220;<em>closer to the Django introduction tutorial or the MongoDB quick start guide than an academic white paper</em>&#8220;. This blog post is definitely worth checking out imho, especially because of the wealth of responses it has elicited!</li>
+<li><a href="http://www.xml.com/pub/a/2005/11/16/introducing-sparql-querying-semantic-web-tutorial.html?page=1">Introducing SPARQL: Querying the Semantic Web</a>. An in-depth article at XML.com that introduces SPARQL &#8211; the query language and data access protocol for the Semantic Web.</li>
+<li><a href="http://www.pezholio.co.uk/2011/01/a-beginners-guide-to-sparqling-linked-data-part-1/">A beginner’s guide to SPARQLing linked data</a>. A more hands-on description of what SPARQL can do for you.</li>
+<li><a href="http://richard.cyganiak.de/2007/10/lod/">Linked Data: how to get your dataset in the diagram</a>. So you&#8217;ve noticed the Linked Data bubbles growing bigger and bigger. Next step is &#8211; how to contribute and get in there? This article gives you all the info you need to know. </li>
+<li><a href="http://answers.semanticweb.com/"><strike>Semantic Overflow</strike> Answers.semanticweb.com</a>. If you run out of ideas, this is the place where to ask for help!</li>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1135</post-id>	</item>
+		<item>
+		<title>Survey of Pythonic tools for RDF and Linked Data programming</title>
+		<link>http://www.michelepasin.org/blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/</link>
+				<comments>http://www.michelepasin.org/blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/#comments</comments>
+				<pubDate>Thu, 24 Feb 2011 15:21:27 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[linkeddata]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[rdflib]]></category>
+		<category><![CDATA[semanticweb]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1110</guid>
+				<description><![CDATA[In this post I&#8217;m reporting on a recent survey I made in the context of a Linked Data project I&#8217;m working on, SAILS. The Resource Description Framework (RDF) is a data model and language which is quickly gaining momentum in the open-data and data-integration worlds. In SAILS we&#8217;re developing a prototype for rdf-data manipulation and [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>In this post I&#8217;m reporting on a recent survey I made in the context of a <a href="http://en.wikipedia.org/wiki/Linked_Data">Linked Data</a> project I&#8217;m working on, <a href="http://sailsproject.cerch.kcl.ac.uk/">SAILS</a>. The <a href="http://en.wikipedia.org/wiki/Resource_Description_Framework">Resource Description Framework</a> (RDF) is a data model and language which is quickly gaining momentum in the open-data and data-integration worlds. In SAILS we&#8217;re developing a prototype for rdf-data manipulation and querying, but since the final application (of which the rdf-components is part of) will be written in Python and Django, in what follows I tried to gather information about all the existing libraries and frameworks for doing rdf-programming using python. </p>
+<h2>1. Python libraries for working with Rdf</h2>
+<h3> RdfLib <a style="font-size: 14px;" href="http://www.rdflib.net/">http://www.rdflib.net/</a></h3>
+<p>RdfLib (<a href="http://www.rdflib.net/rdflib-3.0.0.tar.gz">download</a>) is a pretty solid and extensive rdf-programming kit for python. It contains parsers and serializers for RDF/XML, N3, NTriples, Turtle, TriX and RDFa. The library presents a Graph interface which can be backed by any one of a number of store implementations, including, memory, MySQL, Redland, SQLite, Sleepycat, ZODB and SQLObject.</p>
+<p>The latest release is <strong> RdfLib 3.0</strong>, although I have the feeling that many are still using the previous release, <strong>2.4</strong>. One big difference between the two is that in 3.0 some libraries have been separated into another package (called <a href="http://code.google.com/p/rdfextras/">rdfextras</a>); among these libraries there&#8217;s also the one you need for processing <a href="http://en.wikipedia.org/wiki/SPARQL">sparql</a> queries (the rdf query language), so it&#8217;s likely that you want to install that too.<br />
+A short overview of the difference between these two recent releases of RdfLib can be found <a href="http://code.google.com/p/rdflib/wiki/UpgradingToVersion3">here</a>. The APIs documentation for RdfLib 2.4 is available <a href="http://www.rdflib.net/rdflib-2.4.0/html/index.html">here</a>, while the one for RdfLib 3.0 can be found <a href="http://code.alcidesfonseca.com/docs/rdflib/index.html">here</a>. Finally, there are also some other (a bit older, but possibly useful) docs on the <a href="http://code.google.com/p/rdflib/w/list">wiki</a>.</p>
+<p>Next thing, you might want to check out these tutorials:</p>
+<li><a href="http://semanticweb.org/wiki/Getting_data_from_the_Semantic_Web.html">Getting data from the Semantic Web</a>: a nice example of how to use RdfLib and python in order to get data from  <a href="http://dbpedia.org/">DBPedia</a>, the Semantic Web version of Wikipedia.</li>
+<li><a href="http://johngoodwin225.wordpress.com/2011/01/18/how-can-i-use-the-ordnance-survey-linked-data-a-python-rdflib-example/">How can I use the Ordnance Survey Linked Data</a>: shows how to install RdfLib and query the linked data offered by <a href="http://blog.ordnancesurvey.co.uk/2011/01/how-linked-data-can-reap-benefits/">Ordnance Survey</a>.</li>
+<li><a href="http://gromgull.net/blog/2011/01/a-quick-and-dirty-guide-to-your-first-time-with-rdf/">A quick and dirty guide to YOUR first time with RDF</a>: another example of querying Uk government data found on <a href="http://data.gov.uk/">data.gov.uk</a> using RdfLib and Berkely/Sleepycat DB.</li>
+<h3>RdfAlchemy <a style="font-size: 14px;" href="http://www.openvest.com/trac/wiki/RDFAlchemy">http://www.openvest.com/trac/wiki/RDFAlchemy</a></h3>
+<p>The goal of RDFAlchemy (<a href="http://www.openvest.com/trac/wiki/RDFAlchemy#Installation">install</a> | <a href="http://www.openvest.com/public/docs/rdfalchemy/api/">apidocs</a> | <a href="http://groups.google.com/group/rdfalchemy-dev">usergroup</a>) is to allow anyone who uses  python to have a object type API access to an RDF Triplestore. In a nutshell, the same way that <a href="http://www.sqlalchemy.org/">SQLAlchemy</a> is an ORM (Object Relational Mapper) for relational database users, RDFAlchemy is an ORM (Object RDF Mapper) for semantic web users.</p>
+<p>RdfAlchemy can also work in conjunction with other datastores, including rdflib, Sesame, and Jena. Support for SPARQL is present, although it seems less stable than the rest of the library.</p>
+<h3>Fuxi <a style="font-size: 14px;" href="http://code.google.com/p/fuxi/">http://code.google.com/p/fuxi/</a></h3>
+<p>FuXi is a Python-based, bi-directional logical reasoning system for the semantic web. It <strong>requires</strong> rdflib 2.4.1 or 2.4.2 and it is <strong>not</strong> compatible with rdflib 3. FuXi aims to be the &#8216;engine for contemporary expert systems based on the Semantic Web technologies&#8217;. The documentation can be found <a href="http://fuxi.googlecode.com/hg/documentation/html/index.html">here</a>; it might be useful also to look at the <a href="http://code.google.com/p/fuxi/wiki/FuXiUserManual">user-manual</a> and the <a href="http://groups.google.com/group/fuxi-discussion">discussion group</a>.  </p>
+<p>In general, it looks as if Fuxi can offer a complete solution for knowledge representation and reasoning over the semantic web; it is quite sophisticated and well documented (partly via several academic articles). The downside is that to the end of hacking together a linked data application.. well Fuxi is probably just too complex and difficult to learn.</p>
+<li><a href="http://blog.okfn.org/2010/08/02/about-inferencing/">About Inferencing</a>: a very short introduction to what Fuxi inferencing capabilities can do in the context of an rdf application.</li>
+<h3>ORDF <a style="font-size: 14px;" href="http://ordf.org/">ordf.org</a></h3>
+<p>ORDF (<a href="http://packages.python.org/ordf/administration.html#installation">download</a> | <a href="http://packages.python.org/ordf/index.html">docs</a>) is the <a href="http://okfn.org/">Open Knowledge Foundation</a>‘s library of support infrastructure for RDF. It is <strong>based</strong> on RDFLib and contains an object-description mapper, support for multiple back-end indices, message passing, revision history and provenance, a namespace library and a variety of helper functions and modules to ease integration with the <a href="http://pylonshq.com/">Pylons</a> framework.</p>
+<p>The current version of this library is 0.35. You can have a peek at some of its key functionalities by checking out the &#8216;<a href="http://packages.python.org/ordf/odm.html">Object Description Mapper</a>&#8216; &#8211; an equivalent to what an Object-Relational Mapper would give you in the context of a relational database. The library seems to be pretty solid; for an example of a system built on top of ORDF you can see <a href="http://bibliographica.org/">Bibliographica</a>, an online open catalogue of cultural works.</p>
+<li>Why using RDF? The <a href="http://packages.python.org/ordf/design_considerations.html">Design Considerations</a> section in the ORDF documentation discusses the reasons that led to the development of this library in a clear and practical fashion.</li>
+<h3>Django-rdf <a style="font-size: 14px;" href="http://code.google.com/p/django-rdf/">http://code.google.com/p/django-rdf/</a></h3>
+<p>Django-RDF (<a href="http://code.google.com/p/django-rdf/downloads/list">download</a> | <a href="http://code.google.com/p/django-rdf/wiki/FAQ">faq</a> | <a href="http://groups.google.com/group/django-rdf">discussiongroup</a>) is an RDF engine implemented in a generic, reusable <a href="http://www.djangoproject.com/">Django</a> app, providing complete RDF support to Django projects without requiring any modifications to existing framework or app source code. The philosophy is simple: do your web development using Django just like you&#8217;re used to, then turn the knob and &#8211; with no additional effort &#8211; expose your project on the semantic web.</p>
+<p>Django-RDF can expose models from any other app as RDF data. This makes it easy to write new views that return RDF/XML data, and/or query existing models in terms of RDFS or OWL classes and properties using (a variant of) the SPARQL query language. SPARQL in, RDF/XML out &#8211; two basic semantic web necessities. Django-RDF also implements an RDF store using its internal models such as Concept, Predicate, Resource, Statement, Literal, Ontology, Namespace, etc. The SPARQL query engine returns query sets that can freely mix data in the RDF store with data from existing Django models.</p>
+<p>The major <strong>downside</strong> of this library is that it doesn&#8217;t seem to be maintained anymore; the last release is from 2008, and there seem to be various conflicts with recent versions of Django. A real shame!</p>
+<h3>Djubby <a style="font-size: 14px;" href="http://code.google.com/p/djubby/">http://code.google.com/p/djubby/</a></h3>
+<p>Djubby (<a href="http://code.google.com/p/djubby/downloads/list">download</a> | <a href="http://code.google.com/p/djubby/wiki/GettingStarted">docs</a>) is a Linked Data frontend for SPARQL endpoints for the <a href="http://www.djangoproject.com/">Django</a> Web framework, adding a Linked Data interface to any existing SPARQL-capable triple stores. </p>
+<p>Djubby is quite inspired by Richard Cyganiak&#8217;s <a href="http://www4.wiwiss.fu-berlin.de/pubby/">Pubby</a> (written in Java): it provides a Linked Data interface to local or remote SPARQL protocol servers, it provides dereferenceable URIs by rewriting URIs found in the SPARQL-exposed dataset into the djubby server&#8217;s namespace, and it provides a simple HTML interface showing the data available about each resource, taking care of handling 303 redirects and content negotiation. </p>
+<h3>Redland <a style="font-size: 14px;" href="http://librdf.org/">http://librdf.org/</a></h3>
+<p>Redland (<a href="http://download.librdf.org/">download</a> | <a href="http://librdf.org/docs/">docs</a> | <a href="http://lists.usefulinc.com/pipermail/redland-dev/">discussiongroup</a>) is an RDF library written in C and including several high-level language APIs providing RDF manipulation and storage. Redland makes available also a Python interface (<a href="http://librdf.org/docs/python.html">intro</a> | <a href="http://librdf.org/docs/pydoc/RDF.html">apidocs</a>) that can be used to manipulate RDF triples. </p>
+<p>This library seems to be quite complete and is actively maintained; only potential downside is the installation process. In order to use the python bindings you need to install the C library too (which in turns depends on other C libraries), so (depending on your programming experience and operating system used) just getting up and running might become a challenge.</p>
+<h3>SuRF <a style="font-size: 14px;" href="http://packages.python.org/SuRF/">http://packages.python.org/SuRF/</a></h3>
+<p>SuRF (<a href="http://packages.python.org/SuRF/install.html#installing-rdflib">install</a> | <a href="http://packages.python.org/SuRF/#documentation">docs</a>) is an Object &#8211; RDF Mapper based on the RDFLIB python library. It exposes the RDF triple sets as sets of resources and seamlessly integrates them into the Object Oriented paradigm of python in a similar manner as ActiveRDF does for ruby.</p>
+<h3>Other smaller (but possibly useful) python libraries for rdf:</h3>
+<li><a href="http://ivan-herman.name/2007/07/06/sparql-endpoint-interface-to-python/">Sparql Interface to python</a>: a minimalistic solution for querying sparql endpoints using python (<a href="http://www.ivan-herman.net/Misc/PythonStuff/SPARQL/">download</a> | <a href="http://www.ivan-herman.net/Misc/PythonStuff/SPARQL/Doc-SPARQL/">apidocs</a>). <em>UPDATE: Ivan Herman pointed out that this library has been discontinued and merged with the &#8216;SPARQL Endpoint interface to Python&#8217; below.</em></li>
+<li><a href="http://sparql-wrapper.sourceforge.net/">SPARQL Endpoint interface to Python</a> another little utility for talking to a SPARQL endpoint, including having select-results mapped to rdflib terms or returned in JSON format (<a href="http://sourceforge.net/projects/sparql-wrapper/">download</a>)</li>
+<li><a href="http://code.google.com/p/pysparql/source/browse/trunk/src/sparql.py">PySparql</a>: again, a minimal library that does SELECT and ASK queries on an endpoint which implements the HTTP (GET or POST) bindings of the SPARQL Protocol (<a href="http://code.google.com/p/pysparql/source/browse/trunk/src/sparql.py">code page</a>)</li>
+<li><a href="https://github.com/mnot/sparta/">Sparta</a>: Sparts is a simple, resource-centric API for RDF graphs, built on top of RDFLIB. </li>
+<li><a href="http://oort.to/">Oort</a>: another Python toolkit for accessing RDF graphs as plain objects, based on RDFLIB. The project homepage hasn&#8217;t been updated for a while, although there is trace of recent activity on its <a href="http://code.google.com/p/oort/">google project</a> page.</li>
+<p>&nbsp;</p>
+<h2>2. RDF Triplestores that are python-friendly</h2>
+<p>An important component of a linked-data application is the <a href="http://en.wikipedia.org/wiki/Triplestore">triplestore</a> (that is, an RDF database): many commercial and non-commercial triplestores are available, but only a few offer out-of-the-box python interfaces. Here&#8217;s a list of them:</p>
+<h3>Allegro Graph <a style="font-size: 14px;" href="http://www.franz.com/agraph/allegrograph/">http://www.franz.com/agraph/allegrograph/</a></h3>
+<p><a href="http://www.franz.com/agraph/allegrograph/">AllegroGraph</a> RDFStore is a high-performance, persistent RDF graph database. AllegroGraph uses disk-based storage, enabling it to scale to billions of triples while maintaining superior performance. Unfortunately, the official version of AllegroGraph is not free, but it is possible to get a <a href="http://www.franz.com/agraph/allegrograph/ag_commercial_edition.lhtml">free version</a> of it (it limits the DB to 50 million triples, so although useful for testing or development it doesn&#8217;t seem a good solution for a production environment).</p>
+<p>The Allegro Graph Python API (<a href="http://www.franz.com/agraph/allegrograph/clients.lhtml">download</a> | <a href="http://www.franz.com/agraph/support/documentation/current/python-tutorial/python-tutorial-40.html">docs</a> | <a href="http://www.franz.com/agraph/support/documentation/v4/python-tutorial/python-API-40.html">reference</a>) offers convenient and efficient access to an <a href="http://www.franz.com/agraph/allegrograph/">AllegroGraph</a> server from a Python-based application. This API provides methods for creating, querying and maintaining RDF data, and for managing the stored triples.</p>
+<li>A hands-on overview of what&#8217;s like to work with AllegroGraph and python can be found here: <a href="http://www.snee.com/bobdc.blog/2009/04/getting-started-with-allegrogr.html">Getting started with AllegroGraph</a>.</li>
+<h3>Open Link Virtuoso <a style="font-size: 14px;" href="http://virtuoso.openlinksw.com/">http://virtuoso.openlinksw.com/</a></h3>
+<p><a href="http://en.wikipedia.org/wiki/Virtuoso_Universal_Server">Virtuoso Universal Server</a> is a middleware and database engine hybrid that combines the functionality of a traditional RDBMS, ORDBMS, virtual database, RDF, XML, free-text, web application server and file server functionality in a single system. Rather than have dedicated servers for each of the aforementioned functionality realms, Virtuoso is a &#8220;universal server&#8221;; it enables a single multithreaded server process that implements multiple protocols. The open source edition of Virtuoso Universal Server is also known as <a href="http://virtuoso.openlinksw.com/dataspace/dav/wiki/Main/VOSIntro">OpenLink Virtuoso</a>.</p>
+<p><a href="http://packages.python.org/virtuoso/">Virtuoso from Python</a> is intended to be a collection of modules for interacting with OpenLink Virtuoso from python. The goal is to provide drivers for `SQLAlchemy` and `RDFLib`. The package is installable from the <a href="http://pypi.python.org/pypi/virtuoso">Python Package Index</a> and source code for development is available in a mercurial repository on <a href="http://bitbucket.org/ww/virtuoso">BitBucket</a>. </p>
+<li>A possibly useful example of using Virtuoso from python: <a href="http://www.openlinksw.com/dataspace/kidehen@openlinksw.com/weblog/kidehen@openlinksw.com%27s%20BLOG%20%5B127%5D/1651">SPARQL Guide for Python Developer</a>.</li>
+<h3>Sesame <a style="font-size: 14px;" href="http://www.openrdf.org/">http://www.openrdf.org/</a></h3>
+<p><a href="http://en.wikipedia.org/wiki/Sesame_(framework)">Sesame</a> is an open-source framework for querying and analyzing RDF data (<a href="http://www.openrdf.org/download.jsp">download</a> | <a href="http://www.openrdf.org/documentation.jsp">documentation</a>). Sesame supports two query languages: SeRQL and Sparql. Sesame&#8217;s API differs from comparable solutions in that it offers a (stackable) interface through wich functionality can be added, and the storage engine is abstracted from the query interface (many other Triplestores can in fact be used through the Sesame API).</p>
+<p>It looks as if the best way to interact with Sesame is by using Java; however there is also a pythonic API called <a href="http://pysesame.projects.semwebcentral.org/">pySesame</a>. This is essentially a python wrapper for Sesame&#8217;s REST HTTP API, so the range of operations supported (Log in, Log out, Request a list of available repositories, Evaluate a SeRQL-select, RQL or RDQL query, Extract/upload/remove RDF from a repository) are somehow limited (for example, there does not seem to be any native SPARQL support).</p>
+<li>A nice introduction to using Sesame with Python (without pySesame though) can be found in this article: <a href="http://www.jenitennison.com/blog/node/153">Getting Started with RDF and SPARQL Using Sesame and Python</a>.</li>
+<h3>Talis platform <a style="font-size: 14px;" href="http://www.talis.com/platform/">http://www.talis.com/platform/</a></h3>
+<p>The Talis Platform (<a href="http://docs.api.talis.com/getting-started/platform-faq#TOC-What-is-the-Talis-Platform-">faq</a> | <a href="http://docs.api.talis.com/">docs</a>)is an environment for building next generation applications and services based on Semantic Web technologies. It is a <strong>hosted</strong> system which provides an efficient, robust storage infrastructure. Both arbitrary documents and RDF-based semantic content are supported, with sophisticated query, indexing and search features. Data uploaded on the Talis platform are organized into stores: a <strong>store</strong> is a grouping of related data and metadata. For convenience each store is assigned one or more owners who are the people who have rights to configure the access controls over that data and metadata. Each store provides a uniform REST interface to the data and metadata it manages.</p>
+<p>Stores don&#8217;t come free of charge, but through the <a href="http://www.talis.com/platform/cc/">Talis Connected Commons scheme</a> it is possible have quite large amounts of store space for free. The scheme is intended to support a wide range of different forms of data publishing. For example scientific researchers seeking to share their research data; dissemination of public domain data from a variety of different charitable, public sector or volunteer organizations; open data enthusiasts compiling data sets to be shared with the web community.</p>
+<p>Good news for pythonistas too: <a href="http://code.google.com/p/pynappl/">pynappl</a> is a simple client library for the Talis Platform. It relies on <a href="http://code.google.com/p/rdflib/">rdflib 3.0</a> and draws inspiration from other similar client libraries.  Currently it is focussed mainly on managing data loading and manipulation of Talis Platform stores (<a href="http://blogs.talis.com/n2/archives/887">this blog post</a> says more about it). </p>
+<li>Before trying out the Talis platform you might find useful this blog post: <a href="http://www.jenitennison.com/blog/node/109">Publishing Linked Data on the Talis Platform</a>.</li>
+<h3>4store <a style="font-size: 14px;" href="http://4store.org/">http://4store.org/</a></h3>
+<p>4store (<a href="http://4store.org/trac/wiki/Download">download</a> | <a href="http://4store.org/about">features</a> | <a href="http://4store.org/trac/wiki/Documentation">docs</a>) is a database storage and query engine that holds RDF data. It has been used by <a href="http://www.garlik.com/">Garlik</a> as their primary RDF platform for three years, and has proved itself to be robust and secure.<br />
+4store&#8217;s main strengths are its performance, scalability and stability. It does not provide many features over and above RDF storage and SPARQL queries, but if your are looking for a scalable, secure, fast and efficient RDF store, then 4store should be on your shortlist.</p>
+<p>4store offers a number of <a href="http://4store.org/trac/wiki/ClientLibraries">client libraries</a>, among them there are two for python: first, <a href="http://pypi.python.org/pypi/HTTP4Store/0.2">HTTP4Store</a> is a client for the 4Store httpd service &#8211; allowing for easy handling of sparql results, and adding, appending and deleting graphs. Second, <a href="https://github.com/wwaites/py4s">py4s</a>, although this seems to be a much more experimental library (geared towards multi process queries).<br />
+Furthemore, there is also an application for the Django web framework called <a href="https://github.com/66laps/django-4store#readme">django-4store</a> that makes it easier to query and load rdf data into 4store when running Django. The application offers some support for constructing sparql-based Django <a href="https://github.com/66laps/django-4store/blob/master/src/fourstore/views.py">views</a>.</p>
+<li>This blog post shows how to install 4store: <a href="http://www.jenitennison.com/blog/node/152">Getting Started with RDF and SPARQL Using 4store and RDF.rb </a>.</li>
+<p>&nbsp;</p>
+<p>End of the survey.. <em>have I missed out on something</em>? Please let me know if I did &#8211; I&#8217;ll try to keep adding stuff to this list as I move on with my project work!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/feed/</wfw:commentRss>
+		<slash:comments>24</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1110</post-id>	</item>
+		<item>
+		<title>Python links (and more) 7/2/11</title>
+		<link>http://www.michelepasin.org/blog/2011/02/03/python-links-and-more-7211/</link>
+				<pubDate>Thu, 03 Feb 2011 15:23:21 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[books]]></category>
+		<category><![CDATA[conference]]></category>
+		<category><![CDATA[culture]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[documentation]]></category>
+		<category><![CDATA[google]]></category>
+		<category><![CDATA[history]]></category>
+		<category><![CDATA[hypertext]]></category>
+		<category><![CDATA[museum]]></category>
+		<category><![CDATA[narrative]]></category>
+		<category><![CDATA[ontology]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[semanticweb]]></category>
+		<category><![CDATA[spellchecking]]></category>
+		<category><![CDATA[xml]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1075</guid>
+				<description><![CDATA[This post contains just a collection of various interesting things I ran into in the last couple of weeks&#8230; they&#8217;re organized into three categories: pythonic links, events and conferences, and new online tools. Hope you&#8217;ll find something of interest! Pythonic stuff: Epidoc Epydoc is a handy tool for generating API documentation for Python modules, based [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>This post contains just a collection of various interesting things I ran into in the last couple of weeks&#8230; they&#8217;re organized into three categories: pythonic links, events and conferences, and new online tools. Hope you&#8217;ll find something of interest!</p>
+<h1></h1>
+<h4 style="background:#e39191;">Pythonic stuff:</h4>
+<li><a href="http://epydoc.sourceforge.net/manual-usage.html">Epidoc</a><br />
+Epydoc is a handy tool for generating API <strong>documentation</strong> for Python modules, based on their docstrings. For an example of epydoc&#8217;s output, see the API documentation for epydoc itself (<a href="http://epydoc.sourceforge.net/api/">html</a>, <a href="http://epydoc.sourceforge.net/epydoc.pdf">pdf</a>).</li>
+<li><a href="http://www.rfk.id.au/software/pyenchant/">PyEnchant</a><br />
+PyEnchant is a <strong>spellchecking</strong> library for Python, based on the excellent <a href="http://www.abisource.com/enchant/">Enchant</a> library.</li>
+<li><a href="http://pypi.python.org/pypi/dexml/">Dexml</a><br />
+The dexml module takes the mapping between <strong>XML tags</strong> and Python objects and lets you capture that as cleanly as possible. Loosely inspired by Django&#8217;s ORM, you write simple class definitions to define the expected structure of your XML document.</li>
+<li><a href="http://forge.morfeo-project.org/wiki_en/index.php/SpecGen">SpecGen</a><br />
+SpecGen v5, <strong>ontology</strong> specification generator tool. It&#8217;s written in Python using Redland RDF library and licensed under the MIT license.</li>
+<li><a href="http://www.picloud.com/">PyCloud</a><br />
+Leverage the power of the <strong>cloud</strong> with only 3 lines of python code. Run long processes on the cloud directly from your shell!</li>
+<li><a href="http://www.commandlinefu.com/commands/browse">commandlinefu.com</a><br />
+This is not really pythonic &#8211; but nonetheless useful to pythonists: a community-based repository of useful unix <strong>shell</strong> scripts!</li>
+<h1></h1>
+<h4 style="background:#e39191;">Events and Conferences:</h4>
+<li><a href="http://www.nottingham.ac.uk/drha/callforpapers.aspx">Digital Resources in the Humanities and Arts Conference 2011</a><br />
+University of Nottingham Ningbo, China. The DRHA 2011 conference theme this year is &#8220;<strong>Connected Communities</strong>: global or local2local?&#8221;</li>
+<li><a href="http://nht11.ecs.soton.ac.uk/">Narrative and Hypertext Workshop</a> at the ACM Hypertext 2011 <strong>conference</strong> in Eindhoven.
+</li>
+<li><a href="http://culturehackday.org.uk/">Culture Hack Day</a>, London, January 2011<br />
+This <strong>event</strong> aimed at bringing cultural organisations together with software developers and creative technologists to make interesting new things. </li>
+<li><a href="http://historyhackday.org/">History Hack Day</a>, London, January 2011<br />
+A bunch of <strong>hackers</strong> with a passion for history getting together and doing experimental stuff</li>
+<li><a href="https://conference.archimuse.com/">Conference.archimuse.com</a><br />
+The &#8216;online space for <strong>cultural informatics</strong>&#8216;: lots of useful info here, about publications, jobs, people etc.
+</li>
+<li><a href="http://ec.europa.eu/information_society/apps/projects/factsheet/index.cfm?project_ref=270904">Agora project</a>: Scholarly Open Access Research in European Philosophy<br />
+Project looking at building an infrastructure for the semantic interlinking of <strong>European philosophy</strong> datasets</li>
+<h1></h1>
+<h4 style="background:#e39191;">Online tools: </h4>
+<li><a href="http://ontotext.com/factforge/reasonable-view.html">FactForge</a><br />
+A web application aiming at showcasing a &#8216;practical approach for <strong>reasoning</strong> with the web of linked data&#8217;.</li>
+<li><a href="http://www.semanticoverflow.com/">Semantic Overflow</a><br />
+A clone of <a href="http://stackoverflow.com/">Stack Overflow</a> (collaboratively edited question and answer site for programmers) for <strong>questions</strong> &#8216;about semantic web techniques and technologies&#8217;.</li>
+<li><a href="http://code.google.com/p/google-refine/">Google Refine</a><br />
+A tool for &#8220;working with <strong>messy data</strong>, cleaning it up, transforming it from one format into another, extending it with web services, and linking it to databases&#8221;.
+</li>
+<li><a href="http://scribe.googlelabs.com/">Google Scribe</a><br />
+A text <strong>editor</strong> with embedded autocomplete suggestions as you type</li>
+<li><a href="http://ngrams.googlelabs.com/info">Books Ngram Viewer</a><br />
+Tool that displays <strong>statistical</strong> information regarding the use of user-selected sentences in a corpus of books (e.g., &#8220;British English&#8221;, &#8220;English Fiction&#8221;, &#8220;French&#8221;) over the selected years</li>
+<p>&#8230;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1075</post-id>	</item>
+		<item>
+		<title>How semantic is the semantic web?</title>
+		<link>http://www.michelepasin.org/blog/2008/01/13/how-semantic-is-the-semantic-web/</link>
+				<pubDate>Sun, 13 Jan 2008 17:09:54 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Just Blogging]]></category>
+		<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[cognitiveScience]]></category>
+		<category><![CDATA[epistemology]]></category>
+		<category><![CDATA[research]]></category>
+		<category><![CDATA[semantics]]></category>
+		<category><![CDATA[semanticweb]]></category>
+
+		<guid isPermaLink="false">http://people.kmi.open.ac.uk/mikele/blog/?p=258</guid>
+				<description><![CDATA[Just read this article thanks to a colleague: I share pretty much everything it says about the SW, so I though it wouldn&#8217;t be too bad to pass it on to the next reader. Basically, it is about some very fundamental issues: what do we mean by semantics? Does a computer have semantics? If not, [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Just read this article thanks to a colleague: I share pretty much everything it says about the SW, so I though it wouldn&#8217;t be too bad to pass it on to the next reader. Basically, it is about some very fundamental issues: <b>what do we mean by semantics? Does a computer have semantics? If not, what&#8217;s the point of the name &#8216;Semantic Web&#8217;?</b> I think that it&#8217;s quite <em>un</em>-controversial the fact that the choice of the name &#8216;semantic&#8217; web is controversial.  </p>
+<p>I guess that many of the people originally supporting the SW vision didn&#8217;t really have the time to worry about this sort of questions, as they had different background, or maybe were just so excited about the grandiose idea an <em>intelligent</em> world wide web interconnected at the <em>data</em> level. Quite understandable, but as the idea is now reaching out to the larger public and maybe connecting to the more bottom-up Web2.0 movement, I think that it&#8217;d be great to re-think the foundations of the initial vision. Also with some rigorous clarification about the terms we use. The <a href="http://dx.doi.org/10.1683/epistematics">article of Chiara Carlino</a> reaches an interesting conclusion:</p>
+<blockquote>
+<p>So-called semantic web technologies provide the machine with data, like chinese symbols, and with a detailed set of instructions for handling them, in the form of ontologies. The computer simply follows the instructions, as the person in the chinese room does, and returns us useful informations, avoiding us the task of processing a big set of data on our own. <strong>These technologies have in fact nothing to do with semantics, because they never refer to anything in the real world: they never have any meaning, except in the mind of those expressing their knowledge in a machine-readable language</strong>, the mind of those preparing chinese symbols for the person in the chinese room. The person in the room â€“ the machine â€“ never ever gets this meaning. Such technologies, eventually, deal not much with semantics, but with knowledge, and its automatic processing through informatics. It seems therefore misleading and unfitting to keep on pointing with the word semantic a not semantic at all technology. <strong>It looks quite necessary to find out a new term, capable of hitting the core of this technology without giving rise to misunderstandings</strong>.</p>
+</blockquote>
+<p>The article was also posted on the <a href="http://lists.w3.org/Archives/Public/semantic-web/2007Feb/0156.html">w3c SW mailing list some time ago, and generated an interesting discussion</a>. But then, if we have to throw away the overrated &#8216;semantic web&#8217; term, how should we call it instead? Without any doubt, this research strand has generated lots of interesting results, both theoretical and practical. Mmm maybe, mainly practical &#8211; see the many prototypes, ontologies and standards for manipulating &#8216;knowledge&#8217;. So, continues the author, what people are doing is not really dealing with &#8216;semantics&#8217;, but building very complex systems and infrastructures for dealing with &#8216;knowledge structures&#8217;:</p>
+<blockquote>
+<p>There is a word who seems to serve this purpose, and that is <strong>epistematics</strong>. Its root â€“ episteÌme â€“ points out its strict connection with knowledge; nonetheless, it is not a theoric study, not an epistemology: it is rather an automatic processing of knowledge. <strong>The term informatic has been created to point out the automatic processing of informations: similarly the term epistematic is pretty fitting in pointing out the automatic processing of knowledge that the technologies we are speaking about make possible.</strong> The terms also reminds informatics, and this is pretty fitting as well, as this processing happens thanks to informatics. Eventually, the current â€“ though not much used â€“ meaning of epistematic is perfectly coherent with the technologies weâ€<img src="https://s.w.org/images/core/emoji/12.0.0-1/72x72/2122.png" alt="™" class="wp-smiley" style="height: 1em; max-height: 1em;" />d like to point out with it: epistematic, in fact, means deductive, and one of the most advanced features of these technologies is exactly the chance to process knowledge deductively, using automatic reasoners who build into software the deductive rules of formal logics. <strong>The formerly so-called semantic web looks now like a new science, not bounded (and narrowed) anymore to the world of web, as the  semantic web term suggested: epistematics is a real evolution of informatics, evolving  from raw informations processing to structured knowledge processing</strong>. Epistematic technologies are those technologies allowing the automatic processing, performed through informatic instruments, of knowledge, expressed in a machine- accessible language, so that the machine can process it, according to a subset of first order logic rules, and thus extract new knowledge.</p>
+</blockquote>
+<p>I like the term epistematics &#8211; and even more I like the fact that the &#8216;web&#8217; is just a possible extension to it, not a core part of its meaning. Semantic technologies, based on various groundbreaking works the AI pioneers did some twenty or thirty years ago (mainly, in knowledge representation), have been used much before the web. Now, is the advent of the web making such a big difference to them? They used to write knowledge-based systems in KIF &#8211; now they do them in OWL &#8211; we change the language but aren&#8217;t the functionalities we are looking for the same? They used to harvest big companies&#8217; databases and intranets to build up a knowledge base &#8211; now we also harvest the web &#8211; is that enough to claim the emergence of a new science, with new problems and methods? Or is it maybe just a different application of a well-known technology?</p>
+<p>I must confess, the more I think about such issues, the more I feel they&#8217;re difficult and intricate. For sure the web is evolving fast &#8211; and the amount of available structured information is evolving fast too. Making sense of all this requires a huge amount of clarity of thought. And presumably, this clarity of thought will eventually drive to some clarity of expression. Wittgenstein wasn&#8217;t the first one claiming it, but for sure he did it well: language plays tricks on us. Better, with his words:</p>
+<p><noscript><a xhref="http://www.burstnet.com/ads/ad10263a-map.cgi/ns/v=2.3S/sz=300x250A/" target="_top"> <img xsrc="http://www.burstnet.com/cgi-bin/ads/ad10263a.cgi/ns/v=2.3S/sz=300x250A/" border="0" alt="Click Here" /></a> </noscript> <!-- END Burst Network CODE --></p>
+<blockquote>
+<p><a href="http://www.brainyquote.com/quotes/quotes/l/ludwigwitt101117.html"><span class="huge">Philosophy is a battle against the bewitchment of our intelligence by means of language.</span></a></p>
+</blockquote>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">258</post-id>	</item>
+		<item>
+		<title>DBpedia rocks</title>
+		<link>http://www.michelepasin.org/blog/2007/09/12/dbpedia-rocks/</link>
+				<pubDate>Wed, 12 Sep 2007 09:39:24 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[dbpedia]]></category>
+		<category><![CDATA[linkeddata]]></category>
+		<category><![CDATA[semanticweb]]></category>
+
+		<guid isPermaLink="false">http://people.kmi.open.ac.uk/mikele/blog/?p=250</guid>
+				<description><![CDATA[It&#8217;s not the only semweb repository out there, but for sure it&#8217;s the more interesting. The whole wikipedia has been translated into RDF and made queryable through SPARQL.. lots of potential mashups waiting to be discovered! At the moment i&#8217;m looking at integrating the philosophy KB i&#8217;ve created with information from there&#8230; but I hope [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>It&#8217;s not the only semweb repository out there, but for sure it&#8217;s the more interesting. <a href="http://wiki.dbpedia.org/About">The whole wikipedia has been translated into RDF</a> and made queryable through <a href="http://esw.w3.org/topic/SparqlImplementations">SPARQL</a>.. lots of potential mashups waiting to be discovered! At the moment i&#8217;m looking at integrating the philosophy KB i&#8217;ve created with information from there&#8230; but I hope there&#8217;ll be time to experiment too&#8230;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">250</post-id>	</item>
+	</channel>
+</rss>

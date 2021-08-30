@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>cms &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/cms/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Tue, 03 Aug 2010 13:33:52 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Trying out Django-cms</title>
+		<link>http://www.michelepasin.org/blog/2010/08/03/trying-out-django-cms/</link>
+				<pubDate>Tue, 03 Aug 2010 13:33:52 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[cms]]></category>
+		<category><![CDATA[django]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=792</guid>
+				<description><![CDATA[I tried installing django-cms, an open-source project from Switzerland&#8217;s company Divio. It is a content management system based on the web framework Django and is written in Python. Among the interesting features of DjangoCms (besides the fact that it is based on django, which I happen to have fun with in most of my programming [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I tried installing <a href="http://www.django-cms.org/en/">django-cms</a>, an open-source project from Switzerland&#8217;s company <a href="http://www.divio.ch/">Divio</a>. It is a content management system based on the web framework <a href="http://www.djangoproject.com/">Django</a> and is written in Python. </p>
+<div style="width:425px" id="__ss_4289773"><object id="__sse4289773" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=django-cms-key-100525050945-phpapp02&#038;rel=0&#038;stripped_title=django-cmskey" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/></object></div>
+<p>Among the interesting <a href="http://www.django-cms.org/en/tour/">features</a> of DjangoCms (besides the fact that it is based on django, which I happen to have fun with in most of my programming work): </p>
+<blockquote>
+<li>Flexible Plugin Architecture. Build flexible pages with a wide range of plugins.</li>
+<li>SEO Optimization. The structure of the pages is optimized for SEO.</li>
+<li>Editorial workflow. Workflows for publishing and approval.</li>
+<li>Permission Management. Set specific rights to different users.</li>
+<li>Versioning. Each modification of the page will be saved. You can restore any state you wish.</li>
+<li>Multisites. Administrate multiple websites over the same admin interface.</li>
+<li>Multilanguage. Support for different languages (i.e. arabic, chinese or russian)</li>
+<li>Applications (Apps). Add apps to different pages of the CMS.</li>
+<li>Media Asset Manager (MAM). MAM allows you to manage all kind of assets (pictures, PDFs, videos and other documents).</li>
+</blockquote>
+<p>It&#8217;s quite interesting to check out the other alternatives too, if you want a django-based CMS. <a href="http://code.djangoproject.com/wiki/CMSAppsComparison">This comparison webpage</a> has all the info you need.</p>
+<p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</p>
+<p>Getting to the meaty part: here are the steps I followed during <strong>installation</strong>:</p>
+<p>1. went to <a href="http://github.com/divio/django-cms/downloads">gitHub</a> and tried to install the latest version available (2.1.0.beta2). Tried to run the example app within that package, but it was throwing too many errors so I decided to go for the 2.0 stable release (<a href="http://github.com/divio/django-cms/tarball/2.0.0">django-cms-2.0.0.final.tar.gz</a>). </p>
+<p>2. This version worked fine, I just had to <strong>set the MEDIA directory</strong> giving using the full path on my machine, and <strong>remove</strong> all references to &#8216;<strong>South</strong>&#8216; and &#8216;<strong>Reversion</strong>&#8216; django apps (in &#8216;installed apps&#8217;) cause I don&#8217;t use them.  </p>
+<p>3. fill out the <strong>DB specs</strong> as needed (<em>&#8216;DATABASE_ENGINE = &#8216;sqlite3&#8217;</em>), update the DB using &#8216;<em>python manage.py syncdb</em>&#8216;, and then start the server using &#8216;<em>python manage.py runserver</em>&#8216; </p>
+<p>4. That&#8217;s it. Go to /admin, <strong>set up some pages</strong>, add content and see the result. </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/Screen-shot-2010-08-03-at-14.19.23.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/Screen-shot-2010-08-03-at-14.19.23.png" alt="Screen shot 2010-08-03 at 14.19.23.png" border="0" width="400" height="130" /></a></p>
+<p>The templates that come by default are good at giving you an idea of how the information is structured and retrieve, but they are a bit messy in my opinion. So I <strong>created my own template </strong>and added it to the default ones (all the info on how to do this on the <a href="http://www.django-cms.org/en/documentation/2.0/configuration/">official docs</a>) </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/Screen-shot-2010-08-03-at-14.22.04.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/Screen-shot-2010-08-03-at-14.22.04.png" alt="Screen shot 2010-08-03 at 14.22.04.png" border="0" width="320" height="300" /></a></p>
+<p>The end result: not a masterwork, but a decent starting point for certain! </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/Screen-shot-2010-08-03-at-14.26.29.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/Screen-shot-2010-08-03-at-14.26.29.png" alt="Screen shot 2010-08-03 at 14.26.29.png" border="0" width="500" height="200" /></a></p>
+<p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;</p>
+<p>Other places online where you might find useful django-cms tips:</p>
+<p>&#8211; django-cms <a href="http://groups.google.ch/group/django-cms">mailing list</a> on google groups<br />
+&#8211; another mailing list on <a href="http://blog.gmane.org/gmane.comp.python.django.django-cms">gmame.org</a></p>
+<p>That&#8217;s it for now. I like very much the plugin architecture (plugins or extensions can be <a href="http://www.django-cms.org/en/extensions/">downloaded here</a>), maybe I&#8217;ll be posting some more about that in the future&#8230; </p>
+<p>&#8230;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">792</post-id>	</item>
+	</channel>
+</rss>

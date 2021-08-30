@@ -22,7 +22,7 @@ rm -rf build/*
 
 echo -e "\nRSYNC /DOCS TO /DOCS-PREV"
 echo "+++++++++++++++++"
-rsync -av --delete docs/ docs-prev/
+rsync -av --delete --exclude blog docs/ docs-prev/
 
 echo -e "\nGRAB SITE INTO BUILD DIRECTORY" 
 echo "+++++++++++++++++"
@@ -34,7 +34,7 @@ cd ..
 
 echo -e "\RSYNC BUILD DIRECTORY TO /DOCS"
 echo "+++++++++++++++++"
-rsync -av --delete --exclude '.nojekyll' --exclude 'CNAME' build/ docs/
+rsync -av --delete --exclude '.nojekyll' --exclude 'CNAME' --exclude blog build/ docs/
 
 
 

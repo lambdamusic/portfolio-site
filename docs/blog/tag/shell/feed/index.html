@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>shell &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/shell/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Wed, 17 Nov 2010 18:41:07 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Preloading stuff in django&#8217;s interactive shell</title>
+		<link>http://www.michelepasin.org/blog/2010/11/17/preloading-stuff-in-djangos-interactive-shell/</link>
+				<comments>http://www.michelepasin.org/blog/2010/11/17/preloading-stuff-in-djangos-interactive-shell/#comments</comments>
+				<pubDate>Wed, 17 Nov 2010 18:41:07 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[shell]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1012</guid>
+				<description><![CDATA[Django&#8217;s shell is a fantastic way to interact with all the components of your django application, eg when testing new functionalities or debugging a nasty error. Sometimes though you end up loading the same variables or importing the same modules every time you run the shell , for example because you are trying out a [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://docs.djangoproject.com/en/dev/ref/django-admin/#shell">Django&#8217;s shell</a> is a fantastic way to interact with all the components of your django application, eg when testing new functionalities or debugging a nasty error. Sometimes though you end up loading the same variables or importing the same modules every time you run the shell , for example because you are trying out a large function that needs being refined through a trial and error process. </p>
+<p>Opening up the shell and reloading all the components you need to have handy can thus become a bit tedious; here&#8217;s an easy way to go around this problem.<br />
+In doing this, I&#8217;ve just been inspired some code found in the handy <a href="https://github.com/django-extensions/django-extensions">django-extensions</a> app. The extensions ship with a number of <a href="http://code.google.com/p/django-command-extensions/wiki/CommandExtensions">command modules</a>, that is, functions that you can run from the unix shell using the usual <em>python manage.py some_command</em> syntax.  </p>
+<p>The module I&#8217;m talking about here is called <strong>shell_plus</strong> &#8211; it&#8217;s an enhanced version of the Django shell. It will autoload all your models making it easy to work with the ORM right away. Here&#8217;s the implementation:</p>
+<pre style="font-size: 13px; line-height: 150%;"><div class="python" style="font-family:monospace;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0; overflow:auto;"><span style="color: #808080; font-style: italic;"># django_extensions/management/commands/shell_plus.py</span><br />
+<br />
+<span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #dc143c;">os</span><br />
+<span style="color: #ff7700;font-weight:bold;">from</span> django.<span style="color: black;">core</span>.<span style="color: black;">management</span>.<span style="color: black;">base</span> <span style="color: #ff7700;font-weight:bold;">import</span> NoArgsCommand<br />
+<span style="color: #ff7700;font-weight:bold;">from</span> <span style="color: #dc143c;">optparse</span> <span style="color: #ff7700;font-weight:bold;">import</span> make_option<br />
+<br />
+<span style="color: #ff7700;font-weight:bold;">class</span> Command<span style="color: black;">&#40;</span>NoArgsCommand<span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; option_list = NoArgsCommand.<span style="color: black;">option_list</span> + <span style="color: black;">&#40;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; make_option<span style="color: black;">&#40;</span><span style="color: #483d8b;">'--plain'</span>, action=<span style="color: #483d8b;">'store_true'</span>, dest=<span style="color: #483d8b;">'plain'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #008000;">help</span>=<span style="color: #483d8b;">'Tells Django to use plain Python, not IPython.'</span><span style="color: black;">&#41;</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; make_option<span style="color: black;">&#40;</span><span style="color: #483d8b;">'--no-pythonrc'</span>, action=<span style="color: #483d8b;">'store_true'</span>, dest=<span style="color: #483d8b;">'no_pythonrc'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #008000;">help</span>=<span style="color: #483d8b;">'Tells Django to use plain Python, not IPython.'</span><span style="color: black;">&#41;</span>,<br />
+&nbsp; &nbsp; <span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #008000;">help</span> = <span style="color: #483d8b;">&quot;Like the 'shell' command but autoloads the models of all installed Django apps.&quot;</span><br />
+<br />
+&nbsp; &nbsp; requires_model_validation = <span style="color: #008000;">True</span><br />
+<br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">def</span> handle_noargs<span style="color: black;">&#40;</span><span style="color: #008000;">self</span>, <span style="color: #66cc66;">**</span>options<span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># XXX: (Temporary) workaround for ticket #1796: force early loading of all</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># models from installed apps. (this is fixed by now, but leaving it here</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># for people using 0.96 or older trunk (pre [5919]) versions.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">from</span> django.<span style="color: black;">db</span>.<span style="color: black;">models</span>.<span style="color: black;">loading</span> <span style="color: #ff7700;font-weight:bold;">import</span> get_models, get_apps<br />
+&nbsp; &nbsp; &nbsp; &nbsp; loaded_models = get_models<span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; use_plain = options.<span style="color: black;">get</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'plain'</span>, <span style="color: #008000;">False</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; use_pythonrc = <span style="color: #ff7700;font-weight:bold;">not</span> options.<span style="color: black;">get</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'no_pythonrc'</span>, <span style="color: #008000;">True</span><span style="color: black;">&#41;</span><br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Set up a dictionary to serve as the environment for the shell, so</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># that tab completion works on objects that are imported at runtime.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># See ticket 5082.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">from</span> django.<span style="color: black;">conf</span> <span style="color: #ff7700;font-weight:bold;">import</span> settings<br />
+&nbsp; &nbsp; &nbsp; &nbsp; imported_objects = <span style="color: black;">&#123;</span><span style="color: #483d8b;">'settings'</span>: settings<span style="color: black;">&#125;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">for</span> app_mod <span style="color: #ff7700;font-weight:bold;">in</span> get_apps<span style="color: black;">&#40;</span><span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; app_models = get_models<span style="color: black;">&#40;</span>app_mod<span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> <span style="color: #ff7700;font-weight:bold;">not</span> app_models:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">continue</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; model_labels = <span style="color: #483d8b;">&quot;, &quot;</span>.<span style="color: black;">join</span><span style="color: black;">&#40;</span><span style="color: black;">&#91;</span>model.__name__ <span style="color: #ff7700;font-weight:bold;">for</span> model <span style="color: #ff7700;font-weight:bold;">in</span> app_models<span style="color: black;">&#93;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">print</span> <span style="color: #008000;">self</span>.<span style="color: black;">style</span>.<span style="color: black;">SQL_COLTYPE</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">&quot;From '%s' autoload: %s&quot;</span> <span style="color: #66cc66;">%</span> <span style="color: black;">&#40;</span>app_mod.__name__.<span style="color: black;">split</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'.'</span><span style="color: black;">&#41;</span><span style="color: black;">&#91;</span>-<span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>, model_labels<span style="color: black;">&#41;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">for</span> model <span style="color: #ff7700;font-weight:bold;">in</span> app_models:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">try</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; imported_objects<span style="color: black;">&#91;</span>model.__name__<span style="color: black;">&#93;</span> = <span style="color: #008000;">getattr</span><span style="color: black;">&#40;</span><span style="color: #008000;">__import__</span><span style="color: black;">&#40;</span>app_mod.__name__, <span style="color: black;">&#123;</span><span style="color: black;">&#125;</span>, <span style="color: black;">&#123;</span><span style="color: black;">&#125;</span>, model.__name__<span style="color: black;">&#41;</span>, model.__name__<span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">except</span> <span style="color: #008000;">AttributeError</span>, e:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">print</span> <span style="color: #008000;">self</span>.<span style="color: black;">style</span>.<span style="color: black;">ERROR_OUTPUT</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">&quot;Failed to import '%s' from '%s' reason: %s&quot;</span> <span style="color: #66cc66;">%</span> <span style="color: black;">&#40;</span>model.__name__, app_mod.__name__.<span style="color: black;">split</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'.'</span><span style="color: black;">&#41;</span><span style="color: black;">&#91;</span>-<span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>, <span style="color: #008000;">str</span><span style="color: black;">&#40;</span>e<span style="color: black;">&#41;</span><span style="color: black;">&#41;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">continue</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">try</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> use_plain:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Don't bother loading IPython, because the user wants plain Python.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">raise</span> <span style="color: #008000;">ImportError</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">import</span> IPython<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Explicitly pass an empty list as arguments, because otherwise IPython</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># would use sys.argv from this script.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; shell = IPython.<span style="color: black;">Shell</span>.<span style="color: black;">IPShell</span><span style="color: black;">&#40;</span>argv=<span style="color: black;">&#91;</span><span style="color: black;">&#93;</span>, user_ns=imported_objects<span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; shell.<span style="color: black;">mainloop</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">except</span> <span style="color: #008000;">ImportError</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Using normal Python shell</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #dc143c;">code</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">try</span>: <span style="color: #808080; font-style: italic;"># Try activating rlcompleter, because it's handy.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #dc143c;">readline</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">except</span> <span style="color: #008000;">ImportError</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">pass</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">else</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># We don't have to wrap the following import in a 'try', because</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># we already know 'readline' was imported successfully.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #dc143c;">rlcompleter</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #dc143c;">readline</span>.<span style="color: black;">set_completer</span><span style="color: black;">&#40;</span><span style="color: #dc143c;">rlcompleter</span>.<span style="color: black;">Completer</span><span style="color: black;">&#40;</span>imported_objects<span style="color: black;">&#41;</span>.<span style="color: black;">complete</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #dc143c;">readline</span>.<span style="color: black;">parse_and_bind</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">&quot;tab:complete&quot;</span><span style="color: black;">&#41;</span><br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># We want to honor both $PYTHONSTARTUP and .pythonrc.py, so follow system</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># conventions and get $PYTHONSTARTUP first then import user.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> use_pythonrc:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pythonrc = <span style="color: #dc143c;">os</span>.<span style="color: black;">environ</span>.<span style="color: black;">get</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">&quot;PYTHONSTARTUP&quot;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> pythonrc <span style="color: #ff7700;font-weight:bold;">and</span> <span style="color: #dc143c;">os</span>.<span style="color: black;">path</span>.<span style="color: black;">isfile</span><span style="color: black;">&#40;</span>pythonrc<span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">try</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #008000;">execfile</span><span style="color: black;">&#40;</span>pythonrc<span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">except</span> <span style="color: #008000;">NameError</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">pass</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># This will import .pythonrc.py as a side-effect</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #dc143c;">user</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #dc143c;">code</span>.<span style="color: black;">interact</span><span style="color: black;">&#40;</span>local=imported_objects<span style="color: black;">&#41;</span></div></pre>
+<p>Essentially, this is what&#8217;s going on here:</p>
+<p>a. A <strong>subclass of NoArgsCommand is created</strong> following the standard approach stated in Django&#8217;s <a href="http://docs.djangoproject.com/en/dev/howto/custom-management-commands/">docs for creating custom management commands</a> . </p>
+<p>b. All the <strong>applications</strong> in your django project and the related <strong>models</strong> get <strong>loaded</strong>, and their references are added to the <strong>imported_objects</strong> dictionary, eg when the code reads:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+imported_objects = {'settings': settings}</code></pre>
+<p>c. The code tries to <strong>load the best python shell</strong> available: iPython if present, otherwise the normal python shell with the necessary libraries are called.</p>
+<p>&#8230;</p>
+<p>That&#8217;s all. The key line to look at is therefore the last one, that is:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+# .......
+code.interact(local=imported_objects)</code></pre>
+<p>That&#8217;s what launches the interpreter and initializes it with the <em><strong>imported_objects</strong></em> dictionary; this dictionary contains all the (extra) symbols that we want to make available through the new python interpreter instance. So in order to have more stuff there all we have to do is add more elements to that dictionary, eg:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+# .......
+alist = range(1000)
+imported_objects['alist'] = alist
+code.interact(local=imported_objects)</code></pre>
+<p>Insert these two lines right before the last line of the script above, save it using a new name (eg. <em>my_fancyshell.py</em> )in the <em>/management/commands/</em> directory of one of your applications (it needs to be there so that django interprets it as a custom command), and the game is done. Now you can invoke </p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+bash-3.2$ python manage.py my_fancyshell.py</code></pre>
+<p>from the unix command line, and the &#8216;alist&#8217; symbol will be available.<br />
+Obviously in a real world situation you might end up loading and adding to the <em>imported_objects</em> dictionary various many things too, but the principle will remain the same!</p>
+<p>&#8230;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2010/11/17/preloading-stuff-in-djangos-interactive-shell/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1012</post-id>	</item>
+		<item>
+		<title>Snippet to load stuff quickly in the Django shell</title>
+		<link>http://www.michelepasin.org/blog/2009/05/27/snippet-to-quickly-load-stuff-in-the-django-shell/</link>
+				<comments>http://www.michelepasin.org/blog/2009/05/27/snippet-to-quickly-load-stuff-in-the-django-shell/#comments</comments>
+				<pubDate>Wed, 27 May 2009 15:06:10 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[shell]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=176</guid>
+				<description><![CDATA[Sometimes you end up testing out things a lot using the handy django shell, but every time you&#8217;ve got to repeat the same commands to load all the necessary models, utils etc. etc. In order to do this automatically, I thought you had to modify the django-admin.py file or something like that. Nope! Here&#8217;s a [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Sometimes you end up testing out things a lot using the handy <strong><a href="http://docs.djangoproject.com/en/dev/ref/django-admin/#ref-django-admin">django shell</a></strong>, but every time you&#8217;ve got to <strong>repeat</strong> the same commands to load all the necessary models, utils etc. etc.</p>
+<p><a href="http://www.djangosnippets.org/"><img class="alignnone size-full wp-image-178" title="Picture 1" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/05/picture-16.png" alt="Picture 1" width="240" height="54" /></a></p>
+<p>In order to do this automatically, I thought you had to modify the django-admin.py file or something like that. Nope! Here&#8217;s a <a href="http://www.djangosnippets.org/snippets/375/">useful django snippet that shows how to do the job.</a> Basically &#8211; it&#8217;s very simple (I actually don&#8217;t understand how I got stuck on something so obvious!), just put evetyhing you want to load  in a separate file in your project, and then load that file from the shell ;-)</p>
+<p>E.g..</p>
+<pre style='color:#000000;background:#f1f0f0;overflow:auto;'><span style='color:#c34e00; '>'''</span>
+<span style='color:#c34e00; '>Allows for a quick startup loading commonly used classes, installed apps, and console utils.</span>
+<span style='color:#c34e00; '></span>
+<span style='color:#c34e00; '>To use: After manage.py shell, enter from project.package.modulename import *</span>
+<span style='color:#c34e00; '>'''</span>
+
+<span style='color:#400000; font-weight:bold; '>from</span> django<span style='color:#806030; '>.</span>conf <span style='color:#400000; font-weight:bold; '>import</span> settings
+<span style='color:#400000; font-weight:bold; '>from</span> django<span style='color:#806030; '>.</span>db <span style='color:#400000; font-weight:bold; '>import</span> connection<span style='color:#806030; '>,</span> models
+
+<span style='color:#c34e00; '># Load each installed app and put models into the global namespace.</span>
+<span style='color:#400000; font-weight:bold; '>for</span> app <span style='color:#400000; font-weight:bold; '>in</span> models<span style='color:#806030; '>.</span>get_apps<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>:</span>
+    <span style='color:#400000; font-weight:bold; '>exec</span><span style='color:#806030; '>(</span><span style='color:#e60000; '>"from %s import *"</span> <span style='color:#806030; '>%</span> app<span style='color:#806030; '>.</span><span style='color:#e34adc; '>__name__</span><span style='color:#806030; '>)</span>
+
+<span style='color:#400000; font-weight:bold; '>def</span> last_query<span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>:</span>
+    <span style='color:#e60000; '>"Show the last query performed."</span>
+    <span style='color:#400000; font-weight:bold; '>return</span> connection<span style='color:#806030; '>.</span>queries<span style='color:#806030; '>[</span><span style='color:#806030; '>-</span><span style='color:#c00000; '>1</span><span style='color:#806030; '>]</span>
+
+<span style='color:#c34e00; '>#===================================================</span>
+<span style='color:#c34e00; '># Add commonly used modules, classes, functions here</span>
+<span style='color:#c34e00; '>#===================================================</span>
+<span style='color:#400000; font-weight:bold; '>from</span> django <span style='color:#400000; font-weight:bold; '>import</span> forms
+<span style='color:#400000; font-weight:bold; '>import</span> os
+<span style='color:#400000; font-weight:bold; '>from</span> datetime <span style='color:#400000; font-weight:bold; '>import</span> datetime
+
+<span style='color:#c34e00; '># etc. etc.</span>
+</pre>
+<p>p.s.<br />
+also snippets <a href="http://www.djangosnippets.org/snippets/540/">540</a> and <a href="http://www.djangosnippets.org/snippets/549/">549</a> provide <strong>alternative solutions </strong>to the problem!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2009/05/27/snippet-to-quickly-load-stuff-in-the-django-shell/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">176</post-id>	</item>
+	</channel>
+</rss>

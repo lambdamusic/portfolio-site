@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>turtle &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/turtle/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Sun, 12 Oct 2014 10:02:06 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>An interactive Turtle shell</title>
+		<link>http://www.michelepasin.org/blog/2014/10/12/interactive-turtle-shell/</link>
+				<comments>http://www.michelepasin.org/blog/2014/10/12/interactive-turtle-shell/#comments</comments>
+				<pubDate>Sun, 12 Oct 2014 09:21:41 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[semanticweb]]></category>
+		<category><![CDATA[turtle]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2495</guid>
+				<description><![CDATA[Wouldn&#8217;t it be nice to have an interactive environment where you quickly hack together an RDF model and then show it to your clients or colleagues in a more accessible format &#8211; i.e. a diagram? Don&#8217;t know if there&#8217;s anything like that already, but the other day while polishing up the OntosPy library I&#8217;ve taken [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Wouldn&#8217;t it be nice to have an interactive environment where you quickly hack together an RDF model and then show it to your clients or colleagues in a more accessible format &#8211; i.e. a diagram? </p>
+<p>Don&#8217;t know if there&#8217;s anything like that already, but the other day while polishing up the <a href="https://github.com/lambdamusic/ontosPy">OntosPy</a> library I&#8217;ve taken a couple of hours of fun-coding and put together a module that lets you do that. </p>
+<p>The idea is simple: load an interactive environment where you can quickly <strong>sketch out</strong> a few ideas using the (very readable) <a href="http://www.w3.org/TR/turtle/">Turtle</a> rdf format. </p>
+<p>Then <strong>export it</strong> onto a different representation e.g. a graphical one, so that it can be shown to people. Or just to keep working on it via a medium that offers different <a href="http://en.wikipedia.org/wiki/Affordance">affordances</a>.</p>
+<p>So here it is: </p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+[michele<span style='color:#008c00; '>.</span>pasin]@here:~/code/python>sketch<span style='color:#008c00; '>.</span>py 
+Good morning<span style='color:#008c00; '>.</span> Ready to Turtle away<span style='color:#008c00; '>.</span> Type docs() for help<span style='color:#008c00; '>.</span>
+In [<span style='color:#008c00; '>1</span>]: docs()
+
+====Sketch v <span style='color:#008c00; '>0.2</span>====
+
+add()  ==> add statements to the graph
+...........SHORTCUTS:
+...........'class' = owl:Class
+...........'sub' = rdfs:subClassOf
+...........TURTLE SYNTAX:  http://www<span style='color:#008c00; '>.</span>w3<span style='color:#008c00; '>.</span>org/TR/turtle/
+
+show() ==> shows the graph<span style='color:#008c00; '>.</span> Can take an OPTIONAL argument for the format<span style='color:#008c00; '>.</span>
+...........eg one of['xml', 'n3', 'turtle', 'nt', 'pretty-xml', dot']
+
+clear()	 ==> clears the graph
+...........all triples are removed
+
+omnigraffle() ==> creates a dot file and opens it with omnigraffle
+...........First you must set Omingraffle as your system default app for dot files!
+
+quit() ==> exit
+
+====Have fun!====
+
+
+In [<span style='color:#008c00; '>2</span>]: add()
+Multi-line input<span style='color:#008c00; '>.</span> Enter ### when finished<span style='color:#008c00; '>.</span>
+:person a class
+:mike a :person
+:person sub :agent
+:organization sub :agent
+:worksIn rdfs:domain :person
+:worksIn rdfs:range :organization
+:mike :worksIn :DamageInc
+:DamageInc a :organization
+
+In [<span style='color:#008c00; '>3</span>]: show()
+@prefix : <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//this</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>sketch#</span><span style='color:#0057a6; '>></span> .
+@prefix bibo: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//purl</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/ontology/bibo</span><span style='color:#0057a6; '>/></span> .
+@prefix foaf: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//xmlns</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>com/foaf/</span><span style='color:#008c00; '>0.1</span><span style='color:#0057a6; '>/></span> .
+@prefix npg: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//ns</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>nature</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>com/terms</span><span style='color:#0057a6; '>/></span> .
+@prefix npgg: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//ns</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>nature</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>com/graphs</span><span style='color:#0057a6; '>/></span> .
+@prefix npgx: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//ns</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>nature</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>com/extensions</span><span style='color:#0057a6; '>/></span> .
+@prefix owl: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//www</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>w3</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/</span><span style='color:#008c00; '>2002</span><span style='color:#474796; '>/</span><span style='color:#008c00; '>07</span><span style='color:#474796; '>/owl#</span><span style='color:#0057a6; '>></span> .
+@prefix rdf: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//www</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>w3</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/</span><span style='color:#008c00; '>1999</span><span style='color:#474796; '>/</span><span style='color:#008c00; '>02</span><span style='color:#474796; '>/</span><span style='color:#008c00; '>22</span><span style='color:#474796; '>-rdf-syntax-ns#</span><span style='color:#0057a6; '>></span> .
+@prefix rdfs: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//www</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>w3</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/</span><span style='color:#008c00; '>2000</span><span style='color:#474796; '>/</span><span style='color:#008c00; '>01</span><span style='color:#474796; '>/rdf-schema#</span><span style='color:#0057a6; '>></span> .
+@prefix skos: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//www</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>w3</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/</span><span style='color:#008c00; '>2004</span><span style='color:#474796; '>/</span><span style='color:#008c00; '>02</span><span style='color:#474796; '>/skos/core#</span><span style='color:#0057a6; '>></span> .
+@prefix xml: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//www</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>w3</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/XML/</span><span style='color:#008c00; '>1998</span><span style='color:#474796; '>/namespace</span><span style='color:#0057a6; '>></span> .
+@prefix xsd: <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>http:</span><span style='color:#474796; '>//www</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>w3</span><span style='color:#008c00; '>.</span><span style='color:#474796; '>org/</span><span style='color:#008c00; '>2001</span><span style='color:#474796; '>/XMLSchema#</span><span style='color:#0057a6; '>></span> .
+
+:mike a :person ;
+    :worksIn :DamageInc .
+
+:worksIn rdfs:domain :person ;
+    rdfs:range :organization .
+
+:DamageInc a :organization .
+
+:organization rdfs:subClassOf :agent .
+
+:person a owl:Class ;
+    rdfs:subClassOf :agent .
+
+
+
+In [<span style='color:#008c00; '>4</span>]: show("xml")
+&lt;?xml version="<span style='color:#008c00; '>1.0</span>" encoding="UTF-<span style='color:#008c00; '>8</span>"?>
+<span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:RDF</span><span style='color:#474796; '></span>
+<span style='color:#474796; '>&#xa0;&#xa0;&#xa0;xmlns</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#"</span><span style='color:#474796; '></span>
+<span style='color:#474796; '>&#xa0;&#xa0;&#xa0;xmlns:rdf</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://www.w3.org/1999/02/22-rdf-syntax-ns#"</span><span style='color:#474796; '></span>
+<span style='color:#474796; '>&#xa0;&#xa0;&#xa0;xmlns:rdfs</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://www.w3.org/2000/01/rdf-schema#"</span><span style='color:#474796; '></span>
+<span style='color:#0057a6; '>></span>
+  <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:Description</span><span style='color:#474796; '> rdf:about</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#mike"</span><span style='color:#0057a6; '>></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:type</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#person"</span><span style='color:#0057a6; '>/></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>worksIn</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#DamageInc"</span><span style='color:#0057a6; '>/></span>
+  <span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>rdf:Description</span><span style='color:#0057a6; '>></span>
+  <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:Description</span><span style='color:#474796; '> rdf:about</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#organization"</span><span style='color:#0057a6; '>></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdfs:subClassOf</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#agent"</span><span style='color:#0057a6; '>/></span>
+  <span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>rdf:Description</span><span style='color:#0057a6; '>></span>
+  <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:Description</span><span style='color:#474796; '> rdf:about</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#DamageInc"</span><span style='color:#0057a6; '>></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:type</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#organization"</span><span style='color:#0057a6; '>/></span>
+  <span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>rdf:Description</span><span style='color:#0057a6; '>></span>
+  <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:Description</span><span style='color:#474796; '> rdf:about</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#person"</span><span style='color:#0057a6; '>></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:type</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://www.w3.org/2002/07/owl#Class"</span><span style='color:#0057a6; '>/></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdfs:subClassOf</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#agent"</span><span style='color:#0057a6; '>/></span>
+  <span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>rdf:Description</span><span style='color:#0057a6; '>></span>
+  <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdf:Description</span><span style='color:#474796; '> rdf:about</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#worksIn"</span><span style='color:#0057a6; '>></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdfs:domain</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#person"</span><span style='color:#0057a6; '>/></span>
+    <span style='color:#0057a6; '>&lt;</span><span style='color:#333385; '>rdfs:</span><span style='color:#200080; font-weight:bold; '>range</span><span style='color:#474796; '> rdf:resource</span><span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://this.sketch#organization"</span><span style='color:#0057a6; '>/></span>
+  <span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>rdf:Description</span><span style='color:#0057a6; '>></span>
+<span style='color:#0057a6; '>&lt;/</span><span style='color:#333385; '>rdf:RDF</span><span style='color:#0057a6; '>></span>
+
+In [<span style='color:#008c00; '>5</span>]: omnigraffle()
+### saves a dot file and tries to open it with your default editor
+### if you're on a mac and have omnigraffle - that could be the one!
+
+In [<span style='color:#008c00; '>6</span>]: quit()
+</pre>
+<p>If you are mac based and you have <a href="http://www.dummies.com/how-to/content/how-to-assign-a-file-type-to-an-application-in-mac.html">associated</a> <span style="font-family:monospace;color:#000000; ">.dot</span> files to the excellent <a href="https://www.omnigroup.com/omnigraffle">Omnigraffle</a> app, you&#8217;d see something like this: </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/sketch_Screen-Shot-2014-10-12-at-10.12.48.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/sketch_Screen-Shot-2014-10-12-at-10.12.48.png"  alt="Sketch Screen Shot 2014 10 12 at 10 12 48" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/sketch_Screen-Shot-2014-10-12-at-10.13.32.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/sketch_Screen-Shot-2014-10-12-at-10.13.32.png"  alt="Sketch Screen Shot 2014 10 12 at 10 13 32" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p><strong>That speeded up my work quite a bit</strong> &#8211; especially in situations where you don&#8217;t mind about precision but are more interested in quickly showing the merits of a modelling approach.</p>
+<p>Any comments or ideas on how to develop this further? </p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2014/10/12/interactive-turtle-shell/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2495</post-id>	</item>
+		<item>
+		<title>Textmate bundle for Turtle and Sparql</title>
+		<link>http://www.michelepasin.org/blog/2013/08/13/textmate-bundle-for-turtle-and-sparql/</link>
+				<pubDate>Tue, 13 Aug 2013 17:07:34 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[semanticweb]]></category>
+		<category><![CDATA[sparql]]></category>
+		<category><![CDATA[textmate]]></category>
+		<category><![CDATA[turtle]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2392</guid>
+				<description><![CDATA[I recently ran into the Textmate bundle for Turtle, an extension for the Textmate osx editor aimed at facilitating working with RDF and SPARQL. If you happen to be using these technologies, well I&#8217;d suggest you take a look at the following post. The Resource Description Framework is a general-purpose language for representing information which [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I recently ran into the Textmate <a href="https://github.com/peta/turtle.tmbundle">bundle for Turtle</a>, an extension for the <a href="https://github.com/textmate/textmate">Textmate</a> osx editor aimed at facilitating working with RDF and SPARQL. If you happen to be using these technologies, well I&#8217;d suggest you take a look at the following post.  </p>
+<p>The Resource Description Framework is a <em>general-purpose language for representing information</em> which is widely used on the web in order to encode metadata in a machine-interoperable format. </p>
+<p>Turtle, the <a href="http://www.w3.org/TeamSubmission/turtle/">terse RDF Triple Language</a>, is a textual syntax for RDF which aims at human readability and compactness (among other things).<br />
+This is what it looks like:</p>
+<pre><code>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@base <http://example.org/schemas/vehicles>
+
+:MotorVehicle a rdfs:Class.
+
+:PassengerVehicle a rdfs:Class;
+   rdfs:subClassOf :MotorVehicle.
+
+:Person a rdfs:Class.
+
+xsd:integer a rdfs:Datatype.
+
+:registeredTo a rdf:Property;
+   rdfs:domain :MotorVehicle;
+   rdfs:range  :Person.
+
+:myLittleCar a PassengerVehicle
+</code></pre>
+<p>The termite library in question, in a nutshell, provides a bunch of snippets and query mechanisms that make it easier to work with Turtle RDF and related technologies.<br />
+More precisely, here&#8217;s the official features breakdown:</p>
+<blockquote>
+<li>Language grammar for Turtle and SPARQL 1.1</li>
+<li>Powerful (!) auto-completion (live-aggregated)</li>
+<li>Documentation for classes and roles/properties at your fingertips (live-aggregated)</li>
+<li>Interactive SPARQL query scratchpad</li>
+<li>Some snippets (prefixes and document skeleton)</li>
+<li>Solid syntax validation</li>
+<li>Commands for instant graph visualization of a knowledge base (requires <a href="http://www.graphviz.org/">Graphviz</a> and <a href="http://librdf.org/raptor/">Raptor</a>)</li>
+<li>Conversion between all common RDF formats</li>
+</blockquote>
+<h3>Example</h3>
+<p>In order to query a SPARQL endpoint (eg DBPedia) just type this in and run it (apple-R):</p>
+<pre><code>
+#QUERY &lt;http://dbpedia.org/sparql&gt;                    
+SELECT DISTINCT ?s ?label                             
+WHERE {                                               
+    ?s &lt;http://dbpedia.org/property/season&gt; ?o .      
+}  
+</code></pre>
+<p>Obviously you can query any endpoint, e.g. <a href="http://data.nature.com/query">data.nature.com</a>: </p>
+<pre><code>
+
+#QUERY &lt;http://data.nature.com/sparql&gt;
+
+PREFIX bibo:&lt;http://purl.org/ontology/bibo/&gt;
+PREFIX dc:&lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX dcterms:&lt;http://purl.org/dc/terms/&gt;
+PREFIX foaf:&lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX npg:&lt;http://ns.nature.com/terms/&gt;
+PREFIX npgg:&lt;http://ns.nature.com/graphs/&gt;
+PREFIX npgx:&lt;http://ns.nature.com/extensions/&gt;
+PREFIX owl:&lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX prism:&lt;http://prismstandard.org/namespaces/basic/2.1/&gt;
+PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX sc:&lt;http://purl.org/science/owl/sciencecommons/&gt;
+PREFIX skos:&lt;http://www.w3.org/2004/02/skos/core#&gt;
+PREFIX void:&lt;http://rdfs.org/ns/void#&gt;
+PREFIX xsd:&lt;http://www.w3.org/2001/XMLSchema#&gt;
+
+
+SELECT *                            
+WHERE {                                                
+    ?doi a npg:Article . 
+    ?doi dc:title ?title .
+    ?doi prism:publicationDate ?date
+} 
+limit 100 
+
+</code></pre>
+<p>And this is just the tip of the iceberg. Autocompletion, visualisations etc… it may be the Textmate-Semantic Web swiss army knife you&#8217;ve been looking for. </p>
+<p><img src="https://raw.github.com/peta/turtle.tmbundle/master/Support/img/screenshot-editor.png" alt="" title="" border="0" width="" height="700px" style="float:left;" /></p>
+<p>&nbsp;</p>
+<p><img src="https://raw.github.com/peta/turtle.tmbundle/master/Support/img/screenshot-sparql.png" alt="" title="" border="0" width="" height="700px" style="float:left;" /></p>
+<p>&nbsp;</p>
+<p><img src="https://raw.github.com/peta/turtle.tmbundle/master/Support/img/screenshot-visu.png" alt="" title="" border="0" width="" height="700px" style="float:left;" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2392</post-id>	</item>
+	</channel>
+</rss>

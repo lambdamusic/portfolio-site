@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	
+	>
+<channel>
+	<title>
+	Comments on: What Lisp to choose, really?	</title>
+	<atom:link href="http://www.michelepasin.org/blog/2007/04/24/what-lisp-to-choose-really/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog/2007/04/24/what-lisp-to-choose-really/</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Tue, 24 Apr 2007 23:20:26 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+			<item>
+				<title>
+				By: Mikele				</title>
+				<link>http://www.michelepasin.org/blog/2007/04/24/what-lisp-to-choose-really/comment-page-1/#comment-27</link>
+		<dc:creator><![CDATA[Mikele]]></dc:creator>
+		<pubDate>Tue, 24 Apr 2007 23:20:26 +0000</pubDate>
+		<guid isPermaLink="false">http://people.kmi.open.ac.uk/mikele/blog/?p=229#comment-27</guid>
+					<description><![CDATA[Well I found some info: this &lt;a href=&quot;http://digitool.com/pipermail/info-mcl_digitool.com/2005-January/000225.html&quot; rel=&quot;nofollow&quot;&gt; interesting link &lt;/a&gt; presents a similar issue with MCL. 
+The problem is the mac-file-format. As explained:
+&gt;&gt;&gt;&gt; I&#039;d guess it could be because of the problem with different line
+&gt;&gt;&gt;&gt; endings. You could open the file and convert it from CR line endings
+&gt;&gt;&gt;&gt; to LF line endings with ctrl-X ctrl-F.
+
+So what I&#039;ve done is opening and saving all the asdf-install&#039;ed libraries in my library-folder (~/.asdf-install-dir/....) with Microsoft Word. That&#039;s why we have WORD in our HD.. well jokin&#039; :-)
+
+I thought about having separate libraries for mcl and LW, but it doesnt seem feasible, as the .asdf-install file (which configures where the dwnloaded libraries will go) is customizable, but unique. Unless you want to start moving it around... but it doesnt seem very practical ....
+
+Once all the installed libraries (.asd and .lisp files) have been converted to the mac format, I just copied the aliases to the MCL-asdf registry folder (which can be anywhere). That&#039;s actually what asdf looks up when you load a library!
+
+WARNING:
+Preferably, I guess, it&#039;s good to make sure you don&#039;t re-install what has already been asdf-install&#039;ed through lispworks: since mcl can&#039;t read files which are not &quot;treated&quot; as above, i dont know what&#039;s going to happen. 
+
+Since it&#039;s perfectly fine to asdf-install stuff without caring  whether or not the lisp implementation of choice actually runs it, it&#039;s possible to just install everything through LW, and then use it with other implementations whenever needed!
+NEAT! That&#039;s where my knowledge arrives right now...
+
+The sad ending of the story, however, is that what I intended to run, Hunchentoot, doesn&#039;t work on MCL. :-((((((((((((((((
+A couple of the libraries (CFFI..) are not ported yet !]]></description>
+		<content:encoded><![CDATA[<p>Well I found some info: this <a href="http://digitool.com/pipermail/info-mcl_digitool.com/2005-January/000225.html" rel="nofollow"> interesting link </a> presents a similar issue with MCL.<br />
+The problem is the mac-file-format. As explained:<br />
+>>>> I&#8217;d guess it could be because of the problem with different line<br />
+>>>> endings. You could open the file and convert it from CR line endings<br />
+>>>> to LF line endings with ctrl-X ctrl-F.</p>
+<p>So what I&#8217;ve done is opening and saving all the asdf-install&#8217;ed libraries in my library-folder (~/.asdf-install-dir/&#8230;.) with Microsoft Word. That&#8217;s why we have WORD in our HD.. well jokin&#8217; :-)</p>
+<p>I thought about having separate libraries for mcl and LW, but it doesnt seem feasible, as the .asdf-install file (which configures where the dwnloaded libraries will go) is customizable, but unique. Unless you want to start moving it around&#8230; but it doesnt seem very practical &#8230;.</p>
+<p>Once all the installed libraries (.asd and .lisp files) have been converted to the mac format, I just copied the aliases to the MCL-asdf registry folder (which can be anywhere). That&#8217;s actually what asdf looks up when you load a library!</p>
+<p>WARNING:<br />
+Preferably, I guess, it&#8217;s good to make sure you don&#8217;t re-install what has already been asdf-install&#8217;ed through lispworks: since mcl can&#8217;t read files which are not &#8220;treated&#8221; as above, i dont know what&#8217;s going to happen. </p>
+<p>Since it&#8217;s perfectly fine to asdf-install stuff without caring  whether or not the lisp implementation of choice actually runs it, it&#8217;s possible to just install everything through LW, and then use it with other implementations whenever needed!<br />
+NEAT! That&#8217;s where my knowledge arrives right now&#8230;</p>
+<p>The sad ending of the story, however, is that what I intended to run, Hunchentoot, doesn&#8217;t work on MCL. :-((((((((((((((((<br />
+A couple of the libraries (CFFI..) are not ported yet !</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

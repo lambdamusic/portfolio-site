@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>questionnaire &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/questionnaire/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Thu, 03 Dec 2009 11:59:42 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Creating Questionnaires with Django</title>
+		<link>http://www.michelepasin.org/blog/2009/12/03/creating-questionnaires-with-django/</link>
+				<comments>http://www.michelepasin.org/blog/2009/12/03/creating-questionnaires-with-django/#comments</comments>
+				<pubDate>Thu, 03 Dec 2009 11:59:42 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[questionnaire]]></category>
+		<category><![CDATA[userstudy]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=450</guid>
+				<description><![CDATA[Simple and useful application from Aperte: Django Questionnaire. The Django Questionnaire app allows you to easily set up a working questionnaire, complete with email-invitations and CSV export functionality. This app allows you to spread your questions over multiple pages (categories), and currently supports 4 types of answers. The application is pretty simple and well designed. [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Simple and useful application from Aperte: <a href="http://djangoquest.aperte-it.com/">Django Questionnaire</a>. The Django Questionnaire app allows you to easily <strong>set up a working questionnaire</strong>, complete with <strong>email-invitations</strong> and <strong>CSV export</strong> functionality. This app allows you to spread your questions over multiple pages (<strong>categories</strong>), and currently supports <strong>4 types of answers</strong>.</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2009/12/picture-1.png"><img class="alignnone size-medium wp-image-451" title="Picture 1" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/12/picture-1.png?w=300" alt="" width="300" height="261" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/12/picture-1.png 344w, http://www.michelepasin.org/blog/wp-content/uploads/2009/12/picture-1-300x261.png 300w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>The application is pretty <strong>simple</strong> and <strong>well</strong> <strong>designed</strong>. Useful for doing large user-studies, for example. The download page lets you have it packaged as a django project, but transforming it into a reusable app is not too difficult (I&#8217;ve done that but I&#8217;m not posting it here because of several other little hacks I had to do so to accommodate the project I&#8217;m using the questionnaire for).</p>
+<p><strong>Tip</strong>: if you&#8217;re using <strong>django 1.1</strong> one little thing that might help you get going quickly is changing these lines of <em>templates/admin/admin_index.html</em>:</p>
+<pre style="font-size:11px;background-color:#eeeeee;color:black;"><code>
+
+{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css{% endblock %}
+
+</code></pre>
+<p>..with this:</p>
+<pre style="font-size:11px;background-color:#eeeeee;color:black;"><code>
+
+{% block extrastyle %}{{ block.super }}
+&lt;link rel="stylesheet" type="text/css" href="{% load adminmedia %}
+{% admin_media_prefix %}css/dashboard.css" /&gt;
+{% endblock %}
+
+</code></pre>
+<p>By the way, if you don&#8217;t feel like setting up the questionnaire yourself you can easily create one on <a href="http://www.pervidet.com/">Pervidet.com</a>, which is (I assume) managed by the guys at <a href="http://www.aperte-it.com/">Aperte</a>.</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2009/12/03/creating-questionnaires-with-django/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">450</post-id>	</item>
+	</channel>
+</rss>

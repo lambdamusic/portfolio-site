@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>tree &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/tree/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Thu, 17 Jul 2014 12:59:52 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Messing around wih D3.js and hierarchical data</title>
+		<link>http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/</link>
+				<comments>http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/#comments</comments>
+				<pubDate>Fri, 21 Jun 2013 13:23:59 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[d3]]></category>
+		<category><![CDATA[javascript]]></category>
+		<category><![CDATA[taxonomy]]></category>
+		<category><![CDATA[tree]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2379</guid>
+				<description><![CDATA[These days there are a lot of browser-oriented visualization toolkits, such d3.js or jit.js. They&#8217;re great and easy to use, but how much do they scale when used with medium-large or very large datasets? The subject ontology is a quite large (~2500 entities) taxonomical classification developed at Nature Publishing Group in order to classify scientific [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>These days there are a lot of browser-oriented visualization toolkits, such <a href="http://d3js.org/">d3.js</a> or <a href="http://philogb.github.io/jit/">jit.js</a>. They&#8217;re great and easy to use, but how much do they scale when used with medium-large or very large datasets? </p>
+<p>The subject ontology is a quite large (~2500 entities) taxonomical classification developed at <a href="http://www.nature.com/">Nature</a> Publishing Group in order to classify scientific publications. The taxonomy is publicly available on <a href="http://data.nature.com/">data.nature.com</a>, and is being encoded using the <a href="http://www.w3.org/2004/02/skos/">SKOS</a> RDF vocabulary. </p>
+<p>In order to evaluate the scalability of various javascript tree visualizations I extracted a <a href="http://michelepasin.org/media/naturehacking/subjectsviz/d3/tree/subjects_d3_99levels.js">JSON version of the subject taxonomy</a>  and tried to render it on a webpage, using out-of-the-box some of the viz approaches made available; <a href="http://hacks.michelepasin.org/subjectsviz/experimental">here are the results</a> (ps: I added the <strong>option</strong> of selecting how many levels of the tree can be visualized, just to get an idea of when a viz breaks). </p>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/experimental"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/Screen-Shot-2014-02-13-at-2.07.50-PM.png" alt="Screen Shot 2014 02 13 at 2 07 50 PM" title="Screen Shot 2014-02-13 at 2.07.50 PM.png" border="0" width="600" height="305" /></a></p>
+<p>Some conclusions:</p>
+<li>The subject taxonomy actually is a <strong>poly-hierarchy</strong> (=one term can have more than one parent, so really it&#8217;s more like a directed graph). None of the libraries could handle that properly, but maybe that&#8217;s not really a limitation cause they are meant to support the visualization of trees (maybe I should play around more with force-directed graphs layout and the like..)</li>
+<li>The only viz that could handle all of the terms in the taxonomy is <a href="http://bl.ocks.org/mbostock/4339083">D3&#8217;s collapsible tree</a>. Still, you don&#8217;t want to keep all the branches open at the same time! Click on the image to see it with your eyes.</li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3tree"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/collapsibleTree.png" alt="CollapsibleTree" title="collapsibleTree.png" border="0" width="800" height="528" /></a></p>
+<li>An approach to deal with large quantities of data is obviously to show them a little bit at a time. The <strong>Bar Hierarchy</strong> seems a pretty good way to do that, it&#8217;s informative and responsive. However it&#8217;d be nice to integrate with other controls/visual cues that would tell one what level of depth they&#8217;re currently looking at, which siblings are available etc.. etc.. </li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3barHierarchy"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/barHiearchy.png" alt="BarHiearchy" title="barHiearchy.png" border="0" width="700" height="208" /></a></p>
+<li><strong>Partition tables</strong> also looks pretty good in providing a visual summary of the categories available; however they tend to fail quickly when there are too many nodes, and the text is often not readable at all.. in the example below I had to include only the first 3 levels of the taxonomy for it to be loaded properly!</li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3partitionTable?levels=3"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/treeMapD3.png" alt="TreeMapD3" title="treeMapD3.png" border="0" width="700" height="379" /></a></p>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/jit_icicle"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/treeMap.png" alt="TreeMap" title="treeMap.png" border="0" width="600" height="584" /></a></p>
+<li><strong>Rotating tree</strong>. Essentially a Tree plotted on a circle, very useful to provide a graphical overview of the data but it tends to become non responsive quickly.</li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3cluster?levels=3"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/rotatingTree.png" alt="RotatingTree" title="rotatingTree.png" border="0" width="700" height="615" /></a></p>
+<li><strong>Hierarchical pie chart</strong>. A pie chart that allows zooming in so to reveal hierarchical relationships (often also called Zoomable Sunburst). Quite nice and responsive, also with a large amount of data. The absence of labels could be a limiting feature though; you get a nice overview of the datascape but can&#8217;t really understand the meaning of each element unless you mouse over it. </li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3treepie?levels=5"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/pieTree.png" alt="PieTree" title="pieTree.png" border="0" width="700" height="656" /></a></p>
+<p>&nbsp;</p>
+<p>Other stuff out there that could do a better job?</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2379</post-id>	</item>
+		<item>
+		<title>Using Django-MPTT: lessons learned&#8230;</title>
+		<link>http://www.michelepasin.org/blog/2009/09/15/using-django-mptt-lessons-learned/</link>
+				<comments>http://www.michelepasin.org/blog/2009/09/15/using-django-mptt-lessons-learned/#comments</comments>
+				<pubDate>Tue, 15 Sep 2009 16:35:59 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[mptt]]></category>
+		<category><![CDATA[tree]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=318</guid>
+				<description><![CDATA[Here we are again with Django and MPTT 0.3 (I already have other posts about it). After working with it for a bit I realized that things were breaking mysteriously, and only recently understood why that happened, so I thought I&#8217;d share this pearl of wisdom. Essentially this has to do with the way tree-elements [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Here we are again with Django and <a href="http://code.google.com/p/django-mptt/">MPTT</a> 0.3 (I already have <a href="http://www.michelepasin.org/blog/?p=275">other posts about it</a>). After working with it for a bit I realized that <strong>things were breaking mysteriously</strong>, and only recently understood why that happened, so I thought I&#8217;d share this pearl of wisdom. Essentially this has to do with the way tree-elements must be created if you want the usual tree-navigation methods (e.g. <em>get_descendants</em> or <em>get_ancestors</em>)  to work as expected.</p>
+<p>Suppose your Django model looks like this:</p>
+<pre><div class="python" style="font-family:monospace;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;overflow:auto; line-height: 1.5;"><span style="color: #ff7700;font-weight:bold;">from</span> django.<span style="color: black;">db</span> <span style="color: #ff7700;font-weight:bold;">import</span> models<br />
+<br />
+<span style="color: #ff7700;font-weight:bold;">import</span> mptt<br />
+<br />
+<span style="color: #ff7700;font-weight:bold;">class</span> PossessionNew<span style="color: black;">&#40;</span>models.<span style="color: black;">Model</span><span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; possname = models.<span style="color: black;">CharField</span><span style="color: black;">&#40;</span>max_length=<span style="color: #ff4500;">50</span>, unique=<span style="color: #008000;">True</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; parent = models.<span style="color: black;">ForeignKey</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'self'</span>, null=<span style="color: #008000;">True</span>, blank=<span style="color: #008000;">True</span>, related_name=<span style="color: #483d8b;">'children'</span><span style="color: black;">&#41;</span><br />
+<br />
+mptt.<span style="color: black;">register</span><span style="color: black;">&#40;</span>PossessionNew,<span style="color: black;">&#41;</span></div></pre>
+<p>Suppose now that you want to <strong>start instantiating the PossessionNew model</strong> (sorry about the name, it&#8217;s just taken out the context of the application I was working on). </p>
+<p>In my case I was creating the tree from other data which needed some pre-processing in order to determine the hierarchical information, so I thought I&#8217;d <strong>create first all the instances, and then &#8216;link&#8217; them by setting their <i>.parent</i> attribute as needed</strong>. This turned out to be the <strong><span style='text-decoration:underline;'>wrong way of doing it</span></strong>.<br />
+In other words, what I did was this: first, creating the instances, and second, create the relationships. E.g.:</p>
+<pre><div class="python" style="font-family:monospace;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;overflow:auto; line-height: 1.5;">bash-<span style="color: #ff4500;">3.2</span>$ ./runshell.<span style="color: black;">my</span><br />
+Python 2.5.1 <span style="color: black;">&#40;</span>r251:<span style="color: #ff4500;">54863</span>, Sep <span style="color: #ff4500;">11</span> <span style="color: #ff4500;">2008</span>, <span style="color: #ff4500;">14</span>:<span style="color: #ff4500;">17</span>:<span style="color: #ff4500;">35</span><span style="color: black;">&#41;</span><br />
+<span style="color: black;">&#91;</span>GCC 4.0.1 <span style="color: black;">&#40;</span>Apple Computer, Inc. <span style="color: black;">build</span> <span style="color: #ff4500;">5250</span><span style="color: black;">&#41;</span><span style="color: black;">&#93;</span> on darwin<br />
+Type <span style="color: #483d8b;">&quot;help&quot;</span>, <span style="color: #483d8b;">&quot;copyright&quot;</span>, <span style="color: #483d8b;">&quot;credits&quot;</span> <span style="color: #ff7700;font-weight:bold;">or</span> <span style="color: #483d8b;">&quot;license&quot;</span> <span style="color: #ff7700;font-weight:bold;">for</span> more information.<br />
+<span style="color: black;">&#40;</span>InteractiveConsole<span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> <span style="color: #ff7700;font-weight:bold;">from</span> poms.<span style="color: black;">pomsapp</span>.<span style="color: black;">models</span> <span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #66cc66;">*</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p1 = PossessionNew<span style="color: black;">&#40;</span>possname=<span style="color: #483d8b;">&quot;test11&quot;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2 = PossessionNew<span style="color: black;">&#40;</span>possname=<span style="color: #483d8b;">&quot;test22&quot;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p3 = PossessionNew<span style="color: black;">&#40;</span>possname=<span style="color: #483d8b;">&quot;test33&quot;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p1.<span style="color: black;">save</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">save</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p3.<span style="color: black;">save</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p3.<span style="color: black;">parent</span> = p2<br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">parent</span> = p1<br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p3.<span style="color: black;">save</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">save</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span></div></pre>
+<p>Everything seemed to work fine and it also looked fine on the admin interface.<br />
+However, <strong>things didn&#8217;t work when trying to use MPTT APIs</strong>. For example, after restarting the shell:</p>
+<pre><div class="python" style="font-family:monospace;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;overflow:auto; line-height: 1.5;"><span style="color: #66cc66;">&gt;&gt;&gt;</span> p2 = PossessionNew.<span style="color: black;">objects</span>.<span style="color: black;">get</span><span style="color: black;">&#40;</span>possname=<span style="color: #483d8b;">&quot;test22&quot;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">get_children</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: black;">&#91;</span><span style="color: black;">&#93;</span> &nbsp;<span style="color: #808080; font-style: italic;"># weird!</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">get_</span><br />
+p2.<span style="color: black;">get_ancestors</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p2.<span style="color: black;">get_descendants</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; p2.<span style="color: black;">get_next_sibling</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;p2.<span style="color: black;">get_previous_sibling</span><br />
+p2.<span style="color: black;">get_children</span> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;p2.<span style="color: black;">get_next_by_created_at</span> &nbsp; &nbsp; &nbsp;p2.<span style="color: black;">get_previous_by_created_at</span> &nbsp;p2.<span style="color: black;">get_root</span><br />
+p2.<span style="color: black;">get_descendant_count</span> &nbsp; &nbsp; &nbsp; &nbsp;p2.<span style="color: black;">get_next_by_updated_at</span> &nbsp; &nbsp; &nbsp;p2.<span style="color: black;">get_previous_by_updated_at</span> &nbsp;p2.<span style="color: black;">get_siblings</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">parent</span><br />
+<span style="color: #66cc66;">&lt;</span>PossessionNew: test11<span style="color: #66cc66;">&gt;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">children</span>.<span style="color: #008000;">all</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: black;">&#91;</span><span style="color: #66cc66;">&lt;</span>PossessionNew: test33<span style="color: #66cc66;">&gt;</span><span style="color: black;">&#93;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">get_ancestors</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: black;">&#91;</span><span style="color: #66cc66;">&lt;</span>PossessionNew: test11<span style="color: #66cc66;">&gt;</span><span style="color: black;">&#93;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">get_descendants</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: black;">&#91;</span><span style="color: black;">&#93;</span> <span style="color: #808080; font-style: italic;"># weird!</span></div></pre>
+<p>As you can see, we have some erratic behavior here, in fact the <i>get_descendants</i> and other similar methods don&#8217;t produce the desired output.. </p>
+<p>I soon realized that the error lies in the fact that when creating children manually &#8211; e.g. by setting the <i>.parent</i> attribute of an instance &#8211; the other fields needed for MPTT to manage the tree are not updated.</p>
+<p>So, here&#8217;s the <strong><span style='text-decoration:underline;'>right way of doing this</span></strong>.<br />
+When operating with the tree you must <strong>always use the <i>insert_at</i> and <i>move_to</i> methods</strong> that come with the MPTT library. So, for example:</p>
+<pre><div class="python" style="font-family:monospace;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;overflow:auto; line-height: 1.5;"><span style="color: #66cc66;">&gt;&gt;&gt;</span> p3 = PossessionNew<span style="color: black;">&#40;</span>possname = <span style="color: #483d8b;">&quot;test333&quot;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p1 = PossessionNew<span style="color: black;">&#40;</span>possname = <span style="color: #483d8b;">&quot;test111&quot;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2 = PossessionNew<span style="color: black;">&#40;</span>possname = <span style="color: #483d8b;">&quot;test222&quot;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p1.<span style="color: black;">save</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">save</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p3.<span style="color: black;">save</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">move_to</span><span style="color: black;">&#40;</span>p1<span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p3.<span style="color: black;">move_to</span><span style="color: black;">&#40;</span>p2<span style="color: black;">&#41;</span></div></pre>
+<p><span style="font-style: oblique;">[<strong style="background: lavender;">Update 17/11/10:</strong>] almost by chance, I finally understood what the problem was here.. <a href="http://groups.google.com/group/django-mptt-dev/browse_thread/thread/b2c68adde7f4fb92">mptt has a problem with updating instances already stored in memory</a>. What follows is still valid, but there are other ways around the problem too eg. <a href="http://code.google.com/p/django-mptt/issues/detail?id=17">check this link too</a>.</span></p>
+<p>Now let&#8217;s check again whether the model inheritance works all right (I usually have to <b>restart the shell</b> in order to check this, otherwise the modifications are not loaded properly. I haven&#8217;t figured out yet why this happens&#8230;):</p>
+<pre><div class="python" style="font-family:monospace;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;overflow:auto; line-height: 1.5;"><span style="color: #66cc66;">&gt;&gt;&gt;</span> p2 = PossessionNew.<span style="color: black;">objects</span>.<span style="color: black;">get</span><span style="color: black;">&#40;</span>possname = <span style="color: #483d8b;">&quot;test222&quot;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">get_descendants</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: black;">&#91;</span><span style="color: #66cc66;">&lt;</span>PossessionNew: test333<span style="color: #66cc66;">&gt;</span><span style="color: black;">&#93;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2.<span style="color: black;">get_ancestors</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<span style="color: black;">&#91;</span><span style="color: #66cc66;">&lt;</span>PossessionNew: test111<span style="color: #66cc66;">&gt;</span><span style="color: black;">&#93;</span></div></pre>
+<p>Now it all makes more sense, doesn&#8217;t it?<br />
+Notice that in this case we used the <i><strong>move_to</strong></i> method. We could also have used <i><strong>insert_at</strong></i> (check the <a href="http://django-mptt.github.com/django-mptt/">docs</a>). Remember also that we&#8217;ve been using these methods with instances up to now (=<b>instance methods</b>). If necessary, you could also achieve the same results by means of the TreeManager custom manager (=<b>custom manager methods</b>).<br />
+So, for example:</p>
+<pre><div class="python" style="font-family:monospace;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;overflow:auto; line-height: 1.5;"><span style="color: #66cc66;">&gt;&gt;&gt;</span> p1 = PossessionNew<span style="color: black;">&#40;</span>possname = <span style="color: #483d8b;">&quot;test11&quot;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> PossessionNew.<span style="color: black;">tree</span>.<span style="color: black;">insert_node</span><span style="color: black;">&#40;</span>p1, <span style="color: #008000;">None</span>, commit=<span style="color: #008000;">True</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&lt;</span>PossessionNew: test11<span style="color: #66cc66;">&gt;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p2 = PossessionNew<span style="color: black;">&#40;</span>possname = <span style="color: #483d8b;">&quot;test22&quot;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> PossessionNew.<span style="color: black;">tree</span>.<span style="color: black;">insert_node</span><span style="color: black;">&#40;</span>p2, p1, commit=<span style="color: #008000;">True</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&lt;</span>PossessionNew: test22<span style="color: #66cc66;">&gt;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> p3 = PossessionNew<span style="color: black;">&#40;</span>possname = <span style="color: #483d8b;">&quot;test33&quot;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&gt;&gt;&gt;</span> PossessionNew.<span style="color: black;">tree</span>.<span style="color: black;">insert_node</span><span style="color: black;">&#40;</span>p3, p2, commit=<span style="color: #008000;">True</span><span style="color: black;">&#41;</span><br />
+<span style="color: #66cc66;">&lt;</span>PossessionNew: test33<span style="color: #66cc66;">&gt;</span></div></pre>
+<p>That&#8217;s it. Follows a list of the model instance methods <a href="http://django-mptt.github.com/django-mptt/models.html#mpttmodel-instance-methods">MPTT makes available</a>:</p>
+<blockquote><p><strong>get_ancestors(ascending=False)</strong> &#8212; creates a QuerySet containing the ancestors of the model instance. These default to being in descending order (root ancestor first, immediate parent last); passing True for the ascending argument will reverse the ordering (immediate parent first, root ancestor last).</p>
+<p><strong>get_children()</strong> &#8212; creates a QuerySet containing the immediate children of the model instance, in tree order. The benefit of using this method over the reverse relation provided by the ORM to the instance&#8217;s children is that a database query can be avoided in the case where the instance is a leaf node (it has no children).</p>
+<p><strong>get_descendants(include_self=False)</strong> &#8212; creates a QuerySet containing descendants of the model instance, in tree order.<br />
+If include_self is True, the QuerySet will also include the model instance itself.</p>
+<p><strong>get_descendant_count()</strong> &#8212; returns the number of descendants the model instance has, based on its left and right tree node edge indicators. As such, this does not incur any database access.</p>
+<p><strong>get_next_sibling()</strong> &#8212; returns the model instance&#8217;s next sibling in the tree, or None if it doesn&#8217;t have a next sibling.</p>
+<p><strong>get_previous_sibling()</strong> &#8212; returns the model instance&#8217;s previous sibling in the tree, or None if it doesn&#8217;t have a previous sibling.</p>
+<p><strong>get_root()</strong> &#8212; returns the root node of the model instance&#8217;s tree.</p>
+<p><strong>get_siblings(include_self=False)</strong> &#8212; creates a QuerySet containing siblings of the model instance. Root nodes are considered to be siblings of other root nodes. If include_self is True, the QuerySet will also include the model instance itself.</p>
+<p><strong>insert_at(target, position=&#8217;first-child&#8217;, commit=False)</strong> &#8212; positions the model instance (which must not yet have been inserted into the database) in the tree based on target and position (when appropriate). If commit is True, the model instance&#8217;s save() method will be called before the instance is returned.</p>
+<p><strong>is_child_node()</strong> &#8212; returns True if the model instance is a child node, False otherwise.</p>
+<p><strong>is_leaf_node()</strong> &#8212; returns True if the model instance is a leaf node (it has no children), False otherwise.</p>
+<p><strong>is_root_node()</strong> &#8212; returns True if the model instance is a root node, False otherwise.</p>
+<p><strong>move_to(target, position=&#8217;first-child&#8217;)</strong> &#8212; moves the model instance elsewhere in the tree based on target and position (when appropriate).</p></blockquote>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2009/09/15/using-django-mptt-lessons-learned/feed/</wfw:commentRss>
+		<slash:comments>10</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">318</post-id>	</item>
+		<item>
+		<title>Django admin and MPTT #2</title>
+		<link>http://www.michelepasin.org/blog/2009/08/18/django-admin-and-mptt-2/</link>
+				<comments>http://www.michelepasin.org/blog/2009/08/18/django-admin-and-mptt-2/#comments</comments>
+				<pubDate>Tue, 18 Aug 2009 10:46:32 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[admin]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[mptt]]></category>
+		<category><![CDATA[tree]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=275</guid>
+				<description><![CDATA[This is a follow up to the previous post on managing and visualizing trees using django. I&#8217;ve been using MPTT quite a bit now and it&#8217;s great &#8211; also, I looked deeper into the admin integration (basically, the issue of being able of manage trees from within the admin). The major issue I had with [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>This is a follow up to the <a href="http://www.michelepasin.org/blog/?p=255">previous post on managing and visualizing trees using django</a>. I&#8217;ve been using MPTT quite a bit now and it&#8217;s great &#8211; also, I looked deeper into the admin integration (basically, the issue of being able of manage trees from within the admin).</p>
+<p>The major issue I had with the patch discussed in my previous post was the fact that it is mainly a javascript hack &#8211; everything is done in the browser &#8211; i.e. it looked wonderful but it didn&#8217;t really scale up. So if you had a lot of items in your tree (say thousands) the <strong>js-driven pagination (basically, hiding and showing things on demand) would crash</strong> &#8211; at least, it did that to me all the time!</p>
+<p>The solution has been to reuse the admin management section from the <a href="http://spinlock.ch/pub/feincms/html/">FeinCMS project</a> &#8211; this is a great CMS created by a bunch of django-ers in Switzerland &#8211; it relies heavvily on django&#8217;s admin so they had the same problem when having to provide a way for users to add structure to the pages in a website.  With some <a href="http://groups.google.com/group/django-feincms/topics?start=">help from google and <strong>Matthias</strong></a><strong> (tx! he&#8217;s one of the guys behind FeinCMS</strong>) I got it all working.. here&#8217;s the main steps:</p>
+<p><strong>1. upgrade to django 1.1</strong><br />
+This might not be necessary, cause everything is supposed to work also with the previous release &#8211; I tried it with django 1.0 too but I had to fix a couple of urls to make it work (Basically media files which were not loaded properly). So, if you want a hassle-free installation just upgrade to django 1.1 ! (which is great btw)</p>
+<p><strong>2. download and add <a href="http://github.com/matthiask/feincms/tree/master">feincms</a>, <a href="http://code.google.com/p/django-mptt/">mptt</a> to you installed apps in settings.py</strong><br />
+As simple as that.</p>
+<div style='color:#ffffff;background:#000000; overflow:auto'>
+<pre>
+INSTALLED_APPS = (
+    ....
+    <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">mptt</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>,
+    <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">feincms</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>,
+)
+</pre>
+</div>
+<p><strong>3. specify a url-path for feincms media in settings.py, and also a location</strong> (this may vary in your live server, if you want apache to serve these files directly).</p>
+<div style='color:#ffffff;background:#000000;overflow:auto;'>
+<pre>
+FEINCMS_ADMIN_MEDIA = <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">/feincms_media/</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>
+FEINCMS_ADMIN_MEDIA_LOCATION = <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">/My/local/path/to/feincms/media/</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>
+</pre>
+</div>
+<p><strong>4. add a url handler for feincms media files in urls.py. Again, these settings are ok on a development server, on production phase <a href="http://docs.djangoproject.com/en/dev/howto/static-files/#the-big-fat-disclaimer">you might wanna do things differently :-) </a></strong></p>
+<div style='color:#ffffff;background:#000000;overflow:auto'>
+<pre>
+<font color="#ff82ff">from</font> django.conf <font color="#ff82ff">import</font> settings
+    urlpatterns = patterns(<span style="background-color: #000000"><font color="#ffffff">''</font></span>,
+    .....
+    (<span style="background-color: #000000"><font color="#ffffff">r'</font></span><font color="#ffa2a5">^feincms_media/(?P&lt;path&gt;.*)$</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>, <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">django.views.static.serve</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>,
+         {<span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">document_root</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>: settings.FEINCMS_ADMIN_MEDIA_LOCATION, <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">show_indexes</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>: True}),
+)
+</pre>
+</div>
+<p><strong>5. register your hierarchical model with mptt, then remember to set the Meta option correctly</strong>.. this is needed for a correct display of the tree in the admin (obviously you need to run syncdb to create the table in the db!):</p>
+<div style='color:#ffffff;background:#000000; overflow:auto;'>
+<pre>
+<font color="#ff82ff">from</font> django.db <font color="#ff82ff">import</font> models
+<font color="#ff82ff">import</font> mptt
+
+<font color="#ffff63"><b>class</b></font> <font color="#42ffff">TreeNode</font>(models.Model):
+   name = models.CharField(max_length=50, unique=True)
+   parent = models.ForeignKey(<span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">self</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>, null=True, blank=True, related_name=<span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">children</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>)
+
+   <font color="#ffff63"><b>def</b></font> <font color="#42ffff">__unicode__</font>(self):
+                <font color="#ffff63"><b>return</b></font> self.name
+
+   <font color="#ffff63"><b>class</b></font> <font color="#42ffff">Meta</font>:
+          ordering = [<span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">tree_id</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>, <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">lft</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>]
+
+
+mptt.register(TreeNode,)
+</pre>
+</div>
+<p><strong>6. create a model admin that inherits from feincms TreeEditor class</strong>:</p>
+<div style='color:#ffffff;background:#000000; overflow:auto'>
+<pre>
+<font color="#ff82ff">from</font> django.contrib <font color="#ff82ff">import</font> admin
+<font color="#ff82ff">from</font> django.utils.translation <font color="#ff82ff">import</font> ugettext_lazy <font color="#ff82ff">as</font> _
+<font color="#ff82ff">from</font> django.conf <font color="#ff82ff">import</font> settings <font color="#ff82ff">as</font> django_settings
+<font color="#ff82ff">from</font> feincms.admin <font color="#ff82ff">import</font> editor
+<font color="#ff82ff">from</font> myproject.myapp.models <font color="#ff82ff">import</font> *
+
+<font color="#ffff63"><b>class</b></font> <font color="#42ffff">TreeNodeAdmin</font>(editor.TreeEditor):
+    <font color="#ffff63"><b>pass</b></font>
+
+admin.site.register(TreeNode, TreeNodeAdmin)
+</pre>
+</div>
+<p><strong>End</strong>! That should be it! Let me know if I forgot something..<br />
+Here&#8217;s a screenshot of the new tree-management admin page we created:</p>
+<p><img class="alignnone size-full wp-image-276" title="Picture 1" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-1.png" alt="Picture 1" width="655" height="319" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-1.png 655w, http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-1-300x146.png 300w" sizes="(max-width: 655px) 100vw, 655px" /></p>
+<p><strong><span style="background:red;">UPDATE 09/2009</span>: how to add more actions to the tree bar.</strong><br />
+Just override the <i> _actions_column </i> method on the TreeNodeAdmin class, as follows::</p>
+<pre style='color:#d1d1d1;background:#000000; overflow:auto;'><span style='color:#e66170; font-weight:bold; '>class</span> TreeNodeAdmin<span style='color:#d2cd86; '>(</span>editor<span style='color:#d2cd86; '>.</span>TreeEditor<span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>:</span>
+        <span style='color:#e66170; font-weight:bold; '>def</span> _actions_column<span style='color:#d2cd86; '>(</span>self<span style='color:#d2cd86; '>,</span> page<span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>:</span>
+                actions <span style='color:#d2cd86; '>=</span> <span style='color:#e34adc; '>super</span><span style='color:#d2cd86; '>(</span>TreeNodeAdmin<span style='color:#d2cd86; '>,</span> self<span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>.</span>_actions_column<span style='color:#d2cd86; '>(</span>page<span style='color:#d2cd86; '>)</span>
+                actions<span style='color:#d2cd86; '>.</span>insert<span style='color:#d2cd86; '>(</span><span style='color:#008c00; '>0</span><span style='color:#d2cd86; '>,</span> u'<span style='color:#d2cd86; '>&lt;</span>a href<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"add/?parent=%s"</span> title<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%s"</span><span style='color:#d2cd86; '>></span><span style='color:#d2cd86; '>&lt;</span>img
+                       src<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%simg/admin/icon_addlink.gif"</span> alt<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%s"</span><span style='color:#d2cd86; '>></span><span style='color:#d2cd86; '>&lt;</span><span style='color:#d2cd86; '>/</span>a<span style='color:#d2cd86; '>></span>' <span style='color:#d2cd86; '>%</span>
+                       <span style='color:#d2cd86; '>(</span>page<span style='color:#d2cd86; '>.</span>pk<span style='color:#d2cd86; '>,</span> _<span style='color:#d2cd86; '>(</span><span style='color:#00c4c4; '>'Add child page'</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>,</span>
+                       settings<span style='color:#d2cd86; '>.</span>ADMIN_MEDIA_PREFIX <span style='color:#d2cd86; '>,</span> _<span style='color:#d2cd86; '>(</span><span style='color:#00c4c4; '>'Add child page'</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>)</span>
+               actions<span style='color:#d2cd86; '>.</span>insert<span style='color:#d2cd86; '>(</span><span style='color:#008c00; '>0</span><span style='color:#d2cd86; '>,</span> u'<span style='color:#d2cd86; '>&lt;</span>a href<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%s"</span> title<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%s"</span><span style='color:#d2cd86; '>></span><span style='color:#d2cd86; '>&lt;</span>img
+                       src<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%simg/admin/selector-search.gif"</span> alt<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%s"</span> <span style='color:#d2cd86; '>/</span><span style='color:#d2cd86; '>></span><span style='color:#d2cd86; '>&lt;</span><span style='color:#d2cd86; '>/</span>a<span style='color:#d2cd86; '>></span>' <span style='color:#d2cd86; '>%</span>
+                       <span style='color:#d2cd86; '>(</span>page<span style='color:#d2cd86; '>.</span>get_absolute_url<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>,</span> _<span style='color:#d2cd86; '>(</span><span style='color:#00c4c4; '>'View on site'</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>,</span>
+                       django_settings<span style='color:#d2cd86; '>.</span>ADMIN_MEDIA_PREFIX<span style='color:#d2cd86; '>,</span> _<span style='color:#d2cd86; '>(</span><span style='color:#00c4c4; '>'View on site'</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>)</span>
+                <span style='color:#e66170; font-weight:bold; '>return</span> actions
+
+admin<span style='color:#d2cd86; '>.</span>site<span style='color:#d2cd86; '>.</span>register<span style='color:#d2cd86; '>(</span>TreeNode<span style='color:#d2cd86; '>,</span> TreeNodeAdmin
+</pre>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2009/08/18/django-admin-and-mptt-2/feed/</wfw:commentRss>
+		<slash:comments>31</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">275</post-id>	</item>
+		<item>
+		<title>Representing hierarchical data with Django and MPTT</title>
+		<link>http://www.michelepasin.org/blog/2009/08/06/representing-hierarchical-data-with-django-and-mptt/</link>
+				<comments>http://www.michelepasin.org/blog/2009/08/06/representing-hierarchical-data-with-django-and-mptt/#comments</comments>
+				<pubDate>Thu, 06 Aug 2009 19:04:22 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[mptt]]></category>
+		<category><![CDATA[tree]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=255</guid>
+				<description><![CDATA[Apparently, you&#8217;ve got two options for managing hierarchical data in django &#8211; django-mptt and django-treebeard. I didn&#8217;t have any time to test both of them carefully, so I just played a bit with the first one (and with great results!). [p.s. the comparison table above is not mine, but I found it quite useful. Click [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://www.qompr.com/charts/63;django-hierarchical-tree-data/"><img class="alignnone size-full wp-image-259" title="Picture 3" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-31.png" alt="Picture 3" width="651" height="520" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-31.png 651w, http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-31-300x239.png 300w" sizes="(max-width: 651px) 100vw, 651px" /></a></p>
+<p>Apparently, you&#8217;ve got two options for managing <strong>hierarchical data in django</strong> &#8211; <a href="http://code.google.com/p/django-mptt/">django-mptt</a> and <a href="http://code.google.com/p/django-treebeard/">django-treebeard</a>.  I didn&#8217;t have any time to test both of them carefully, so I just played a bit with the first one (and with great results!). [p.s. the comparison table above is not mine, but I found it quite useful. Click on the image to find out how it was created&#8230; ]</p>
+<p>I guess that the key feature I was looking for is the <strong>admin-integration</strong>. Trees must be <strong>displayed</strong> and <strong>edited</strong> properly in the admin&#8230; unfortunately both projects don&#8217;t provide that feature by default, but luckily for there are attempts (<a href="http://code.google.com/p/django-mptt/issues/detail?id=33">#1</a> and <a href="http://code.google.com/p/django-treebeard/issues/detail?id=2&amp;colspec=ID%20Type%20Status%20Priority%20Milestone%20Owner%20Summary%20Stars%20Opened%20Modified%20Reporter%20Component">#2</a>) to fix this issue.</p>
+<p>In order to use MPTT with your models you just have to download it, add it to your &#8216;installed application&#8217; settings and register the models you intend to use:</p>
+<pre style='color:#d1d1d1;background:#000000;overflow:auto;'><span style='color:#9999a9; '># A mimimal example usage of ``mptt.register`` is given below, where the</span>
+<span style='color:#9999a9; '>#  model being set up for MPTT is suitable for use with the default</span>
+<span style='color:#9999a9; '># arguments which specify fields and the tree manager attribute::</span>
+
+   <span style='color:#e66170; font-weight:bold; '>from</span> django<span style='color:#d2cd86; '>.</span>db <span style='color:#e66170; font-weight:bold; '>import</span> models
+
+   <span style='color:#e66170; font-weight:bold; '>import</span> mptt
+
+   <span style='color:#e66170; font-weight:bold; '>class</span> Genre<span style='color:#d2cd86; '>(</span>models<span style='color:#d2cd86; '>.</span>Model<span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>:</span>
+       name <span style='color:#d2cd86; '>=</span> models<span style='color:#d2cd86; '>.</span>CharField<span style='color:#d2cd86; '>(</span>max_length<span style='color:#d2cd86; '>=</span><span style='color:#008c00; '>50</span><span style='color:#d2cd86; '>,</span> unique<span style='color:#d2cd86; '>=</span><span style='color:#e34adc; '>True</span><span style='color:#d2cd86; '>)</span>
+       parent <span style='color:#d2cd86; '>=</span> models<span style='color:#d2cd86; '>.</span>ForeignKey<span style='color:#d2cd86; '>(</span><span style='color:#00c4c4; '>'self'</span><span style='color:#d2cd86; '>,</span> null<span style='color:#d2cd86; '>=</span><span style='color:#e34adc; '>True</span><span style='color:#d2cd86; '>,</span> blank<span style='color:#d2cd86; '>=</span><span style='color:#e34adc; '>True</span><span style='color:#d2cd86; '>,</span> related_name<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>'children'</span><span style='color:#d2cd86; '>)</span>
+
+   mptt<span style='color:#d2cd86; '>.</span>register<span style='color:#d2cd86; '>(</span>Genre<span style='color:#d2cd86; '>,</span> order_insertion_by<span style='color:#d2cd86; '>=</span><span style='color:#d2cd86; '>[</span><span style='color:#00c4c4; '>'name'</span><span style='color:#d2cd86; '>]</span><span style='color:#d2cd86; '>)</span>
+</pre>
+<p>Then, after installing the patches, create a tree-friendly admin by subclassing <em>MpttModelAdmin</em> (check out the <a href="http://django-mptt.googlecode.com/svn/trunk/docs/models.txt">docs</a> for more info).</p>
+<p><img class="alignnone size-full wp-image-260" title="Picture 4" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-41.png" alt="Picture 4" width="421" height="322" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-41.png 421w, http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-41-300x229.png 300w" sizes="(max-width: 421px) 100vw, 421px" /></p>
+<p><strong>Here&#8217;s the result</strong> &#8211; not bad at all! I just had to install <strong>django-mptt</strong> and the <a href="http://code.google.com/p/django-mptt/issues/detail?id=33#c1">patches</a> needed for using the <a href="http://code.google.com/p/nestedsortables/">jquery nested-sortable library</a> with the admin. I&#8217;ll be working more on this during the next days so probably I&#8217;ll be posting more stuff&#8230;.</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2009/08/06/representing-hierarchical-data-with-django-and-mptt/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">255</post-id>	</item>
+	</channel>
+</rss>

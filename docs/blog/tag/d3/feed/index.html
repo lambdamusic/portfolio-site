@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>d3 &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/d3/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 04 Jan 2016 18:44:15 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Nature.com Subjects Stream Graph</title>
+		<link>http://www.michelepasin.org/blog/2016/01/03/nature-com-subjects-stream-graph/</link>
+				<pubDate>Sun, 03 Jan 2016 00:28:08 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[d3]]></category>
+		<category><![CDATA[infographics]]></category>
+		<category><![CDATA[nature]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2750</guid>
+				<description><![CDATA[The nature.com subjects stream graph displays the distribution of content across the subject areas covered by the nature.com portal. This is an experimental interactive visualisation based on a freely available dataset from the nature.com linked data platform, which I&#8217;ve been working on in the last few months. The main visualization provides an overview of selected [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>The <a href="http://www.nature.com/developers/hacks/articles/stream/by-subject/">nature.com subjects stream graph</a> displays the distribution of content across the subject areas covered by the nature.com portal. </p>
+<p>This is an experimental interactive visualisation based on a freely available dataset from the <a href="http://www.nature.com/ontologies/datasets/">nature.com linked data platform</a>, which I&#8217;ve been working on in the last few months.</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6-1024x657.png" alt="streamgraph" width="600" class="alignnone size-large wp-image-2761" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6-1024x657.png 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6-300x192.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6-900x577.png 900w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p>The main visualization provides an overview of selected content within the level 2 disciplines of the <a href="http://www.nature.com/ontologies/models/subjects/">NPG Subjects Ontology</a>. By clicking on these, it is then possible to explore more specific subdisciplines and their related articles.</p>
+<p><span style='text-decoration:underline;'>For those of you who are not familiar with the Subjects Ontology</span>: this is a categorization of scholarly subject areas which are used for the indexing of content on nature.com. It includes subject terms of varying levels of specificity such as Biological sciences (top level), Cancer (level 2), or B-2 cells (level 7). In total there are more than 2500 subject terms, organized into a <a href="http://www.nature.com/developers/hacks/subjects/tree">polyhierarchical tree</a>.</p>
+<p>Starting in 2010, the various journals published on nature.com have adopted the subject ontology to tag their articles (note: different journals have started doing this at different times, hence some variations in the graph starting dates).</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22.png" alt="streamgraph2" width="600"  class="alignnone size-full wp-image-2764" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22.png 864w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22-300x271.png 300w" sizes="(max-width: 864px) 100vw, 864px" /></a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33-1024x472.png" alt="streamgraph3" width="600"  class="alignnone size-large wp-image-2763" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33-1024x472.png 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33-300x138.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33-900x415.png 900w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33.png 1591w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p>The visualization makes use of various <a href="http://d3js.org/">d3.js</a> modules, plus some simple customizations here and there. The hardest part of the work was putting the different page components together, to the effect of a more fluent &#8216;narrative&#8217; achieved by gradually zooming into the data. </p>
+<p>The back end is a <a href="https://www.djangoproject.com/">Django</a> web application with a relational database. The original dataset is <a href="http://www.nature.com/ontologies/downloads/">published as RDF</a>, so in order to use the Django APIs I&#8217;ve recreated it as a relational model. That let me also add a few extra data fields containing search indexes (e.g. article counts per month), so to make the stream graph load faster. </p>
+<p>Comments or suggestions, as always very welcome. </p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2750</post-id>	</item>
+		<item>
+		<title>Is wikipedia a valid source of scientific knowledge?</title>
+		<link>http://www.michelepasin.org/blog/2015/09/02/is-wikipedia-a-valid-source-of-scientific-knowledge/</link>
+				<comments>http://www.michelepasin.org/blog/2015/09/02/is-wikipedia-a-valid-source-of-scientific-knowledge/#comments</comments>
+				<pubDate>Wed, 02 Sep 2015 13:15:25 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[citation]]></category>
+		<category><![CDATA[d3]]></category>
+		<category><![CDATA[nature]]></category>
+		<category><![CDATA[wikipedia]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2689</guid>
+				<description><![CDATA[Is wikipedia a valid source of scientific knowledge? Many would say yes. Others are still quite skeptical, or maybe just cautious about it. What seems to be the case though &#8211; and this is what this post is about &#8211; is that wikipedians are increasingly including references to scientific literature, and when they do it [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Is wikipedia a valid source of scientific knowledge? Many would say <a href="http://www.nature.com/news/2008/081216/full/news.2008.1312.html">yes</a>. Others are still quite skeptical, or maybe just <a href="http://www.quora.com/How-reliable-is-Wikipedia-as-a-source-of-information-and-why">cautious</a> about it. What seems to be the case though &#8211; and this is what this post is about &#8211; is that wikipedians are increasingly including references to scientific literature, and when they do it they do it right. </p>
+<p>Based on data we&#8217;ve recently <a href="http://www.nature.com/ontologies/linksets/articles/">extracted</a> from Wikipedia, it looks like that the vast majority of <strong>citations to nature.com</strong> content have been done according to the established scientific practice (i.e. using <a href="https://en.wikipedia.org/wiki/Digital_object_identifier">DOIs</a>). Which makes you think that whoever added those citations is either a scientist or has some familiarity with science. </p>
+<p>In the context of the <a href="http://www.nature.com/ontologies/">nature.com ontologies portal</a> we&#8217;ve done some work aimed at surfacing links between our articles and other datasets. Wikipedia and <a href="http://wiki.dbpedia.org/">DBpedia</a> (an RDF database version of wikipedia) have come to our attention quite soon: <em>how much do wikipedia articles cite scientific content published on nature.com</em>? Also, <em>how well</em> do they cite it? </p>
+<p>So here&#8217;s an <a href="http://www.nature.com/developers/hacks/wikilinks/">interactive visualization</a> that lets you see all incoming references from Wikipedia to the nature.com archive. The actual dataset is encoded in RDF and can be downloaded <a href="http://data.nature.com/downloads/latest/linksets/nq/">here</a> (look for the <em>npg-articles-dbpedia-linkset.2015-08-24.nq.tar.gz</em> file).</p>
+<p><a href="http://www.nature.com/developers/hacks/wikilinks/" target="_blank"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2015/09/NewImage.png" alt="NewImage" title="NewImage.png" border="0" width="599" height="338" style="" /></a></p>
+<p>&nbsp;</p>
+<h2>About the data</h2>
+<p>In a nutshell, what we&#8217;ve done was simply extracting all mentions of either NPG DOIs or nature.com links using the wikipedia APIs (for example, see <a href="https://en.wikipedia.org/w/index.php?title=Special%3ASearch&#038;profile=default&#038;search=%2210.1038%2Fng1285%22&#038;fulltext=Search">all references to the DOI &#8220;10.1038/ng1285&#8221;</a>). </p>
+<p>These links have then been validated against the nature.com articles database and encoded in RDF in two ways: a <a href="http://www.essepuntato.it/lode/http://purl.org/spar/cito">cito:isCitedBy</a> relationship links the article URI to the citing Wikipedia page, and a <a href="http://xmlns.com/foaf/spec/">foaf:topic</a> relationship links the same article URI to the corresponding DBpedia page.</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2015/09/Screen-Shot-2015-09-03-at-12.37.33-PM.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2015/09/Screen-Shot-2015-09-03-at-12.37.33-PM.png" alt="Screen Shot 2015 09 03 at 12 37 33 PM" title="Screen Shot 2015-09-03 at 12.37.33 PM.png" border="0" width="600" /></a></p>
+<p>In total there are <strong>51309 links over 145 years</strong>. </p>
+<p>Quite interestingly, the vast majority of these links are explicit DOI references (only ~900 were links to nature.com without a DOI). So, it seems that people do recognize the importance of DOIs even within a loosely controlled context like wikipedia.</p>
+<h2>Using the dataset</h2>
+<p>Considering that for many wikipedia is become the <em>de facto</em> largest and most cited encyclopedia out there (see the articles below), this may be an interesting dataset to <strong>analyze</strong> e.g. to highlight citation patters of influential articles.</p>
+<p>Also, this could become quite useful as a data source for <strong>content enrichment</strong>: the wikipedia links could be used to drive subject tagging, or they could even be presented to readers on article pages e.g. as contextual information.</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2015/09/toparticles.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2015/09/toparticles.png" alt="Toparticles" title="toparticles.png" border="0" width="700"  /></a></p>
+<p>We haven&#8217;t really had time to explore any follow up on this work, but hopefully we&#8217;ll do that soon.  </p>
+<p>All of this data is open source and freely available on <a href="http://www.nature.com/ontologies/">nature.com/ontologies</a>. So if you&#8217;re reading this and have more ideas about potential uses or just want to collaborate, please do <a href="http://www.michelepasin.org/contact/">get in touch</a>!</p>
+<h2>Caveats</h2>
+<p>This dataset is obviously just a <strong>snaphot</strong> of wikipedia links at a specific moment in time. </p>
+<p>If one were to use these data within a real-world application he&#8217;d probably want to come up with some strategy to keep it up to date (e.g. monitoring the <a href="https://meta.wikimedia.org/wiki/IRC/Channels#Recent_changes">Wikipedia IRC recent changes channel</a>).</p>
+<p>Good news is, work is already happening in this space:</p>
+<li><strong>CrossRef</strong> is looking at collecting citation events from Wikipedia in real time and release these data freely as part of their service e.g. see <a href="http://crosstech.crossref.org/2015/05/coming-to-you-live-from-wikipedia.html">http://crosstech.crossref.org/2015/05/coming-to-you-live-from-wikipedia.html</a></li>
+<li><strong>Altmetric</strong> scans wikipedia for references too e.g. see <a href="http://nature.altmetric.com/details/961190/wikipedia">http://nature.altmetric.com/details/961190/wikipedia</a> and <a href="http://www.altmetric.com/blog/new-source-alert-wikipedia/">http://www.altmetric.com/blog/new-source-alert-wikipedia/</a>, however the source data is not freely available.</li>
+<p>&nbsp;</p>
+<h2>Readings</h2>
+<p>Finally, here are a couple of interesting background readings I&#8217;ve found in the nature.com archive:</p>
+<li><em>Wikipedia rival calls in the experts</em> (2006) <a href="http://www.nature.com/nature/journal/v443/n7111/full/443493a.html">http://www.nature.com/nature/journal/v443/n7111/full/443493a.html</a></li>
+<li><em>Publish in Wikipedia or perish</em> (2008) <a href="http://www.nature.com/news/2008/081216/full/news.2008.1312.html">http://www.nature.com/news/2008/081216/full/news.2008.1312.html</a></li>
+<li><em>Time to underpin Wikipedia wisdom</em> (2010) <a href="http://www.nature.com/nature/journal/v468/n7325/full/468765c.html">http://www.nature.com/nature/journal/v468/n7325/full/468765c.html</a></li>
+<p><em>Enjoy</em>!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2015/09/02/is-wikipedia-a-valid-source-of-scientific-knowledge/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2689</post-id>	</item>
+		<item>
+		<title>A sneak peek at Nature.com articles&#8217; archive</title>
+		<link>http://www.michelepasin.org/blog/2015/06/08/a-sneak-peek-at-nature-com-articles-archive/</link>
+				<comments>http://www.michelepasin.org/blog/2015/06/08/a-sneak-peek-at-nature-com-articles-archive/#comments</comments>
+				<pubDate>Mon, 08 Jun 2015 21:26:58 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Just Blogging]]></category>
+		<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[d3]]></category>
+		<category><![CDATA[nature]]></category>
+		<category><![CDATA[publishing]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2632</guid>
+				<description><![CDATA[We&#8217;re getting closer to releasing the full set of metadata covering over one million articles published by Nature Publishing Group since 1845. So here&#8217;s a sneak peek at this dataset, in the form of a simple d3.js visual summary of what soon will be available to download and reuse. In the last months I&#8217;ve been [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>We&#8217;re getting closer to releasing the full set of metadata covering over one million articles published by Nature Publishing Group since 1845. So here&#8217;s a sneak peek at this dataset, in the form of a simple d3.js visual summary of what soon will be available to download and reuse.  </p>
+<p>In the last months I&#8217;ve been working with my colleagues at Macmillan Science and Education on an <a href="http://www.nature.com/ontologies/">open data portal</a> that makes available to the public many of the taxonomies and ontologies we use internally for organising the content we publish.  </p>
+<p>This is part of our ongoing involvement with linked data and semantic technologies, aimed both at leveraging these tools to the end of transforming the publishing workflow into a <a href="http://www.quora.com/What-is-dynamic-semantic-publishing">more dynamic platform</a>, and at contributing to the evolving <a href="http://linkeddata.org/">web of open data</a> with a rich dataset of scientific articles metadata.</p>
+<p>The articles dataset includes metadata about all articles published by the <a href="http://en.wikipedia.org/wiki/Nature_%28journal%29">Nature</a> journal, of course. But not only: the <a href="http://www.scientificamerican.com/">Scientific American</a>, <a href="http://www.nature.com/nm/index.html">Nature Medicine</a>, <a href="http://www.nature.com/ng/index.html">Nature Genetics</a> and many other titles are also part of it (note: the full list can be downloaded as raw data <a href="http://www.nature.com/ontologies/models/journals/">here</a>). </p>
+<p><a href="http://bl.ocks.org/lambdamusic/raw/bfcaa40fa350778883fe/"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2015/06/Screen-Shot-2015-06-08-at-22.24.15.png"  alt="Screen Shot 2015 06 08 at 22 24 15" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p>The first diagram shows how many articles have been published each year since <a href="http://www.nature.com/search?year_range=1845">1845</a> (the start year of Scientific American). Nature began only a few years later in <a href="http://www.nature.com/search?year_range=1869">1869</a>; the curve getting steeper in the 90s instead corresponds to the exponential increase in publications due to the progressive specialisation of scientific journals (e.g. all the nature-branded titles). </p>
+<p>The second diagram instead shows the increase in publication volumes on an incremental scale. We&#8217;ve now reached the <strong>1M articles and counting</strong>! </p>
+<p><a href="http://bl.ocks.org/lambdamusic/raw/bfcaa40fa350778883fe/"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2015/06/Screen-Shot-2015-06-08-at-22.25.09.png"  alt="Screen Shot 2015 06 08 at 22 25 09" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p>In order to create the charts I played around with a nifty example from Mike Bostock (<a href="http://bl.ocks.org/mbostock/3902569">http://bl.ocks.org/mbostock/3902569</a>) and added a couple of extra things to it. </p>
+<p>The full source code is on <a href="http://bl.ocks.org/lambdamusic/bfcaa40fa350778883fe">Github</a>. </p>
+<p>Finally, worth mentioning that this metadata had already been made available a <a href="http://www.nature.com/press_releases/ldp.html">few of years ago</a> under the CC0 license: you can still access it <a href="http://www.nature.com/ontologies/releases/archive/">here</a>. <strong>This upcoming release</strong> though makes it available in the context of a much more <strong>precise and stable</strong> set of ontologies. Meaning that the semantics of the dataset is more clearly laid out and <strong>consistent</strong>. </p>
+<p>So stay tuned for more! ..and if you plan/would like to reuse these datasets please do get in touch, either here of by emailing <a href=mailto:developers@nature.com>developers@nature.com</a>. </p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2015/06/08/a-sneak-peek-at-nature-com-articles-archive/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2632</post-id>	</item>
+		<item>
+		<title>Messing around wih D3.js and hierarchical data</title>
+		<link>http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/</link>
+				<comments>http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/#comments</comments>
+				<pubDate>Fri, 21 Jun 2013 13:23:59 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[d3]]></category>
+		<category><![CDATA[javascript]]></category>
+		<category><![CDATA[taxonomy]]></category>
+		<category><![CDATA[tree]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2379</guid>
+				<description><![CDATA[These days there are a lot of browser-oriented visualization toolkits, such d3.js or jit.js. They&#8217;re great and easy to use, but how much do they scale when used with medium-large or very large datasets? The subject ontology is a quite large (~2500 entities) taxonomical classification developed at Nature Publishing Group in order to classify scientific [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>These days there are a lot of browser-oriented visualization toolkits, such <a href="http://d3js.org/">d3.js</a> or <a href="http://philogb.github.io/jit/">jit.js</a>. They&#8217;re great and easy to use, but how much do they scale when used with medium-large or very large datasets? </p>
+<p>The subject ontology is a quite large (~2500 entities) taxonomical classification developed at <a href="http://www.nature.com/">Nature</a> Publishing Group in order to classify scientific publications. The taxonomy is publicly available on <a href="http://data.nature.com/">data.nature.com</a>, and is being encoded using the <a href="http://www.w3.org/2004/02/skos/">SKOS</a> RDF vocabulary. </p>
+<p>In order to evaluate the scalability of various javascript tree visualizations I extracted a <a href="http://michelepasin.org/media/naturehacking/subjectsviz/d3/tree/subjects_d3_99levels.js">JSON version of the subject taxonomy</a>  and tried to render it on a webpage, using out-of-the-box some of the viz approaches made available; <a href="http://hacks.michelepasin.org/subjectsviz/experimental">here are the results</a> (ps: I added the <strong>option</strong> of selecting how many levels of the tree can be visualized, just to get an idea of when a viz breaks). </p>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/experimental"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/Screen-Shot-2014-02-13-at-2.07.50-PM.png" alt="Screen Shot 2014 02 13 at 2 07 50 PM" title="Screen Shot 2014-02-13 at 2.07.50 PM.png" border="0" width="600" height="305" /></a></p>
+<p>Some conclusions:</p>
+<li>The subject taxonomy actually is a <strong>poly-hierarchy</strong> (=one term can have more than one parent, so really it&#8217;s more like a directed graph). None of the libraries could handle that properly, but maybe that&#8217;s not really a limitation cause they are meant to support the visualization of trees (maybe I should play around more with force-directed graphs layout and the like..)</li>
+<li>The only viz that could handle all of the terms in the taxonomy is <a href="http://bl.ocks.org/mbostock/4339083">D3&#8217;s collapsible tree</a>. Still, you don&#8217;t want to keep all the branches open at the same time! Click on the image to see it with your eyes.</li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3tree"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/collapsibleTree.png" alt="CollapsibleTree" title="collapsibleTree.png" border="0" width="800" height="528" /></a></p>
+<li>An approach to deal with large quantities of data is obviously to show them a little bit at a time. The <strong>Bar Hierarchy</strong> seems a pretty good way to do that, it&#8217;s informative and responsive. However it&#8217;d be nice to integrate with other controls/visual cues that would tell one what level of depth they&#8217;re currently looking at, which siblings are available etc.. etc.. </li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3barHierarchy"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/barHiearchy.png" alt="BarHiearchy" title="barHiearchy.png" border="0" width="700" height="208" /></a></p>
+<li><strong>Partition tables</strong> also looks pretty good in providing a visual summary of the categories available; however they tend to fail quickly when there are too many nodes, and the text is often not readable at all.. in the example below I had to include only the first 3 levels of the taxonomy for it to be loaded properly!</li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3partitionTable?levels=3"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/treeMapD3.png" alt="TreeMapD3" title="treeMapD3.png" border="0" width="700" height="379" /></a></p>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/jit_icicle"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/treeMap.png" alt="TreeMap" title="treeMap.png" border="0" width="600" height="584" /></a></p>
+<li><strong>Rotating tree</strong>. Essentially a Tree plotted on a circle, very useful to provide a graphical overview of the data but it tends to become non responsive quickly.</li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3cluster?levels=3"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/rotatingTree.png" alt="RotatingTree" title="rotatingTree.png" border="0" width="700" height="615" /></a></p>
+<li><strong>Hierarchical pie chart</strong>. A pie chart that allows zooming in so to reveal hierarchical relationships (often also called Zoomable Sunburst). Quite nice and responsive, also with a large amount of data. The absence of labels could be a limiting feature though; you get a nice overview of the datascape but can&#8217;t really understand the meaning of each element unless you mouse over it. </li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3treepie?levels=5"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/pieTree.png" alt="PieTree" title="pieTree.png" border="0" width="700" height="656" /></a></p>
+<p>&nbsp;</p>
+<p>Other stuff out there that could do a better job?</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2379</post-id>	</item>
+	</channel>
+</rss>

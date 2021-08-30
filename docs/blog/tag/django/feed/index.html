@@ -1,0 +1,823 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>django &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/django/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 15 Dec 2014 10:50:50 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Setting up the new &#8216;staticfiles&#8217; app on Django 1.3</title>
+		<link>http://www.michelepasin.org/blog/2012/01/24/setting-up-the-new-staticfiles-app-on-django-1-3/</link>
+				<pubDate>Tue, 24 Jan 2012 10:26:09 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[static]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1734</guid>
+				<description><![CDATA[Even if I&#8217;ve been using Django 1.3 for a while now, I&#8217;ve been holding off on some of it new features, such as the new way to handle static files via a new app called (guess what) staticfiles . Essentially, what the new static app does is allowing you to leave all static files within [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Even if I&#8217;ve been using Django 1.3 for a while now, I&#8217;ve been holding off on some of it new features, such as the new way to handle static files via a <a href="https://docs.djangoproject.com/en/dev/howto/static-files/">new app</a> called (guess what) <span style="font-family:monospace;color:#000000; ">staticfiles</span> . Essentially, what the new static app does is allowing you to leave all static files within the <span style="font-family:monospace;color:#000000; ">/static</span> directory of each of the django apps you&#8217;re using. This is for development; when you&#8217;re deploying and (most likely) want these files to be served via a (faster) separate server process, the <span style="font-family:monospace;color:#000000; ">staticfiles</span> app helps you gather all of them into a predefined directory by using a handy shell command.</p>
+<p>That&#8217;s the gist of it. I finally took a look at <span style="font-family:monospace;color:#000000; ">django.contrib.staticfiles</span> last week, so here&#8217;s a brief report on how to get it to work (p.s. a couple of related threads on stack overflow can be found <a href="http://stackoverflow.com/questions/7620307/how-do-i-serve-css-to-django-in-development">here</a> and <a href="http://stackoverflow.com/questions/4565935/django-staticfiles-app-help">here</a>).</p>
+<h3>1. Set up the static and media paths settings</h3>
+<p>My previous settings looked like this:</p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'><span style='color:#3f7f59; '># the site root is one level up from where settings.py is</span>
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__)).rsplit(<span style='color:#2a00ff; '>'/'</span>, 1)[0]
+MEDIA_ROOT = os.path.join(SITE_ROOT, <span style='color:#2a00ff; '>'static'</span>)
+MEDIA_URL = <span style='color:#2a00ff; '>'/static/'</span>
+ADMIN_MEDIA_PREFIX = <span style='color:#2a00ff; '>'/static/adminmedia1.3/'</span>
+</pre>
+<p>The media root contained all of my static files, some of which I had to copy in there manually, each time I added a new django app to my project. On the production server, the <span style="font-family:monospace;color:#000000; ">MEDIA_URL</span> is mapped to a local path (in the apache conf settings) that is essentially a duplicate of the <span style="font-family:monospace;color:#000000; ">/static</span> directory we have in the development server. The only difference, the static stuff is delivered directly by Apache, bypassing django (=so to make it faster). </p>
+<p>The <strong>new way</strong> of declaring these variables is this instead:</p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'>MEDIA_URL = <span style='color:#2a00ff; '>'/media/uploads/'</span>
+STATIC_URL = <span style='color:#2a00ff; '>'/media/static/'</span>
+ADMIN_MEDIA_PREFIX = <span style='color:#2a00ff; '>'/media/static/admin/'</span>
+
+<span style='color:#3f7f59; '># Absolute path to the directory that holds media uploaded</span>
+<span style='color:#3f7f59; '># I keep the uploads folder at the project-root level server</span>
+MEDIA_ROOT = os.path.join(SITE_ROOT, <span style='color:#2a00ff; '>'uploads'</span>) 
+
+<span style='color:#3f7f59; '># physical location of extra static files in development server</span>
+STATICFILES_DIRS = (
+    os.path.join(SITE_ROOT, <span style='color:#2a00ff; '>'myproject/static'</span>),
+)
+<span style='color:#3f7f59; '># path used with "python manage.py collectstatic"</span>
+<span style='color:#3f7f59; '># I normally put this at the project-root level that contains also the wsgi files for apache</span>
+STATIC_ROOT = os.path.join(SITE_ROOT, <span style='color:#2a00ff; '>'apache/static'</span>)
+</pre>
+<p>Obviously on a production server, you will have to set up the required aliases in the <a href="https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/#serving-files">apache conf</a> file, so that <span style="font-family:monospace;color:#000000; ">MEDIA_URL</span> and <span style="font-family:monospace;color:#000000; ">STATIC_URL</span> are pointing at the right physical locations: </p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'>Alias /media/uploads/ /path/to/mysite.com/uploads/
+Alias /media/static/ /path/to/mysite.com/apache/static/
+</pre>
+<p>The <a href="https://docs.djangoproject.com/en/dev/howto/static-files/">django docs</a> explain the new approach with these words: </p>
+<blockquote><p>In previous versions of Django, it was common to place static assets in MEDIA_ROOT along with user-uploaded files, and serve them both at MEDIA_URL. Part of the purpose of introducing the staticfiles app is to make it easier to keep static files separate from user-uploaded files.</p>
+<p>For this reason, you need to make your MEDIA_ROOT and MEDIA_URL different from your STATIC_ROOT and STATIC_URL.</p>
+<p>The STATIC_ROOT directory is not necessary in the development server: in fact  is only used if you call the collectstatic manangement command. It&#8217;s not needed to add the directory to the STATICFILES_DIRS setting to serve your static files!</p>
+<p>Furthemore, the STATICFILES_DIRS variable tells Django of the location of static files which are not within specific applications. Mind that during the &#8216;collection&#8217; operations also these files will be copied into the STATIC_ROOT directory.</p></blockquote>
+<p>&nbsp;</p>
+<h3>2. Add context processors and the app</h3>
+<p>Add the required context processor in <span style="font-family:monospace;color:#000000; ">setting.py</span>: </p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'>TEMPLATE_CONTEXT_PROCESSORS += <span style='color:#2a00ff; '>'django.core.context_processors.static'</span></pre>
+<p>Add also the new static app to your installed apps:</p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'>INSTALLED_APPS = (
+....    
+    <span style='color:#2a00ff; '>'django.contrib.staticfiles'</span>,    
+.....
+)
+</pre>
+<blockquote><p>Keep in mind that it&#8217;s very likely that in your templates you will have to manually change all references to <span style="font-family:monospace;color:#000000; ">MEDIA_URL</span> into <span style="font-family:monospace;color:#000000; ">STATIC_URL</span>!</p></blockquote>
+<p>&nbsp;</p>
+<h3>3. Url configuration</h3>
+<p>On your <strong>development</strong> server, this is what you would do:</p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'><span style='color:#7f0055; font-weight:bold; '>from</span> django.contrib.staticfiles.urls <span style='color:#7f0055; font-weight:bold; '>import</span> staticfiles_urlpatterns
+<span style='color:#3f7f59; '># ... the rest of your URLconf goes here ...</span>
+urlpatterns += staticfiles_urlpatterns()
+</pre>
+<p>This will inspect your <span style="font-family:monospace;color:#000000; ">STATIC_URL</span> setting and wire up the view to serve static files accordingly. Don&#8217;t forget to set the <span style="font-family:monospace;color:#000000; ">STATICFILES_DIRS</span> setting appropriately to let <span style="font-family:monospace;color:#000000; ">django.contrib.staticfiles</span> know where to look for files additionally to files in app directories.</p>
+<blockquote><p><strong>WARNING</strong>: the <span style="font-family:monospace;color:#000000; ">staticfiles_urlpatterns</span> helper function will only work if <span style="font-family:monospace;color:#000000; ">DEBUG</span> is True and your <span style="font-family:monospace;color:#000000; ">STATIC_URL</span> setting is neither empty nor a full URL such as http://static.example.com/ (more info <a href="https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-development-view">here</a>).</p></blockquote>
+<p>Finally, mind that in this new approach you will need to arrange for serving of files in <span style="font-family:monospace;color:#000000; ">MEDIA_ROOT</span> yourself; <strong>staticfiles does not deal with user-uploaded files at all</strong>. You can, however, use <span style="font-family:monospace;color:#000000; ">django.views.static.serve()</span> view for serving <span style="font-family:monospace;color:#000000; ">MEDIA_ROOT</span> in development (for more info see <a href="https://docs.djangoproject.com/en/dev/howto/static-files/#serving-other-directories">Serving other directories</a>).</p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'><span style='color:#7f0055; font-weight:bold; '>if</span> settings.LOCAL_SERVER:     <span style='color:#3f7f59; '># ===> static files on local machine    </span>
+    urlpatterns += patterns(<span style='color:#2a00ff; '>''</span>, 
+        (<span style='color:#2a00ff; '>r'^media/uploads/(?P&lt;path>.*)$'</span>, <span style='color:#2a00ff; '>'django.views.static.serve'</span>, 
+            {<span style='color:#2a00ff; '>'document_root'</span>: settings.MEDIA_ROOT, <span style='color:#2a00ff; '>'show_indexes'</span>: True}),
+        )
+</pre>
+<p>In the end, I conflated the two things into this code (ps I&#8217;ve added a variable called <span style="font-family:monospace;color:#000000; ">LOCAL_SERVER</span> to quickly see which platform I&#8217;m on):</p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'><span style='color:#7f0055; font-weight:bold; '>if</span> settings.LOCAL_SERVER:     <span style='color:#3f7f59; '># ===> static files on local machine</span>
+    <span style='color:#7f0055; font-weight:bold; '>from</span> django.contrib.staticfiles.urls <span style='color:#7f0055; font-weight:bold; '>import</span> staticfiles_urlpatterns
+    urlpatterns += staticfiles_urlpatterns()    
+    urlpatterns += patterns(<span style='color:#2a00ff; '>''</span>, 
+        (<span style='color:#2a00ff; '>r'^media/uploads/(?P&lt;path>.*)$'</span>, <span style='color:#2a00ff; '>'django.views.static.serve'</span>, 
+            {<span style='color:#2a00ff; '>'document_root'</span>: settings.MEDIA_ROOT, <span style='color:#2a00ff; '>'show_indexes'</span>: True}),
+        )
+</pre>
+<p>&nbsp;</p>
+<h3>4. On your production server</h3>
+<p>Easy: in your urlconf there&#8217;s no need to do anything, as static urls are usually handled by Apache directly. However for that to happen what you have to do is collect all static files into the directory that apache is looking into, that is, the one specified with the <span style="font-family:monospace;color:#000000; ">STATIC_ROOT</span> setting. This is how you do it: </p>
+<blockquote><p><code><font size="2" face="Courier New" color="black">python manage.py collectstatic</font></code></p></blockquote>
+<p>This shell command will<br />
+a) look in the <span style="font-family:monospace;color:#000000; ">/static/</span> directory of each of the apps of yours <span style="font-family:monospace;color:#000000; ">INSTALLED_APPS</span> setting.<br />
+b) look in directories you specify in the <span style="font-family:monospace;color:#000000; ">STATICFILES_DIRS</span> setting.</p>
+<p>…and copy whatever it finds into the <span style="font-family:monospace;color:#000000; ">STATIC_ROOT</span> directory, as defined in your settings (ps: it&#8217;ll preserve the original directory structure). </p>
+<p>That&#8217;s all folks!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1734</post-id>	</item>
+		<item>
+		<title>Django B_project available on gitHub</title>
+		<link>http://www.michelepasin.org/blog/2011/10/12/django-b_project-available-on-github/</link>
+				<comments>http://www.michelepasin.org/blog/2011/10/12/django-b_project-available-on-github/#comments</comments>
+				<pubDate>Wed, 12 Oct 2011 09:34:00 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[git]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1593</guid>
+				<description><![CDATA[I&#8217;ve put together and shared on gitHub all the files needed to get started with a Django project &#8211; essentially this is a clean file structure usable to get going with a Django project nice and easy. The idea is that after downloading this, you just have to change a couple of names (see the [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I&#8217;ve put together and shared on gitHub all the files needed to get started with a <a href="https://www.djangoproject.com/">Django</a> project &#8211; essentially this is a clean file structure usable to get going with a Django project nice and easy. The idea is that after downloading this, you just have to change a couple of names (see the <a href="https://github.com/magicrebirth/b_project/tree/master/_help">README</a> file for more details) and there you go you have a complete Django project ready to be ran and customized. </p>
+<p>The code is here: <a href="https://bitbucket.org/magicrebirth/django_bproject">bitbucket.org/magicrebirth/django_bproject</a>. Feel free to download or fork it as you like!</p>
+<p>Currently the B_project is set up to work with Django 1.3 and it has a few &#8216;batteries&#8217; included (= commonly used apps): </p>
+<li><a href="https://github.com/django-mptt/django-mptt/">MPTT</a>: Utilities for implementing a modified pre-order traversal tree in django</li>
+<li><a href="https://bitbucket.org/ubernostrum/django-registration/">REGISTRATION</a>: A user-registration application for Django. </li>
+<li><a href="https://github.com/django-extensions/django-extensions">DJANGO EXTENSIONS</a>: global custom management extensions for the Django Framework.</li>
+<li><a href="http://pypi.python.org/pypi/django-picklefield">PICKLEFIELD</a>:  an implementation of a pickled object field.</li>
+<p><a href="http://www.flickr.com/photos/mikele/6237287046/" title="Django B_project structure by MagIcReBirth, on Flickr"><img src="http://farm7.static.flickr.com/6218/6237287046_5774ef8ea7_z.jpg" width="571" height="640" alt="Django B_project structure"></a></p>
+<p>The other things included in the framework are:</p>
+<li>a <em>settings.py</em> file that calls localized settings specifications depending on parameters (eg dev server or live one)</li>
+<li>a bunch of generic python utilities</li>
+<li>a few &#8216;enhanced&#8217; model classes</li>
+<li>all that is needed for working with trees in the admin (as discussed here: <a href="http://www.michelepasin.org/blog/2009/08/18/django-admin-and-mptt-2/">Django admin and MPTT</a>)</li>
+<li>a javascript autocomplete framework, integrated in the admin (as discussed here: <a href="http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/">Autocomplete in Django</a>)</li>
+<li>some basic templates and templatetags</li>
+<p>Enjoy!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2011/10/12/django-b_project-available-on-github/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1593</post-id>	</item>
+		<item>
+		<title>DJFacet: a faceted browser for Django</title>
+		<link>http://www.michelepasin.org/blog/2011/06/09/djfacet-a-django-faceted-browser/</link>
+				<comments>http://www.michelepasin.org/blog/2011/06/09/djfacet-a-django-faceted-browser/#comments</comments>
+				<pubDate>Thu, 09 Jun 2011 09:26:00 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[browser]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[faceted]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1439</guid>
+				<description><![CDATA[DJFacet is a pluggable module for the Django web application framework that allows you to navigate the data in your webapp using an approach based on &#8216;facets&#8217;. DJFacet relies entirely on the django models you&#8217;ve already defined within your project and on a configuration file where you can create the facets and assign them behaviour. [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>DJFacet is a pluggable module for the <a href="https://www.djangoproject.com/">Django</a> web application framework that allows you to navigate the data in your webapp using an <a href="http://www.michelepasin.org/blog/2009/03/05/faceted-browsing-a-conceptual-map/">approach based on &#8216;facets&#8217;</a>. DJFacet relies entirely on the django models you&#8217;ve already defined within your project and on a configuration file where you can create the facets and assign them behaviour. This makes it very easy to integrate within your Django application.</p>
+<p>I&#8217;ve been working on DJFacet on and off for more than a year now, so I&#8217;m really happy to finally release a stable version of it. The software is still under active development, so be certain that in the coming months new features and bug fixes will be released! </p>
+<p>&nbsp;<br />
+<a href="http://www.flickr.com/photos/mikele/5814620822/" title="djfacet screenshot by MagIcReBirth, on Flickr"><img src="http://farm3.static.flickr.com/2581/5814620822_1b32986a64_z.jpg" width="540" height="400" alt="djfacet screenshot"></a><br />
+<br />&nbsp;<br />
+In a nutshell, the main features of DJFacet are:</p>
+<li>Rapid installation and integration with existing Django projects</li>
+<li>It&#8217;s back-end agnostic (as it rests on Django&#8217;s Database API)</li>
+<li>Has a minimal and customisable look and feel, based on template override</li>
+<li>It follows a REST architecture: urls of a search are stable and bookmarkable</li>
+<li>It supports pivoting (the type of objects being searched for can be changed dynamically)</li>
+<li>It provides a dedicated caching system (useful for apps with many facets/zoom points)</li>
+<p>Find out more about it using these links: </p>
+<li>Source code on Bitbucket: <a href="https://bitbucket.org/magicrebirth/djfacet">bitbucket.org/magicrebirth/djfacet</a></li>
+<li>Documentation: <a href="http://michelepasin.org/support/djfacet/docs/">michelepasin.org/support/djfacet/docs/</a></li>
+<li>Demo installation: <a href="http://demos.michelepasin.org/djfacet/">demos.michelepasin.org/djfacet/</a></li>
+<li>Project page: <a href="http://www.michelepasin.org/artifacts/software/djfacet/">www.michelepasin.org/artifacts/software/djfacet/</a></li>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2011/06/09/djfacet-a-django-faceted-browser/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1439</post-id>	</item>
+		<item>
+		<title>Python links (and more) 7/2/11</title>
+		<link>http://www.michelepasin.org/blog/2011/02/03/python-links-and-more-7211/</link>
+				<pubDate>Thu, 03 Feb 2011 15:23:21 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[books]]></category>
+		<category><![CDATA[conference]]></category>
+		<category><![CDATA[culture]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[documentation]]></category>
+		<category><![CDATA[google]]></category>
+		<category><![CDATA[history]]></category>
+		<category><![CDATA[hypertext]]></category>
+		<category><![CDATA[museum]]></category>
+		<category><![CDATA[narrative]]></category>
+		<category><![CDATA[ontology]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[semanticweb]]></category>
+		<category><![CDATA[spellchecking]]></category>
+		<category><![CDATA[xml]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1075</guid>
+				<description><![CDATA[This post contains just a collection of various interesting things I ran into in the last couple of weeks&#8230; they&#8217;re organized into three categories: pythonic links, events and conferences, and new online tools. Hope you&#8217;ll find something of interest! Pythonic stuff: Epidoc Epydoc is a handy tool for generating API documentation for Python modules, based [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>This post contains just a collection of various interesting things I ran into in the last couple of weeks&#8230; they&#8217;re organized into three categories: pythonic links, events and conferences, and new online tools. Hope you&#8217;ll find something of interest!</p>
+<h1></h1>
+<h4 style="background:#e39191;">Pythonic stuff:</h4>
+<li><a href="http://epydoc.sourceforge.net/manual-usage.html">Epidoc</a><br />
+Epydoc is a handy tool for generating API <strong>documentation</strong> for Python modules, based on their docstrings. For an example of epydoc&#8217;s output, see the API documentation for epydoc itself (<a href="http://epydoc.sourceforge.net/api/">html</a>, <a href="http://epydoc.sourceforge.net/epydoc.pdf">pdf</a>).</li>
+<li><a href="http://www.rfk.id.au/software/pyenchant/">PyEnchant</a><br />
+PyEnchant is a <strong>spellchecking</strong> library for Python, based on the excellent <a href="http://www.abisource.com/enchant/">Enchant</a> library.</li>
+<li><a href="http://pypi.python.org/pypi/dexml/">Dexml</a><br />
+The dexml module takes the mapping between <strong>XML tags</strong> and Python objects and lets you capture that as cleanly as possible. Loosely inspired by Django&#8217;s ORM, you write simple class definitions to define the expected structure of your XML document.</li>
+<li><a href="http://forge.morfeo-project.org/wiki_en/index.php/SpecGen">SpecGen</a><br />
+SpecGen v5, <strong>ontology</strong> specification generator tool. It&#8217;s written in Python using Redland RDF library and licensed under the MIT license.</li>
+<li><a href="http://www.picloud.com/">PyCloud</a><br />
+Leverage the power of the <strong>cloud</strong> with only 3 lines of python code. Run long processes on the cloud directly from your shell!</li>
+<li><a href="http://www.commandlinefu.com/commands/browse">commandlinefu.com</a><br />
+This is not really pythonic &#8211; but nonetheless useful to pythonists: a community-based repository of useful unix <strong>shell</strong> scripts!</li>
+<h1></h1>
+<h4 style="background:#e39191;">Events and Conferences:</h4>
+<li><a href="http://www.nottingham.ac.uk/drha/callforpapers.aspx">Digital Resources in the Humanities and Arts Conference 2011</a><br />
+University of Nottingham Ningbo, China. The DRHA 2011 conference theme this year is &#8220;<strong>Connected Communities</strong>: global or local2local?&#8221;</li>
+<li><a href="http://nht11.ecs.soton.ac.uk/">Narrative and Hypertext Workshop</a> at the ACM Hypertext 2011 <strong>conference</strong> in Eindhoven.
+</li>
+<li><a href="http://culturehackday.org.uk/">Culture Hack Day</a>, London, January 2011<br />
+This <strong>event</strong> aimed at bringing cultural organisations together with software developers and creative technologists to make interesting new things. </li>
+<li><a href="http://historyhackday.org/">History Hack Day</a>, London, January 2011<br />
+A bunch of <strong>hackers</strong> with a passion for history getting together and doing experimental stuff</li>
+<li><a href="https://conference.archimuse.com/">Conference.archimuse.com</a><br />
+The &#8216;online space for <strong>cultural informatics</strong>&#8216;: lots of useful info here, about publications, jobs, people etc.
+</li>
+<li><a href="http://ec.europa.eu/information_society/apps/projects/factsheet/index.cfm?project_ref=270904">Agora project</a>: Scholarly Open Access Research in European Philosophy<br />
+Project looking at building an infrastructure for the semantic interlinking of <strong>European philosophy</strong> datasets</li>
+<h1></h1>
+<h4 style="background:#e39191;">Online tools: </h4>
+<li><a href="http://ontotext.com/factforge/reasonable-view.html">FactForge</a><br />
+A web application aiming at showcasing a &#8216;practical approach for <strong>reasoning</strong> with the web of linked data&#8217;.</li>
+<li><a href="http://www.semanticoverflow.com/">Semantic Overflow</a><br />
+A clone of <a href="http://stackoverflow.com/">Stack Overflow</a> (collaboratively edited question and answer site for programmers) for <strong>questions</strong> &#8216;about semantic web techniques and technologies&#8217;.</li>
+<li><a href="http://code.google.com/p/google-refine/">Google Refine</a><br />
+A tool for &#8220;working with <strong>messy data</strong>, cleaning it up, transforming it from one format into another, extending it with web services, and linking it to databases&#8221;.
+</li>
+<li><a href="http://scribe.googlelabs.com/">Google Scribe</a><br />
+A text <strong>editor</strong> with embedded autocomplete suggestions as you type</li>
+<li><a href="http://ngrams.googlelabs.com/info">Books Ngram Viewer</a><br />
+Tool that displays <strong>statistical</strong> information regarding the use of user-selected sentences in a corpus of books (e.g., &#8220;British English&#8221;, &#8220;English Fiction&#8221;, &#8220;French&#8221;) over the selected years</li>
+<p>&#8230;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1075</post-id>	</item>
+		<item>
+		<title>Setting up Django Registration</title>
+		<link>http://www.michelepasin.org/blog/2011/01/14/setting-up-django-registration/</link>
+				<comments>http://www.michelepasin.org/blog/2011/01/14/setting-up-django-registration/#comments</comments>
+				<pubDate>Fri, 14 Jan 2011 14:16:06 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[email]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[registration]]></category>
+		<category><![CDATA[smtp]]></category>
+		<category><![CDATA[smtpd]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1057</guid>
+				<description><![CDATA[Django&#8217;s admin framework includes the basic functionalities for logging in and out of the admin site, but if you&#8217;re building a so-called &#8216;social&#8217; application and want people to be able to sign-up, log in and thus benefit from additional site functionalities then you need to use a more generic &#8216;registration&#8217; application. The good news is: [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Django&#8217;s <a href="https://docs.djangoproject.com/en/1.4/ref/contrib/admin/">admin framework</a> includes the basic functionalities for logging in and out of the admin site, but if you&#8217;re building a so-called &#8216;social&#8217; application and want people to be able to sign-up, log in and thus benefit from additional site functionalities then you need to use a more generic &#8216;registration&#8217; application. The good news is: most of the work has already been done, so it&#8217;s just a matter of putting things together correctly.</p>
+<p>I found a nicely written <a href="http://www.stonemind.net/blog/2007/04/13/django-registration-for-newbies/">blog post</a> on this topic, so in what follows I&#8217;m just doing a re-cap of the main steps involved and adding some other useful info.</p>
+<p>Before we start: what follows has been tested on <strike>Django 1.1</strike> <span style="color: red;">Django 1.3</span>, Python 2.6 and MySQL (note: on <span style="color: darkred;">13/8/12 I revised this post</span> so that the code would work on django 1.3 &#8211; <span style="color: darkred;">many thanks</span> to the folks who left comments and pointed out what needed to be updated!)</p>
+<h3>1) Install</h3>
+<p>Download the package from <a href="https://bitbucket.org/ubernostrum/django-registration/downloads">bitbucket</a> and add it to your application directory (or put it somewhere else and then modify your python path as needed). Then add the &#8216;registration&#8217; app to the <em>installed_apps</em> tuple in your <span style="font-family:monospace;color:#000000; ">settings.py</span>:</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '>INSTALLED_APPS <span style='color:#308080; '>=</span> <span style='color:#308080; '>(</span>
+    <span style='color:#1060b6; '>'django.contrib.auth'</span><span style='color:#308080; '>,</span>
+    <span style='color:#1060b6; '>'django.contrib.humanize'</span><span style='color:#308080; '>,</span>
+    <span style='color:#1060b6; '>'django.contrib.contenttypes'</span><span style='color:#308080; '>,</span>
+    <span style='color:#1060b6; '>'django.contrib.sessions'</span><span style='color:#308080; '>,</span>
+    <span style='color:#1060b6; '>'django.contrib.sites'</span><span style='color:#308080; '>,</span>
+    <span style='color:#1060b6; '>'django.contrib.admin'</span><span style='color:#308080; '>,</span>
+    <span style='color:#595979; '># etc..</span>
+    <span style='color:#1060b6; '>'registration'</span><span style='color:#308080; '>,</span>
+<span style='color:#308080; '>)</span>
+</pre>
+<h3>2) Syncdb</h3>
+<p>Do a quick <em><a href="http://docs.djangoproject.com/en/dev/ref/django-admin/#syncdb">syncdb</a></em> from the console, which will result in one new table being created in the DB, &#8216;RegistrationProfile&#8217;. All it contains is its primary key, the &#8216;user&#8217; key, and the &#8216;activation code&#8217; fields. Now we&#8217;ve got the data structures needed for setting up the registration application!</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '><span style='color:#308080; '>></span> python manage<span style='color:#308080; '>.</span>py syncdb
+</pre>
+<h3>3) Setting.py</h3>
+<p>Create some registration <strong>settings</strong> in <span style="font-family:monospace;color:#000000; ">settings.py</span>:</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '>ACCOUNT_ACTIVATION_DAYS<span style='color:#308080; '>=</span><span style='color:#008c00; '>7</span>
+EMAIL_HOST<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'localhost'</span>
+EMAIL_PORT<span style='color:#308080; '>=</span><span style='color:#008c00; '>1023</span>
+EMAIL_HOST_USER<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'username'</span>
+EMAIL_HOST_PASSWORD<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'password'</span>
+</pre>
+<p>Obviously you&#8217;ve got to <strong>change</strong> the settings above depending on your specific server setup (more information is available <a href="https://bitbucket.org/ubernostrum/django-registration/src/tip/docs/quickstart.rst">here</a> or <a href="http://docs.djangoproject.com/en/dev/ref/settings/?from=olddocs#email-host">here</a>). Also, see point 7 below if you&#8217;re just testing things out without a SMTP server available.</p>
+<h3>4) Urls.py</h3>
+<p>Include the required registration <strong>urls</strong> to your <span style="font-family:monospace;color:#000000; ">urls.py</span>:</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '>urlpatterns <span style='color:#308080; '>=</span> patterns<span style='color:#308080; '>(</span>"<span style='color:#308080; '>,</span>
+  <span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^admin/'</span><span style='color:#308080; '>,</span> include<span style='color:#308080; '>(</span><span style='color:#1060b6; '>'django.contrib.admin.urls'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+  <span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^accounts/'</span><span style='color:#308080; '>,</span> include<span style='color:#308080; '>(</span><span style='color:#1060b6; '>'registration.urls'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+<span style='color:#308080; '>)</span>
+</pre>
+<h3>5) Templates</h3>
+<p>Add the registration <strong>templates</strong> to your django-templates directory. The django-registration package we downloaded earlier on doesn&#8217;t include any templates, but you can easily find <em>some</em> of them online (for example <a href="http://code.djangoproject.com/browser/djangoproject.com/django_website/templates/registration">here</a>).<br />
+Anyways, no need to do that: I took those templates and added some other ones too so to create the minimal working package that&#8217;ll get you going (that doesn&#8217;t include any fancy css styling but all the basic html stuff is there). You can <a href="https://www.box.com/s/68191c48af306e450c29">download the templates here</a>, expand the zip file and put it in <span style="font-family:monospace;color:#000000; ">templates/registration</span>.</p>
+<h3>6) Done! Let&#8217;s recap..</h3>
+<p>We&#8217;re now <strong>ready</strong> to go. Let&#8217;s pause for a moment and recap what we achieved: we installed and activated django-registration, which sets up a whole bunch of new urls. These are divided into two groups:</p>
+<p><strong>a)</strong> <em>/login</em>, <em>/logout</em>, the two-step password change at <em>password/change/</em> and   <em>password/change/done/</em>; the four-step password reset at <em>password/reset/</em>,  <em>password/reset/confirm/</em>, <em>password/reset/complete/</em> and  <em>password/reset/done/</em>.<br />
+This is the original URL specification source code (you can see it on <a href="https://bitbucket.org/ubernostrum/django-registration/src/d36a38202ee3/registration/auth_urls.py">bitbucket</a> too) :</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '><span style='color:#595979; '># from django-registration / registration / auth_urls.py</span>
+urlpatterns <span style='color:#308080; '>=</span> patterns<span style='color:#308080; '>(</span><span style='color:#1060b6; '>''</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^login/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>login<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/login.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_login'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^logout/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>logout<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/logout.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_logout'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^password/change/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>password_change<span style='color:#308080; '>,</span>
+                            <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/password_change_form.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_password_change'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^password/change/done/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>password_change_done<span style='color:#308080; '>,</span>
+                            <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/password_change_done.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_password_change_done'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^password/reset/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>password_reset<span style='color:#308080; '>,</span>
+                            <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/password_reset_form.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_password_reset'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^password/reset/confirm/(?P&lt;uidb36>[0-9A-Za-z]+)-(?P&lt;token>.+)/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>password_reset_confirm<span style='color:#308080; '>,</span>
+                            <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/password_reset_confirm.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_password_reset_confirm'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^password/reset/complete/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>password_reset_complete<span style='color:#308080; '>,</span>
+                            <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/password_reset_complete.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_password_reset_complete'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^password/reset/done/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>password_reset_done<span style='color:#308080; '>,</span>
+                            <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/password_reset_done.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_password_reset_done'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+<span style='color:#308080; '>)</span>
+</pre>
+<p><strong>b)</strong> the second group of urls are <em>/activate</em> and <em>/register</em>:<br />
+This is the original URL specification source (see it on <a href="https://bitbucket.org/ubernostrum/django-registration/src/d36a38202ee3/registration/backends/default/urls.py">bitbucket</a>) :</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '><span style='color:#595979; '># django-registration / registration / backends / default / urls.py </span>
+urlpatterns <span style='color:#308080; '>=</span> patterns<span style='color:#308080; '>(</span><span style='color:#1060b6; '>''</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^activate/complete/$'</span><span style='color:#308080; '>,</span>
+                           direct_to_template<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span> <span style='color:#1060b6; '>'template'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/activation_complete.html'</span> <span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'registration_activation_complete'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       <span style='color:#595979; '># Activation keys get matched by w+ instead of the more specific</span>
+                       <span style='color:#595979; '># [a-fA-F0-9]{40} because a bad activation key should still get to the view;</span>
+                       <span style='color:#595979; '># that way it can return a sensible "invalid key" message instead of a</span>
+                       <span style='color:#595979; '># confusing 404.</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^activate/(?P&lt;activation_key>w+)/$'</span><span style='color:#308080; '>,</span>
+                           activate<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span> <span style='color:#1060b6; '>'backend'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration.backends.default.DefaultBackend'</span> <span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'registration_activate'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^register/$'</span><span style='color:#308080; '>,</span>
+                           register<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span> <span style='color:#1060b6; '>'backend'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration.backends.default.DefaultBackend'</span> <span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'registration_register'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^register/complete/$'</span><span style='color:#308080; '>,</span>
+                           direct_to_template<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span> <span style='color:#1060b6; '>'template'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/registration_complete.html'</span> <span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'registration_complete'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^register/closed/$'</span><span style='color:#308080; '>,</span>  <span style='color:#595979; '># UNUSED</span>
+                           direct_to_template<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span> <span style='color:#1060b6; '>'template'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/registration_closed.html'</span> <span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'registration_disallowed'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                        <span style='color:#595979; '># this is the default django login module </span>
+                       <span style='color:#308080; '>(</span><span style='color:#1060b6; '>r''</span><span style='color:#308080; '>,</span> include<span style='color:#308080; '>(</span><span style='color:#1060b6; '>'registration.auth_urls'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       <span style='color:#308080; '>)</span>
+</pre>
+<h3>7) Testing</h3>
+<p>If you&#8217;re testing things on a development server you might not have access to an <a href="http://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">SMTP server</a> (needed to test the email-based registration process). In such a case you can still try out your application using a workaround. In your <span style="font-family:monospace;color:#000000; ">settings.py</span> file change the registration settings with the following ones:</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '>EMAIL_HOST <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'localhost'</span>
+EMAIL_PORT <span style='color:#308080; '>=</span> <span style='color:#008c00; '>1025</span>
+EMAIL_HOST_USER <span style='color:#308080; '>=</span> "
+EMAIL_HOST_PASSWORD <span style='color:#308080; '>=</span> "
+EMAIL_USE_TLS <span style='color:#308080; '>=</span> <span style='color:#e34adc; '>False</span>
+DEFAULT_FROM_EMAIL <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'testing@example.com'</span>
+</pre>
+<p>Then open up another <strong>console window</strong> and run a temporary &#8216;dummy&#8217; SMTP server with <a href="http://docs.python.org/library/smtpd.html">python</a>:</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '>bash<span style='color:#308080; '>-</span><span style='color:#008000; '>3.2</span>$ python <span style='color:#308080; '>-</span>m smtpd <span style='color:#308080; '>-</span>n <span style='color:#308080; '>-</span>c DebuggingServer localhost<span style='color:#308080; '>:</span><span style='color:#008c00; '>1025</span>
+</pre>
+<p>This local SMTP server remains there waiting for incoming messages. If now you go to <em>/accounts/register/</em>, fill out the form and hit ‘send’ you’ll see the registration email printed out in the console. Basically what happened is this: the ‘dummy’ python SMTP server we’ve just set up picked up django’s email-sending request and consequently printed out the email contents. If this is indeed what happened, it means that your code is working properly… and that you can use the url provided in the email to test the <strong>activation</strong> functionality too.</p>
+<p>For example, here is what you would see in the console after registering:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+---------- MESSAGE FOLLOWS ----------
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Subject: Activate your djangoproject.com account - you have 2 days!
+From: testing@example.com
+To: michele.pasin@hotmail.com
+Date: Wed, 12 Jan 2011 16:49:59 -0000
+Message-ID: <20110112164959.3366.35638@mymac.local>
+X-Peer: 127.0.0.1
+
+
+Someone, hopefully you, signed up for a new account at djangoproject.com using this email address. If it was you, and you'd like to activate and use your
+account, click the link below or copy and paste it into your web browser's address bar:
+
+http://127.0.0.1:8000/accounts/activate/6342fca5ffd430a820be6d98acde6e59a4c2d29c/
+
+If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in two days.
+
+------------ END MESSAGE ------------</code></pre>
+<p><strong>Pasting</strong> the &#8216;activation&#8217; url in your browser should allow you to complete the registration process and check the rest of your code.</p>
+<p>Finally, keep in mind also that the django-registration application sends out emails that contain your site’s URL for the activation link, and that URL is dynamically determined using the <a href="https://docs.djangoproject.com/en/dev/ref/contrib/sites/?from=olddocs/">&#8216;sites&#8217; application</a> (normally added via <span style="font-family:monospace;color:#000000; ">settings.py</span>). By default, your domain name is listed as ‘example.com’, and the easiest way to change this is to log into the admin application and click on the ‘Sites’ link on the admin home page to get to the relevant entry.</p>
+<p>===== ++ =====</p>
+<h4>Some other possibly useful links: </h4>
+<p>Fromt the Django website: </p>
+<li><a href="http://docs.djangoproject.com/en/1.1/topics/auth/">User authentication in django</a> </li>
+<li><a href="http://docs.djangoproject.com/en/dev/topics/email/">Sending emails</a></li>
+<p>From the Django book: </p>
+<li><a href="http://www.djangobook.com/en/beta/chapter12/">Chapter 12: Sessions, users, and registration</a></li>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2011/01/14/setting-up-django-registration/feed/</wfw:commentRss>
+		<slash:comments>23</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1057</post-id>	</item>
+		<item>
+		<title>Preloading stuff in django&#8217;s interactive shell</title>
+		<link>http://www.michelepasin.org/blog/2010/11/17/preloading-stuff-in-djangos-interactive-shell/</link>
+				<comments>http://www.michelepasin.org/blog/2010/11/17/preloading-stuff-in-djangos-interactive-shell/#comments</comments>
+				<pubDate>Wed, 17 Nov 2010 18:41:07 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[shell]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1012</guid>
+				<description><![CDATA[Django&#8217;s shell is a fantastic way to interact with all the components of your django application, eg when testing new functionalities or debugging a nasty error. Sometimes though you end up loading the same variables or importing the same modules every time you run the shell , for example because you are trying out a [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://docs.djangoproject.com/en/dev/ref/django-admin/#shell">Django&#8217;s shell</a> is a fantastic way to interact with all the components of your django application, eg when testing new functionalities or debugging a nasty error. Sometimes though you end up loading the same variables or importing the same modules every time you run the shell , for example because you are trying out a large function that needs being refined through a trial and error process. </p>
+<p>Opening up the shell and reloading all the components you need to have handy can thus become a bit tedious; here&#8217;s an easy way to go around this problem.<br />
+In doing this, I&#8217;ve just been inspired some code found in the handy <a href="https://github.com/django-extensions/django-extensions">django-extensions</a> app. The extensions ship with a number of <a href="http://code.google.com/p/django-command-extensions/wiki/CommandExtensions">command modules</a>, that is, functions that you can run from the unix shell using the usual <em>python manage.py some_command</em> syntax.  </p>
+<p>The module I&#8217;m talking about here is called <strong>shell_plus</strong> &#8211; it&#8217;s an enhanced version of the Django shell. It will autoload all your models making it easy to work with the ORM right away. Here&#8217;s the implementation:</p>
+<pre style="font-size: 13px; line-height: 150%;"><div class="python" style="font-family:monospace;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0; overflow:auto;"><span style="color: #808080; font-style: italic;"># django_extensions/management/commands/shell_plus.py</span><br />
+<br />
+<span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #dc143c;">os</span><br />
+<span style="color: #ff7700;font-weight:bold;">from</span> django.<span style="color: black;">core</span>.<span style="color: black;">management</span>.<span style="color: black;">base</span> <span style="color: #ff7700;font-weight:bold;">import</span> NoArgsCommand<br />
+<span style="color: #ff7700;font-weight:bold;">from</span> <span style="color: #dc143c;">optparse</span> <span style="color: #ff7700;font-weight:bold;">import</span> make_option<br />
+<br />
+<span style="color: #ff7700;font-weight:bold;">class</span> Command<span style="color: black;">&#40;</span>NoArgsCommand<span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; option_list = NoArgsCommand.<span style="color: black;">option_list</span> + <span style="color: black;">&#40;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; make_option<span style="color: black;">&#40;</span><span style="color: #483d8b;">'--plain'</span>, action=<span style="color: #483d8b;">'store_true'</span>, dest=<span style="color: #483d8b;">'plain'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #008000;">help</span>=<span style="color: #483d8b;">'Tells Django to use plain Python, not IPython.'</span><span style="color: black;">&#41;</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; make_option<span style="color: black;">&#40;</span><span style="color: #483d8b;">'--no-pythonrc'</span>, action=<span style="color: #483d8b;">'store_true'</span>, dest=<span style="color: #483d8b;">'no_pythonrc'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #008000;">help</span>=<span style="color: #483d8b;">'Tells Django to use plain Python, not IPython.'</span><span style="color: black;">&#41;</span>,<br />
+&nbsp; &nbsp; <span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #008000;">help</span> = <span style="color: #483d8b;">&quot;Like the 'shell' command but autoloads the models of all installed Django apps.&quot;</span><br />
+<br />
+&nbsp; &nbsp; requires_model_validation = <span style="color: #008000;">True</span><br />
+<br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">def</span> handle_noargs<span style="color: black;">&#40;</span><span style="color: #008000;">self</span>, <span style="color: #66cc66;">**</span>options<span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># XXX: (Temporary) workaround for ticket #1796: force early loading of all</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># models from installed apps. (this is fixed by now, but leaving it here</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># for people using 0.96 or older trunk (pre [5919]) versions.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">from</span> django.<span style="color: black;">db</span>.<span style="color: black;">models</span>.<span style="color: black;">loading</span> <span style="color: #ff7700;font-weight:bold;">import</span> get_models, get_apps<br />
+&nbsp; &nbsp; &nbsp; &nbsp; loaded_models = get_models<span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; use_plain = options.<span style="color: black;">get</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'plain'</span>, <span style="color: #008000;">False</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; use_pythonrc = <span style="color: #ff7700;font-weight:bold;">not</span> options.<span style="color: black;">get</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'no_pythonrc'</span>, <span style="color: #008000;">True</span><span style="color: black;">&#41;</span><br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Set up a dictionary to serve as the environment for the shell, so</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># that tab completion works on objects that are imported at runtime.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># See ticket 5082.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">from</span> django.<span style="color: black;">conf</span> <span style="color: #ff7700;font-weight:bold;">import</span> settings<br />
+&nbsp; &nbsp; &nbsp; &nbsp; imported_objects = <span style="color: black;">&#123;</span><span style="color: #483d8b;">'settings'</span>: settings<span style="color: black;">&#125;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">for</span> app_mod <span style="color: #ff7700;font-weight:bold;">in</span> get_apps<span style="color: black;">&#40;</span><span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; app_models = get_models<span style="color: black;">&#40;</span>app_mod<span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> <span style="color: #ff7700;font-weight:bold;">not</span> app_models:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">continue</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; model_labels = <span style="color: #483d8b;">&quot;, &quot;</span>.<span style="color: black;">join</span><span style="color: black;">&#40;</span><span style="color: black;">&#91;</span>model.__name__ <span style="color: #ff7700;font-weight:bold;">for</span> model <span style="color: #ff7700;font-weight:bold;">in</span> app_models<span style="color: black;">&#93;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">print</span> <span style="color: #008000;">self</span>.<span style="color: black;">style</span>.<span style="color: black;">SQL_COLTYPE</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">&quot;From '%s' autoload: %s&quot;</span> <span style="color: #66cc66;">%</span> <span style="color: black;">&#40;</span>app_mod.__name__.<span style="color: black;">split</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'.'</span><span style="color: black;">&#41;</span><span style="color: black;">&#91;</span>-<span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>, model_labels<span style="color: black;">&#41;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">for</span> model <span style="color: #ff7700;font-weight:bold;">in</span> app_models:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">try</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; imported_objects<span style="color: black;">&#91;</span>model.__name__<span style="color: black;">&#93;</span> = <span style="color: #008000;">getattr</span><span style="color: black;">&#40;</span><span style="color: #008000;">__import__</span><span style="color: black;">&#40;</span>app_mod.__name__, <span style="color: black;">&#123;</span><span style="color: black;">&#125;</span>, <span style="color: black;">&#123;</span><span style="color: black;">&#125;</span>, model.__name__<span style="color: black;">&#41;</span>, model.__name__<span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">except</span> <span style="color: #008000;">AttributeError</span>, e:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">print</span> <span style="color: #008000;">self</span>.<span style="color: black;">style</span>.<span style="color: black;">ERROR_OUTPUT</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">&quot;Failed to import '%s' from '%s' reason: %s&quot;</span> <span style="color: #66cc66;">%</span> <span style="color: black;">&#40;</span>model.__name__, app_mod.__name__.<span style="color: black;">split</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'.'</span><span style="color: black;">&#41;</span><span style="color: black;">&#91;</span>-<span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>, <span style="color: #008000;">str</span><span style="color: black;">&#40;</span>e<span style="color: black;">&#41;</span><span style="color: black;">&#41;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">continue</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">try</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> use_plain:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Don't bother loading IPython, because the user wants plain Python.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">raise</span> <span style="color: #008000;">ImportError</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">import</span> IPython<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Explicitly pass an empty list as arguments, because otherwise IPython</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># would use sys.argv from this script.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; shell = IPython.<span style="color: black;">Shell</span>.<span style="color: black;">IPShell</span><span style="color: black;">&#40;</span>argv=<span style="color: black;">&#91;</span><span style="color: black;">&#93;</span>, user_ns=imported_objects<span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; shell.<span style="color: black;">mainloop</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">except</span> <span style="color: #008000;">ImportError</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Using normal Python shell</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #dc143c;">code</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">try</span>: <span style="color: #808080; font-style: italic;"># Try activating rlcompleter, because it's handy.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #dc143c;">readline</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">except</span> <span style="color: #008000;">ImportError</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">pass</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">else</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># We don't have to wrap the following import in a 'try', because</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># we already know 'readline' was imported successfully.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #dc143c;">rlcompleter</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #dc143c;">readline</span>.<span style="color: black;">set_completer</span><span style="color: black;">&#40;</span><span style="color: #dc143c;">rlcompleter</span>.<span style="color: black;">Completer</span><span style="color: black;">&#40;</span>imported_objects<span style="color: black;">&#41;</span>.<span style="color: black;">complete</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #dc143c;">readline</span>.<span style="color: black;">parse_and_bind</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">&quot;tab:complete&quot;</span><span style="color: black;">&#41;</span><br />
+<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># We want to honor both $PYTHONSTARTUP and .pythonrc.py, so follow system</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># conventions and get $PYTHONSTARTUP first then import user.</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> use_pythonrc:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; pythonrc = <span style="color: #dc143c;">os</span>.<span style="color: black;">environ</span>.<span style="color: black;">get</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">&quot;PYTHONSTARTUP&quot;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> pythonrc <span style="color: #ff7700;font-weight:bold;">and</span> <span style="color: #dc143c;">os</span>.<span style="color: black;">path</span>.<span style="color: black;">isfile</span><span style="color: black;">&#40;</span>pythonrc<span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">try</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #008000;">execfile</span><span style="color: black;">&#40;</span>pythonrc<span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">except</span> <span style="color: #008000;">NameError</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">pass</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># This will import .pythonrc.py as a side-effect</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #dc143c;">user</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #dc143c;">code</span>.<span style="color: black;">interact</span><span style="color: black;">&#40;</span>local=imported_objects<span style="color: black;">&#41;</span></div></pre>
+<p>Essentially, this is what&#8217;s going on here:</p>
+<p>a. A <strong>subclass of NoArgsCommand is created</strong> following the standard approach stated in Django&#8217;s <a href="http://docs.djangoproject.com/en/dev/howto/custom-management-commands/">docs for creating custom management commands</a> . </p>
+<p>b. All the <strong>applications</strong> in your django project and the related <strong>models</strong> get <strong>loaded</strong>, and their references are added to the <strong>imported_objects</strong> dictionary, eg when the code reads:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+imported_objects = {'settings': settings}</code></pre>
+<p>c. The code tries to <strong>load the best python shell</strong> available: iPython if present, otherwise the normal python shell with the necessary libraries are called.</p>
+<p>&#8230;</p>
+<p>That&#8217;s all. The key line to look at is therefore the last one, that is:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+# .......
+code.interact(local=imported_objects)</code></pre>
+<p>That&#8217;s what launches the interpreter and initializes it with the <em><strong>imported_objects</strong></em> dictionary; this dictionary contains all the (extra) symbols that we want to make available through the new python interpreter instance. So in order to have more stuff there all we have to do is add more elements to that dictionary, eg:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+# .......
+alist = range(1000)
+imported_objects['alist'] = alist
+code.interact(local=imported_objects)</code></pre>
+<p>Insert these two lines right before the last line of the script above, save it using a new name (eg. <em>my_fancyshell.py</em> )in the <em>/management/commands/</em> directory of one of your applications (it needs to be there so that django interprets it as a custom command), and the game is done. Now you can invoke </p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+bash-3.2$ python manage.py my_fancyshell.py</code></pre>
+<p>from the unix command line, and the &#8216;alist&#8217; symbol will be available.<br />
+Obviously in a real world situation you might end up loading and adding to the <em>imported_objects</em> dictionary various many things too, but the principle will remain the same!</p>
+<p>&#8230;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2010/11/17/preloading-stuff-in-djangos-interactive-shell/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1012</post-id>	</item>
+		<item>
+		<title>Trying out Django-cms</title>
+		<link>http://www.michelepasin.org/blog/2010/08/03/trying-out-django-cms/</link>
+				<pubDate>Tue, 03 Aug 2010 13:33:52 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[cms]]></category>
+		<category><![CDATA[django]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=792</guid>
+				<description><![CDATA[I tried installing django-cms, an open-source project from Switzerland&#8217;s company Divio. It is a content management system based on the web framework Django and is written in Python. Among the interesting features of DjangoCms (besides the fact that it is based on django, which I happen to have fun with in most of my programming [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I tried installing <a href="http://www.django-cms.org/en/">django-cms</a>, an open-source project from Switzerland&#8217;s company <a href="http://www.divio.ch/">Divio</a>. It is a content management system based on the web framework <a href="http://www.djangoproject.com/">Django</a> and is written in Python. </p>
+<div style="width:425px" id="__ss_4289773"><object id="__sse4289773" width="425" height="355"><param name="movie" value="http://static.slidesharecdn.com/swf/ssplayer2.swf?doc=django-cms-key-100525050945-phpapp02&#038;rel=0&#038;stripped_title=django-cmskey" /><param name="allowFullScreen" value="true"/><param name="allowScriptAccess" value="always"/></object></div>
+<p>Among the interesting <a href="http://www.django-cms.org/en/tour/">features</a> of DjangoCms (besides the fact that it is based on django, which I happen to have fun with in most of my programming work): </p>
+<blockquote>
+<li>Flexible Plugin Architecture. Build flexible pages with a wide range of plugins.</li>
+<li>SEO Optimization. The structure of the pages is optimized for SEO.</li>
+<li>Editorial workflow. Workflows for publishing and approval.</li>
+<li>Permission Management. Set specific rights to different users.</li>
+<li>Versioning. Each modification of the page will be saved. You can restore any state you wish.</li>
+<li>Multisites. Administrate multiple websites over the same admin interface.</li>
+<li>Multilanguage. Support for different languages (i.e. arabic, chinese or russian)</li>
+<li>Applications (Apps). Add apps to different pages of the CMS.</li>
+<li>Media Asset Manager (MAM). MAM allows you to manage all kind of assets (pictures, PDFs, videos and other documents).</li>
+</blockquote>
+<p>It&#8217;s quite interesting to check out the other alternatives too, if you want a django-based CMS. <a href="http://code.djangoproject.com/wiki/CMSAppsComparison">This comparison webpage</a> has all the info you need.</p>
+<p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8211;</p>
+<p>Getting to the meaty part: here are the steps I followed during <strong>installation</strong>:</p>
+<p>1. went to <a href="http://github.com/divio/django-cms/downloads">gitHub</a> and tried to install the latest version available (2.1.0.beta2). Tried to run the example app within that package, but it was throwing too many errors so I decided to go for the 2.0 stable release (<a href="http://github.com/divio/django-cms/tarball/2.0.0">django-cms-2.0.0.final.tar.gz</a>). </p>
+<p>2. This version worked fine, I just had to <strong>set the MEDIA directory</strong> giving using the full path on my machine, and <strong>remove</strong> all references to &#8216;<strong>South</strong>&#8216; and &#8216;<strong>Reversion</strong>&#8216; django apps (in &#8216;installed apps&#8217;) cause I don&#8217;t use them.  </p>
+<p>3. fill out the <strong>DB specs</strong> as needed (<em>&#8216;DATABASE_ENGINE = &#8216;sqlite3&#8217;</em>), update the DB using &#8216;<em>python manage.py syncdb</em>&#8216;, and then start the server using &#8216;<em>python manage.py runserver</em>&#8216; </p>
+<p>4. That&#8217;s it. Go to /admin, <strong>set up some pages</strong>, add content and see the result. </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/Screen-shot-2010-08-03-at-14.19.23.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/Screen-shot-2010-08-03-at-14.19.23.png" alt="Screen shot 2010-08-03 at 14.19.23.png" border="0" width="400" height="130" /></a></p>
+<p>The templates that come by default are good at giving you an idea of how the information is structured and retrieve, but they are a bit messy in my opinion. So I <strong>created my own template </strong>and added it to the default ones (all the info on how to do this on the <a href="http://www.django-cms.org/en/documentation/2.0/configuration/">official docs</a>) </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/Screen-shot-2010-08-03-at-14.22.04.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/Screen-shot-2010-08-03-at-14.22.04.png" alt="Screen shot 2010-08-03 at 14.22.04.png" border="0" width="320" height="300" /></a></p>
+<p>The end result: not a masterwork, but a decent starting point for certain! </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/Screen-shot-2010-08-03-at-14.26.29.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/08/Screen-shot-2010-08-03-at-14.26.29.png" alt="Screen shot 2010-08-03 at 14.26.29.png" border="0" width="500" height="200" /></a></p>
+<p>&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;&#8212;</p>
+<p>Other places online where you might find useful django-cms tips:</p>
+<p>&#8211; django-cms <a href="http://groups.google.ch/group/django-cms">mailing list</a> on google groups<br />
+&#8211; another mailing list on <a href="http://blog.gmane.org/gmane.comp.python.django.django-cms">gmame.org</a></p>
+<p>That&#8217;s it for now. I like very much the plugin architecture (plugins or extensions can be <a href="http://www.django-cms.org/en/extensions/">downloaded here</a>), maybe I&#8217;ll be posting some more about that in the future&#8230; </p>
+<p>&#8230;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">792</post-id>	</item>
+		<item>
+		<title>The power of django&#8217;s Q objects</title>
+		<link>http://www.michelepasin.org/blog/2010/07/20/the-power-of-djangos-q-objects/</link>
+				<comments>http://www.michelepasin.org/blog/2010/07/20/the-power-of-djangos-q-objects/#comments</comments>
+				<pubDate>Tue, 20 Jul 2010 00:46:44 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[q_objects]]></category>
+		<category><![CDATA[query]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=755</guid>
+				<description><![CDATA[I&#8217;ve been spending some time today doing research on how to best use django&#8217;s Q objects. Then I did a bit of testing myself and decided to put this whole thing together for future&#8217;s sake, you know, for the time when I&#8217;ll find myself lost and in need some coding recipe. First things first: the [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I&#8217;ve been spending some time today doing research on how to best use django&#8217;s Q objects. Then I did a bit of testing myself and decided to put this whole thing together for future&#8217;s sake, you know, for the time when I&#8217;ll find myself lost and in need some coding recipe.</p>
+<p>First things first: the <strong>official documentation</strong>.</p>
+<li>Django doc: <a href="http://docs.djangoproject.com/en/dev/topics/db/queries/#complex-lookups-with-q-objects">Complex lookups with Q objects</a><br />
+The main intro</li>
+<li>Django doc: <a href="http://www.djangoproject.com/documentation/models/or_lookups/">OR lookups</a><br />
+More in-depth examples</li>
+<p>Now&#8230; let&#8217;s get started by resurrecting the simple <a href="">model</a> used in the <a href="http://docs.djangoproject.com/en/dev/intro/tutorial01/"> django  Tutorial</a>, <strong>Polls</strong>, and adding a few <strong>instances</strong> to play with:</p>
+<div style='color:#000000;background:lavender;overflow:auto; width: 1100px;'>
+<pre>
+<font color="#0000ff"># ==&gt; in models.py</font>
+from django.db import models
+import datetime
+
+class Poll(models.Model):
+        question = models.CharField(max_length=200)
+        pub_date = models.DateTimeField(<font color="#ff00ff">'date published'</font>)
+
+
+<font color="#0000ff"># ==&gt; add some instances from the shell</font>
+&gt;&gt;&gt; p = Poll(question=<font color="#ff00ff">'what shall I make for dinner'</font>, pub_date=datetime.date.today())
+&gt;&gt;&gt; p.save()
+&gt;&gt;&gt; p = Poll(question=<font color="#ff00ff">'what is your favourite meal?'</font>, pub_date=datetime.datetime(2009, 7, 19, 0, 0)) <font color="#0000ff">#one year ago</font>
+&gt;&gt;&gt; p.save()
+&gt;&gt;&gt; p = Poll(question=<font color="#ff00ff">'how do you make omelettes?'</font>, pub_date=datetime.date.today())
+&gt;&gt;&gt; p.save()
+
+</pre>
+</div>
+<h2>What are Q Objects Handy for?</h2>
+<p>In a nutshell, the main reason why you might want to use them is because you need to do <strong>complex queries</strong>, for example involving OR and AND statements a the same time.</p>
+<p>Imagine that you want to retrieve all polls whose question <strong>contains the word &#8216;dinner&#8217; OR &#8216;meal&#8217;</strong>. The usual &#8216;filter&#8217; option lets you do the following:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>
+&gt;&gt;&gt; Poll.objects.filter(question__contains='<font color="#ff00ff">dinner</font>').filter(question__contains='<font color="#ff00ff">meal</font>')
+[]
+
+</pre>
+</div>
+<p>But this is <strong>not really what we want</strong>, is it? We just got a <strong>concatenation of AND</strong> statements (= all constraints need to be satisfied), while <strong>we wanted an OR</strong> (=at least one of the constraints needs to be satisfied).<br />
+This is where Q objects become useful:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>&gt;&gt;&gt; <font color="#a520f7">from</font> django.db.models <font color="#a520f7">import</font> Q
+<font color="#0000ff"># a simple query</font>
+&gt;&gt;&gt; Poll.objects.filter(Q(question__contains='<font color="#ff00ff">dinner</font>'))
+[&lt;Poll: what shall I make <font color="#a52829"><b>for</b></font> dinner&gt;]
+<font color="#0000ff"># two constraints linked by AND</font>
+&gt;&gt;&gt; Poll.objects.filter(Q(question__contains='<font color="#ff00ff">dinner</font>') &amp; Q(question__contains='<font color="#ff00ff">meal</font>'))
+[]
+<font color="#0000ff"># two constraints linked by OR - that's it!</font>
+&gt;&gt;&gt; Poll.objects.filter(Q(question__contains='<font color="#ff00ff">dinner</font>') | Q(question__contains='<font color="#ff00ff">meal</font>'))
+[&lt;Poll: what shall I make <font color="#a52829"><b>for</b></font> dinner&gt;, &lt;Poll: what <font color="#a52829"><b>is</b></font> your favourite meal?&gt;]</pre>
+</div>
+<p>Note that if you don&#8217;t specify any logical connector the Q sequence is implicitly interpreted as AND:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>
+<font color="#0000ff"># no logical connector is interpreted as AND</font>
+&gt;&gt;&gt; Poll.objects.filter(Q(question__contains='<font color="#ff00ff">dinner</font>'), Q(question__contains='<font color="#ff00ff">meal</font>'))
+[]
+</pre>
+</div>
+<p>Things start getting more interesting when creating complex queries:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre><font color="#0000ff"># eg (A OR B) AND C:</font>
+&gt;&gt;&gt; Poll.objects.filter((Q(question__contains='<font color="#ff00ff">dinner</font>') | Q(question__contains='<font color="#ff00ff">meal</font>')) &amp; Q(pub_date=datetime.date.today()))
+[&lt;Poll: what shall I make <font color="#a52829"><b>for</b></font> dinner&gt;]
+</pre>
+</div>
+<h2>Dynamic Query Building</h2>
+<p>Now, it is likely that you want to build up queries like the ones above dynamically. This is another place where Q objects can save lots of time&#8230;.for example, when constructing <strong>search engines</strong> or <strong>faceted browsers</strong> where the interface lets a user <strong>accumulate search filters</strong> in an incremental manner.</p>
+<p>One way to handle this situation is by creating <strong>lists of Q objects</strong>, and then <strong>combining them together</strong> using python&#8217;s <a href="http://docs.python.org/library/operator.html#operator.and_">operator</a> and <a href="http://docs.python.org/library/functions.html#reduce">reduce</a> methods:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>&gt;&gt;&gt; <font color="#a520f7">import</font> operator
+<font color="#0000ff"># create a list of Q objects</font>
+&gt;&gt;&gt; mylist = [Q(question__contains='<font color="#ff00ff">dinner</font>'), Q(question__contains='<font color="#ff00ff">meal</font>')]
+<font color="#0000ff"># OR</font>
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.or_, mylist))
+[&lt;Poll: what shall I make <font color="#a52829"><b>for</b></font> dinner&gt;, &lt;Poll: what <font color="#a52829"><b>is</b></font> your favourite meal?&gt;]
+<font color="#0000ff"># AND</font>
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.and_, mylist))
+[]
+</pre>
+</div>
+<p>Now, if you&#8217;re building the query dynamically you probably won&#8217;t know in advance which are the filters you have to use. It is likely instead that you find yourself having to <strong>generate a list of Q objects programatically</strong> from a list of strings representing queries to your models:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>
+<font color="#0000ff"># string representation of our queries</font>
+&gt;&gt;&gt; predicates = [('<font color="#ff00ff">question__contains</font>', '<font color="#ff00ff">dinner</font>'), ('<font color="#ff00ff">question__contains</font>', '<font color="#ff00ff">meal</font>')]
+<font color="#0000ff"># create the list of Q objects and run the queries as above..</font>
+&gt;&gt;&gt; q_list = [Q(x) <font color="#a52829"><b>for</b></font> x <font color="#a52829"><b>in</b></font> predicates]
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.or_, q_list))
+[&lt;Poll: what shall I make <font color="#a52829"><b>for</b></font> dinner&gt;, &lt;Poll: what <font color="#a52829"><b>is</b></font> your favourite meal?&gt;]
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.and_, q_list))
+[]
+
+<font color="#0000ff"># now let's append another filter to the query-strings..</font>
+&gt;&gt;&gt; predicates.append(('<font color="#ff00ff">pub_date</font>', datetime.date.today()))
+&gt;&gt;&gt; predicates
+[('<font color="#ff00ff">question__contains</font>', '<font color="#ff00ff">dinner</font>'), ('<font color="#ff00ff">question__contains</font>', '<font color="#ff00ff">meal</font>'), ('<font color="#ff00ff">pub_date</font>', datetime.date(2010, 7, 19))]
+<font color="#0000ff"># .. and the results will change too</font>
+&gt;&gt;&gt; q_list = [Q(x) <font color="#a52829"><b>for</b></font> x <font color="#a52829"><b>in</b></font> predicates]
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.or_, q_list))
+[&lt;Poll: what shall I make <font color="#a52829"><b>for</b></font> dinner&gt;, &lt;Poll: what <font color="#a52829"><b>is</b></font> your favourite meal?&gt;, &lt;Poll: how do you make omelettes?&gt;]
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.and_, q_list))
+[]
+</pre>
+</div>
+<h2>Query Expansion and Q Objects</h2>
+<p>Using query expansion syntax you could normally do things <strong>like this</strong>:</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>&gt;&gt;&gt; mydict = {'<font color="#ff00ff">question__contains</font>': '<font color="#ff00ff">omelette</font>', '<font color="#ff00ff">pub_date</font>' : datetime.date.today()}
+&gt;&gt;&gt; Poll.objects.filter(**mydict)
+[&lt;Poll: how do you make omelettes?&gt;]
+</pre>
+</div>
+<p>Here you are basically <strong>sequencing AND statements which are built dynamically</strong> from some string values. </p>
+<p>A really cool feature of django ORM is that you can <strong>keep doing this</strong> even <strong>while using Q objects</strong>. In other words, you can delegate all the &#8216;normal&#8217; stuff to the query expansion mechanism, while instead resorting to Q objects whenever you need more complex queries, such an OR statement. </p>
+<p>For example (remember to put the dictionary always in second position):</p>
+<div style='color:#000000; background:lavender; overflow:auto; width: 1100px;'>
+<pre>
+<font color="#0000ff"># OR plus query expansion</font>
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.or_, q_list), **mydict)
+[&lt;Poll: how do you make omelettes?&gt;]
+<font color="#0000ff"># AND plus query expansion</font>
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.and_, q_list), **mydict)
+[]
+</pre>
+</div>
+<p>In the <strong>first</strong> case, we have one result only because, although the OR constraint on <em>q_list</em> is would match more stuff by itself, <em>**mydict</em> is exploded as a series of constraints connected by AND, thus making <em>[Poll: how do you make omelettes?]</em> the only matchable object.<br />
+In the <strong>second</strong> case instead there are no results at all simply because we are asking for a Poll instance that satisfies simultaneously all the constraints (which doesn&#8217;t exist)!</p>
+<h2>Other Resources</h2>
+<p>That&#8217;s all for now! As I said, I found quite a <strong>few very good posts</strong> about the subject online and I strongly advise you to<strong> check them out too</strong> in order to have a clearer picture of how Q objects work. </p>
+<li><a href="http://bradmontgomery.blogspot.com/2009/06/adding-q-objects-in-django.html">Adding Q objects in Django</a><br />
+Shows another method to chain Q objects together using &#8216;add&#8217;</li>
+<li><a href="http://jehiah.cz/archive/django-q-objects">A Tip on Complex Django Queries</a><br />
+Discusses how queries need to be written in order to produce the expected mySQL code</li>
+<li><a href="http://www.djangozen.com/blog/the-power-of-q">The power of Q</a><br />
+Really nice article that overviews all the major features of Q objects (and, or, negation, picking)</li>
+<li><a href="http://www.nomadjourney.com/2009/04/dynamic-django-queries-with-kwargs/">Dynamic Django queries (or why kwargs is your friend)</a><br />
+Overview of dynamic querying with django </li>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2010/07/20/the-power-of-djangos-q-objects/feed/</wfw:commentRss>
+		<slash:comments>18</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">755</post-id>	</item>
+		<item>
+		<title>DjangoCon Europe 2010</title>
+		<link>http://www.michelepasin.org/blog/2010/06/30/djangocon-europe-2010/</link>
+				<pubDate>Wed, 30 Jun 2010 11:58:45 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[conference]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[video]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=725</guid>
+				<description><![CDATA[DjangoCon returned for its second year in Europe; the first as a wholly community-supported conference. The conference website contains a lot of info and interesting links (even an iPhone app), but in my opinion the coolest thing is the freely available videos of the conference! >>>]]></description>
+								<content:encoded><![CDATA[<p><a href="http://djangocon.eu/"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/06/Picture-1.png" alt="Picture 1.png" border="0" width="350" height="100" /></a></p>
+<p>DjangoCon returned for its second year in Europe; the first as a wholly community-supported conference. The <a href="http://djangocon.eu/">conference website</a> contains a lot of info and interesting links (even an <a href="http://m.djangocon.eu/">iPhone app</a>), but in my opinion the coolest thing is the freely available videos of the conference!</p>
+<p>>>></p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">725</post-id>	</item>
+		<item>
+		<title>Django debug toolbar</title>
+		<link>http://www.michelepasin.org/blog/2010/05/24/django-debug-toolbar/</link>
+				<comments>http://www.michelepasin.org/blog/2010/05/24/django-debug-toolbar/#comments</comments>
+				<pubDate>Mon, 24 May 2010 10:46:53 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[debug]]></category>
+		<category><![CDATA[django]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=690</guid>
+				<description><![CDATA[Django Debug Toolbar 0.8 from Idan Gazit on Vimeo. This is just an amazingly useful application you might want to add to your django development tools. Installation is a breeze: $ easy_install django-debug-toolbar &#8230; Then you need to add some parameters to your settings.py, as explained here. It&#8217;s likely that you don&#8217;t want the debug-toolbar [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><object width="400" height="225"><param name="allowfullscreen" value="true" /><param name="allowscriptaccess" value="always" /><param name="movie" value="http://vimeo.com/moogaloop.swf?clip_id=6640136&amp;server=vimeo.com&amp;show_title=1&amp;show_byline=1&amp;show_portrait=0&amp;color=&amp;fullscreen=1" /></object></p>
+<p><a href="http://vimeo.com/6640136">Django Debug Toolbar 0.8</a> from <a href="http://vimeo.com/idangazit">Idan Gazit</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+<p>This is just an amazingly useful application you might want to add to your django development tools. </p>
+<p>Installation is a breeze:</p>
+<pre style="font-size:11px;background-color:#ccffff;color:black;overflow:auto;"><code>
+$ easy_install django-debug-toolbar
+</code></pre>
+<p>&#8230;</p>
+<p>Then you need to add some parameters to your <em>settings.py</em>, as explained <a href="http://github.com/robhudson/django-debug-toolbar/blob/master/README.rst">here</a>.<br />
+It&#8217;s likely that you don&#8217;t want the debug-toolbar to show on your production site as well, but only where you&#8217;re doing development. So a more portable alternative to the usual way to add the debug-toolbar parameters is the following:</p>
+<pre style="font-size:11px;background-color:#ccffff;color:black;overflow:auto;"><code>
+# set to True if you're on the production server
+LIVESERVER = False
+
+# ..... other settings....
+
+if not LIVESERVER:
+	# stuff for the debug toolbar
+	INSTALLED_APPS += 	('debug_toolbar',)
+	INTERNAL_IPS = ('127.0.0.1',)
+	MIDDLEWARE_CLASSES += ( 'debug_toolbar.middleware.DebugToolbarMiddleware', )
+
+</code></pre>
+<p>&#8230;</p>
+<p>The <em>LIVESERVER</em> variable is the only thing you&#8217;ve got to manually change when copying your code to the production server&#8230;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2010/05/24/django-debug-toolbar/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">690</post-id>	</item>
+	</channel>
+</rss>

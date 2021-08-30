@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>jupyter &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/jupyter/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Thu, 06 Aug 2020 10:18:31 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>More Jupyter notebooks: pyvis and networkx</title>
+		<link>http://www.michelepasin.org/blog/2020/08/06/more-jupyter-notebooks-pyvis-and-networkx/</link>
+				<pubDate>Thu, 06 Aug 2020 09:55:12 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Data science]]></category>
+		<category><![CDATA[graph]]></category>
+		<category><![CDATA[jupyter]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=3368</guid>
+				<description><![CDATA[Lately I&#8217;ve been spending more time creating Jupyter notebooks that demonstrate how to use the Dimensions API for research analytics. In this post I&#8217;ll talk a little bit about two cool Python technologies I&#8217;ve discovered for working with graph data: pyvis and networkx. pyvis and networkx The networkx and pyvis libraries are used for generating and visualizing network [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Lately I&#8217;ve been spending more time creating Jupyter notebooks that demonstrate how to use the <a href="https://api-lab.dimensions.ai/">Dimensions API for research analytics.</a> In this post I&#8217;ll talk a little bit about two cool Python technologies I&#8217;ve discovered for working with graph data: pyvis and networkx.</p>
+<h3>pyvis and networkx</h3>
+<p>The <a class="reference external" href="https://networkx.github.io/documentation/stable/reference/introduction.html" target="_blank" rel="noopener noreferrer">networkx</a> and <a class="reference external" href="https://pyvis.readthedocs.io/en/latest/tutorial.html" target="_blank" rel="noopener noreferrer">pyvis</a> libraries are used for <em>generating</em> and <em>visualizing</em> network data, respectively.</p>
+<p>Pyvis is fundamentally a python wrapper around the popular <a href="https://visjs.github.io/vis-network/examples/">Javascript visJS library.</a> Networkx instead of is a pretty sophisticated package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.</p>
+<pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyvis.network</span> <span class="k">import</span> <span class="n">Network</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx
+</span># generate generic <span class="nn">network graph instance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.Graph()</span><span class="p">
+</span># add some nodes and edges
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Number 1'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'group'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'I belong to a different group!'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">'group'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'couple'</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'couple'</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'lonely'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'lonely node'</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp"># instantiatet <span class="nn">pyvis network</span>
+&gt;&gt;&gt; </span><span class="n">nt</span> <span class="o">=</span> <span class="n">Network</span><span class="p">(</span><span class="s2">"500px"</span><span class="p">,</span> <span class="s2">"500px"</span><span class="p">)</span>
+<span class="go"># populates <span class="gp"><span class="nn">pyvis network from networkx instance</span></span></span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nt</span><span class="o">.</span><span class="n">from_nx</span><span class="p">(</span><span class="n">nx_graph</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">"nx.html"</span><span class="p">)</span></pre>
+<p>It took me a little to familiarise with the libraries&#8217; concepts and to generate some basic graphs. So, the tutorials linked below are meant to provide some reusable <em>code</em> building blocks for working with these tools.</p>
+<p>Once you get the hang of it though, the fun part begins. What are the best data variables to represent in the graph? What color coding strategy is making it easier to explore the data? How many nodes/edges to display? Can we add some interactivity to the visualizations? Check out the resulting visualizations below for more ideas.</p>
+<h3>Dataviz: concepts co-occurence network</h3>
+<p>The <a href="https://api-lab.dimensions.ai/cookbooks/2-publications/Concepts-network-graph.html">Building a concepts co-occurence network</a> notebook shows how to turn document keywords extracted from &#8216;semantic web&#8217; publications into a simple topic map &#8211; by virtue of their co-occurrence within the same documents.</p>
+<p>See also the standalone html version of the interactive visualization: <a href="http://api-sample-data.dimensions.ai/dataviz-exports/concets-cooccurence/concepts_network_2020-08-05.html">concepts_network_2020-08-05.html</a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2.jpg"><img class="aligncenter size-large wp-image-3426" src="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2-1024x513.jpg" alt="graph2" width="1024" height="513" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2-1024x513.jpg 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2-300x150.jpg 300w, http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2-768x385.jpg 768w, http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2.jpg 1421w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p>&nbsp;</p>
+<h3>Dataviz: Organizations Collaboration Network</h3>
+<p>The <a href="https://api-lab.dimensions.ai/cookbooks/8-organizations/3-Organizations-Collaboration-Network.html">Building an Organizations Collaboration Network Diagram</a> notebook shows how to use publications&#8217; authors and <a href="https://grid.ac/">GRID</a> data to generate a network of collaborating research organizations.</p>
+<p>See also the standalone html version of the interactive visualization: <a href="http://api-sample-data.dimensions.ai/dataviz-exports/3-Organizations-Collaboration-Network/network_2_levels_grid.412125.1.html">network_2_levels_grid.412125.1.html</a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1.jpg"><img class="aligncenter size-large wp-image-3424" src="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1-1024x515.jpg" alt="graph1" width="1024" height="515" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1-1024x515.jpg 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1-300x151.jpg 300w, http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1-768x386.jpg 768w, http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1.jpg 1402w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">3368</post-id>	</item>
+		<item>
+		<title>Getting to grips with Google Colab</title>
+		<link>http://www.michelepasin.org/blog/2020/01/30/getting-to-grips-with-google-colab/</link>
+				<pubDate>Thu, 30 Jan 2020 13:28:27 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Data science]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[googlecolab]]></category>
+		<category><![CDATA[jupyter]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=3374</guid>
+				<description><![CDATA[I&#8217;ve been using Google Colab on a regular basis during the last few months, as I was curious to see whether I could make the switch to it (from a more traditional Jupyter/Jupyterlab environment). As it turns out, Colab is pretty amazing in many respects but there are still situations where a local Jupyter notebook [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I&#8217;ve been using Google Colab on a regular basis during the last few months, as I was curious to see whether I could make the switch to it (from a more traditional Jupyter/Jupyterlab environment). As it turns out, Colab is pretty amazing in many respects but there are still situations where a local Jupyter notebook is my first choice. Keep reading to discover why!</p>
+<h3>Google Colab VS Jupyter</h3>
+<p><a href="https://colab.research.google.com/">Google Colaboratory</a> (also known as Colab, see the <a href="https://research.google.com/colaboratory/faq.html">faqs</a>) is a free <a href="https://en.wikipedia.org/wiki/Project_Jupyter">Jupyter</a> notebook environment that runs in the cloud and stores its notebooks on Google Drive.</p>
+<p>Colab has become extremely popular with data scientists and in particular people doing some kind of <strong>machine learning tasks</strong>. Party, I guess, that&#8217;s because Colab has deep integration with Google&#8217;s ML tools (eg <a href="https://en.wikipedia.org/wiki/TensorFlow">Tensorflow</a>) and in fact Colab actually permits to switch to a <a href="https://en.wikipedia.org/wiki/Tensor_processing_unit">Tensor Processing Unit </a>(TSU) when running your notebook.  For FREE. . Which, by itself, is pretty remarkable already.</p>
+<p>There are tons of videos on <a href="https://www.youtube.com/results?search_query=google+colab">Youtube</a> and tutorials on <a href="https://towardsdatascience.com/search?q=google%20colab">Medium</a>, so I&#8217;m not gonna describe it any further, because there is definitely no shortage of learning materials if you want to find out more about it.</p>
+<iframe class='youtube-player' type='text/html' width='560' height='315' src='https://www.youtube.com/embed/inN8seMm7UI?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe>
+<h3>How I&#8217;m using Colab</h3>
+<p>I normally turn to notebooks because I need to demonstrate real-world applications of APIs to a (sometimes not-so-technical) audience. A lot of the work I&#8217;ve been doing lately has crystallized into the &#8216;<a href="https://digital-science.github.io/dimensions-api-lab/">Dimensions API Labs</a>&#8216; portal. This is essentially a collection of notebooks aimed at making it easier for people to extract, process and turn into actionable insights the many kinds of data my company&#8217;s APIs can deliver.</p>
+<p>My usual workflow:</p>
+<ul>
+<li>Getting some data by calling APIs, sometimes using custom-built Python packages;</li>
+<li>Processing the data using <a href="https://en.wikipedia.org/wiki/Pandas_(software)">pandas</a> or built-in Python libraries;</li>
+<li>Building visualizations and summaries e.g. using <a href="https://plot.ly/python/">Plotly</a>.</li>
+</ul>
+<p>My target audience:</p>
+<ul>
+<li>Data scientist and developers who want to become proficient with our APIs.</li>
+<li>Analysts and domain experts who are less technically advanced, but have the capacity to turn interesting research questions into queries and API-based workflows.</li>
+</ul>
+<p>Read on to find out how Colab ticked a lot of the boxes for this kind of work.</p>
+<h3>Pros of Colab</h3>
+<p>In general, Jupyter notebooks are an ideal tool for showcasing API functionalities and data features. The ability to pack together code, images and text within a single runnable file make the end result intuitive yet powerful.</p>
+<p>Google Colab brings a number of extra benefits to the table:</p>
+<ol>
+<li><strong>No install set up.</strong>  That was a massive selling point for me. If I have to share an API recipe with just anyone, Colab allows to do that very very quickly, even with non technical users. They just have to open up a webpage, hit ‘play’ and run the notebook. Moreover, Colab includes by default many popular Python libraries and, if you need to, you can pip-install your own favorite ones too. Neat!</li>
+<li><strong>It scales well.</strong> I ran a couple of workshop recently with 30+ users, without any performance issue. E.g. compared to setting up a Jupyterhub server, it&#8217;s much easier,  and cheaper too, of course. Plus, people can go home and re-run the same notebooks virtually withing the same exact environment. No need to fiddle with Python, Docker or Jupyter packages.</li>
+<li><strong>Sharing and commenting.</strong> The collaborative features of Colab need no introduction. Just think of how easy it is to share a Google Doc with your colleagues, only in this case you&#8217;d do it with a notebook!</li>
+<li><strong>Playground mode.</strong> Colab introduced the notion of <a href="https://stackoverflow.com/questions/52011084/what-is-playground-mode-in-googles-colaboratory">playground mode</a>, which essentially allows you to open a notebook in read-only mode (trying to save throws the error &#8220;<em>This notebook is in playground mode. Changes will not be saved unless you make a copy of the notebook.&#8221;</em>). I find this feature extremely handy for demos, or in situations where one needs to mess about with a notebook without the risk of overwriting its &#8216;stable&#8217; state.</li>
+<li><strong>Snippets</strong>. Colab includes a sidebar with many useful code snippets by default. You can extend that easily by <a href="https://stackoverflow.com/questions/48760503/is-there-a-way-to-add-your-own-snippets-in-google-colaboratory">creating your own &#8216;snippets&#8217; notebook</a>, going to <em>Tools > Preferences</em>, paste the snippets notebook URL in Custom snippet notebook URL and save. Simple and effective. And the new snippets can be shared with team mates too!</li>
+<li><strong>Extra UI components.</strong> The Colab folks developed a syntax for generating <a href="https://colab.research.google.com/notebooks/forms.ipynb">Forms components using markdown</a>.  This is very cool because it lets you generate simple input boxes, which can  be used for example by non technical people to enter data into a notebook. Also worth pointing out that forms are created using comments-like code (eg
+<div>
+<div><em>#@param {type:&#8221;string&#8221;}) </em>so they don&#8217;t interfere with the notebook if you open it within a traditional Jupyter environment.</div>
+</div>
+</li>
+<li><strong>The Google ecosystem.</strong> The integration with the rest of the G-Suite is unsurprisingly amazing so pulling/putting data in and out of <a href="https://colab.research.google.com/notebooks/io.ipynb">Drive, Sheets or BigQuery</a>  is quick, easy and well-documented.</li>
+</ol>
+<h3>Cons of Colab</h3>
+<ol>
+<li><strong>Performance limitations.</strong> Of course the performance will never be as good as running things locally (having said that &#8211; you can even use GPUs for free, but haven’t tried that yet). So for bigger projects e.g. involving complex algorithms or very large datasets, other data science platforms are probably better eg <a href="https://gigantum.com/">Gigantum</a></li>
+<li><strong>Interface learning.</strong> You have to get used to the Colab interface. It somehow still feels a bit more fiddly than JupyterLab, to me. Keyword shortcuts can be a problem too: you can customize them in Colab, but I couldn&#8217;t replicate all of my (rather heavily customized) JupyterLab ones, due to conflicts with other default ones in Colab. So some muscle-memory pain there.</li>
+<li><strong>Exporting to HTML is not that good.</strong> Being able to turn Jupyter notebooks into a simple HTML file is pretty handy, but Colab can&#8217;t do that. You can of course download the .<em>ipynb</em> file and then export locally (via <a href="https://github.com/jupyter/nbconvert">nbconvert</a>), but that doesn&#8217;t always produce the results you&#8217;d expect either. For example, Plotly visualizations (like <a href="https://digital-science.github.io/dimensions-api-lab/cookbooks/8-organizations/2-Industry-Collaboration.html#Putting-Countries-and-Collaborators-together%E2%80%A6">this one</a>) are not rendering properly unless I run the whole notebook locally in Jupyterlab before exporting.</li>
+<li><strong>Some Python libraries won&#8217;t work out of the box.</strong> For example I have a Python library called <a href="https://github.com/digital-science/dimcli">dimcli</a> that builds on the latest <a href="https://python-prompt-toolkit.readthedocs.io/en/master/">prompt-toolkit</a>. Turns out that Colab, by default, runs ipython 5.5.0 (latest version is 7), which is incompatible with promt-toolkit. You can of course uprade everything on Colab (eg <em>pip install &#8211;upgrade &#8211;force-reinstall library-name</em>) &#8211; which is great &#8211; however that may lead to further dependencies errors.. and so on.</li>
+<li><strong>Project versioning.</strong> Colab includes a built-in <a href="https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb">revision history</a> tool, and it can integrate with <a href="https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb">Github</a> too.  Yet, I often end up creating multiple copies/versions of a notebook, instead of relying on the revisions system. I wish there was a better way to do this..</li>
+<li><strong>The Google ecosystem. </strong>As much as this can be a massive plus for some people (see above), it can also be a massive problem for others. Some customers I work with don&#8217;t have access to G-Suite, full stop. That&#8217;s not so uncommon, especially with large enterprises that are concerned about data privacy.</li>
+</ol>
+<h3></h3>
+<h3>Conclusions</h3>
+<p>Google Colab is simply great for small/medium data projects. Hands down to the developers who built it. Some features are totally neat, and especially when I intend to share whatever I&#8217;m doing with more than one person, I hit right away my <a href="https://colab.research.google.com/notebook#create=true&#038;language=python3">New Colab Document </a>shortcut.</p>
+<p>Nonetheless, I still use <a href="https://jupyterlab.readthedocs.io/en/stable/">JupyterLab</a> a lot, for a variety of projects. E.g. for quick personal data investigations. Or for projects that I know will be shared only with other data scientists (who need no guidance in order to run them). Or in projects with long-running processes and memory consumption.</p>
+<p>So the two things <strong>need to coexist</strong>. Which opens up a new problem: <em>how to seamlessly move from one environment to the other</em>? That&#8217;s still an open question for me, but you&#8217;ll find what I learned so far in the following section..</p>
+<h3>Appendix: Colab and JupyterLab happily co-existing</h3>
+<p>Is this too much to ask? This is what I worked out so far:</p>
+<ul>
+<li>I try to put all of my notebooks in Google Drive, so that they are accessible by Colab.</li>
+<li>I sync my Google Drive to my laptop, so I&#8217;ve got everything locally as well (ps: I sync Drive to <em>one computer only</em> so to avoid double/out-of-sync issues).</li>
+<li>I have several folders containing notebooks. Some of these folders are actually Github repositories too. They seem to sync over Drive without issues (so far!)</li>
+<li>This setup means that <strong>I can either work on Colab (thanks to Drive) or local Jupyter (via the local sync) depending on my needs</strong>. I can even start working on something locally and then complete it on Colab. The .ipynb files are 100% compatible (almost &#8211; see above the exception about rendered visualizations)</li>
+<li>Any Colab-specific code does not break Jupyter. There is some redundancy on occasions (eg <em>pip installing</em> libraries on Colab which I already have on my laptop) but that&#8217;s fine. It&#8217;s also possible to use expressions like this `<em>if not &#8216;google.colab&#8217; in sys.modules</em>` to run code selectively based on the platform (eg see <a href="https://digital-science.github.io/dimensions-api-lab/cookbooks/8-organizations/2-Industry-Collaboration.html#Load-libraries-and-log-in">here</a>).</li>
+</ul>
+<p> </p>
+<h3>Comments?</h3>
+<p>As usual I&#8217;d love to hear them :-)</p>
+<p> </p>
+<p> </p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">3374</post-id>	</item>
+		<item>
+		<title>Running interactive Jupyter demos with  mybinder.org</title>
+		<link>http://www.michelepasin.org/blog/2019/05/03/running-jupyter-demos-via-mybinder-org/</link>
+				<pubDate>Fri, 03 May 2019 15:25:24 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Data science]]></category>
+		<category><![CDATA[jupyter]]></category>
+		<category><![CDATA[notebooks]]></category>
+		<category><![CDATA[sharing]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=3324</guid>
+				<description><![CDATA[The online tool mybinder.org allows to turn a Git repo into a collection of interactive notebooks with one click. I played with it a little today and was pretty impressed! A very useful tool e.g. if you have a repository of Jupyter notebooks and want to showcase them to someone with no access to a Jupyter [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>The online tool <a href="https://mybinder.org/">mybinder.org</a> allows to turn a Git repo into a collection of interactive notebooks with one click.</p>
+<p><img class="aligncenter  wp-image-3333" src="https://i2.wp.com/www.michelepasin.org/blog/wp-content/uploads/2019/05/Screenshot-2019-05-03-at-16.32.28.png?w=536" alt="Screenshot 2019-05-03 at 16.32.28.png" width="458" height="393" /></p>
+<p>I played with it a little today and was pretty impressed! A very useful tool e.g. if you have a repository of Jupyter notebooks and want to showcase them to someone with no access to a Jupyter environment.</p>
+<p><img class="aligncenter size-full wp-image-3325" src="https://i2.wp.com/www.michelepasin.org/blog/wp-content/uploads/2019/05/Screenshot-2019-05-03-at-16.17.44.png?w=587" alt="Screenshot 2019-05-03 at 16.17.44.png" width="587" height="453" /></p>
+<p>See the official <a href="https://mybinder.readthedocs.io/en/latest/">docs</a> for more info.</p>
+<p>I was able to run many of the <a href="https://github.com/digital-science/dimensions-api">Dimensions API notebooks</a> with little or no changes (follow <a href="https://hub.mybinder.org/user/digital-science-dimensions-api-y3409gua/tree">this link to try them out</a> yourself). Dependencies can be loaded on the fly, and new files (eg local settings) create just as if you are working within a normal Jupyter notebook.</p>
+<p>Worth keeping in mind the limitation (from the official <a href="https://mybinder.readthedocs.io/en/latest/faq.html#user-memory">faq</a>):</p>
+<blockquote>
+<h3><strong>How much memory am I given when using Binder?</strong></h3>
+<p>If you or another Binder user clicks on a Binder link, the mybinder.org deployment will run the linked repository. While running, users are guaranteed at least 1GB of RAM, with a maximum of 2GB. This means you will always have 1GB, you may occasionally have between 1 and 2GB, and if you go over 2GB your kernel will be restarted.</p>
+<h3>
+<strong>How long will my Binder session last?</strong></h3>
+<p>Binder is meant for interactive and ephemeral interactive coding, meaning that it is ideally suited for relatively short sessions. Binder will automatically shut down user sessions that have more than 10 minutes of inactivity (if you leave your window open, this will be counted as “activity”).</p>
+<p>Binder aims to provide at least 12 hours of session time per user session. Beyond that, we cannot guarantee that the session will remain running.</p>
+<h3>
+<strong>Can I use mybinder.org for a live demo or workshop?</strong></h3>
+<p>For sure! We hope the demo gods are with you. Please do make sure you have a backup plan in case there is a problem with mybinder.org during your workshop or demo. Occasionally, service on mybinder.org can be degraded, usually because the server is getting a lot of attention somewhere on the internet, because we are deploying new versions of software, or the team can’t quickly respond to an outage.</p></blockquote>
+<p>Absolutely a big <strong>thank you</strong> to the <a href="https://gitter.im/jupyterhub/binder">mybinder community</a>!</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">3324</post-id>	</item>
+	</channel>
+</rss>

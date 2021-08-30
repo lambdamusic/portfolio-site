@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>visualization &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/visualization/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Thu, 06 Aug 2020 10:18:31 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>More Jupyter notebooks: pyvis and networkx</title>
+		<link>http://www.michelepasin.org/blog/2020/08/06/more-jupyter-notebooks-pyvis-and-networkx/</link>
+				<pubDate>Thu, 06 Aug 2020 09:55:12 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Data science]]></category>
+		<category><![CDATA[graph]]></category>
+		<category><![CDATA[jupyter]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=3368</guid>
+				<description><![CDATA[Lately I&#8217;ve been spending more time creating Jupyter notebooks that demonstrate how to use the Dimensions API for research analytics. In this post I&#8217;ll talk a little bit about two cool Python technologies I&#8217;ve discovered for working with graph data: pyvis and networkx. pyvis and networkx The networkx and pyvis libraries are used for generating and visualizing network [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Lately I&#8217;ve been spending more time creating Jupyter notebooks that demonstrate how to use the <a href="https://api-lab.dimensions.ai/">Dimensions API for research analytics.</a> In this post I&#8217;ll talk a little bit about two cool Python technologies I&#8217;ve discovered for working with graph data: pyvis and networkx.</p>
+<h3>pyvis and networkx</h3>
+<p>The <a class="reference external" href="https://networkx.github.io/documentation/stable/reference/introduction.html" target="_blank" rel="noopener noreferrer">networkx</a> and <a class="reference external" href="https://pyvis.readthedocs.io/en/latest/tutorial.html" target="_blank" rel="noopener noreferrer">pyvis</a> libraries are used for <em>generating</em> and <em>visualizing</em> network data, respectively.</p>
+<p>Pyvis is fundamentally a python wrapper around the popular <a href="https://visjs.github.io/vis-network/examples/">Javascript visJS library.</a> Networkx instead of is a pretty sophisticated package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.</p>
+<pre><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">pyvis.network</span> <span class="k">import</span> <span class="n">Network</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx
+</span># generate generic <span class="nn">network graph instance</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.Graph()</span><span class="p">
+</span># add some nodes and edges
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'Number 1'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">'group'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">'title'</span><span class="p">]</span> <span class="o">=</span> <span class="s1">'I belong to a different group!'</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">'group'</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'couple'</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'couple'</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nx_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">'lonely'</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">'lonely node'</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="gp"># instantiatet <span class="nn">pyvis network</span>
+&gt;&gt;&gt; </span><span class="n">nt</span> <span class="o">=</span> <span class="n">Network</span><span class="p">(</span><span class="s2">"500px"</span><span class="p">,</span> <span class="s2">"500px"</span><span class="p">)</span>
+<span class="go"># populates <span class="gp"><span class="nn">pyvis network from networkx instance</span></span></span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nt</span><span class="o">.</span><span class="n">from_nx</span><span class="p">(</span><span class="n">nx_graph</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">nt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">"nx.html"</span><span class="p">)</span></pre>
+<p>It took me a little to familiarise with the libraries&#8217; concepts and to generate some basic graphs. So, the tutorials linked below are meant to provide some reusable <em>code</em> building blocks for working with these tools.</p>
+<p>Once you get the hang of it though, the fun part begins. What are the best data variables to represent in the graph? What color coding strategy is making it easier to explore the data? How many nodes/edges to display? Can we add some interactivity to the visualizations? Check out the resulting visualizations below for more ideas.</p>
+<h3>Dataviz: concepts co-occurence network</h3>
+<p>The <a href="https://api-lab.dimensions.ai/cookbooks/2-publications/Concepts-network-graph.html">Building a concepts co-occurence network</a> notebook shows how to turn document keywords extracted from &#8216;semantic web&#8217; publications into a simple topic map &#8211; by virtue of their co-occurrence within the same documents.</p>
+<p>See also the standalone html version of the interactive visualization: <a href="http://api-sample-data.dimensions.ai/dataviz-exports/concets-cooccurence/concepts_network_2020-08-05.html">concepts_network_2020-08-05.html</a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2.jpg"><img class="aligncenter size-large wp-image-3426" src="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2-1024x513.jpg" alt="graph2" width="1024" height="513" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2-1024x513.jpg 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2-300x150.jpg 300w, http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2-768x385.jpg 768w, http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2.jpg 1421w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p>&nbsp;</p>
+<h3>Dataviz: Organizations Collaboration Network</h3>
+<p>The <a href="https://api-lab.dimensions.ai/cookbooks/8-organizations/3-Organizations-Collaboration-Network.html">Building an Organizations Collaboration Network Diagram</a> notebook shows how to use publications&#8217; authors and <a href="https://grid.ac/">GRID</a> data to generate a network of collaborating research organizations.</p>
+<p>See also the standalone html version of the interactive visualization: <a href="http://api-sample-data.dimensions.ai/dataviz-exports/3-Organizations-Collaboration-Network/network_2_levels_grid.412125.1.html">network_2_levels_grid.412125.1.html</a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1.jpg"><img class="aligncenter size-large wp-image-3424" src="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1-1024x515.jpg" alt="graph1" width="1024" height="515" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1-1024x515.jpg 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1-300x151.jpg 300w, http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1-768x386.jpg 768w, http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1.jpg 1402w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">3368</post-id>	</item>
+		<item>
+		<title>Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</title>
+		<link>http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/</link>
+				<comments>http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/#comments</comments>
+				<pubDate>Thu, 06 Apr 2017 14:12:05 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[data exploration]]></category>
+		<category><![CDATA[elasticsearch]]></category>
+		<category><![CDATA[graph]]></category>
+		<category><![CDATA[jsonld]]></category>
+		<category><![CDATA[kibana]]></category>
+		<category><![CDATA[linkeddata]]></category>
+		<category><![CDATA[nature]]></category>
+		<category><![CDATA[scigraph]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2844</guid>
+				<description><![CDATA[Hello there data lovers! In this post you can find some information on how to download and make some sense of the scholarly dataset recently made available by the Springer Nature SciGraph project, by using the freely available Elasticsearch suite of software. A few weeks ago the SciGraph dataset was released (full disclosure: I&#8217;m part [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Hello there data lovers! In this post you can find some information on how to download and make some sense of the scholarly dataset recently made available by the Springer Nature <a href="http://www.springernature.com/scigraph">SciGraph project</a>, by using the freely available <a href="https://en.wikipedia.org/wiki/Elasticsearch">Elasticsearch</a> suite of software.</p>
+<p>A few weeks ago the SciGraph dataset was <a href="http://www.springernature.com/gp/group/media/press-releases/springer-nature-scigraph--supporting-open-science-and-the-wider-understanding-of-research/12129614">released</a> (full disclosure: I&#8217;m part of the team who did that!). This is a high quality dataset containing metadata and abstracts about scientific articles published by <a href="https://en.wikipedia.org/wiki/Springer_Nature">Springer Nature</a>, research grants related to them plus other classifications of this content.</p>
+<p><img class="alignnone size-full wp-image-3123" src="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/scigraph.png?w=1116" alt="scigraph.png" width="558" height="142" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/scigraph.png 1888w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/scigraph-300x76.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/scigraph-768x195.png 768w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/scigraph-1024x260.png 1024w" sizes="(max-width: 558px) 100vw, 558px" /></p>
+<p>This release of the dataset includes the last 5 years of content &#8211; that&#8217;s already an impressive <strong>32 gigs of data</strong> you can get your hands on. So in this post I&#8217;m going to show how to do that, in particular by transforming the data from the <a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF graph</a> format they come with, into a <a href="https://en.wikipedia.org/wiki/JSON">JSON format</a> which is more suited for application development and analytics.</p>
+<p>We will be using two free-to-download products, <a href="http://ontotext.com/products/graphdb/">GraphDB</a> and <a href="https://www.elastic.co/">Elasticsearch</a>, so you&#8217;ll have to install them if you haven&#8217;t got them already. But no worries, that&#8217;s pretty straighforward, as you&#8217;ll see below.</p>
+<h2>1. Hello SciGraph Linked Data</h2>
+<p>First things first, we want to get hold of the SciGraph RDF datasets of course. That&#8217;s pretty easy, just head over to the SciGraph <a href="https://github.com/springernature/scigraph/wiki#downloads">downloads page</a> and get the following datasets:</p>
+<ul>
+<li><strong>Ontologies</strong>: the main <a href="http://s3-service-broker-live-afe45d64-24d0-4a96-b6a8-23b79e885eb7.s3-website.eu-central-1.amazonaws.com/2017-02-15/springernature-scigraph-ontologies.2017-02-15.nt.bz2">schema</a> behind SciGraph.</li>
+<li><strong>Articles</strong> <strong>&#8211; 2016</strong>: all the core <a href="http://s3-service-broker-live-afe45d64-24d0-4a96-b6a8-23b79e885eb7.s3-website.eu-central-1.amazonaws.com/2017-02-15/springernature-scigraph-2016-articles.2017-02-15.nt.bz2">articles</a> metadata for one year.</li>
+<li><strong>Grants</strong>: <a href="http://s3-service-broker-live-afe45d64-24d0-4a96-b6a8-23b79e885eb7.s3-website.eu-central-1.amazonaws.com/2017-02-15/springernature-scigraph-grants.2017-02-15.nt.bz2">grants</a> metadata related to those articles.</li>
+<li><strong>Journals</strong>: full list of Springer Nature <a href="http://s3-service-broker-live-afe45d64-24d0-4a96-b6a8-23b79e885eb7.s3-website.eu-central-1.amazonaws.com/2017-02-15/springernature-scigraph-journals.2017-02-15.nt.bz2">journal catalogue</a>.</li>
+<li><strong>Subjects</strong>: classification of <a href="http://s3-service-broker-live-afe45d64-24d0-4a96-b6a8-23b79e885eb7.s3-website.eu-central-1.amazonaws.com/2017-02-15/springernature-scigraph-subjects.2017-02-15.nt.bz2">research areas</a> developed by Springer Nature.</li>
+</ul>
+<p>That&#8217;s pretty much everything, only thing we&#8217;re getting only one year worth of articles as that&#8217;s enough for the purpose of this exercise (~300k articles from 2016).</p>
+<p>Next up, we want to get a couple of other datasets SciGraph depends on:</p>
+<ul>
+<li><strong>GRID</strong>: a catalogue of the world&#8217;s research organisations. Make sure you get both the <a href="http://www.grid.ac/ontology/">ontology</a> and one of the <a href="https://www.grid.ac/downloads">latest releases</a>, within which you can find an RDF implementation too.</li>
+<li><strong>Field Of Research codes</strong>: another classification scheme used in SciGraph, developed by the <a href="https://vocabs.ands.org.au/anzsrc-for">Australian and New Zealand Standard Research Classification</a> organization.</li>
+</ul>
+<p>That&#8217;s it! Time for a cup of coffee.</p>
+<h2>2. Python to the help</h2>
+<p>We will be doing a bit of data manipulation  in the next sections and Python is a great language for that sort of thing. Here&#8217;s what we need to get going:</p>
+<ol>
+<li><strong>Python</strong>. Make sure you have <a href="https://wiki.python.org/moin/BeginnersGuide/Download">Python installed</a> and also <a href="https://packaging.python.org/installing/">Pip</a>, the Python package manager (any Python version <strong>above 2.7</strong> should be ok).</li>
+<li><strong>GitHub project</strong>. I&#8217;ve created a few scripts for this tutorial, so head over to the <a href="https://github.com/lambdamusic/hello-scigraph">hello-scigraph project on GitHub</a> and download it to your computer. Note: the project contains all the Python scripts needed to complete this tutorial, but of course you should feel free to modify them or write from scratch if you fancy it!</li>
+<li><strong>Libraries</strong>. Install all the dependencies for the hello-scigraph project to run. You can do that by cd-ing into the project folder and running <code style="display: inline; padding: 0px;">pip install -r requirements.txt</code> (ideally within a <a href="http://python-guide-pt-br.readthedocs.io/en/latest/dev/virtualenvs/">virtual environment</a>, but that&#8217;s up to you).</li>
+</ol>
+<h2>3. Loading the data into GraphDB</h2>
+<p>So, you should have by now 8 different files containing data (after step 1 above). Make sure they&#8217;re all in the same folder and that all of them have been unzipped (if needed), then head over to the <a href="http://ontotext.com/graphdb-8-enterprise-linked-data/">GraphDB website</a> and download the free version of the triplestore (you may have to sign up first).</p>
+<p>The <a href="http://graphdb.ontotext.com/documentation/free/quick-start-guide.html#run-graphdb-as-a-stand-alone-server">online documentation</a> for GraphDB is pretty good, so it should be easy to get it up and running. In essence, you have to do the following steps:</p>
+<ol>
+<li><strong>Launch the application</strong>: for me, on a mac, I just had to double click the GraphDB icon &#8211; nice!</li>
+<li><strong>Create a</strong> <a href="http://graphdb.ontotext.com/documentation/free/quick-start-guide.html#create-a-repository">new repository</a>: this is the equivalent of a database within the triplestore. Call this repo <span class="pl-pds">&#8220;</span><strong>scigraph-2016</strong><span class="pl-pds">&#8221; so that we&#8217;re all synced for the following steps.</span></li>
+</ol>
+<p>Next thing, we want a script to load our RDF files into this empty repository. So cd into the directory containg the GitHub project (from step 2) and run the following command:</p>
+<pre style="background: lightgray; padding: 5px;">python -m hello-scigraph.loadGraphDB ~/scigraph-downloads/</pre>
+<p>The &#8220;loadGraphDB&#8221; script goes through all RDF files in the &#8220;scigraph-downloads&#8221; directory and loads them into the <strong>scigraph-2016 </strong>repository (note: you must replace &#8220;scigraph-downloads&#8221; with the actual path to the folder you downloaded content in step 1 above).</p>
+<p><strong>So, to recap:</strong> this script is now loading more than 35 million triples into your local graph database. Don&#8217;t be surprised if it&#8217;ll take some time (in particular the &#8216;articles-2016&#8217; dataset, by far the biggest) so it&#8217;s time to take a break or do something else.</p>
+<p>Once the process it&#8217;s finished, you should be able to <a href="http://graphdb.ontotext.com/documentation/free/quick-start-guide.html#explore-your-data-and-class-relationships">explore your data via the GraphDB workbench</a>.  It&#8217;ll look something like this:</p>
+<p><img class="aligncenter size-large wp-image-2954" src="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/GraphDB-class-hierarchy-1024x525.png" alt="GraphDB-class-hierarchy" width="1024" height="525" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/GraphDB-class-hierarchy-1024x525.png 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/GraphDB-class-hierarchy-300x154.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/GraphDB-class-hierarchy-768x394.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<h2>4. Creating an Elasticsearch index</h2>
+<p>We&#8217;re almost there. Let&#8217;s head over to the <a href="https://www.elastic.co/downloads/elasticsearch">Elasticsearch website</a> and <strong>download</strong> it. Elasticsearch is a powerful, distributed, JSON-based search and analytics engine so we&#8217;ll be using it to build an analytics dashboard for the SciGraph data.</p>
+<p>Make sure Elastic is running (run <code style="display: inline; padding: 0px;">bin/elasticsearch</code> (or <code style="display: inline; padding: 0px;">bin\elasticsearch.bat</code> on Windows), then cd into the hello-scigraph Python project (from step 2) in order to run the following script:</p>
+<pre style="background: lightgray; padding: 5px;">python -m hello-scigraph.loadElastic</pre>
+<p>If you <a href="https://github.com/lambdamusic/hello-scigraph/blob/master/hello-scigraph/loadElastic.py">take a look at the source code</a>, you&#8217;ll see that the script does the following:</p>
+<ol>
+<li><strong>Articles loading:</strong> extracts articles references from GraphDB in batches of 200.</li>
+<li><strong>Articles metadata extraction:</strong> for each article, we <a href="https://github.com/lambdamusic/hello-scigraph/blob/master/hello-scigraph/queries.py">pull out all relevant metadata</a> (e.g. title, DOI, authors) plus related information (e.g. author GRID organizations, geo locations, funding info etc..).</li>
+<li><strong>Articles metadata simplification: </strong> some intermediate nodes coming from the orginal RDF graph are dropped and replaced with a flatter structure which uses a a temporary dummy schema (<code style="display: inline; padding: 0px;">prefix es: &lt;http://elastic-index.scigraph.com/&gt;</code> It doesn&#8217;t matter what we call that schema, but what&#8217;s important is to that we want to simplify the data we put into the Elastic search index. That&#8217;s because while the Graph layer is supposed to facilitate <em>data integration </em>and hence it benefits from a rich semantic representation of information, the <em>search layer</em> is more geared towards performance and retrieval hence a leaner information structure can dramatically speed things up there.</li>
+<li><strong>JSON-LD transformation</strong>: the simplified RDF data structure is <a href="http://json-ld.org/">serialized as JSON-LD</a> &#8211; one of the many serializations available for RDF. JSON-LD is of course valid JSON, meaning that we can put that into Elastic right away. This is a bit of a shortcut actually, in fact for a more fine-grained control of how the JSON looks like,  it&#8217;s probably better to transform the data into JSON using some ad-hoc mechanism. But for the purpose of this tutorial it&#8217;s more than enough.</li>
+<li><strong>Elastic index creation.</strong> Finally, we can load the data into an Elastic index called &#8211; guess what &#8211; &#8220;hello-scigraph&#8221;.</li>
+</ol>
+<p>Two more things to point out:</p>
+<ul>
+<li><strong>Long queries.</strong> The Python script enforces a 60 seconds <a href="https://github.com/lambdamusic/hello-scigraph/blob/master/hello-scigraph/timeout.py">time-out </a>on the GraphDB queries, so in case things go wrong with some articles data the script should keep running.</li>
+<li><strong>Memory issues.</strong> The script stops for 10 seconds after each batch of 200 articles (<code style="display: inline; padding: 0px;">time.sleep(10)</code>). Had to do this to prevent GraphDB on my laptop from running out of memory. Time to catch some breath!</li>
+</ul>
+<p>That&#8217;s it! <strong>Time for another break  now.</strong> A pretty long one actually &#8211; loading all the data took around 10 hours on my (rather averaged spec&#8217;ed) laptop so you may want to do that overnight or get hold of a faster machine/server.</p>
+<p>Eventually, once the loading script is finished, you can issue this command from the command line to see how much data you&#8217;ve loaded into the Elastic index  &#8220;hello-scigraph&#8221;. Bravo!</p>
+<pre style="background: lightgray; padding: 5px;">curl -XGET 'localhost:9200/_cat/indices/'</pre>
+<h2>5. Analyzing the data with Kibana</h2>
+<p>Loading the data in Elastic already opens up a number of possibilites &#8211; check out the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html">search APIs </a>for some ideas &#8211; however there&#8217;s an even quicker way to analyze the data: <strong>Kibana</strong>. <a href="https://www.elastic.co/products/kibana">Kibana</a> is another free product in the Elastic Search suite, which provides an extensible user interface for configuring and managing all aspects of the Elastic Stack.</p>
+<p>So let&#8217;s get started with Kibana: <a href="https://www.elastic.co/downloads/kibana">download it</a> and set it up using the online instructions, then point your browser at <a href="http://localhost:5601">http://localhost:5601 </a>.</p>
+<p>You&#8217;ll get to the Kibana dashboard which shows the index we just created. Here you can perform any kind of searches and see the raw data as JSON.</p>
+<p>What&#8217;s even more interesting is the <strong>visualization tab</strong>. Results of searches can be rendered as line chart, pie charts etc.. and more dimensions can be added via &#8216;buckets&#8217;. See below for some quick examples, but really, the possibilities are endless!</p>
+
+<a href='http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/kibana-super-collider-1/'><img width="300" height="153" src="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-1-300x153.png" class="attachment-medium size-medium" alt="" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-1-300x153.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-1-768x391.png 768w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-1-1024x521.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/kibana-super-collider-2/'><img width="300" height="153" src="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-2-300x153.png" class="attachment-medium size-medium" alt="" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-2-300x153.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-2-768x391.png 768w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-2-1024x521.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/kibana-super-collider-3/'><img width="300" height="171" src="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-3-300x171.png" class="attachment-medium size-medium" alt="" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-3-300x171.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-3-768x438.png 768w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-3-1024x584.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/kibana-super-collider-4/'><img width="300" height="173" src="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-4-300x173.png" class="attachment-medium size-medium" alt="" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-4-300x173.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-4-768x444.png 768w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-4-1024x592.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<h2>Conclusion</h2>
+<p>This post should have given you enough to realise that:</p>
+<ol>
+<li>The <strong>SciGraph dataset</strong> contain an impressive amount of high-quality scholarly publications metadata which can be used for things like literature search, research statistics etc..</li>
+<li>Even though you&#8217;re not familiar with Linked Data and the RDF family of languages, it&#8217;s not hard to get going with a triplestore and then <strong>transform the data</strong> into a more widely used format like JSON.</li>
+<li>Finally, <strong>Elasticsearch</strong> and especially <strong>Kibana</strong> are fantastic tools for data analysis and exploration! Needless to say, in this post I&#8217;ve just scratched the surface of what could be done with it.</li>
+</ol>
+<p>Hope this was fun, any questions or comments, you know the drill :-)</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2844</post-id>	</item>
+		<item>
+		<title>Nature.com Subjects Stream Graph</title>
+		<link>http://www.michelepasin.org/blog/2016/01/03/nature-com-subjects-stream-graph/</link>
+				<pubDate>Sun, 03 Jan 2016 00:28:08 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[d3]]></category>
+		<category><![CDATA[infographics]]></category>
+		<category><![CDATA[nature]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2750</guid>
+				<description><![CDATA[The nature.com subjects stream graph displays the distribution of content across the subject areas covered by the nature.com portal. This is an experimental interactive visualisation based on a freely available dataset from the nature.com linked data platform, which I&#8217;ve been working on in the last few months. The main visualization provides an overview of selected [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>The <a href="http://www.nature.com/developers/hacks/articles/stream/by-subject/">nature.com subjects stream graph</a> displays the distribution of content across the subject areas covered by the nature.com portal. </p>
+<p>This is an experimental interactive visualisation based on a freely available dataset from the <a href="http://www.nature.com/ontologies/datasets/">nature.com linked data platform</a>, which I&#8217;ve been working on in the last few months.</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6-1024x657.png" alt="streamgraph" width="600" class="alignnone size-large wp-image-2761" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6-1024x657.png 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6-300x192.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6-900x577.png 900w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p>The main visualization provides an overview of selected content within the level 2 disciplines of the <a href="http://www.nature.com/ontologies/models/subjects/">NPG Subjects Ontology</a>. By clicking on these, it is then possible to explore more specific subdisciplines and their related articles.</p>
+<p><span style='text-decoration:underline;'>For those of you who are not familiar with the Subjects Ontology</span>: this is a categorization of scholarly subject areas which are used for the indexing of content on nature.com. It includes subject terms of varying levels of specificity such as Biological sciences (top level), Cancer (level 2), or B-2 cells (level 7). In total there are more than 2500 subject terms, organized into a <a href="http://www.nature.com/developers/hacks/subjects/tree">polyhierarchical tree</a>.</p>
+<p>Starting in 2010, the various journals published on nature.com have adopted the subject ontology to tag their articles (note: different journals have started doing this at different times, hence some variations in the graph starting dates).</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22.png" alt="streamgraph2" width="600"  class="alignnone size-full wp-image-2764" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22.png 864w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22-300x271.png 300w" sizes="(max-width: 864px) 100vw, 864px" /></a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33-1024x472.png" alt="streamgraph3" width="600"  class="alignnone size-large wp-image-2763" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33-1024x472.png 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33-300x138.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33-900x415.png 900w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33.png 1591w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p>The visualization makes use of various <a href="http://d3js.org/">d3.js</a> modules, plus some simple customizations here and there. The hardest part of the work was putting the different page components together, to the effect of a more fluent &#8216;narrative&#8217; achieved by gradually zooming into the data. </p>
+<p>The back end is a <a href="https://www.djangoproject.com/">Django</a> web application with a relational database. The original dataset is <a href="http://www.nature.com/ontologies/downloads/">published as RDF</a>, so in order to use the Django APIs I&#8217;ve recreated it as a relational model. That let me also add a few extra data fields containing search indexes (e.g. article counts per month), so to make the stream graph load faster. </p>
+<p>Comments or suggestions, as always very welcome. </p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2750</post-id>	</item>
+		<item>
+		<title>A sneak peek at Nature.com articles&#8217; archive</title>
+		<link>http://www.michelepasin.org/blog/2015/06/08/a-sneak-peek-at-nature-com-articles-archive/</link>
+				<comments>http://www.michelepasin.org/blog/2015/06/08/a-sneak-peek-at-nature-com-articles-archive/#comments</comments>
+				<pubDate>Mon, 08 Jun 2015 21:26:58 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Just Blogging]]></category>
+		<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[d3]]></category>
+		<category><![CDATA[nature]]></category>
+		<category><![CDATA[publishing]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2632</guid>
+				<description><![CDATA[We&#8217;re getting closer to releasing the full set of metadata covering over one million articles published by Nature Publishing Group since 1845. So here&#8217;s a sneak peek at this dataset, in the form of a simple d3.js visual summary of what soon will be available to download and reuse. In the last months I&#8217;ve been [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>We&#8217;re getting closer to releasing the full set of metadata covering over one million articles published by Nature Publishing Group since 1845. So here&#8217;s a sneak peek at this dataset, in the form of a simple d3.js visual summary of what soon will be available to download and reuse.  </p>
+<p>In the last months I&#8217;ve been working with my colleagues at Macmillan Science and Education on an <a href="http://www.nature.com/ontologies/">open data portal</a> that makes available to the public many of the taxonomies and ontologies we use internally for organising the content we publish.  </p>
+<p>This is part of our ongoing involvement with linked data and semantic technologies, aimed both at leveraging these tools to the end of transforming the publishing workflow into a <a href="http://www.quora.com/What-is-dynamic-semantic-publishing">more dynamic platform</a>, and at contributing to the evolving <a href="http://linkeddata.org/">web of open data</a> with a rich dataset of scientific articles metadata.</p>
+<p>The articles dataset includes metadata about all articles published by the <a href="http://en.wikipedia.org/wiki/Nature_%28journal%29">Nature</a> journal, of course. But not only: the <a href="http://www.scientificamerican.com/">Scientific American</a>, <a href="http://www.nature.com/nm/index.html">Nature Medicine</a>, <a href="http://www.nature.com/ng/index.html">Nature Genetics</a> and many other titles are also part of it (note: the full list can be downloaded as raw data <a href="http://www.nature.com/ontologies/models/journals/">here</a>). </p>
+<p><a href="http://bl.ocks.org/lambdamusic/raw/bfcaa40fa350778883fe/"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2015/06/Screen-Shot-2015-06-08-at-22.24.15.png"  alt="Screen Shot 2015 06 08 at 22 24 15" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p>The first diagram shows how many articles have been published each year since <a href="http://www.nature.com/search?year_range=1845">1845</a> (the start year of Scientific American). Nature began only a few years later in <a href="http://www.nature.com/search?year_range=1869">1869</a>; the curve getting steeper in the 90s instead corresponds to the exponential increase in publications due to the progressive specialisation of scientific journals (e.g. all the nature-branded titles). </p>
+<p>The second diagram instead shows the increase in publication volumes on an incremental scale. We&#8217;ve now reached the <strong>1M articles and counting</strong>! </p>
+<p><a href="http://bl.ocks.org/lambdamusic/raw/bfcaa40fa350778883fe/"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2015/06/Screen-Shot-2015-06-08-at-22.25.09.png"  alt="Screen Shot 2015 06 08 at 22 25 09" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p>In order to create the charts I played around with a nifty example from Mike Bostock (<a href="http://bl.ocks.org/mbostock/3902569">http://bl.ocks.org/mbostock/3902569</a>) and added a couple of extra things to it. </p>
+<p>The full source code is on <a href="http://bl.ocks.org/lambdamusic/bfcaa40fa350778883fe">Github</a>. </p>
+<p>Finally, worth mentioning that this metadata had already been made available a <a href="http://www.nature.com/press_releases/ldp.html">few of years ago</a> under the CC0 license: you can still access it <a href="http://www.nature.com/ontologies/releases/archive/">here</a>. <strong>This upcoming release</strong> though makes it available in the context of a much more <strong>precise and stable</strong> set of ontologies. Meaning that the semantics of the dataset is more clearly laid out and <strong>consistent</strong>. </p>
+<p>So stay tuned for more! ..and if you plan/would like to reuse these datasets please do get in touch, either here of by emailing <a href=mailto:developers@nature.com>developers@nature.com</a>. </p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2015/06/08/a-sneak-peek-at-nature-com-articles-archive/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2632</post-id>	</item>
+		<item>
+		<title>How to visualize a big taxonomy within a single webpage?</title>
+		<link>http://www.michelepasin.org/blog/2014/08/22/visualising-a-big-taxonomy-in-a-small-screen-in-pure-html/</link>
+				<pubDate>Fri, 22 Aug 2014 21:16:01 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[taxonomy]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2474</guid>
+				<description><![CDATA[Here&#8217;s a couple more experiments aimed at representing visually a large taxonomy. Some time ago I looked at ways to visualise a medium-large taxonomy (3000 terms circa) using one of the many visualisation kits out there. It turned out that pretty much all of them can&#8217;t handle that many terms, but there are other strategies [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Here&#8217;s a couple more experiments aimed at representing visually a large taxonomy.  </p>
+<p>Some time ago <a href="http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/">I looked at ways to visualise a medium-large taxonomy</a> (3000 terms circa)  using one of the many visualisation kits out there. It turned out that pretty much all of them can&#8217;t handle that many terms, but there are other strategies that do come handy for that e.g. hide/reveal terms in the taxonomy based on what level you are looking at. </p>
+<p><strong>Why can&#8217;t I see the whole damn thing in one single page?</strong> Because there are too many things to display &#8211; you&#8217;d think. </p>
+<h3>So, step 1.</h3>
+<p> Here&#8217;s the entire set of elements on a page (well sort of).</p>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/megaview?num=1" target="_blank"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/08/layout1-300x155.png" alt="layout1" width="600"  class="alignnone size-medium wp-image-2478" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2014/08/layout1-300x155.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2014/08/layout1-1024x531.png 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2014/08/layout1-900x467.png 900w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>Can&#8217;t we do better than that, though? </p>
+<p>At the end of the day, if you assume a (quite modest these days) resolution of 800&#215;600 pixels, you should be able to fit more than 300 9point characters in there (assuming <a href="http://www.translatorscafe.com/cafe/EN/units-converter/typography/5-7/character_(X)-pixel_(X)/">9 points equal 12 pixels</a>). </p>
+<h3>Step 2.</h3>
+<p> Here&#8217;s another way: a <span style="font-family:monospace;color:#000000; ">font-size: 7px;</span> and IDs instead of taxon&#8217;s labels make the visualisation much more compact. </p>
+<p>And it does fit in a single window &#8211; hurray! </p>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/megaview?num=2" target="_blank"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/08/layout2-300x129.png" alt="layout2" width="600" class="alignnone size-medium wp-image-2479" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2014/08/layout2-300x129.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2014/08/layout2-1024x442.png 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2014/08/layout2-900x388.png 900w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>One problem though. This is not very useful with all those meaningless numbers. </p>
+<h3>Step 3.</h3>
+<p> So I tried to reduce the size a bit more so to fit the entire taxon label in there. </p>
+<p>Also, adding a bit of interactivity so to reveal the hierarchy. The simple mechanism is this: when you click on an element of the taxonomy all of its ancestors get highlighted too. Just to remember this is not a plain list of things, but a tree.</p>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/megaview?num=3" target="_blank"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/08/layout3-300x150.png" alt="layout3" width="600"  class="alignnone size-medium wp-image-2480" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2014/08/layout3-300x150.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2014/08/layout3-1024x514.png 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2014/08/layout3-900x451.png 900w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>Kind of like this one :-)</p>
+<h3>Possible next steps:</h3>
+<p>a) adding arrows to make the hierarchical relationships more evident<br />
+b) some sort of summary below the subject term in focus<br />
+c) sorting the terms by hierarchy-level rather than alphabetical order (will it make the taxonomy more intelligible?)</p>
+<p>..to be continued..</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2474</post-id>	</item>
+		<item>
+		<title>Messing around wih D3.js and hierarchical data</title>
+		<link>http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/</link>
+				<comments>http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/#comments</comments>
+				<pubDate>Fri, 21 Jun 2013 13:23:59 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[d3]]></category>
+		<category><![CDATA[javascript]]></category>
+		<category><![CDATA[taxonomy]]></category>
+		<category><![CDATA[tree]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2379</guid>
+				<description><![CDATA[These days there are a lot of browser-oriented visualization toolkits, such d3.js or jit.js. They&#8217;re great and easy to use, but how much do they scale when used with medium-large or very large datasets? The subject ontology is a quite large (~2500 entities) taxonomical classification developed at Nature Publishing Group in order to classify scientific [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>These days there are a lot of browser-oriented visualization toolkits, such <a href="http://d3js.org/">d3.js</a> or <a href="http://philogb.github.io/jit/">jit.js</a>. They&#8217;re great and easy to use, but how much do they scale when used with medium-large or very large datasets? </p>
+<p>The subject ontology is a quite large (~2500 entities) taxonomical classification developed at <a href="http://www.nature.com/">Nature</a> Publishing Group in order to classify scientific publications. The taxonomy is publicly available on <a href="http://data.nature.com/">data.nature.com</a>, and is being encoded using the <a href="http://www.w3.org/2004/02/skos/">SKOS</a> RDF vocabulary. </p>
+<p>In order to evaluate the scalability of various javascript tree visualizations I extracted a <a href="http://michelepasin.org/media/naturehacking/subjectsviz/d3/tree/subjects_d3_99levels.js">JSON version of the subject taxonomy</a>  and tried to render it on a webpage, using out-of-the-box some of the viz approaches made available; <a href="http://hacks.michelepasin.org/subjectsviz/experimental">here are the results</a> (ps: I added the <strong>option</strong> of selecting how many levels of the tree can be visualized, just to get an idea of when a viz breaks). </p>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/experimental"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/Screen-Shot-2014-02-13-at-2.07.50-PM.png" alt="Screen Shot 2014 02 13 at 2 07 50 PM" title="Screen Shot 2014-02-13 at 2.07.50 PM.png" border="0" width="600" height="305" /></a></p>
+<p>Some conclusions:</p>
+<li>The subject taxonomy actually is a <strong>poly-hierarchy</strong> (=one term can have more than one parent, so really it&#8217;s more like a directed graph). None of the libraries could handle that properly, but maybe that&#8217;s not really a limitation cause they are meant to support the visualization of trees (maybe I should play around more with force-directed graphs layout and the like..)</li>
+<li>The only viz that could handle all of the terms in the taxonomy is <a href="http://bl.ocks.org/mbostock/4339083">D3&#8217;s collapsible tree</a>. Still, you don&#8217;t want to keep all the branches open at the same time! Click on the image to see it with your eyes.</li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3tree"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/collapsibleTree.png" alt="CollapsibleTree" title="collapsibleTree.png" border="0" width="800" height="528" /></a></p>
+<li>An approach to deal with large quantities of data is obviously to show them a little bit at a time. The <strong>Bar Hierarchy</strong> seems a pretty good way to do that, it&#8217;s informative and responsive. However it&#8217;d be nice to integrate with other controls/visual cues that would tell one what level of depth they&#8217;re currently looking at, which siblings are available etc.. etc.. </li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3barHierarchy"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/barHiearchy.png" alt="BarHiearchy" title="barHiearchy.png" border="0" width="700" height="208" /></a></p>
+<li><strong>Partition tables</strong> also looks pretty good in providing a visual summary of the categories available; however they tend to fail quickly when there are too many nodes, and the text is often not readable at all.. in the example below I had to include only the first 3 levels of the taxonomy for it to be loaded properly!</li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3partitionTable?levels=3"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/treeMapD3.png" alt="TreeMapD3" title="treeMapD3.png" border="0" width="700" height="379" /></a></p>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/jit_icicle"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/treeMap.png" alt="TreeMap" title="treeMap.png" border="0" width="600" height="584" /></a></p>
+<li><strong>Rotating tree</strong>. Essentially a Tree plotted on a circle, very useful to provide a graphical overview of the data but it tends to become non responsive quickly.</li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3cluster?levels=3"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/rotatingTree.png" alt="RotatingTree" title="rotatingTree.png" border="0" width="700" height="615" /></a></p>
+<li><strong>Hierarchical pie chart</strong>. A pie chart that allows zooming in so to reveal hierarchical relationships (often also called Zoomable Sunburst). Quite nice and responsive, also with a large amount of data. The absence of labels could be a limiting feature though; you get a nice overview of the datascape but can&#8217;t really understand the meaning of each element unless you mouse over it. </li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3treepie?levels=5"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/pieTree.png" alt="PieTree" title="pieTree.png" border="0" width="700" height="656" /></a></p>
+<p>&nbsp;</p>
+<p>Other stuff out there that could do a better job?</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2379</post-id>	</item>
+		<item>
+		<title>Infographics Course, Week 2</title>
+		<link>http://www.michelepasin.org/blog/2012/11/14/infographics-course-week-2/</link>
+				<pubDate>Wed, 14 Nov 2012 23:16:15 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[infographics]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2241</guid>
+				<description><![CDATA[Here&#8217;re the materials related to the second week of the Introduction to Infographics and Data Visualization online course. This week we talked about two topics: a) Visual Perception and Graphic Design Principles and b) Planning for Infographics and Visualizations. The exercise was focusing on an interactive visualisation available on the New York Times website. Key [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Here&#8217;re the materials related to the second week of the <a href="https://knightcenter.utexas.edu/course/introduction-infographics-and-data-visualization-knight-centers-first-massive-open-online-cou">Introduction to Infographics and Data Visualization</a> online course. This week we talked about two topics: a) Visual Perception and Graphic Design Principles and b) Planning for Infographics and Visualizations. The exercise was focusing on an interactive visualisation available on the New York Times website.</p>
+<h3>Key Concepts from Lesson 2</h3>
+<p>&nbsp;</p>
+<pre style="border: 1px dashed grey; width: 1000px; overflow: auto; padding: 10px;">
+
+A) Visual Perception and Graphic Design Principles
+-----------------------------------------
+
+- The principles of design are grounded on how perception works
+- Visual perception works differently from what we think 
+	- we don't have photographs in our heads!
+	- the eye passes on signals to the brain, which elaborates and makes assumptions about the perception
+		- eg think of the classic geometrical visual illusions 
+- Visual perception is an active process. The brain is not a passive receptor of information, but it completes, organizes and creates priorities (or hierarchies) and relationships to extract meaning
+- If we know that, the goal of the designer should be to arrange compositions anticipating what the user's brain will most likely do
+
+- The key to any visual design is the presentation of a cohesive, structured, readable and understandable composition.
+
+==> check online examples by John Grimwade
+
+First goal when arranging elements on a page:
+	- think about a composition
+	- Structure / Order / Hierarchy / Harmony / Balance
+	
+Main principles of Graphic Design
+	Unity: presentation of a composition as an integrated whole
+	Variety: is the opposite of unity, but also its complement. With too much variety, a composition will look randoml with too much unity, it will look boring
+	Hierarchy: the balance between unity and variety can lead to a good hierarchy
+		- answers the question: where should I start reading the infographics
+		
+Strategies for achieving Unity, Variety and Hierarchy
+	Grids, Color, and Type
+	
+Grids
+	- they can support unity thanks to a sense of alignment
+	- help keep the consistency
+	- key to using grids: think of the composition as a set of rectangles
+	- first step in building an infographics: divide up the space into functional rectabgles
+		- headline / intro / map / chart / timeline etc...
+		- tip: things that are stacked on top of each other should have the same width
+		- tip: if objects are side by side, they should have they same height
+		
+Fonts, Colors
+	- different fonts can be use to achieve variety, and support the creation of a hierarchy
+	- same with colors: eg using a Copy Color (eg Black) an highlight color (eg yellow) and a series of Neutral Tones (grey shades)
+	
+	
+
+B) Planning for Infographics and Visualizations
+-----------------------------------------
+
+Creating a chart consists of making a data set adopt a visual shape
+
+==> seminal paper by William Cleveland and Robert McGill on infovis
+	- scale of charts that allow more accurate/generic judgements
+		eg barcharts are accurate and facilitate comparison
+		eg color gradation graphs or bubbles are generic (=show big trends)
+	
+- correlation coefficient
+	- formula that represent the correlation between two series (on a values between -1 and 1)
+	- scatter plot: good at representing correlation between two variables
+	- slope graph: another way to represent correlation (although it's usually employed to represent change over time)
+
+
+- Types of charts
+	- line charts: display variation of one or more magnitudes over a time period by means of rising and falling lines
+	- Comparison Charts: visualization of amounts, each represented by a bar (or toher objects)
+	- Distribution Chart: division of a whole into its components. It can be represented by a circle ('pie') or by other objects, such as a divided bar
+	- Correlation chart: shows the correlation between two (or more) variables. Also called scatter plots
+
+- Common components of a graphic
+	- headline: clearly stated what the graphic is about, or makes a point
+	- values
+	- axes
+	- sources/attribution info
+	- byline: who made the graphic
+	- legend
+	
+	
+Styling a graphic with colors and fonts makes the graphic more readable (= create the hierarchy)
+
+Things to avoid
+- Dont' distort charts (eg 3d effects) especially with pie charts, as it makes it more difficult to compare areas
+- Avoid vertical labels
+- Avoid backgrounds that detract attention from the main graphics (eg photographs etc)
+- Avoid creating overloaded compositions
+
+The Design Process
+- Learn as much as you can about the topic
+- Identify goals and challenges
+- Prototype and sketch
+- Test and tweak
+- Turn the project in
+
+</pre>
+<p>&nbsp;</p>
+<h3>The exercise</h3>
+<p><a href="http://www.nytimes.com/interactive/2012/09/06/us/politics/convention-word-counts.html" title="Infographics_week2"><img src="http://farm9.staticflickr.com/8202/8186847080_89e8727c0b_c.jpg" width="800" height="409" alt="Infographics_week2"></a></p>
+<blockquote><p>See the <a href="http://www.nytimes.com/interactive/2012/09/06/us/politics/convention-word-counts.html">following graphic</a>, by The New York Times, an interesting project that allows you to compare the words that were used in the National conventions. Imagine that you are hired by Steve Duenes, infographics director at the Times, to make a constructive critique of that piece. What would you say about it?</p></blockquote>
+<p>Here&#8217;s my comments about the NY visualization:</p>
+<p>&#8211; The infographics allows to compare the two different parties usage of a certain word rather intuitively, so in that sense it is <strong>functional</strong>. The visualisation based on bubbles’ areas is usually clear; in cases where the two areas are very similar you can still get the ratio right thanks to the percentage numbers displayed.</p>
+<p>&#8211; The fact that you can<strong> move around the bubbles</strong> is eye-catching and fun to use, but it fails to provide any added value to the tool (= no extra functionality other than maybe organising the words some other way). This is <strong>detrimental to the understanding</strong> of the structure and purpose of the visualisation: the bubbles’ location seem to imply a semantic correlation of some sort, but unfortunately it doesn’t have any.</p>
+<p>&#8211; I’d expect to be able to <strong>filter the quotes</strong> by <strong>speaker</strong>, so  to compare the usage of a certain word only between two specified people (e.g. Obama and Romney). Unfortunately that is not possible. Also, it’d be nice to be able to order or re-organise the citations on a <strong>timeline</strong>, so to explore potential patterns in the increase/decrease of use of a word. All of this could be easily achievable by introducing  a ‘filter by’ panel right on top of the the quotations columns. The types of filters could be others too, eg <strong>geographical</strong> ones (by state or regions), or by the importance of the ‘<strong>roles</strong>’ of the speakers (majors, governors).</p>
+<p>&#8211; The main issue from the interactivity point of view is that when you <strong>click on a bubble </strong>(assuming a user understands that’s what he/she has to do &#8211; btw no tooltips at all!) it’s not immediately obvious that the bottom part of the screen gets updated. I’d add some mechanism, such as a partial screen refresh, or a ‘loading’ icon, that would make this process more transparent. </p>
+<p>&#8211; There is no way to <strong>remove a bubble</strong> once you’ve added it. So if you’re trying to compose your own ‘view’ of the tool by selecting only words you are interested in, once you get something wrong you’ve stuck with it (you can only restart from scratch by reloading the page) </p>
+<p>&#8211; The 4 <strong>static captions</strong> at the bottom (AUTO, WOMEN etc..) are ok at the beginning of the visualisation, but once you start moving things around they don’t update at all which is not really the expected behaviour. </p>
+<p>&#8211; If the <strong>full transcripts</strong> the quotations derive from are available online, it’d be nice to be able to link directly to them e.g. by clicking on the quotations themselves. This would allow to investigate further the <strong>original context </strong>of use of a word.</p>
+<p>&#8211; Having <strong>small photos</strong> on the side of a speaker’s name would make it easier to identify these people; also, it shouldn’t be too difficult to include <strong>links</strong> to the person’s home pages or <strong>wikipedia entries</strong>. </p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2241</post-id>	</item>
+		<item>
+		<title>Infographics Course, Week 1</title>
+		<link>http://www.michelepasin.org/blog/2012/11/06/infographics-course-week-1/</link>
+				<comments>http://www.michelepasin.org/blog/2012/11/06/infographics-course-week-1/#comments</comments>
+				<pubDate>Tue, 06 Nov 2012 23:18:38 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[infographics]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2227</guid>
+				<description><![CDATA[This is a short summary of the activities in week 1 of the Introduction to Infographics and Data Visualization massive online course offered by the Knight Center for Journalism at Texas University. I&#8217;ll be posting the course materials and exercises here on the blog, so stay tuned if you want more. The course is hosted [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>This is a short summary of the activities in week 1 of the <a href="https://knightcenter.utexas.edu/course/introduction-infographics-and-data-visualization-knight-centers-first-massive-open-online-cou">Introduction to Infographics and Data Visualization</a> massive online course offered by the <a href="https://knightcenter.utexas.edu">Knight Center for Journalism</a> at Texas University. I&#8217;ll be posting the course materials and exercises here on the blog, so stay tuned if you want more. </p>
+<p>The course is hosted by <a href="http://www.visualopolis.com/">Alberto Cairo</a>, author of the book &#8216;The Functional Art&#8217;. It&#8217;s been only a week since we started, but I can definitely tell that the quality of both the teaching materials and overall e-learning platform are very high. So I&#8217;d highly recommend it to anyone interested in deepening his/her knowledge on such topics. It&#8217;s too late to sign up for it now, but there will be another class running in early 2013 so keep an eye on their site if you don&#8217;t want to miss the next enrollment. </p>
+<p><iframe src="http://player.vimeo.com/video/50644437?badge=0&amp;color=c9ff23" width="700" height="394" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></p>
+<h3>Key Concepts from Lesson 1</h3>
+<p>&nbsp;</p>
+<pre style="border: 1px dashed grey; width: 1000px; overflow: auto; padding: 10px;">
+- Infographics is a piece of functional art (different from pure art)
+- the stuff in the world is shapeless and useless, it requires people to give it a form (to model it) according to some specific purpose
+- our world is not about ideology anymore, it's about complexity (Matt Taibbi en Griftopia)
+- the model of information designers is to model that raw material and make sense of it
+- infographics is not just about summarizing, organizing data, but it's also about letting reader explore those data
+- a graphic is a tool: it extends our skills and capacities
+- any good infographics is functional as a hammer - the design predetermines the function the tool should have.
+- any good infographics is multilayered as an onion - eg as in a summary of main points, plus more in depth examinations
+- any good infographics is beautiful and true as a mathematical equation
+
+- function doesn't dictate form, but it restricts the variety of forms that are acceptable to use for each set of data
+
+- classic distinction:
+	- infographics: presents information in a way that becomes meaningful; it's an edited story based on data
+	- information visualization: fine-tuned so to support exploration; doesn't tell a particular story, but it allows users to create their own story (it's unedited).
+- for Cairo, the difference is very fuzzy, often the two things are mixed together
+
+- Definition: a good infographics lets you answer questions more efficiently 
+
+- considering infographics only as art is wrong: infographics are tools. Often graphics with no structure or no context are presented as inforaphics, but they are not a visual representaion of the data, just a simple page layout exercise with a bunch of unrelated numbers
+
+- numbers have little meaning if they can't be compared with other data (eg summaries) or if I can't relate them to my life (eg contextual information)
+
+- infographics should be constructed in many layers so that data could be cross-compared in many ways
+
+- choosing the correct 'visual metaphor' is essential for an infographics
+
+- if your goal is to let users compare numbers, it's better not to use bubble charts but bar charts! The human brain is not good at comparing sizes of bubbles. Bubbles are good for presenting overall patterns, but not good for precise comparisons.
+
+- the 'onion' approach allows you to represent data in different ways to facilitate different kinds of tasks
+
+- Infographics and visualization must be considered as visual tools for communication, understanding and analysis
+
+- Charles Joseph Minard 1869: cosidered by many (eg Tufte) the best visualization ever!
+
+</pre>
+<h3>The exercise</h3>
+<p><a href="http://www.flickr.com/photos/mikele/8186846812/" title="Infographics_week1"><img src="http://farm9.staticflickr.com/8205/8186846812_23b8a97858_c.jpg" width="800" height="500" alt="Infographics_week1"></a></p>
+<blockquote><p>See the following graphic (<a href="http://www.redcandleresearch.com/blog/wp-content/uploads/2010/04/socialwebinvolvement.jpg">socialwebinvolvement.jpg</a>) and try to answer the questions</p></blockquote>
+<p><strong>1) Is this infographic really “functional” in the sense of facilitating basic, predictable tasks (comparing, relating variables, etc.)?</strong><br />
+Not really. If we think of an infographics as a &#8216;technology&#8217; this is certainly a very poor one. Apart from the fact that China and USA have the biggest audiences (in absolute terms) it&#8217;s extremely difficult (if not impossible) to use the graphics as a tool in any other way. Several variables are presented, but we can&#8217;t compare, organize or correlate the data cause they&#8217;re all expressed in a way that doesn&#8217;t support those actions. Moreover the choice of using bubble charts is not approriate, as they make it harder for people to make comparisons among surface sizes. </p>
+<p><strong>2) If not, how could it be improved?</strong><br />
+Similarly to what discussed in chapter two of the handouts (see the armed forces employees example), I&#8217;d do the following things:<br />
+a) eliminate the bubble charts, and replace them with bar charts<br />
+b) create bar charts for both absolute and relative values using a derived variable<br />
+c) improve the rendering of the labels, since now they&#8217;re a bit too small and hard to read. This could be done for example by using a specialized type of bar chart where the &#8216;bar&#8217; is divided into 5 continuous coloured segments corresponding to the types of social web involvement.<br />
+d) keep the geographical map in order to provide some context; however, it could be shrunk, positioned at the bottom and used primarily to highlight which are the countries being examined in the experiment (eg by having their areas in a different color)</p>
+<p><strong>3) What kind of headlines, intro copy, and labels could it include to make it meaningful for a broad audience?</strong><br />
+I think that the correlation between the label colors and their meaning should be made more explicit. </p>
+<p><strong>4) What other variables (if any) should be gathered/analyzed if we want to give an accurate portrait of Internet users across countries? Could we go beyond what is currently presented? Can we provide a better context for the data?</strong><br />
+It&#8217;d be nice to have a sense of the total number of users per country, versus people that admittedly don&#8217;t use the internet (or social media). Also, it&#8217;s not clear whether the 32000 users interviewed have been split proportionally to the total population of the countries taken into consideration, or not.<br />
+Other variables that it&#8217;d be nice to investigate are<br />
+&#8211; mean of access of the internet: eg mobile phone, computer, tablet<br />
+&#8211; age distribution<br />
+&#8211; overall context of internet usage: eg leisure, work, education</p>
+<h3>Other Approaches</h3>
+<p>Here&#8217;re the work of other students (not me) who tried (with impressive results) to redesign the graphic above: </p>
+<p><a href="http://www.flickr.com/photos/89317425@N05/8150814858/">http://www.flickr.com/photos/89317425@N05/8150814858/</a><br />
+<a href="http://dl.dropbox.com/u/43885573/Draft2.jpg">http://dl.dropbox.com/u/43885573/Draft2.jpg </a><br />
+<a href="http://www.flickr.com/photos/aaugur/8144159956/sizes/k/in/photostream/">http://www.flickr.com/photos/aaugur/8144159956/sizes/k/in/photostream/</a><br />
+<a href="http://www.flickr.com/photos/rubenvalero/8139950164/">http://www.flickr.com/photos/rubenvalero/8139950164/ </a><br />
+<a href="http://n79.org/infographics/asg1/">http://n79.org/infographics/asg1/ </a><br />
+<a href="http://public.tableausoftware.com/views/SocialWebInvolvement_1/Dashboard1?:embed=y">http://public.tableausoftware.com/views/SocialWebInvolvement_1/Dashboard1?:embed=y </a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2012/11/06/infographics-course-week-1/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2227</post-id>	</item>
+		<item>
+		<title>Navigating through the people of medieval Scotland&#8230; one step at a time</title>
+		<link>http://www.michelepasin.org/blog/2012/09/10/navigating-through-the-people-of-medieval-scotland/</link>
+				<comments>http://www.michelepasin.org/blog/2012/09/10/navigating-through-the-people-of-medieval-scotland/#comments</comments>
+				<pubDate>Mon, 10 Sep 2012 18:48:47 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Cultural Informatics]]></category>
+		<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[digital history]]></category>
+		<category><![CDATA[medieval]]></category>
+		<category><![CDATA[navigation]]></category>
+		<category><![CDATA[pathways]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2139</guid>
+				<description><![CDATA[Navigating through the people of medieval Scotland&#8230; one step at a time! This is, in a nutshell, what users can do via the Dynamic Connections Cloud application, a prototype tool I&#8217;ve been working on recently, in the context of the People of Medieval Scotland project (PoMS), which was launched last week at the University of [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Navigating through the people of medieval Scotland&#8230; one step at a time! This is, in a nutshell, what users can do via the <a href="http://db.poms.ac.uk/labs/connectionscloud">Dynamic Connections Cloud</a> application, a prototype tool I&#8217;ve been working on recently, in the context of the <a href="http://www.poms.ac.uk/">People of Medieval Scotland project</a> (PoMS), which was <a href="http://www.gla.ac.uk/news/headline_240409_en.html">launched last week</a> at the University of Glasgow.  </p>
+<p>Traditionally, digital humanities projects that produce <a href="http://library.stmarytx.edu/acadlib/indexes/hist.htm">historical databases</a> tend to present their data using a classic <em><a href="http://en.wikipedia.org/wiki/Table_(information)">tabular</a></em> format, which is roughly the equivalent of a bibliographic record (e.g. as used in library softwares) only for historical data (e.g. so to present information about persons, documents, facts). </p>
+<p>This approach has the advantage of offering a wealth of information within a clean and well organised interface, thus simplifying the task of finding what we are looking for during a search. However, by combining all the data in a single view, this approach also hides some of the key dimensions used by historians in order to make sense of the materials at hand. For example, such dimensions could be deriving from a higher-level analysis that focuses on spatio-historical, genealogical or socio-political patterns.</p>
+<p>The <strong>limitations</strong> of the tabular format become even more evident when we consider that the <a href="http://db.poms.ac.uk/search/">PoMS database</a> contains more than 80000 facts about 20000 people/institutions active in medieval Scotland. How were these people connected? Can we explore this network in a more interactive, game-like manner than the classic database-like structures? In other words, how can we help users see the &#8216;big picture&#8217;?</p>
+<h3>PoMS Laboratories</h3>
+<p>PoMS <a href="http://www.poms.ac.uk/about/project-team/">researchers</a> have sifted through more than <a href="http://www.poms.ac.uk/about/">8000 charters</a> and have extracted a pretty amazing amount of information from them. Now that the database is online and can be searched via the usual mechanisms (keywords, facets) historians can investigate aspects of the making of Scotland in a small fraction of the time it would have taken them otherwise.<br />
+However, almost paradoxically, by making available such a large quantity of data in structured format new problems are arising too. <strong>Information overload</strong> is one of them: how can this wealth of data can be compared, correlated and organized into more meaningful units? How can we present the same data in a more piecemeal fashion, according to predefined <strong>pathways</strong> or views on the dataset that aim at making explicit some of the coherence principles of the <strong>historical discourse</strong>?</p>
+<p>In order to investigate further these questions in the last months I developed the <a href="http://db.poms.ac.uk/labs/">PoMS Labs</a>, a section of the PoMS website that contains a number of prototypes usable to interact with PoMS data in innovative ways. In general, with these tools we aimed at addressing the needs of <strong>both non-expert</strong> users (e.g., learners) &#8211; who could simultaneously access the data and get a feeling for the meaningful relations among them &#8211; <strong>and experts alike</strong> (e.g., academic scholars) &#8211; who could be facilitated in the process of analysing data within predefined dimensions, so to highlight patterns of interest that would be otherwise hard to spot.</p>
+<p>What follows contains more information about three of these prototype tools, which I think will give you a pretty good idea of what the concept of <strong>highlighting pathways in the data</strong> means (by clicking on <em>launch</em> you can try out the tools for yourself &#8211; which is probably the best way to discover what this is all about!).</p>
+<blockquote><p>Note: currently the only platforms we tested the Labs on are desktop computers running the <u>latest versions</u> of <a href="http://www.mozilla.org/en-US/firefox/new/">Mozilla Firefox</a>, <a href="https://www.google.com/chrome">Google Chrome</a> or <a href="http://www.apple.com/safari/">Apple Safari</a>.</p></blockquote>
+<p>&nbsp;</p>
+<h3>1. Dynamic Connections Cloud (<a style="color: darkblue;" href="http://db.poms.ac.uk/labs/connectionscloud/go">launch</a>)</h3>
+<p>This experimental app lets you <strong>browse incrementally</strong> the network of <strong>relationships</strong> linking persons/institutions to other persons/institutions.<br />
+Since each of them is normally participating in more than one event (e.g., a transaction or a relationship factoid), we can attempt to reconstruct the network of interconnections by examining the appearance of individuals within the same event or situation.</p>
+<p>The software lets you choose an individual and start building a &#8216;<strong>chain of connections</strong>&#8216; departing from him/her/it. Each name in the resulting connections-cloud is rendered using a different font and color, depending on the sex and on the number of common factoids being shared with the previously selected items.<br />
+At any time it is possible to go back to the main PoMS database pages in order to find out more about the individuals or factoids emerging from the connections-cloud exploration. Just click on the individual icons, or move the mouse over the links provided in order to discover more options.</p>
+<p>The screenshot below illustrates the main functionalities of the software, and is based on a sample connection chain that starts from a rather unknown person (&#8216;<em>A. wife of Normam son of Malcolm</em>&#8216;) and arrives to a more famous institution (&#8216;<em>Arbroath Abbey</em>&#8216;). </p>
+<p><a href="http://www.flickr.com/photos/mikele/7950263886/sizes/h/in/photostream/" title="PomsLabs - ConnectionsCloud by MagIcReBirth, on Flickr"><img src="http://farm9.staticflickr.com/8316/7950263886_4fef4b99bf_c.jpg" width="713" height="800" alt="PomsLabs - ConnectionsCloud"></a></p>
+<blockquote><p>Note: You can see a live version of the connection chain displayed above by following this <a href="http://db.poms.ac.uk/labs/connectionscloud/go?id=13091&#038;id=1331&#038;id=142&#038;id=13&#038;id=41">link</a>.</p></blockquote>
+<p>&nbsp;</p>
+<h3>2. Relationships explorer (<a style="color: darkblue;" href="http://db.poms.ac.uk/labs/relationships/go">launch</a>)</h3>
+<p>The individuals and institutions in the PoMS database are often interconnected by participating to the same events (e.g. transactions or relationships). In particular, the database contains detailed information circa the varying <em>roles</em> agents are playing within such events. Can we discover any interesting pattern by examining these roles? For example, do agents tend to appear always in the same role, of are there exceptions to this rule?</p>
+<p>This visualization tool allows you to <strong>compare the different roles played by two agents played in the context of their common events</strong>. The software makes use of the <a href="http://bost.ocks.org/mike/sankey/">D3 Sankey diagrams plugin</a>, kindly made available by <a href="http://bost.ocks.org/mike/">Mike Bostock</a>. In general, <a href="http://en.wikipedia.org/wiki/Sankey_diagram">Sankey diagrams</a> are designed to show flows through a network (and are sometimes called flow diagrams).<br />
+In our case the network is always composed by three steps (person-role, event, person-role) and is relatively simple, so the Sankey diagram is mainly used in order to group nodes of the same type (e.g. roles) and provide an overview of relationships between persons and events (i.e. the &#8216;flow&#8217;).</p>
+<p>The screenshot below illustrates the main functionalities of the software; in particular, it represents all existing relationships between <em>Edward I, king of England (d.1307)</em> and <em>William Fraser, bishop of St Andrews (d.1297)</em> (obviously, based on the information PoMS makes available).</p>
+<p><a href="http://www.flickr.com/photos/mikele/7973909376/sizes/k/in/photostream/" title="PomsLabs - Relationships Explorer by MagIcReBirth, on Flickr"><img src="http://farm9.staticflickr.com/8308/7973909376_6434d9261e_c.jpg" width="570" height="800" alt="PomsLabs - Relationships Explorer"></a></p>
+<blockquote><p>Note: you can play with a live version of the specific visualisation displayed above by following this <a href="http://db.poms.ac.uk/labs/relationships/go?id=1936&#038;id=449">link</a>.</p></blockquote>
+<p>&nbsp;</p>
+<h3>3. Transactions and Witnesses (<a style="color: darkblue;" href="http://db.poms.ac.uk/labs/witnesses/go-halfsize">launch</a>)</h3>
+<p>In PoMS <em>witnesses</em> are very important as they the persons who have witnessed a charter and are given in the witness list. Charters are usually describing some form of transaction, which is the most important type of event (&#8216;factoid&#8217;) represented in the database. This interactive visualization lets you <strong>browse iteratively transactions and the witnesses associated to them</strong>. </p>
+<p>Each graph starts from a transaction of choice (the &#8216;focus point&#8217;), and displays two levels of information: (1) all the witnesses of the transaction (normally persons or institutions), and (2) for each of these agents, all the other transactions they have witnessed.<br />
+The new transactions emerging from this network can be selected and brought to the center of the visualization (which is recalculated), thus facilitating a process of <strong>interactive exploration</strong> of the interconnections and commonalities among PoMS&#8217;s recorded transactions.</p>
+<p>The visualization has been created thanks to the freely available <a href="http://thejit.org/">JavaScript InfoVis Toolkit</a>.</p>
+<p>The screenshot below illustrates the main functionalities of the software; the graph is centered around a transaction (&#8216;<em>Agreement between Alwin, abbot of Holyrood, and Arnold, abbot of Kelso, over the Crag of Duddingston in Edinburgh</em>&#8216;) that has five witnesses in total. </p>
+<p><a href="http://www.flickr.com/photos/mikele/7974217244/sizes/h/in/photostream/" title="PomsLabs - Witnesses Networks by MagIcReBirth, on Flickr"><img src="http://farm9.staticflickr.com/8179/7974217244_5b0c806a12_c.jpg" width="800" height="468" alt="PomsLabs - Witnesses Networks"></a></p>
+<blockquote><p>Note: click <a href="http://db.poms.ac.uk/labs/witnesses/go-halfsize?id=8208#.UE8TE6Se4gI">here</a> to see a live version of this graph.</p></blockquote>
+<p>&nbsp;</p>
+<h3>Any feedback?</h3>
+<p>Then please do get in touch, either through this blog or the official PoMS <a href="http://www.poms.ac.uk/contact/">contact page</a>! This is all very much a work in progress, so we&#8217;re eager to hear from you.</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2012/09/10/navigating-through-the-people-of-medieval-scotland/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2139</post-id>	</item>
+		<item>
+		<title>Wittgenstein Tractatus and the JavaScript InfoVis Toolkit</title>
+		<link>http://www.michelepasin.org/blog/2012/07/08/wittgenstein-and-the-javascript-infovis-toolkit/</link>
+				<comments>http://www.michelepasin.org/blog/2012/07/08/wittgenstein-and-the-javascript-infovis-toolkit/#comments</comments>
+				<pubDate>Sun, 08 Jul 2012 20:31:18 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Cultural Informatics]]></category>
+		<category><![CDATA[philosophy]]></category>
+		<category><![CDATA[text]]></category>
+		<category><![CDATA[visualization]]></category>
+		<category><![CDATA[wittgenstein]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1946</guid>
+				<description><![CDATA[What do the JavaScript InfoVis Toolkit and the Austrian philosopher Ludwig Wittgenstein have in common? Definitely not much, at first sight. But the moment you realise that Wittgenstein was so fascinated with logic that he wanted to organise his masterwork in the form of a tree structure, well, you may change your mind. The javaScript [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>What do the <a href="http://thejit.org/">JavaScript InfoVis Toolkit</a> and the Austrian philosopher <a href="http://en.wikipedia.org/wiki/Ludwig_Wittgenstein">Ludwig Wittgenstein</a> have in common? Definitely not much, at first sight. But the moment you realise that Wittgenstein was so fascinated with logic that he wanted to organise his masterwork in the form of a tree structure, well, you may change your mind. </p>
+<p>The javaScript <a href="http://thejit.org/">InfoVis Toolkit</a> includes a number of pretty cool libraries that work in the browser and can be customised to your own needs. Some of these visualisations are specifically designed for trees and graphs, so I always wondered how a dynamic tree-rendering of Wittgenstein&#8217;s Tractatus would look like. </p>
+<blockquote><p>The <a href="http://en.wikipedia.org/wiki/Tractatus_Logico-Philosophicus">Tractatus Logico-Philosophicus</a> (Latin for &#8220;Logical-Philosophical Treatise&#8221;) is the only book-length philosophical work published by the Austrian philosopher Ludwig Wittgenstein in his lifetime. It was an ambitious project: to identify the relationship between language and reality and to define the limits of science. It is recognized as a significant philosophical work of the twentieth century.<br />
+[…] The Tractatus employs a notoriously austere and succinct literary style. The work contains almost no arguments as such, but rather declarative statements which are meant to be self-evident. The statements are hierarchically numbered, with seven basic propositions at the primary level (numbered 1–7), with each sub-level being a comment on or elaboration of the statement at the next higher level (e.g., 1, 1.1, 1.11, 1.12).</p></blockquote>
+<p>The final result is available here (warning: it&#8217;s been tested only on Chrome and Firefox): <a href="http://hacks.michelepasin.org/witt/spacetree">http://hacks.michelepasin.org/witt/spacetree</a></p>
+<p><a href="http://hacks.michelepasin.org/witt/spacetree"><img src="http://farm9.staticflickr.com/8151/7487681310_255f7caca4.jpg" width="500" height="407" alt="SpaceTree Tractatus app"></a></p>
+<h3>Some more details</h3>
+<p>I&#8217;ve played around a little with one of the visualisation libraries the JavaScript InfoVis Toolkit makes available, the <a href="http://thejit.org/static/v20/Docs/files/Visualizations/RGraph-js.html">Radial Graph</a>, to the purpose of transforming the Tractatus text into a more interactive platform. The <a href="http://en.wikipedia.org/wiki/Radar_chart">Radial Graph</a> is essentially a tree-rendering library built over a circular area (hence called also <em>space-tree</em>).</p>
+<p>I liked the idea of making the tree-like structure of the text explorable one step at a time, within a framework that suggests a predefined order of the text-units but also allows for <em>lateral</em> steps or quick <em>jumps</em> to other sections. However I&#8217;m still trying to figure out what the advantages of looking at the text this way can be, once you go past the initial excitement of playing with it as if it was some sort of toy! </p>
+<p>Some of the <strong>pros</strong> seem to be:</p>
+<li>By zooming in and out of the tree, you can see immediately where one sentence is located and how it (structurally) relates to the other ones</li>
+<li>The tree visualisation makes more transparent the importance of some sentences, and thus implicitly conveys some aspects of the argument Wittgenstein is making.</li>
+<p>On the other hand, here are some <strong>cons</strong>:</p>
+<li>We lose the the diachronic, linear sense of the text (assuming the Tractatus has one &#8211; which is something not all scholars would agree with) </li>
+<li>The animations may become distracting..</li>
+<p>I wonder how all of this could be developed further and/or transformed into a useful tool.. if you have any comment or suggestion please do get in touch !<br />
+I&#8217;m also planning to release the source code for the whole app as soon as a I clean it up a little; for the moment, here is the javascript bit that renders the graph: </p>
+<p><script src="https://gist.github.com/3096854.js?file=Tractatus-rgraph.js"></script></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2012/07/08/wittgenstein-and-the-javascript-infovis-toolkit/feed/</wfw:commentRss>
+		<slash:comments>3</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">1946</post-id>	</item>
+	</channel>
+</rss>

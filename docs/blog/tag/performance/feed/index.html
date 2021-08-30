@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>performance &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/performance/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 02 May 2011 12:25:58 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>The new Livecoding Error Hook in Impromptu</title>
+		<link>http://www.michelepasin.org/blog/2011/05/02/the-new-livecoding-error-hook-in-impromptu/</link>
+				<pubDate>Mon, 02 May 2011 12:25:58 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[impromptu]]></category>
+		<category><![CDATA[performance]]></category>
+		<category><![CDATA[tips]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1099</guid>
+				<description><![CDATA[Impromptu 2.5 has been out for a while now but I&#8217;ve never realised it contained this new handy feature: an &#8216;error hook&#8217;: The interpreter will now throw to an error hook providing you with greater control over exception handling. You initiate the livecoding error hook by calling (sys:livecoding-error-hook #t). Errors are then passed to the [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://impromptu.moso.com.au/">Impromptu 2.5</a> has been out for a while now but I&#8217;ve never realised it contained this new handy feature: an &#8216;error hook&#8217;: </p>
+<blockquote><p>The interpreter will now throw to an error hook providing you with greater control over exception handling.  You initiate the livecoding error hook by calling (sys:livecoding-error-hook #t).  Errors are then passed to the *livecoding-error-hook* function &#8211; which you may rebind.  By default the function simply returns 1 but can be modified for more specialised behaviour.</p></blockquote>
+<p>This is extremely useful, to say the least, if you are performing live and want to avoid situations in which a (stupid) typo or parenthesis error will mess up your entire gig. The error hook in many cases will prevent your looping function from crashing, giving you time to fix the error. Really neat. </p>
+<p><a href="http://www.flickr.com/photos/mikele/6619819815/" title="Impromptu: livecoding error hook by MagIcReBirth, on Flickr"><img src="http://farm8.staticflickr.com/7167/6619819815_240eaf85dd_z.jpg" width="640" height="421" alt="Impromptu: livecoding error hook"></a></p>
+<p>Here&#8217;s an example from the official release notes:</p>
+<pre style='color:#000020;background:#f6f8ff;'><span style='color:#595979; '>;; turn on livecoding error hook</span>
+<span style='color:#308080; '>(</span>sys<span style='color:#308080; '>:</span>livecoding<span style='color:#308080; '>-</span>error<span style='color:#308080; '>-</span>hook #t<span style='color:#308080; '>)</span>
+
+<span style='color:#595979; '>;; with livecoding-error-hook on   </span>
+<span style='color:#595979; '>;; this temporal recursion will continue</span>
+<span style='color:#595979; '>;; to play the second note even though 'pitch</span>
+<span style='color:#595979; '>;; is an unbound symbol</span>
+<span style='color:#308080; '>(</span>define <span style='color:#200080; font-weight:bold; '>loop</span>
+   <span style='color:#308080; '>(</span>lambda <span style='color:#308080; '>(</span>beat<span style='color:#308080; '>)</span> 
+      <span style='color:#595979; '>;; symbol a is not bound but loop continues to function</span>
+      <span style='color:#308080; '>(</span>play piano pitch <span style='color:#008c00; '>80</span> <span style='color:#008c00; '>1</span><span style='color:#308080; '>)</span>
+      <span style='color:#308080; '>(</span>play piano <span style='color:#008c00; '>63</span> <span style='color:#008c00; '>80</span> <span style='color:#008c00; '>1</span><span style='color:#308080; '>)</span>
+      <span style='color:#308080; '>(</span>callback <span style='color:#308080; '>(</span><span style='color:#308080; '>*</span>metro<span style='color:#308080; '>*</span> <span style='color:#308080; '>(</span><span style='color:#308080; '>+</span> beat <span style='color:#308080; '>(</span><span style='color:#308080; '>*</span> <span style='color:#008c00; '>1</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>2</span> <span style='color:#008c00; '>1</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span> '<span style='color:#200080; font-weight:bold; '>loop</span> <span style='color:#308080; '>(</span><span style='color:#308080; '>+</span> beat <span style='color:#008c00; '>1</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span>
+
+<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>loop</span> <span style='color:#308080; '>(</span><span style='color:#308080; '>*</span>metro<span style='color:#308080; '>*</span> 'get<span style='color:#308080; '>-</span>beat <span style='color:#008c00; '>4</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span>
+
+<span style='color:#595979; '>;; by redefining the error hook we can provide</span>
+<span style='color:#595979; '>;; additional specialisation - such as replacing</span>
+<span style='color:#595979; '>;; any unbound symbol with 60!</span>
+<span style='color:#595979; '>;; </span>
+<span style='color:#595979; '>;; eval below and both notes will play</span>
+<span style='color:#595979; '>;; 'pitch being replaced by 60</span>
+<span style='color:#308080; '>(</span>define <span style='color:#308080; '>*</span>livecoding<span style='color:#308080; '>-</span>error<span style='color:#308080; '>-</span>hook<span style='color:#308080; '>*</span> 
+   <span style='color:#308080; '>(</span>lambda <span style='color:#308080; '>(</span>msg a<span style='color:#308080; '>)</span> 
+      <span style='color:#308080; '>(</span>cond <span style='color:#308080; '>(</span><span style='color:#308080; '>(</span>symbol<span style='color:#308080; '>?</span> a<span style='color:#308080; '>)</span> <span style='color:#008c00; '>60</span><span style='color:#308080; '>)</span>
+            <span style='color:#308080; '>(</span><span style='color:#004a43; '>else</span> <span style='color:#008c00; '>0</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span>
+</pre>
+<p>Happy (and safer) livecoding!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1099</post-id>	</item>
+		<item>
+		<title>Video recordings of the livecoding session @ anatomy theatre</title>
+		<link>http://www.michelepasin.org/blog/2010/02/12/video-recordings-of-the-livecoding-session-anatomy-theatre/</link>
+				<pubDate>Fri, 12 Feb 2010 01:50:15 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[impromptu]]></category>
+		<category><![CDATA[livecoding]]></category>
+		<category><![CDATA[performance]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=543</guid>
+				<description><![CDATA[Finally I managed to shrink down to a reasonable size and upload the video recording from our last livecoding event at Kings College; hopefully the other people will be uploading theirs too some time soon .. &#62;&#62;&#62;]]></description>
+								<content:encoded><![CDATA[<p>Finally I managed to shrink down to a reasonable size and upload the video recording from our last <a href="http://www.michelepasin.org/blog/2010/01/10/livecoding-night-kings-college-coming-up/">livecoding event at Kings College</a>; hopefully the other people will be uploading theirs too some time soon ..<br />
+&gt;&gt;&gt;<br />
+<iframe src="http://player.vimeo.com/video/9375423?autoplay=1" width="400" height="300" frameborder="0"></iframe></p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">543</post-id>	</item>
+	</channel>
+</rss>

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>flickr &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/flickr/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 07 May 2012 12:11:52 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Getting hold of your Flickr collections with Python</title>
+		<link>http://www.michelepasin.org/blog/2012/05/07/getting-hold-of-your-flickr-collections-with-python/</link>
+				<pubDate>Mon, 07 May 2012 12:11:52 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[api]]></category>
+		<category><![CDATA[flickr]]></category>
+		<category><![CDATA[python]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1889</guid>
+				<description><![CDATA[Recently I&#8217;ve been a little disappointed with Flickr, the popular online photo-sharing service. Photos gone missing, entire albums disappeared. Not really what you&#8217;d like to happen to your photo collection, especially when it&#8217;s very large and therefore it&#8217;s difficult to be always on top of what&#8217;s there and what&#8217;s not.. Time to change strategy: use [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Recently I&#8217;ve been a little disappointed with <a href="http://www.flickr.com/">Flickr</a>, the popular online photo-sharing service. Photos gone missing, entire albums disappeared. Not really what you&#8217;d like to happen to your photo collection, especially when it&#8217;s very large and therefore it&#8217;s difficult to be always on top of what&#8217;s there and what&#8217;s not.. Time to change strategy: use flickr for sharing and my local HD for backup! </p>
+<p>I emailed the customer service people at Flickr, they promptly replied that it wasn&#8217;t their fault but most likely a bug with other apps I had previously authorised to edit my Flickr collection (e.g. iPhoto or Aperture). Bad news: apparently whatever happened now what&#8217;s lost is lost forever. Not much to my consolation, the same happened to other people, for example check this <a href="http://amateurtraveler.com/2010/03/27/photos-disappearing-from-flickr-when-the-cloud-fails/">post</a> or this <a href="http://thomashawk.com/2007/03/flickr-users-photos-disappearing-from.html">post</a> to see alternative versions of the problem from 2010 and 2007. </p>
+<p>So I&#8217;ve suddenly realised the cloud isn&#8217;t that secure a place, as yet. It&#8217;s time to change strategy: use flickr for sharing and my local HD for backup! </p>
+<p>The good news is that if you know a little programming you can download your entire Flickr collection without having to pay a cent, for example by using Python. There are a few free libraries out there for accessing the <a href="http://www.flickr.com/services/api/">Flickr API</a>s, such as <a href="http://halotis.com/2009/09/08/download-images-from-flickr-with-python/">flickrpy</a> and <a href="http://stuvel.eu/media/flickrapi-docs/documentation/">FlickrAPI</a>. They both require you to fiddle a little with the code (at the very least, get a personalised passkey from Flickr and add it to the python program) in order to get what you want. </p>
+<p>The one I&#8217;ve gone for instead is a little package called <a href="https://github.com/dan/hivelogic-flickrtouchr">flickrtouchr</a>, which is even easier to use. After downloading you just have to run it from the command line and it&#8217;ll begin browsing your whole Flickr collection and download pictures at the highest resolution available. I have more than 8000 photos, and it worked like a charm  &#8211; beware though &#8211;  it took more than 10 hours on my TalkTalk connection. </p>
+<p>Thanks Dan@<a href="http://hivelogic.com/">hivelogic.com</a> for writing this code &#8211; couldn&#8217;t be asking for more!</p>
+<pre style='color:#d1d1d1;background:#000000; overflow:auto; font-size:12px;'><span style='color:#d2cd86; '>[</span>mac<span style='color:#d2cd86; '>]</span>@mike<span style='color:#d2cd86; '>:</span><span style='color:#d2cd86; '>~</span><span style='color:#d2cd86; '>/</span>Dropbox<span style='color:#d2cd86; '>/</span>code<span style='color:#d2cd86; '>/</span>python<span style='color:#d2cd86; '>/</span>_libs<span style='color:#d2cd86; '>/</span>dan<span style='color:#d2cd86; '>-</span>hivelogic<span style='color:#d2cd86; '>-</span>flickrtouchr<span style='color:#d2cd86; '>-</span>9ba645b<span style='color:#d2cd86; '>></span>python flickrtouchr<span style='color:#d2cd86; '>.</span>py <span style='color:#d2cd86; '>~</span><span style='color:#d2cd86; '>/</span>Desktop<span style='color:#d2cd86; '>/</span>FlickrBackupFolder
+
+In order to allow FlickrTouchr to read your photos <span style='color:#e66170; font-weight:bold; '>and</span> favourites
+you need to allow the application<span style='color:#d2cd86; '>.</span> Please press <span style='color:#e66170; font-weight:bold; '>return</span> when you've
+granted access at the following url <span style='color:#d2cd86; '>(</span>which should have opened
+automatically<span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>.</span>
+
+http<span style='color:#d2cd86; '>:</span><span style='color:#d2cd86; '>/</span><span style='color:#d2cd86; '>/</span>api<span style='color:#d2cd86; '>.</span>flickr<span style='color:#d2cd86; '>.</span>com<span style='color:#d2cd86; '>/</span>services<span style='color:#d2cd86; '>/</span>auth<span style='color:#d2cd86; '>/</span><span style='color:#d2cd86; '>?</span>api_key<span style='color:#d2cd86; '>=</span>e2245325378b5675b4af4e8cdb0564716fa9bd<span style='color:#d2cd86; '>&amp;</span>perms<span style='color:#d2cd86; '>=</span>read<span style='color:#d2cd86; '>&amp;</span>frob<span style='color:#d2cd86; '>=</span>8856734hhgbbhsksd19443<span style='color:#d2cd86; '>-</span>caa77e89367asbbhfa2ba<span style='color:#d2cd86; '>-</span><span style='color:#008c00; '>600258</span><span style='color:#d2cd86; '>&amp;</span>api_sig<span style='color:#d2cd86; '>=</span>a4aasdbbnb345c7fb46bdd33cfa65ec17bb32a
+
+Waiting <span style='color:#e66170; font-weight:bold; '>for</span> you to press <span style='color:#e66170; font-weight:bold; '>return</span>
+
+Egypt <span style='color:#008c00; '>1</span> <span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span> <span style='color:#e66170; font-weight:bold; '>in</span> set <span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span> Sharm el Sheik<span style='color:#d2cd86; '>,</span> Dec <span style='color:#008c00; '>2011</span>
+Egypt <span style='color:#008c00; '>2</span> <span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span> <span style='color:#e66170; font-weight:bold; '>in</span> set <span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span> Sharm el Sheik<span style='color:#d2cd86; '>,</span> Dec <span style='color:#008c00; '>2011</span>
+Egypt <span style='color:#008c00; '>3</span> <span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span> <span style='color:#e66170; font-weight:bold; '>in</span> set <span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span> Sharm el Sheik<span style='color:#d2cd86; '>,</span> Dec <span style='color:#008c00; '>2011</span>
+Egypt <span style='color:#008c00; '>4</span> <span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span> <span style='color:#e66170; font-weight:bold; '>in</span> set <span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span> Sharm el Sheik<span style='color:#d2cd86; '>,</span> Dec <span style='color:#008c00; '>2011</span>
+
+<span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span><span style='color:#d2cd86; '>.</span> etc…<span style='color:#d2cd86; '>.</span>
+</pre>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1889</post-id>	</item>
+	</channel>
+</rss>

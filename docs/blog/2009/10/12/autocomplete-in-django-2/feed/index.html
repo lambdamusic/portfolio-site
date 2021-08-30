@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	
+	>
+<channel>
+	<title>
+	Comments on: Autocomplete in Django #2	</title>
+	<atom:link href="http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Wed, 27 Nov 2013 14:53:00 +0000</lastBuildDate>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+			<item>
+				<title>
+				By: shiv609				</title>
+				<link>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/comment-page-1/#comment-21343</link>
+		<dc:creator><![CDATA[shiv609]]></dc:creator>
+		<pubDate>Wed, 27 Nov 2013 14:53:00 +0000</pubDate>
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=359#comment-21343</guid>
+					<description><![CDATA[When i upgrade to django 1.5.2 (from 1.2.3), this widget is not working. Got the following error in UI (when debug is True):
+django widgets.py &#039;NoneType&#039; object has no attribute &#039;_registry&#039;
+
+Django has introduced admin_site as one of the arguments for ForeignKeyRawIdWidget __init__() method.
+
+This is the cause for the failure. To fix this, we need to do the following code change:
+
+1. Add admin_site as one of the arugment for FkSearchInput class. Refer line 103:
+
+    def __init__(self, rel, admin_site, search_fields, attrs=None):
+        self.search_fields = search_fields
+        super(FkSearchInput, self).__init__(rel, admin_site, attrs)
+
+2. Do the above change for NoLookupsForeignKeySearchInput (line no. 181) and InlineSearchInput class (line no. 257) also.
+
+    def __init__(self, rel, admin_site, search_fields, attrs=None):
+        self.search_fields = search_fields
+        super(NoLookupsForeignKeySearchInput, self).__init__(rel, admin_site, attrs)
+
+    def __init__(self, rel, admin_site, search_fields, attrs=None):
+        self.search_fields = search_fields
+        super(InlineSearchInput, self).__init__(rel, admin_site, attrs)
+
+3.  While calling the widget pass &quot;self.admin_site&quot; as one of the argument in formfield_for_dbfield method. 
+
+Changes for FkAutocompleteAdmin class as follows (line no: 439):
+
+kwargs[&#039;widget&#039;] = FkSearchInput(db_field.rel, self.admin_site, self.related_search_fields[db_field.name])
+
+4. Do the same for NoLookupsForeignKeyAutocompleteAdmin and InlineAutocompleteAdmin class, formfield_for_dbfield method
+
+Once the changes are done, the autocomplete widget will work.
+
+5.  In the UI, search icon will be missing because of the admin_media_prefix tag. This tag needs to be replaced with static keyword in all the three (fk, inline, nolookups) html files as follows:
+
+
+
+
+Thats it.]]></description>
+		<content:encoded><![CDATA[<p>When i upgrade to django 1.5.2 (from 1.2.3), this widget is not working. Got the following error in UI (when debug is True):<br />
+django widgets.py &#8216;NoneType&#8217; object has no attribute &#8216;_registry&#8217;</p>
+<p>Django has introduced admin_site as one of the arguments for ForeignKeyRawIdWidget __init__() method.</p>
+<p>This is the cause for the failure. To fix this, we need to do the following code change:</p>
+<p>1. Add admin_site as one of the arugment for FkSearchInput class. Refer line 103:</p>
+<p>    def __init__(self, rel, admin_site, search_fields, attrs=None):<br />
+        self.search_fields = search_fields<br />
+        super(FkSearchInput, self).__init__(rel, admin_site, attrs)</p>
+<p>2. Do the above change for NoLookupsForeignKeySearchInput (line no. 181) and InlineSearchInput class (line no. 257) also.</p>
+<p>    def __init__(self, rel, admin_site, search_fields, attrs=None):<br />
+        self.search_fields = search_fields<br />
+        super(NoLookupsForeignKeySearchInput, self).__init__(rel, admin_site, attrs)</p>
+<p>    def __init__(self, rel, admin_site, search_fields, attrs=None):<br />
+        self.search_fields = search_fields<br />
+        super(InlineSearchInput, self).__init__(rel, admin_site, attrs)</p>
+<p>3.  While calling the widget pass &#8220;self.admin_site&#8221; as one of the argument in formfield_for_dbfield method. </p>
+<p>Changes for FkAutocompleteAdmin class as follows (line no: 439):</p>
+<p>kwargs[&#8216;widget&#8217;] = FkSearchInput(db_field.rel, self.admin_site, self.related_search_fields[db_field.name])</p>
+<p>4. Do the same for NoLookupsForeignKeyAutocompleteAdmin and InlineAutocompleteAdmin class, formfield_for_dbfield method</p>
+<p>Once the changes are done, the autocomplete widget will work.</p>
+<p>5.  In the UI, search icon will be missing because of the admin_media_prefix tag. This tag needs to be replaced with static keyword in all the three (fk, inline, nolookups) html files as follows:</p>
+<p>Thats it.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Dominique Guardiola				</title>
+				<link>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/comment-page-1/#comment-145</link>
+		<dc:creator><![CDATA[Dominique Guardiola]]></dc:creator>
+		<pubDate>Mon, 30 Apr 2012 09:28:38 +0000</pubDate>
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=359#comment-145</guid>
+					<description><![CDATA[I&#039;m happily using your module for autocomplete in inlines, but for an unknown reason, I&#039;m unable to have autocomplete fkeys in the parent modeladmin, derived from FKAutocompleteAdmin.
+So I use django-extensions ForeignKeyAutocompleteAdmin to do this, that&#039;s not DRY at all, but for now it&#039;s the solution I have ...]]></description>
+		<content:encoded><![CDATA[<p>I&#8217;m happily using your module for autocomplete in inlines, but for an unknown reason, I&#8217;m unable to have autocomplete fkeys in the parent modeladmin, derived from FKAutocompleteAdmin.<br />
+So I use django-extensions ForeignKeyAutocompleteAdmin to do this, that&#8217;s not DRY at all, but for now it&#8217;s the solution I have &#8230;</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: tecnosegugio				</title>
+				<link>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/comment-page-1/#comment-144</link>
+		<dc:creator><![CDATA[tecnosegugio]]></dc:creator>
+		<pubDate>Fri, 24 Feb 2012 20:55:37 +0000</pubDate>
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=359#comment-144</guid>
+					<description><![CDATA[@mike: sorry for the late answer.
+Yes I mean the &#039;&#038; amp;&#039; should be changed into &#039;&#038;&#039;.
+
+Now I&#039;m looking how to solve another bug: if I put for a mistake a &quot;non numeric&quot; char in the ID field, the one next the &#039;plus&#039; icon, I get a 500 error: 
+&quot;Caught ValueError while rendering: invalid literal for int() with base 10: &#039;alpha&#039;&quot;.
+Looks like there is no validation for that field.]]></description>
+		<content:encoded><![CDATA[<p>@mike: sorry for the late answer.<br />
+Yes I mean the &#8216;&amp; amp;&#8217; should be changed into &#8216;&amp;&#8217;.</p>
+<p>Now I&#8217;m looking how to solve another bug: if I put for a mistake a &#8220;non numeric&#8221; char in the ID field, the one next the &#8216;plus&#8217; icon, I get a 500 error:<br />
+&#8220;Caught ValueError while rendering: invalid literal for int() with base 10: &#8216;alpha'&#8221;.<br />
+Looks like there is no validation for that field.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Rawr				</title>
+				<link>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/comment-page-1/#comment-143</link>
+		<dc:creator><![CDATA[Rawr]]></dc:creator>
+		<pubDate>Thu, 24 Nov 2011 16:17:41 +0000</pubDate>
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=359#comment-143</guid>
+					<description><![CDATA[How can I change width of that field? It&#039;s too small for my needs. Thanks!]]></description>
+		<content:encoded><![CDATA[<p>How can I change width of that field? It&#8217;s too small for my needs. Thanks!</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: mike				</title>
+				<link>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/comment-page-1/#comment-142</link>
+		<dc:creator><![CDATA[mike]]></dc:creator>
+		<pubDate>Wed, 14 Sep 2011 15:08:42 +0000</pubDate>
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=359#comment-142</guid>
+					<description><![CDATA[@Karen: I haven&#039;t tried to replicate the error but it looks like a conflict between the autocomplete module and django&#039;s list_editable widget. This autocomplete solution was developed on django 1.1 - so it may well be that on 1.3 errors like this will crop up... A workaround could be forcing the list_editable widget *not* to be the autocomplete one, as discussed here:  http://stackoverflow.com/questions/7065982/list-editable-and-widgets]]></description>
+		<content:encoded><![CDATA[<p>@Karen: I haven&#8217;t tried to replicate the error but it looks like a conflict between the autocomplete module and django&#8217;s list_editable widget. This autocomplete solution was developed on django 1.1 &#8211; so it may well be that on 1.3 errors like this will crop up&#8230; A workaround could be forcing the list_editable widget *not* to be the autocomplete one, as discussed here:  <a href="http://stackoverflow.com/questions/7065982/list-editable-and-widgets" rel="nofollow">http://stackoverflow.com/questions/7065982/list-editable-and-widgets</a></p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: mike				</title>
+				<link>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/comment-page-1/#comment-141</link>
+		<dc:creator><![CDATA[mike]]></dc:creator>
+		<pubDate>Wed, 14 Sep 2011 14:56:16 +0000</pubDate>
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=359#comment-141</guid>
+					<description><![CDATA[@tecnosegugio Thanks for the tips; however I can&#039;t understand exactly what you mean because (I guess) wordpress has transformed some your characters into html.... did you mean &quot;&amp; amp ;&quot; ? (note the spaces between characters to avoid wordpress to pick it up as html)]]></description>
+		<content:encoded><![CDATA[<p>@tecnosegugio Thanks for the tips; however I can&#8217;t understand exactly what you mean because (I guess) wordpress has transformed some your characters into html&#8230;. did you mean &#8220;&#038; amp ;&#8221; ? (note the spaces between characters to avoid wordpress to pick it up as html)</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Tecnosegugio				</title>
+				<link>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/comment-page-1/#comment-140</link>
+		<dc:creator><![CDATA[Tecnosegugio]]></dc:creator>
+		<pubDate>Tue, 13 Sep 2011 13:07:59 +0000</pubDate>
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=359#comment-140</guid>
+					<description><![CDATA[Whoops...forgot to edit the rows 195 and 271 with the same change: from &#039;&#038;&#039; to &#039;&#038;&#039;. Sorry.]]></description>
+		<content:encoded><![CDATA[<p>Whoops&#8230;forgot to edit the rows 195 and 271 with the same change: from &#8216;&amp;&#8217; to &#8216;&amp;&#8217;. Sorry.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Tecnosegugio				</title>
+				<link>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/comment-page-1/#comment-139</link>
+		<dc:creator><![CDATA[Tecnosegugio]]></dc:creator>
+		<pubDate>Mon, 12 Sep 2011 14:57:23 +0000</pubDate>
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=359#comment-139</guid>
+					<description><![CDATA[Another small fix: in autocomplete_admin.py, line 117: the &#039;&#038;&#039; should be changed into &#039;&#038;&#039; otherwise the browser doesn&#039;t understand the URL and ignore the parameters.]]></description>
+		<content:encoded><![CDATA[<p>Another small fix: in autocomplete_admin.py, line 117: the &#8216;&amp;&#8217; should be changed into &#8216;&amp;&#8217; otherwise the browser doesn&#8217;t understand the URL and ignore the parameters.</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Tecnosegugio				</title>
+				<link>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/comment-page-1/#comment-138</link>
+		<dc:creator><![CDATA[Tecnosegugio]]></dc:creator>
+		<pubDate>Thu, 08 Sep 2011 22:27:41 +0000</pubDate>
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=359#comment-138</guid>
+					<description><![CDATA[Just a quick note: with Django 1.3 the extrafilter templatetag can be removed: the &quot;cut&quot; filter already exists in the built-in tag library.
+
+Thank you!]]></description>
+		<content:encoded><![CDATA[<p>Just a quick note: with Django 1.3 the extrafilter templatetag can be removed: the &#8220;cut&#8221; filter already exists in the built-in tag library.</p>
+<p>Thank you!</p>
+]]></content:encoded>
+						</item>
+						<item>
+				<title>
+				By: Karen McNeil				</title>
+				<link>http://www.michelepasin.org/blog/2009/10/12/autocomplete-in-django-2/comment-page-1/#comment-137</link>
+		<dc:creator><![CDATA[Karen McNeil]]></dc:creator>
+		<pubDate>Sat, 13 Aug 2011 03:42:02 +0000</pubDate>
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=359#comment-137</guid>
+					<description><![CDATA[Thank you so much for this! I had tried two other autocomplete solutions and they were very complicated and I couldn&#039;t get them to work. This one was so much more straight-forward and works great.
+
+I do have one issue with it, though ... It works just like it&#039;s supposed to on the change_form page, but when I make the ForeignKey an list_editable, it doesn&#039;t display properly on the change_list. It shows the box on the right (and you can type the id in that and it will work), but it doesn&#039;t display the box on the left that you can type the word in, which is what I actually need.
+
+Any idea on how I might fix that?]]></description>
+		<content:encoded><![CDATA[<p>Thank you so much for this! I had tried two other autocomplete solutions and they were very complicated and I couldn&#8217;t get them to work. This one was so much more straight-forward and works great.</p>
+<p>I do have one issue with it, though &#8230; It works just like it&#8217;s supposed to on the change_form page, but when I make the ForeignKey an list_editable, it doesn&#8217;t display properly on the change_list. It shows the box on the right (and you can type the id in that and it will work), but it doesn&#8217;t display the box on the left that you can type the word in, which is what I actually need.</p>
+<p>Any idea on how I might fix that?</p>
+]]></content:encoded>
+						</item>
+			</channel>
+</rss>

@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>javascript &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/javascript/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Thu, 17 Jul 2014 12:59:52 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Messing around wih D3.js and hierarchical data</title>
+		<link>http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/</link>
+				<comments>http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/#comments</comments>
+				<pubDate>Fri, 21 Jun 2013 13:23:59 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[d3]]></category>
+		<category><![CDATA[javascript]]></category>
+		<category><![CDATA[taxonomy]]></category>
+		<category><![CDATA[tree]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2379</guid>
+				<description><![CDATA[These days there are a lot of browser-oriented visualization toolkits, such d3.js or jit.js. They&#8217;re great and easy to use, but how much do they scale when used with medium-large or very large datasets? The subject ontology is a quite large (~2500 entities) taxonomical classification developed at Nature Publishing Group in order to classify scientific [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>These days there are a lot of browser-oriented visualization toolkits, such <a href="http://d3js.org/">d3.js</a> or <a href="http://philogb.github.io/jit/">jit.js</a>. They&#8217;re great and easy to use, but how much do they scale when used with medium-large or very large datasets? </p>
+<p>The subject ontology is a quite large (~2500 entities) taxonomical classification developed at <a href="http://www.nature.com/">Nature</a> Publishing Group in order to classify scientific publications. The taxonomy is publicly available on <a href="http://data.nature.com/">data.nature.com</a>, and is being encoded using the <a href="http://www.w3.org/2004/02/skos/">SKOS</a> RDF vocabulary. </p>
+<p>In order to evaluate the scalability of various javascript tree visualizations I extracted a <a href="http://michelepasin.org/media/naturehacking/subjectsviz/d3/tree/subjects_d3_99levels.js">JSON version of the subject taxonomy</a>  and tried to render it on a webpage, using out-of-the-box some of the viz approaches made available; <a href="http://hacks.michelepasin.org/subjectsviz/experimental">here are the results</a> (ps: I added the <strong>option</strong> of selecting how many levels of the tree can be visualized, just to get an idea of when a viz breaks). </p>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/experimental"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/Screen-Shot-2014-02-13-at-2.07.50-PM.png" alt="Screen Shot 2014 02 13 at 2 07 50 PM" title="Screen Shot 2014-02-13 at 2.07.50 PM.png" border="0" width="600" height="305" /></a></p>
+<p>Some conclusions:</p>
+<li>The subject taxonomy actually is a <strong>poly-hierarchy</strong> (=one term can have more than one parent, so really it&#8217;s more like a directed graph). None of the libraries could handle that properly, but maybe that&#8217;s not really a limitation cause they are meant to support the visualization of trees (maybe I should play around more with force-directed graphs layout and the like..)</li>
+<li>The only viz that could handle all of the terms in the taxonomy is <a href="http://bl.ocks.org/mbostock/4339083">D3&#8217;s collapsible tree</a>. Still, you don&#8217;t want to keep all the branches open at the same time! Click on the image to see it with your eyes.</li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3tree"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/collapsibleTree.png" alt="CollapsibleTree" title="collapsibleTree.png" border="0" width="800" height="528" /></a></p>
+<li>An approach to deal with large quantities of data is obviously to show them a little bit at a time. The <strong>Bar Hierarchy</strong> seems a pretty good way to do that, it&#8217;s informative and responsive. However it&#8217;d be nice to integrate with other controls/visual cues that would tell one what level of depth they&#8217;re currently looking at, which siblings are available etc.. etc.. </li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3barHierarchy"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/barHiearchy.png" alt="BarHiearchy" title="barHiearchy.png" border="0" width="700" height="208" /></a></p>
+<li><strong>Partition tables</strong> also looks pretty good in providing a visual summary of the categories available; however they tend to fail quickly when there are too many nodes, and the text is often not readable at all.. in the example below I had to include only the first 3 levels of the taxonomy for it to be loaded properly!</li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3partitionTable?levels=3"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/treeMapD3.png" alt="TreeMapD3" title="treeMapD3.png" border="0" width="700" height="379" /></a></p>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/jit_icicle"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/treeMap.png" alt="TreeMap" title="treeMap.png" border="0" width="600" height="584" /></a></p>
+<li><strong>Rotating tree</strong>. Essentially a Tree plotted on a circle, very useful to provide a graphical overview of the data but it tends to become non responsive quickly.</li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3cluster?levels=3"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/rotatingTree.png" alt="RotatingTree" title="rotatingTree.png" border="0" width="700" height="615" /></a></p>
+<li><strong>Hierarchical pie chart</strong>. A pie chart that allows zooming in so to reveal hierarchical relationships (often also called Zoomable Sunburst). Quite nice and responsive, also with a large amount of data. The absence of labels could be a limiting feature though; you get a nice overview of the datascape but can&#8217;t really understand the meaning of each element unless you mouse over it. </li>
+<p><a href="http://hacks.michelepasin.org/subjectsviz/d3treepie?levels=5"><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/02/pieTree.png" alt="PieTree" title="pieTree.png" border="0" width="700" height="656" /></a></p>
+<p>&nbsp;</p>
+<p>Other stuff out there that could do a better job?</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/feed/</wfw:commentRss>
+		<slash:comments>7</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2379</post-id>	</item>
+		<item>
+		<title>Raphael: js library for Scalar Vector Graphics</title>
+		<link>http://www.michelepasin.org/blog/2010/09/19/raphael-js-library-for-scalar-vector-graphics/</link>
+				<pubDate>Sun, 19 Sep 2010 22:32:57 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[design]]></category>
+		<category><![CDATA[graphics]]></category>
+		<category><![CDATA[javascript]]></category>
+		<category><![CDATA[svg]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=897</guid>
+				<description><![CDATA[I don&#8217;t do much (web) front-end design usually, although often I find it vital to visualize my ideas using some sort of basic but functional UI-kit. Well, if you&#8217;re like me, you&#8217;ll probably be happy to know about Raphael. This is a javascript library that sits on top of the SVG specifications and provides a [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I don&#8217;t do much (web) front-end design usually, although often I find it vital to visualize my ideas using some sort of basic but functional UI-kit. Well, if you&#8217;re like me, you&#8217;ll probably be happy to know about <a href="http://raphaeljs.com/">Raphael</a>. This is a <strong>javascript library that sits on top of the SVG specifications</strong> and provides a set of (very straighforward) <strong>APIs for creating vector graphics and animations</strong> in most browsers. </p>
+<blockquote><p><a href="http://en.wikipedia.org/wiki/Scalable_Vector_Graphics">Scalable Vector Graphics</a> (SVG) is a family of specifications of an <strong>XML-based file format</strong> for describing two-dimensional vector graphics, both static and dynamic (i.e. interactive or animated).<br />
+The SVG specification is an open standard that has been under development by the <a href="http://www.w3.org/Graphics/SVG/">World Wide Web Consortium</a> (W3C) since 1999.<br />
+SVG images and their behaviors are defined in XML text files. This means that they can be searched, indexed, scripted and, if required, compressed. Since they are XML files, SVG images can be created and edited with any text editor, but specialized SVG-based drawing programs are also available.</p></blockquote>
+<p>Writing SVG stuff can be very painful, but using Raphael it almost becomes fun. The official site gives you various examples (eg check out the slick <a href="http://raphaeljs.com/polar-clock.html">polar clock</a>, or the <a href="http://raphaeljs.com/graffle.html">diagram elements</a>), and code that shows how easy it is to get started:</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/09/Screen-shot-2010-09-19-at-23.15.05.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/09/Screen-shot-2010-09-19-at-23.15.05.png" alt="Screen shot 2010-09-19 at 23.15.05.png" border="0" width="400" height="200" /></a></p>
+<p>Looking forward to spend more time on this. For now, I&#8217;ve just collected a few good learning resources about it, which I thought I&#8217;d share:</p>
+<li>The official <a href="http://raphaeljs.com/">homepage</a>, which contains various examples and all the <a href="http://raphaeljs.com/reference.html">documentation</a></li>
+<li><a href="http://net.tutsplus.com/tutorials/javascript-ajax/an-introduction-to-the-raphael-js-library/">An Introduction to the Raphael JS Library</a>: a nice blog post that shows how to build a little mood meter from the ground up </li>
+<li>Another <a href="http://dev.opera.com/articles/view/raphael-a-javascript-api-for-svg/">blog post</a> showing how to create a typical &#8220;progress throbber&#8221;, as seen in Apple interfaces, with a few lines of code</li>
+<li><a href="http://craic.com/tutorials/javascript/raphael_live/raphael_live.html#">Raphael Live</a>: a simulator of the js library, for testing your code easily within a browser&#8217;s window </li>
+<li>Lots of categorized raphael examples at <a href="http://www.irunmywebsite.com/raphael/additionalhelp.php?">www.irunmywebsite.com</a></li>
+<li>An interesting discussion about the advantages of <a href="http://stackoverflow.com/questions/588718/jquery-svg-vs-raphael">Raphael vs jQuery SVG</a> (also, make sure you check out all the <a href="http://stackoverflow.com/questions/tagged/raphael">questions tagged &#8216;raphael&#8217; at stackoverflow</a>)</li>
+<p>Below, some screenshots of a fancy <a href="http://raphaeljs.com/polar-clock.html"> clock</a>, a <a href="http://raphaeljs.com/tiger.html">tiger</a>, and a <a href="http://raphaeljs.com/analytics.html">graph</a>, all built entirely via Raphael.</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/09/Screen-shot-2010-09-19-at-23.30.43.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/09/Screen-shot-2010-09-19-at-23.30.43.png" alt="Screen shot 2010-09-19 at 23.30.43.png" border="0" width="300" height="300" /></a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/09/Screen-shot-2010-09-19-at-23.34.19.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/09/Screen-shot-2010-09-19-at-23.34.19.png" alt="Screen shot 2010-09-19 at 23.34.19.png" border="0" width="300" height="300" /></a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/09/Screen-shot-2010-09-19-at-23.34.32.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/09/Screen-shot-2010-09-19-at-23.34.32.png" alt="Screen shot 2010-09-19 at 23.34.32.png" border="0" width="300" height="300" /></a></p>
+<p>..</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">897</post-id>	</item>
+		<item>
+		<title>Processing.js, iProcessing: javascript does everything for you!</title>
+		<link>http://www.michelepasin.org/blog/2010/02/18/processing-js-iprocessing-javascript-does-everything-for-you/</link>
+				<pubDate>Thu, 18 Feb 2010 15:26:09 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[html5]]></category>
+		<category><![CDATA[iphone]]></category>
+		<category><![CDATA[javascript]]></category>
+		<category><![CDATA[processing]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=585</guid>
+				<description><![CDATA[First off &#8211; check out how cool is the little game below. It&#8217;s been implemented with processing.js, a port of the famous processing library that works in your browser only through javascript (the original processing is java-based). What is processing? The Processing language was created by Ben Fry and Casey Reas. It evolved from ideas explored in [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>First off &#8211; check out how cool is the little <a href="http://balldroppings.com/">game</a> below. It&#8217;s been implemented with <a href="http://processingjs.org/">processing.js</a>, a port of the famous <a href="http://processing.org/">processing</a> library that works in your browser only through javascript (the original processing is java-based).</p>
+<p><a href="http://balldroppings.com/js/"><img class="alignnone size-medium wp-image-586" title="Picture 2" src="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-23.png?w=300" alt="" width="250" height="200" /></a></p>
+<p>What is processing?</p>
+<blockquote><p>The Processing language was created by <a href="http://benfry.com/">Ben Fry</a> and <a href="http://reas.com/">Casey Reas</a>. It evolved from ideas explored in the Aesthetics and Computation Group at the MIT Media Lab and was originally intended to be used in a Java run-time environment. In the Summer of 2008, <a href="http://ejohn.org/">John Resig</a> ( inventor of jQuery ), ported the 2D context of Processing to Javascript for use in web pages. </p></blockquote>
+<p>Mmm how about processing.js then?</p>
+<blockquote><p>Processing.js is an <strong>open programming language</strong> for people who want to program images, animation, and interactions for the web <strong>without using Flash or Java</strong> applets. Processing.js uses Javascript to draw shapes and manipulate images on the <a href="http://dev.w3.org/html5/spec/Overview.html">HTML5</a> Canvas element. The code is light-weight, simple to learn and makes an ideal tool for visualizing data, creating user-interfaces and developing web-based games.</p>
+<p>Processing.js is explicitly developed for browsers that support the HTML5 &lt;Canvas&gt; element. Processing.js runs in FireFox, Safari, Opera and Chrome but will <strong>not</strong> be <strong>supported</strong> in <strong>Internet Explorer</strong>.</p></blockquote>
+<p>&nbsp;</p>
+<p><strong>There&#8217;s more</strong>: some <a href="http://luckybite.com/">people</a> in London created <a href="http://luckybite.com/iprocessing/">iProcessing</a>, which lets you develop iPhone apps without touching objC (at least, that&#8217;s what they say). Seems a bit of a revolution to me&#8230;</p>
+<blockquote><p><strong>iProcessing is an open programming framework to help people develop native iPhone applications using the Processing language.</strong> It is an integration of the Processing.js library and a Javascript application framework for iPhone. The iProcessing <a href="http://iprocessing.googlecode.com/files/iProcessing-0004.zip">download</a>consists of a set of example XCode projects that demonstrate many of the Basic Examples from the <a href="http://processing.org/learning/basics">Processing</a> web site (originally written by Casey Reas and Ben Fry unless otherwise stated) as well a number that demonstrate the <strong>use of various iPhone features such as multitouch, accelerometer, orientation, location, sound play/record, app state saving and so on</strong>. </p></blockquote>
+<p>&nbsp;</p>
+<p><object width="445" height="364"><param name="movie" value="http://www.youtube.com/v/tENliJSMEB8&#038;hl=en_US&#038;fs=1&#038;rel=0&#038;color1=0x2b405b&#038;color2=0x6b8ab6&#038;border=1"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param></object></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">585</post-id>	</item>
+		<item>
+		<title>A bookmarklet for searching delicious</title>
+		<link>http://www.michelepasin.org/blog/2010/01/06/a-bookmarklet-for-searching-delicious/</link>
+				<pubDate>Tue, 05 Jan 2010 23:02:29 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[bookmarklet]]></category>
+		<category><![CDATA[delicious]]></category>
+		<category><![CDATA[javascript]]></category>
+		<category><![CDATA[search]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=490</guid>
+				<description><![CDATA[This has been long overdue for me. A way to quickly search delicious.com without relying on third-party apps (which often you have to pay for). And it&#8217;s got to be super simple too: something like a bookmarklet that you click on and then takes you there. Just one of those things you never have the [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>This has been long overdue for me. A <strong>way to quickly search </strong><a href="http://delicious.com/"><strong>delicious.com</strong></a><strong> without relying on third-party apps </strong>(which often you have to pay for). And it&#8217;s got to be super simple too: something like a bookmarklet that you click on and then takes you there.  Just one of those things you never have the time to do&#8230;.</p>
+<p>So today I got around doing it. I didn&#8217;t know much about <a href="http://en.wikipedia.org/wiki/Bookmarklet">bookmarklets</a> but a few google searches gave me all I needed.  These are a few links I found useful while working on this little thing:</p>
+<li><a href="http://www.mvps.org/dmcritchie/ie/bookmarklets.htm">What are bookmarklets?</a></li>
+<li><a href="http://www.bookmarklets.com/">bookmarklets.com</a></li>
+<li><a href="https://www.squarefree.com/bookmarklets/search.html#google">Various search bookmarklets you can easily reverse-engineer</a></li>
+<li><a href="http://daringfireball.net/2007/03/javascript_bookmarklet_builder">a perl script that makes any javascript code ready for being used as a bookmarklet</a></li>
+<p>Essentially bookmarklets are <strong>javascript code formatted in a browser-friendly syntax</strong>, that is, by url-escaping all of its characters.<br />
+So I set off to create a bookmarklet for opening delicious at a specific tag-page. This button will take whatever you have highlighted on the web page and search for that string on delicious <strong>as a tag</strong> (not as a search string! but obviously you can modify that). If you have nothing selected the script should ask the user for a value to use.</p>
+<p>The bookmarklet would look something like the following:<br />
+<span style="font-size:11px;background-color:#eeeeee;color:black;"><a href="//delicious.com/tag/&quot; + escape(q).replace(/ /g, &quot;+&quot;); void 0">search on delicious</a></span></p>
+<p>Mind that t<strong>he bookmarklet above won&#8217;t work</strong> <strong>if you drag it to your browser button-bar</strong>, &#8217;cause WordPress stripped off its behaviour (for security reasons I suppose). Too bad &#8211; you can easily recreate it yourself.<br />
+The source code was something like this (note that<strong> it should be all on a single line</strong>,):</p>
+<pre style="font-size:11px;background-color:#ccffff;color:black;overflow:auto;"><code>
+&lt;a href="javascript:q = "" + (window.getSelection ? window.getSelection() : document.getSelection ? document.getSelection() : document.selection.createRange().text); if (!q) q = prompt("You didn't select any text.  Enter a search phrase:", ""); if (q!=null) location="http://delicious.com/tag/" + escape(q).replace(/ /g, "+"); void 0"
+&gt;search on delicious&lt;/a&gt;
+</code></pre>
+<p>The script above worked for me on Apple&#8217;s Safari &#8211; the only other thing I had to do was url-escaping it. Thus the code would look as follows (again, make sure it is on a single line):</p>
+<pre style="font-size:11px;background-color:#ccffff;color:black;overflow:auto;"><code>
+javascript:q%20=%20%22%22%20+%20(window.getSelection%20?%20window.getSelection()%20:%20document.getSelection%20?%20document.getSelection()%20:%20document.selection.createRange().text);%20if%20(!q)%20q%20=%20prompt(%22You%20didn't%20select%20any%20text.%20%20Enter%20a%20search%20phrase:%22,%20%22%22);%20if%20(q!=null)%20location=%22http://delicious.com/tag/%22%20+%20escape(q).replace(/%20/g,%20%22+%22);%20void%200
+</code></pre>
+<p>You can paste the code above onto a browser&#8217;s url bar to test it :-).</p>
+<p>But if you want to save it as a bookmarklet do the following: copy this code, open up the &#8216;Show all Bookmarks&#8217; window on Safari and create a new bookmark named &#8216;delicious search&#8217; (or anything else), right click on the newly created bookmark and hit the &#8216;edit address&#8217; command. Finally, in the address field paste the code you have copied and you&#8217;re ready to go!</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/01/picture-2.png"><img class="alignnone size-full wp-image-499" title="Picture 2" src="http://www.michelepasin.org/blog/wp-content/uploads/2010/01/picture-2.png" alt="" width="199" height="221" /></a><br />
+<a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/01/picture-3.png"><img class="alignnone size-full wp-image-500" title="Picture 3" src="http://www.michelepasin.org/blog/wp-content/uploads/2010/01/picture-3.png" alt="" width="256" height="182" /></a></p>
+<p>That&#8217;s it!<br />
+Last thing: you might want to <strong>search only through your personal tags</strong> on delicious (that&#8217;s what I do most of the time). All you have to do is modify the search string by replacing the &#8216;/tag/&#8217; ending with &#8216;/username/&#8217;, where &#8216;username&#8217; is your delicious username.. that&#8217;s the standard url format delicious.com accepts for searching personal tags. So:</p>
+<pre style="font-size:11px;background-color:#ccffff;color:black;overflow:auto;"><code>
+javascript:q%20=%20%22%22%20+%20(window.getSelection%20?%20window.getSelection()%20:%20document.getSelection%20?%20document.getSelection()%20:%20document.selection.createRange().text);%20if%20(!q)%20q%20=%20prompt(%22You%20didn't%20select%20any%20text.%20%20Enter%20a%20search%20phrase:%22,%20%22%22);%20if%20(q!=null)%20location=%22http://delicious.com/YOUR-USERNAME/%22%20+%20escape(q).replace(/%20/g,%20%22+%22);%20void%200
+</code></pre>
+<p>In conclusion, using the same approach you can create bookmarklets of all sorts!</p>
+<p>&#8230;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">490</post-id>	</item>
+		<item>
+		<title>Document.designMode trick..</title>
+		<link>http://www.michelepasin.org/blog/2009/08/05/document-designmode-trick/</link>
+				<pubDate>Wed, 05 Aug 2009 14:08:25 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[browser]]></category>
+		<category><![CDATA[javascript]]></category>
+		<category><![CDATA[trick]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=244</guid>
+				<description><![CDATA[Here&#8217;s a neat trick I got from my friend Geoffroy: open up your preferred Javascript console and type in this command: document.designMode='on' Et voila&#8217;: your page is directly editable in your browser! Useful for quick visual testing/modifications when giving a demo, for example&#8230;. &#160;]]></description>
+								<content:encoded><![CDATA[<p>Here&#8217;s a neat trick I got from my friend Geoffroy: open up your preferred Javascript console and type in this command:</p>
+<blockquote>
+<pre><code>
+document.designMode='on'
+
+</code></pre>
+</blockquote>
+<p>Et voila&#8217;: your page is directly editable in your browser! Useful for quick visual testing/modifications when giving a demo, for example&#8230;.</p>
+<p><a href="http://www.flickr.com/photos/mikele/3791467423/sizes/o/"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-21.png?w=300" alt="Picture 2" title="Picture 2" width="300" height="199" class="alignnone size-medium wp-image-247" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-21.png 1048w, http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-21-300x199.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-21-1024x680.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">244</post-id>	</item>
+		<item>
+		<title>SoundManager 2 makes it easier to play sounds using Javascript</title>
+		<link>http://www.michelepasin.org/blog/2009/05/07/soundmanager-2-makes-it-easier-to-play-sounds-using-javascript/</link>
+				<pubDate>Thu, 07 May 2009 10:26:57 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[audio]]></category>
+		<category><![CDATA[javascript]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=137</guid>
+				<description><![CDATA[By wrapping and extending Flash 8&#8217;s sound API, SoundManager 2 brings solid audio functionality to Javascript. Basic API Features (Flash 8 ) Load, stop, play, pause, mute, seek, pan and volume control of sounds from Javascript Events: onload, whileloading, whileplaying, onfinish and more ID3V1 and ID3V2 tag support for MP3s (title, artist, genre etc.) Shiny [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://www.schillmania.com/projects/soundmanager2/demo/360-player/canvas-visualization.html"><img class="alignnone size-full wp-image-136" title="picture-11" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/05/picture-11.png" alt="picture-11" width="319" height="412" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/05/picture-11.png 319w, http://www.michelepasin.org/blog/wp-content/uploads/2009/05/picture-11-232x300.png 232w" sizes="(max-width: 319px) 100vw, 319px" /></a></p>
+<p>By wrapping and extending Flash 8&#8217;s sound API, <a href="http://www.schillmania.com/projects/soundmanager2/"><strong>SoundManager 2</strong></a> brings solid audio functionality to Javascript.</p>
+<h4 style="clear:left;margin-top:.5em;">Basic API Features (Flash 8 )</h4>
+<ul class="standard">
+<li>Load, stop, play, pause, mute, seek, pan and volume control of sounds from Javascript</li>
+<li>Events: onload, whileloading, whileplaying, onfinish and more</li>
+<li>ID3V1 and ID3V2 tag support for MP3s (title, artist, genre etc.)</li>
+</ul>
+<h4>Shiny Flash 9 Features</h4>
+<div style="float:right;display:inline;text-align:center;font-size:x-small;white-space:nowrap;margin:-2em 1.5em 0 0;padding:0 0 0 1em;"><a title="Javascript + Canvas MP3 visualization (experimental)" href="http://www.schillmania.com/projects/soundmanager2/demo/360-player/canvas-visualization.html"><br />
+</a></div>
+<ul class="standard">
+<li>Full-screen MPEG-4 video (HE-AAC/H.264) and audio support</li>
+<li>&#8220;MultiShot&#8221; play (layered/chorusing effects)</li>
+<li>Waveform/frequency spectrum data</li>
+<li>Peak (L/R channel volume) data</li>
+<li>Audio buffering state/event handling</li>
+</ul>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">137</post-id>	</item>
+		<item>
+		<title>Jquery library gets me going</title>
+		<link>http://www.michelepasin.org/blog/2007/02/12/jquery-library-gets-me-going/</link>
+				<pubDate>Mon, 12 Feb 2007 15:42:25 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[javascript]]></category>
+		<category><![CDATA[jquery]]></category>
+
+		<guid isPermaLink="false">http://people.kmi.open.ac.uk/mikele/blog/?p=206</guid>
+				<description><![CDATA[Following suggestions which turned out to be really good, I&#8217;ve found myself having a lot of fun with the JQuery library. It&#8217;s immensely easy to use, and beautiful to see its results. Plenty of tutorials around, and people developing widgets. Have a look at the interface elements, for example. Or at the cool fisheye menu..or [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Following suggestions which turned out to be really good, I&#8217;ve found myself having a lot of fun with the <a href="http://jquery.com/">JQuery</a> library. It&#8217;s immensely easy to use, and beautiful to see its results. Plenty of <a href="http://docs.jquery.com/Tutorials">tutorials</a> around, and people developing widgets. Have a look at the <a href="http://interface.eyecon.ro/demos">interface elements</a>, for example. Or at the cool <a href="http://interface.eyecon.ro/docs/fisheye">fisheye menu</a>..or the handy <a href="http://bassistance.de/jquery-plugins/jquery-plugin-treeview/">TreeView. </a><br />
+<img width="269" height="249" src="http://www.javascriptsearch.com/images/news/jquery.jpg" /></p>
+<p>And I also have a first screenshot of the PhiloSurfical system!!</p>
+<p><a title="Picture 11.png" class="imagelink" href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2007/02/Picture%2011.png"><img width="361" height="210" alt="Picture 11.png" id="image205" src="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2007/02/Picture%2011.png" /></a></p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1335</post-id>	</item>
+	</channel>
+</rss>

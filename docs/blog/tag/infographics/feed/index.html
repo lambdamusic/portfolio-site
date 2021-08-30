@@ -1,0 +1,261 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>infographics &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/infographics/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 04 Jan 2016 18:44:15 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Nature.com Subjects Stream Graph</title>
+		<link>http://www.michelepasin.org/blog/2016/01/03/nature-com-subjects-stream-graph/</link>
+				<pubDate>Sun, 03 Jan 2016 00:28:08 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[d3]]></category>
+		<category><![CDATA[infographics]]></category>
+		<category><![CDATA[nature]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2750</guid>
+				<description><![CDATA[The nature.com subjects stream graph displays the distribution of content across the subject areas covered by the nature.com portal. This is an experimental interactive visualisation based on a freely available dataset from the nature.com linked data platform, which I&#8217;ve been working on in the last few months. The main visualization provides an overview of selected [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>The <a href="http://www.nature.com/developers/hacks/articles/stream/by-subject/">nature.com subjects stream graph</a> displays the distribution of content across the subject areas covered by the nature.com portal. </p>
+<p>This is an experimental interactive visualisation based on a freely available dataset from the <a href="http://www.nature.com/ontologies/datasets/">nature.com linked data platform</a>, which I&#8217;ve been working on in the last few months.</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6-1024x657.png" alt="streamgraph" width="600" class="alignnone size-large wp-image-2761" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6-1024x657.png 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6-300x192.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6-900x577.png 900w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p>The main visualization provides an overview of selected content within the level 2 disciplines of the <a href="http://www.nature.com/ontologies/models/subjects/">NPG Subjects Ontology</a>. By clicking on these, it is then possible to explore more specific subdisciplines and their related articles.</p>
+<p><span style='text-decoration:underline;'>For those of you who are not familiar with the Subjects Ontology</span>: this is a categorization of scholarly subject areas which are used for the indexing of content on nature.com. It includes subject terms of varying levels of specificity such as Biological sciences (top level), Cancer (level 2), or B-2 cells (level 7). In total there are more than 2500 subject terms, organized into a <a href="http://www.nature.com/developers/hacks/subjects/tree">polyhierarchical tree</a>.</p>
+<p>Starting in 2010, the various journals published on nature.com have adopted the subject ontology to tag their articles (note: different journals have started doing this at different times, hence some variations in the graph starting dates).</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22.png" alt="streamgraph2" width="600"  class="alignnone size-full wp-image-2764" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22.png 864w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22-300x271.png 300w" sizes="(max-width: 864px) 100vw, 864px" /></a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33-1024x472.png" alt="streamgraph3" width="600"  class="alignnone size-large wp-image-2763" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33-1024x472.png 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33-300x138.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33-900x415.png 900w, http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33.png 1591w" sizes="(max-width: 1024px) 100vw, 1024px" /></a></p>
+<p>The visualization makes use of various <a href="http://d3js.org/">d3.js</a> modules, plus some simple customizations here and there. The hardest part of the work was putting the different page components together, to the effect of a more fluent &#8216;narrative&#8217; achieved by gradually zooming into the data. </p>
+<p>The back end is a <a href="https://www.djangoproject.com/">Django</a> web application with a relational database. The original dataset is <a href="http://www.nature.com/ontologies/downloads/">published as RDF</a>, so in order to use the Django APIs I&#8217;ve recreated it as a relational model. That let me also add a few extra data fields containing search indexes (e.g. article counts per month), so to make the stream graph load faster. </p>
+<p>Comments or suggestions, as always very welcome. </p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2750</post-id>	</item>
+		<item>
+		<title>Infographics Course, Week 2</title>
+		<link>http://www.michelepasin.org/blog/2012/11/14/infographics-course-week-2/</link>
+				<pubDate>Wed, 14 Nov 2012 23:16:15 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[infographics]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2241</guid>
+				<description><![CDATA[Here&#8217;re the materials related to the second week of the Introduction to Infographics and Data Visualization online course. This week we talked about two topics: a) Visual Perception and Graphic Design Principles and b) Planning for Infographics and Visualizations. The exercise was focusing on an interactive visualisation available on the New York Times website. Key [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Here&#8217;re the materials related to the second week of the <a href="https://knightcenter.utexas.edu/course/introduction-infographics-and-data-visualization-knight-centers-first-massive-open-online-cou">Introduction to Infographics and Data Visualization</a> online course. This week we talked about two topics: a) Visual Perception and Graphic Design Principles and b) Planning for Infographics and Visualizations. The exercise was focusing on an interactive visualisation available on the New York Times website.</p>
+<h3>Key Concepts from Lesson 2</h3>
+<p>&nbsp;</p>
+<pre style="border: 1px dashed grey; width: 1000px; overflow: auto; padding: 10px;">
+
+A) Visual Perception and Graphic Design Principles
+-----------------------------------------
+
+- The principles of design are grounded on how perception works
+- Visual perception works differently from what we think 
+	- we don't have photographs in our heads!
+	- the eye passes on signals to the brain, which elaborates and makes assumptions about the perception
+		- eg think of the classic geometrical visual illusions 
+- Visual perception is an active process. The brain is not a passive receptor of information, but it completes, organizes and creates priorities (or hierarchies) and relationships to extract meaning
+- If we know that, the goal of the designer should be to arrange compositions anticipating what the user's brain will most likely do
+
+- The key to any visual design is the presentation of a cohesive, structured, readable and understandable composition.
+
+==> check online examples by John Grimwade
+
+First goal when arranging elements on a page:
+	- think about a composition
+	- Structure / Order / Hierarchy / Harmony / Balance
+	
+Main principles of Graphic Design
+	Unity: presentation of a composition as an integrated whole
+	Variety: is the opposite of unity, but also its complement. With too much variety, a composition will look randoml with too much unity, it will look boring
+	Hierarchy: the balance between unity and variety can lead to a good hierarchy
+		- answers the question: where should I start reading the infographics
+		
+Strategies for achieving Unity, Variety and Hierarchy
+	Grids, Color, and Type
+	
+Grids
+	- they can support unity thanks to a sense of alignment
+	- help keep the consistency
+	- key to using grids: think of the composition as a set of rectangles
+	- first step in building an infographics: divide up the space into functional rectabgles
+		- headline / intro / map / chart / timeline etc...
+		- tip: things that are stacked on top of each other should have the same width
+		- tip: if objects are side by side, they should have they same height
+		
+Fonts, Colors
+	- different fonts can be use to achieve variety, and support the creation of a hierarchy
+	- same with colors: eg using a Copy Color (eg Black) an highlight color (eg yellow) and a series of Neutral Tones (grey shades)
+	
+	
+
+B) Planning for Infographics and Visualizations
+-----------------------------------------
+
+Creating a chart consists of making a data set adopt a visual shape
+
+==> seminal paper by William Cleveland and Robert McGill on infovis
+	- scale of charts that allow more accurate/generic judgements
+		eg barcharts are accurate and facilitate comparison
+		eg color gradation graphs or bubbles are generic (=show big trends)
+	
+- correlation coefficient
+	- formula that represent the correlation between two series (on a values between -1 and 1)
+	- scatter plot: good at representing correlation between two variables
+	- slope graph: another way to represent correlation (although it's usually employed to represent change over time)
+
+
+- Types of charts
+	- line charts: display variation of one or more magnitudes over a time period by means of rising and falling lines
+	- Comparison Charts: visualization of amounts, each represented by a bar (or toher objects)
+	- Distribution Chart: division of a whole into its components. It can be represented by a circle ('pie') or by other objects, such as a divided bar
+	- Correlation chart: shows the correlation between two (or more) variables. Also called scatter plots
+
+- Common components of a graphic
+	- headline: clearly stated what the graphic is about, or makes a point
+	- values
+	- axes
+	- sources/attribution info
+	- byline: who made the graphic
+	- legend
+	
+	
+Styling a graphic with colors and fonts makes the graphic more readable (= create the hierarchy)
+
+Things to avoid
+- Dont' distort charts (eg 3d effects) especially with pie charts, as it makes it more difficult to compare areas
+- Avoid vertical labels
+- Avoid backgrounds that detract attention from the main graphics (eg photographs etc)
+- Avoid creating overloaded compositions
+
+The Design Process
+- Learn as much as you can about the topic
+- Identify goals and challenges
+- Prototype and sketch
+- Test and tweak
+- Turn the project in
+
+</pre>
+<p>&nbsp;</p>
+<h3>The exercise</h3>
+<p><a href="http://www.nytimes.com/interactive/2012/09/06/us/politics/convention-word-counts.html" title="Infographics_week2"><img src="http://farm9.staticflickr.com/8202/8186847080_89e8727c0b_c.jpg" width="800" height="409" alt="Infographics_week2"></a></p>
+<blockquote><p>See the <a href="http://www.nytimes.com/interactive/2012/09/06/us/politics/convention-word-counts.html">following graphic</a>, by The New York Times, an interesting project that allows you to compare the words that were used in the National conventions. Imagine that you are hired by Steve Duenes, infographics director at the Times, to make a constructive critique of that piece. What would you say about it?</p></blockquote>
+<p>Here&#8217;s my comments about the NY visualization:</p>
+<p>&#8211; The infographics allows to compare the two different parties usage of a certain word rather intuitively, so in that sense it is <strong>functional</strong>. The visualisation based on bubbles’ areas is usually clear; in cases where the two areas are very similar you can still get the ratio right thanks to the percentage numbers displayed.</p>
+<p>&#8211; The fact that you can<strong> move around the bubbles</strong> is eye-catching and fun to use, but it fails to provide any added value to the tool (= no extra functionality other than maybe organising the words some other way). This is <strong>detrimental to the understanding</strong> of the structure and purpose of the visualisation: the bubbles’ location seem to imply a semantic correlation of some sort, but unfortunately it doesn’t have any.</p>
+<p>&#8211; I’d expect to be able to <strong>filter the quotes</strong> by <strong>speaker</strong>, so  to compare the usage of a certain word only between two specified people (e.g. Obama and Romney). Unfortunately that is not possible. Also, it’d be nice to be able to order or re-organise the citations on a <strong>timeline</strong>, so to explore potential patterns in the increase/decrease of use of a word. All of this could be easily achievable by introducing  a ‘filter by’ panel right on top of the the quotations columns. The types of filters could be others too, eg <strong>geographical</strong> ones (by state or regions), or by the importance of the ‘<strong>roles</strong>’ of the speakers (majors, governors).</p>
+<p>&#8211; The main issue from the interactivity point of view is that when you <strong>click on a bubble </strong>(assuming a user understands that’s what he/she has to do &#8211; btw no tooltips at all!) it’s not immediately obvious that the bottom part of the screen gets updated. I’d add some mechanism, such as a partial screen refresh, or a ‘loading’ icon, that would make this process more transparent. </p>
+<p>&#8211; There is no way to <strong>remove a bubble</strong> once you’ve added it. So if you’re trying to compose your own ‘view’ of the tool by selecting only words you are interested in, once you get something wrong you’ve stuck with it (you can only restart from scratch by reloading the page) </p>
+<p>&#8211; The 4 <strong>static captions</strong> at the bottom (AUTO, WOMEN etc..) are ok at the beginning of the visualisation, but once you start moving things around they don’t update at all which is not really the expected behaviour. </p>
+<p>&#8211; If the <strong>full transcripts</strong> the quotations derive from are available online, it’d be nice to be able to link directly to them e.g. by clicking on the quotations themselves. This would allow to investigate further the <strong>original context </strong>of use of a word.</p>
+<p>&#8211; Having <strong>small photos</strong> on the side of a speaker’s name would make it easier to identify these people; also, it shouldn’t be too difficult to include <strong>links</strong> to the person’s home pages or <strong>wikipedia entries</strong>. </p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2241</post-id>	</item>
+		<item>
+		<title>Infographics Course, Week 1</title>
+		<link>http://www.michelepasin.org/blog/2012/11/06/infographics-course-week-1/</link>
+				<comments>http://www.michelepasin.org/blog/2012/11/06/infographics-course-week-1/#comments</comments>
+				<pubDate>Tue, 06 Nov 2012 23:18:38 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[infographics]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2227</guid>
+				<description><![CDATA[This is a short summary of the activities in week 1 of the Introduction to Infographics and Data Visualization massive online course offered by the Knight Center for Journalism at Texas University. I&#8217;ll be posting the course materials and exercises here on the blog, so stay tuned if you want more. The course is hosted [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>This is a short summary of the activities in week 1 of the <a href="https://knightcenter.utexas.edu/course/introduction-infographics-and-data-visualization-knight-centers-first-massive-open-online-cou">Introduction to Infographics and Data Visualization</a> massive online course offered by the <a href="https://knightcenter.utexas.edu">Knight Center for Journalism</a> at Texas University. I&#8217;ll be posting the course materials and exercises here on the blog, so stay tuned if you want more. </p>
+<p>The course is hosted by <a href="http://www.visualopolis.com/">Alberto Cairo</a>, author of the book &#8216;The Functional Art&#8217;. It&#8217;s been only a week since we started, but I can definitely tell that the quality of both the teaching materials and overall e-learning platform are very high. So I&#8217;d highly recommend it to anyone interested in deepening his/her knowledge on such topics. It&#8217;s too late to sign up for it now, but there will be another class running in early 2013 so keep an eye on their site if you don&#8217;t want to miss the next enrollment. </p>
+<p><iframe src="http://player.vimeo.com/video/50644437?badge=0&amp;color=c9ff23" width="700" height="394" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></p>
+<h3>Key Concepts from Lesson 1</h3>
+<p>&nbsp;</p>
+<pre style="border: 1px dashed grey; width: 1000px; overflow: auto; padding: 10px;">
+- Infographics is a piece of functional art (different from pure art)
+- the stuff in the world is shapeless and useless, it requires people to give it a form (to model it) according to some specific purpose
+- our world is not about ideology anymore, it's about complexity (Matt Taibbi en Griftopia)
+- the model of information designers is to model that raw material and make sense of it
+- infographics is not just about summarizing, organizing data, but it's also about letting reader explore those data
+- a graphic is a tool: it extends our skills and capacities
+- any good infographics is functional as a hammer - the design predetermines the function the tool should have.
+- any good infographics is multilayered as an onion - eg as in a summary of main points, plus more in depth examinations
+- any good infographics is beautiful and true as a mathematical equation
+
+- function doesn't dictate form, but it restricts the variety of forms that are acceptable to use for each set of data
+
+- classic distinction:
+	- infographics: presents information in a way that becomes meaningful; it's an edited story based on data
+	- information visualization: fine-tuned so to support exploration; doesn't tell a particular story, but it allows users to create their own story (it's unedited).
+- for Cairo, the difference is very fuzzy, often the two things are mixed together
+
+- Definition: a good infographics lets you answer questions more efficiently 
+
+- considering infographics only as art is wrong: infographics are tools. Often graphics with no structure or no context are presented as inforaphics, but they are not a visual representaion of the data, just a simple page layout exercise with a bunch of unrelated numbers
+
+- numbers have little meaning if they can't be compared with other data (eg summaries) or if I can't relate them to my life (eg contextual information)
+
+- infographics should be constructed in many layers so that data could be cross-compared in many ways
+
+- choosing the correct 'visual metaphor' is essential for an infographics
+
+- if your goal is to let users compare numbers, it's better not to use bubble charts but bar charts! The human brain is not good at comparing sizes of bubbles. Bubbles are good for presenting overall patterns, but not good for precise comparisons.
+
+- the 'onion' approach allows you to represent data in different ways to facilitate different kinds of tasks
+
+- Infographics and visualization must be considered as visual tools for communication, understanding and analysis
+
+- Charles Joseph Minard 1869: cosidered by many (eg Tufte) the best visualization ever!
+
+</pre>
+<h3>The exercise</h3>
+<p><a href="http://www.flickr.com/photos/mikele/8186846812/" title="Infographics_week1"><img src="http://farm9.staticflickr.com/8205/8186846812_23b8a97858_c.jpg" width="800" height="500" alt="Infographics_week1"></a></p>
+<blockquote><p>See the following graphic (<a href="http://www.redcandleresearch.com/blog/wp-content/uploads/2010/04/socialwebinvolvement.jpg">socialwebinvolvement.jpg</a>) and try to answer the questions</p></blockquote>
+<p><strong>1) Is this infographic really “functional” in the sense of facilitating basic, predictable tasks (comparing, relating variables, etc.)?</strong><br />
+Not really. If we think of an infographics as a &#8216;technology&#8217; this is certainly a very poor one. Apart from the fact that China and USA have the biggest audiences (in absolute terms) it&#8217;s extremely difficult (if not impossible) to use the graphics as a tool in any other way. Several variables are presented, but we can&#8217;t compare, organize or correlate the data cause they&#8217;re all expressed in a way that doesn&#8217;t support those actions. Moreover the choice of using bubble charts is not approriate, as they make it harder for people to make comparisons among surface sizes. </p>
+<p><strong>2) If not, how could it be improved?</strong><br />
+Similarly to what discussed in chapter two of the handouts (see the armed forces employees example), I&#8217;d do the following things:<br />
+a) eliminate the bubble charts, and replace them with bar charts<br />
+b) create bar charts for both absolute and relative values using a derived variable<br />
+c) improve the rendering of the labels, since now they&#8217;re a bit too small and hard to read. This could be done for example by using a specialized type of bar chart where the &#8216;bar&#8217; is divided into 5 continuous coloured segments corresponding to the types of social web involvement.<br />
+d) keep the geographical map in order to provide some context; however, it could be shrunk, positioned at the bottom and used primarily to highlight which are the countries being examined in the experiment (eg by having their areas in a different color)</p>
+<p><strong>3) What kind of headlines, intro copy, and labels could it include to make it meaningful for a broad audience?</strong><br />
+I think that the correlation between the label colors and their meaning should be made more explicit. </p>
+<p><strong>4) What other variables (if any) should be gathered/analyzed if we want to give an accurate portrait of Internet users across countries? Could we go beyond what is currently presented? Can we provide a better context for the data?</strong><br />
+It&#8217;d be nice to have a sense of the total number of users per country, versus people that admittedly don&#8217;t use the internet (or social media). Also, it&#8217;s not clear whether the 32000 users interviewed have been split proportionally to the total population of the countries taken into consideration, or not.<br />
+Other variables that it&#8217;d be nice to investigate are<br />
+&#8211; mean of access of the internet: eg mobile phone, computer, tablet<br />
+&#8211; age distribution<br />
+&#8211; overall context of internet usage: eg leisure, work, education</p>
+<h3>Other Approaches</h3>
+<p>Here&#8217;re the work of other students (not me) who tried (with impressive results) to redesign the graphic above: </p>
+<p><a href="http://www.flickr.com/photos/89317425@N05/8150814858/">http://www.flickr.com/photos/89317425@N05/8150814858/</a><br />
+<a href="http://dl.dropbox.com/u/43885573/Draft2.jpg">http://dl.dropbox.com/u/43885573/Draft2.jpg </a><br />
+<a href="http://www.flickr.com/photos/aaugur/8144159956/sizes/k/in/photostream/">http://www.flickr.com/photos/aaugur/8144159956/sizes/k/in/photostream/</a><br />
+<a href="http://www.flickr.com/photos/rubenvalero/8139950164/">http://www.flickr.com/photos/rubenvalero/8139950164/ </a><br />
+<a href="http://n79.org/infographics/asg1/">http://n79.org/infographics/asg1/ </a><br />
+<a href="http://public.tableausoftware.com/views/SocialWebInvolvement_1/Dashboard1?:embed=y">http://public.tableausoftware.com/views/SocialWebInvolvement_1/Dashboard1?:embed=y </a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2012/11/06/infographics-course-week-1/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2227</post-id>	</item>
+	</channel>
+</rss>

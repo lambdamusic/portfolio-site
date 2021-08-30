@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>TechLife &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/category/techlife/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 03 Feb 2020 15:54:25 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Getting to grips with Google Colab</title>
+		<link>http://www.michelepasin.org/blog/2020/01/30/getting-to-grips-with-google-colab/</link>
+				<pubDate>Thu, 30 Jan 2020 13:28:27 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Data science]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[googlecolab]]></category>
+		<category><![CDATA[jupyter]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=3374</guid>
+				<description><![CDATA[I&#8217;ve been using Google Colab on a regular basis during the last few months, as I was curious to see whether I could make the switch to it (from a more traditional Jupyter/Jupyterlab environment). As it turns out, Colab is pretty amazing in many respects but there are still situations where a local Jupyter notebook [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I&#8217;ve been using Google Colab on a regular basis during the last few months, as I was curious to see whether I could make the switch to it (from a more traditional Jupyter/Jupyterlab environment). As it turns out, Colab is pretty amazing in many respects but there are still situations where a local Jupyter notebook is my first choice. Keep reading to discover why!</p>
+<h3>Google Colab VS Jupyter</h3>
+<p><a href="https://colab.research.google.com/">Google Colaboratory</a> (also known as Colab, see the <a href="https://research.google.com/colaboratory/faq.html">faqs</a>) is a free <a href="https://en.wikipedia.org/wiki/Project_Jupyter">Jupyter</a> notebook environment that runs in the cloud and stores its notebooks on Google Drive.</p>
+<p>Colab has become extremely popular with data scientists and in particular people doing some kind of <strong>machine learning tasks</strong>. Party, I guess, that&#8217;s because Colab has deep integration with Google&#8217;s ML tools (eg <a href="https://en.wikipedia.org/wiki/TensorFlow">Tensorflow</a>) and in fact Colab actually permits to switch to a <a href="https://en.wikipedia.org/wiki/Tensor_processing_unit">Tensor Processing Unit </a>(TSU) when running your notebook.  For FREE. . Which, by itself, is pretty remarkable already.</p>
+<p>There are tons of videos on <a href="https://www.youtube.com/results?search_query=google+colab">Youtube</a> and tutorials on <a href="https://towardsdatascience.com/search?q=google%20colab">Medium</a>, so I&#8217;m not gonna describe it any further, because there is definitely no shortage of learning materials if you want to find out more about it.</p>
+<iframe class='youtube-player' type='text/html' width='560' height='315' src='https://www.youtube.com/embed/inN8seMm7UI?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe>
+<h3>How I&#8217;m using Colab</h3>
+<p>I normally turn to notebooks because I need to demonstrate real-world applications of APIs to a (sometimes not-so-technical) audience. A lot of the work I&#8217;ve been doing lately has crystallized into the &#8216;<a href="https://digital-science.github.io/dimensions-api-lab/">Dimensions API Labs</a>&#8216; portal. This is essentially a collection of notebooks aimed at making it easier for people to extract, process and turn into actionable insights the many kinds of data my company&#8217;s APIs can deliver.</p>
+<p>My usual workflow:</p>
+<ul>
+<li>Getting some data by calling APIs, sometimes using custom-built Python packages;</li>
+<li>Processing the data using <a href="https://en.wikipedia.org/wiki/Pandas_(software)">pandas</a> or built-in Python libraries;</li>
+<li>Building visualizations and summaries e.g. using <a href="https://plot.ly/python/">Plotly</a>.</li>
+</ul>
+<p>My target audience:</p>
+<ul>
+<li>Data scientist and developers who want to become proficient with our APIs.</li>
+<li>Analysts and domain experts who are less technically advanced, but have the capacity to turn interesting research questions into queries and API-based workflows.</li>
+</ul>
+<p>Read on to find out how Colab ticked a lot of the boxes for this kind of work.</p>
+<h3>Pros of Colab</h3>
+<p>In general, Jupyter notebooks are an ideal tool for showcasing API functionalities and data features. The ability to pack together code, images and text within a single runnable file make the end result intuitive yet powerful.</p>
+<p>Google Colab brings a number of extra benefits to the table:</p>
+<ol>
+<li><strong>No install set up.</strong>  That was a massive selling point for me. If I have to share an API recipe with just anyone, Colab allows to do that very very quickly, even with non technical users. They just have to open up a webpage, hit ‘play’ and run the notebook. Moreover, Colab includes by default many popular Python libraries and, if you need to, you can pip-install your own favorite ones too. Neat!</li>
+<li><strong>It scales well.</strong> I ran a couple of workshop recently with 30+ users, without any performance issue. E.g. compared to setting up a Jupyterhub server, it&#8217;s much easier,  and cheaper too, of course. Plus, people can go home and re-run the same notebooks virtually withing the same exact environment. No need to fiddle with Python, Docker or Jupyter packages.</li>
+<li><strong>Sharing and commenting.</strong> The collaborative features of Colab need no introduction. Just think of how easy it is to share a Google Doc with your colleagues, only in this case you&#8217;d do it with a notebook!</li>
+<li><strong>Playground mode.</strong> Colab introduced the notion of <a href="https://stackoverflow.com/questions/52011084/what-is-playground-mode-in-googles-colaboratory">playground mode</a>, which essentially allows you to open a notebook in read-only mode (trying to save throws the error &#8220;<em>This notebook is in playground mode. Changes will not be saved unless you make a copy of the notebook.&#8221;</em>). I find this feature extremely handy for demos, or in situations where one needs to mess about with a notebook without the risk of overwriting its &#8216;stable&#8217; state.</li>
+<li><strong>Snippets</strong>. Colab includes a sidebar with many useful code snippets by default. You can extend that easily by <a href="https://stackoverflow.com/questions/48760503/is-there-a-way-to-add-your-own-snippets-in-google-colaboratory">creating your own &#8216;snippets&#8217; notebook</a>, going to <em>Tools > Preferences</em>, paste the snippets notebook URL in Custom snippet notebook URL and save. Simple and effective. And the new snippets can be shared with team mates too!</li>
+<li><strong>Extra UI components.</strong> The Colab folks developed a syntax for generating <a href="https://colab.research.google.com/notebooks/forms.ipynb">Forms components using markdown</a>.  This is very cool because it lets you generate simple input boxes, which can  be used for example by non technical people to enter data into a notebook. Also worth pointing out that forms are created using comments-like code (eg
+<div>
+<div><em>#@param {type:&#8221;string&#8221;}) </em>so they don&#8217;t interfere with the notebook if you open it within a traditional Jupyter environment.</div>
+</div>
+</li>
+<li><strong>The Google ecosystem.</strong> The integration with the rest of the G-Suite is unsurprisingly amazing so pulling/putting data in and out of <a href="https://colab.research.google.com/notebooks/io.ipynb">Drive, Sheets or BigQuery</a>  is quick, easy and well-documented.</li>
+</ol>
+<h3>Cons of Colab</h3>
+<ol>
+<li><strong>Performance limitations.</strong> Of course the performance will never be as good as running things locally (having said that &#8211; you can even use GPUs for free, but haven’t tried that yet). So for bigger projects e.g. involving complex algorithms or very large datasets, other data science platforms are probably better eg <a href="https://gigantum.com/">Gigantum</a></li>
+<li><strong>Interface learning.</strong> You have to get used to the Colab interface. It somehow still feels a bit more fiddly than JupyterLab, to me. Keyword shortcuts can be a problem too: you can customize them in Colab, but I couldn&#8217;t replicate all of my (rather heavily customized) JupyterLab ones, due to conflicts with other default ones in Colab. So some muscle-memory pain there.</li>
+<li><strong>Exporting to HTML is not that good.</strong> Being able to turn Jupyter notebooks into a simple HTML file is pretty handy, but Colab can&#8217;t do that. You can of course download the .<em>ipynb</em> file and then export locally (via <a href="https://github.com/jupyter/nbconvert">nbconvert</a>), but that doesn&#8217;t always produce the results you&#8217;d expect either. For example, Plotly visualizations (like <a href="https://digital-science.github.io/dimensions-api-lab/cookbooks/8-organizations/2-Industry-Collaboration.html#Putting-Countries-and-Collaborators-together%E2%80%A6">this one</a>) are not rendering properly unless I run the whole notebook locally in Jupyterlab before exporting.</li>
+<li><strong>Some Python libraries won&#8217;t work out of the box.</strong> For example I have a Python library called <a href="https://github.com/digital-science/dimcli">dimcli</a> that builds on the latest <a href="https://python-prompt-toolkit.readthedocs.io/en/master/">prompt-toolkit</a>. Turns out that Colab, by default, runs ipython 5.5.0 (latest version is 7), which is incompatible with promt-toolkit. You can of course uprade everything on Colab (eg <em>pip install &#8211;upgrade &#8211;force-reinstall library-name</em>) &#8211; which is great &#8211; however that may lead to further dependencies errors.. and so on.</li>
+<li><strong>Project versioning.</strong> Colab includes a built-in <a href="https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb">revision history</a> tool, and it can integrate with <a href="https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb">Github</a> too.  Yet, I often end up creating multiple copies/versions of a notebook, instead of relying on the revisions system. I wish there was a better way to do this..</li>
+<li><strong>The Google ecosystem. </strong>As much as this can be a massive plus for some people (see above), it can also be a massive problem for others. Some customers I work with don&#8217;t have access to G-Suite, full stop. That&#8217;s not so uncommon, especially with large enterprises that are concerned about data privacy.</li>
+</ol>
+<h3></h3>
+<h3>Conclusions</h3>
+<p>Google Colab is simply great for small/medium data projects. Hands down to the developers who built it. Some features are totally neat, and especially when I intend to share whatever I&#8217;m doing with more than one person, I hit right away my <a href="https://colab.research.google.com/notebook#create=true&#038;language=python3">New Colab Document </a>shortcut.</p>
+<p>Nonetheless, I still use <a href="https://jupyterlab.readthedocs.io/en/stable/">JupyterLab</a> a lot, for a variety of projects. E.g. for quick personal data investigations. Or for projects that I know will be shared only with other data scientists (who need no guidance in order to run them). Or in projects with long-running processes and memory consumption.</p>
+<p>So the two things <strong>need to coexist</strong>. Which opens up a new problem: <em>how to seamlessly move from one environment to the other</em>? That&#8217;s still an open question for me, but you&#8217;ll find what I learned so far in the following section..</p>
+<h3>Appendix: Colab and JupyterLab happily co-existing</h3>
+<p>Is this too much to ask? This is what I worked out so far:</p>
+<ul>
+<li>I try to put all of my notebooks in Google Drive, so that they are accessible by Colab.</li>
+<li>I sync my Google Drive to my laptop, so I&#8217;ve got everything locally as well (ps: I sync Drive to <em>one computer only</em> so to avoid double/out-of-sync issues).</li>
+<li>I have several folders containing notebooks. Some of these folders are actually Github repositories too. They seem to sync over Drive without issues (so far!)</li>
+<li>This setup means that <strong>I can either work on Colab (thanks to Drive) or local Jupyter (via the local sync) depending on my needs</strong>. I can even start working on something locally and then complete it on Colab. The .ipynb files are 100% compatible (almost &#8211; see above the exception about rendered visualizations)</li>
+<li>Any Colab-specific code does not break Jupyter. There is some redundancy on occasions (eg <em>pip installing</em> libraries on Colab which I already have on my laptop) but that&#8217;s fine. It&#8217;s also possible to use expressions like this `<em>if not &#8216;google.colab&#8217; in sys.modules</em>` to run code selectively based on the platform (eg see <a href="https://digital-science.github.io/dimensions-api-lab/cookbooks/8-organizations/2-Industry-Collaboration.html#Load-libraries-and-log-in">here</a>).</li>
+</ul>
+<p> </p>
+<h3>Comments?</h3>
+<p>As usual I&#8217;d love to hear them :-)</p>
+<p> </p>
+<p> </p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">3374</post-id>	</item>
+		<item>
+		<title>Pypapers: a bare-bones, command line,  PDF manager</title>
+		<link>http://www.michelepasin.org/blog/2019/06/30/pypapers-a-bare-bones-command-line-pdf-manager/</link>
+				<pubDate>Sun, 30 Jun 2019 22:48:40 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Cultural Informatics]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[paper]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[reference_manager]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=3357</guid>
+				<description><![CDATA[Ever felt like softwares like Mendeley or Papers are great, but somehow slow you down? Ever felt like none of the many reference manager softwares out there will ever cut it for you, cause you need something R E A L L Y SIMPLE? I did. Many times. So I&#8217;ve finally crossed the line and [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Ever felt like softwares like <a href="https://www.mendeley.com/homepage-2-1?interaction_required=true&#038;mboxSession=ea3c06ad39f14ce29d625b9d3be138c5">Mendeley</a> or <a href="https://www.papersapp.com/">Papers</a> are great, but somehow slow you down? Ever felt like none of the many <a href="https://en.wikipedia.org/wiki/Comparison_of_reference_management_software">reference manager softwares</a> out there will ever cut it for you, cause you need something R E A L L Y SIMPLE? I did. Many times. So I&#8217;ve finally crossed the line and tried out building a simple commmand-line PDF manager. <a href="https://github.com/lambdamusic/pypapers">PyPapers</a>, is called.</p>
+<p>Yes &#8211; that&#8217;s right &#8211; <a href="https://en.wikipedia.org/wiki/Terminal_(macOS)">command line</a>. So not for everyone. Also: this is bare bones and pre-alpha. So don&#8217;t expect wonders. It basically provides a simple interface for searching a folder full of PDFs. That&#8217;s all for now!</p>
+<iframe class='youtube-player' type='text/html' width='560' height='315' src='https://www.youtube.com/embed/o74Ct1EwZwI?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe>
+<p>   </p>
+<h3>Key features (or lack of)</h3>
+<li><strong>Mac only, I&#8217;m afraid.</strong> I&#8217;m sitting on the shoulders of a giant. That is, <a href="https://ss64.com/osx/mdfind.html">mdfind</a>.</li>
+<li>No fuss <strong>search in file names</strong> only or <strong>full text</strong></li>
+<li>Shows all results and relies on <a href="https://support.apple.com/en-gb/guide/preview/welcome/mac">Preview</a> for reading</li>
+<li><strong>Highlighting</strong> on Preview works pretty damn fine and it&#8217;s the ultimate compatibility solution (any other software kinds of locks you in eventually, imho)</li>
+<li><strong>Open source</strong>. If you can code Python you can customise it to your needs. If you can&#8217;t, open an <a href="https://github.com/lambdamusic/pypapers/issues">issue in github</a> and I may end up doing it.</li>
+<li>It recognises <strong>sub-folders</strong>, so that can be leveraged to become a simple, filesystem level, categorization structure for your PDFs (eg I have different folders for articles, books, news etc..)</li>
+<li>Your PDFs live in the Mac <strong>filesystem</strong> ultimately. So you can always search them using Finder in case you get bored of the command line.</li>
+<h3>First impressions</h3>
+<p>Pretty good. Was concerned I was gonna miss things like collections or tags. But I found a workaround: first, identify the papers I am interested in. Then, create a folder in the same directory and symlink them in there (= create an <a href="https://kb.iu.edu/d/achy">alias</a>).</p>
+<p>It&#8217;s not quite like <a href="https://www.taoistic.com/taoquotes/taoquotes-12-simplicity-stillness-silence.htm">uncarved wood,</a> but it definitely feels simple enough.</p>
+<p> </p>
+<p>   </p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">3357</post-id>	</item>
+		<item>
+		<title>Introducing DimCli: a Python CLI for the Dimensions API</title>
+		<link>http://www.michelepasin.org/blog/2019/05/24/introducing-dimcli-a-python-cli-for-dimensions-api/</link>
+				<pubDate>Fri, 24 May 2019 11:10:15 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Data science]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[api]]></category>
+		<category><![CDATA[cli]]></category>
+		<category><![CDATA[dimensions]]></category>
+		<category><![CDATA[python]]></category>
+		<category><![CDATA[scholarly analytics]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=3322</guid>
+				<description><![CDATA[For the last couple of months I&#8217;ve been working on a new open source Python project. This is called DimCli  and it&#8217;s a library aimed at making it simpler to work with the Dimensions Analytics API. The project is available on Github. In a nutshell, DimCli helps people becoming productive with the powerful scholarly analytics API [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>For the last couple of months I&#8217;ve been working on a new open source Python project. This is called <strong>DimCli</strong>  and it&#8217;s a library aimed at making it simpler to work with the Dimensions Analytics API.</p>
+<p>The project is <a href="https://github.com/lambdamusic/dimcli">available on Github</a>. In a nutshell, DimCli helps people becoming productive with the powerful scholarly analytics API from Dimensions. See the video below for a quick taster of the functionalities available.</p>
+<div>
+<iframe class='youtube-player' type='text/html' width='560' height='315' src='https://www.youtube.com/embed/HbZPxJ7G_00?version=3&#038;rel=1&#038;fs=1&#038;autohide=2&#038;showsearch=0&#038;showinfo=1&#038;iv_load_policy=1&#038;wmode=transparent' allowfullscreen='true' style='border:0;'></iframe>
+</div>
+<h3>Background</h3>
+<p>I recenlty joined the <a href="https://www.dimensions.ai/">Dimensions</a> team, so needed a way to get to grips with their feature-rich API (<a href="https://docs.dimensions.ai/dsl">official docs</a>). So, building DimCli has been a fun way for me to dig into the logic of the <strong>Dimensions Search Language</strong> (DSL).</p>
+<p>Plus, this project gave me a chance to learn more about two awesome Python technologies: <a href="https://github.com/jupyterlab/jupyterlab">JupyterLab</a> and its magic commands, as well as the <a href="https://python-prompt-toolkit.readthedocs.io/en/stable/">Python Prompt Toolkit</a> library.</p>
+<p><img class="aligncenter size-full wp-image-3339" src="https://i1.wp.com/www.michelepasin.org/blog/wp-content/uploads/2019/05/Screenshot-2019-05-24-at-12.16.47.png?w=1102" alt="Screenshot 2019-05-24 at 12.16.47.png" width="551" height="166" /></p>
+<h3>Features</h3>
+<p>In a nutshell, this is what DimCli has to offer:</p>
+<li>It&#8217;s an <strong>interactive</strong> <strong>query console</strong> for the Dimensions Analytics API (ps: <a href="https://www.dimensions.ai/">Dimensions</a> is a world-class research-data platform including information about millions of documents like publications, patents, grants, clinical trials and policy documents.</li>
+<li>It <strong>helps</strong> <strong>learning the Dimensions Search Language (DSL)</strong> thanks to a built-in autocomplete and documentation search mechanism.</li>
+<li>It handles <strong>authentication</strong> transparently either via a global user-specific credentials file, or by passing credentials manually (e.g. when used within shared environments).</li>
+<li>It allows to <strong>export results to CSV, JSON and pandas dataframes</strong>, hence making it easier to integrate with other data analysis tools.</li>
+<li>It is <strong>compatible with Jupyter</strong>, e.g. it includes various magic commands that make it super simple to interrogate Dimensions (<a href="https://github.com/digital-science/dimensions-api/tree/master/1.Getting%20Started">various examples here</a>).</li>
+<h3>Feedback</h3>
+<p>DimCli lives on <a href="https://github.com/lambdamusic/dimcli">Github</a>, so for any feedback or bug reports, feel free to open an issue there.</p>
+<p><img class="aligncenter  wp-image-3338" src="https://i2.wp.com/www.michelepasin.org/blog/wp-content/uploads/2019/05/Screenshot-2019-05-23-at-18.06.32.png?w=1126" alt="Screenshot 2019-05-23 at 18.06.32.png" width="444" height="282" /></p>
+<p> </p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">3322</post-id>	</item>
+		<item>
+		<title>OntoSpy v.1.7.4</title>
+		<link>http://www.michelepasin.org/blog/2017/02/27/ontospy-v-1-7-4/</link>
+				<pubDate>Mon, 27 Feb 2017 07:59:52 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[ontology]]></category>
+		<category><![CDATA[ontospy]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2836</guid>
+				<description><![CDATA[A new version of OntoSpy (1.7.4) is available online. OntoSpy is a lightweight Python library and command line tool for inspecting and visualising vocabularies encoded in the RDF family of languages. This version includes a hugely improved API for creating nice-looking HTML or Markdown documentation for an ontology, which takes advantage of frameworks like Bootstrap [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>A new version of <a href="https://github.com/lambdamusic/ontospy">OntoSpy</a> (1.7.4) is available online. OntoSpy is a lightweight Python library and command line tool for inspecting and visualising vocabularies encoded in the <a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a> family of languages.</p>
+<p>This version includes a hugely improved API for creating nice-looking <strong>HTML or Markdown documentation</strong> for an ontology, which takes advantage of frameworks like <a href="http://getbootstrap.com/components/">Bootstrap</a> and <a href="https://bootswatch.com/">Bootswatch</a>. </p>
+<p>You can take a look at the <a href="http://www.michelepasin.org/support/ontospy-examples/index.html">examples page</a> to see what I&#8217;m taking about. </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2017/02/Screen-Shot-2017-02-26-at-21.26.22-1.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2017/02/Screen-Shot-2017-02-26-at-21.26.22-1.png"  alt="Screen Shot 2017 02 26 at 21 26 22" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2017/02/Screen-Shot-2017-02-26-at-21.26.40-1.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2017/02/Screen-Shot-2017-02-26-at-21.26.40-1.png"  alt="Screen Shot 2017 02 26 at 21 26 40" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2017/02/Screen-Shot-2017-02-26-at-21.32.11-1.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2017/02/Screen-Shot-2017-02-26-at-21.32.11-1.png"  alt="Screen Shot 2017 02 26 at 21 32 11" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p>&nbsp;</p>
+<p>To find out more about Ontospy:</p>
+<li>CheeseShop: <a href="https://pypi.python.org/pypi/ontospy">https://pypi.python.org/pypi/ontospy</a></li>
+<li>Github: <a href="https://github.com/lambdamusic/ontospy">https://github.com/lambdamusic/ontospy</a></li>
+<p> <br />
+Here&#8217;s a short video showing a typical sessions with the OntoSpy <a href="https://en.wikipedia.org/wiki/Read%E2%80%93eval%E2%80%93print_loop">repl</a>: </p>
+<p><iframe src="https://player.vimeo.com/video/169707591" width="640" height="360" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></p>
+<h3>Coming up next</h3>
+<li>More advanced <a href="http://www.nature.com/developers/hacks/subjects/d3tree">ontology visualisations</a> using d3 or similar javascript libraries; </li>
+<li>A better separation between the core Python library in OntoSpy and the other components. This is partly addressing the fact that the OntoSpy package has grown a bit too much, in particular form the <a href="https://github.com/lambdamusic/OntoSpy/issues/20">point of view</a> of people who are only interested in using it in order to create their own applications, as opposed (for example) to reusing the built-in visualisations.</li>
+<p>Of course, any comments or suggestions are welcome as usual &#8211;  either using the form below or via <a href="https://github.com/lambdamusic/ontospy/issues">GitHub</a>. Cheers!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2836</post-id>	</item>
+		<item>
+		<title>How to copy snippets from Github Gists to Dash</title>
+		<link>http://www.michelepasin.org/blog/2016/12/24/extracting-snippets-from-github-gists-to-dash/</link>
+				<pubDate>Sat, 24 Dec 2016 18:15:37 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[dash]]></category>
+		<category><![CDATA[gist]]></category>
+		<category><![CDATA[github]]></category>
+		<category><![CDATA[snippets]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2810</guid>
+				<description><![CDATA[If you’re a Dash for MacOS user, here’s a little script to copy existing code snippets saved as Github Gists into the Dash snippets database. Dash for MacOS is an application that allows to keep a local library of a multitude of programming frameworks and libraries, so that you can search this library quickly using [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>If you’re a <strong>Dash for MacOS</strong> user, here’s a <a href="https://gist.github.com/lambdamusic/706698eb4cd17ee1bb97e0524cdc1c62">little script</a> to copy existing code snippets saved as Github Gists into the Dash snippets database. </p>
+<p><a href="https://kapeli.com/dash">Dash for MacOS</a> is an application that allows to keep a local library of a multitude of programming frameworks and libraries, so that you can search this library quickly using an offline intuitive interface. </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2016/12/dash.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2016/12/dash.png"  alt="Dash" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p>Dash has a feature for creating and <a href="https://kapeli.com/dash_guide#snippets">managing code snippets</a> &#8211; there are many other <a href="http://alternativeto.net/software/snippets/">alternatives</a> out there for this &#8211; but probably the fact you can store snippets  alongside other documentation could be a winner in this case. </p>
+<p>Anyhow, since I’ve been collecting lots of snippets as<a href="https://gist.github.com/"> Github Gists</a>, I thought I’d be nice to load them up into Dash so to test it out a bit more! </p>
+<p><strong>Note: </strong></p>
+<blockquote><p>&#8211; the solution below does not extract tags information at the moment</p>
+<p>&#8211; always a good idea to make a backup copy of the Dash database before messing with it. Then just update the value of the <span style="font-family:monospace;color:#000000; ">DASH_DATABASE</span> parameter in the script and start the extraction.</p>
+<p>&#8211; inspired by another gist: <a href="https://raw.github.com/gist/5466075/gist-backup.py">https://raw.github.com/gist/5466075/gist-backup.py</a></p></blockquote>
+<p>&nbsp;</p>
+<p>So here we go:</p>
+<p><script src="https://gist.github.com/lambdamusic/706698eb4cd17ee1bb97e0524cdc1c62.js"></script></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2810</post-id>	</item>
+		<item>
+		<title>Apple Keynote: extracting presenter notes to Markdown</title>
+		<link>http://www.michelepasin.org/blog/2016/11/03/apple-keynote-extracting-presenter-notes-to-markdown/</link>
+				<pubDate>Thu, 03 Nov 2016 08:05:52 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[applescript]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2798</guid>
+				<description><![CDATA[Here&#8217;s a simple AppleScript that makes it easier to extract presenter notes from a Keynote presentation and save them to a nice Markdown document. If you&#8217;re using Apple Keynote, you may have noticed that there isn&#8217;t an easy way to extract the presenter notes attached to your slides (of course you could do it manually, [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Here&#8217;s a simple AppleScript that makes it easier to extract presenter notes from a Keynote presentation and save them to a nice Markdown document. </p>
+<p>If you&#8217;re using <a href="https://en.wikipedia.org/wiki/Keynote_(presentation_software)">Apple Keynote</a>, you may have noticed that there isn&#8217;t an easy way to extract the presenter notes attached to your slides (of course you could do it manually, one slide at a time, but that&#8217;s pretty tedious!). </p>
+<p>The following <a href="https://en.wikipedia.org/wiki/AppleScript">AppleScript</a> code allows you to automate this action by pulling out all presenter notes from an open presentation and save them to a <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> file. </p>
+<p><script src="https://gist.github.com/lambdamusic/e3c145fc1724cadc8c0120e20f2eef9f.js"></script></p>
+<p><small><br />
+Inspired by:</p>
+<li><a href="http://apple.stackexchange.com/questions/136118/how-to-print-full-presenter-notes-without-slides-in-keynote">http://apple.stackexchange.com/questions/136118/how-to-print-full-presenter-notes-without-slides-in-keynote</a></li>
+<li><a href="https://gist.github.com/benwaldie/9955151">https://gist.github.com/benwaldie/9955151</a></li>
+<p></small></p>
+<p>More on AppleScript:</p>
+<p><iframe width="560" height="315" src="https://www.youtube.com/embed/KduECHpe5zs?showinfo=0" frameborder="0" allowfullscreen></iframe></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2798</post-id>	</item>
+		<item>
+		<title>SpotiSci: finding science concepts on Spotify</title>
+		<link>http://www.michelepasin.org/blog/2016/04/29/spotisci-finding-science-concepts-on-spotify/</link>
+				<pubDate>Fri, 29 Apr 2016 22:43:12 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Just Blogging]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[music]]></category>
+		<category><![CDATA[science]]></category>
+		<category><![CDATA[spotify]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2776</guid>
+				<description><![CDATA[Ever wondered how many musical albums focus on topics like the moon landing, artificial intelligence or DNA replication? Probably not for everyone&#8217;s taste, but if you give it a shot you&#8217;ll be surprised at the results. When I ran into the excellent Spotipy library (a small yet nifty Python client for the Spotify Web API) [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Ever wondered how many musical albums focus on topics like the <a href="http://www.nature.com/developers/hacks/spotisci/?q=moon+landing">moon landing</a>, <a href="http://www.nature.com/developers/hacks/spotisci/?q=artificial+intelligence">artificial intelligence</a> or <a href="http://www.nature.com/developers/hacks/spotisci/?q=DNA+replication">DNA replication</a>? Probably not for everyone&#8217;s taste, but if you give it a shot you&#8217;ll be surprised at the results. </p>
+<p>When I ran into the excellent Spotipy <a href="https://github.com/plamere/spotipy">library</a> (a small yet nifty Python client for the Spotify <a href="https://developer.spotify.com/web-api/">Web API</a>) I couldn&#8217;t wait to try it out with some fun project. </p>
+<p>So that&#8217;s how the <a href="http://www.nature.com/developers/hacks/spotisci/">SpotiSci experiment</a> came about; essentially a search tool that allows to query <a href="http://www.nature.com/search">Nature.com</a>&#8216;s one million articles archives while at the same time browsing the vast selection of music available on <a href="https://play.spotify.com/">Spotify</a>.</p>
+<p>Have a good listen. You may find the right soundtrack for your science.</p>
+<p><a href="http://www.nature.com/developers/hacks/spotisci/"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2016/04/spotisci1.png" alt="Spotisci1" title="spotisci1.png" border="0" width="598" height="333" /></a></p>
+<p><a href="http://www.nature.com/developers/hacks/spotisci/"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2016/04/spotisci3.png" alt="Spotisci3" title="spotisci3.png" border="0" width="598" height="305" /></a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2776</post-id>	</item>
+		<item>
+		<title>Accessing OS X dictionary with Python</title>
+		<link>http://www.michelepasin.org/blog/2015/11/28/accessing-os-x-dictionary-with-python/</link>
+				<pubDate>Sat, 28 Nov 2015 15:57:06 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Just Blogging]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[dictionary]]></category>
+		<category><![CDATA[osx]]></category>
+		<category><![CDATA[python]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2724</guid>
+				<description><![CDATA[A little script that allows to access the OS X Dictionary app using Python. Tip: make the script executable and add an alias for it in order to be able to call it from the command line easily. &#160;]]></description>
+								<content:encoded><![CDATA[<p>A little script that allows to access the OS X <a href="https://en.wikipedia.org/wiki/Dictionary_(software)">Dictionary app</a> using Python. </p>
+<p>Tip: make the script executable and add an alias for it in order to be able to call it from the command line easily. </p>
+<p><script src="https://gist.github.com/lambdamusic/bdd56b25a5f547599f7f.js"></script></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2724</post-id>	</item>
+		<item>
+		<title>Dereference a DOI using python</title>
+		<link>http://www.michelepasin.org/blog/2014/12/03/dereference-a-doi-using-python/</link>
+				<comments>http://www.michelepasin.org/blog/2014/12/03/dereference-a-doi-using-python/#comments</comments>
+				<pubDate>Wed, 03 Dec 2014 16:49:44 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[citation]]></category>
+		<category><![CDATA[doi]]></category>
+		<category><![CDATA[python]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2555</guid>
+				<description><![CDATA[A little python script that allows to pass an article DOI in order to obtain all the metadata related to that article. The script relies on the handy crosscite.org API, which is one of the wonderful services provided by CrossRef. &#160;]]></description>
+								<content:encoded><![CDATA[<p>A little python script that allows to pass an article <a href="http://en.wikipedia.org/wiki/Digital_object_identifier">DOI</a> in order to obtain all the metadata related to that article.</p>
+<p>The script relies on the handy <a href="http://www.crosscite.org/cn/">crosscite.org API</a>, which is one of the wonderful services provided by <a href="http://www.crossref.org/">CrossRef</a>. </p>
+<p><script src="https://gist.github.com/lambdamusic/3b1062b1d467fa45a2d0.js"></script></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2014/12/03/dereference-a-doi-using-python/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2555</post-id>	</item>
+		<item>
+		<title>Installing Stardog triplestore on mac os</title>
+		<link>http://www.michelepasin.org/blog/2014/11/06/installing-stardog-triplestore-on-mac-os/</link>
+				<pubDate>Thu, 06 Nov 2014 16:02:49 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[stardog]]></category>
+		<category><![CDATA[triplestore]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2530</guid>
+				<description><![CDATA[Stardog is an enterprise-level triplestore developed by clarkparsia.com. It combines tools to store and query RDF data with more advanced features for inference and data analytics &#8211; in particular via the built-in Pellet Java reasoner. All of this, combineded with a user experience which is arguably the best you can currently find in the market. [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://www.stardog.com/">Stardog</a> is an enterprise-level triplestore developed by <a href="http://clarkparsia.com/">clarkparsia.com</a>. It combines tools to store and query RDF data with more advanced features for inference and data analytics &#8211; in particular via the built-in <a href="http://clarkparsia.com/pellet/">Pellet Java reasoner</a>. All of this, combineded with a user experience which is arguably the best you can currently find in the market. </p>
+<h3>1. Requirements</h3>
+<p><strong>OSX</strong>: Mavericks 10.9.5 (that&#8217;s what I used, but it&#8217;ll work on older versions too).<br />
+<strong>JAVA</strong>: available <a href="http://support.apple.com/kb/dl1572">from Apple</a>.<br />
+<strong>Stardog</strong>: grab the free <em>community</em> edition at <a href="http://www.stardog.com/">http://www.stardog.com/</a> (you can also get the &#8216;developer&#8217; version for a 30-days trial, which is actually what I did). </p>
+<h3>2. Setting up</h3>
+<p>Good news, it can&#8217;t get any simpler than this. Just unpack the Stardog installer, and you&#8217;re pretty much done (see the <a href="http://docs.stardog.com/quick-start/">online docs</a> for more info). </p>
+<p>Stardog needs to know where to store its databases, so you do that by adding a couple of lines to your <span style="font-family:monospace;color:#000000; ">.bash_profile</span> file:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+
+export STARDOG_HOME="/Users/michele.pasin/Data/Stardog"  # databases will be stored here
+export PATH="/Applications/stardog-2.2.2/bin:$PATH"  # add stardog commands to the path
+alias cdstardog="cd /Applications/stardog-2.2.2"  # just a handy shortcut
+
+</pre>
+<p>Finally, copy the license key file (which should have come together with the installer) into the data folder:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+$ cp stardog-license-key.bin $STARDOG_HOME
+</pre>
+<h3>3. Running Stardog</h3>
+<p>The <span style="font-family:monospace;color:#000000; ">stardog-admin server start</span> command is used to start and stop the server. Then you can use the <span style="font-family:monospace;color:#000000; ">stardog-admin db create</span> command to create a DB and load some data. For example: </p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+
+[michele.pasin]@Tartaruga:~>cdstardog 
+
+[michele.pasin]@l5611:/Applications/stardog-2.2.2>stardog-admin server start
+
+************************************************************
+This copy of Stardog is licensed to MIk (michele.pasin@gmail.com), michelepasin.org
+This is a Community license
+This license does not expire.
+************************************************************
+
+                                                             :;   
+                                      ;;                   `;`:   
+  `'+',    ::                        `++                    `;:`  
+ +###++,  ,#+                        `++                    .     
+ ##+.,',  '#+                         ++                     +    
+,##      ####++  ####+:   ##,++` .###+++   .####+    ####++++#    
+`##+     ####+'  ##+#++   ###++``###'+++  `###'+++  ###`,++,:     
+ ####+    ##+        ++.  ##:   ###  `++  ###  `++` ##`  ++:      
+  ###++,  ##+        ++,  ##`   ##;  `++  ##:   ++; ##,  ++:      
+    ;+++  ##+    ####++,  ##`   ##:  `++  ##:   ++' ;##'#++       
+     ;++  ##+   ###  ++,  ##`   ##'  `++  ##;   ++:  ####+        
+,.   +++  ##+   ##:  ++,  ##`   ###  `++  ###  .++  '#;           
+,####++'  +##++ ###+#+++` ##`   :####+++  `####++'  ;####++`      
+`####+;    ##++  ###+,++` ##`    ;###:++   `###+;   `###++++      
+                                                    ##   `++      
+                                                   .##   ;++      
+                                                    #####++`      
+                                                     `;;;.        
+
+************************************************************
+Stardog server 2.2.2 started on Thu Nov 06 16:41:23 GMT 2014.
+
+Stardog server is listening on all network interfaces.
+SNARL server available at snarl://localhost:5820.
+HTTP server available at http://localhost:5820.
+
+STARDOG_HOME=/Users/michele.pasin/Data/Stardog 
+
+LOG_FILE=/Users/michele.pasin/Data/Stardog/stardog.log
+
+
+[michele.pasin]@l5611:/Applications/stardog-2.2.2>stardog-admin db create -n myDB examples/data/University0_0.owl
+Bulk loading data to new database.
+Parsing triples: 100% complete in 00:00:00 (8.6K triples - 13.2K triples/sec)
+Parsing triples finished in 00:00:00.646
+Creating index: 100% complete in 00:00:00 (93.0K triples/sec)
+Creating index finished in 00:00:00.092
+Computing statistics: 100% complete in 00:00:00 (60.9K triples/sec)
+Computing statistics finished in 00:00:00.140
+Loading complete.
+Inserted 8,521 unique triples from 8,555 read triples in 00:00:01.050 at 8.1K triples/sec
+Bulk load complete.  Loaded 8,521 triples from 1 file(s) in 00:00:01 @ 8.4K triples/sec.
+
+Successfully created database 'myDB'.
+
+[michele.pasin]@Tartaruga:/Applications/stardog-2.2.2>stardog query myDB "SELECT DISTINCT ?s WHERE { ?s ?p ?o } LIMIT 10"
++--------------------------------------------------------+
+|                           s                            |
++--------------------------------------------------------+
+| tag:stardog:api:                                       |
+| http://www.University0.edu                             |
+| http://www.Department0.University0.edu                 |
+| http://www.Department0.University0.edu/FullProfessor0  |
+| http://www.Department0.University0.edu/Course0         |
+| http://www.Department0.University0.edu/GraduateCourse0 |
+| http://www.Department0.University0.edu/GraduateCourse1 |
+| http://www.University84.edu                            |
+| http://www.University875.edu                           |
+| http://www.University241.edu                           |
++--------------------------------------------------------+
+
+Query returned 10 results in 00:00:00.061
+</pre>
+<p>In the snippet above, I&#8217;ve just loaded the test dataset that comes with Stardog into the <span style="font-family:monospace;color:#000000; ">myDB</span> database, then queried it using the <span style="font-family:monospace;color:#000000; ">stardog query</span> command. </p>
+<p>There&#8217;s a <strong>fancy user interface</strong> too, which can be accessed by going to <span style="font-family:monospace;color:#000000; ">http://localhost:5820 </span>(note: by default, you can log in with usr/psw = admin).</p>
+<p><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/11/stardog1.png" alt="Stardog1" title="stardog1.png" border="0" width="900" height="596" /></p>
+<p><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/11/stardog2.png" alt="Stardog2" title="stardog2.png" border="0" width="900" height="647" /></p>
+<h3>4. Loading a big dataset</h3>
+<p>As in my <a href="http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/">previous post</a>, I&#8217;ve tried loading the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com&#8217;s legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>. The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that&#8217;s been published by NPG and Scientific American from 1845 till nowadays. The file size is <strong>~6 gigs</strong> so it&#8217;s not a huge dataset. Still, something big enough to pose a challenge to my macbook pro (8gigs RAM). </p>
+<p>First off, I tried loading the dataset via the command line by passing an extra argument when creating a new database: </p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+[michele.pasin]@Tartaruga:~/Downloads/NPGcitationsGraph/articles.2012-07-16>stardog-admin db create -n npgArticles articles.nq 
+Bulk loading data to new database.
+Parsing triples: 100% complete in 00:01:48 (10.1M triples - 93.3K triples/sec)
+Parsing triples finished in 00:01:48.678
+Creating index: 100% complete in 00:00:19 (525.1K triples/sec)
+Creating index finished in 00:00:19.311
+Computing statistics: 100% complete in 00:00:05 (1748.1K triples/sec)
+Computing statistics finished in 00:00:05.782
+Loading complete.
+Inserted 10,107,653 unique triples from 10,140,000 read triples in 00:02:16.178 at 74.5K triples/sec
+Bulk load complete.  Loaded 10,107,653 triples from 1 file(s) in 00:02:16 @ 74.3K triples/sec.
+
+Errors were encountered during loading:
+File: /Users/michele.pasin/Downloads/NPGcitationsGraph/articles.2012-07-16/articles.nq Message: '2000-13-01' is not a valid value for datatype http://www.w3.org/2001/XMLSchema#date [line 10144786]
+Successfully created database 'npgArticles'.
+
+</pre>
+<p>As you can see, that didn&#8217;t work as expected: only 10M out of the 40M triples were loaded, because of an <strong>XML parsing error</strong> the installer encountered. </p>
+<p>After some googling and pinging the mailing list, I discover that Stardog is actually right: the parsing error derives from the fact that <a href="http://www.w3.org/TR/xmlschema-2/#isoformats">valid values for XMLSchema#date are ISO8601 Dates</a>. My data contained an XML date <span style="font-family:monospace;color:#000000; ">2000-13-01</span> which is wrong &#8211; that should be <span style="font-family:monospace;color:#000000; ">2000-01-13</span> instead. </p>
+<p>What&#8217;s interesting is that I&#8217;ve previously managed to load the same dataset with other triple stores without any problems. <strong>How was that possible</strong>? </p>
+<p>The <a href="http://docs.stardog.com/using/#sd-Updating">online documentation</a> provides the answer: </p>
+<blockquote><p>RDF parsing in Stardog is strict: it requires typed RDF literals to match their explicit datatypes, URIs to be well-formed, etc. In some cases, strict parsing isn&#8217;t ideal, so it may be disabled using the <span style="font-family:monospace;color:#000000; ">&#8211;strict-parsing=FALSE</span> to disable it.</p></blockquote>
+<p>Also, from the <a href="https://groups.google.com/a/clarkparsia.com/forum/#!searchin/stardog/strict$20parsing/stardog/EiMLvJkN8MM/kELB3d3iC80J">mailing list</a>: </p>
+<blockquote><p>By default, if you say <span style="font-family:monospace;color:#000000; ">&#8220;1.5&#8221;^^xsd:int</span> or <span style="font-family:monospace;color:#000000; ">&#8220;twelve point four&#8221;^^xsd:float</span>, Stardog is going to complain.  While it&#8217;s perfectly legal to have that in RDF, you can run into trouble later on, particularly when doing query evaluation with filters that would handle those literal values where you will hit the dark corners of the SPARQL spec.
+</p></blockquote>
+<p>So, the way to load a (partially or potentially broken) dataset without having to worry about it too much is to use the <span style="font-family:monospace;color:#000000; ">strict.parsing=false</span> flag:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+>stardog-admin db create -o strict.parsing=false -n articlesNPG2 articles.nq
+Bulk loading data to new database.
+Parsing triples: 100% complete in 00:05:55 (39.4M triples - 110.7K triples/sec)
+Parsing triples finished in 00:05:55.643
+Creating index: 100% complete in 00:01:17 (510.7K triples/sec)
+Creating index finished in 00:01:17.122
+Computing statistics: 100% complete in 00:00:21 (1789.2K triples/sec)
+Computing statistics finished in 00:00:21.944
+Loading complete.
+Inserted 39,262,620 unique triples from 39,384,548 read triples in 00:07:51.402 at 83.5K triples/sec
+Bulk load complete.  Loaded 39,262,620 triples from 1 file(s) in 00:07:51 @ 83.3K triples/sec.
+
+Successfully created database 'articlesNPG2'.
+</pre>
+<p>Job done in around <strong>7 minutes</strong>!</p>
+<p>&nbsp;</p>
+<h4>Conclusion:</h4>
+<p>Extremely <strong>easy to install</strong>, <strong>efficient</strong> and packed with <strong>advanced features</strong> (inferencing and data-checking among the most useful ones imho). Also, as far as the UX and web interface goes, I doubt you can get any better than this with triplestores.</p>
+<p>It&#8217;s a commercial product, of course, so you may not expect anything less than that. However the community edition (which is free) allows for 10 databases &#038; 25M triples per db &#8211; which may be just fine for many projects. </p>
+<p>If we had more tools as accessible as this one, I do think rdf triplestores would have a much higher uptake by now!</p>
+<p>&nbsp;</p>
+<h3>5. Useful resources</h3>
+<p><strong>> Documentation</strong></p>
+<li><a href="http://docs.stardog.com/">http://docs.stardog.com/</a></li>
+<p><strong>> Mailing list</strong></p>
+<li><a href="https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog">https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog</a></li>
+<p><strong>> Python API</strong></p>
+<li>If you&#8217;re a <em>pythonista</em>, this small library can be useful: <a href="https://github.com/knorex/pystardog/wiki">https://github.com/knorex/pystardog/wiki</a></li>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2530</post-id>	</item>
+	</channel>
+</rss>

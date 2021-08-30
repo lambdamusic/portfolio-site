@@ -1,0 +1,556 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Parerga und Paralipomena  &raquo; Blog Archive   &raquo; RDF programming with AllegroCL and AllegroGraph		</title>
+		<meta name="generator" content="WordPress 5.2.11" /> <!-- leave this for stats -->
+		<link rel="stylesheet" href="../../../../wp-content/themes/ub_modio/style.css" type="text/css" media="screen" />
+		<link rel="alternate" type="application/rss+xml" title="Parerga und Paralipomena RSS Feed" href="../../../../feed/index.html" />
+		<link rel="pingback" href="http://www.michelepasin.org/blog/xmlrpc.php" />
+		
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" type="text/css" href="http://www.michelepasin.org/blog/wp-content/themes/ub_modio/ie.css">
+		<![endif]-->
+		<link rel="shortcut icon" href="http://www.michelepasin.org/blog/2011/04/14/allegro-cl-graph/favicon.ico">
+<link rel='dns-prefetch' href='http://secure.gravatar.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v7.15.1 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+    (window.gaDevIds=window.gaDevIds||[]).push("dZGIzZG");
+	var mi_version         = '7.15.1';
+	var mi_track_user      = true;
+	var mi_no_track_reason = '';
+	
+	var disableStr = 'ga-disable-UA-2000254-3';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+
+	if ( 'undefined' === typeof gaOptout ) {
+		function gaOptout() {
+			__gaTrackerOptout();
+		}
+	}
+	
+	if ( mi_track_user ) {
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+		__gaTracker('create', 'UA-2000254-3', 'auto');
+		__gaTracker('set', 'forceSSL', true);
+		__gaTracker('send','pageview');
+	} else {
+		console.log( "" );
+		(function() {
+			/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+			var noopfn = function() {
+				return null;
+			};
+			var noopnullfn = function() {
+				return null;
+			};
+			var Tracker = function() {
+				return null;
+			};
+			var p = Tracker.prototype;
+			p.get = noopfn;
+			p.set = noopfn;
+			p.send = noopfn;
+			var __gaTracker = function() {
+				var len = arguments.length;
+				if ( len === 0 ) {
+					return;
+				}
+				var f = arguments[len-1];
+				if ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {
+					console.log( 'Not running function __gaTracker(' + arguments[0] + " ....) because you are not being tracked. " + mi_no_track_reason );
+					return;
+				}
+				try {
+					f.hitCallback();
+				} catch (ex) {
+
+				}
+			};
+			__gaTracker.create = function() {
+				return new Tracker();
+			};
+			__gaTracker.getByName = noopnullfn;
+			__gaTracker.getAll = function() {
+				return [];
+			};
+			__gaTracker.remove = noopfn;
+			window['__gaTracker'] = __gaTracker;
+					})();
+		}
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.michelepasin.org\/blog\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.11"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])?!1:!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='../../../../wp-includes/css/dist/block-library/style.min.css%3Fver=5.2.11.css' type='text/css' media='all' />
+<style id='wp-block-library-inline-css' type='text/css'>
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel='stylesheet' id='ctf_styles-css'  href='../../../../wp-content/plugins/custom-twitter-feeds/css/ctf-styles.min.css%3Fver=1.7.css' type='text/css' media='all' />
+<link rel='stylesheet' id='monsterinsights-popular-posts-style-css'  href='../../../../wp-content/plugins/google-analytics-for-wordpress/assets/css/frontend.min.css%3Fver=7.15.1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wordpress-popular-posts-css-css'  href='../../../../wp-content/plugins/wordpress-popular-posts/assets/css/wpp.css%3Fver=5.2.4.css' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='../../../../wp-content/plugins/jetpack/css/jetpack.css%3Fver=8.1.2.css' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var monsterinsights_frontend = {"js_events_tracking":"true","download_extensions":"doc,pdf,ppt,zip,xls,docx,pptx,xlsx","inbound_paths":"[]","home_url":"http:\/\/www.michelepasin.org\/blog","hash_tracking":"false"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/google-analytics-for-wordpress/assets/js/frontend.min.js%3Fver=7.15.1'></script>
+<script type='application/json' id="wpp-json">
+{"sampling_active":0,"sampling_rate":100,"ajax_url":"http:\/\/www.michelepasin.org\/blog\/wp-json\/wordpress-popular-posts\/v1\/popular-posts","ID":1274,"token":"10a27ddbef","lang":0,"debug":0}
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/wordpress-popular-posts/assets/js/wpp.min.js%3Fver=5.2.4'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery.js%3Fver=1.12.4-wp'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min.js%3Fver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='A Space Odyssey Live with Philharmonia Orchestra' href='../../09/a-space-odyssey-live-with-philharmonia-orchestra/index.html' />
+<link rel='next' title='Ether festival' href='../../16/ether-festival/index.html' />
+<meta name="generator" content="WordPress 5.2.11" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='https://wp.me/pW0Ls-ky' />
+<link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=http:%252F%252Fwww.michelepasin.org%252Fblog%252F2011%252F04%252F14%252Fallegro-cl-graph%252F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=http:%252F%252Fwww.michelepasin.org%252Fblog%252F2011%252F04%252F14%252Fallegro-cl-graph%252F&amp;format=xml" />
+<style data-context="foundation-flickity-css">/*! Flickity v2.0.2
+http://flickity.metafizzy.co
+---------------------------------------------- */.flickity-enabled{position:relative}.flickity-enabled:focus{outline:0}.flickity-viewport{overflow:hidden;position:relative;height:100%}.flickity-slider{position:absolute;width:100%;height:100%}.flickity-enabled.is-draggable{-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.flickity-enabled.is-draggable .flickity-viewport{cursor:move;cursor:-webkit-grab;cursor:grab}.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down{cursor:-webkit-grabbing;cursor:grabbing}.flickity-prev-next-button{position:absolute;top:50%;width:44px;height:44px;border:none;border-radius:50%;background:#fff;background:hsla(0,0%,100%,.75);cursor:pointer;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.flickity-prev-next-button:hover{background:#fff}.flickity-prev-next-button:focus{outline:0;box-shadow:0 0 0 5px #09f}.flickity-prev-next-button:active{opacity:.6}.flickity-prev-next-button.previous{left:10px}.flickity-prev-next-button.next{right:10px}.flickity-rtl .flickity-prev-next-button.previous{left:auto;right:10px}.flickity-rtl .flickity-prev-next-button.next{right:auto;left:10px}.flickity-prev-next-button:disabled{opacity:.3;cursor:auto}.flickity-prev-next-button svg{position:absolute;left:20%;top:20%;width:60%;height:60%}.flickity-prev-next-button .arrow{fill:#333}.flickity-page-dots{position:absolute;width:100%;bottom:-25px;padding:0;margin:0;list-style:none;text-align:center;line-height:1}.flickity-rtl .flickity-page-dots{direction:rtl}.flickity-page-dots .dot{display:inline-block;width:10px;height:10px;margin:0 8px;background:#333;border-radius:50%;opacity:.25;cursor:pointer}.flickity-page-dots .dot.is-selected{opacity:1}</style><style data-context="foundation-slideout-css">.slideout-menu{position:fixed;left:0;top:0;bottom:0;right:auto;z-index:0;width:256px;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none}.slideout-menu.pushit-right{left:auto;right:0}.slideout-panel{position:relative;z-index:1;will-change:transform}.slideout-open,.slideout-open .slideout-panel,.slideout-open body{overflow:hidden}.slideout-open .slideout-menu{display:block}.pushit{display:none}</style>
+<link rel='dns-prefetch' href='http://v0.wordpress.com/'/>
+<style type='text/css'>img#wpstats{display:none}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="RDF programming with AllegroCL and AllegroGraph" />
+<meta property="og:url" content="http://www.michelepasin.org/blog/2011/04/14/allegro-cl-graph/" />
+<meta property="og:description" content="Allegro Common Lisp (wikipedia) is a commercial implementation of the Common Lisp programming language developed by Franz Inc. Allegro CL provides the full ANSI Common Lisp standard &#8211; but mor…" />
+<meta property="article:published_time" content="2011-04-14T14:19:46+00:00" />
+<meta property="article:modified_time" content="2011-04-14T14:19:46+00:00" />
+<meta property="og:site_name" content="Parerga und Paralipomena" />
+<meta property="og:image" content="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.46.491.png" />
+<meta property="og:image:width" content="2400" />
+<meta property="og:image:height" content="1500" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:text:title" content="RDF programming with AllegroCL and AllegroGraph" />
+<meta name="twitter:card" content="summary" />
+
+<!-- End Jetpack Open Graph Tags -->
+<style>.ios7.web-app-mode.has-fixed header{ background-color: rgba(3,122,221,.88);}</style>			<style type="text/css" id="wp-custom-css">
+				.entry ul li {
+	list-style: disc;
+}
+
+.entry ol li {
+	list-style: lower-roman;
+}
+
+			</style>
+			</head>
+	<body>
+		<div class="page">
+			<div id="header">
+				<a href="../../../../index.html">Parerga und Paralipomena</a> / <span class="description">At the core of all well-founded belief lies belief that is unfounded &#8211; Wittgenstein</span><span style="float:right;"><a href="../../../../feed/index.html" title="">
+						<img src="../../../../wp-content/themes/ub_modio/images/rss_black.png" alt="Parerga und Paralipomena Feed" width="14" height="14"/>
+					</a>
+				</span>
+			</div><!-- end header --><div id="content" class="widecolumn">
+
+		<div class="post" id="post-1274">
+		<h2><a href="index.html" rel="bookmark" title="Permanent Link: RDF programming with AllegroCL and AllegroGraph">RDF programming with AllegroCL and AllegroGraph</a>
+		</h2>
+		<div class="entry">
+				<p>Allegro Common Lisp (<a href="http://en.wikipedia.org/wiki/Allegro_Common_Lisp">wikipedia</a>) is a commercial implementation of the <a href="http://en.wikipedia.org/wiki/Common_Lisp">Common Lisp</a> programming language developed by <a href="http://www.franz.com/">Franz Inc</a>. Allegro CL provides the full ANSI Common Lisp standard &#8211; but more interestingly for me, it also provides a very comprehensive suite of tools for semantic web programming. So I decided to give it a go, in what follows I just put together some notes on how to get started quickly.</p>
+<p>Franz Inc. offers a whole bunch of semantic technologies, including: </p>
+<li><strong>AllegroCL</strong>: a Common <strong>Lisp implementation </strong>(<a href="http://www.franz.com/products/allegro-common-lisp/">homepage</a> | <a href="http://www.franz.com/downloads/clp/validate_survey">install</a> | <a href="http://www.franz.com/support/faq//">faq</a> | <a href="http://www.franz.com/support/documentation/8.2/doc/introduction.htm">documentation</a>) described as the &#8220;<em>most powerful dynamic object-oriented development system available today</em>&#8220;. It runs on all major operating systems, and it includes a cross-platform GUI too (which is not always the case for Lisp implementations!).</li>
+<li><strong>AllegroGraph</strong>: (<a href="http://www.franz.com/agraph/allegrograph/">home</a> | <a href="http://www.franz.com/agraph/support/documentation/v4/agraph-introduction.html">docs</a> | <a href="http://www.franz.com/agraph/downloads/">install</a>) this is a high-performance, persistent RDF <strong>triplestore</strong>. It allegedly can &#8220;<em>scale to billions of triples while maintaining superior performance</em>&#8221; and supports SPARQL, RDFS++, and Prolog reasoning from numerous client applications (python too, as discussed in a <a href="../../../02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-pro.html">previous post</a>).</li>
+<li><strong>AllegroCache</strong>: (<a href="http://www.franz.com/products/allegrocache/">home</a> | <a href="http://www.franz.com/products/allegrocache/acache_docs.lhtml">docs</a> | <a href="http://www.franz.com/products/allegrocache/download/dist/download">install</a>) this is a dynamic object caching <strong>database</strong> system. It allows programmers to work directly with objects as if they were in memory while in fact the object data is always stored persistently. It supports a full transaction model with long and short transactions, and meets the classic ACID requirements for a reliable and robust database. </li>
+<li><strong>Gruff</strong>: (<a href="http://www.franz.com/agraph/gruff/">home</a> | <a href="http://www.franz.com/agraph/gruff/gruff_documentation.html">docs</a> | <a href="http://www.franz.com/agraph/gruff/index.lhtml#download">install</a>) is an rdf <strong>graphical browser</strong> that attempts to make data retrieval more pleasant and powerful with a variety of tools for laying out cyclical graphs, displaying tables of properties, managing queries, and building queries as visual diagrams (btw thanks to <a href="http://twitter.com/mr56k">Matteo</a> for mentioning Gruff to me!)</li>
+<h3>Installing AllegroCL</h3>
+<p>The <strong>good news</strong> is that if you follow the installation instructions for AllegroCL, this will include also AllegroGraph and AllegroCache. Long story short, I was able to get started with this environment <em>surprisingly</em> quickly. The <a href="http://www.franz.com/downloads/clp/validate_survey">installation</a> on OSX involves only two steps (after filling out a form): getting the GTK+ framework (a <a href="http://en.wikipedia.org/wiki/GTK%2B">cross-platform graphical toolkit</a>) and then downloading the Lisp image. Double-click, install, and et-voila&#8217; you&#8217;re done with it.</p>
+<p>Here&#8217;s how the Lisp IDE looks like: </p>
+<p><a href="../../../../wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.46.491.png"><img src="../../../../wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.46.491.png" alt="Screen shot 2011 04 14 at 13 46 49" border="0" width="400" height="300" /></a></p>
+<p>The IDE includes also an integrated patches-loading tool, which you should run straightaway to get the latest versions of several libraries needed by AllegroCL (wonder whether it&#8217;s <em>that</em> easy to install all the standard Lisp packages too..):</p>
+<p><a href="../../../../wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.31.431.png"><img src="../../../../wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.31.431.png" alt="Screen shot 2011 04 14 at 13 31 43" border="0" width="400" height="300" /></a></p>
+<p>Finally, in order to run AllegroGraph too it&#8217;s necessary to invoke an update command manually, which is easily done:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow:auto;'>CG-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>3</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>SYSTEM.UPDATE:INSTALL-ALLEGROGRAPH</span><span style='color:#308080; '>)</span>
+Checking available AllegroGraph versions<span style='color:#308080; '>.</span><span style='color:#308080; '>.</span><span style='color:#308080; '>.</span>
+Making temporary directory <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>/tmp/tempa18825120705a/</span><span style='color:#308080; '>)</span>
+Retrieving agraph-<span style='color:#008000; '>3.3</span>-acl8<span style='color:#308080; '>.</span><span style='color:#008c00; '>2</span>-macosx86<span style='color:#308080; '>.</span>tgz into temporary directory
+Extracting tar archive <span style='color:#308080; '>/</span>tmp<span style='color:#308080; '>/</span>tempa18825120705a<span style='color:#308080; '>/</span>agraph-<span style='color:#008000; '>3.3</span>-acl8<span style='color:#308080; '>.</span><span style='color:#008c00; '>2</span>-macosx86<span style='color:#308080; '>.</span>tgz
+Installing <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>code<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>.</span>fasl
+Installing <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span>
+
+*********************
+
+To use the newly downloaded AllegroGraph you can load it by
+evaluating the following forms<span style='color:#400000; '>:</span>
+
+  <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>REQUIRE</span> <span style='color:#400000; '>:AGRAPH</span><span style='color:#308080; '>)</span>
+
+Ancillary files are located in ``<span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#406080; '>'</span><span style='color:#406080; '>'</span><span style='color:#308080; '>.</span>
+</pre>
+<h3>Installing Gruff</h3>
+<p>I also downloaded <a href="http://www.franz.com/agraph/gruff/">Gruff</a> and ran it. Again, on OSx the whole process was very very straightforward. I loaded up an ontology stored in an RDF/XML file and here&#8217;s the result:</p>
+<p><a href="../../../../wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-14.18.561.png"><img src="../../../../wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-14.18.561.png" alt="Screen shot 2011 04 14 at 14 18 56" border="0" width="400" height="300" /></a></p>
+<p>Very very impressive &#8211; that&#8217;s my conclusion. <a href="http://www.franz.com/agraph/gruff/">Gruff</a> offers plenty of features for viewing and also editing the rdf graph (check out the <a href="http://www.franz.com/agraph/gruff/index.lhtml#download">video tutorials on the homepage</a>); with a little practice, I think it wouldn&#8217;t be that difficult to use it for creating rdf models by hand (eg as an alternative to tools like Protege). The main advantage in my view is that it&#8217;s highly interactive: being able to switch very quickly from a graph-view to a tabular one is extremely practical when inspecting or creating an rdf model.</p>
+<h3>Time to write some code</h3>
+<p>Haven&#8217;t been writing Lisp in a while, but since we&#8217;ve got till here it would be a shame not to get our hands dirty a little, right?</p>
+<li><strong>Tip</strong>: a nice folk named <a href="http://www.markwatson.com/">Mark Watson</a> has written a couple of books that show how to use Allegro Graph, and he&#8217;s making them available for free on his website (thanks!). Check them out: <a href="http://www.markwatson.com/opencontent/book_lisp.pdf">Practical Semantic Web and Linked Data Applications, Common Lisp Edition</a>, and <a href="http://www.markwatson.com/opencontent/book_java.pdf">Practical Semantic Web and Linked Data Applications, Java, Scala, Clojure, and JRuby Edition</a> </li>
+<p>I had a quick look at the first book mentioned (&#8220;<em>Practical Semantic Web and Linked Data Applications, Common Lisp Edition</em>&#8220;), and tried to follow the examples presented. Here&#8217;s the result..</p>
+<p>First, let&#8217;s load up AllegroGraph from AllegroCL and set up a Lisp reader macro (named &#8216;!&#8217;) that makes it easier to enter URIs and literals: </p>
+<pre style='color:#000020;background:#f6f8ff; overflow:auto; height:300px;'>CG-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>2</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>REQUIRE</span> <span style='color:#400000; '>:AGRAPH</span><span style='color:#308080; '>)</span>
+<span style='color:#595979; '>; Fast loading /Applications/AllegroCL/code/AGRAPH.fasl</span>
+<span style='color:#595979; '>;   Fast loading</span>
+<span style='color:#595979; '>;      /Applications/AllegroCL/code/acache-2.1.12.fasl</span>
+AllegroCache version <span style='color:#008000; '>2.1</span><span style='color:#308080; '>.</span><span style='color:#008c00; '>12</span>
+<span style='color:#595979; '>;     Fast loading /Applications/AllegroCL/code/SAX.001</span>
+<span style='color:#595979; '>;;; Installing sax patch, version 1.</span>
+<span style='color:#595979; '>;       Fast loading from bundle code/ef-e-anynl.fasl.</span>
+<span style='color:#595979; '>;         Fast loading from bundle code/ef-e-crlf.fasl.</span>
+<span style='color:#595979; '>;         Fast loading from bundle code/ef-e-cr.fasl.</span>
+<span style='color:#595979; '>;   Fast loading from bundle code/streamp.fasl.</span>
+<span style='color:#595979; '>;   Fast loading /Applications/AllegroCL/code/ACLRPC.fasl</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>pim001<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+<span style='color:#595979; '>;   Fast loading /Applications/AllegroCL/code/PROLOG.001</span>
+<span style='color:#595979; '>;;; Installing prolog patch, version 1.</span>
+<span style='color:#595979; '>;   Fast loading /Applications/AllegroCL/code/DATETIME.001</span>
+<span style='color:#595979; '>;;; Installing datetime patch, version 1.</span>
+<span style='color:#595979; '>;   Fast loading /Applications/AllegroCL/code/streamc.002</span>
+<span style='color:#595979; '>;;; Installing streamc patch, version 2.</span>
+<span style='color:#595979; '>;     Fast loading from bundle code/efft-utf8-base.fasl.</span>
+<span style='color:#595979; '>;     Fast loading from bundle code/efft-void.fasl.</span>
+<span style='color:#595979; '>;     Fast loading from bundle code/efft-latin1-base.fasl.</span>
+<span style='color:#595979; '>;   Fast loading from bundle code/streamm.fasl.</span>
+<span style='color:#595979; '>;   Fast loading from bundle code/ef-e-crcrlf.fasl.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio001<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio002<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio003<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio004<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio005<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio006<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio007<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio008<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio009<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio010<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio011<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio012<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio013<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio014<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio015<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio016<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio017<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio018<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+Loaded patch file <span style='color:#308080; '>/</span>Applications<span style='color:#308080; '>/</span>AllegroCL<span style='color:#308080; '>/</span>update<span style='color:#308080; '>/</span>agraph<span style='color:#308080; '>/</span><span style='color:#008000; '>3.3</span><span style='color:#308080; '>/</span>pio019<span style='color:#308080; '>.</span><span style='color:#008c00; '>001</span><span style='color:#308080; '>.</span>
+AllegroGraph Lisp Edition <span style='color:#008000; '>3.3</span> <span style='color:#308080; '>[</span>built on February <span style='color:#008c00; '>17</span><span style='color:#0066ee; '>,</span> <span style='color:#008c00; '>2010</span> <span style='color:#008c00; '>13</span><span style='color:#400000; '>:53</span><span style='color:#400000; '>:35</span> GMT-<span style='color:#008c00; '>0800</span><span style='color:#308080; '>]</span>
+Copyright <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>c</span><span style='color:#308080; '>)</span> <span style='color:#008c00; '>2005</span>-<span style='color:#008c00; '>2010</span> Franz Inc<span style='color:#308080; '>.</span>  All Rights Reserved<span style='color:#308080; '>.</span>
+AllegroGraph contains patent-pending technology<span style='color:#308080; '>.</span>
+With patches<span style='color:#400000; '>:</span> io001<span style='color:#0066ee; '>,</span> io002<span style='color:#0066ee; '>,</span> io003<span style='color:#0066ee; '>,</span> io004<span style='color:#0066ee; '>,</span> io005<span style='color:#0066ee; '>,</span> io996<span style='color:#0066ee; '>,</span> io007<span style='color:#0066ee; '>,</span> io008<span style='color:#0066ee; '>,</span> io009<span style='color:#0066ee; '>,</span> io010<span style='color:#0066ee; '>,</span> io011<span style='color:#0066ee; '>,</span> io012<span style='color:#0066ee; '>,</span> io013<span style='color:#0066ee; '>,</span> io014<span style='color:#0066ee; '>,</span> io015<span style='color:#0066ee; '>,</span> io016<span style='color:#0066ee; '>,</span> io017<span style='color:#0066ee; '>,</span> io018<span style='color:#0066ee; '>,</span> io019<span style='color:#308080; '>.</span>
+<span style='color:#7d0045; '>T</span>
+CG-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>3</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>in-package</span> <span style='color:#400000; '>:db</span><span style='color:#308080; '>.</span>agraph<span style='color:#308080; '>.</span>user<span style='color:#308080; '>)</span>
+#<span style='color:#308080; '>&lt;</span>The DB<span style='color:#308080; '>.</span>AGRAPH<span style='color:#308080; '>.</span>USER package<span style='color:#308080; '>></span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>4</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>enable-!-reader</span><span style='color:#308080; '>)</span>
+#<span style='color:#308080; '>&lt;</span>Function READ-TOKEN<span style='color:#308080; '>></span>
+<span style='color:#7d0045; '>T</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>5</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>enable-print-decoded</span> <span style='color:#7d0045; '>t</span><span style='color:#308080; '>)</span>
+<span style='color:#7d0045; '>T</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>6</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:display-namespaces</span><span style='color:#308080; '>)</span>
+rdfs <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2000</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>01</span><span style='color:#308080; '>/</span>rdf-schema#
+err <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2005</span><span style='color:#308080; '>/</span>xqt-errors#
+fn <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2005</span><span style='color:#308080; '>/</span>xpath-functions#
+rdf <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>1999</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>02</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>22</span>-rdf-syntax-ns#
+xs <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2001</span><span style='color:#308080; '>/</span>XMLSchema#
+xsd <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2001</span><span style='color:#308080; '>/</span>XMLSchema#
+owl <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2002</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>07</span><span style='color:#308080; '>/</span>owl#
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>9</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>!</span>rdfs<span style='color:#400000; '>:class</span>
+<span style='color:#308080; '>!</span>rdfs<span style='color:#400000; '>:class</span>
+</pre>
+<p>Next thing, we want to <strong>create a local triplestore</strong>, <strong>register</strong> a dummy <strong>namespace</strong> and <strong>add</strong> a couple of <strong>triples</strong> to it. Finally, we <strong>dump</strong> the whole triplestore in a <strong>file</strong>.</p>
+<pre style='color:#000020;background:#f6f8ff; overflow:auto;'>TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>10</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:create-triple-store</span> <span style='color:#1060b6; '>"~/tmp/rdfstore_1"</span><span style='color:#308080; '>)</span>
+#<span style='color:#308080; '>&lt;</span>DB<span style='color:#308080; '>.</span>AGRAPH<span style='color:#400000; '>:</span><span style='color:#400000; '>:TRIPLE-DB</span> <span style='color:#308080; '>/</span>Users<span style='color:#308080; '>/</span>mac<span style='color:#308080; '>/</span>tmp<span style='color:#308080; '>/</span>rdfstore_1<span style='color:#0066ee; '>,</span> open @ #x21dfc80a<span style='color:#308080; '>></span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>11</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>register-namespace</span> <span style='color:#1060b6; '>"kb"</span> <span style='color:#1060b6; '>"http://michelepasin.org/rdfs#"</span><span style='color:#308080; '>)</span>
+<span style='color:#1060b6; '>"http://michelepasin.org/rdfs#"</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>12</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:display-namespaces</span><span style='color:#308080; '>)</span>
+rdfs <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2000</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>01</span><span style='color:#308080; '>/</span>rdf-schema#
+err <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2005</span><span style='color:#308080; '>/</span>xqt-errors#
+fn <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2005</span><span style='color:#308080; '>/</span>xpath-functions#
+rdf <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>1999</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>02</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>22</span>-rdf-syntax-ns#
+xs <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2001</span><span style='color:#308080; '>/</span>XMLSchema#
+xsd <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2001</span><span style='color:#308080; '>/</span>XMLSchema#
+owl <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>2002</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>07</span><span style='color:#308080; '>/</span>owl#
+kb <span style='color:#308080; '>=</span><span style='color:#308080; '>></span> http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>rdfs#
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>13</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>defvar</span> *doc1* <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>resource</span> <span style='color:#1060b6; '>"http://www.michelepasin.org/research/"</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span>
+*DOC1*
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>14</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> *doc1*
+<span style='color:#308080; '>!</span><span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>research<span style='color:#308080; '>/</span><span style='color:#308080; '>></span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>15</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:add-triple</span> *doc1* <span style='color:#308080; '>!</span>rdf<span style='color:#400000; '>:type</span> <span style='color:#308080; '>!</span>kb<span style='color:#400000; '>:article</span><span style='color:#308080; '>)</span>
+<span style='color:#008c00; '>1</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>16</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:add-triple</span> *doc1* <span style='color:#308080; '>!</span>rdf<span style='color:#400000; '>:comment</span> <span style='color:#308080; '>!</span><span style='color:#1060b6; '>"what a wonderful book"</span><span style='color:#308080; '>)</span>
+<span style='color:#008c00; '>2</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>17</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:get-triples-list</span><span style='color:#308080; '>)</span>
+<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>&lt;</span> type article<span style='color:#308080; '>></span> <span style='color:#308080; '>&lt;</span> comment what a wonderful book<span style='color:#308080; '>></span><span style='color:#308080; '>)</span>
+<span style='color:#7d0045; '>NIL</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>18</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>print-triples</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:get-triples-list</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span>
+<span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>research<span style='color:#308080; '>/</span><span style='color:#308080; '>></span> <span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>1999</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>02</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>22</span>-rdf-syntax-ns#type<span style='color:#308080; '>></span> <span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>rdfs#article<span style='color:#308080; '>></span> <span style='color:#308080; '>.</span>
+<span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>research<span style='color:#308080; '>/</span><span style='color:#308080; '>></span> <span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>1999</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>02</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>22</span>-rdf-syntax-ns#comment<span style='color:#308080; '>></span> <span style='color:#1060b6; '>"what a wonderful book"</span> <span style='color:#308080; '>.</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>19</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>with-open-file</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>output</span> <span style='color:#1060b6; '>"~/tmp/testoutput"</span> <span style='color:#400000; '>:direction</span> <span style='color:#400000; '>:output</span> <span style='color:#400000; '>:if-does-not-exist</span> <span style='color:#400000; '>:create</span><span style='color:#308080; '>)</span>
+<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>print-triples</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>triple-store:get-triples-list</span><span style='color:#308080; '>)</span> <span style='color:#400000; '>:stream</span> output <span style='color:#400000; '>:format</span> <span style='color:#400000; '>:ntriple</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span>
+</pre>
+<p>If we open the contents of the newly created &#8220;~/tmp/testoutput&#8221; file, here&#8217;s what we would find:</p>
+<pre style='color:#000000;background:#f1f0f0; overflow:auto;'><span style='color:#806030; '>&lt;</span>http<span style='color:#806030; '>:</span><span style='color:#806030; '>/</span><span style='color:#806030; '>/</span>www<span style='color:#806030; '>.</span>michelepasin<span style='color:#806030; '>.</span>org<span style='color:#806030; '>/</span>research<span style='color:#806030; '>/</span><span style='color:#806030; '>></span>
+    <span style='color:#806030; '>&lt;</span>http<span style='color:#806030; '>:</span><span style='color:#806030; '>/</span><span style='color:#806030; '>/</span>www<span style='color:#806030; '>.</span>w3<span style='color:#806030; '>.</span>org<span style='color:#806030; '>/</span><span style='color:#c00000; '>1999</span><span style='color:#806030; '>/</span><span style='color:#c00000; '>02</span><span style='color:#806030; '>/</span><span style='color:#c00000; '>22</span><span style='color:#806030; '>-</span>rdf<span style='color:#806030; '>-</span>syntax<span style='color:#806030; '>-</span>ns<span style='color:#c34e00; '>#type> </span>
+        <span style='color:#806030; '>&lt;</span>http<span style='color:#806030; '>:</span><span style='color:#806030; '>/</span><span style='color:#806030; '>/</span>michelepasin<span style='color:#806030; '>.</span>org<span style='color:#806030; '>/</span>rdfs<span style='color:#c34e00; '>#article> .</span>
+<span style='color:#806030; '>&lt;</span>http<span style='color:#806030; '>:</span><span style='color:#806030; '>/</span><span style='color:#806030; '>/</span>www<span style='color:#806030; '>.</span>michelepasin<span style='color:#806030; '>.</span>org<span style='color:#806030; '>/</span>research<span style='color:#806030; '>/</span><span style='color:#806030; '>></span>
+    <span style='color:#806030; '>&lt;</span>http<span style='color:#806030; '>:</span><span style='color:#806030; '>/</span><span style='color:#806030; '>/</span>www<span style='color:#806030; '>.</span>w3<span style='color:#806030; '>.</span>org<span style='color:#806030; '>/</span><span style='color:#c00000; '>1999</span><span style='color:#806030; '>/</span><span style='color:#c00000; '>02</span><span style='color:#806030; '>/</span><span style='color:#c00000; '>22</span><span style='color:#806030; '>-</span>rdf<span style='color:#806030; '>-</span>syntax<span style='color:#806030; '>-</span>ns<span style='color:#c34e00; '>#comment> </span>
+        <span style='color:#e60000; '>"what a wonderful book"</span> <span style='color:#806030; '>.</span>
+</pre>
+<p>Finally, let&#8217;s use <a href="http://www.xml.com/pub/a/2005/11/16/introducing-sparql-querying-semantic-web-tutorial.html?page=1">SPARQL</a> to launch a (quite dumb) query that retrieves all triples from the triplestore :</p>
+<pre style='color:#000020;background:#f6f8ff; overflow:auto; height:400px;'>TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>53</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span> <span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>sparql:run-sparql</span> 
+ " PREFIX kb<span style='color:#400000; '>:</span> <span style='color:#308080; '>&lt;</span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>research#<span style='color:#308080; '>></span> 
+   SELECT <span style='color:#308080; '>?</span>article_uri <span style='color:#308080; '>?</span>pred <span style='color:#308080; '>?</span>obj WHERE <span style='color:#308080; '>{</span>
+   <span style='color:#308080; '>?</span>article_uri <span style='color:#308080; '>?</span>pred <span style='color:#308080; '>?</span>obj <span style='color:#308080; '>.</span> 
+   <span style='color:#308080; '>}</span>"
+ <span style='color:#308080; '>)</span>
+<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>?</span>xml version<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"1.0"</span><span style='color:#308080; '>?</span><span style='color:#308080; '>></span>
+<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>!</span>-- Generated by AllegroGraph <span style='color:#008000; '>3.3</span> --<span style='color:#308080; '>></span>
+<span style='color:#308080; '>&lt;</span>sparql xmlns<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"http://www.w3.org/2005/sparql-results#"</span><span style='color:#308080; '>></span>
+  <span style='color:#308080; '>&lt;</span>head<span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span>variable name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"article_uri"</span><span style='color:#308080; '>/</span><span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span>variable name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"pred"</span><span style='color:#308080; '>/</span><span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span>variable name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"obj"</span><span style='color:#308080; '>/</span><span style='color:#308080; '>></span>
+  <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>head<span style='color:#308080; '>></span>
+  <span style='color:#308080; '>&lt;</span>results<span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span>result<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span>binding name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"article_uri"</span><span style='color:#308080; '>></span>
+        <span style='color:#308080; '>&lt;</span>uri<span style='color:#308080; '>></span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>research<span style='color:#308080; '>/</span><span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>uri<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>binding<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span>binding name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"pred"</span><span style='color:#308080; '>></span>
+        <span style='color:#308080; '>&lt;</span>uri<span style='color:#308080; '>></span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>1999</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>02</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>22</span>-rdf-syntax-ns#type<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>uri<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>binding<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span>binding name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"obj"</span><span style='color:#308080; '>></span>
+        <span style='color:#308080; '>&lt;</span>uri<span style='color:#308080; '>></span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>rdfs#article<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>uri<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>binding<span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>result<span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span>result<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span>binding name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"article_uri"</span><span style='color:#308080; '>></span>
+        <span style='color:#308080; '>&lt;</span>uri<span style='color:#308080; '>></span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>michelepasin<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span>research<span style='color:#308080; '>/</span><span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>uri<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>binding<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span>binding name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"pred"</span><span style='color:#308080; '>></span>
+        <span style='color:#308080; '>&lt;</span>uri<span style='color:#308080; '>></span>http<span style='color:#400000; '>:</span><span style='color:#308080; '>/</span><span style='color:#308080; '>/</span>www<span style='color:#308080; '>.</span>w3<span style='color:#308080; '>.</span>org<span style='color:#308080; '>/</span><span style='color:#008c00; '>1999</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>02</span><span style='color:#308080; '>/</span><span style='color:#008c00; '>22</span>-rdf-syntax-ns#comment<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>uri<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>binding<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span>binding name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>"obj"</span><span style='color:#308080; '>></span>
+        <span style='color:#308080; '>&lt;</span>literal<span style='color:#308080; '>></span>what a wonderful book<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>literal<span style='color:#308080; '>></span>
+      <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>binding<span style='color:#308080; '>></span>
+    <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>result<span style='color:#308080; '>></span>
+  <span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>results<span style='color:#308080; '>></span>
+<span style='color:#308080; '>&lt;</span><span style='color:#308080; '>/</span>sparql<span style='color:#308080; '>></span>
+<span style='color:#7d0045; '>T</span>
+<span style='color:#400000; '>:SELECT</span>
+<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>|?article_uri|</span> <span style='color:#308080; '>|</span><span style='color:#308080; '>?</span>pred<span style='color:#308080; '>|</span> <span style='color:#308080; '>|</span><span style='color:#308080; '>?</span>obj<span style='color:#308080; '>|</span><span style='color:#308080; '>)</span>
+TRIPLE-STORE-USER<span style='color:#308080; '>(</span><span style='color:#200080; font-weight:bold; '>54</span><span style='color:#308080; '>)</span><span style='color:#400000; '>:</span>
+</pre>
+<p>That&#8217;s all for now; this is enough to get started with Allegro-CL and the semantic web programming libraries it contains. </p>
+<p>Mind that I&#8217;ve only scratched the surface here, there&#8217;s <strong>lots and lots more</strong> that can be done with this environment. If you want to explore these topics further make sure you have a look at <a href="http://www.markwatson.com/opencontent/book_lisp.pdf">Watson&#8217;s book</a>, &#8217;cause that&#8217;s a great (and free) resource, really! </p>
+<p>&nbsp;</p>
+				
+			<!-- <script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script> -->
+			<!-- AddToAny BEGIN -->
+			<a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_256_24.png" width="256" height="24" border="0" alt="Share/Bookmark"/></a>
+			<script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
+			<!-- AddToAny END -->
+			
+			
+						</div><!-- end entry --><br/><br/>
+	</div><!-- end post -->
+	<ul class="post">
+		<li><b>META</b> / ABOUT THIS POST</li>
+		<li>This entry was posted
+									on Thursday, April 14th, 2011 at 2:19 pm			and is filed under <a href="../../../../category/semantic-web/index.html" rel="category tag">Semantic Web</a>, <a href="../../../../category/techlife/index.html" rel="category tag">TechLife</a>. Tags: <a href="../../../../tag/ide/index.html" rel="tag">ide</a>, <a href="../../../../tag/lisp/index.html" rel="tag">lisp</a>, <a href="../../../../tag/triplestore/index.html" rel="tag">triplestore</a>.
+			You can follow any responses to this entry through the <a href="feed/index.html">RSS 2.0</a> feed.
+
+									Both comments and pings are currently closed.
+
+								</li>
+	</ul><br/><br/>
+	<ul class="post">
+		<li><b>PAGES</b> / FORWARD OR BACK?</li>
+		<li>Previous: <a href="../../09/a-space-odyssey-live-with-philharmonia-orchestra/index.html" rel="prev">A Space Odyssey Live with Philharmonia Orchestra</a></li>
+		<li>Next: <a href="../../16/ether-festival/index.html" rel="next">Ether festival</a></li>
+	</ul><br/><br/>
+					
+							
+			
+	
+<!-- You can start editing here. -->
+
+
+			<!-- If comments are closed. -->
+<p class="nocomments">Comments are closed.</p>
+
+	
+
+
+	</div><!-- end content -->	
+<div id="sidebar">
+
+
+	<p class="menu"><B>INSIDE&nbsp;&nbsp;&nbsp;&nbsp;&larr;</b></p><br/>
+		<p><a href="../../../../index.html">Parerga und Paralipomena</a></p>
+		<li id="pages-2" class="widget widget_pages"><h2 class="widgettitle">Pages</h2>
+		<ul>
+			<li class="page_item page-item-532"><a href="../../../../about-2/index.html">About Me</a></li>
+<li class="page_item page-item-3355"><a href="../../../../latest-from-twitter/index.html">Latest from Twitter</a></li>
+		</ul>
+			</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Categories</h2>
+		<ul>
+				<li class="cat-item cat-item-408"><a href="../../../../category/computermusic/index.html">Computer Music</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="../../../../category/culturalinformatics/index.html">Cultural Informatics</a>
+</li>
+	<li class="cat-item cat-item-455"><a href="../../../../category/data-science/index.html">Data science</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="../../../../category/informationarchitecture/index.html">Information Architecture</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="../../../../category/justblogging/index.html">Just Blogging</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="../../../../category/semantic-web/index.html">Semantic Web</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="../../../../category/techlife/index.html">TechLife</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="../../../../category/tips-and-tricks/index.html">Tips and Tricks</a>
+</li>
+		</ul>
+			</li>
+ 
+		
+		<!-- mikele: the stuff above doesn't get activated so I put it here -->
+<br/><br/>
+		<ul style="text-align:right;">
+
+			<p><b>FIND</b> / SEARCH</p>
+			<form method="get" id="search_form" action="../../../../index.html">
+				<input type="text" class="search_input" value="Type and hit enter..." name="s" id="s" onfocus="if (this.value == 'Type and hit enter...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Type and hit enter...';}" />
+				<input type="hidden" id="searchsubmit" value="Search" />
+			</form>
+		</ul><br/>
+
+
+<!-- 	
+		<!-- mikele: adsense 
+		<br/>
+                 <ul style="text-align:right;">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+		<ins class="adsbygoogle"
+		     style="display:block"
+		     data-ad-client="ca-pub-8108687655438913"
+		     data-ad-slot="2230044782"
+		     data-ad-format="auto"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+                </ul><br/> 
+-->
+
+		
+		
+		
+	</div><!-- end sidebar --><div class="footer">
+	<p><b>FOOTER</b> / LEST WE FORGET<br/>
+<!-- If you'd like to support WordPress, having the "powered by" link someone on your blog is the best way, it's our only promotion or advertising. -->
+
+<!-- Change this theme as you wish, but PLEASE keep a visible link to http://www.upstartblogger.com/ somewhere on every page of your blog (for example, in the sidebar or footer). You aren't going to delete the WordPress link, are you? Please don't delete mine. Thanks! -->
+		Copyright &copy; 2004-2007 by Parerga und Paralipomena, unless otherwise noted. All rights reserved. Powered by <a href="http://wordpress.org/" title="WordPress">WordPress</a>. Original Modio theme by <a href="http://www.upstartblogger.com/" title="Upstart Blogger">Upstart Blogger</a>, modified by Michele Pasin.
+
+
+
+
+
+
+</p>
+	<!-- 42 queries. 0.335 seconds. -->
+
+
+
+
+
+</div><!-- end footer -->
+
+<!-- Start of Flickr Badge -->
+<style type="text/css">
+#flickr_badge_source_txt {padding:0; font: 11px Arial, Helvetica, Sans serif; color:#666666;}
+#flickr_badge_icon {display:block !important; margin:0 !important; border: 1px solid rgb(0, 0, 0) !important;}
+#flickr_icon_td {padding:0 5px 0 0 !important;}
+.flickr_badge_image {text-align:center !important;}
+.flickr_badge_image img {border: 1px solid black !important;}
+#flickr_www {display:block; padding:0 10px 0 10px !important; font: 11px Arial, Helvetica, Sans serif !important; color:#3993ff !important;}
+#flickr_badge_uber_wrapper table {margin-left:265px; margin-top:50px; position:absolute;}
+#flickr_badge_uber_wrapper a:hover,
+#flickr_badge_uber_wrapper a:link,
+#flickr_badge_uber_wrapper a:active,
+#flickr_badge_uber_wrapper a:visited {text-decoration:none !important; background:inherit !important;color:#3993ff;}
+#flickr_badge_wrapper {background-color:#ffffff;border: solid 1px #000000}
+#flickr_badge_source {padding:0 !important; font: 11px Arial, Helvetica, Sans serif !important; color:#666666 !important;}
+</style>
+<table id="flickr_badge_uber_wrapper" cellpadding="0" cellspacing="10" border="0"><tr><td><table cellpadding="0" cellspacing="10" border="0" id="flickr_badge_wrapper">
+<tr>
+<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=5&display=random&size=s&layout=h&source=user&user=76186999%40N00"></script>
+</tr>
+</table>
+</td></tr></table>
+<!-- End of Flickr Badge -->
+
+
+</div><!-- end page -->
+<!-- Powered by WPtouch: 4.3.39 -->	<div style="display:none">
+	</div>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2021Augaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/modules/wpgroho.js%3Fver=5.2.11'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/wp-embed.min.js%3Fver=5.2.11'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-202134.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:8.1.2',blog:'13825966',post:'1274',tz:'0',srv:'www.michelepasin.org'} ]);
+	_stq.push([ 'clickTrackerInit', '13825966', '1274' ]);
+</script>
+</body>
+</html>

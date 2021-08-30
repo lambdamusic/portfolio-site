@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>static &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/static/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Tue, 24 Jan 2012 10:26:09 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Setting up the new &#8216;staticfiles&#8217; app on Django 1.3</title>
+		<link>http://www.michelepasin.org/blog/2012/01/24/setting-up-the-new-staticfiles-app-on-django-1-3/</link>
+				<pubDate>Tue, 24 Jan 2012 10:26:09 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[static]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1734</guid>
+				<description><![CDATA[Even if I&#8217;ve been using Django 1.3 for a while now, I&#8217;ve been holding off on some of it new features, such as the new way to handle static files via a new app called (guess what) staticfiles . Essentially, what the new static app does is allowing you to leave all static files within [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Even if I&#8217;ve been using Django 1.3 for a while now, I&#8217;ve been holding off on some of it new features, such as the new way to handle static files via a <a href="https://docs.djangoproject.com/en/dev/howto/static-files/">new app</a> called (guess what) <span style="font-family:monospace;color:#000000; ">staticfiles</span> . Essentially, what the new static app does is allowing you to leave all static files within the <span style="font-family:monospace;color:#000000; ">/static</span> directory of each of the django apps you&#8217;re using. This is for development; when you&#8217;re deploying and (most likely) want these files to be served via a (faster) separate server process, the <span style="font-family:monospace;color:#000000; ">staticfiles</span> app helps you gather all of them into a predefined directory by using a handy shell command.</p>
+<p>That&#8217;s the gist of it. I finally took a look at <span style="font-family:monospace;color:#000000; ">django.contrib.staticfiles</span> last week, so here&#8217;s a brief report on how to get it to work (p.s. a couple of related threads on stack overflow can be found <a href="http://stackoverflow.com/questions/7620307/how-do-i-serve-css-to-django-in-development">here</a> and <a href="http://stackoverflow.com/questions/4565935/django-staticfiles-app-help">here</a>).</p>
+<h3>1. Set up the static and media paths settings</h3>
+<p>My previous settings looked like this:</p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'><span style='color:#3f7f59; '># the site root is one level up from where settings.py is</span>
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__)).rsplit(<span style='color:#2a00ff; '>'/'</span>, 1)[0]
+MEDIA_ROOT = os.path.join(SITE_ROOT, <span style='color:#2a00ff; '>'static'</span>)
+MEDIA_URL = <span style='color:#2a00ff; '>'/static/'</span>
+ADMIN_MEDIA_PREFIX = <span style='color:#2a00ff; '>'/static/adminmedia1.3/'</span>
+</pre>
+<p>The media root contained all of my static files, some of which I had to copy in there manually, each time I added a new django app to my project. On the production server, the <span style="font-family:monospace;color:#000000; ">MEDIA_URL</span> is mapped to a local path (in the apache conf settings) that is essentially a duplicate of the <span style="font-family:monospace;color:#000000; ">/static</span> directory we have in the development server. The only difference, the static stuff is delivered directly by Apache, bypassing django (=so to make it faster). </p>
+<p>The <strong>new way</strong> of declaring these variables is this instead:</p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'>MEDIA_URL = <span style='color:#2a00ff; '>'/media/uploads/'</span>
+STATIC_URL = <span style='color:#2a00ff; '>'/media/static/'</span>
+ADMIN_MEDIA_PREFIX = <span style='color:#2a00ff; '>'/media/static/admin/'</span>
+
+<span style='color:#3f7f59; '># Absolute path to the directory that holds media uploaded</span>
+<span style='color:#3f7f59; '># I keep the uploads folder at the project-root level server</span>
+MEDIA_ROOT = os.path.join(SITE_ROOT, <span style='color:#2a00ff; '>'uploads'</span>) 
+
+<span style='color:#3f7f59; '># physical location of extra static files in development server</span>
+STATICFILES_DIRS = (
+    os.path.join(SITE_ROOT, <span style='color:#2a00ff; '>'myproject/static'</span>),
+)
+<span style='color:#3f7f59; '># path used with "python manage.py collectstatic"</span>
+<span style='color:#3f7f59; '># I normally put this at the project-root level that contains also the wsgi files for apache</span>
+STATIC_ROOT = os.path.join(SITE_ROOT, <span style='color:#2a00ff; '>'apache/static'</span>)
+</pre>
+<p>Obviously on a production server, you will have to set up the required aliases in the <a href="https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/#serving-files">apache conf</a> file, so that <span style="font-family:monospace;color:#000000; ">MEDIA_URL</span> and <span style="font-family:monospace;color:#000000; ">STATIC_URL</span> are pointing at the right physical locations: </p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'>Alias /media/uploads/ /path/to/mysite.com/uploads/
+Alias /media/static/ /path/to/mysite.com/apache/static/
+</pre>
+<p>The <a href="https://docs.djangoproject.com/en/dev/howto/static-files/">django docs</a> explain the new approach with these words: </p>
+<blockquote><p>In previous versions of Django, it was common to place static assets in MEDIA_ROOT along with user-uploaded files, and serve them both at MEDIA_URL. Part of the purpose of introducing the staticfiles app is to make it easier to keep static files separate from user-uploaded files.</p>
+<p>For this reason, you need to make your MEDIA_ROOT and MEDIA_URL different from your STATIC_ROOT and STATIC_URL.</p>
+<p>The STATIC_ROOT directory is not necessary in the development server: in fact  is only used if you call the collectstatic manangement command. It&#8217;s not needed to add the directory to the STATICFILES_DIRS setting to serve your static files!</p>
+<p>Furthemore, the STATICFILES_DIRS variable tells Django of the location of static files which are not within specific applications. Mind that during the &#8216;collection&#8217; operations also these files will be copied into the STATIC_ROOT directory.</p></blockquote>
+<p>&nbsp;</p>
+<h3>2. Add context processors and the app</h3>
+<p>Add the required context processor in <span style="font-family:monospace;color:#000000; ">setting.py</span>: </p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'>TEMPLATE_CONTEXT_PROCESSORS += <span style='color:#2a00ff; '>'django.core.context_processors.static'</span></pre>
+<p>Add also the new static app to your installed apps:</p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'>INSTALLED_APPS = (
+....    
+    <span style='color:#2a00ff; '>'django.contrib.staticfiles'</span>,    
+.....
+)
+</pre>
+<blockquote><p>Keep in mind that it&#8217;s very likely that in your templates you will have to manually change all references to <span style="font-family:monospace;color:#000000; ">MEDIA_URL</span> into <span style="font-family:monospace;color:#000000; ">STATIC_URL</span>!</p></blockquote>
+<p>&nbsp;</p>
+<h3>3. Url configuration</h3>
+<p>On your <strong>development</strong> server, this is what you would do:</p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'><span style='color:#7f0055; font-weight:bold; '>from</span> django.contrib.staticfiles.urls <span style='color:#7f0055; font-weight:bold; '>import</span> staticfiles_urlpatterns
+<span style='color:#3f7f59; '># ... the rest of your URLconf goes here ...</span>
+urlpatterns += staticfiles_urlpatterns()
+</pre>
+<p>This will inspect your <span style="font-family:monospace;color:#000000; ">STATIC_URL</span> setting and wire up the view to serve static files accordingly. Don&#8217;t forget to set the <span style="font-family:monospace;color:#000000; ">STATICFILES_DIRS</span> setting appropriately to let <span style="font-family:monospace;color:#000000; ">django.contrib.staticfiles</span> know where to look for files additionally to files in app directories.</p>
+<blockquote><p><strong>WARNING</strong>: the <span style="font-family:monospace;color:#000000; ">staticfiles_urlpatterns</span> helper function will only work if <span style="font-family:monospace;color:#000000; ">DEBUG</span> is True and your <span style="font-family:monospace;color:#000000; ">STATIC_URL</span> setting is neither empty nor a full URL such as http://static.example.com/ (more info <a href="https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-development-view">here</a>).</p></blockquote>
+<p>Finally, mind that in this new approach you will need to arrange for serving of files in <span style="font-family:monospace;color:#000000; ">MEDIA_ROOT</span> yourself; <strong>staticfiles does not deal with user-uploaded files at all</strong>. You can, however, use <span style="font-family:monospace;color:#000000; ">django.views.static.serve()</span> view for serving <span style="font-family:monospace;color:#000000; ">MEDIA_ROOT</span> in development (for more info see <a href="https://docs.djangoproject.com/en/dev/howto/static-files/#serving-other-directories">Serving other directories</a>).</p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'><span style='color:#7f0055; font-weight:bold; '>if</span> settings.LOCAL_SERVER:     <span style='color:#3f7f59; '># ===> static files on local machine    </span>
+    urlpatterns += patterns(<span style='color:#2a00ff; '>''</span>, 
+        (<span style='color:#2a00ff; '>r'^media/uploads/(?P&lt;path>.*)$'</span>, <span style='color:#2a00ff; '>'django.views.static.serve'</span>, 
+            {<span style='color:#2a00ff; '>'document_root'</span>: settings.MEDIA_ROOT, <span style='color:#2a00ff; '>'show_indexes'</span>: True}),
+        )
+</pre>
+<p>In the end, I conflated the two things into this code (ps I&#8217;ve added a variable called <span style="font-family:monospace;color:#000000; ">LOCAL_SERVER</span> to quickly see which platform I&#8217;m on):</p>
+<pre style='overflow:auto;color:#000000;background:#ffffff;'><span style='color:#7f0055; font-weight:bold; '>if</span> settings.LOCAL_SERVER:     <span style='color:#3f7f59; '># ===> static files on local machine</span>
+    <span style='color:#7f0055; font-weight:bold; '>from</span> django.contrib.staticfiles.urls <span style='color:#7f0055; font-weight:bold; '>import</span> staticfiles_urlpatterns
+    urlpatterns += staticfiles_urlpatterns()    
+    urlpatterns += patterns(<span style='color:#2a00ff; '>''</span>, 
+        (<span style='color:#2a00ff; '>r'^media/uploads/(?P&lt;path>.*)$'</span>, <span style='color:#2a00ff; '>'django.views.static.serve'</span>, 
+            {<span style='color:#2a00ff; '>'document_root'</span>: settings.MEDIA_ROOT, <span style='color:#2a00ff; '>'show_indexes'</span>: True}),
+        )
+</pre>
+<p>&nbsp;</p>
+<h3>4. On your production server</h3>
+<p>Easy: in your urlconf there&#8217;s no need to do anything, as static urls are usually handled by Apache directly. However for that to happen what you have to do is collect all static files into the directory that apache is looking into, that is, the one specified with the <span style="font-family:monospace;color:#000000; ">STATIC_ROOT</span> setting. This is how you do it: </p>
+<blockquote><p><code><font size="2" face="Courier New" color="black">python manage.py collectstatic</font></code></p></blockquote>
+<p>This shell command will<br />
+a) look in the <span style="font-family:monospace;color:#000000; ">/static/</span> directory of each of the apps of yours <span style="font-family:monospace;color:#000000; ">INSTALLED_APPS</span> setting.<br />
+b) look in directories you specify in the <span style="font-family:monospace;color:#000000; ">STATICFILES_DIRS</span> setting.</p>
+<p>…and copy whatever it finds into the <span style="font-family:monospace;color:#000000; ">STATIC_ROOT</span> directory, as defined in your settings (ps: it&#8217;ll preserve the original directory structure). </p>
+<p>That&#8217;s all folks!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1734</post-id>	</item>
+	</channel>
+</rss>

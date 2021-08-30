@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>dbpedia &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/dbpedia/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Fri, 30 Nov 2018 16:48:44 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Exploring scholarly publications using DBPedia concepts: an experiment</title>
+		<link>http://www.michelepasin.org/blog/2018/11/23/exploring-scholarly-publications-via-dbpedia/</link>
+				<pubDate>Fri, 23 Nov 2018 17:18:48 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[d3.js]]></category>
+		<category><![CDATA[dbpedia]]></category>
+		<category><![CDATA[linkeddata]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=3254</guid>
+				<description><![CDATA[This post is about a recent prototype I developed, which allows to explore a sample collection of Springer Nature publications using subject tags automatically extracted from DBPedia. DBpedia is a crowd-sourced community effort to extract structured content from the information created in various Wikimedia projects. This structured information resembles an open knowledge graph (OKG) which is available for everyone [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>This post is about a recent <a class="jive-link-external-small" href="http://hacks2019.michelepasin.org/dbpedialinks" target="_blank" rel="nofollow noopener">prototype</a> I developed, which allows to explore a sample collection of Springer Nature publications using subject tags automatically extracted from DBPedia.</p>
+<blockquote><p><a class="jive-link-external-small" href="https://wiki.dbpedia.org/about" target="_blank" rel="nofollow noopener">DBpedia</a> is a crowd-sourced community effort to extract structured content from the information created in various Wikimedia projects. This structured information resembles an open knowledge graph (OKG) which is available for everyone on the Web.</p></blockquote>
+<h3>Datasets</h3>
+<p>The dataset I used is the result of a <strong>collaboration with <a href="https://twitter.com/beyza__yaman?lang=en">Beyza Yaman</a></strong>, a researcher working with the <a class="jive-link-external-small" href="https://wiki.dbpedia.org/about" target="_blank" rel="nofollow noopener">DBpedia</a> team in Leipzig, who used the <a class="jive-link-external-small" href="https://scigraph.springernature.com/explorer" target="_blank" rel="nofollow noopener">SciGraph datasets</a> as input to the <a class="jive-link-external-small" href="https://www.dbpedia-spotlight.org/" target="_blank" rel="nofollow noopener">DBPedia-Spotlight</a> entity-mining tool.</p>
+<p>By using <a class="jive-link-external-small" href="https://www.dbpedia-spotlight.org/" target="_blank" rel="nofollow noopener">DBPedia-Spotlight</a> we automatically associated DBpedia subjects terms to a  subset of abstracts available in the SciGraph dataset (around 90k abstract from 2017 publications).</p>
+<p>The prototype allows to search the Springer Nature publications using these subject terms.</p>
+<p>Also, DBpedia subjects include definitions and semantic relationships (which we are currently not using, but one can imagine how they could be raw material for generating more thematic &#8216;pathways&#8217;).</p>
+<h3>Results: serendipitous discovery of scientific publications</h3>
+<p><strong>The results are pretty encouraging: </strong>despite the fact that the concepts extracted sometimes are only marginally relevant (or not relevant at all), the breadth and depth of the DBpedia classification makes the interactive <strong>exploration</strong> quite <strong>interesting</strong> and <strong>serendipitous</strong>.</p>
+<p style="padding-left: 30px;">You can judge for yourself: <strong>the tool is available here</strong>: <a class="jive-link-external-small" href="http://hacks2019.michelepasin.org/dbpedialinks/" target="_blank" rel="nofollow noopener">http://hacks2019.michelepasin.org/dbpedialinks</a></p>
+<p>The purpose of this prototype is to evaluate the quality of the tagging and generate ideas for future applications. So any kind of feedback or ideas is very welcome!</p>
+<p>We are working with Beyza to write up the results of this investigation as a research paper. The data and software is already freely available on <a class="jive-link-external-small" href="https://github.com/dbpedia/sci-graph-links/" target="_blank" rel="nofollow noopener">github</a>.</p>
+<h3>A couple of screenshots:</h3>
+<p>Eg see the topic &#8216;<a href="http://hacks2019.michelepasin.org/dbpedialinks/entities/63004">artificial intelligence</a>&#8216;</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.15.07.png"><img class=" wp-image-3255  aligncenter" src="http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.15.07.png" alt="Screen Shot 2018-11-23 at 17.15.07.png" width="557" height="347" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.15.07.png 1201w, http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.15.07-300x187.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.15.07-768x478.png 768w, http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.15.07-1024x638.png 1024w" sizes="(max-width: 557px) 100vw, 557px" /></a></p>
+<p>One can add more subjects to a search in order to &#8216;zoom in&#8217; into a results set, eg by <a class="jive-link-external-small" href="http://hacks2019.michelepasin.org/dbpedialinks/entities/63004?filters=61361" target="_blank" rel="nofollow noopener">adding &#8216;China&#8217; </a>to the search:</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.16.38.png"><img class="  wp-image-3256 aligncenter" src="http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.16.38.png" alt="Screen Shot 2018-11-23 at 17.16.38" width="573" height="360" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.16.38.png 1217w, http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.16.38-300x189.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.16.38-768x483.png 768w, http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.16.38-1024x644.png 1024w" sizes="(max-width: 573px) 100vw, 573px" /></a></p>
+<h3>Implementation details</h3>
+<ul>
+<li>Main webapp is using Python and <a href="https://www.djangoproject.com/">Django</a>. I&#8217;ve finally found a good excuse to upgrade to the latest release (<a href="https://docs.djangoproject.com/en/2.1/">2.1</a>) so very proud of myself!</li>
+<li><a href="https://getbootstrap.com/docs/3.3/components/">Bootstrap</a></li>
+<li><a href="https://d3js.org/">d3.js </a>and in particular I&#8217;ve learned a lot from this great <a href="http://bl.ocks.org/eyaler/10586116">force-directed layout example</a></li>
+<li>The Springer Nature <a href="https://scigraph.springernature.com">SciGraph</a> dataset of scientific publications</li>
+<li>The <a href="https://www.dbpedia-spotlight.org/demo/">DBpedia Spotlight</a> tool</li>
+</ul>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">3254</post-id>	</item>
+		<item>
+		<title>DBpedia rocks</title>
+		<link>http://www.michelepasin.org/blog/2007/09/12/dbpedia-rocks/</link>
+				<pubDate>Wed, 12 Sep 2007 09:39:24 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[dbpedia]]></category>
+		<category><![CDATA[linkeddata]]></category>
+		<category><![CDATA[semanticweb]]></category>
+
+		<guid isPermaLink="false">http://people.kmi.open.ac.uk/mikele/blog/?p=250</guid>
+				<description><![CDATA[It&#8217;s not the only semweb repository out there, but for sure it&#8217;s the more interesting. The whole wikipedia has been translated into RDF and made queryable through SPARQL.. lots of potential mashups waiting to be discovered! At the moment i&#8217;m looking at integrating the philosophy KB i&#8217;ve created with information from there&#8230; but I hope [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>It&#8217;s not the only semweb repository out there, but for sure it&#8217;s the more interesting. <a href="http://wiki.dbpedia.org/About">The whole wikipedia has been translated into RDF</a> and made queryable through <a href="http://esw.w3.org/topic/SparqlImplementations">SPARQL</a>.. lots of potential mashups waiting to be discovered! At the moment i&#8217;m looking at integrating the philosophy KB i&#8217;ve created with information from there&#8230; but I hope there&#8217;ll be time to experiment too&#8230;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">250</post-id>	</item>
+	</channel>
+</rss>

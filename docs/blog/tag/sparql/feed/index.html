@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>sparql &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/sparql/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Thu, 06 Nov 2014 17:12:11 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Installing GraphDB (aka OWLIM) triplestore on mac os</title>
+		<link>http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/</link>
+				<pubDate>Thu, 16 Oct 2014 19:05:38 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[database]]></category>
+		<category><![CDATA[graph]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[sparql]]></category>
+		<category><![CDATA[triplestore]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2507</guid>
+				<description><![CDATA[GraphDB (formerly called OWLIM) is an RDF triplestore which is used &#8211; among others &#8211; by large organisations like the BBC or the British Museum. I&#8217;ve recently installed the LITE release of this graph database on my mac, so what follows is a simple write up of the steps that worked for me. Haven&#8217;t played [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://www.ontotext.com/products/ontotext-graphdb/">GraphDB</a> (formerly called OWLIM) is an RDF triplestore which is used &#8211; among others &#8211; by large organisations like the <a href="http://www.ontotext.com/customers/">BBC or the British Museum</a>. I&#8217;ve recently installed the LITE release of this graph database on my mac, so what follows is a simple write up of the steps that worked for me. </p>
+<p>Haven&#8217;t played much with the database yet, but all in all, the installation was much simpler than expected (ps: this old <a href="https://code.google.com/p/sgvizler/wiki/HowTo_MacOWLIMLiteTomcat7Apache">recipe on google code</a> was very helpful in steering me in the right direction with the whole Tomcat/Java setup).</p>
+<h3>1. Requirements</h3>
+<p><strong>OSX</strong>: Mavericks 10.9.5<br />
+<strong>XCode</strong>: latest version <a href="https://developer.apple.com/xcode/downloads/">available from Apple</a><br />
+<strong>HOMEBREW</strong>: <span style="font-family:monospace;color:#000000; ">ruby -e &#8220;$(curl -fsSkL raw.github.com/mxcl/homebrew/go)&#8221;</span><br />
+<strong>Tomcat7</strong>: <span style="font-family:monospace;color:#000000; ">brew install tomcat</span><br />
+<strong>JAVA</strong>: available <a href="http://support.apple.com/kb/dl1572">from Apple</a> </p>
+<p>Finally &#8211; we obviously want to get a copy of <strong>OWLIM-Lite</strong> too: <a href="http://www.ontotext.com/owlim/downloads">http://www.ontotext.com/owlim/downloads</a></p>
+<h3>2. Setting up</h3>
+<p>After you have downloaded and unpacked the archive, you must simply <strong>copy</strong> these two files:</p>
+<p><span style="font-family:monospace;color:#000000; ">owlim-lite/sesame_owlim/openrdf-sesame.war </span><br />
+<span style="font-family:monospace;color:#000000; ">owlim-lite/sesame_owlim/openrdf-workbench.war </span></p>
+<p>..to the Tomcat <span style="font-family:monospace;color:#000000; ">webapps</span> folder:</p>
+<p><span style="font-family:monospace;color:#000000; ">/usr/local/Cellar/tomcat/7.0.29/libexec/webapps/ </span></p>
+<p>Essentially that&#8217;s because OWLIM-Lite is packaged as a storage and inference layer for the <a href="http://rdf4j.org/">Sesame RDF framework</a>, which runs here as a component within the <a href="http://tomcat.apache.org/">Tomcat</a> server (note: there are <a href="https://confluence.ontotext.com/display/OWLIMv53/OWLIM-Lite+Installation#OWLIM-LiteInstallation-Usefulinformation">other ways to run OWLIM</a>, but this one seemed the quickest).</p>
+<h3>3. Starting Tomcat</h3>
+<p>First I created a symbolic link in my <span style="font-family:monospace;color:#000000; ">~/Library</span> folder, so to better manage new versions (as suggested <a href="http://wolfpaulus.com/jounal/mac/tomcat7">here</a>).</p>
+<p><span style="font-family:monospace;color:#000000; ">sudo ln -s /usr/local/Cellar/tomcat/7.0.39 ~/Library/Tomcat</span></p>
+<p>Then in order to start/stop Tomcat it&#8217;s enough to use the <span style="font-family:monospace;color:#000000; ">catalina</span> command:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+[michele.pasin]@here:~/Library/Tomcat/bin>./catalina start
+Using CATALINA_BASE:   /usr/local/Cellar/tomcat/7.0.39/libexec
+Using CATALINA_HOME:   /usr/local/Cellar/tomcat/7.0.39/libexec
+Using CATALINA_TMPDIR: /usr/local/Cellar/tomcat/7.0.39/libexec/temp
+Using JRE_HOME:        /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+Using CLASSPATH:       /usr/local/Cellar/tomcat/7.0.39/libexec/bin/bootstrap.jar:/usr/local/Cellar/tomcat/7.0.39/libexec/bin/tomcat-juli.jar
+
+[michele.pasin]@here:~/Library/Tomcat/bin>./catalina stop
+Using CATALINA_BASE:   /usr/local/Cellar/tomcat/7.0.39/libexec
+Using CATALINA_HOME:   /usr/local/Cellar/tomcat/7.0.39/libexec
+Using CATALINA_TMPDIR: /usr/local/Cellar/tomcat/7.0.39/libexec/temp
+Using JRE_HOME:        /System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home
+Using CLASSPATH:       /usr/local/Cellar/tomcat/7.0.39/libexec/bin/bootstrap.jar:/usr/local/Cellar/tomcat/7.0.39/libexec/bin/tomcat-juli.jar
+</pre>
+<blockquote><p>Tip: Tomcat runs by default on port 8080. That can be changed pretty easily by modifying a parameter in <span style="font-family:monospace;color:#000000; ">server.xml</span> in <span style="font-family:monospace;color:#000000; ">{Tomcat installation folder}/libexec/conf/</span> more <a href="http://www.mkyong.com/tomcat/how-to-change-tomcat-default-port/">details here</a>.
+</p></blockquote>
+<p>&nbsp;</p>
+<h3>4. Testing the Graph database</h3>
+<p>Start a browser and go to the Workbench Web application using a URL of this form: <span style="font-family:monospace;color:#000000; ">http://localhost:8080/openrdf-workbench/</span> (substituting localhost and the 8080 port number as appropriate). You should see something like this:</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/SesameWorkbench.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/SesameWorkbench.png"  alt="SesameWorkbench" border="0" width="600" style="width: 600px; margin-left:auto; margin-right:auto; " /></a></p>
+<p>After selecting a server, click ‘New repository’.</p>
+<p>Select ‘<strong>OWLIM-Lite</strong>’ from the drop-down and enter the repository ID and description. Then click ‘next’.</p>
+<p>Fill in the fields as required and click ‘create’.</p>
+<p>That&#8217;s it! A message should be displayed that gives details of the new repository and this should also appear in the repository list (click ‘repositories’ to see this).</p>
+<h3>5. Loading a big dataset</h3>
+<p>I&#8217;ve set out to load the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com&#8217;s legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>.</p>
+<p>The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that&#8217;s been published by NPG and Scientific American from 1845 till nowadays. The file size is <strong>~6 gigs</strong> so it&#8217;s not a huge dataset. Still, something big enough to pose a challenge to my macbook pro (8gigs RAM). </p>
+<p>First, I <strong>increased the memory</strong> allocated to the Tomcat application to 5G. It was enough to create a <span style="font-family:monospace;color:#000000; ">setenv.sh</span> file in the <span style="font-family:monospace;color:#000000; ">${tomcat-folder}\bin\</span> folder. The file contains this line: </p>
+<p><span style="font-family:monospace;color:#000000; ">CATALINA_OPTS=&#8221;$CATALINA_OPTS -server -Xms5g -Xmx5g&#8221;</span></p>
+<blockquote><p>More details on Tomcat&#8217;s and Java memory issues are<a href="http://www.mkyong.com/tomcat/tomcat-javalangoutofmemoryerror-permgen-space/"> available here</a>.</p></blockquote>
+<p>Then I used OWLIM&#8217;s <strong>web interface</strong> to create a new graph repository and upload the dataset file into it (I previously downloaded a copy of the dataset to my computer so to work with local files only). </p>
+<p>It took around 10 minutes for the application to upload the file into the triplestore, and 2-3 minutes for OWLIM to process it. <strong>Much much faster than what I expected</strong>. Only minor issue, the lack of notifications (in the UI) of what was going on. Not a big deal in my case, but with larger dataset uploads it might be a potential downer. </p>
+<p>Note: I used the web form to upload the dataset, but there are also <a href="http://answers.ontotext.com/questions/1045/archive-loading-a-large-triple-store-using-owlim-se">ways to do that from the command line</a> (which will probably result in even faster uploads).</p>
+<h3>6. Useful information</h3>
+<p><strong>> Sparql endpoints</strong></p>
+<p>All of your repositories come also with a handy SPARQL endpoint, which is available at this url: <span style="font-family:monospace;color:#000000; ">http://localhost:8080/openrdf-sesame/repositories/test1</span> (just change the last bit so that it matches your repository name).</p>
+<p><strong>> Official documentation</strong></p>
+<li><a href="https://confluence.ontotext.com/display/GraphDB6/">https://confluence.ontotext.com/display/GraphDB6</a></li>
+<p><strong>> Ontotext&#8217;s Q&#038;A forum</strong></p>
+<li><a href="http://answers.ontotext.com">http://answers.ontotext.com</a></li>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2507</post-id>	</item>
+		<item>
+		<title>Textmate bundle for Turtle and Sparql</title>
+		<link>http://www.michelepasin.org/blog/2013/08/13/textmate-bundle-for-turtle-and-sparql/</link>
+				<pubDate>Tue, 13 Aug 2013 17:07:34 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[semanticweb]]></category>
+		<category><![CDATA[sparql]]></category>
+		<category><![CDATA[textmate]]></category>
+		<category><![CDATA[turtle]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2392</guid>
+				<description><![CDATA[I recently ran into the Textmate bundle for Turtle, an extension for the Textmate osx editor aimed at facilitating working with RDF and SPARQL. If you happen to be using these technologies, well I&#8217;d suggest you take a look at the following post. The Resource Description Framework is a general-purpose language for representing information which [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I recently ran into the Textmate <a href="https://github.com/peta/turtle.tmbundle">bundle for Turtle</a>, an extension for the <a href="https://github.com/textmate/textmate">Textmate</a> osx editor aimed at facilitating working with RDF and SPARQL. If you happen to be using these technologies, well I&#8217;d suggest you take a look at the following post.  </p>
+<p>The Resource Description Framework is a <em>general-purpose language for representing information</em> which is widely used on the web in order to encode metadata in a machine-interoperable format. </p>
+<p>Turtle, the <a href="http://www.w3.org/TeamSubmission/turtle/">terse RDF Triple Language</a>, is a textual syntax for RDF which aims at human readability and compactness (among other things).<br />
+This is what it looks like:</p>
+<pre><code>
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#>.
+@base <http://example.org/schemas/vehicles>
+
+:MotorVehicle a rdfs:Class.
+
+:PassengerVehicle a rdfs:Class;
+   rdfs:subClassOf :MotorVehicle.
+
+:Person a rdfs:Class.
+
+xsd:integer a rdfs:Datatype.
+
+:registeredTo a rdf:Property;
+   rdfs:domain :MotorVehicle;
+   rdfs:range  :Person.
+
+:myLittleCar a PassengerVehicle
+</code></pre>
+<p>The termite library in question, in a nutshell, provides a bunch of snippets and query mechanisms that make it easier to work with Turtle RDF and related technologies.<br />
+More precisely, here&#8217;s the official features breakdown:</p>
+<blockquote>
+<li>Language grammar for Turtle and SPARQL 1.1</li>
+<li>Powerful (!) auto-completion (live-aggregated)</li>
+<li>Documentation for classes and roles/properties at your fingertips (live-aggregated)</li>
+<li>Interactive SPARQL query scratchpad</li>
+<li>Some snippets (prefixes and document skeleton)</li>
+<li>Solid syntax validation</li>
+<li>Commands for instant graph visualization of a knowledge base (requires <a href="http://www.graphviz.org/">Graphviz</a> and <a href="http://librdf.org/raptor/">Raptor</a>)</li>
+<li>Conversion between all common RDF formats</li>
+</blockquote>
+<h3>Example</h3>
+<p>In order to query a SPARQL endpoint (eg DBPedia) just type this in and run it (apple-R):</p>
+<pre><code>
+#QUERY &lt;http://dbpedia.org/sparql&gt;                    
+SELECT DISTINCT ?s ?label                             
+WHERE {                                               
+    ?s &lt;http://dbpedia.org/property/season&gt; ?o .      
+}  
+</code></pre>
+<p>Obviously you can query any endpoint, e.g. <a href="http://data.nature.com/query">data.nature.com</a>: </p>
+<pre><code>
+
+#QUERY &lt;http://data.nature.com/sparql&gt;
+
+PREFIX bibo:&lt;http://purl.org/ontology/bibo/&gt;
+PREFIX dc:&lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX dcterms:&lt;http://purl.org/dc/terms/&gt;
+PREFIX foaf:&lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX npg:&lt;http://ns.nature.com/terms/&gt;
+PREFIX npgg:&lt;http://ns.nature.com/graphs/&gt;
+PREFIX npgx:&lt;http://ns.nature.com/extensions/&gt;
+PREFIX owl:&lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX prism:&lt;http://prismstandard.org/namespaces/basic/2.1/&gt;
+PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX sc:&lt;http://purl.org/science/owl/sciencecommons/&gt;
+PREFIX skos:&lt;http://www.w3.org/2004/02/skos/core#&gt;
+PREFIX void:&lt;http://rdfs.org/ns/void#&gt;
+PREFIX xsd:&lt;http://www.w3.org/2001/XMLSchema#&gt;
+
+
+SELECT *                            
+WHERE {                                                
+    ?doi a npg:Article . 
+    ?doi dc:title ?title .
+    ?doi prism:publicationDate ?date
+} 
+limit 100 
+
+</code></pre>
+<p>And this is just the tip of the iceberg. Autocompletion, visualisations etc… it may be the Textmate-Semantic Web swiss army knife you&#8217;ve been looking for. </p>
+<p><img src="https://raw.github.com/peta/turtle.tmbundle/master/Support/img/screenshot-editor.png" alt="" title="" border="0" width="" height="700px" style="float:left;" /></p>
+<p>&nbsp;</p>
+<p><img src="https://raw.github.com/peta/turtle.tmbundle/master/Support/img/screenshot-sparql.png" alt="" title="" border="0" width="" height="700px" style="float:left;" /></p>
+<p>&nbsp;</p>
+<p><img src="https://raw.github.com/peta/turtle.tmbundle/master/Support/img/screenshot-visu.png" alt="" title="" border="0" width="" height="700px" style="float:left;" /></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2392</post-id>	</item>
+		<item>
+		<title>A few useful Linked Data resources</title>
+		<link>http://www.michelepasin.org/blog/2011/03/17/a-few-useful-linked-data-resources/</link>
+				<pubDate>Thu, 17 Mar 2011 11:32:00 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[linkeddata]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[semanticweb]]></category>
+		<category><![CDATA[sparql]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1135</guid>
+				<description><![CDATA[Done a bit of semantic web work in the last couple of weeks, which gave me a chance to explore better the current web-scenario around this topic. I&#8217;m working on some example applications myself, but in the meanwhile I thought I&#8217;d share here a couple of quite useful links I ran into. Development Tools: Quick [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Done a bit of semantic web work in the last couple of weeks, which gave me a chance to explore better the current web-scenario around this topic. I&#8217;m working on some example applications myself, but in the meanwhile I thought I&#8217;d share here a couple of quite useful links I ran into.</p>
+<h3>Development Tools:</h3>
+<p></p>
+<li><a href="http://graphite.ecs.soton.ac.uk/browser/">Quick and Dirty RDF browser</a>. It does just what is says: you pass it an rdf file and it helps you making sense of it. For example, check out the rdf graph describing the city of Southampton on DbPedia: <a href="http://graphite.ecs.soton.ac.uk/browser/?uri=http://dbpedia.org/resource/Southampton">http://dbpedia.org/resource/Southampton</a>. Minimal, fast and useful! </li>
+<li><a href="http://prefix.cc/">Namespace lookup service for RDF developers</a>. The intention of this service is to simplify a common task in the work of RDF developers: remembering and looking up URI prefixes.You can look up prefixes from the search box on the homepage, or directly by typing URLs into your browser bar, such as <a href="http://prefix.cc/foaf">http://prefix.cc/foaf</a> or <a href="http://prefix.cc/foaf,dc,owl.ttl">http://prefix.cc/foaf,dc,owl.ttl</a>.</li>
+<li><a href="http://www.knoodl.com/ui/home.html">Knoodl</a> Knoodl is an online tool for creating, managing, and analyzing RDF/OWL descriptions. It has several features that support collaboration in all stages of these activities (eg it lets you create quite easily discussion forums around ontological modeling decisions). It&#8217;s hosted in the Amazon EC2 cloud and can be used for free. </li>
+<li><a href="https://chrome.google.com/extensions/search?itemlang=&#038;hl=en&#038;q=rdf">Rdf Goole chrome extensions</a>. Just a list of extensions for Google Chrome that make working with rdf much simpler, for example by detecting rdf annotations embedded in HTML.</li>
+<li><a href="http://getthedata.org/">Get the data</a>. Ask and answer questions about getting, using and sharing data! A StackOverflow clone that crowd-sources the task of finding out whether the data you need are available, and where.</a></li>
+<p>&nbsp;</p>
+<h3>Articles / Tutorials</h3>
+<p></p>
+<li><a href="http://openorg.ecs.soton.ac.uk/index.php/Linked_Data_Guide_for_Newbies">Linked Data Guide for Newbies</a>. It&#8217;s primarily aimed at &#8220;<em>people who&#8217;re tasked with creating RDF and don&#8217;t have time to faff around.</em>&#8221; It&#8217;s a brief and practical introduction to some of the concepts and technical issues behind Linked Data &#8211; simple and effective, although it obviously hides all the most difficult aspects.</li>
+<li><a href="http://blogs.ecs.soton.ac.uk/webteam/2010/11/08/what-you-need-to-know-about-rdfxml/">What you need to know about RDF+XML</a>. Again, another gentle and practical intro.</li>
+<li><a href="http://www.w3.org/DesignIssues/LinkedData.html">Linked Data: design issues</a>. One of the original articles by Berners Lee. It goes a little deeper into the theoretical issues involved with the Linked Data approach.</li>
+<li><a href="http://linkeddatabook.com/editions/1.0/">Linked Data: Evolving the Web into a Global Data Space</a>. Large and thorough resource: this book is freely available online and contains all that you need to become a Linked Data expert &#8211; whatever that means!</li>
+<li><a href="http://memespring.co.uk/2011/01/linked-data-rdfsparql-documentation-challenge/">Linked Data/RDF/SPARQL Documentation Challenge</a>. A recent initiative aimed at pushing people to document the &#8216;path to rdf&#8217; with as many languages and environments as possible. The idea is to move away from some kind of academic-circles-only culture and create something &#8220;<em>closer to the Django introduction tutorial or the MongoDB quick start guide than an academic white paper</em>&#8220;. This blog post is definitely worth checking out imho, especially because of the wealth of responses it has elicited!</li>
+<li><a href="http://www.xml.com/pub/a/2005/11/16/introducing-sparql-querying-semantic-web-tutorial.html?page=1">Introducing SPARQL: Querying the Semantic Web</a>. An in-depth article at XML.com that introduces SPARQL &#8211; the query language and data access protocol for the Semantic Web.</li>
+<li><a href="http://www.pezholio.co.uk/2011/01/a-beginners-guide-to-sparqling-linked-data-part-1/">A beginner’s guide to SPARQLing linked data</a>. A more hands-on description of what SPARQL can do for you.</li>
+<li><a href="http://richard.cyganiak.de/2007/10/lod/">Linked Data: how to get your dataset in the diagram</a>. So you&#8217;ve noticed the Linked Data bubbles growing bigger and bigger. Next step is &#8211; how to contribute and get in there? This article gives you all the info you need to know. </li>
+<li><a href="http://answers.semanticweb.com/"><strike>Semantic Overflow</strike> Answers.semanticweb.com</a>. If you run out of ideas, this is the place where to ask for help!</li>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1135</post-id>	</item>
+	</channel>
+</rss>

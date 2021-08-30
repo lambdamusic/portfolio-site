@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>stardog &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/stardog/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 10 Nov 2014 13:53:52 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Installing Stardog triplestore on mac os</title>
+		<link>http://www.michelepasin.org/blog/2014/11/06/installing-stardog-triplestore-on-mac-os/</link>
+				<pubDate>Thu, 06 Nov 2014 16:02:49 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[rdf]]></category>
+		<category><![CDATA[stardog]]></category>
+		<category><![CDATA[triplestore]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2530</guid>
+				<description><![CDATA[Stardog is an enterprise-level triplestore developed by clarkparsia.com. It combines tools to store and query RDF data with more advanced features for inference and data analytics &#8211; in particular via the built-in Pellet Java reasoner. All of this, combineded with a user experience which is arguably the best you can currently find in the market. [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://www.stardog.com/">Stardog</a> is an enterprise-level triplestore developed by <a href="http://clarkparsia.com/">clarkparsia.com</a>. It combines tools to store and query RDF data with more advanced features for inference and data analytics &#8211; in particular via the built-in <a href="http://clarkparsia.com/pellet/">Pellet Java reasoner</a>. All of this, combineded with a user experience which is arguably the best you can currently find in the market. </p>
+<h3>1. Requirements</h3>
+<p><strong>OSX</strong>: Mavericks 10.9.5 (that&#8217;s what I used, but it&#8217;ll work on older versions too).<br />
+<strong>JAVA</strong>: available <a href="http://support.apple.com/kb/dl1572">from Apple</a>.<br />
+<strong>Stardog</strong>: grab the free <em>community</em> edition at <a href="http://www.stardog.com/">http://www.stardog.com/</a> (you can also get the &#8216;developer&#8217; version for a 30-days trial, which is actually what I did). </p>
+<h3>2. Setting up</h3>
+<p>Good news, it can&#8217;t get any simpler than this. Just unpack the Stardog installer, and you&#8217;re pretty much done (see the <a href="http://docs.stardog.com/quick-start/">online docs</a> for more info). </p>
+<p>Stardog needs to know where to store its databases, so you do that by adding a couple of lines to your <span style="font-family:monospace;color:#000000; ">.bash_profile</span> file:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+
+export STARDOG_HOME="/Users/michele.pasin/Data/Stardog"  # databases will be stored here
+export PATH="/Applications/stardog-2.2.2/bin:$PATH"  # add stardog commands to the path
+alias cdstardog="cd /Applications/stardog-2.2.2"  # just a handy shortcut
+
+</pre>
+<p>Finally, copy the license key file (which should have come together with the installer) into the data folder:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+$ cp stardog-license-key.bin $STARDOG_HOME
+</pre>
+<h3>3. Running Stardog</h3>
+<p>The <span style="font-family:monospace;color:#000000; ">stardog-admin server start</span> command is used to start and stop the server. Then you can use the <span style="font-family:monospace;color:#000000; ">stardog-admin db create</span> command to create a DB and load some data. For example: </p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+
+[michele.pasin]@Tartaruga:~>cdstardog 
+
+[michele.pasin]@l5611:/Applications/stardog-2.2.2>stardog-admin server start
+
+************************************************************
+This copy of Stardog is licensed to MIk (michele.pasin@gmail.com), michelepasin.org
+This is a Community license
+This license does not expire.
+************************************************************
+
+                                                             :;   
+                                      ;;                   `;`:   
+  `'+',    ::                        `++                    `;:`  
+ +###++,  ,#+                        `++                    .     
+ ##+.,',  '#+                         ++                     +    
+,##      ####++  ####+:   ##,++` .###+++   .####+    ####++++#    
+`##+     ####+'  ##+#++   ###++``###'+++  `###'+++  ###`,++,:     
+ ####+    ##+        ++.  ##:   ###  `++  ###  `++` ##`  ++:      
+  ###++,  ##+        ++,  ##`   ##;  `++  ##:   ++; ##,  ++:      
+    ;+++  ##+    ####++,  ##`   ##:  `++  ##:   ++' ;##'#++       
+     ;++  ##+   ###  ++,  ##`   ##'  `++  ##;   ++:  ####+        
+,.   +++  ##+   ##:  ++,  ##`   ###  `++  ###  .++  '#;           
+,####++'  +##++ ###+#+++` ##`   :####+++  `####++'  ;####++`      
+`####+;    ##++  ###+,++` ##`    ;###:++   `###+;   `###++++      
+                                                    ##   `++      
+                                                   .##   ;++      
+                                                    #####++`      
+                                                     `;;;.        
+
+************************************************************
+Stardog server 2.2.2 started on Thu Nov 06 16:41:23 GMT 2014.
+
+Stardog server is listening on all network interfaces.
+SNARL server available at snarl://localhost:5820.
+HTTP server available at http://localhost:5820.
+
+STARDOG_HOME=/Users/michele.pasin/Data/Stardog 
+
+LOG_FILE=/Users/michele.pasin/Data/Stardog/stardog.log
+
+
+[michele.pasin]@l5611:/Applications/stardog-2.2.2>stardog-admin db create -n myDB examples/data/University0_0.owl
+Bulk loading data to new database.
+Parsing triples: 100% complete in 00:00:00 (8.6K triples - 13.2K triples/sec)
+Parsing triples finished in 00:00:00.646
+Creating index: 100% complete in 00:00:00 (93.0K triples/sec)
+Creating index finished in 00:00:00.092
+Computing statistics: 100% complete in 00:00:00 (60.9K triples/sec)
+Computing statistics finished in 00:00:00.140
+Loading complete.
+Inserted 8,521 unique triples from 8,555 read triples in 00:00:01.050 at 8.1K triples/sec
+Bulk load complete.  Loaded 8,521 triples from 1 file(s) in 00:00:01 @ 8.4K triples/sec.
+
+Successfully created database 'myDB'.
+
+[michele.pasin]@Tartaruga:/Applications/stardog-2.2.2>stardog query myDB "SELECT DISTINCT ?s WHERE { ?s ?p ?o } LIMIT 10"
++--------------------------------------------------------+
+|                           s                            |
++--------------------------------------------------------+
+| tag:stardog:api:                                       |
+| http://www.University0.edu                             |
+| http://www.Department0.University0.edu                 |
+| http://www.Department0.University0.edu/FullProfessor0  |
+| http://www.Department0.University0.edu/Course0         |
+| http://www.Department0.University0.edu/GraduateCourse0 |
+| http://www.Department0.University0.edu/GraduateCourse1 |
+| http://www.University84.edu                            |
+| http://www.University875.edu                           |
+| http://www.University241.edu                           |
++--------------------------------------------------------+
+
+Query returned 10 results in 00:00:00.061
+</pre>
+<p>In the snippet above, I&#8217;ve just loaded the test dataset that comes with Stardog into the <span style="font-family:monospace;color:#000000; ">myDB</span> database, then queried it using the <span style="font-family:monospace;color:#000000; ">stardog query</span> command. </p>
+<p>There&#8217;s a <strong>fancy user interface</strong> too, which can be accessed by going to <span style="font-family:monospace;color:#000000; ">http://localhost:5820 </span>(note: by default, you can log in with usr/psw = admin).</p>
+<p><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/11/stardog1.png" alt="Stardog1" title="stardog1.png" border="0" width="900" height="596" /></p>
+<p><img style="display:block; margin-left:auto; margin-right:auto;" src="http://www.michelepasin.org/blog/wp-content/uploads/2014/11/stardog2.png" alt="Stardog2" title="stardog2.png" border="0" width="900" height="647" /></p>
+<h3>4. Loading a big dataset</h3>
+<p>As in my <a href="http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/">previous post</a>, I&#8217;ve tried loading the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com&#8217;s legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>. The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that&#8217;s been published by NPG and Scientific American from 1845 till nowadays. The file size is <strong>~6 gigs</strong> so it&#8217;s not a huge dataset. Still, something big enough to pose a challenge to my macbook pro (8gigs RAM). </p>
+<p>First off, I tried loading the dataset via the command line by passing an extra argument when creating a new database: </p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+[michele.pasin]@Tartaruga:~/Downloads/NPGcitationsGraph/articles.2012-07-16>stardog-admin db create -n npgArticles articles.nq 
+Bulk loading data to new database.
+Parsing triples: 100% complete in 00:01:48 (10.1M triples - 93.3K triples/sec)
+Parsing triples finished in 00:01:48.678
+Creating index: 100% complete in 00:00:19 (525.1K triples/sec)
+Creating index finished in 00:00:19.311
+Computing statistics: 100% complete in 00:00:05 (1748.1K triples/sec)
+Computing statistics finished in 00:00:05.782
+Loading complete.
+Inserted 10,107,653 unique triples from 10,140,000 read triples in 00:02:16.178 at 74.5K triples/sec
+Bulk load complete.  Loaded 10,107,653 triples from 1 file(s) in 00:02:16 @ 74.3K triples/sec.
+
+Errors were encountered during loading:
+File: /Users/michele.pasin/Downloads/NPGcitationsGraph/articles.2012-07-16/articles.nq Message: '2000-13-01' is not a valid value for datatype http://www.w3.org/2001/XMLSchema#date [line 10144786]
+Successfully created database 'npgArticles'.
+
+</pre>
+<p>As you can see, that didn&#8217;t work as expected: only 10M out of the 40M triples were loaded, because of an <strong>XML parsing error</strong> the installer encountered. </p>
+<p>After some googling and pinging the mailing list, I discover that Stardog is actually right: the parsing error derives from the fact that <a href="http://www.w3.org/TR/xmlschema-2/#isoformats">valid values for XMLSchema#date are ISO8601 Dates</a>. My data contained an XML date <span style="font-family:monospace;color:#000000; ">2000-13-01</span> which is wrong &#8211; that should be <span style="font-family:monospace;color:#000000; ">2000-01-13</span> instead. </p>
+<p>What&#8217;s interesting is that I&#8217;ve previously managed to load the same dataset with other triple stores without any problems. <strong>How was that possible</strong>? </p>
+<p>The <a href="http://docs.stardog.com/using/#sd-Updating">online documentation</a> provides the answer: </p>
+<blockquote><p>RDF parsing in Stardog is strict: it requires typed RDF literals to match their explicit datatypes, URIs to be well-formed, etc. In some cases, strict parsing isn&#8217;t ideal, so it may be disabled using the <span style="font-family:monospace;color:#000000; ">&#8211;strict-parsing=FALSE</span> to disable it.</p></blockquote>
+<p>Also, from the <a href="https://groups.google.com/a/clarkparsia.com/forum/#!searchin/stardog/strict$20parsing/stardog/EiMLvJkN8MM/kELB3d3iC80J">mailing list</a>: </p>
+<blockquote><p>By default, if you say <span style="font-family:monospace;color:#000000; ">&#8220;1.5&#8221;^^xsd:int</span> or <span style="font-family:monospace;color:#000000; ">&#8220;twelve point four&#8221;^^xsd:float</span>, Stardog is going to complain.  While it&#8217;s perfectly legal to have that in RDF, you can run into trouble later on, particularly when doing query evaluation with filters that would handle those literal values where you will hit the dark corners of the SPARQL spec.
+</p></blockquote>
+<p>So, the way to load a (partially or potentially broken) dataset without having to worry about it too much is to use the <span style="font-family:monospace;color:#000000; ">strict.parsing=false</span> flag:</p>
+<pre style='color:#000020;background:#f6f8ff; overflow: auto; width: 800px; font-family: monospace; line-height: 1;'>
+>stardog-admin db create -o strict.parsing=false -n articlesNPG2 articles.nq
+Bulk loading data to new database.
+Parsing triples: 100% complete in 00:05:55 (39.4M triples - 110.7K triples/sec)
+Parsing triples finished in 00:05:55.643
+Creating index: 100% complete in 00:01:17 (510.7K triples/sec)
+Creating index finished in 00:01:17.122
+Computing statistics: 100% complete in 00:00:21 (1789.2K triples/sec)
+Computing statistics finished in 00:00:21.944
+Loading complete.
+Inserted 39,262,620 unique triples from 39,384,548 read triples in 00:07:51.402 at 83.5K triples/sec
+Bulk load complete.  Loaded 39,262,620 triples from 1 file(s) in 00:07:51 @ 83.3K triples/sec.
+
+Successfully created database 'articlesNPG2'.
+</pre>
+<p>Job done in around <strong>7 minutes</strong>!</p>
+<p>&nbsp;</p>
+<h4>Conclusion:</h4>
+<p>Extremely <strong>easy to install</strong>, <strong>efficient</strong> and packed with <strong>advanced features</strong> (inferencing and data-checking among the most useful ones imho). Also, as far as the UX and web interface goes, I doubt you can get any better than this with triplestores.</p>
+<p>It&#8217;s a commercial product, of course, so you may not expect anything less than that. However the community edition (which is free) allows for 10 databases &#038; 25M triples per db &#8211; which may be just fine for many projects. </p>
+<p>If we had more tools as accessible as this one, I do think rdf triplestores would have a much higher uptake by now!</p>
+<p>&nbsp;</p>
+<h3>5. Useful resources</h3>
+<p><strong>> Documentation</strong></p>
+<li><a href="http://docs.stardog.com/">http://docs.stardog.com/</a></li>
+<p><strong>> Mailing list</strong></p>
+<li><a href="https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog">https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog</a></li>
+<p><strong>> Python API</strong></p>
+<li>If you&#8217;re a <em>pythonista</em>, this small library can be useful: <a href="https://github.com/knorex/pystardog/wiki">https://github.com/knorex/pystardog/wiki</a></li>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2530</post-id>	</item>
+	</channel>
+</rss>

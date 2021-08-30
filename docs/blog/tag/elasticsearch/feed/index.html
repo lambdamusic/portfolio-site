@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>elasticsearch &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/elasticsearch/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 10 Apr 2017 14:13:16 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</title>
+		<link>http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/</link>
+				<comments>http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/#comments</comments>
+				<pubDate>Thu, 06 Apr 2017 14:12:05 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Information Architecture]]></category>
+		<category><![CDATA[Semantic Web]]></category>
+		<category><![CDATA[data exploration]]></category>
+		<category><![CDATA[elasticsearch]]></category>
+		<category><![CDATA[graph]]></category>
+		<category><![CDATA[jsonld]]></category>
+		<category><![CDATA[kibana]]></category>
+		<category><![CDATA[linkeddata]]></category>
+		<category><![CDATA[nature]]></category>
+		<category><![CDATA[scigraph]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2844</guid>
+				<description><![CDATA[Hello there data lovers! In this post you can find some information on how to download and make some sense of the scholarly dataset recently made available by the Springer Nature SciGraph project, by using the freely available Elasticsearch suite of software. A few weeks ago the SciGraph dataset was released (full disclosure: I&#8217;m part [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Hello there data lovers! In this post you can find some information on how to download and make some sense of the scholarly dataset recently made available by the Springer Nature <a href="http://www.springernature.com/scigraph">SciGraph project</a>, by using the freely available <a href="https://en.wikipedia.org/wiki/Elasticsearch">Elasticsearch</a> suite of software.</p>
+<p>A few weeks ago the SciGraph dataset was <a href="http://www.springernature.com/gp/group/media/press-releases/springer-nature-scigraph--supporting-open-science-and-the-wider-understanding-of-research/12129614">released</a> (full disclosure: I&#8217;m part of the team who did that!). This is a high quality dataset containing metadata and abstracts about scientific articles published by <a href="https://en.wikipedia.org/wiki/Springer_Nature">Springer Nature</a>, research grants related to them plus other classifications of this content.</p>
+<p><img class="alignnone size-full wp-image-3123" src="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/scigraph.png?w=1116" alt="scigraph.png" width="558" height="142" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/scigraph.png 1888w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/scigraph-300x76.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/scigraph-768x195.png 768w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/scigraph-1024x260.png 1024w" sizes="(max-width: 558px) 100vw, 558px" /></p>
+<p>This release of the dataset includes the last 5 years of content &#8211; that&#8217;s already an impressive <strong>32 gigs of data</strong> you can get your hands on. So in this post I&#8217;m going to show how to do that, in particular by transforming the data from the <a href="https://en.wikipedia.org/wiki/Resource_Description_Framework">RDF graph</a> format they come with, into a <a href="https://en.wikipedia.org/wiki/JSON">JSON format</a> which is more suited for application development and analytics.</p>
+<p>We will be using two free-to-download products, <a href="http://ontotext.com/products/graphdb/">GraphDB</a> and <a href="https://www.elastic.co/">Elasticsearch</a>, so you&#8217;ll have to install them if you haven&#8217;t got them already. But no worries, that&#8217;s pretty straighforward, as you&#8217;ll see below.</p>
+<h2>1. Hello SciGraph Linked Data</h2>
+<p>First things first, we want to get hold of the SciGraph RDF datasets of course. That&#8217;s pretty easy, just head over to the SciGraph <a href="https://github.com/springernature/scigraph/wiki#downloads">downloads page</a> and get the following datasets:</p>
+<ul>
+<li><strong>Ontologies</strong>: the main <a href="http://s3-service-broker-live-afe45d64-24d0-4a96-b6a8-23b79e885eb7.s3-website.eu-central-1.amazonaws.com/2017-02-15/springernature-scigraph-ontologies.2017-02-15.nt.bz2">schema</a> behind SciGraph.</li>
+<li><strong>Articles</strong> <strong>&#8211; 2016</strong>: all the core <a href="http://s3-service-broker-live-afe45d64-24d0-4a96-b6a8-23b79e885eb7.s3-website.eu-central-1.amazonaws.com/2017-02-15/springernature-scigraph-2016-articles.2017-02-15.nt.bz2">articles</a> metadata for one year.</li>
+<li><strong>Grants</strong>: <a href="http://s3-service-broker-live-afe45d64-24d0-4a96-b6a8-23b79e885eb7.s3-website.eu-central-1.amazonaws.com/2017-02-15/springernature-scigraph-grants.2017-02-15.nt.bz2">grants</a> metadata related to those articles.</li>
+<li><strong>Journals</strong>: full list of Springer Nature <a href="http://s3-service-broker-live-afe45d64-24d0-4a96-b6a8-23b79e885eb7.s3-website.eu-central-1.amazonaws.com/2017-02-15/springernature-scigraph-journals.2017-02-15.nt.bz2">journal catalogue</a>.</li>
+<li><strong>Subjects</strong>: classification of <a href="http://s3-service-broker-live-afe45d64-24d0-4a96-b6a8-23b79e885eb7.s3-website.eu-central-1.amazonaws.com/2017-02-15/springernature-scigraph-subjects.2017-02-15.nt.bz2">research areas</a> developed by Springer Nature.</li>
+</ul>
+<p>That&#8217;s pretty much everything, only thing we&#8217;re getting only one year worth of articles as that&#8217;s enough for the purpose of this exercise (~300k articles from 2016).</p>
+<p>Next up, we want to get a couple of other datasets SciGraph depends on:</p>
+<ul>
+<li><strong>GRID</strong>: a catalogue of the world&#8217;s research organisations. Make sure you get both the <a href="http://www.grid.ac/ontology/">ontology</a> and one of the <a href="https://www.grid.ac/downloads">latest releases</a>, within which you can find an RDF implementation too.</li>
+<li><strong>Field Of Research codes</strong>: another classification scheme used in SciGraph, developed by the <a href="https://vocabs.ands.org.au/anzsrc-for">Australian and New Zealand Standard Research Classification</a> organization.</li>
+</ul>
+<p>That&#8217;s it! Time for a cup of coffee.</p>
+<h2>2. Python to the help</h2>
+<p>We will be doing a bit of data manipulation  in the next sections and Python is a great language for that sort of thing. Here&#8217;s what we need to get going:</p>
+<ol>
+<li><strong>Python</strong>. Make sure you have <a href="https://wiki.python.org/moin/BeginnersGuide/Download">Python installed</a> and also <a href="https://packaging.python.org/installing/">Pip</a>, the Python package manager (any Python version <strong>above 2.7</strong> should be ok).</li>
+<li><strong>GitHub project</strong>. I&#8217;ve created a few scripts for this tutorial, so head over to the <a href="https://github.com/lambdamusic/hello-scigraph">hello-scigraph project on GitHub</a> and download it to your computer. Note: the project contains all the Python scripts needed to complete this tutorial, but of course you should feel free to modify them or write from scratch if you fancy it!</li>
+<li><strong>Libraries</strong>. Install all the dependencies for the hello-scigraph project to run. You can do that by cd-ing into the project folder and running <code style="display: inline; padding: 0px;">pip install -r requirements.txt</code> (ideally within a <a href="http://python-guide-pt-br.readthedocs.io/en/latest/dev/virtualenvs/">virtual environment</a>, but that&#8217;s up to you).</li>
+</ol>
+<h2>3. Loading the data into GraphDB</h2>
+<p>So, you should have by now 8 different files containing data (after step 1 above). Make sure they&#8217;re all in the same folder and that all of them have been unzipped (if needed), then head over to the <a href="http://ontotext.com/graphdb-8-enterprise-linked-data/">GraphDB website</a> and download the free version of the triplestore (you may have to sign up first).</p>
+<p>The <a href="http://graphdb.ontotext.com/documentation/free/quick-start-guide.html#run-graphdb-as-a-stand-alone-server">online documentation</a> for GraphDB is pretty good, so it should be easy to get it up and running. In essence, you have to do the following steps:</p>
+<ol>
+<li><strong>Launch the application</strong>: for me, on a mac, I just had to double click the GraphDB icon &#8211; nice!</li>
+<li><strong>Create a</strong> <a href="http://graphdb.ontotext.com/documentation/free/quick-start-guide.html#create-a-repository">new repository</a>: this is the equivalent of a database within the triplestore. Call this repo <span class="pl-pds">&#8220;</span><strong>scigraph-2016</strong><span class="pl-pds">&#8221; so that we&#8217;re all synced for the following steps.</span></li>
+</ol>
+<p>Next thing, we want a script to load our RDF files into this empty repository. So cd into the directory containg the GitHub project (from step 2) and run the following command:</p>
+<pre style="background: lightgray; padding: 5px;">python -m hello-scigraph.loadGraphDB ~/scigraph-downloads/</pre>
+<p>The &#8220;loadGraphDB&#8221; script goes through all RDF files in the &#8220;scigraph-downloads&#8221; directory and loads them into the <strong>scigraph-2016 </strong>repository (note: you must replace &#8220;scigraph-downloads&#8221; with the actual path to the folder you downloaded content in step 1 above).</p>
+<p><strong>So, to recap:</strong> this script is now loading more than 35 million triples into your local graph database. Don&#8217;t be surprised if it&#8217;ll take some time (in particular the &#8216;articles-2016&#8217; dataset, by far the biggest) so it&#8217;s time to take a break or do something else.</p>
+<p>Once the process it&#8217;s finished, you should be able to <a href="http://graphdb.ontotext.com/documentation/free/quick-start-guide.html#explore-your-data-and-class-relationships">explore your data via the GraphDB workbench</a>.  It&#8217;ll look something like this:</p>
+<p><img class="aligncenter size-large wp-image-2954" src="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/GraphDB-class-hierarchy-1024x525.png" alt="GraphDB-class-hierarchy" width="1024" height="525" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/GraphDB-class-hierarchy-1024x525.png 1024w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/GraphDB-class-hierarchy-300x154.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/GraphDB-class-hierarchy-768x394.png 768w" sizes="(max-width: 1024px) 100vw, 1024px" /></p>
+<h2>4. Creating an Elasticsearch index</h2>
+<p>We&#8217;re almost there. Let&#8217;s head over to the <a href="https://www.elastic.co/downloads/elasticsearch">Elasticsearch website</a> and <strong>download</strong> it. Elasticsearch is a powerful, distributed, JSON-based search and analytics engine so we&#8217;ll be using it to build an analytics dashboard for the SciGraph data.</p>
+<p>Make sure Elastic is running (run <code style="display: inline; padding: 0px;">bin/elasticsearch</code> (or <code style="display: inline; padding: 0px;">bin\elasticsearch.bat</code> on Windows), then cd into the hello-scigraph Python project (from step 2) in order to run the following script:</p>
+<pre style="background: lightgray; padding: 5px;">python -m hello-scigraph.loadElastic</pre>
+<p>If you <a href="https://github.com/lambdamusic/hello-scigraph/blob/master/hello-scigraph/loadElastic.py">take a look at the source code</a>, you&#8217;ll see that the script does the following:</p>
+<ol>
+<li><strong>Articles loading:</strong> extracts articles references from GraphDB in batches of 200.</li>
+<li><strong>Articles metadata extraction:</strong> for each article, we <a href="https://github.com/lambdamusic/hello-scigraph/blob/master/hello-scigraph/queries.py">pull out all relevant metadata</a> (e.g. title, DOI, authors) plus related information (e.g. author GRID organizations, geo locations, funding info etc..).</li>
+<li><strong>Articles metadata simplification: </strong> some intermediate nodes coming from the orginal RDF graph are dropped and replaced with a flatter structure which uses a a temporary dummy schema (<code style="display: inline; padding: 0px;">prefix es: &lt;http://elastic-index.scigraph.com/&gt;</code> It doesn&#8217;t matter what we call that schema, but what&#8217;s important is to that we want to simplify the data we put into the Elastic search index. That&#8217;s because while the Graph layer is supposed to facilitate <em>data integration </em>and hence it benefits from a rich semantic representation of information, the <em>search layer</em> is more geared towards performance and retrieval hence a leaner information structure can dramatically speed things up there.</li>
+<li><strong>JSON-LD transformation</strong>: the simplified RDF data structure is <a href="http://json-ld.org/">serialized as JSON-LD</a> &#8211; one of the many serializations available for RDF. JSON-LD is of course valid JSON, meaning that we can put that into Elastic right away. This is a bit of a shortcut actually, in fact for a more fine-grained control of how the JSON looks like,  it&#8217;s probably better to transform the data into JSON using some ad-hoc mechanism. But for the purpose of this tutorial it&#8217;s more than enough.</li>
+<li><strong>Elastic index creation.</strong> Finally, we can load the data into an Elastic index called &#8211; guess what &#8211; &#8220;hello-scigraph&#8221;.</li>
+</ol>
+<p>Two more things to point out:</p>
+<ul>
+<li><strong>Long queries.</strong> The Python script enforces a 60 seconds <a href="https://github.com/lambdamusic/hello-scigraph/blob/master/hello-scigraph/timeout.py">time-out </a>on the GraphDB queries, so in case things go wrong with some articles data the script should keep running.</li>
+<li><strong>Memory issues.</strong> The script stops for 10 seconds after each batch of 200 articles (<code style="display: inline; padding: 0px;">time.sleep(10)</code>). Had to do this to prevent GraphDB on my laptop from running out of memory. Time to catch some breath!</li>
+</ul>
+<p>That&#8217;s it! <strong>Time for another break  now.</strong> A pretty long one actually &#8211; loading all the data took around 10 hours on my (rather averaged spec&#8217;ed) laptop so you may want to do that overnight or get hold of a faster machine/server.</p>
+<p>Eventually, once the loading script is finished, you can issue this command from the command line to see how much data you&#8217;ve loaded into the Elastic index  &#8220;hello-scigraph&#8221;. Bravo!</p>
+<pre style="background: lightgray; padding: 5px;">curl -XGET 'localhost:9200/_cat/indices/'</pre>
+<h2>5. Analyzing the data with Kibana</h2>
+<p>Loading the data in Elastic already opens up a number of possibilites &#8211; check out the <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search.html">search APIs </a>for some ideas &#8211; however there&#8217;s an even quicker way to analyze the data: <strong>Kibana</strong>. <a href="https://www.elastic.co/products/kibana">Kibana</a> is another free product in the Elastic Search suite, which provides an extensible user interface for configuring and managing all aspects of the Elastic Stack.</p>
+<p>So let&#8217;s get started with Kibana: <a href="https://www.elastic.co/downloads/kibana">download it</a> and set it up using the online instructions, then point your browser at <a href="http://localhost:5601">http://localhost:5601 </a>.</p>
+<p>You&#8217;ll get to the Kibana dashboard which shows the index we just created. Here you can perform any kind of searches and see the raw data as JSON.</p>
+<p>What&#8217;s even more interesting is the <strong>visualization tab</strong>. Results of searches can be rendered as line chart, pie charts etc.. and more dimensions can be added via &#8216;buckets&#8217;. See below for some quick examples, but really, the possibilities are endless!</p>
+
+<a href='http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/kibana-super-collider-1/'><img width="300" height="153" src="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-1-300x153.png" class="attachment-medium size-medium" alt="" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-1-300x153.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-1-768x391.png 768w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-1-1024x521.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/kibana-super-collider-2/'><img width="300" height="153" src="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-2-300x153.png" class="attachment-medium size-medium" alt="" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-2-300x153.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-2-768x391.png 768w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-2-1024x521.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/kibana-super-collider-3/'><img width="300" height="171" src="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-3-300x171.png" class="attachment-medium size-medium" alt="" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-3-300x171.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-3-768x438.png 768w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-3-1024x584.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+<a href='http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/kibana-super-collider-4/'><img width="300" height="173" src="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-4-300x173.png" class="attachment-medium size-medium" alt="" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-4-300x173.png 300w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-4-768x444.png 768w, http://www.michelepasin.org/blog/wp-content/uploads/2017/04/Kibana-super-collider-4-1024x592.png 1024w" sizes="(max-width: 300px) 100vw, 300px" /></a>
+
+<h2>Conclusion</h2>
+<p>This post should have given you enough to realise that:</p>
+<ol>
+<li>The <strong>SciGraph dataset</strong> contain an impressive amount of high-quality scholarly publications metadata which can be used for things like literature search, research statistics etc..</li>
+<li>Even though you&#8217;re not familiar with Linked Data and the RDF family of languages, it&#8217;s not hard to get going with a triplestore and then <strong>transform the data</strong> into a more widely used format like JSON.</li>
+<li>Finally, <strong>Elasticsearch</strong> and especially <strong>Kibana</strong> are fantastic tools for data analysis and exploration! Needless to say, in this post I&#8217;ve just scratched the surface of what could be done with it.</li>
+</ol>
+<p>Hope this was fun, any questions or comments, you know the drill :-)</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/feed/</wfw:commentRss>
+		<slash:comments>4</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2844</post-id>	</item>
+	</channel>
+</rss>

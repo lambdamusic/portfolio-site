@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>objc &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/objc/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Sat, 29 Jan 2011 23:00:15 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Opening a Finder&#8217;s window from Impromptu (alas how to use the applescript bridge..)</title>
+		<link>http://www.michelepasin.org/blog/2011/01/30/opening-a-finders-window-from-impromptu-alas-how-to-use-the-applescript-bridge/</link>
+				<pubDate>Sat, 29 Jan 2011 23:00:15 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[applescript]]></category>
+		<category><![CDATA[finder]]></category>
+		<category><![CDATA[impromptu]]></category>
+		<category><![CDATA[objc]]></category>
+		<category><![CDATA[programming]]></category>
+		<category><![CDATA[scheme]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=982</guid>
+				<description><![CDATA[Imagine you&#8217;ve got a bunch of audio samples you want to load up while livecoding with Impromptu but you can&#8217;t remember exactly their names &#8211; it&#8217;d be handy to be able to open up the corresponding Finder window directly from scheme, without too much clicking around. Do-able or not? I spent some time trying to [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Imagine you&#8217;ve got a bunch of audio samples you want to load up while livecoding with <a href="http://impromptu.moso.com.au/">Impromptu</a> but you can&#8217;t remember exactly their names &#8211; it&#8217;d be handy to be able to open up the corresponding Finder window directly from scheme, without too much clicking around. Do-able or not? </p>
+<p>I spent some time trying to figure this out, and the answer is yes! Quite a nice learning experience&#8230; although it came with a <strong>surprise</strong> at the end.</p>
+<p>Originally I thought, let&#8217;s do it via impromptu&#8217;s <a href="http://moso.com.au/wiki/index.php?title=ObjC_Functions">ObjC bridge</a>. I don&#8217;t know much about ObjC but after a bit of googling it seemed evident that the <a href="http://stackoverflow.com/questions/1446814/open-a-terminal-window-to-a-specified-folder-from-a-cocoa-app">quickest way to accomplish this</a> is by writing ObjC code that, in turns, runs a simple <a href="http://www.macosxautomation.com/applescript/">applescript</a> command that opens a window:</p>
+<p>&nbsp;</p>
+<div class="objc" style="font-family:monospace;font-size:13px;padding:10px; overflow:auto;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;"><a style="color: #000060;" href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/"><span style="color: #400080;">NSString</span></a> <span style="color: #002200;">*</span>s <span style="color: #002200;">=</span> <span style="color: #002200;">&#91;</span><a style="color: #000060;" href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/"><span style="color: #400080;">NSString</span></a> stringWithFormat<span style="color: #002200;">:</span><br />
+&nbsp; &nbsp; &nbsp;<span style="color: #bf1d1a;">@</span><span style="color: #bf1d1a;">&quot;tell application <span style="color: #2400d9;">&quot;</span>Terminal<span style="color: #2400d9;">&quot;</span> to do script <span style="color: #2400d9;">&quot;</span>cd %@<span style="color: #2400d9;">&quot;</span>&quot;</span>, folderPath<span style="color: #002200;">&#93;</span>;</p>
+<p><a style="color: #000060;" href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSAppleScript_Class/"><span style="color: #400080;">NSAppleScript</span></a> <span style="color: #002200;">*</span>as <span style="color: #002200;">=</span> <span style="color: #002200;">&#91;</span><span style="color: #002200;">&#91;</span><a style="color: #000060;" href="http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSAppleScript_Class/"><span style="color: #400080;">NSAppleScript</span></a> alloc<span style="color: #002200;">&#93;</span> initWithSource<span style="color: #002200;">:</span> s<span style="color: #002200;">&#93;</span>;<br />
+<span style="color: #002200;">&#91;</span>as executeAndReturnError<span style="color: #002200;">:</span><span style="color: #a61390;">nil</span><span style="color: #002200;">&#93;</span>;</div>
+<p>&nbsp;</p>
+<p>So I translated the bottom part of the code above into impromptu/scheme:</p>
+<p>&nbsp;</p>
+<div class="scheme" style="font-family:monospace;font-size:13px;padding:10px; overflow:auto;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;"><span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">define</span> run_applescript<br />
+&nbsp; &nbsp;<span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">lambda</span> <span style="color: #66cc66;">&#40;</span>script<span style="color: #66cc66;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&#40;</span>objc:call <span style="color: #66cc66;">&#40;</span>objc:call <span style="color: #66cc66;">&#40;</span>objc:call <span style="color: #ff0000;">&quot;NSAppleScript&quot;</span> <span style="color: #ff0000;">&quot;alloc&quot;</span><span style="color: #66cc66;">&#41;</span> <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff0000;">&quot;initWithSource:&quot;</span> <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; script<span style="color: #66cc66;">&#41;</span> <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="color: #ff0000;">&quot;executeAndReturnError:&quot;</span> <span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span></div>
+<p>&nbsp;</p>
+<p>That is a generic script-running function, that is, you can pass any script and it&#8217;ll run it, eg:</p>
+<p>&nbsp;</p>
+<div class="scheme" style="font-family:monospace;font-size:13px;padding:10px; overflow:auto;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;"><span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">define</span> script0 <span style="color: #ff0000;">&quot;<span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp;tell application <span style="color: #000099; font-weight: bold;">&quot;</span>Finder<span style="color: #000099; font-weight: bold;">&quot;</span> to open folder <span style="color: #000099; font-weight: bold;">&quot;</span>Macintosh HD:Users<span style="color: #000099; font-weight: bold;">&quot;</span> <br />
+&nbsp; &nbsp;tell application <span style="color: #000099; font-weight: bold;">&quot;</span>Finder<span style="color: #000099; font-weight: bold;">&quot;</span> to activate&quot;</span><span style="color: #66cc66;">&#41;</span></p>
+<p>
+<span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">define</span> script1 <span style="color: #ff0000;">&quot;<span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp;tell application <span style="color: #000099; font-weight: bold;">&quot;</span>Terminal<span style="color: #000099; font-weight: bold;">&quot;</span> to do script <span style="color: #000099; font-weight: bold;">&quot;</span>cd ~; open .<span style="color: #000099; font-weight: bold;">&quot;</span>&quot;</span><span style="color: #66cc66;">&#41;</span></p>
+<p>
+<span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">define</span> script2 <span style="color: #ff0000;">&quot;<span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tell application <span style="color: #000099; font-weight: bold;">&quot;</span>System Events<span style="color: #000099; font-weight: bold;">&quot;</span><span style="color: #000099; font-weight: bold;">n</span><span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; tell dock preferences<span style="color: #000099; font-weight: bold;">n</span><span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; set properties to {autohide:false}<span style="color: #000099; font-weight: bold;">n</span><span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; end tell<span style="color: #000099; font-weight: bold;">n</span><span style="color: #000099; font-weight: bold;"></span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; end tell&quot;</span><span style="color: #66cc66;">&#41;</span></p>
+<p><span style="color: #808080; font-style: italic;">;; finally, let&#8217;s choose randomly one of the scripts above and run it</span><br />
+<span style="color: #66cc66;">&#40;</span>run_applescript <span style="color: #66cc66;">&#40;</span>random &#8216;<span style="color: #66cc66;">&#40;</span>script0 script1 script2<span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span></div>
+<p>&nbsp;</p>
+<p>Now, back to the original problem: in order to open a Finder&#8217;s window at a specified location we need to pass the location variable to our function <em>run_applescript</em>; also, we want to be able to pass unix path expressions (eg &#8216;/Users/mike/music/&#8217;), so we&#8217;ve got to transform that path syntax into the semicolon-delimited macintosh syntax (&#8220;Macintosh HD:Users:mike:music&#8221;) needed by the applescript function we&#8217;re using. That&#8217;s easily done with <em>string-replace</em>, so here we go:</p>
+<p>&nbsp;</p>
+<div class="scheme" style="font-family:monospace;font-size:13px;padding:10px; overflow:auto;color: #006; border: 1px solid #d0d0d0; background-color: #f0f0f0;"><span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">define</span> open_finder_at <br />
+&nbsp; &nbsp;<span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">lambda</span> <span style="color: #66cc66;">&#40;</span>location<span style="color: #66cc66;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">let*</span> <span style="color: #66cc66;">&#40;</span><span style="color: #66cc66;">&#40;</span>llocation <span style="color: #66cc66;">&#40;</span>string<span style="color: #66cc66;">&#8211;</span>replace location <span style="color: #ff0000;">&quot;/&quot;</span> <span style="color: #ff0000;">&quot;:&quot;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&#40;</span>script <span style="color: #66cc66;">&#40;</span><span style="color: #b1b100;">string-append</span> <span style="color: #ff0000;">&quot;tell application <span style="color: #000099; font-weight: bold;">&quot;</span>Finder<span style="color: #000099; font-weight: bold;">&quot;</span> to activate open folder <span style="color: #000099; font-weight: bold;">&quot;</span>Macintosh HD&quot;</span> llocation <span style="color: #ff0000;">&quot;<span style="color: #000099; font-weight: bold;">&quot;</span>&quot;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="color: #66cc66;">&#40;</span>objc:call <span style="color: #66cc66;">&#40;</span>objc:call <span style="color: #66cc66;">&#40;</span>objc:call <span style="color: #ff0000;">&quot;NSAppleScript&quot;</span> <span style="color: #ff0000;">&quot;alloc&quot;</span><span style="color: #66cc66;">&#41;</span> <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<span style="color: #ff0000;">&quot;initWithSource:&quot;</span> <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;script<span style="color: #66cc66;">&#41;</span> <br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff0000;">&quot;executeAndReturnError:&quot;</span> <span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span><span style="color: #66cc66;">&#41;</span></p>
+<p>
+<span style="color: #66cc66;">&#40;</span>open_finder_at <span style="color: #ff0000;">&quot;/Users/me/&quot;</span><span style="color: #66cc66;">&#41;</span></div>
+<p>&nbsp;</p>
+<p>That&#8217;s pretty much it really&#8230; now we can easily open OsX Finder&#8217;s windows from within Impromptu.</p>
+<p>But as I said above, there&#8217;s a surprise: after getting this far I thought I&#8217;d search impromptu&#8217;s mailing list for more examples of <a href="http://moso.com.au/wiki/index.php?title=ObjC_Functions">obj:call</a> &#8230;. and guess what, there&#8217;s already a system function that runs applescripts, it&#8217;s called <a href="http://moso.com.au/wiki/index.php?title=Sys:run-applescript">sys:run-applescript</a> ! </p>
+<p>Too bad, it&#8217;s been a rewarding learning experience anyways&#8230;</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2188</post-id>	</item>
+	</channel>
+</rss>

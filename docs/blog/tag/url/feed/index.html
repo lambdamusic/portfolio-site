@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>url &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/url/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 15 Feb 2010 05:31:34 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Impromptu: access the Wiki docs from the editor</title>
+		<link>http://www.michelepasin.org/blog/2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/</link>
+				<pubDate>Mon, 15 Feb 2010 05:31:34 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[impromptu]]></category>
+		<category><![CDATA[scheme]]></category>
+		<category><![CDATA[url]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=559</guid>
+				<description><![CDATA[&#62;&#62;&#62; When you&#8217;re Impromptu-ing but don&#8217;t know the meaning or syntax of a function, the usual thing to do is calling (help function-name) to get some help about that function, or (help function-name #t) if you want to see also the examples associated with it. The help text gets displayed in the log view, so [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://magicrebirth.webfactional.com/blog/wp-content/uploads/2010/02/picture-13.png"><img class="alignnone size-medium wp-image-563" title="Picture 1" src="http://magicrebirth.webfactional.com/blog/wp-content/uploads/2010/02/picture-13.png?w=300" alt="" width="300" height="232" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-13.png 779w, http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-13-300x232.png 300w" sizes="(max-width: 300px) 100vw, 300px" /></a><br />
+&gt;&gt;&gt;<br />
+When you&#8217;re <a href="http://impromptu.moso.com.au/index.html">Impromptu</a>-ing but <strong>don&#8217;t know the meaning or syntax of a function</strong>, the usual thing to do is calling <code>(help function-name)</code> to get some help about that function, or <code>(help function-name #t)</code> if you want to see also the examples associated with it. The help text gets displayed in the log view, so that you can then copy/paste what you need from there.<br />
+Quite useful, but nonetheless I always find myself <strong>fighting with the log window</strong>: too small, hidden away by other canvases, or not readable anymore cause after calling the help function I&#8217;ve evaluated other stuff that has moved up the much needed help-text.</p>
+<p>Since a couple of months ago <a href="http://moso.com.au/wiki/index.php?title=Main_Page">Impromptu has a wiki too</a> &#8211; so I thought, it&#8217;d be nice to see a function&#8217;s help in a browser window, and possibly contribute to its explanation too..</p>
+<p>So, that&#8217;s the rationale for this little script. <strong>By calling &#8216;wiki&#8217; you can open up a web browser at the relevant Impromptu-wiki page</strong>.. as simple as that.<br />
+<a href="http://magicrebirth.webfactional.com/blog/wp-content/uploads/2010/02/picture-21.png"><img class="alignnone size-medium wp-image-568" title="Picture 2" src="http://magicrebirth.webfactional.com/blog/wp-content/uploads/2010/02/picture-21.png?w=300" alt="" width="300" height="257" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-21.png 527w, http://www.michelepasin.org/blog/wp-content/uploads/2010/02/picture-21-300x257.png 300w" sizes="(max-width: 300px) 100vw, 300px" /></a><br />
+&gt;&gt;&gt;</p>
+<p>First off, we need a couple of utility functions that are not included in Impromptu by default, for better manipulating strings, lists and webpages (UPDATE 9-Nov2010: some of this symbols have been included in Improptu 2.5, so I prefixed the one below with the <em>utils:</em> namespace):</p>
+<pre style="font-size: 13px; background-color: #eeeeee; color: black; overflow: auto;"><span style="color: #0000ff;">;;;;;;;</span>
+<span style="color: #0000ff;">;; utilities</span>
+<span style="color: #0000ff;">;;;;;;;</span>
+
+<span style="color: #0000ff;">;; (utils:list-flatten '(9 9 (9 9 9 ))))  = (9 9 9 9 9)</span>
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> utils:list-flatten
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>l<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>cond</strong></span> <span style="color: #6b59ce;">((</span><span style="color: #008a8c;">null?</span> l<span style="color: #6b59ce;">)</span>
+             <span style="color: #6b59ce;">'())</span>
+            <span style="color: #6b59ce;">((</span>atom? l<span style="color: #6b59ce;">)</span>
+             <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">list</span> l<span style="color: #6b59ce;">))</span>
+            <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">#t</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">append</span> <span style="color: #6b59ce;">(</span>utils:list-flatten  <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">car</span> l<span style="color: #6b59ce;">))</span> <span style="color: #6b59ce;">(</span>utils:list-flatten  <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">cdr</span> l<span style="color: #6b59ce;">)))))))</span>
+
+<span style="color: #0000ff;">;; returns a char from a string of length 1, or a list of chars from a longer string</span>
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> utils:char
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>string_char<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>if</strong></span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string?</span> string_char<span style="color: #6b59ce;">)</span>
+          <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>if</strong></span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">&gt;</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-length</span> string_char<span style="color: #6b59ce;">)</span> <span style="color: #ff00ff;">0</span><span style="color: #6b59ce;">)</span>
+              <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>if</strong></span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">&gt;</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-length</span> string_char<span style="color: #6b59ce;">)</span> <span style="color: #ff00ff;">1</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-&gt;list</span> string_char<span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">car</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-&gt;list</span> string_char<span style="color: #6b59ce;">))))</span>
+          <span style="color: #6b59ce;">(</span>print <span style="color: #6b59ce;">'</span>please <span style="color: #6b59ce;">'</span>enter <span style="color: #6b59ce;">'</span>a <span style="color: #6b59ce;">'</span>string<span style="color: #6b59ce;">))))</span>
+
+<span style="color: #0000ff;">;; matches a single character in a string, and replaces it</span>
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> utils:string-replace
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>s match replacement<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>let</strong></span> <span style="color: #6b59ce;">((</span>ll <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-&gt;list</span> s<span style="color: #6b59ce;">))</span>
+            <span style="color: #6b59ce;">(</span>match1 <span style="color: #6b59ce;">(</span>utils:char match<span style="color: #6b59ce;">))</span>
+            <span style="color: #6b59ce;">(</span>replacement1 <span style="color: #6b59ce;">(</span>utils:char replacement<span style="color: #6b59ce;">)))</span>
+         <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>if</strong></span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">=</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-length</span> match<span style="color: #6b59ce;">)</span> <span style="color: #ff00ff;">1</span><span style="color: #6b59ce;">)</span>
+             <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>let</strong></span> <span style="color: #6b59ce;">((</span>z <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">map</span> <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>x<span style="color: #6b59ce;">)</span>
+                              <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>if</strong></span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">equal?</span> x match1<span style="color: #6b59ce;">)</span>
+                                  replacement1
+                                  x<span style="color: #6b59ce;">))</span>
+                           ll<span style="color: #6b59ce;">)))</span>
+                <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">list-&gt;string</span> <span style="color: #6b59ce;">(</span>utils:list-flatten z<span style="color: #6b59ce;">)))</span>
+                <span style="color: #0000ff;">;z)</span>
+             <span style="color: #6b59ce;">(</span>print <span style="color: #ff00ff;">"i can match only single characters for now"</span><span style="color: #6b59ce;">)))))</span>
+
+<span style="color: #0000ff;">;; makes a string upper case</span>
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> utils:string-capitalize
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>s<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-append</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">char-upcase</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-ref</span> s <span style="color: #ff00ff;">0</span><span style="color: #6b59ce;">)))</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">substring</span> s <span style="color: #ff00ff;">1</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-length</span> s<span style="color: #6b59ce;">)))))</span>
+
+<span style="color: #0000ff;">;; open-url: calls the default mac browser with a url argument </span>
+<span style="color: #0000ff;">;; disclaimer: I'm not an objc programmer... found an example at </span>
+<span style="color: #0000ff;">;; <a href="http://macosx.com/forums/software-programming-web-scripting/18422-how-do-i-launch-url-using-cocoa-objective-c.html">http://macosx.com/forums/software-programming-web-scripting/18422-how-do-i-launch-url-using-cocoa-objective-c.html</a></span>
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> utils:open-url
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>urlstring<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>let</strong></span> <span style="color: #6b59ce;">((</span>urlobj <span style="color: #6b59ce;">(</span>objc:call <span style="color: #ff00ff;">"NSURL"</span> <span style="color: #ff00ff;">"URLWithString:"</span> urlstring<span style="color: #6b59ce;">))</span>
+            <span style="color: #6b59ce;">(</span>workspace <span style="color: #6b59ce;">(</span>objc:call <span style="color: #ff00ff;">"NSWorkspace"</span> <span style="color: #ff00ff;">"sharedWorkspace"</span><span style="color: #6b59ce;">)))</span>
+         <span style="color: #6b59ce;">(</span>objc:call workspace <span style="color: #ff00ff;">"openURL:"</span> urlobj<span style="color: #6b59ce;">))))</span>
+
+<span style="color: #0000ff;"> </span></pre>
+<p>&gt;&gt;&gt;<br />
+Finally, the functions for opening the wiki page:</p>
+<pre style="font-size: 13px; background-color: #eeeeee; color: black; overflow: auto;"><span style="color: #0000ff;">;;;;;;;;;;</span>
+<span style="color: #0000ff;">;; wiki url caller</span>
+<span style="color: #0000ff;">;; e.g. (wiki objc:from-address) =&gt; goes to http://moso.com.au/wiki/index.php?title=Objc:from-address</span>
+<span style="color: #0000ff;">;;;;;;;;;;</span>
+
+<span style="color: #0000ff;">;; wiki-escape: composes the url so that it matches the ones of the online wiki </span>
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> wikiescape
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>funname<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">for-each</span> <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>x<span style="color: #6b59ce;">)</span>
+                   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>set!</strong></span> funname <span style="color: #6b59ce;">(</span>utils:string-replace funname <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">car</span> x<span style="color: #6b59ce;">)</span> <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">cadr</span> x<span style="color: #6b59ce;">))))</span>
+                <span style="color: #6b59ce;">'((</span><span style="color: #ff00ff;">"+"</span> <span style="color: #ff00ff;">"%2B"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">"="</span> <span style="color: #ff00ff;">"%3D"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">"&lt;"</span> <span style="color: #ff00ff;">"lessthan"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">"&gt;"</span> <span style="color: #ff00ff;">"greaterthan"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">"*"</span> <span style="color: #ff00ff;">"%2A"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">"?"</span> <span style="color: #ff00ff;">"%3F"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">(</span><span style="color: #ff00ff;">"!"</span> <span style="color: #ff00ff;">"%21"</span><span style="color: #6b59ce;">)</span>
+                  <span style="color: #6b59ce;">))</span>
+      <span style="color: #6b59ce;">(</span>utils:string-capitalize funname<span style="color: #6b59ce;">)))</span>
+
+<span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>define</strong></span> wiki-inner
+   <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>lambda</strong></span> <span style="color: #6b59ce;">(</span>funname<span style="color: #6b59ce;">)</span>
+      <span style="color: #6b59ce;">(</span><span style="color: #a52829;"><strong>let*</strong></span> <span style="color: #6b59ce;">((</span>urlbase <span style="color: #ff00ff;">"<a href="http://moso.com.au/wiki/index.php?title=">http://moso.com.au/wiki/index.php?title=</a>"</span><span style="color: #6b59ce;">)</span>
+             <span style="color: #6b59ce;">(</span>newname <span style="color: #6b59ce;">(</span>wikiescape funname<span style="color: #6b59ce;">))</span>
+             <span style="color: #6b59ce;">(</span>url <span style="color: #6b59ce;">(</span><span style="color: #008a8c;">string-append</span> urlbase newname<span style="color: #6b59ce;">)))</span>
+         <span style="color: #6b59ce;">(</span>utils:open-url url<span style="color: #6b59ce;">))))</span>
+
+<span style="color: #0000ff;">;; macro wrapper and main function that gets called </span>
+<span style="color: #6b59ce;">(</span>define-macro <span style="color: #6b59ce;">(</span>wiki name<span style="color: #6b59ce;">)</span>
+   <span style="color: #6b59ce;">`(</span>wiki-inner <span style="color: #6b59ce;">(</span>sexpr-&gt;string <span style="color: #6b59ce;">(</span>quote <span style="color: #6b59ce;">,</span>name<span style="color: #6b59ce;">))))</span>
+
+<span style="color: #0000ff;"> </span></pre>
+<p>&gt;&gt;&gt;<br />
+That&#8217;s it: load all of this code (or put it in a single file and load it at startup time) and you&#8217;ve got the <strong>wiki</strong> procedure available!</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">559</post-id>	</item>
+	</channel>
+</rss>

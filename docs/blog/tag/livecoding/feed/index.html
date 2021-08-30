@@ -1,0 +1,258 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>livecoding &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/livecoding/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Wed, 27 Nov 2013 09:33:46 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>New livecoding screencast: Ziggurat 51</title>
+		<link>http://www.michelepasin.org/blog/2013/11/27/new-livecoding-screencast-ziggurat-51/</link>
+				<pubDate>Wed, 27 Nov 2013 09:29:43 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[livecoding]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2414</guid>
+				<description><![CDATA[So hard to find time to do something creative these days. So I thought I&#8217;d post a screencast of a livecoded piece I&#8217;m still working on: Ziggurat 51. Hope you&#8217;ll find it interesting! In the video I&#8217;m using the mixer UI I&#8217;ve previously talked about here. I quite like it, as you can see it&#8217;s [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>So hard to find time to do something creative these days. So I thought I&#8217;d post a screencast of a livecoded piece I&#8217;m still working on: <em>Ziggurat 51</em>. Hope you&#8217;ll find it interesting!</p>
+<p><iframe src="//player.vimeo.com/video/79518553?byline=0&amp;portrait=0&amp;autoplay=1" width="500" height="302" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe></p>
+<p>In the video I&#8217;m using the mixer UI I&#8217;ve <a href="http://www.michelepasin.org/blog/2013/09/15/building-a-master-volumes-ui-in-impromptu/">previously talked about here</a>. I quite like it, as you can see it&#8217;s so much easier to focus on composition and performance by not having to worry about volumes in the code!</p>
+<p>Also, since Impromptu&#8217;s video recording functionality is broken on the latest versions of OSx, I&#8217;ve been testing out a new software called <a href="http://www.araelium.com/screenflick">Screenflick</a>, which is actually pretty good (apart from the logo you can&#8217;t get rid of unless you buy the software).</p>
+<p>Enjoy!</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2414</post-id>	</item>
+		<item>
+		<title>A metronome object for Impromptu</title>
+		<link>http://www.michelepasin.org/blog/2013/02/20/a-metronome-object-for-impromptu/</link>
+				<pubDate>Wed, 20 Feb 2013 01:34:52 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[impromptu]]></category>
+		<category><![CDATA[livecoding]]></category>
+		<category><![CDATA[metronome]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=2319</guid>
+				<description><![CDATA[Metronome: a device used by musicians that marks time at a selected rate by giving a regular tick. If you ever felt that you missed a metronome in Impromptu, here is a little scheme object that can do that job for you. The make-metroclick function returns a closure that can be called with a specific [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Metronome: <em>a device used by musicians that marks time at a selected rate by giving a regular tick</em>. If you ever felt that you missed a metronome in <a href="http://impromptu.moso.com.au/">Impromptu</a>, here is a little scheme object that can do that job for you.</p>
+<p>The <span style="font-family:monospace;color:#000000; ">make-metroclick</span> function returns a closure that can be called with a specific time in beats, so that it plays a sound for each beat and marks the downbeat using a different sound. </p>
+<p>Possibly useful in order to keep track of the downbeats while you compose, or just to experiment a little with some rhythmic figures before composing a more complex drum kit section.</p>
+<p>Here&#8217;s a short example of how to use it:</p>
+<p><iframe src="http://player.vimeo.com/video/60047833?autoplay=1" width="500" height="533" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe></p>
+<p>Make-metronome relies on the standard libraries that come with Impromptu, in particular <span style="font-family:monospace;color:#000000; ">make-metro</span>, which is <a href="http://impromptu.moso.com.au/tutorials/making_music/Beat%20%26%20Tempo.html">described in this tutorial</a>e and on this <a href="http://impromptu.moso.com.au/resources.html#faq7">video</a>. Essentially, it requires you to define a <em>metro</em> object first, e.g. <span style="font-family:monospace;color:#000000; ">(define *metro* (make-metro 120))</span>.</p>
+<p>Here&#8217;s the source code:</p>
+<p><script src="https://gist.github.com/lambdamusic/4991900.js"></script></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">2319</post-id>	</item>
+		<item>
+		<title>Special issue of CMJ DVD on livecoding</title>
+		<link>http://www.michelepasin.org/blog/2012/01/13/special-issue-of-cmj-dvd-on-livecoding/</link>
+				<pubDate>Fri, 13 Jan 2012 10:02:47 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[academic]]></category>
+		<category><![CDATA[dvd]]></category>
+		<category><![CDATA[journal]]></category>
+		<category><![CDATA[livecoding]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1103</guid>
+				<description><![CDATA[The latest issue of the Computer Music Journal is now available, and it includes a DVD full of livecoding bonanza. Because this is the Winter issue, it includes the annual CMJ DVD, whose program notes appear near the end of the issue. The curators for the compositions on this year’s DVD are specialists in live [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>The latest issue of the <a href="http://www.mitpressjournals.org/loi/comj?ai=sj&#038;mi=0&#038;af=R">Computer Music Journal</a> is now available, and it includes a DVD full of livecoding bonanza.</p>
+<blockquote><p>Because this is the <a href="http://www.mitpressjournals.org/toc/comj/35/4">Winter issue</a>, it includes the annual CMJ DVD, whose program notes appear near the end of the issue. The curators for the compositions on this year’s DVD are specialists in live coding, the practice of onstage computer programming whose real-time output is an improvised and often collaborative musical performance. As always, the DVD also includes sound and video examples to accompany recent articles, as well as related files on the DVD-ROM portion of the disc.</p></blockquote>
+<p>A full description of the contents of the DVD is available <a href="http://muse.jhu.edu/journals/computer_music_journal/v035/35.4.notes.html">here</a> (and <a href="http://www.mitpressjournals.org/doi/abs/10.1162/COMJ_x_00112">here</a> if you&#8217;re not benefitting from an academic subscription), and I&#8217;m very proud to say that it includes also one of my livecoding pieces, <a href="http://www.michelepasin.org/music/atmevent/">Untitled 12</a>, performed live at the Anatomy Museum livecoding event in 2010. </p>
+<p><iframe src="http://player.vimeo.com/video/9375423?color=c9ff23" width="700" height="525" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe> </p>
+<p><a href="http://vimeo.com/9375423">Livecoding @ Anatomy Theatre</a> from <a href="http://vimeo.com/user182006">Michele Pasin</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+<p><a href="http://www.flickr.com/photos/mikele/6688959507/" title="CMJ dvd - front by MagIcReBirth, on Flickr"><img src="http://farm8.staticflickr.com/7159/6688959507_ea2797cc1f.jpg" width="500" height="500" alt="CMJ dvd - front"></a></p>
+<p><a href="http://www.flickr.com/photos/mikele/6688959057/" title="CMJ dvd - back by MagIcReBirth, on Flickr"><img src="http://farm8.staticflickr.com/7027/6688959057_6aa2de5fbc.jpg" width="500" height="491" alt="CMJ dvd - back"></a></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1103</post-id>	</item>
+		<item>
+		<title>Article: Thought and Performance, Live Coding Music, Explained to Anyone</title>
+		<link>http://www.michelepasin.org/blog/2011/12/26/article-thought-and-performance-live-coding-music-explained-to-anyone/</link>
+				<comments>http://www.michelepasin.org/blog/2011/12/26/article-thought-and-performance-live-coding-music-explained-to-anyone/#comments</comments>
+				<pubDate>Mon, 26 Dec 2011 11:15:09 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[article]]></category>
+		<category><![CDATA[livecoding]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1093</guid>
+				<description><![CDATA[I bookmarked this article on createdigitalmusic.com a while ago (it&#8217;s from Jul 2010) and ran into it again today.. &#8220;Thought and Performance, Live Coding Music, Explained to Anyone – Really&#8221; by Peter Kirn contains several simple but thought provoking ideas about livecoding and its relevance in the (traditional) music world. Is livecoding an elitarian activity? [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I bookmarked this article on createdigitalmusic.com a while ago (it&#8217;s from Jul 2010) and ran into it again today.. &#8220;<a href="http://createdigitalmusic.com/2010/07/thought-and-performance-live-coding-music-explained-to-anyone-really/#idc-cover">Thought and Performance, Live Coding Music, Explained to Anyone – Really</a>&#8221; by Peter Kirn contains several simple but thought provoking ideas about livecoding and its relevance in the (traditional) music world.</p>
+<p>Is livecoding an <strong>elitarian</strong> activity?</p>
+<blockquote><p>Secrets such as why the programming language Lisp inspires religious devotion, or how someone in their right mind would ever consider programming onstage as a form of musical performance, represent the sort of geekery that would seem to be the domain of an elite.
+</p></blockquote>
+<p>Commenting on Ramsay&#8217;s video (<a href="http://vimeo.com/9790850#at=0">Algorithms are Thoughts, Chainsaws are Tools</a>):</p>
+<blockquote><p>I doubt very seriously that live coding is the right performance medium for all computer musicians. [..] But Ramsay reveals what live coding music is. It’s <strong>compositional improvisation</strong>, and code simply lays bare the workings of the compositional mind as that process unfolds. Not everyone will understand the precise meaning of what they see, but there’s an intuitive intimacy to the odd sight of watching someone type code. It’s honest; there’s no curtain between you and the wizard.
+</p></blockquote>
+<p>An interesting comment from a reader puts forward what I&#8217;d call the &#8216;<strong>livecoding as a programming-virtuosism</strong> view:</p>
+<blockquote><p>The live coding thing is clearly an amazing talent. I admire anyone who can do that, but it does seem pretty much a sophisticated parlor trick unless the music resulting can stand on its own.<br />
+The question becomes, were you to hear the piece without observing the live coding performance, would it stand up, or <strong>is the quality of the piece augmented by the way in which it was composed</strong>?<br />
+Is a decent painting painted by someone who paints blindfolded something I would rather see than an excellent painting by someone who paints in a conventional fashion?<br />
+Cause unless the live coder can spin something up that I would enjoy listening to on my portable media player, I feel like music takes a back seat to the musician, which is a truly peculiar something.<br />
+[…]<br />
+This is not to say live coding is something to be ignored, but where from ever in history have we asked this question? Does the <strong>musician matter more than the music</strong>?
+</p></blockquote>
+<p>And another, even more critical comment:</p>
+<blockquote><p>It is <strong>not about letting the audience in at all</strong>. It&#8217;s about cultivating an stage presence of virtuosic technical wizardry. No one in the audience understands the code and that&#8217;s why everyone marvels at the &#8220;magic&#8221;. Worse still it&#8217;s Lisp, a particularly archaic and obfuscated computer language.</p></blockquote>
+<h2>So what?</h2>
+<p>I think this is all very useful to read, as it shows what non-specialists may think of livecoding. I&#8217;ve been asking myself similar questions a lot of times, but never really reached a clear conclusion. Is livecoding a music making activity, or is it just programming wizardry? </p>
+<p>I personally got into livecoding as a <strong>musician, first, and only afterwards as a programmer</strong>.<br />
+As a result I tend to see it as some sort of advanced music-making tool. However, interestingly enough, in order to make that tool match my music taste and composition style I had to become an expert at  programming the livecoding environment. While doing that, I sort of lost the <em>closure</em> to the &#8216;instrument&#8217;, which is something you&#8217;d have all the time if you play a piano or a guitar. With no closure, you end up in the role of &#8216;music programmer&#8217;, <strong>worrying about mathematical structures and time recursions rather than notes and feelings</strong>. </p>
+<p>It&#8217;s a cyclical process, actually. You gain competency with some programming pattern that lets you express your musical ideas quickly and efficiently. Then you think of different ideas, but you can&#8217;t put them into code easily, so you&#8217;ve got to step back, abandon the musical dimension temporarily, and hack some new programming structures.</p>
+<p>Which makes me think: <strong>maybe that&#8217;s what&#8217;s so cool about it</strong>. Livecoding environments are malleable meta-instruments that let you create (software) music instruments. </p>
+<p>So the music &#8211; the end result &#8211; is definitely part of it. But <strong>the process, the <em>how</em> in the music creation business is also what we have in focus here</strong>. In fact this process is also eminently creative (and here lies the difference with many other digital music &#8216;creation&#8217; tools) and, maybe most importantly, this process is so abstracted and codified that it feels as if it represented some sort of <strong>essence</strong> of creativity.</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2011/12/26/article-thought-and-performance-live-coding-music-explained-to-anyone/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2190</post-id>	</item>
+		<item>
+		<title>Workshop on Live Coding @ RMLL-11</title>
+		<link>http://www.michelepasin.org/blog/2011/07/11/workshop-on-live-coding-rmll-11/</link>
+				<pubDate>Mon, 11 Jul 2011 15:13:10 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Just Blogging]]></category>
+		<category><![CDATA[livecoding]]></category>
+		<category><![CDATA[strasbourg]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1445</guid>
+				<description><![CDATA[I just got back from Strasbourg (France) where I gave a talk about my experience with Livecoding and Impromptu at the at the Cultures et Arts Libres Workshop, part of the 2011 Libre Software Meeting. In a nutshell, livecoding is the process of writing software in realtime, as a form of improvised time-based art. Many [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I just got back from Strasbourg (France) where I gave a talk about my experience with <a href="http://en.wikipedia.org/wiki/Live_coding">Livecoding</a> and <a href="http://impromptu.moso.com.au/">Impromptu</a> at the at the Cultures et Arts Libres Workshop, part of the <a href="http://2011.rmll.info/">2011 Libre Software Meeting</a>. In a nutshell, livecoding is the process of writing software in realtime, as a form of improvised time-based art. Many thanks for the organizers for inviting me, it&#8217;s been a quite rewarding experience. Here I&#8217;m posting the slides from the talk in case people want to follow up on the things I mentioned.</p>
+<p>The slides are very introductory, so I strongly encourage anyone interested to find out more about the world of Impromptu by following the links provided in the presentation. </p>
+<div style="width:510px" id="__ss_8564854"> <strong style="display:block;margin:12px 0 4px"><a href="http://www.slideshare.net/mpasin/livecoding-with-impromptu" title="Livecoding with impromptu" target="_blank">Livecoding with impromptu</a></strong> <iframe src="http://www.slideshare.net/slideshow/embed_code/8564854" width="510" height="426" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe></div>
+<p>&nbsp;</p>
+<p>The other two livecoders who gave talks at the workshop were <a href="http://www.nescivi.nl/">Marje Baalman</a> and <a href="http://www.mcld.co.uk/">Dan Stowell</a>; both of them do very interesting stuff with <a href="http://www.audiosynth.com/">SuperCollider</a> (another livecoding environment) so you better check them out too!</p>
+<p>By the way, after the workshop there was also a livecoding performance &#8211; but I&#8217;m going to report about that <a href="http://www.michelepasin.org/blog/2011/07/08/livecoding-in-paris-stransbourg/">here</a>..</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1445</post-id>	</item>
+		<item>
+		<title>Livecoding is like gardening</title>
+		<link>http://www.michelepasin.org/blog/2011/06/29/livecoding-is-like-gardening/</link>
+				<pubDate>Wed, 29 Jun 2011 17:27:58 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[composing]]></category>
+		<category><![CDATA[eno]]></category>
+		<category><![CDATA[livecoding]]></category>
+		<category><![CDATA[quote]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=1044</guid>
+				<description><![CDATA[Just ran into this interesting article by Brian Eno. It struck me as quite a fair representation of what livecoders do most of the time, when they create (maybe I should say &#8216;sculpt&#8217;) musical structures that evolve in time, as part of their performance: It’s intuitive to think that anything complex has to be made [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>Just ran into this interesting article by <a href="http://en.wikipedia.org/wiki/Brian_Eno">Brian Eno</a>. It struck me as quite a fair representation of what livecoders do most of the time, when they create (maybe I should say &#8216;sculpt&#8217;) musical structures that evolve in time, as part of their performance:</p>
+<blockquote><p>It’s intuitive to think that anything complex has to be made by something more complex, but evolution theory says that complexity arises out of simplicity. That’s a bottom-up picture. I like that idea as a compositional idea, that <strong>you can set in place certain conditions and let them grow. It makes composing more like gardening than architecture</strong></p></blockquote>
+<p>It&#8217;s from <a href="http://www.soundonsound.com/sos/oct05/articles/brianeno.htm">http://www.soundonsound.com/sos/oct05/articles/brianeno.htm</a>.</p>
+<p>&nbsp;</p>
+<p><iframe width="425" height="349" src="http://www.youtube.com/embed/e6K67aaEYA0" frameborder="0" allowfullscreen></iframe></p>
+<p>&nbsp;</p>
+<p>Here is one of the songs from the album Eno is talking about in that article, <a href="http://en.wikipedia.org/wiki/Another_Day_on_Earth">Another Day on Earth</a>.</p>
+<p>&nbsp;</p>
+<p><iframe width="425" height="349" src="http://www.youtube.com/embed/NBnvRNDAKRc" frameborder="0" allowfullscreen></iframe></p>
+<p>&nbsp;</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">1044</post-id>	</item>
+		<item>
+		<title>&#8216;Show us your screens&#8217;: new Livecoding documentary</title>
+		<link>http://www.michelepasin.org/blog/2011/02/24/new-livecoding-documentary-available/</link>
+				<pubDate>Thu, 24 Feb 2011 14:32:28 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[documentary]]></category>
+		<category><![CDATA[film]]></category>
+		<category><![CDATA[livecoding]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=993</guid>
+				<description><![CDATA[A nice documentary about livecoding practise by Louis McCallum and Davy Smith. Some shorts excepts from my performance at the Anatomy Museum are included too (00:32 and 08:45). Show Us Your Screens on Vimeo.]]></description>
+								<content:encoded><![CDATA[<p>A nice documentary about livecoding practise by <a href="http://vimeo.com/user3474738">Louis McCallum</a> and <a href="http://vimeo.com/user3154870">Davy Smith</a>. Some shorts excepts from <a href="http://www.michelepasin.org/blog/2010/02/12/video-recordings-of-the-livecoding-session-anatomy-theatre/">my performance at the Anatomy Museum</a> are included too (00:32 and 08:45).</p>
+<p><iframe src="http://player.vimeo.com/video/20241649" width="400" height="320" frameborder="0"></iframe></p>
+<p><a href="http://vimeo.com/20241649">Show Us Your Screens</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">993</post-id>	</item>
+		<item>
+		<title>Live coding in clojure</title>
+		<link>http://www.michelepasin.org/blog/2011/01/21/live-coding-in-clojure/</link>
+				<comments>http://www.michelepasin.org/blog/2011/01/21/live-coding-in-clojure/#comments</comments>
+				<pubDate>Fri, 21 Jan 2011 13:00:41 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[clojure]]></category>
+		<category><![CDATA[livecoding]]></category>
+		<category><![CDATA[processing]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=980</guid>
+				<description><![CDATA[Live-processing is a Processing clone with livecode capabilities. It&#8217;s written in Clojure, a recent java-based dynamic programming language which I reviewed elsewhere and it keeps getting back at me&#8230;]]></description>
+								<content:encoded><![CDATA[<p><a href="http://automata.cc/live-processing">Live-processing</a> is a <a href="http://processing.org/">Processing</a> clone with livecode capabilities. It&#8217;s written in Clojure, a recent java-based dynamic programming language which I <a href="http://www.michelepasin.org/blog/2010/11/25/clojure-or-not-clojure/">reviewed elsewhere</a> and it keeps getting back at me&#8230;</p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2011/01/Screen-shot-2011-01-21-at-12.55.45.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2011/01/Screen-shot-2011-01-21-at-12.55.45.png" alt="Screen shot 2011-01-21 at 12.55.45.png" border="0" width="350" height="300" /></a></p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2011/01/21/live-coding-in-clojure/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">2187</post-id>	</item>
+		<item>
+		<title>New song: Turborobot</title>
+		<link>http://www.michelepasin.org/blog/2010/12/21/new-song-turborobot/</link>
+				<comments>http://www.michelepasin.org/blog/2010/12/21/new-song-turborobot/#comments</comments>
+				<pubDate>Tue, 21 Dec 2010 15:23:08 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[electronica]]></category>
+		<category><![CDATA[livecoding]]></category>
+		<category><![CDATA[song]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=968</guid>
+				<description><![CDATA[It&#8217;s a bit of an electro/eighties-sounding/disco tune.. Here&#8217;s the live-coded version: And here&#8217;s an audio recording, for the faint-hearted: Turborobot by magicrebirth]]></description>
+								<content:encoded><![CDATA[<p>It&#8217;s a bit of an electro/eighties-sounding/disco tune.. </p>
+<p>Here&#8217;s the live-coded version:</p>
+<p><iframe src="http://player.vimeo.com/video/18044771?autoplay=1" width="400" height="300" frameborder="0"></iframe></p>
+<p>And here&#8217;s an audio recording, for the faint-hearted:</p>
+<p><object height="81" width="100%"><param name="movie" value="http://player.soundcloud.com/player.swf?url=http%3A%2F%2Fapi.soundcloud.com%2Ftracks%2F8281440&amp;show_comments=true&amp;auto_play=false&amp;color=ff7700"></param><param name="allowscriptaccess" value="always"></param></object>   <span><a href="http://soundcloud.com/magicrebirth/turborobot">Turborobot</a> by <a href="http://soundcloud.com/magicrebirth">magicrebirth</a></span></p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2010/12/21/new-song-turborobot/feed/</wfw:commentRss>
+		<slash:comments>2</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">968</post-id>	</item>
+		<item>
+		<title>Livecoding Xmas event at Goldsmith College</title>
+		<link>http://www.michelepasin.org/blog/2010/12/09/livecoding-xmas-event-at-goldsmith-college/</link>
+				<pubDate>Thu, 09 Dec 2010 20:27:55 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Just Blogging]]></category>
+		<category><![CDATA[event]]></category>
+		<category><![CDATA[goldsmith]]></category>
+		<category><![CDATA[livecoding]]></category>
+		<category><![CDATA[london]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=915</guid>
+				<description><![CDATA[Thursday Club Xmas party [ event-site &#124; facebook &#124; flier &#124; map ] 6:30pm sharp til 8:30pm, 2010/12/16 at Goldsmith Digital Studios Live coding is a new direction in electronic music and video, and is starting to get somewhere interesting. Live coders expose and rewire the innards of software while it generates improvised music and/or [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/12/Screen-shot-2010-12-09-at-20.27.01.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/12/Screen-shot-2010-12-09-at-20.27.01.png" alt="Screen shot 2010-12-09 at 20.27.01.png" border="0" width="400" height="300" /></a></p>
+<p>Thursday Club Xmas party [ <a href="http://toplap.org/uk/event/thursd/">event-site</a> | <a href="http://www.facebook.com/event.php?eid=131290450261616">facebook</a> | <a href="http://toplap.org/media/thursday.pdf">flier</a> | <a href="http://maps.google.co.uk/?ie=UTF8&#038;ll=51.474597,-0.037993&#038;spn=0.000433,0.000983&#038;t=h&#038;z=20">map</a> ]</p>
+<p><strong>6:30pm sharp til 8:30pm, 2010/12/16</strong> at <a href="http://www.gold.ac.uk/virtual-tours/bpb-terrace/">Goldsmith Digital Studios</a></p>
+<blockquote><p>Live coding is a new direction in electronic music and video, and is starting to get somewhere interesting. Live coders expose and rewire the innards of software while it generates improvised music and/or visuals. All code manipulation is projected for your pleasure. Live coding is inclusive and accessible to all. Many live coding environments can be downloaded and used for free, with documentation and examples to get you started and friendly on-line communities to help when you get problems. Popular live coding software includes supercollider, ChucK, impromptu and fluxus. Live patching is live coding with graph-based languages such as the venerable pure-data. It&#8217;s also possible to livecode with a gamepad, e.g. with the robot oriented Al-Jazari. For more info see: http://toplap.org/</p></blockquote>
+<p>Enjoy live coded music from some of the UKs finest algorithmic musicians, namely:</p>
+<p><strong>slub</strong> &#8211; Slub celebrate a decade since they first got a whole room of people to dance to their code (at Amsterdam Paradiso), with a hard-edged set of abstract acid with extra breakdowns. [ http://slub.org/ ]<br />
+<strong>Wrongheaded</strong> &#8211; Conducting an algorithmic seance, where a ouiji board control interface issues instructions from beyond the grave. Dimly lit but for the flickering of gas-driven projector screens, the protagonists will be appropriately moustachioed as they bring you ethereal sounds from the underworld.<br />
+<strong>Thor Magnusson</strong> &#8211; Shaking, self-modified beats with ixilang, from the co-founder of ixi audio. [ http://www.ixi-audio.net/ ]<br />
+<strong>Michele Pasin</strong> &#8211; Audio/Visual temporal recursion with Impromptu. [ http://www.michelepasin.org/ ]<br />
+<strong>Forth + Yee-King</strong> &#8211; South Bank Common Lisp + SuperCollider synchronised in percussive improv. [ http://www.yeeking.net/ ] </p>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">915</post-id>	</item>
+	</channel>
+</rss>

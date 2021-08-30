@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>comparison &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/comparison/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Mon, 08 Nov 2010 12:57:13 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Scheme and Lisp</title>
+		<link>http://www.michelepasin.org/blog/2010/11/08/scheme-and-lisp/</link>
+				<pubDate>Mon, 08 Nov 2010 12:57:13 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[Computer Music]]></category>
+		<category><![CDATA[code]]></category>
+		<category><![CDATA[comparison]]></category>
+		<category><![CDATA[lisp]]></category>
+		<category><![CDATA[programming]]></category>
+		<category><![CDATA[scheme]]></category>
+
+		<guid isPermaLink="false">http://www.michelepasin.org/blog/?p=866</guid>
+				<description><![CDATA[If you&#8217;re coming from Lisp, and then start using Scheme (or the other way around) there are a few small differences between the two languages that it&#8217;s useful to always keep in mind. I tried to do that a number of times, but inevitably I find myself once again wondering: how do you say &#8216;progn&#8217; [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>If you&#8217;re coming from Lisp, and then start using Scheme (or the other way around) there are a few small differences between the two languages that it&#8217;s useful to always keep in mind. I tried to do that a number of times, but inevitably I find myself once again wondering: how do you say &#8216;progn&#8217; in scheme? </p>
+<p>So, since I recently found online a <a href="http://www.cs.utexas.edu/~novak/schemevscl.html">succinct table</a> that sums up the differences, I thought I&#8217;d pass it on to posterity here too. </p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/11/Screen-shot-2010-11-08-at-14.29.12.png"><img src="http://www.michelepasin.org/blog/wp-content/uploads/2010/11/Screen-shot-2010-11-08-at-14.29.12.png" alt="Screen shot 2010-11-08 at 14.29.12.png" border="0" width="200" height="300" /></a></p>
+<p>By the way, on the same site the authors report of a small scheme library (<a href="ftp://ftp.cs.utexas.edu/pub/novak/cs307/initdr.scm">initdr.scm</a>) that implements a few very common Lisp functions. Including [dotimes dolist intersection, union set-difference copy-list subset every some copy-tree subst sublis nconc nreverse]&#8230; Quite useful too!</p>
+<h3>UPDATE 28/11/10:</h3>
+<p> I realized that most of these lisp functions are <strong>already available</strong> in Impromptu, under the <em>cl:</em> namespace (check out the <a href="http://moso.com.au/wiki/index.php?title=Common_Lisp_Library_Functions">common-lisp library functions</a> section on the wiki). Below are just a couple of additions to that, based on the <em>initdr.scm</em> library I was mentioning.. apologies for the confusion! </p>
+<pre style='color:#000000;background:#ffffff; overflow:auto;font-size:13px;'><span style='color:#c34e00; '>;;;;;;;;;;;;;;;;</span>
+<span style='color:#c34e00; '>;;; LISP ADDITIONS </span>
+<span style='color:#c34e00; '>;; the rest of this is in the cl: impromptu library</span>
+<span style='color:#c34e00; '>;;;;;;;;;;;;;;;;</span>
+
+
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> cl<span style='color:#800000; font-weight:bold; '>:first</span> car<span style='color:#806030; '>)</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> cl<span style='color:#800000; font-weight:bold; '>:rest</span> cdr<span style='color:#806030; '>)</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> cl<span style='color:#800000; font-weight:bold; '>:count</span> length<span style='color:#806030; '>)</span>
+
+<span style='color:#c34e00; '>;; reverse of cons: (cons 'b '(a))</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> cl<span style='color:#800000; font-weight:bold; '>:l-put</span>
+   <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>lambda</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>obj</span> lst<span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>reverse</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cons</span> obj <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>reverse</span> lst<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+
+<span style='color:#c34e00; '>;; dont know why but I like it reversed..</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> cl<span style='color:#800000; font-weight:bold; '>:nth</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>lambda</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>x</span> lst<span style='color:#806030; '>)</span>
+               <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>list-ref</span> lst x<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+
+
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>1+</span> n<span style='color:#806030; '>)</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>+</span> n <span style='color:#c00000; '>1</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>1-</span> n<span style='color:#806030; '>)</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>-</span> n <span style='color:#c00000; '>1</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+
+
+<span style='color:#c34e00; '>;; (subst 9 7 '(5 (5 6 7(6 7))))    =>  (5 (5 6 9 (6 9)))      </span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cl:subst</span> new old tree<span style='color:#806030; '>)</span>
+  <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>pair?</span> tree<span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>let</span> <span style='color:#806030; '>(</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>left</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>subst</span> new old <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>car</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>right</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>subst</span> new old <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+        <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>and</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>eq?</span> left <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>car</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+                 <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>eq?</span> right <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            tree
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cons</span> left right<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>eqv?</span> old tree<span style='color:#806030; '>)</span>
+          new
+          tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+
+
+
+<span style='color:#c34e00; '>;; (sublis '((6 . 9) (7 . 10)) '(5 (5 6 7 (6 7)))))  => (5 (5 9 10 (9 10)))</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cl:sublis</span> alist tree<span style='color:#806030; '>)</span>
+  <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>pair?</span> tree<span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>let</span> <span style='color:#806030; '>(</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>left</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>sublis</span> alist <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>car</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>right</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>sublis</span> alist <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+        <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>and</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>eq?</span> left <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>car</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+                 <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>eq?</span> right <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> tree<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            tree
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cons</span> left right<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>let</span> <span style='color:#806030; '>(</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>new</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>assv</span> tree alist<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+        <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> new
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> new<span style='color:#806030; '>)</span>
+            tree<span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span>
+
+
+<span style='color:#c34e00; '>;; (copy-tree '(5 (5 6 7(6 7))))</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cl:copy-tree</span> x<span style='color:#806030; '>)</span>
+  <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>pair?</span> x<span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cons</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>copy-tree</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>car</span> x<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>copy-tree</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> x<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+      x<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+
+
+<span style='color:#c34e00; '>; Convert a floating-point number to a string of sign and at most 4 characters.</span>
+<span style='color:#c34e00; '>; Rounds the number so that 1.999 will come out as 2.00 , very small as 0.0 .</span>
+<span style='color:#c34e00; '>; numstring is written assuming that num is not too large or too small,</span>
+<span style='color:#c34e00; '>; i.e. num must be printable in 4 digits.</span>
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cl:numstring</span> num<span style='color:#806030; '>)</span>
+  <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>let*</span> <span style='color:#806030; '>(</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>numc</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>abs</span> num<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>sign</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>&lt;</span> num <span style='color:#c00000; '>0</span><span style='color:#806030; '>)</span> -<span style='color:#c00000; '>1</span> <span style='color:#c00000; '>1</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>exponent</span> <span style='color:#c00000; '>0</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+    <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>&lt;</span> numc <span style='color:#800000; '>1.0e-6</span><span style='color:#806030; '>)</span>
+    <span style='color:#e60000; '>"0.0"</span>
+    <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>begin</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>&lt;</span> numc <span style='color:#800000; '>1.0</span><span style='color:#806030; '>)</span>
+          <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>begin</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>while</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>&lt;</span> numc <span style='color:#c00000; '>100</span><span style='color:#806030; '>)</span>
+                <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>set!</span> numc <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>*</span> numc <span style='color:#c00000; '>10</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+                <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>set!</span> exponent <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>1-</span> exponent<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+             <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>set!</span> numc <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>*</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>round</span> numc<span style='color:#806030; '>)</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>expt</span> <span style='color:#c00000; '>10</span> exponent<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span>
+          <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>set!</span> numc <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>*</span> numc <span style='color:#800000; '>1.0001</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>if</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>&lt;</span> sign <span style='color:#c00000; '>0</span><span style='color:#806030; '>)</span>
+          <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>string-append</span> <span style='color:#e60000; '>"-"</span>
+                 <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>substring</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>number->string</span> numc<span style='color:#806030; '>)</span> <span style='color:#c00000; '>0</span>
+                   <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>min</span> <span style='color:#c00000; '>4</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>string-length</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>number->string</span> numc<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+          <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>substring</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>number->string</span> numc<span style='color:#806030; '>)</span> <span style='color:#c00000; '>0</span>
+             <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>min</span> <span style='color:#c00000; '>4</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>string-length</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>number->string</span> numc<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span> <span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+
+
+
+
+<span style='color:#c34e00; '>;(list-flatten '(9 9 (9 9 9 ))))  = (9 9 9 9 9)</span>
+
+<span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>define</span> cl<span style='color:#800000; font-weight:bold; '>:list-flatten</span> 
+   <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>lambda</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>l</span><span style='color:#806030; '>)</span>
+      <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cond</span> <span style='color:#806030; '>(</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>null?</span> l<span style='color:#806030; '>)</span>
+             <span style='color:#806030; '>'</span><span style='color:#806030; '>(</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            <span style='color:#806030; '>(</span><span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>atom?</span> l<span style='color:#806030; '>)</span>
+             <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>list</span> l<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+            <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>#t</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>append</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cl:list-flatten</span>  <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>car</span> l<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span> <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cl:list-flatten</span>  <span style='color:#806030; '>(</span><span style='color:#400000; font-weight:bold; '>cdr</span> l<span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span><span style='color:#806030; '>)</span>
+</pre>
+]]></content:encoded>
+									<post-id xmlns="com-wordpress:feed-additions:1">866</post-id>	</item>
+	</channel>
+</rss>

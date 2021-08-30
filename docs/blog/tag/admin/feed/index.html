@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?><rss version="2.0"
+	xmlns:content="http://purl.org/rss/1.0/modules/content/"
+	xmlns:wfw="http://wellformedweb.org/CommentAPI/"
+	xmlns:dc="http://purl.org/dc/elements/1.1/"
+	xmlns:atom="http://www.w3.org/2005/Atom"
+	xmlns:sy="http://purl.org/rss/1.0/modules/syndication/"
+	xmlns:slash="http://purl.org/rss/1.0/modules/slash/"
+	
+	xmlns:georss="http://www.georss.org/georss"
+	xmlns:geo="http://www.w3.org/2003/01/geo/wgs84_pos#"
+	>
+
+<channel>
+	<title>admin &#8211; Parerga und Paralipomena</title>
+	<atom:link href="http://www.michelepasin.org/blog/tag/admin/feed/" rel="self" type="application/rss+xml" />
+	<link>http://www.michelepasin.org/blog</link>
+	<description>At the core of all well-founded belief lies belief that is unfounded - Wittgenstein</description>
+	<lastBuildDate>Wed, 30 Sep 2009 11:13:47 +0000</lastBuildDate>
+	<language>en-US</language>
+	<sy:updatePeriod>
+	hourly	</sy:updatePeriod>
+	<sy:updateFrequency>
+	1	</sy:updateFrequency>
+	<generator>https://wordpress.org/?v=5.2.11</generator>
+<site xmlns="com-wordpress:feed-additions:1">13825966</site>	<item>
+		<title>Using jquery&#8217;s autocomplete in django admin: how about inlines?</title>
+		<link>http://www.michelepasin.org/blog/2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/</link>
+				<comments>http://www.michelepasin.org/blog/2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/#comments</comments>
+				<pubDate>Wed, 30 Sep 2009 11:13:47 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[Tips and Tricks]]></category>
+		<category><![CDATA[admin]]></category>
+		<category><![CDATA[autocomplete]]></category>
+		<category><![CDATA[django]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=345</guid>
+				<description><![CDATA[I still haven&#8217;t solved this problem entirely, and I&#8217;ll tell you why. Well the issue has been addressed by many, and among them probably the first and most influential solution is Jannis Leidel&#8217;s &#8216;An autocomplete form widget for ForeignKey model fields&#8217;. Leidel says: [..] my question is, if this could be done on a more [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>I still haven&#8217;t solved this problem entirely, and I&#8217;ll tell you why. Well the issue has been addressed by many, and among them probably the first and most influential solution is Jannis Leidel&#8217;s <a href="http://jannisleidel.com/2008/11/autocomplete-form-widget-foreignkey-model-fields/">&#8216;An autocomplete form widget for ForeignKey model fields&#8217;</a>.</p>
+<p>Leidel says:</p>
+<blockquote><p>[..] my question is, if this could be done on a more abstract level for enhancing relations. when having a foreignkey, you get the browse-icon (lens) right near the input-field. it´d be awesome to search the relations just by typing something into the field … the autocomplete-functionality should then search the related entries on the basis of the defined search-fields.</p></blockquote>
+<p>Here&#8217;s a nice <strong>screencast</strong> of the the result [<span style="background:red;">UPDATE</span>: unfortunately the screencast is not available anymore]:</p>
+<p><a href="http://www.flickr.com/photos/jannis/3028766217/"><img class="alignnone size-full wp-image-348" title="Picture 1" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/09/picture-11.png" alt="Picture 1" width="500" height="300" /></a></p>
+<p><strong>Leidel&#8217;s solution is not a copy&amp;paste type of thing</strong>, however it&#8217;s very useful to study his code so to understand what&#8217;s going on there, and then replicate it in your specific user-scenario. That&#8217;s exactly what several people have done. </p>
+<p>Nonetheless, <strong>reusing is more agile that doing things from scratch</strong>, isn&#8217;t it? So, after a bit of research I reached the conclusion that the most interesting and reusable (meaning, plug-and-play) django implementations of jquery&#8217;s autocomplete are two:</p>
+<ol>
+<li> the <a href="http://code.google.com/p/django-command-extensions/wiki/AdminExtensions"><em>admin extensions</em> section of the django-extensions project</a> on google code</li>
+<p><strong>PROs</strong>: it extends django&#8217;s raw_input widget, so while you can make use of the autocomplete you can still click on the lens and select the object you want from a new objects-list window (see screencast below). Also, you can enter the id of the object and the autocomplete will fill in straightaway the human-readable form of it (not sure how useful it is, but I like it)<br />
+<strong>CONs</strong>: supports only one-2-many relationships, that is, it doesn&#8217;t work with many2many or inlines</p>
+<li> another project on google code called &#8211; surprise &#8211; <a href="http://code.google.com/p/django-autocomplete/">django-autocomplete</a> !</li>
+<p><strong>PROs</strong>: very compact (just one file, no new apps to include). Works with one2many AND many2many<br />
+<strong>CONs</strong>: again, no support for inlines&#8230;</p>
+<p>After having a go with both of them I decided to use the first one [the admin extensions section of the <a href="http://code.google.com/p/django-command-extensions/wiki/AdminExtensions">django-extensions project</a>], cause I don&#8217;t need many2many support and I really liked the fact that the standard &#8216;raw-id&#8217; behaviour is still available. Here&#8217;s a nice screencast (by the way I just realized that this one has been made by Jannis Leidel too, so I guess it&#8217;s sort of an evolution of the previous one) [UPDATE #2: also this screencast is not available anymore! what&#8217;s going on with mr Leidel?]:</p>
+<p><a href="http://www.flickr.com/photos/jannis/3246408003/"><img class="alignnone size-full wp-image-350" title="Picture 3" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/09/picture-31.png" alt="Picture 3" width="513" height="234" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/09/picture-31.png 513w, http://www.michelepasin.org/blog/wp-content/uploads/2009/09/picture-31-300x136.png 300w" sizes="(max-width: 513px) 100vw, 513px" /></a></p>
+<p>Conclusion: there&#8217;s only one BIG problem &#8211; <strong>it doesn&#8217;t work with <a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects">inlines</a></strong> out-of-the-box ! I&#8217;m looking at extending it now&#8230; will keep you posted!</p>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/feed/</wfw:commentRss>
+		<slash:comments>1</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">345</post-id>	</item>
+		<item>
+		<title>Django admin and MPTT #2</title>
+		<link>http://www.michelepasin.org/blog/2009/08/18/django-admin-and-mptt-2/</link>
+				<comments>http://www.michelepasin.org/blog/2009/08/18/django-admin-and-mptt-2/#comments</comments>
+				<pubDate>Tue, 18 Aug 2009 10:46:32 +0000</pubDate>
+		<dc:creator><![CDATA[mikele]]></dc:creator>
+				<category><![CDATA[TechLife]]></category>
+		<category><![CDATA[admin]]></category>
+		<category><![CDATA[django]]></category>
+		<category><![CDATA[mptt]]></category>
+		<category><![CDATA[tree]]></category>
+		<category><![CDATA[visualization]]></category>
+
+		<guid isPermaLink="false">http://magicrebirth.wordpress.com/?p=275</guid>
+				<description><![CDATA[This is a follow up to the previous post on managing and visualizing trees using django. I&#8217;ve been using MPTT quite a bit now and it&#8217;s great &#8211; also, I looked deeper into the admin integration (basically, the issue of being able of manage trees from within the admin). The major issue I had with [&#8230;]]]></description>
+								<content:encoded><![CDATA[<p>This is a follow up to the <a href="http://www.michelepasin.org/blog/?p=255">previous post on managing and visualizing trees using django</a>. I&#8217;ve been using MPTT quite a bit now and it&#8217;s great &#8211; also, I looked deeper into the admin integration (basically, the issue of being able of manage trees from within the admin).</p>
+<p>The major issue I had with the patch discussed in my previous post was the fact that it is mainly a javascript hack &#8211; everything is done in the browser &#8211; i.e. it looked wonderful but it didn&#8217;t really scale up. So if you had a lot of items in your tree (say thousands) the <strong>js-driven pagination (basically, hiding and showing things on demand) would crash</strong> &#8211; at least, it did that to me all the time!</p>
+<p>The solution has been to reuse the admin management section from the <a href="http://spinlock.ch/pub/feincms/html/">FeinCMS project</a> &#8211; this is a great CMS created by a bunch of django-ers in Switzerland &#8211; it relies heavvily on django&#8217;s admin so they had the same problem when having to provide a way for users to add structure to the pages in a website.  With some <a href="http://groups.google.com/group/django-feincms/topics?start=">help from google and <strong>Matthias</strong></a><strong> (tx! he&#8217;s one of the guys behind FeinCMS</strong>) I got it all working.. here&#8217;s the main steps:</p>
+<p><strong>1. upgrade to django 1.1</strong><br />
+This might not be necessary, cause everything is supposed to work also with the previous release &#8211; I tried it with django 1.0 too but I had to fix a couple of urls to make it work (Basically media files which were not loaded properly). So, if you want a hassle-free installation just upgrade to django 1.1 ! (which is great btw)</p>
+<p><strong>2. download and add <a href="http://github.com/matthiask/feincms/tree/master">feincms</a>, <a href="http://code.google.com/p/django-mptt/">mptt</a> to you installed apps in settings.py</strong><br />
+As simple as that.</p>
+<div style='color:#ffffff;background:#000000; overflow:auto'>
+<pre>
+INSTALLED_APPS = (
+    ....
+    <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">mptt</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>,
+    <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">feincms</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>,
+)
+</pre>
+</div>
+<p><strong>3. specify a url-path for feincms media in settings.py, and also a location</strong> (this may vary in your live server, if you want apache to serve these files directly).</p>
+<div style='color:#ffffff;background:#000000;overflow:auto;'>
+<pre>
+FEINCMS_ADMIN_MEDIA = <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">/feincms_media/</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>
+FEINCMS_ADMIN_MEDIA_LOCATION = <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">/My/local/path/to/feincms/media/</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>
+</pre>
+</div>
+<p><strong>4. add a url handler for feincms media files in urls.py. Again, these settings are ok on a development server, on production phase <a href="http://docs.djangoproject.com/en/dev/howto/static-files/#the-big-fat-disclaimer">you might wanna do things differently :-) </a></strong></p>
+<div style='color:#ffffff;background:#000000;overflow:auto'>
+<pre>
+<font color="#ff82ff">from</font> django.conf <font color="#ff82ff">import</font> settings
+    urlpatterns = patterns(<span style="background-color: #000000"><font color="#ffffff">''</font></span>,
+    .....
+    (<span style="background-color: #000000"><font color="#ffffff">r'</font></span><font color="#ffa2a5">^feincms_media/(?P&lt;path&gt;.*)$</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>, <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">django.views.static.serve</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>,
+         {<span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">document_root</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>: settings.FEINCMS_ADMIN_MEDIA_LOCATION, <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">show_indexes</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>: True}),
+)
+</pre>
+</div>
+<p><strong>5. register your hierarchical model with mptt, then remember to set the Meta option correctly</strong>.. this is needed for a correct display of the tree in the admin (obviously you need to run syncdb to create the table in the db!):</p>
+<div style='color:#ffffff;background:#000000; overflow:auto;'>
+<pre>
+<font color="#ff82ff">from</font> django.db <font color="#ff82ff">import</font> models
+<font color="#ff82ff">import</font> mptt
+
+<font color="#ffff63"><b>class</b></font> <font color="#42ffff">TreeNode</font>(models.Model):
+   name = models.CharField(max_length=50, unique=True)
+   parent = models.ForeignKey(<span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">self</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>, null=True, blank=True, related_name=<span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">children</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>)
+
+   <font color="#ffff63"><b>def</b></font> <font color="#42ffff">__unicode__</font>(self):
+                <font color="#ffff63"><b>return</b></font> self.name
+
+   <font color="#ffff63"><b>class</b></font> <font color="#42ffff">Meta</font>:
+          ordering = [<span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">tree_id</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>, <span style="background-color: #000000"><font color="#ffffff">'</font></span><font color="#ffa2a5">lft</font><span style="background-color: #000000"><font color="#ffffff">'</font></span>]
+
+
+mptt.register(TreeNode,)
+</pre>
+</div>
+<p><strong>6. create a model admin that inherits from feincms TreeEditor class</strong>:</p>
+<div style='color:#ffffff;background:#000000; overflow:auto'>
+<pre>
+<font color="#ff82ff">from</font> django.contrib <font color="#ff82ff">import</font> admin
+<font color="#ff82ff">from</font> django.utils.translation <font color="#ff82ff">import</font> ugettext_lazy <font color="#ff82ff">as</font> _
+<font color="#ff82ff">from</font> django.conf <font color="#ff82ff">import</font> settings <font color="#ff82ff">as</font> django_settings
+<font color="#ff82ff">from</font> feincms.admin <font color="#ff82ff">import</font> editor
+<font color="#ff82ff">from</font> myproject.myapp.models <font color="#ff82ff">import</font> *
+
+<font color="#ffff63"><b>class</b></font> <font color="#42ffff">TreeNodeAdmin</font>(editor.TreeEditor):
+    <font color="#ffff63"><b>pass</b></font>
+
+admin.site.register(TreeNode, TreeNodeAdmin)
+</pre>
+</div>
+<p><strong>End</strong>! That should be it! Let me know if I forgot something..<br />
+Here&#8217;s a screenshot of the new tree-management admin page we created:</p>
+<p><img class="alignnone size-full wp-image-276" title="Picture 1" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-1.png" alt="Picture 1" width="655" height="319" srcset="http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-1.png 655w, http://www.michelepasin.org/blog/wp-content/uploads/2009/08/picture-1-300x146.png 300w" sizes="(max-width: 655px) 100vw, 655px" /></p>
+<p><strong><span style="background:red;">UPDATE 09/2009</span>: how to add more actions to the tree bar.</strong><br />
+Just override the <i> _actions_column </i> method on the TreeNodeAdmin class, as follows::</p>
+<pre style='color:#d1d1d1;background:#000000; overflow:auto;'><span style='color:#e66170; font-weight:bold; '>class</span> TreeNodeAdmin<span style='color:#d2cd86; '>(</span>editor<span style='color:#d2cd86; '>.</span>TreeEditor<span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>:</span>
+        <span style='color:#e66170; font-weight:bold; '>def</span> _actions_column<span style='color:#d2cd86; '>(</span>self<span style='color:#d2cd86; '>,</span> page<span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>:</span>
+                actions <span style='color:#d2cd86; '>=</span> <span style='color:#e34adc; '>super</span><span style='color:#d2cd86; '>(</span>TreeNodeAdmin<span style='color:#d2cd86; '>,</span> self<span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>.</span>_actions_column<span style='color:#d2cd86; '>(</span>page<span style='color:#d2cd86; '>)</span>
+                actions<span style='color:#d2cd86; '>.</span>insert<span style='color:#d2cd86; '>(</span><span style='color:#008c00; '>0</span><span style='color:#d2cd86; '>,</span> u'<span style='color:#d2cd86; '>&lt;</span>a href<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"add/?parent=%s"</span> title<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%s"</span><span style='color:#d2cd86; '>></span><span style='color:#d2cd86; '>&lt;</span>img
+                       src<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%simg/admin/icon_addlink.gif"</span> alt<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%s"</span><span style='color:#d2cd86; '>></span><span style='color:#d2cd86; '>&lt;</span><span style='color:#d2cd86; '>/</span>a<span style='color:#d2cd86; '>></span>' <span style='color:#d2cd86; '>%</span>
+                       <span style='color:#d2cd86; '>(</span>page<span style='color:#d2cd86; '>.</span>pk<span style='color:#d2cd86; '>,</span> _<span style='color:#d2cd86; '>(</span><span style='color:#00c4c4; '>'Add child page'</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>,</span>
+                       settings<span style='color:#d2cd86; '>.</span>ADMIN_MEDIA_PREFIX <span style='color:#d2cd86; '>,</span> _<span style='color:#d2cd86; '>(</span><span style='color:#00c4c4; '>'Add child page'</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>)</span>
+               actions<span style='color:#d2cd86; '>.</span>insert<span style='color:#d2cd86; '>(</span><span style='color:#008c00; '>0</span><span style='color:#d2cd86; '>,</span> u'<span style='color:#d2cd86; '>&lt;</span>a href<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%s"</span> title<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%s"</span><span style='color:#d2cd86; '>></span><span style='color:#d2cd86; '>&lt;</span>img
+                       src<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%simg/admin/selector-search.gif"</span> alt<span style='color:#d2cd86; '>=</span><span style='color:#00c4c4; '>"%s"</span> <span style='color:#d2cd86; '>/</span><span style='color:#d2cd86; '>></span><span style='color:#d2cd86; '>&lt;</span><span style='color:#d2cd86; '>/</span>a<span style='color:#d2cd86; '>></span>' <span style='color:#d2cd86; '>%</span>
+                       <span style='color:#d2cd86; '>(</span>page<span style='color:#d2cd86; '>.</span>get_absolute_url<span style='color:#d2cd86; '>(</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>,</span> _<span style='color:#d2cd86; '>(</span><span style='color:#00c4c4; '>'View on site'</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>,</span>
+                       django_settings<span style='color:#d2cd86; '>.</span>ADMIN_MEDIA_PREFIX<span style='color:#d2cd86; '>,</span> _<span style='color:#d2cd86; '>(</span><span style='color:#00c4c4; '>'View on site'</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>)</span><span style='color:#d2cd86; '>)</span>
+                <span style='color:#e66170; font-weight:bold; '>return</span> actions
+
+admin<span style='color:#d2cd86; '>.</span>site<span style='color:#d2cd86; '>.</span>register<span style='color:#d2cd86; '>(</span>TreeNode<span style='color:#d2cd86; '>,</span> TreeNodeAdmin
+</pre>
+<p>&nbsp;</p>
+]]></content:encoded>
+							<wfw:commentRss>http://www.michelepasin.org/blog/2009/08/18/django-admin-and-mptt-2/feed/</wfw:commentRss>
+		<slash:comments>31</slash:comments>
+						<post-id xmlns="com-wordpress:feed-additions:1">275</post-id>	</item>
+	</channel>
+</rss>
