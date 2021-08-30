@@ -16,13 +16,22 @@ else
 fi
 
 
+
+#
+# Folders ignored from build:
+# - assets: managed manually for static files 
+# - blog: contains legacy content which is unchanged 
+#
+
+
 echo -e "\nCLEAN UP BUILD DIR"
 echo "+++++++++++++++++"
 rm -rf build/*
 
 echo -e "\nRSYNC /DOCS TO /DOCS-PREV"
 echo "+++++++++++++++++"
-rsync -av --delete --exclude blog docs/ docs-prev/
+# the legacy /blog static files don't need to be refreshed
+rsync -av --delete --exclude blog --exclude assets docs/ docs-prev/
 
 echo -e "\nGRAB SITE INTO BUILD DIRECTORY" 
 echo "+++++++++++++++++"
@@ -34,7 +43,7 @@ cd ..
 
 echo -e "\RSYNC BUILD DIRECTORY TO /DOCS"
 echo "+++++++++++++++++"
-rsync -av --delete --exclude '.nojekyll' --exclude 'CNAME' --exclude blog build/ docs/
+rsync -av --delete --exclude '.nojekyll' --exclude 'CNAME' --exclude blog --exclude assets build/ docs/
 
 
 
