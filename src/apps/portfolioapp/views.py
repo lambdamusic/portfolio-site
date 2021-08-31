@@ -262,7 +262,6 @@ def sounds(request, namedetail=""):
 
 	_subpage = request.GET.get('k', 'livecoding')
 	context = {}
-
 	if not namedetail:
 
 		if _subpage == "livecoding":
@@ -314,6 +313,7 @@ def sounds(request, namedetail=""):
 			admin_change_url = None
 
 		context = {
+			'item': return_item,  # 2021-08-31 pass full object
 			'itemtitle': return_item.title,
 			'admin_change_url' : admin_change_url,
 			'itemdesc': return_item.description,
