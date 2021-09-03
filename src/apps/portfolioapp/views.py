@@ -200,8 +200,9 @@ def papers(request, namedetail=""):
 		# PUBLICATIONS LIST  PAGE
 
 		query = request.GET.get('query', 'date')
+		ttype = request.GET.get('type', 'all')
 		format = request.GET.get('format', 'html')
-		return_items = get_pubs(query)
+		return_items = get_pubs(query, ttype)
 		context = {
 			'return_items': return_items,
 			'urlname': "papers",
@@ -333,14 +334,20 @@ def sounds(request, namedetail=""):
 # ===========
 
 
-def get_pubs(query):
-	""" retrieves pubs info """
+def get_pubs(query, ttype):
+	""" retrieves pubs info 
+	
+	query: the ordering parameter eg date or pubtype
+	ttype: the (simplified) type filter  // September 3, 2021
+
+	"""
 
 	talks = PubType.objects.get(
 		pk=12)  # used to exclude 'INVITED TALKS' from articles list
 
 	if query == 'type':
-		pubtypegroups_list = PubType.objects.exclude(pk=12).values_list(
+		# exclude talks and blog
+		pubtypegroups_list = PubType.objects.exclude(pk=12).exclude(pk=13).values_list(
 			'groupfk__name').order_by('groupfk__order').distinct()
 		# eg [(u'Books',), (u'Journal Articles & Book Chapters',), (u'Articles in Peer-Reviewed Conference or Proceedings',), (u'White papers, Reports, etc.',)]
 		# NOTE talks are excluded as they don't have any groupfk (meta pubtype)
@@ -351,19 +358,6 @@ def get_pubs(query):
 					pubtype__groupfk__name=x[0])))
 		return return_items
 
-	elif query == 'date':
-		valid_years = list(
-			set([
-				x[0].year for x in Publication.objects.exclude(
-					pubtype=talks).values_list('pubdate').distinct()
-			]))
-		return_items = []
-		valid_years.sort(reverse=True)
-		# print valid_years
-		for x in valid_years:
-			return_items.append((x, Publication.objects.exclude(
-				pubtype=talks).filter(pubdate__year=x)))
-		return return_items
 
 	elif query == 'project':
 		valid_projects = list(
@@ -380,8 +374,52 @@ def get_pubs(query):
 							 Publication.objects.filter(project=None)))
 		return return_items
 
+
 	else:
-		return None
+		#  query == 'date':  ==>  always fallback here
+
+		# http://127.0.0.1:8000/admin/researchapp/pubtypegroup/
+
+		if ttype == "blogs":
+
+			ddset = Publication.objects.filter(pubtype__groupfk__pk=6)
+
+		elif ttype == "papers":
+
+			ddset = Publication.objects.exclude(pubtype=talks).exclude(pubtype__groupfk__pk=6).exclude(pubtype__groupfk__pk=3)
+
+		elif ttype == "misc":
+
+			ddset = Publication.objects.filter(pubtype__groupfk__pk=3)
+
+		else:
+
+			ddset = Publication.objects.exclude(pubtype=talks)
+
+		valid_years = list(
+			set([
+				x[0].year for x in ddset.values_list('pubdate').distinct()
+			]))
+		return_items = []
+		valid_years.sort(reverse=True)
+		# print valid_years
+		for x in valid_years:
+			return_items.append((x, ddset.filter(pubdate__year=x)))
+		return return_items
+
+
+		# valid_years = list(
+		# 	set([
+		# 		x[0].year for x in Publication.objects.exclude(
+		# 			pubtype=talks).values_list('pubdate').distinct()
+		# 	]))
+		# return_items = []
+		# valid_years.sort(reverse=True)
+		# # print valid_years
+		# for x in valid_years:
+		# 	return_items.append((x, Publication.objects.exclude(
+		# 		pubtype=talks).filter(pubdate__year=x)))
+		# return return_items
 
 
 

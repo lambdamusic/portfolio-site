@@ -28,16 +28,24 @@
 
 			<div class="text-muted -text-right -col-md-12">{# Publications #}
 
+				View:
+				<a class="h1links -text-muted" href="?query=date&type=all"> all</a>&nbsp;|
+				<a class="h1links -text-muted" href="?query=date&type=blogs"> blogs</a>&nbsp;|
+				<a class="h1links -text-muted" href="?query=date&type=papers"> research papers</a>&nbsp;|
+				<a class="h1links -text-muted" href="?query=date&type=misc"> misc</a>&nbsp;
+
+							
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Order by:
 				<a class="h1links -text-muted" href="?query=date"> date</a>&nbsp;|
 				<a class="h1links -text-muted" href="?query=type"> type</a>&nbsp;|
 				<a class="h1links -text-muted" href="?query=project"> project</a>
 
-				&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Format: <a class="h1links -text-muted" href="?format=txt">txt</a> |
 				<a class="h1links -text-muted" href="?format=bibtex&query=type">bib</a>
 
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
 				{# <form action="" class="search-form" style="display: inline-block;">#}
@@ -59,7 +67,7 @@
 				 <hr>
 
  			 	<div class="col-sm-2 col-md-3">
-				  <p style="color: lightgrey; font-size: 500%; ">{{group_and_pubs.0}}</p>
+				  <p style="color: #e8e5e5; font-size: 500%; ">{{group_and_pubs.0}}</p>
 
  			 	</div>
 
@@ -73,15 +81,40 @@
 
 						<div class='pubitem'>
 
-							<small class="text-muted">{{pub.pubdate|date:"M Y"}}</small>
+							
+							
+							{% if pub.pubtype.name == "Blog" %}
+								
 
-							<p class='lead' style="font-size: 13px;">
-								<a href="{{pub.get_absolute_url}}" class="bluelink">{{pub.title|capfirst}}</a>.
-								<br />
-								<span class="">{{pub|printmanyauthors}}</span>
+							<p class='lead' style="-font-size: 13px;">
+								<span class='label label-info'>blog</span>&nbsp;
+								<a href="{{pub.url1}}" class="bluelink">{{pub.title|capfirst}}</a>.
 							</p>
 
 							<p class="pubinfo text-muted" style="margin-top: -15px;">
+
+								<b class="text-muted">{{pub.pubdate|date:"M Y"}}</b>
+								<!-- {{pub.journal}} -->
+
+								
+
+							</p>
+
+							{% else %}
+							
+								
+
+
+							<p class='lead' style="-font-size: 13px;">
+								<span class='label label-warning'>paper</span>&nbsp;
+								<a href="{{pub.get_absolute_url}}" class="bluelink">{{pub.title|capfirst}}</a>.
+								<!-- <br /> -->
+								<!-- <span class="">{{pub|printmanyauthors}}</span> -->
+							</p>
+
+							<p class="pubinfo text-muted" style="margin-top: -15px;">
+
+								<b class="text-muted">{{pub.pubdate|date:"M Y"}}</b>
 
 								{% if  pub.journal %}
 									<span class='journal'> {{pub.journal}},</span>
@@ -105,6 +138,8 @@
 								{# {% endfor %} #}
 
 							</p>
+
+							{% endif %}
 
 							{% if not forloop.last %}
 								<hr>
