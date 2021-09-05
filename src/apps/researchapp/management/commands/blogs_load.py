@@ -11,21 +11,56 @@ SOURCE_DIR = "/Users/michele.pasin/Dropbox/code/django/research_portal_2019/arch
 class Command(BaseCommand):
 	help = 'Running command ....'
 
-	# def add_arguments(self, parser):
-	# 	parser.add_argument('filename', type=str)
+	def add_arguments(self, parser):
+		# Positional arguments
+		# parser.add_argument('poll_ids', nargs='+', type=int)
+
+		# Named (optional) arguments
+		parser.add_argument(
+			'--delete',
+			action='store_true',
+			help='Delete all blogs before adding new',
+		)
 
 	def handle(self, *args, **options):
+
+		if options['delete']:
+			delete_all_blogs()
 
 		self.stdout.write("Reading...")
 
 		for f in os.listdir(SOURCE_DIR):
 			if "-" in f:
-				date = f[:10]
-				title = f[11:].replace(".md", "")
-				print(f"{date} / {title}")
-				write_record(date, title)
+				DATE = f[:10]
+				title_url = f[11:].replace(".md", "")
+				# print(f"{date} / {title}")
+				TITLE, PURE_MARKDOWN = parse_markdown(SOURCE_DIR+"/"+f)
+				# print(TITLE, PURE_MARKDOWN)
+				write_record(f, 
+							DATE, 
+							title_url, 
+							TITLE, 
+							PURE_MARKDOWN)
 
 
+
+
+def parse_markdown(file_path): 
+	"""Parse the wordpress markdown export and return title and the text content. 
+	"""
+	print("Parsing..: " + file_path)
+	with open(file_path) as f:
+		lines = f.readlines()
+		text_begins_flag = 0
+		PURE_MARKDOWN = ""
+		for l in lines:
+			if text_begins_flag == 2:
+				PURE_MARKDOWN += l
+			elif l == "---\n":
+				text_begins_flag += 1 
+			elif l.startswith("title: "):
+				TITLE = l.replace("title: ", "")[1:-2] # remove quotes and newline char
+		return TITLE, PURE_MARKDOWN
 		
 
 
@@ -45,8 +80,16 @@ def get_or_new(model, title):
 	return obj
 
 
+def delete_all_blogs():
+	blogType = PubType.objects.get(pk=13) 
+	Publication.objects.filter(pubtype=blogType).delete()
+	print("All Blogs DELETED")
 
-def write_record(date, title):
+	
+
+
+
+def write_record(filename, date, title_url, title, pure_markdown):
 	"""write a record to DB
 	Input data eg:
 	2006-06-29 / review-automatist-storyteller-systems-and-the-shifting-sands-of-story-by-g-davenport-and-m-murtaugh.md
@@ -54,27 +97,35 @@ def write_record(date, title):
 	2015-01-17 / notes-from-the-force11-annual-conference.md
 	"""
 
-	the_path = "/blog/" + date.replace("-", "/") + "/" + title + "/index.html"
+	the_path = "https://www.michelepasin.org/blog/" + date.replace("-", "/") + "/" + title_url + "/index.html"
 	# https://www.michelepasin.org/blog/2016/10/25/leipzig-semantics-2016-conference/index.html
 
-	the_title = title.replace("-", " ").capitalize()
+	# the_title = title.replace("-", " ").capitalize()
 
-	print(the_path)
-	print(the_title)
-
-	pub = get_or_new(Publication, the_title)
+	pub = get_or_new(Publication, title)
 
 	blogType = PubType.objects.get(pk=13) 
 	
 
 	pub.url1 = the_path
-	pub.journal = "A blog on www.michelepasin.org"
+	pub.url1name = "Legacy Blog"
+
+	pub.url2 = filename
+	pub.url2name = "MD file"
+
+	pub.journal = "Blog entry on www.michelepasin.org ."
 	pub.pubdate = datetime.datetime.strptime(date, "%Y-%m-%d").date()
 	pub.pubtype = blogType
+	pub.embedcode1 = pure_markdown
 
 	pub.save()
 
 	authorMe = Person.objects.get(pk=1) 
-	auth = Authorship(person=authorMe, publication=pub)
-	auth.save()
+	try:
+		# if there's an object with same name, we keep that one!
+		obj = Authorship.objects.get(person=authorMe, publication=pub)
+	except:
+		auth = Authorship(person=authorMe, publication=pub)
+		auth.save()
+	
 	

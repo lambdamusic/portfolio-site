@@ -8,10 +8,11 @@ from django.db.models import Q
 
 import os
 from time import strftime
-import time
-import random
+import markdown
+# import time
+# import random
 
-from settings import STATICFILES_DIRS
+from settings import STATICFILES_DIRS, SITE_ROOT
 
 from render_block import render_block_to_string
 
@@ -234,22 +235,53 @@ def papers(request, namedetail=""):
 		else:
 			admin_change_url = None
 
-		context = {
-			'return_item' : return_item,
-			'admin_change_url' : admin_change_url,
-			'itemtitle': return_item.title,
-			'itempubdate': return_item.pubdate,
-			'summary': return_item.pub_summary(),
-			'abstract': return_item.abstract,
-			'year': return_item.pubdate.year,
-			'all_urls': return_item.all_urls(),
-			'type': pubtypegroup,
-			'itemembed1': return_item.embedcode1,
-			'all_papers_list' : get_related_pubs(return_item),
-			# 'all_papers_list' : get_pubs('date')
-		}
+		if return_item.pubtype.pk == 13:  # BLOG MARKDOWN
 
-		templatee = "detail-papers.html"
+
+			# get the contents from the source MD files 
+			LOCATION = SITE_ROOT + "/blogs/"
+			
+			from researchapp.management.commands.blogs_load import parse_markdown
+
+			TITLE, MD = parse_markdown(LOCATION + return_item.url2)
+
+			html_blog_entry = markdown.markdown(MD)
+
+			context = {
+				'return_item' : return_item,
+				'admin_change_url' : admin_change_url,
+				'itemtitle': return_item.title,
+				'itempubdate': return_item.pubdate,
+				'summary': return_item.pub_summary(),
+				'abstract': return_item.abstract,
+				'blog_entry': html_blog_entry,
+				'year': return_item.pubdate.year,
+				'all_urls': return_item.all_urls(),
+				'type': pubtypegroup,
+				'all_papers_list' : get_related_pubs(return_item),
+				# 'all_papers_list' : get_pubs('date')
+			}
+
+			templatee = "detail-papers.html"
+
+		else:
+			# REGULAR RESEARCH PAPER
+			context = {
+				'return_item' : return_item,
+				'admin_change_url' : admin_change_url,
+				'itemtitle': return_item.title,
+				'itempubdate': return_item.pubdate,
+				'summary': return_item.pub_summary(),
+				'abstract': return_item.abstract,
+				'year': return_item.pubdate.year,
+				'all_urls': return_item.all_urls(),
+				'type': pubtypegroup,
+				'itemembed1': return_item.embedcode1,
+				'all_papers_list' : get_related_pubs(return_item),
+				# 'all_papers_list' : get_pubs('date')
+			}
+
+			templatee = "detail-papers.html"
 
 	return render(request, APP + '/pages/' + templatee, context)
 
@@ -406,21 +438,6 @@ def get_pubs(query, ttype):
 		for x in valid_years:
 			return_items.append((x, ddset.filter(pubdate__year=x)))
 		return return_items
-
-
-		# valid_years = list(
-		# 	set([
-		# 		x[0].year for x in Publication.objects.exclude(
-		# 			pubtype=talks).values_list('pubdate').distinct()
-		# 	]))
-		# return_items = []
-		# valid_years.sort(reverse=True)
-		# # print valid_years
-		# for x in valid_years:
-		# 	return_items.append((x, Publication.objects.exclude(
-		# 		pubtype=talks).filter(pubdate__year=x)))
-		# return return_items
-
 
 
 

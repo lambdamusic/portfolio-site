@@ -35,7 +35,7 @@ rsync -av --delete --exclude blog --exclude assets docs/ docs-prev/
 
 echo -e "\nGRAB SITE INTO BUILD DIRECTORY" 
 echo "+++++++++++++++++"
-wget  -P build -mkEpnp -nH http://127.0.0.1:8000/ --wait=0.1
+wget  -P build -mkEpnp -nH http://127.0.0.1:8000/ --wait=0.1 --exclude-domains www.michelepasin.org
 # add a log file
 cd build
 touch "$(date +"%Y_%m_%d_%I_%M_%p").log"

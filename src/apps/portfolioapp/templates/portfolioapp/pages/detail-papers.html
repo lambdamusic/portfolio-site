@@ -51,35 +51,65 @@
           </div>
 
 
-
-          {% if abstract %}
-
-            <p class="text-muted">Abstract:</p>
-
-            <blockquote class="lead">{{abstract|linebreaksbr}}</blockquote>
-
-            <br />
-          {% endif %}
+          {% if blog_entry %}
 
 
+              <div class="blogentry"> 
 
-          <p class="text-muted">Full reference:</p>
+              {{blog_entry|safe}}
 
-          <div class="well well-big lead">
-            {{summary}}
-          </div>
-          <br />
+             </div>
 
 
+            <hr>
+             <p class="text-muted">Full reference:</p>
+
+             <div class="well well-big lead">
+               {{summary}}
+             </div>
+             <br />
+ 
+
+          {% else %}
+          
 
 
-          {% if itemembed1 %}
+            {% if abstract %}
 
-            <div class="paragraph">
-              {# <br /> #}
-              {{itemembed1|safe}}
+              <p class="text-muted">Abstract:</p>
+
+              <blockquote class="lead">{{abstract|linebreaksbr}}</blockquote>
+
+              <br />
+            {% endif %}
+
+
+
+            <p class="text-muted">Full reference:</p>
+
+            <div class="well well-big lead">
+              {{summary}}
             </div>
+            <br />
+
+            
+            {% if itemembed1 %}
+
+              <div class="paragraph">
+                {# <br /> #}
+                {{itemembed1|safe}}
+              </div>
+            {% endif %}
+
+
+          
+          
           {% endif %}
+
+          
+          {% comment %} BLOG ENTRY IF ELSE LOGIC ENDS {% endcomment %}
+            
+          
 
 
           <br /><br />
