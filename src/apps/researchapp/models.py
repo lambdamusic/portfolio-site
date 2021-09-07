@@ -13,7 +13,7 @@ from researchapp.templatetags.extrafilters import *
 
 import myutils.modelextra.mymodels as mymodels
 from myutils.modelextra import mymodels as mymodels
-from myutils.myutils import blank_or_string, preview_string
+from myutils.myutils import nice_url_name
 
 # from myutils.adminextra.autocomplete_tree_admin import *
 
@@ -197,6 +197,14 @@ class Publication(mymodels.EnhancedModel):
         verbose_name="type of publication",
     )
 
+    permalink = models.CharField(
+        max_length=255,
+        verbose_name="permalink",
+        null=True,
+        blank=True,
+        help_text="If not provided, automatically set from title and date",
+    )
+
     title = models.CharField(
         max_length=255,
         verbose_name="title",
@@ -255,6 +263,20 @@ class Publication(mymodels.EnhancedModel):
         help_text=
         "Means that this pub-item involves a talk component on my side")
 
+    md_file = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+        verbose_name="For blogs, this field should contain the local MD file location (without path)",
+    )
+    pdf_url = models.URLField(
+        max_length=200,
+        null=True,
+        blank=True,
+        verbose_name="pdf",
+        help_text=
+        "The main PDF version of the publication."
+        )
     url1 = models.URLField(
         max_length=200,
         null=True,
@@ -317,12 +339,35 @@ class Publication(mymodels.EnhancedModel):
 
     get_admin_url.allow_tags = True
 
-
     def get_absolute_url(self):
         """
-        new version / made with layout 2020-06-07
+        new version / 2021-09-07
+
+        Permalink is used to get URLs like this:  
+
+       /papers/2019/06/03/modeling-publications-in-sn-scigraph-20122019/
         """
-        return reverse('portfolioapp:papers-detail', args=[str(self.id)])
+        if "blog" in self.pubtype.name.lower():
+            return reverse('portfolioapp:papers-detail', args=self.permalink.split("/"))
+        else:
+            return reverse('portfolioapp:papers-detail', args=self.permalink.split("/"))
+        # return reverse('portfolioapp:papers-detail', args=[self.permalink])
+        # return reverse('portfolioapp:papers-detail', args=[str(self.id)])
+
+
+    def save(self, *args, **kwargs):
+        """
+        Add a permalink if not available.
+        Use date and md_file OR title
+        """
+        super(Publication, self).save(*args, **kwargs)
+        if not self.permalink:
+            if self.md_file:  #TODO DB CHECK
+                self.permalink = self.pubdate.strftime("%Y/%m/%d/") + self.md_file.replace(".md", "")
+            else:
+                self.permalink = self.pubdate.strftime("%Y/%m/%d/") + nice_url_name(self.title[:200])
+        # print(self.permalink)
+        super(Publication, self).save(*args, **kwargs)
 
 
     # method that gives all the urls in one go!
@@ -394,7 +439,13 @@ class Publication(mymodels.EnhancedModel):
                 ],
                 'classes': ['collapse']
             }),
-            ('Main info', {
+            ('Page Info', {
+                'fields': [
+                    'permalink',
+                    'md_file',
+                ]
+            }),
+            ('Publication Metadata', {
                 'fields': [
                     'isspeaking',
                     'pubtype',
@@ -406,6 +457,7 @@ class Publication(mymodels.EnhancedModel):
                     'extrainfo',
                     'abstract',
                     'project',
+                    'pdf_url',
                     ('url1', 'url1name'),
                     ('url2', 'url2name'),
                     ('url3', 'url3name'),
