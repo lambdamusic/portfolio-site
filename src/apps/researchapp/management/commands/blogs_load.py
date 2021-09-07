@@ -7,8 +7,6 @@ from django.utils import timezone
 
 
 from settings import BLOGS_ROOT
-
-# BLOGS_SOURCE_DIR = "/Users/michele.pasin/Dropbox/code/django/research_portal_2019/archive/wp-md-export/output"  # BACKUP LOCATION!
 BLOGS_SOURCE_DIR = BLOGS_ROOT
 
 
@@ -25,7 +23,8 @@ BLOGS_SOURCE_DIR = BLOGS_ROOT
 # 1. The webapp uses the DB registry as an index, and the local files for the MD contents. 
 # 1. Changing the title or date in the file contents REQUIRES updating the DB index 
 # 1. The ID of blog entries is the file name. So new contents and same filename = update data in DB
-# 1. ID is stored in the `url1` field of Publications. The DB ID is the auto-increment number as usual.
+# 1. ID is stored in the `md_file` field of Publications. The DB ID is the auto-increment number as usual.
+# 1. Blogs permalink is similar to the Wordpress one, eg "/2018/11/23/exploring-scholarly-publications-via-dbpedia/"
 
 #######################
 
@@ -138,33 +137,34 @@ def write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN):
 	2006-06-29 / review-automatist-storyteller-systems-and-the-shifting-sands-of-story-by-g-davenport-and-m-murtaugh.md
 	2007-09-12 / dbpedia-rocks.md
 	2015-01-17 / notes-from-the-force11-annual-conference.md
+
+	PURE_MARKDOWN: not saved to DB for now
 	"""
 
-	legacy_path = False
-	if True:
-		# add a legacy blog link TODO check in which cases this is necessary eg not newest entries
-		x1 = FILENAMEID[:10]
-		x2 = FILENAMEID[11:].replace(".md", "")
-		legacy_path = "https://www.michelepasin.org/blog/" + x1.replace("-", "/") + "/" + x2 + "/index.html"
-		# EG https://www.michelepasin.org/blog/2016/10/25/leipzig-semantics-2016-conference/index.html
-
+	x1 = FILENAMEID[:10]
+	x2 = FILENAMEID[11:].replace(".md", "")
 
 	new_rec_flag = False
 	try:
 		# if there's an object with same name, we keep that one!
-		pub = Publication.objects.get(url1=FILENAMEID)
+		pub = Publication.objects.get(md_file=FILENAMEID)
 		print("++++++++++++++++++++++++++ found existing obj:	%s"	 % (pub))
 	except:
-		pub = Publication(url1=FILENAMEID)
-		pub.url1name = "ID-Internal"
+		pub = Publication(md_file=FILENAMEID)
+		pub.permalink = x1.replace("-", "/") + "/" + x2
 		pub.save()
 		print("======= created new obj:	  %s"  % (pub.id))
 		new_rec_flag = True
+	
 
-	 
-	if legacy_path:
-		pub.url2 = legacy_path
-		pub.url2name = "Legacy Blog"
+	
+	# add a legacy blog link 
+	# TODO check in which cases this is necessary eg not newest entries
+	# EG https://www.michelepasin.org/blog/2016/10/25/leipzig-semantics-2016-conference/index.html
+	if True:
+		legacy_path = "https://www.michelepasin.org/blog/" + x1.replace("-", "/") + "/" + x2 + "/index.html"
+		pub.url1 = legacy_path
+		pub.url1name = "Legacy Blog"
 
 	pub.title = TITLE
 	pub.journal = "Blog entry on www.michelepasin.org ."

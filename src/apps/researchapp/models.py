@@ -202,9 +202,16 @@ class Publication(mymodels.EnhancedModel):
         verbose_name="permalink",
         null=True,
         blank=True,
-        help_text="If not provided, automatically set from title and date",
+        help_text="If not provided, automatically set from title (or md_file) and date",
     )
 
+    md_file = models.CharField(
+        max_length=200,
+        null=True,
+        blank=True,
+        verbose_name="Markdown file name",
+        help_text="Only for blogs: the local MD file name (without path)",
+    )
     title = models.CharField(
         max_length=255,
         verbose_name="title",
@@ -263,12 +270,6 @@ class Publication(mymodels.EnhancedModel):
         help_text=
         "Means that this pub-item involves a talk component on my side")
 
-    md_file = models.CharField(
-        max_length=200,
-        null=True,
-        blank=True,
-        verbose_name="For blogs, this field should contain the local MD file location (without path)",
-    )
     pdf_url = models.URLField(
         max_length=200,
         null=True,
@@ -348,7 +349,7 @@ class Publication(mymodels.EnhancedModel):
        /papers/2019/06/03/modeling-publications-in-sn-scigraph-20122019/
         """
         if "blog" in self.pubtype.name.lower():
-            return reverse('portfolioapp:papers-detail', args=self.permalink.split("/"))
+            return reverse('portfolioapp:blogs-detail', args=self.permalink.split("/"))
         else:
             return reverse('portfolioapp:papers-detail', args=self.permalink.split("/"))
         # return reverse('portfolioapp:papers-detail', args=[self.permalink])
@@ -393,8 +394,7 @@ class Publication(mymodels.EnhancedModel):
 
     def next_prev_pubs(self, exclude_talks=True):
         if exclude_talks:
-            # talks = PubType.objects.get(
-            #     pk=12)  # used to exclude 'INVITED TALKS' from articles list
+            # used to exclude 'INVITED TALKS' from articles list
             pubs = list(
                 Publication.objects.exclude(review=True).exclude(pubtype__id=12))
         else:
@@ -411,6 +411,18 @@ class Publication(mymodels.EnhancedModel):
         ordering = ["-pubdate"]
 
     class Admin(admin.ModelAdmin):  #admin.ModelAdmin
+
+
+        def get_form(self, request, obj=None, **kwargs):
+            # This method will make some fields larger
+            form = super(Publication.Admin, self).get_form(request, obj, **kwargs)
+            form.base_fields['permalink'].widget.attrs['style'] = 'width: 45em;'
+            form.base_fields['md_file'].widget.attrs['style'] = 'width: 45em;'
+            form.base_fields['pdf_url'].widget.attrs['style'] = 'width: 45em;'
+            form.base_fields['extrainfo'].widget.attrs['style'] = 'width: 45em;'
+            form.base_fields['title'].widget.attrs['style'] = 'width: 45em;'
+            return form
+
 
         list_display = (
             'pubdate',

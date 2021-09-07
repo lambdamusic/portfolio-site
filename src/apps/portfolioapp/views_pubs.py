@@ -136,8 +136,8 @@ def blog_detail(request, year="", month="", day="", namedetail=""):
 
 	#
 	# get the contents from the source MD files 
-	# NOTE local file name is stored in `url1`
-	TITLE, DATE, REVIEW, PURE_MARKDOWN= parse_markdown(BLOGS_ROOT + return_item.url1)
+	# NOTE local file name is stored in `md_file`
+	TITLE, DATE, REVIEW, PURE_MARKDOWN= parse_markdown(BLOGS_ROOT + return_item.md_file)
 
 	html_blog_entry = markdown.markdown(PURE_MARKDOWN)
 
@@ -213,13 +213,15 @@ def get_pubs(query, ttype):
 
 
 	else:
-		#  query == 'date':  ==>  always fallback here
+		# ==>  query == 'date':  
+		# ==>  always fallback here
 
-		# http://127.0.0.1:8000/admin/researchapp/pubtypegroup/
+		# For the following options, ensure names are same as in http://127.0.0.1:8000/admin/researchapp/pubtypegroup/
 
 		if ttype == "blogs":
 
 			ddset = QSET.filter(pubtype__groupfk__pk=6)
+			print(QSET)
 
 		elif ttype == "papers":
 
@@ -232,6 +234,8 @@ def get_pubs(query, ttype):
 		else:
 
 			ddset = QSET.exclude(pubtype=talks)
+
+		print(ddset)
 
 		valid_years = list(
 			set([
