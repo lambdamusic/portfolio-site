@@ -3,7 +3,7 @@
 
  {% for group_and_pubs in return_items %}
 
-	{% ifequal group_and_pubs.0 "Journal Articles & Book Chapters"  %}
+	{% ifequal group_and_pubs.0 "Journals"  %}
 
 		{% for pub in group_and_pubs.1 %}
 		{% if not pub.isforthcoming %}
@@ -33,7 +33,37 @@
 	{% endifequal %}
 
 
-	{% ifequal group_and_pubs.0 "Articles in Peer-Reviewed Conference/Proceedings"  %}
+	{% ifequal group_and_pubs.0 "Books & Chapters"  %}
+
+		{% for pub in group_and_pubs.1 %}
+		{% if not pub.isforthcoming %}
+
+			@inproceedings{% templatetag openbrace %}Pasin{{pub.id}},
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	author = {{pub|printmanyauthors|replace_comma_with_and|add_braces}},
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	title = {{pub.title|capfirst|add_braces}},
+	  		  <br />&nbsp;&nbsp;&nbsp;
+	  		  	booktitle = {{pub.conference|add_braces}},			
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	month = "{{pub.pubdate|date:"m"}}",
+			  <br />&nbsp;&nbsp;&nbsp;
+			  	year = "{{pub.pubdate|date:"Y"}}",
+  			  <br />&nbsp;&nbsp;&nbsp;
+  			  	abstract = "{{pub.abstract|default:""}}",
+
+			<br />{% templatetag closebrace %}
+
+		<br />
+		<br />
+
+		{% endif %}{% endfor %}
+		
+	
+	{% endifequal %}
+
+
+	{% ifequal group_and_pubs.0 "Peer Reviewed Articles"  %}
 
 		{% for pub in group_and_pubs.1 %}
 		{% if not pub.isforthcoming %}

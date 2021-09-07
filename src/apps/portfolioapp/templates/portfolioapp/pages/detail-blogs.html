@@ -5,12 +5,12 @@
 
 
 {% block pagetitle %}
-  <title>Papers | Michele Pasin</title>
+  <title>Blogs | Michele Pasin</title>
 {% endblock pagetitle %}
 
 {% block navbar %}
 
-    {% with thispage="papers" %}
+    {% with thispage="words" %}
 
     {% include "portfolioapp/components/default-navbar.html" %}
 
@@ -25,7 +25,7 @@
       {% if admin_change_url %}
       &nbsp;<a href="{{admin_change_url}}" target="_blanks" class="editbtn btn-xs btn-info">edit</a>
       {% endif %}
-      Words > Papers > {{year}} > <i>{{itemtitle}}</i>
+      Words > Blogs > {{year}} > <i>{{itemtitle}}</i>
   </div>
 
   <div class="container">
@@ -51,16 +51,20 @@
           </div>
 
 
+            <div class="blogentry"> 
 
-            {% if abstract %}
+            {{blog_entry|safe}}
 
-              <p class="text-muted">Abstract:</p>
+            </div>
 
-              <blockquote class="lead">{{abstract|linebreaksbr}}</blockquote>
 
-              <br />
-            {% endif %}
+          <hr>
+            <p class="text-muted">Cite this article:</p>
 
+            <div class="well well-big lead">
+              Michele Pasin. <a href="{{return_item.get_absolute_url}}" class="bluelink">{{return_item.title}}</a>. Blog post on www.michelepasin.org. Published on {{itempubdate}}.
+            </div>
+            <br />
 
 
             <p class="text-muted">Full reference:</p>
@@ -70,26 +74,8 @@
             </div>
             <br />
 
-            
-            {% if itemembed1 %}
 
-              <div class="paragraph">
-                {# <br /> #}
-                {{itemembed1|safe}}
-              </div>
-            {% endif %}
-
-
-
-            {% if return_item.url1 %}  
-            {% comment %}TODO update with PDF link{% endcomment %}
-            <iframe src="{{return_item.url1}}" title="Article: {{return_item.title}}" 
-                width=100% height=800 allowfullscreen=true>
-
-            </iframe>
-            {% endif %}
-
-
+        
 
 
           <br /><br />
