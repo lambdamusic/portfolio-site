@@ -370,17 +370,18 @@ class Publication(mymodels.EnhancedModel):
         list_display = (
             'pubdate',
             'isspeaking',
+            'review',
             'title',
             'pubtype',
             'journal',
             'conference',
         )
-        list_editable = ('pubtype', 'isspeaking')
+        list_editable = ('pubtype', 'isspeaking', 'review')
         # filter_horizontal = ('urls',)
         # radio_fields = {"ltbrole": admin.VERTICAL}
         list_filter = [
-            'isspeaking', 'pubtype', 'project', 'created_at', 'updated_at',
-            'editedrecord', 'review', 'isforthcoming'
+            'isspeaking', 'review', 'pubtype', 'created_at', 'updated_at',
+            'editedrecord',  'isforthcoming', 'project'
         ]
         list_display_links = ('title', )
         search_fields = ['title', 'id']

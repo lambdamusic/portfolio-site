@@ -377,7 +377,7 @@ def get_pubs(query, ttype):
 	talks = PubType.objects.get(
 		pk=12)  # used to exclude 'INVITED TALKS' from articles list
 
-	QSET = Publication.objects.exclude(review=True)
+	qset = PubType.objects.exclude(review=True)
 
 	if query == 'type':
 		# exclude talks and blog
@@ -388,7 +388,7 @@ def get_pubs(query, ttype):
 		return_items = []
 		for x in pubtypegroups_list:
 			return_items.append(
-				(x[0], QSET.exclude(pubtype=talks).filter(
+				(x[0], Publication.objects.exclude(pubtype=talks).filter(
 					pubtype__groupfk__name=x[0])))
 		return return_items
 
@@ -396,16 +396,16 @@ def get_pubs(query, ttype):
 	elif query == 'project':
 		valid_projects = list(
 			set([
-				x[0] for x in QSET.exclude(
+				x[0] for x in Publication.objects.exclude(
 					pubtype=talks).values_list('project__title') if x[0]
 			]))
 		return_items = []
 		for x in valid_projects:
-			return_items.append((x, QSET.exclude(
+			return_items.append((x, Publication.objects.exclude(
 				pubtype=talks).filter(project__title=x)))
 		return_items.sort()  # sort by alpha
 		return_items.append(('Miscellaneous',
-							 QSET.filter(project=None)))
+							 Publication.objects.filter(project=None)))
 		return return_items
 
 
@@ -416,19 +416,19 @@ def get_pubs(query, ttype):
 
 		if ttype == "blogs":
 
-			ddset = QSET.filter(pubtype__groupfk__pk=6)
+			ddset = Publication.objects.filter(pubtype__groupfk__pk=6)
 
 		elif ttype == "papers":
 
-			ddset = QSET.exclude(pubtype=talks).exclude(pubtype__groupfk__pk=6).exclude(pubtype__groupfk__pk=3)
+			ddset = Publication.objects.exclude(pubtype=talks).exclude(pubtype__groupfk__pk=6).exclude(pubtype__groupfk__pk=3)
 
 		elif ttype == "misc":
 
-			ddset = QSET.filter(pubtype__groupfk__pk=3)
+			ddset = Publication.objects.filter(pubtype__groupfk__pk=3)
 
 		else:
 
-			ddset = QSET.exclude(pubtype=talks)
+			ddset = Publication.objects.exclude(pubtype=talks)
 
 		valid_years = list(
 			set([

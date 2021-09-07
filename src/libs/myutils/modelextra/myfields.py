@@ -8,6 +8,8 @@ from django.db.models import DateTimeField, CharField, SlugField
 import datetime
 import re
 
+from django.utils import timezone # Test September 7, 2021 // https://docs.djangoproject.com/en/3.2/topics/i18n/timezones/
+
 try:
     import uuid
 except ImportError:
@@ -24,6 +26,7 @@ class CreationDateTimeField(DateTimeField):
         kwargs.setdefault('editable', True)
         kwargs.setdefault('blank', True)
         kwargs.setdefault('default', datetime.datetime.now)
+        # kwargs.setdefault('default', timezone.now())  # Test September 7, 2021
         DateTimeField.__init__(self, *args, **kwargs)
     
     def get_internal_type(self):
@@ -39,6 +42,7 @@ class ModificationDateTimeField(CreationDateTimeField):
     
     def pre_save(self, model, add):
         value = datetime.datetime.now()
+        # value = timezone.now() # Test September 7, 2021
         setattr(model, self.attname, value)
         return value
     

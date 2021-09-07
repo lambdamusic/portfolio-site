@@ -5,13 +5,37 @@ import os
 import datetime
 from django.utils import timezone
 
-SOURCE_DIR = "/Users/michele.pasin/Dropbox/code/django/research_portal_2019/archive/wp-md-export/output"
+
+from settings import BLOGS_ROOT
+
+# BLOGS_SOURCE_DIR = "/Users/michele.pasin/Dropbox/code/django/research_portal_2019/archive/wp-md-export/output"  # BACKUP LOCATION!
+BLOGS_SOURCE_DIR = BLOGS_ROOT
+
+
+
+
+
+######################
+# PREREQUISITES 
+
+# 1. Blog files need to start with a date with hyphens
+# 1. Blog files need to be in SOURCE_DIR
+# 1. The directory is scanned to create a registry in the DB. The local directory is the master data. 
+# 1. Each blog entry should contain a title and a date. Optionally, also a review flag.
+# 1. The webapp uses the DB registry as an index, and the local files for the MD contents. 
+# 1. Changing the title or date in the file contents REQUIRES updating the DB index 
+# 1. The ID of blog entries is the file name. So new contents and same filename = update data in DB
+# 1. ID is stored in the `url1` field of Publications. The DB ID is the auto-increment number as usual.
+
+#######################
+
 
 
 class Command(BaseCommand):
 	help = 'Running command ....'
 
 	def add_arguments(self, parser):
+
 		# Positional arguments
 		# parser.add_argument('poll_ids', nargs='+', type=int)
 
@@ -28,31 +52,64 @@ class Command(BaseCommand):
 			delete_all_blogs()
 
 		self.stdout.write("Reading...")
+		counter1, counter2, counter3 = 0, 0, 0
 
-		for f in os.listdir(SOURCE_DIR):
+		for f in os.listdir(BLOGS_SOURCE_DIR):
 			if "-" in f:
-				DATE = f[:10]
-				title_url = f[11:].replace(".md", "")
-				# print(f"{date} / {title}")
-				TITLE, PURE_MARKDOWN = parse_markdown(SOURCE_DIR+"/"+f)
+				counter1 +=1
+				# blog files need to start with a date with hyphens
+				TITLE, DATE, REVIEW, PURE_MARKDOWN = parse_markdown(BLOGS_SOURCE_DIR+"/"+f)
 				# print(TITLE, PURE_MARKDOWN)
-				write_record(f, 
-							DATE, 
-							title_url, 
-							TITLE, 
-							PURE_MARKDOWN)
+				success = write_record(f, 
+								TITLE, 
+								DATE, 
+								REVIEW,
+								PURE_MARKDOWN)
+				if success: 
+					counter2 +=1
+				else:
+					counter3 +=1
+
+
+		# finally
+		print(f"""\n# Files read: {counter1}\n# Records added: {counter2}\n# Records modified: {counter3}\n""")
 
 
 
+def delete_all_blogs():
+	"""Utility to delete all blog entries from DB
+	NOTE: this does not zero the auto-IDs counter"""
+	blogType = PubType.objects.get(pk=13) 
+	Publication.objects.filter(pubtype=blogType).delete()
+	print("***\nAll database Blog entries DELETED\n***")
 
-def parse_markdown(file_path): 
+	
+
+
+def parse_markdown(full_file_path): 
 	"""Parse the wordpress markdown export and return title and the text content. 
+
+	Each blog entry should contain a title and a date. Optionally, also a review flag. 
+	EG 
+
+	```
+	---
+	title: "A test post that will not be made visible"
+	date: "2021-09-07"
+	review: true
+	---
+
+	Markdown contents here....
+	```
+
 	"""
-	print("Parsing..: " + file_path)
-	with open(file_path) as f:
+	print("Parsing..: " + full_file_path)
+	with open(full_file_path) as f:
 		lines = f.readlines()
 		text_begins_flag = 0
 		PURE_MARKDOWN = ""
+		REVIEW = False
+		DATE = None
 		for l in lines:
 			if text_begins_flag == 2:
 				PURE_MARKDOWN += l
@@ -60,36 +117,22 @@ def parse_markdown(file_path):
 				text_begins_flag += 1 
 			elif l.startswith("title: "):
 				TITLE = l.replace("title: ", "")[1:-2] # remove quotes and newline char
-		return TITLE, PURE_MARKDOWN
+			elif l.startswith("review: "):
+				if "true" in l:
+					REVIEW = True
+			elif l.startswith("date: "):
+				DATE = l.replace("date: ", "")[1:-2] # remove quotes and newline char
+				DATE = datetime.datetime.strptime(DATE, "%Y-%m-%d")
+				DATE = DATE.replace(tzinfo=datetime.timezone.utc).date()
+
+		if not DATE:
+			raise ValueError(f'No DATE found in post: {full_file_path}')		
+		return TITLE, DATE, REVIEW, PURE_MARKDOWN
 		
 
 
 
-
-#  helper for django models
-def get_or_new(model, title):
-	"""helper method"""
-	try:
-		# if there's an object with same name, we keep that one!
-		obj = model.objects.get(title=title)
-		print("++++++++++++++++++++++++++ found existing obj:	%s"	 % (obj))
-	except:
-		obj = model(title=title)
-		obj.save()
-		print("======= created new obj:	  %s"  % (obj))
-	return obj
-
-
-def delete_all_blogs():
-	blogType = PubType.objects.get(pk=13) 
-	Publication.objects.filter(pubtype=blogType).delete()
-	print("All Blogs DELETED")
-
-	
-
-
-
-def write_record(filename, date, title_url, title, pure_markdown):
+def write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN):
 	"""write a record to DB
 	Input data eg:
 	2006-06-29 / review-automatist-storyteller-systems-and-the-shifting-sands-of-story-by-g-davenport-and-m-murtaugh.md
@@ -97,28 +140,42 @@ def write_record(filename, date, title_url, title, pure_markdown):
 	2015-01-17 / notes-from-the-force11-annual-conference.md
 	"""
 
-	the_path = "https://www.michelepasin.org/blog/" + date.replace("-", "/") + "/" + title_url + "/index.html"
-	# https://www.michelepasin.org/blog/2016/10/25/leipzig-semantics-2016-conference/index.html
+	legacy_path = False
+	if True:
+		# add a legacy blog link TODO check in which cases this is necessary eg not newest entries
+		x1 = FILENAMEID[:10]
+		x2 = FILENAMEID[11:].replace(".md", "")
+		legacy_path = "https://www.michelepasin.org/blog/" + x1.replace("-", "/") + "/" + x2 + "/index.html"
+		# EG https://www.michelepasin.org/blog/2016/10/25/leipzig-semantics-2016-conference/index.html
 
-	# the_title = title.replace("-", " ").capitalize()
 
-	pub = get_or_new(Publication, title)
+	new_rec_flag = False
+	try:
+		# if there's an object with same name, we keep that one!
+		pub = Publication.objects.get(url1=FILENAMEID)
+		print("++++++++++++++++++++++++++ found existing obj:	%s"	 % (pub))
+	except:
+		pub = Publication(url1=FILENAMEID)
+		pub.url1name = "ID-Internal"
+		pub.save()
+		print("======= created new obj:	  %s"  % (pub.id))
+		new_rec_flag = True
 
-	blogType = PubType.objects.get(pk=13) 
-	
+	 
+	if legacy_path:
+		pub.url2 = legacy_path
+		pub.url2name = "Legacy Blog"
 
-	pub.url1 = the_path
-	pub.url1name = "Legacy Blog"
-
-	pub.url2 = filename
-	pub.url2name = "MD file"
-
+	pub.title = TITLE
 	pub.journal = "Blog entry on www.michelepasin.org ."
-	pub.pubdate = datetime.datetime.strptime(date, "%Y-%m-%d").date()
+	pub.pubdate = DATE
+	blogType = PubType.objects.get(pk=13)
 	pub.pubtype = blogType
-	pub.embedcode1 = pure_markdown
+	pub.review = REVIEW
 
+	#
 	pub.save()
+	#
 
 	authorMe = Person.objects.get(pk=1) 
 	try:
@@ -128,4 +185,4 @@ def write_record(filename, date, title_url, title, pure_markdown):
 		auth = Authorship(person=authorMe, publication=pub)
 		auth.save()
 	
-	
+	return new_rec_flag

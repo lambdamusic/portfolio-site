@@ -5,9 +5,10 @@ categories:
   - "semantic-web"
 ---
 
+Just went to a talk by [Denny Vrandecic](http://www.aifb.uni-karlsruhe.de/Personen/viewPersonenglish?id_db=2097 "homepage"), one of the people who developed the [Semantic MediaWiki](http://wiki.ontoworld.org/index.php/Semantic_MediaWiki "You can download it here"). A little description:
+
 ![](/media/static/blog_img/SemanticMediaWiki_200.png)
 
-Just went to a talk by [Denny Vrandecic](http://www.aifb.uni-karlsruhe.de/Personen/viewPersonenglish?id_db=2097 "homepage"), one of the people who developed the [Semantic MediaWiki](http://wiki.ontoworld.org/index.php/Semantic_MediaWiki "You can download it here"). A little description:
 
 > Within only a few years, the free encyclopedia [Wikipedia](http://www.en.wikipedia.org/) has become one of the most important online knowledge sources. The project "[Semantic MediaWiki](http://wiki.ontoworld.org/)" engages in the conception and development of semantic extensions of MediaWiki â€“ the software underlying Wikipedia. The goal is to enable simple, machine-based processing of Wiki-content by allowing users to provide suitable semantic annotations. However, the special Wiki environment and the multitude of envisaged applications impose a number of additional requirements.
 > 
