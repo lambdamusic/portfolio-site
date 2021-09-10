@@ -1,0 +1,1558 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../../media/static/favicon.ico">
+
+	
+  <title>Blogs | Michele Pasin</title>
+
+
+    <!-- Bootstrap core CSS -->
+    
+    <!-- Bootswatch:  -->
+    <!-- cerulean  | cyborg |  flatly |  lumen |  sandstone |   spacelab  |  yeti | cosmo |  darkly |  paper | simplex | superhero |  journal | readable  |   slate |  united -->
+    <link href="../../../../../media/static/libs/bootswatch3.2/simplex/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css">
+
+    .tooltip-inner {
+        max-width: 200px;
+        /* If max-width does not work, try using width instead */
+        width: 200px; 
+    }
+    .lead-plus {font-size: 26.5px;}
+    .label-dark {background: #2c3e50; color: white; padding: 1px;}
+    .margin50 {margin-top: 50px; margin-bottom: 50px;}
+    .marginb100 {margin-bottom: 100px;}
+
+    .breadcrumbs {margin-top: 80px;}
+    .namespaces {background: #ced2d6; width: 100%;}
+    .footer {background-color: #3e3f3a;}
+    .footer a {color: #cac0bf;}
+
+    .margin50Top {margin-top: 50px;}
+    .margin20Top {margin-top: 20px;}
+    .margin50Bottom { margin-bottom: 50px;}
+    .margin20Bottom { margin-bottom: 20px;}
+
+    /*so that the d3plus tooltip panel doesnt cover the top banner*/
+    .navbar {z-index: 3000;}
+
+
+    .navbar-alpha {
+        font-size: 65%;
+        font-style: italic;
+        font-weight: bold;
+        color: darkgoldenrod;
+    }
+
+
+    .btn-xxs {
+    padding: 1px 4px;
+    font-size: 10px;
+    line-height: 1.2;
+    border-radius: 2px;
+    }
+
+
+    .code-example {
+        overflow: auto;
+        height: 400px;
+    }
+
+
+    #side_title a {
+        color: blue;
+        text-decoration: underline;
+
+    }
+    .text-dark {
+        color: #5d5c5c;
+        
+    }
+
+
+    .paragraph_embed {
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+
+    .thumb-div {
+      padding: 20px;
+
+    }
+
+    .thumbnail{
+      
+
+      
+
+    }
+
+    .thumb-img {
+      height: 200px;
+
+    }
+
+    .thumb-title b {
+      font-weight: bold;
+      color: black;
+
+    }
+
+
+
+    a.project-title {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a.project-title:hover {
+      background: indianred;
+      color: white;
+    }
+
+    a.project-active {
+      background: indianred;
+      color: white;
+    }
+
+    .keyword {
+      font-style: italic;
+      color: grey;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    a.paper-active {
+      background: indianred;
+      color: white;
+    }
+
+    a.ext_link {
+      color: darkgrey;
+    }
+
+    .text-black {
+      color: black;
+    }
+
+    a.sounds-active {
+      background: indianred;
+      color: white;
+    }
+
+    img.project-screenshots {
+      margin-botton: 30px;
+    }
+
+
+
+    
+
+    .blogentry {
+      font-size: 14px;
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .blogentry p:first-of-type {
+      font-size: 22px;
+      font-weight: bold;
+      min-height: 20px;
+      padding: 19px;
+      margin-bottom: 20px;
+      background-color: #f4f4f4;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    }
+
+    .blogentry p {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .blogentry img {
+      max-width: 80%;
+    }
+
+
+</style>
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+
+
+
+
+
+    
+
+    
+
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../../../index.html">michelepasin<sup style="color: red;">&nbsp;.org</sup></a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+
+        <li >
+          <a href="../../../../../index.html">Projects</a></li>
+
+        <li class="active">
+            <a href="../../../../../words/index.html">Words</a></li>
+
+       <li >
+            <a href="../../../../../sounds/index.html">Sounds</a></li>
+
+        <li >
+          <a href="../../../../../events/index.html">Events</a></li>
+          
+          
+
+        <li 
+        
+          ><a href="../../../../../about/index.html">About</a></li>
+
+          <!-- <li>
+            <a href="/blog" target="_blank">Blog</a></li> -->
+            
+
+      </ul>
+    </div><!--/.nav-collapse -->
+
+  </div>
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+    <!-- Begin page content -->
+    <div class="container">
+
+
+	
+
+  <div class="page-header">
+      
+      Words > Blogs > 2009 > <i>Roman Port Networks project</i>
+  </div>
+
+  <div class="container">
+
+
+      <div class="row" style="margin-bottom:50px;">
+          
+        <div class="col-md-8">
+
+
+          <p class="text-muted">Title:</p>
+
+          <div class="lead -well">
+            <h3><b>Roman Port Networks project</b></h3>
+            
+          </div>
+
+
+          <p class="text-muted">Year:</p>
+
+          <div class="lead -well">
+            <h3>2009</h3>
+          </div>
+
+
+            <div class="blogentry"> 
+
+            <p>The <a href="http://www.romanportnetworks.org/index.html">Roman Port Networks Project</a> is a collaboration between 30 European partners, <strong>examining the connections between Roman ports across the Mediterranean</strong>. The project has received financial support from the British Academy (<a href="http://www.britac.ac.uk:80/institutes/index.cfm">BASIS</a>) and the University of Southampton (School of Humanities, Department of Archaeology and School of Electronics and Computing Science).</p>
+<p><img alt="Picture 1" src="../../../../../media/static/blog_img/picture-1.png" title="Picture 1" />  </p>
+<p>From the website (the bold font is mine):</p>
+<blockquote>
+<p>The project will use an innovative new approach to data management in order to bring together the many separate sources of information that we have about ports in the Roman Mediterranean. The <strong>Semantic Web is a way of linking data by storing it as statements rather than in tables</strong>. Because the statements are composed of the same URIs that you use in the address bar of an internet browser, they can be accessed by other computers so <strong>different datasets can be connected together more easily</strong>. It also means that we can see all the information related to a given concept, whether it's a thing, a property or a class of objects. [some interesting papers about this approach <a href="http://leifuss.wordpress.com/publications/">can be found here</a>]</p>
+<p>We hope that by using this methodology we might soon be able to ask questions such as 'where are all the known finds of Dressel 20 amphorae on the Mediterranean coast?', or 'which other towns have used the same types of marble as those employed in Tarragona?' <strong>It is with this kind of knowledge that we can start building theoretical networks of trade and mobility.</strong></p>
+</blockquote>
+
+            </div>
+
+
+          <hr>
+            <p class="text-muted">Cite this article:</p>
+
+            <div class="well well-big lead">
+              Michele Pasin. <a href="index.html" class="bluelink">Roman Port Networks project</a>. Blog post on www.michelepasin.org. Published on July 21, 2009.
+            </div>
+            <br />
+
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-1 col-md-offset-1">
+
+
+            
+            <p class="text-muted">Linkout:</p>
+
+            <div class="-lead">
+
+              
+              <li><a href="https://www.michelepasin.org/blog/2009/07/21/roman-port-networks-project/index.html">Legacy Blog</a></li>
+                
+              
+
+            </div>
+            <br />
+            
+
+
+        </div>
+        
+      </div>
+
+
+
+
+      
+
+      
+
+
+
+
+
+    <div class="row">
+      <h5 class="text-muted">See also:</h5>
+      </div>
+
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2020</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Nov 2020</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2020/11/23/a-new-livecoding-project-the-musical-code/index.html" class="bluelink ">A new livecoding project: &#39;The Musical Code&#39;</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Nov 2020.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2016</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Apr 2016</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2016/04/01/insights-into-natures-data-publishing-portal/index.html" class="bluelink ">Insights into Nature’s Data Publishing Portal</a>.
+              <br />
+              <span class="">Michele Pasin, Tony Hammond</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> The Semantic Puzzle (online interview),</span>
+              
+              
+              
+              
+                <span class='pubdate'> Apr 2016.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2015</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Sep 2015</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2015/09/13/learning-how-to-become-a-linked-data-publisher-the-naturecom-ontologies-portal/index.html" class="bluelink ">Learning how to become a linked data publisher: the nature.com ontologies portal.</a>.
+              <br />
+              <span class="">Tony Hammond, Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> 5th Workshop on Linked Science 2015, colocated with ISWC 2015.,</span>
+              
+              
+                <span class='pubplace'> Bethlehem, USA,</span>
+              
+              
+                <span class='pubdate'> Sep 2015.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2015</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2015/06/14/recent-projects-from-crossref-org/index.html" class="bluelink ">Recent projects from CrossRef.org</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2015.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Apr 2015</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2015/04/30/nature-com-ontologies-portal-available-online/index.html" class="bluelink ">Nature.com ontologies portal available online</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Apr 2015.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2013</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2013</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2013/06/05/eswc-2013-report-from-the-conference/index.html" class="bluelink ">ESWC 2013 - report from the conference</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2013.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2012</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2012</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2012/05/16/djfacet-0-9-7-mptt-hierarchical-facets-now-supported/index.html" class="bluelink ">DJFacet 0.9.7: MPTT hierarchical facets now supported!</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> May 2012.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Feb 2012</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2012/02/16/capturing-the-meaning-of-roman-sculpture/index.html" class="bluelink ">Capturing the Meaning of Roman Sculpture</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Digital Humanities Symposium &quot;Virtualisation and Heritage&quot;,</span>
+              
+              
+                <span class='pubplace'> York,</span>
+              
+              
+                <span class='pubdate'> Feb 2012.</span>
+              
+              
+                <span class='extrainfo'> (Poster paper)</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2011</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2011/10/12/django-b_project-available-on-github/index.html" class="bluelink ">Django B_project available on gitHub</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Oct 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2010</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2010</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2010/10/02/how-do-philosophers-think-their-own-discipline-reports-from-a-knowledge-elicitation-experiment/index.html" class="bluelink ">How do philosophers think their own discipline? Reports from a knowledge elicitation experiment</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> European Philosophy and Computing conference, ECAP10,</span>
+              
+              
+                <span class='pubplace'> Munich, Germany,</span>
+              
+              
+                <span class='pubdate'> Oct 2010.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2010</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2010/06/10/data-integration-perspectives-from-the-london-theatres-bibliography-project/index.html" class="bluelink ">Data integration perspectives from the London Theatres Bibliography project</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Annual Conference of the Canadian Society for Digital Humanities / Société pour l&#39;étude des médias interactifs (SDH-SEMI 2010),</span>
+              
+              
+                <span class='pubplace'> Montreal, Canada,</span>
+              
+              
+                <span class='pubdate'> Jun 2010.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2009</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2009/10/30/philosurfical-an-ontological-approach-to-support-philosophy-learning/index.html" class="bluelink ">PhiloSURFical: An Ontological Approach To Support Philosophy Learning</a>.
+              <br />
+              <span class="">Michele Pasin, Enrico Motta</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Semantic Web Technologies for e-Learning,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Oct 2009.</span>
+              
+              
+                <span class='extrainfo'> D. Dicheva, R. Mizoguchi, J. Greer (Eds.), vol. 4 The Future of Learning, IOS Press</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Sep 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../09/28/project-django-soclone/index.html" class="bluelink ">Project: django SOCLONE</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Sep 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jul 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2009/07/30/ontological-requirement-for-supporting-smart-navigation-of-philosophical-resources/index.html" class="bluelink ">Ontological Requirement for Supporting Smart Navigation of Philosophical Resources</a>.
+              <br />
+              <span class="">Michele Pasin, Enrico Motta, Zdenek Zdrahal</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> PhD Thesis,</span>
+              
+              
+                <span class='pubplace'> Milton Keynes, UK, The Open University,</span>
+              
+              
+                <span class='pubdate'> Jul 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jul 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="index.html" class="bluelink paper-active">Roman Port Networks project</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jul 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2007</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jul 2007</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2007/07/30/supporting-philosophers-work-through-the-semantic-web-ontological-issues/index.html" class="bluelink ">Supporting Philosophers’ Work through the Semantic Web: Ontological Issues</a>.
+              <br />
+              <span class="">Michele Pasin, Enrico Motta</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Fifth International Workshop on Ontologies and Semantic Web for E-Learning (SWEL-07), held in conjunction with AIED-07,</span>
+              
+              
+                <span class='pubplace'> Marina Del Rey, California, USA,</span>
+              
+              
+                <span class='pubdate'> Jul 2007.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Apr 2007</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2007/04/02/indiana-philosophy-ontology-project/index.html" class="bluelink ">Indiana Philosophy Ontology Project</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Apr 2007.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2006</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Nov 2006</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2006/11/28/the-nora-project/index.html" class="bluelink ">The Nora Project</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Nov 2006.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2006</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2006/06/30/a-task-based-approach-to-support-situating-learning-for-the-semantic-web/index.html" class="bluelink ">A Task Based Approach to Support Situating Learning for the Semantic Web</a>.
+              <br />
+              <span class="">Michele Pasin, Martin Dzbor</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'>  International Workshop on Applications of Semantic Web Technologies for E-Learning (SWEL-06), held in conjunction with Adaptive Hypermedia 2006,</span>
+              
+              
+                <span class='pubplace'> Dublin, Ireland,</span>
+              
+              
+                <span class='pubdate'> Jun 2006.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2006</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2006/06/30/paving-the-way-towards-the-ehumanities-a-semantic-web-approach-to-support-the-learning-of-philosophy/index.html" class="bluelink ">Paving the way towards the e-humanities: a Semantic Web approach to support the learning of philosophy </a>.
+              <br />
+              <span class="">Michele Pasin, Enrico Motta</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Poster paper presented at the 3rd European Semantic Web Conference (ESWC-06),</span>
+              
+              
+                <span class='pubplace'> Budva, Montenegro,</span>
+              
+              
+                <span class='pubdate'> Jun 2006.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2006</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2006/06/29/review-automatist-storyteller-systems-and-the-shifting-sands-of-story-by-g-davenport-and-m-murtaugh/index.html" class="bluelink ">Review: Automatist storyteller systems and the shifting sands of story, by G. Davenport and M. Murtaugh</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2006.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2005</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2005</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2005/05/30/aqualog-a-ontologyportable-question-answering-interface-for-the-semantic-web/index.html" class="bluelink ">AquaLog A Ontology-portable Question Answering interface for the Semantic Web</a>.
+              <br />
+              <span class="">Vanessa Lopez, Michele Pasin, Enrico Motta</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> 2nd European Semantic Web Conference (ESWC05),</span>
+              
+              
+                <span class='pubplace'> Heraklion, Crete, Greece,</span>
+              
+              
+                <span class='pubdate'> May 2005.</span>
+              
+              
+                <span class='extrainfo'> pp. 546-562</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    
+
+
+
+  </div> <!-- /container -->
+
+
+
+
+
+	</div>
+
+
+  
+
+
+
+  
+
+
+
+
+  <footer class="footer">
+    <div class="container">
+    
+      <p class="text-muted">Find me also on: &nbsp;
+      
+
+  <a href="http://kcl.academia.edu/MichelePasin" target="_blank">Academia</a> | 
+  <a href="https://github.com/lambdamusic" target="_blank">GitHub</a> | 
+  <a href="https://scholar.google.com/citations?user=zj-99x0AAAAJ&hl=en" target="_blank">Google Scholar</a> | 
+  <a href="https://www.instagram.com/lambdamusic/" target="_blank">Instagram</a> |
+  <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0" target="_blank">LinkedIn</a> |
+  <a href="http://www.mendeley.com/profiles/michele-pasin/" target="_blank">Mendeley</a> |
+  <a href="http://orcid.org/0000-0001-8909-7766" target="_blank">Orcid</a> |
+  <a href="http://www.slideshare.net/mpasin" target="_blank">SlideShare</a> |
+  <a href="https://soundcloud.com/magicrebirth" target="_blank">Soundcloud</a> |
+  <a href="http://stackoverflow.com/users/109304/magicrebirth" target="_blank">StackOverflow</a> |
+  <a href="http://twitter.com/#!/lambdaman" target="_blank">Twitter</a> |
+  <a href="https://vimeo.com/lambdamusic" target="_blank">Vimeo</a>
+      
+      </p>
+    
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../../../../media/static/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+
+
+
+    
+
+  </body>
+</html>

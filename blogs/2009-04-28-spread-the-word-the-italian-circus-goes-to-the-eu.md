@@ -13,7 +13,7 @@ I think I'll start using this mostly technical blog to help in spreading the wor
 
 Anyways - the most recent one is the supreme selection of candidates the italian parties are sending to Bruxelles for the EU parliament. [Travaglio](http://www.voglioscendere.ilcannocchiale.it/) docet:
 
-\[youtube=http://www.youtube.com/watch?v=8KAppZDz7c8\]
+<iframe width="560" height="315" src="https://www.youtube.com/embed/8KAppZDz7c8?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 If you're not lucky enough to understand italian, there's a nice [article by The Times about it](http://www.timesonline.co.uk/tol/news/world/europe/article6150318.ece), titled '**The beauty of democracy as Silvio Berlusconi picks model MEP candidates**':
 

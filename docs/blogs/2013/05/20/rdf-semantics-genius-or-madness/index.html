@@ -1,0 +1,638 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../../media/static/favicon.ico">
+
+	
+  <title>Blogs | Michele Pasin</title>
+
+
+    <!-- Bootstrap core CSS -->
+    
+    <!-- Bootswatch:  -->
+    <!-- cerulean  | cyborg |  flatly |  lumen |  sandstone |   spacelab  |  yeti | cosmo |  darkly |  paper | simplex | superhero |  journal | readable  |   slate |  united -->
+    <link href="../../../../../media/static/libs/bootswatch3.2/simplex/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css">
+
+    .tooltip-inner {
+        max-width: 200px;
+        /* If max-width does not work, try using width instead */
+        width: 200px; 
+    }
+    .lead-plus {font-size: 26.5px;}
+    .label-dark {background: #2c3e50; color: white; padding: 1px;}
+    .margin50 {margin-top: 50px; margin-bottom: 50px;}
+    .marginb100 {margin-bottom: 100px;}
+
+    .breadcrumbs {margin-top: 80px;}
+    .namespaces {background: #ced2d6; width: 100%;}
+    .footer {background-color: #3e3f3a;}
+    .footer a {color: #cac0bf;}
+
+    .margin50Top {margin-top: 50px;}
+    .margin20Top {margin-top: 20px;}
+    .margin50Bottom { margin-bottom: 50px;}
+    .margin20Bottom { margin-bottom: 20px;}
+
+    /*so that the d3plus tooltip panel doesnt cover the top banner*/
+    .navbar {z-index: 3000;}
+
+
+    .navbar-alpha {
+        font-size: 65%;
+        font-style: italic;
+        font-weight: bold;
+        color: darkgoldenrod;
+    }
+
+
+    .btn-xxs {
+    padding: 1px 4px;
+    font-size: 10px;
+    line-height: 1.2;
+    border-radius: 2px;
+    }
+
+
+    .code-example {
+        overflow: auto;
+        height: 400px;
+    }
+
+
+    #side_title a {
+        color: blue;
+        text-decoration: underline;
+
+    }
+    .text-dark {
+        color: #5d5c5c;
+        
+    }
+
+
+    .paragraph_embed {
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+
+    .thumb-div {
+      padding: 20px;
+
+    }
+
+    .thumbnail{
+      
+
+      
+
+    }
+
+    .thumb-img {
+      height: 200px;
+
+    }
+
+    .thumb-title b {
+      font-weight: bold;
+      color: black;
+
+    }
+
+
+
+    a.project-title {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a.project-title:hover {
+      background: indianred;
+      color: white;
+    }
+
+    a.project-active {
+      background: indianred;
+      color: white;
+    }
+
+    .keyword {
+      font-style: italic;
+      color: grey;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    a.paper-active {
+      background: indianred;
+      color: white;
+    }
+
+    a.ext_link {
+      color: darkgrey;
+    }
+
+    .text-black {
+      color: black;
+    }
+
+    a.sounds-active {
+      background: indianred;
+      color: white;
+    }
+
+    img.project-screenshots {
+      margin-botton: 30px;
+    }
+
+
+
+    
+
+    .blogentry {
+      font-size: 14px;
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .blogentry p:first-of-type {
+      font-size: 22px;
+      font-weight: bold;
+      min-height: 20px;
+      padding: 19px;
+      margin-bottom: 20px;
+      background-color: #f4f4f4;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    }
+
+    .blogentry p {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .blogentry img {
+      max-width: 80%;
+    }
+
+
+</style>
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+
+
+
+
+
+    
+
+    
+
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../../../index.html">michelepasin<sup style="color: red;">&nbsp;.org</sup></a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+
+        <li >
+          <a href="../../../../../index.html">Projects</a></li>
+
+        <li class="active">
+            <a href="../../../../../words/index.html">Words</a></li>
+
+       <li >
+            <a href="../../../../../sounds/index.html">Sounds</a></li>
+
+        <li >
+          <a href="../../../../../events/index.html">Events</a></li>
+          
+          
+
+        <li 
+        
+          ><a href="../../../../../about/index.html">About</a></li>
+
+          <!-- <li>
+            <a href="/blog" target="_blank">Blog</a></li> -->
+            
+
+      </ul>
+    </div><!--/.nav-collapse -->
+
+  </div>
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+    <!-- Begin page content -->
+    <div class="container">
+
+
+	
+
+  <div class="page-header">
+      
+      Words > Blogs > 2013 > <i>[coming soon] RDF semantics - genius or madness?</i>
+  </div>
+
+  <div class="container">
+
+
+      <div class="row" style="margin-bottom:50px;">
+          
+        <div class="col-md-8">
+
+
+          <p class="text-muted">Title:</p>
+
+          <div class="lead -well">
+            <h3><b>[coming soon] RDF semantics - genius or madness?</b></h3>
+            
+          </div>
+
+
+          <p class="text-muted">Year:</p>
+
+          <div class="lead -well">
+            <h3>2013</h3>
+          </div>
+
+
+            <div class="blogentry"> 
+
+            <p>What is rdfs:Class instance of? How come that we normally define and instantiate <em>rdfs</em> classes, but don't do the same with properties too? Fueled by a couple of posts I found online (e.g. see <a href="http://answers.semanticweb.com/questions/3597/is-the-predicate-in-an-rdf-triple-a-class-or-an-instance">this thread</a> on semantic web overflow ) I decided to take a look at all this in more details.</p>
+<p>You may have heard that the semantics of the RDF family of languages was complex.</p>
+<p>Well, you don’t really need to understand all the nuances of <a href="http://www.w3.org/TR/rdf-mt/">RDF semantics</a> if all you want is developing a web-app that consumes or produces <a href="http://en.wikipedia.org/wiki/Linked_data">Linked Data</a>. But there comes a time where you begin questioning the foundations, and you can’t refrain from looking under the carpet to see what is it really that you’ve been walking on all of this time. This is what this post is about..</p>
+<h3>Visualizing RDF/OWL metamodel: not even Topbraid's can handle that!</h3>
+<p>These days I’ve been using Top Braid composer quite a bit, and got to like it too. It has a lot of functionalities, and despite the usual eclipse-based UI I’d say is more user friendly that its competitors. Anyways, once thing you’d note right away when you load up an ontology in Topbraid is the class hierarchy on the left… why so many top level entities? You might expect to see only one, that is, the usual owl:Thing root node or something like that. The answer is, TopBraid gives you immediately a peek into the meta-level model of RDF and OWL.</p>
+<p>-topbraid screenshot-</p>
+<p>If you are wondering what a meta model is, here’s a <a href="http://infogrid.org/wiki/Reference/PidcockArticle">good summary from Woody Pidcock</a>:</p>
+<blockquote>
+<p>A meta-model is an explicit model of the constructs and rules needed to build specific models within a domain of interest. A valid meta-model is an ontology, but not all ontologies are modeled explicitly as meta-models. A meta-model can be viewed from three different perspectives: 1) as a set of building blocks and rules used to build models 2) as a model of a domain of interest, and 3) as an instance of another model.</p>
+</blockquote>
+<p>So the RDF/OWL metamodels are essentially conceptual models that can be instantiated in order to create other, less abstract, models. In other words, they are the representational primitives of the knowledge representation language. Up to this point, it’s all clear. So using TopBraid excellent graphical interface I set out to take a look at the metamodel. Here’s where the difficulties began…</p>
+<blockquote>
+<p>All things described by RDF are called resources, and are instances of the class rdfs:Resource. This is the class of everything. All other classes are subclasses of this class. rdfs:Resource is an instance of rdfs:Class. […]</p>
+<p>Resources may be divided into groups called classes. The members of a class are known as instances of the class. Classes are themselves resources. They are often identified by RDF URI References and may be described using RDF properties. The rdf:type property may be used to state that a resource is an instance of a class. (<a href="http://www.w3.org/TR/rdf-schema/#ch_resource">http://www.w3.org/TR/rdf-schema/#ch_resource</a>)</p>
+</blockquote>
+<p>Here’s the schema representing all the major classes. Ps: the arcs with unreadable labels actually say both rdfs:subClassOf and rdf:type (the dataviz algorithm fails, and to be honest, my capacity to grasp the meaning of that modelling decision too).</p>
+<p><a href="http://www.flickr.com/photos/mikele/8444299335/sizes/o/in/photostream/" title="RDF semantics #1 by MagIcReBirth, on Flickr"><img alt="RDF semantics #1" src="../../../../../media/static/blog_img/8444299335_f079204b78_b.jpg" /></a></p>
+<p>Here’s a modified version of the same diagram, this time including also some properties in the graph:</p>
+<p><a href="http://www.flickr.com/photos/mikele/8452134065/sizes/o/in/photostream/" title="RDF semantics #2 by MagIcReBirth, on Flickr"><img alt="RDF semantics #2" src="../../../../../media/static/blog_img/8452134065_c922480d8b_b.jpg" /></a></p>
+<blockquote>
+<p>This is another nice visual representation of the class system: <a href="http://www.infowebml.ws/website/graphical-representations.htm">http://www.infowebml.ws/website/graphical-representations.htm</a></p>
+</blockquote>
+<p>What does all of this mean? I haven’t quite figured it out myself, but I’ll try to point out a couple of key things that derive from this model.</p>
+<h3>1. Something can be a class and an instance at the same time.</h3>
+<p>Probably the main tricky point is that something can be at the same time both an instance and a class. This is not too hard to understand, e.g. if you think of the classic example… However if you build a knowledge representation framework that relies on such notions then you might have to work on it a bit more.</p>
+<blockquote>
+<p>A class may be a member of its own class extension and may be an instance of itself. The group of resources that are RDF Schema classes is itself a class called rdfs:Class. (<a href="http://www.w3.org/TR/rdf-schema/#ch_class">http://www.w3.org/TR/rdf-schema/#ch_class</a>)</p>
+</blockquote>
+<p>For example, an owl:class is both an instance of rdfs:Class and a subclass of rdfs:Class. In other words, that means that an owl:class is both an individual member of the rdfs:Class set, and a subset of it. Go figure.</p>
+<p><a href="http://www.flickr.com/photos/mikele/8452151273/" title="Owl:class by MagIcReBirth, on Flickr"><img alt="Owl:class" src="../../../../../media/static/blog_img/8452151273_f0a1d36400.jpg" /></a></p>
+<h3>2. Everything is Instance, Hurra!</h3>
+<p>Another consequence is that whatever you say in Rdf/OWL, it can always be seen as a sequence of instances.</p>
+<p>In all of the patterns above, you can say you have triples of instances. Obviously, the instances are defined are different levels of abstraction - still, all instances within the same representation language.</p>
+<hr />
+<h2>Another way to look at this, is that in RDF the meta-level and the universe of discourse are constantly intertwined. Which is really cool, if you think of the introspection features of RDF. Not that cool though, if you are looking for a crystal clear semantics…</h2>
+<h3>3. Instantiating Classes VS instantiating Properties</h3>
+<p>rdf:Property is the class of RDF properties. rdf:Property is an instance of rdfs:Class. [..] The rdfs:subPropertyOf property may be used to state that one property is a subproperty of another. If a property P is a subproperty of property P', then all pairs of resources which are related by P are also related by P'.</p>
+<p>The main consideration here is ..</p>
+<p>Usually you instantiate an rdf:Property (or owl:ObjectProperty) and thus doing you create an individual new property (e.g. ‘lives-in’). That can be used to link two other instances. So there is a (confusing) misalignment between
+- classes, which are defined by subclassing owl:Thing, or instantiating owl:Class
+- instances which are created by instantiating owl:Thing (or one of its subclasses)
+- properties (e.g. relations) which are created by instantiating rdf:Property. Note that also rdfs:subClassOf and rdfs:subPropertyOf are instances of rdf:Property</p>
+<hr />
+<p>[REVISE THIS]</p>
+<p>Rdf provides a mechanism for creating hierarchies of classes (rdfs:SubClassOf), which is what you’d do when you create the taxonomical backbone of an ontology. Then these classes get instantiated and usually that’s where the factual knowledge of your application resides.</p>
+<p>With relations it’s different: you don’t subclass an rdf:Property (or owl:ObjectProperty), but rather, you instantiate it. And in order to create hierarchies, rdf provides a special property (rdfs:subPropertyOf) that links two instances of properties.</p>
+<p>So, while both the rdfs:domain and the rdfs:range of rdfs:subClassOf is rdfs:Class, and is used to state that all the instances of one class are instances of another.
+Instead, both the rdfs:domain and the rdfs:range of rdfs:subPropertyOf is rdf:Property.
+[actually it does make sense: the problem is just in the use of it: we don’t instantiate properties…]</p>
+<p>is used to state that all resources related by one property are also related by another.</p>
+<hr />
+<p>Entities that represent predicates are considered to be universal - that is, for example, the ‘married-to’ binary relation is always the same for all people that are married. That is to say, you don’t have a new individual instance of the ‘married-to’ relation each time two people get married. (another way to look at this, is that each time two people are marries a new relation does get instantiated, but this relationship has always a single type: ‘married-to’. So we kind of take a shortcut, mention the type and forger the instance. If you used an event-based modelling approach, you can see how all of these relations can be treated at the same level of classes-instances)</p>
+<p>Entities that represent unary predicates (or classes) such as ‘red things’ or ‘things that are humans’ are considered to represent sets, whose members are individuals that share a specific feature.</p>
+<p>Ps: If you look at rdf metamodel (= the …..) both classes and properties are instances - so when you combine them you can always say that you’re constructing a statement where all three components are instances.</p>
+<hr />
+<h3>Conclusions</h3>
+<p>Genius or madness? Definitely madness I'd say. It feels as if someone wanted to show </p>
+<p>However there's also genius here, in so far as this architecture, despite being so variegated, works. Meaning that you can focus on the abstraction layer you're mostly interested in, and sort of forget the rest. </p>
+<p>It's all in the semantics. </p>
+<p><a href="http://www.flickr.com/photos/mikele/8453239658/" title="Mallet comic strip on Semantics by MagIcReBirth, on Flickr"><img alt="Mallet comic strip on Semantics" src="../../../../../media/static/blog_img/8453239658_1cbbc66e4f_c.jpg" /></a></p>
+
+            </div>
+
+
+          <hr>
+            <p class="text-muted">Cite this article:</p>
+
+            <div class="well well-big lead">
+              Michele Pasin. <a href="index.html" class="bluelink">[coming soon] RDF semantics - genius or madness?</a>. Blog post on www.michelepasin.org. Published on May 20, 2013.
+            </div>
+            <br />
+
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-1 col-md-offset-1">
+
+
+            
+            <p class="text-muted">Linkout:</p>
+
+            <div class="-lead">
+
+              
+              <li><a href="https://www.michelepasin.org/blog/2013/05/20/rdf-semantics-genius-or-madness/index.html">Legacy Blog</a></li>
+                
+              
+
+            </div>
+            <br />
+            
+
+
+        </div>
+        
+      </div>
+
+
+
+
+      
+
+      
+
+
+
+
+
+    <div class="row">
+      <h5 class="text-muted">See also:</h5>
+      </div>
+
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2016</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2016</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2016/10/25/leipzig-semantics-2016-conference/index.html" class="bluelink ">Leipzig Semantics 2016 conference</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Oct 2016.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2013</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2013</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="index.html" class="bluelink paper-active">[coming soon] RDF semantics - genius or madness?</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> May 2013.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    
+
+
+
+  </div> <!-- /container -->
+
+
+
+
+
+	</div>
+
+
+  
+
+
+
+  
+
+
+
+
+  <footer class="footer">
+    <div class="container">
+    
+      <p class="text-muted">Find me also on: &nbsp;
+      
+
+  <a href="http://kcl.academia.edu/MichelePasin" target="_blank">Academia</a> | 
+  <a href="https://github.com/lambdamusic" target="_blank">GitHub</a> | 
+  <a href="https://scholar.google.com/citations?user=zj-99x0AAAAJ&hl=en" target="_blank">Google Scholar</a> | 
+  <a href="https://www.instagram.com/lambdamusic/" target="_blank">Instagram</a> |
+  <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0" target="_blank">LinkedIn</a> |
+  <a href="http://www.mendeley.com/profiles/michele-pasin/" target="_blank">Mendeley</a> |
+  <a href="http://orcid.org/0000-0001-8909-7766" target="_blank">Orcid</a> |
+  <a href="http://www.slideshare.net/mpasin" target="_blank">SlideShare</a> |
+  <a href="https://soundcloud.com/magicrebirth" target="_blank">Soundcloud</a> |
+  <a href="http://stackoverflow.com/users/109304/magicrebirth" target="_blank">StackOverflow</a> |
+  <a href="http://twitter.com/#!/lambdaman" target="_blank">Twitter</a> |
+  <a href="https://vimeo.com/lambdamusic" target="_blank">Vimeo</a>
+      
+      </p>
+    
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../../../../media/static/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+
+
+
+    
+
+  </body>
+</html>

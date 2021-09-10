@@ -16,7 +16,7 @@ For the last couple of months I've been working on a new open source Python proj
 
 The project is [available on Github](https://github.com/lambdamusic/dimcli). In a nutshell, DimCli helps people becoming productive with the powerful scholarly analytics API from Dimensions. See the video below for a quick taster of the functionalities available.
 
-\[youtube https://www.youtube.com/watch?v=HbZPxJ7G\_00&w=560&h=315\]
+<iframe width="560" height="315" src="https://www.youtube.com/embed/HbZPxJ7G_00?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Background
 

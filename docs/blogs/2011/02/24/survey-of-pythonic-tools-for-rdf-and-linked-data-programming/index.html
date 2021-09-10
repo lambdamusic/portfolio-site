@@ -1,0 +1,1877 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../../media/static/favicon.ico">
+
+	
+  <title>Blogs | Michele Pasin</title>
+
+
+    <!-- Bootstrap core CSS -->
+    
+    <!-- Bootswatch:  -->
+    <!-- cerulean  | cyborg |  flatly |  lumen |  sandstone |   spacelab  |  yeti | cosmo |  darkly |  paper | simplex | superhero |  journal | readable  |   slate |  united -->
+    <link href="../../../../../media/static/libs/bootswatch3.2/simplex/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css">
+
+    .tooltip-inner {
+        max-width: 200px;
+        /* If max-width does not work, try using width instead */
+        width: 200px; 
+    }
+    .lead-plus {font-size: 26.5px;}
+    .label-dark {background: #2c3e50; color: white; padding: 1px;}
+    .margin50 {margin-top: 50px; margin-bottom: 50px;}
+    .marginb100 {margin-bottom: 100px;}
+
+    .breadcrumbs {margin-top: 80px;}
+    .namespaces {background: #ced2d6; width: 100%;}
+    .footer {background-color: #3e3f3a;}
+    .footer a {color: #cac0bf;}
+
+    .margin50Top {margin-top: 50px;}
+    .margin20Top {margin-top: 20px;}
+    .margin50Bottom { margin-bottom: 50px;}
+    .margin20Bottom { margin-bottom: 20px;}
+
+    /*so that the d3plus tooltip panel doesnt cover the top banner*/
+    .navbar {z-index: 3000;}
+
+
+    .navbar-alpha {
+        font-size: 65%;
+        font-style: italic;
+        font-weight: bold;
+        color: darkgoldenrod;
+    }
+
+
+    .btn-xxs {
+    padding: 1px 4px;
+    font-size: 10px;
+    line-height: 1.2;
+    border-radius: 2px;
+    }
+
+
+    .code-example {
+        overflow: auto;
+        height: 400px;
+    }
+
+
+    #side_title a {
+        color: blue;
+        text-decoration: underline;
+
+    }
+    .text-dark {
+        color: #5d5c5c;
+        
+    }
+
+
+    .paragraph_embed {
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+
+    .thumb-div {
+      padding: 20px;
+
+    }
+
+    .thumbnail{
+      
+
+      
+
+    }
+
+    .thumb-img {
+      height: 200px;
+
+    }
+
+    .thumb-title b {
+      font-weight: bold;
+      color: black;
+
+    }
+
+
+
+    a.project-title {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a.project-title:hover {
+      background: indianred;
+      color: white;
+    }
+
+    a.project-active {
+      background: indianred;
+      color: white;
+    }
+
+    .keyword {
+      font-style: italic;
+      color: grey;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    a.paper-active {
+      background: indianred;
+      color: white;
+    }
+
+    a.ext_link {
+      color: darkgrey;
+    }
+
+    .text-black {
+      color: black;
+    }
+
+    a.sounds-active {
+      background: indianred;
+      color: white;
+    }
+
+    img.project-screenshots {
+      margin-botton: 30px;
+    }
+
+
+
+    
+
+    .blogentry {
+      font-size: 14px;
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .blogentry p:first-of-type {
+      font-size: 22px;
+      font-weight: bold;
+      min-height: 20px;
+      padding: 19px;
+      margin-bottom: 20px;
+      background-color: #f4f4f4;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    }
+
+    .blogentry p {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .blogentry img {
+      max-width: 80%;
+    }
+
+
+</style>
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+
+
+
+
+
+    
+
+    
+
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../../../index.html">michelepasin<sup style="color: red;">&nbsp;.org</sup></a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+
+        <li >
+          <a href="../../../../../index.html">Projects</a></li>
+
+        <li class="active">
+            <a href="../../../../../words/index.html">Words</a></li>
+
+       <li >
+            <a href="../../../../../sounds/index.html">Sounds</a></li>
+
+        <li >
+          <a href="../../../../../events/index.html">Events</a></li>
+          
+          
+
+        <li 
+        
+          ><a href="../../../../../about/index.html">About</a></li>
+
+          <!-- <li>
+            <a href="/blog" target="_blank">Blog</a></li> -->
+            
+
+      </ul>
+    </div><!--/.nav-collapse -->
+
+  </div>
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+    <!-- Begin page content -->
+    <div class="container">
+
+
+	
+
+  <div class="page-header">
+      
+      Words > Blogs > 2011 > <i>Survey of Pythonic tools for RDF and Linked Data programming</i>
+  </div>
+
+  <div class="container">
+
+
+      <div class="row" style="margin-bottom:50px;">
+          
+        <div class="col-md-8">
+
+
+          <p class="text-muted">Title:</p>
+
+          <div class="lead -well">
+            <h3><b>Survey of Pythonic tools for RDF and Linked Data programming</b></h3>
+            
+          </div>
+
+
+          <p class="text-muted">Year:</p>
+
+          <div class="lead -well">
+            <h3>2011</h3>
+          </div>
+
+
+            <div class="blogentry"> 
+
+            <p>In this post I'm reporting on a recent survey I made in the context of a <a href="http://en.wikipedia.org/wiki/Linked_Data">Linked Data</a> project I'm working on, <a href="http://sailsproject.cerch.kcl.ac.uk/">SAILS</a>. The <a href="http://en.wikipedia.org/wiki/Resource_Description_Framework">Resource Description Framework</a> (RDF) is a data model and language which is quickly gaining momentum in the open-data and data-integration worlds. In SAILS we're developing a prototype for rdf-data manipulation and querying, but since the final application (of which the rdf-components is part of) will be written in Python and Django, in what follows I tried to gather information about all the existing libraries and frameworks for doing rdf-programming using python.</p>
+<h2>1. Python libraries for working with Rdf</h2>
+<h3>RdfLib <a href="http://www.rdflib.net/">http://www.rdflib.net/</a></h3>
+<p>RdfLib (<a href="http://www.rdflib.net/rdflib-3.0.0.tar.gz">download</a>) is a pretty solid and extensive rdf-programming kit for python. It contains parsers and serializers for RDF/XML, N3, NTriples, Turtle, TriX and RDFa. The library presents a Graph interface which can be backed by any one of a number of store implementations, including, memory, MySQL, Redland, SQLite, Sleepycat, ZODB and SQLObject.</p>
+<p>The latest release is <strong>RdfLib 3.0</strong>, although I have the feeling that many are still using the previous release, <strong>2.4</strong>. One big difference between the two is that in 3.0 some libraries have been separated into another package (called <a href="http://code.google.com/p/rdfextras/">rdfextras</a>); among these libraries there's also the one you need for processing <a href="http://en.wikipedia.org/wiki/SPARQL">sparql</a> queries (the rdf query language), so it's likely that you want to install that too. A short overview of the difference between these two recent releases of RdfLib can be found <a href="http://code.google.com/p/rdflib/wiki/UpgradingToVersion3">here</a>. The APIs documentation for RdfLib 2.4 is available <a href="http://www.rdflib.net/rdflib-2.4.0/html/index.html">here</a>, while the one for RdfLib 3.0 can be found <a href="http://code.alcidesfonseca.com/docs/rdflib/index.html">here</a>. Finally, there are also some other (a bit older, but possibly useful) docs on the <a href="http://code.google.com/p/rdflib/w/list">wiki</a>.</p>
+<p>Next thing, you might want to check out these tutorials:</p>
+<ul>
+<li>
+<p><a href="http://semanticweb.org/wiki/Getting_data_from_the_Semantic_Web.html">Getting data from the Semantic Web</a>: a nice example of how to use RdfLib and python in order to get data from <a href="http://dbpedia.org/">DBPedia</a>, the Semantic Web version of Wikipedia.</p>
+</li>
+<li>
+<p><a href="http://johngoodwin225.wordpress.com/2011/01/18/how-can-i-use-the-ordnance-survey-linked-data-a-python-rdflib-example/">How can I use the Ordnance Survey Linked Data</a>: shows how to install RdfLib and query the linked data offered by <a href="http://blog.ordnancesurvey.co.uk/2011/01/how-linked-data-can-reap-benefits/">Ordnance Survey</a>.</p>
+</li>
+<li>
+<p><a href="http://gromgull.net/blog/2011/01/a-quick-and-dirty-guide-to-your-first-time-with-rdf/">A quick and dirty guide to YOUR first time with RDF</a>: another example of querying Uk government data found on <a href="http://data.gov.uk/">data.gov.uk</a> using RdfLib and Berkely/Sleepycat DB.</p>
+</li>
+</ul>
+<h3>RdfAlchemy <a href="http://www.openvest.com/trac/wiki/RDFAlchemy">http://www.openvest.com/trac/wiki/RDFAlchemy</a></h3>
+<p>The goal of RDFAlchemy (<a href="http://www.openvest.com/trac/wiki/RDFAlchemy#Installation">install</a> | <a href="http://www.openvest.com/public/docs/rdfalchemy/api/">apidocs</a> | <a href="http://groups.google.com/group/rdfalchemy-dev">usergroup</a>) is to allow anyone who uses python to have a object type API access to an RDF Triplestore. In a nutshell, the same way that <a href="http://www.sqlalchemy.org/">SQLAlchemy</a> is an ORM (Object Relational Mapper) for relational database users, RDFAlchemy is an ORM (Object RDF Mapper) for semantic web users.</p>
+<p>RdfAlchemy can also work in conjunction with other datastores, including rdflib, Sesame, and Jena. Support for SPARQL is present, although it seems less stable than the rest of the library.</p>
+<h3>Fuxi <a href="http://code.google.com/p/fuxi/">http://code.google.com/p/fuxi/</a></h3>
+<p>FuXi is a Python-based, bi-directional logical reasoning system for the semantic web. It <strong>requires</strong> rdflib 2.4.1 or 2.4.2 and it is <strong>not</strong> compatible with rdflib 3. FuXi aims to be the 'engine for contemporary expert systems based on the Semantic Web technologies'. The documentation can be found <a href="http://fuxi.googlecode.com/hg/documentation/html/index.html">here</a>; it might be useful also to look at the <a href="http://code.google.com/p/fuxi/wiki/FuXiUserManual">user-manual</a> and the <a href="http://groups.google.com/group/fuxi-discussion">discussion group</a>.</p>
+<p>In general, it looks as if Fuxi can offer a complete solution for knowledge representation and reasoning over the semantic web; it is quite sophisticated and well documented (partly via several academic articles). The downside is that to the end of hacking together a linked data application.. well Fuxi is probably just too complex and difficult to learn.</p>
+<ul>
+<li><a href="http://blog.okfn.org/2010/08/02/about-inferencing/">About Inferencing</a>: a very short introduction to what Fuxi inferencing capabilities can do in the context of an rdf application.</li>
+</ul>
+<h3>ORDF <a href="http://ordf.org/">ordf.org</a></h3>
+<p>ORDF (<a href="http://packages.python.org/ordf/administration.html#installation">download</a> | <a href="http://packages.python.org/ordf/index.html">docs</a>) is the <a href="http://okfn.org/">Open Knowledge Foundation</a>‘s library of support infrastructure for RDF. It is <strong>based</strong> on RDFLib and contains an object-description mapper, support for multiple back-end indices, message passing, revision history and provenance, a namespace library and a variety of helper functions and modules to ease integration with the <a href="http://pylonshq.com/">Pylons</a> framework.</p>
+<p>The current version of this library is 0.35. You can have a peek at some of its key functionalities by checking out the '<a href="http://packages.python.org/ordf/odm.html">Object Description Mapper</a>' - an equivalent to what an Object-Relational Mapper would give you in the context of a relational database. The library seems to be pretty solid; for an example of a system built on top of ORDF you can see <a href="http://bibliographica.org/">Bibliographica</a>, an online open catalogue of cultural works.</p>
+<ul>
+<li>Why using RDF? The <a href="http://packages.python.org/ordf/design_considerations.html">Design Considerations</a> section in the ORDF documentation discusses the reasons that led to the development of this library in a clear and practical fashion.</li>
+</ul>
+<h3>Django-rdf <a href="http://code.google.com/p/django-rdf/">http://code.google.com/p/django-rdf/</a></h3>
+<p>Django-RDF (<a href="http://code.google.com/p/django-rdf/downloads/list">download</a> | <a href="http://code.google.com/p/django-rdf/wiki/FAQ">faq</a> | <a href="http://groups.google.com/group/django-rdf">discussiongroup</a>) is an RDF engine implemented in a generic, reusable <a href="http://www.djangoproject.com/">Django</a> app, providing complete RDF support to Django projects without requiring any modifications to existing framework or app source code. The philosophy is simple: do your web development using Django just like you're used to, then turn the knob and - with no additional effort - expose your project on the semantic web.</p>
+<p>Django-RDF can expose models from any other app as RDF data. This makes it easy to write new views that return RDF/XML data, and/or query existing models in terms of RDFS or OWL classes and properties using (a variant of) the SPARQL query language. SPARQL in, RDF/XML out - two basic semantic web necessities. Django-RDF also implements an RDF store using its internal models such as Concept, Predicate, Resource, Statement, Literal, Ontology, Namespace, etc. The SPARQL query engine returns query sets that can freely mix data in the RDF store with data from existing Django models.</p>
+<p>The major <strong>downside</strong> of this library is that it doesn't seem to be maintained anymore; the last release is from 2008, and there seem to be various conflicts with recent versions of Django. A real shame!</p>
+<h3>Djubby <a href="http://code.google.com/p/djubby/">http://code.google.com/p/djubby/</a></h3>
+<p>Djubby (<a href="http://code.google.com/p/djubby/downloads/list">download</a> | <a href="http://code.google.com/p/djubby/wiki/GettingStarted">docs</a>) is a Linked Data frontend for SPARQL endpoints for the <a href="http://www.djangoproject.com/">Django</a> Web framework, adding a Linked Data interface to any existing SPARQL-capable triple stores.</p>
+<p>Djubby is quite inspired by Richard Cyganiak's <a href="http://www4.wiwiss.fu-berlin.de/pubby/">Pubby</a> (written in Java): it provides a Linked Data interface to local or remote SPARQL protocol servers, it provides dereferenceable URIs by rewriting URIs found in the SPARQL-exposed dataset into the djubby server's namespace, and it provides a simple HTML interface showing the data available about each resource, taking care of handling 303 redirects and content negotiation.</p>
+<h3>Redland <a href="http://librdf.org/">http://librdf.org/</a></h3>
+<p>Redland (<a href="http://download.librdf.org/">download</a> | <a href="http://librdf.org/docs/">docs</a> | <a href="http://lists.usefulinc.com/pipermail/redland-dev/">discussiongroup</a>) is an RDF library written in C and including several high-level language APIs providing RDF manipulation and storage. Redland makes available also a Python interface (<a href="http://librdf.org/docs/python.html">intro</a> | <a href="http://librdf.org/docs/pydoc/RDF.html">apidocs</a>) that can be used to manipulate RDF triples.</p>
+<p>This library seems to be quite complete and is actively maintained; only potential downside is the installation process. In order to use the python bindings you need to install the C library too (which in turns depends on other C libraries), so (depending on your programming experience and operating system used) just getting up and running might become a challenge.</p>
+<h3>SuRF <a href="http://packages.python.org/SuRF/">http://packages.python.org/SuRF/</a></h3>
+<p>SuRF (<a href="http://packages.python.org/SuRF/install.html#installing-rdflib">install</a> | <a href="http://packages.python.org/SuRF/#documentation">docs</a>) is an Object - RDF Mapper based on the RDFLIB python library. It exposes the RDF triple sets as sets of resources and seamlessly integrates them into the Object Oriented paradigm of python in a similar manner as ActiveRDF does for ruby.</p>
+<h3>Other smaller (but possibly useful) python libraries for rdf:</h3>
+<ul>
+<li>
+<p><a href="http://ivan-herman.name/2007/07/06/sparql-endpoint-interface-to-python/">Sparql Interface to python</a>: a minimalistic solution for querying sparql endpoints using python (<a href="http://www.ivan-herman.net/Misc/PythonStuff/SPARQL/">download</a> | <a href="http://www.ivan-herman.net/Misc/PythonStuff/SPARQL/Doc-SPARQL/">apidocs</a>). <em>UPDATE: Ivan Herman pointed out that this library has been discontinued and merged with the 'SPARQL Endpoint interface to Python' below.</em></p>
+</li>
+<li>
+<p><a href="http://sparql-wrapper.sourceforge.net/">SPARQL Endpoint interface to Python</a> another little utility for talking to a SPARQL endpoint, including having select-results mapped to rdflib terms or returned in JSON format (<a href="http://sourceforge.net/projects/sparql-wrapper/">download</a>)</p>
+</li>
+<li>
+<p><a href="http://code.google.com/p/pysparql/source/browse/trunk/src/sparql.py">PySparql</a>: again, a minimal library that does SELECT and ASK queries on an endpoint which implements the HTTP (GET or POST) bindings of the SPARQL Protocol (<a href="http://code.google.com/p/pysparql/source/browse/trunk/src/sparql.py">code page</a>)</p>
+</li>
+<li>
+<p><a href="https://github.com/mnot/sparta/">Sparta</a>: Sparts is a simple, resource-centric API for RDF graphs, built on top of RDFLIB.</p>
+</li>
+<li>
+<p><a href="http://oort.to/">Oort</a>: another Python toolkit for accessing RDF graphs as plain objects, based on RDFLIB. The project homepage hasn't been updated for a while, although there is trace of recent activity on its <a href="http://code.google.com/p/oort/">google project</a> page.</p>
+</li>
+</ul>
+<h2>2. RDF Triplestores that are python-friendly</h2>
+<p>An important component of a linked-data application is the <a href="http://en.wikipedia.org/wiki/Triplestore">triplestore</a> (that is, an RDF database): many commercial and non-commercial triplestores are available, but only a few offer out-of-the-box python interfaces. Here's a list of them:</p>
+<h3>Allegro Graph <a href="http://www.franz.com/agraph/allegrograph/">http://www.franz.com/agraph/allegrograph/</a></h3>
+<p><a href="http://www.franz.com/agraph/allegrograph/">AllegroGraph</a> RDFStore is a high-performance, persistent RDF graph database. AllegroGraph uses disk-based storage, enabling it to scale to billions of triples while maintaining superior performance. Unfortunately, the official version of AllegroGraph is not free, but it is possible to get a <a href="http://www.franz.com/agraph/allegrograph/ag_commercial_edition.lhtml">free version</a> of it (it limits the DB to 50 million triples, so although useful for testing or development it doesn't seem a good solution for a production environment).</p>
+<p>The Allegro Graph Python API (<a href="http://www.franz.com/agraph/allegrograph/clients.lhtml">download</a> | <a href="http://www.franz.com/agraph/support/documentation/current/python-tutorial/python-tutorial-40.html">docs</a> | <a href="http://www.franz.com/agraph/support/documentation/v4/python-tutorial/python-API-40.html">reference</a>) offers convenient and efficient access to an <a href="http://www.franz.com/agraph/allegrograph/">AllegroGraph</a> server from a Python-based application. This API provides methods for creating, querying and maintaining RDF data, and for managing the stored triples.</p>
+<ul>
+<li>A hands-on overview of what's like to work with AllegroGraph and python can be found here: <a href="http://www.snee.com/bobdc.blog/2009/04/getting-started-with-allegrogr.html">Getting started with AllegroGraph</a>.</li>
+</ul>
+<h3>Open Link Virtuoso <a href="http://virtuoso.openlinksw.com/">http://virtuoso.openlinksw.com/</a></h3>
+<p><a href="http://en.wikipedia.org/wiki/Virtuoso_Universal_Server">Virtuoso Universal Server</a> is a middleware and database engine hybrid that combines the functionality of a traditional RDBMS, ORDBMS, virtual database, RDF, XML, free-text, web application server and file server functionality in a single system. Rather than have dedicated servers for each of the aforementioned functionality realms, Virtuoso is a "universal server"; it enables a single multithreaded server process that implements multiple protocols. The open source edition of Virtuoso Universal Server is also known as <a href="http://virtuoso.openlinksw.com/dataspace/dav/wiki/Main/VOSIntro">OpenLink Virtuoso</a>.</p>
+<p><a href="http://packages.python.org/virtuoso/">Virtuoso from Python</a> is intended to be a collection of modules for interacting with OpenLink Virtuoso from python. The goal is to provide drivers for `SQLAlchemy` and `RDFLib`. The package is installable from the <a href="http://pypi.python.org/pypi/virtuoso">Python Package Index</a> and source code for development is available in a mercurial repository on <a href="http://bitbucket.org/ww/virtuoso">BitBucket</a>.</p>
+<ul>
+<li>A possibly useful example of using Virtuoso from python: <a href="http://www.openlinksw.com/dataspace/kidehen@openlinksw.com/weblog/kidehen@openlinksw.com%27s%20BLOG%20%5B127%5D/1651">SPARQL Guide for Python Developer</a>.</li>
+</ul>
+<h3>Sesame <a href="http://www.openrdf.org/">http://www.openrdf.org/</a></h3>
+<p><a href="http://en.wikipedia.org/wiki/Sesame_(framework)">Sesame</a> is an open-source framework for querying and analyzing RDF data (<a href="http://www.openrdf.org/download.jsp">download</a> | <a href="http://www.openrdf.org/documentation.jsp">documentation</a>). Sesame supports two query languages: SeRQL and Sparql. Sesame's API differs from comparable solutions in that it offers a (stackable) interface through wich functionality can be added, and the storage engine is abstracted from the query interface (many other Triplestores can in fact be used through the Sesame API).</p>
+<p>It looks as if the best way to interact with Sesame is by using Java; however there is also a pythonic API called <a href="http://pysesame.projects.semwebcentral.org/">pySesame</a>. This is essentially a python wrapper for Sesame's REST HTTP API, so the range of operations supported (Log in, Log out, Request a list of available repositories, Evaluate a SeRQL-select, RQL or RDQL query, Extract/upload/remove RDF from a repository) are somehow limited (for example, there does not seem to be any native SPARQL support).</p>
+<ul>
+<li>A nice introduction to using Sesame with Python (without pySesame though) can be found in this article: <a href="http://www.jenitennison.com/blog/node/153">Getting Started with RDF and SPARQL Using Sesame and Python</a>.</li>
+</ul>
+<h3>Talis platform <a href="http://www.talis.com/platform/">http://www.talis.com/platform/</a></h3>
+<p>The Talis Platform (<a href="http://docs.api.talis.com/getting-started/platform-faq#TOC-What-is-the-Talis-Platform-">faq</a> | <a href="http://docs.api.talis.com/">docs</a>)is an environment for building next generation applications and services based on Semantic Web technologies. It is a <strong>hosted</strong> system which provides an efficient, robust storage infrastructure. Both arbitrary documents and RDF-based semantic content are supported, with sophisticated query, indexing and search features. Data uploaded on the Talis platform are organized into stores: a <strong>store</strong> is a grouping of related data and metadata. For convenience each store is assigned one or more owners who are the people who have rights to configure the access controls over that data and metadata. Each store provides a uniform REST interface to the data and metadata it manages.</p>
+<p>Stores don't come free of charge, but through the <a href="http://www.talis.com/platform/cc/">Talis Connected Commons scheme</a> it is possible have quite large amounts of store space for free. The scheme is intended to support a wide range of different forms of data publishing. For example scientific researchers seeking to share their research data; dissemination of public domain data from a variety of different charitable, public sector or volunteer organizations; open data enthusiasts compiling data sets to be shared with the web community.</p>
+<p>Good news for pythonistas too: <a href="http://code.google.com/p/pynappl/">pynappl</a> is a simple client library for the Talis Platform. It relies on <a href="http://code.google.com/p/rdflib/">rdflib 3.0</a> and draws inspiration from other similar client libraries. Currently it is focussed mainly on managing data loading and manipulation of Talis Platform stores (<a href="http://blogs.talis.com/n2/archives/887">this blog post</a> says more about it).</p>
+<ul>
+<li>Before trying out the Talis platform you might find useful this blog post: <a href="http://www.jenitennison.com/blog/node/109">Publishing Linked Data on the Talis Platform</a>.</li>
+</ul>
+<h3>4store <a href="http://4store.org/">http://4store.org/</a></h3>
+<p>4store (<a href="http://4store.org/trac/wiki/Download">download</a> | <a href="http://4store.org/about">features</a> | <a href="http://4store.org/trac/wiki/Documentation">docs</a>) is a database storage and query engine that holds RDF data. It has been used by <a href="http://www.garlik.com/">Garlik</a> as their primary RDF platform for three years, and has proved itself to be robust and secure. 4store's main strengths are its performance, scalability and stability. It does not provide many features over and above RDF storage and SPARQL queries, but if your are looking for a scalable, secure, fast and efficient RDF store, then 4store should be on your shortlist.</p>
+<p>4store offers a number of <a href="http://4store.org/trac/wiki/ClientLibraries">client libraries</a>, among them there are two for python: first, <a href="http://pypi.python.org/pypi/HTTP4Store/0.2">HTTP4Store</a> is a client for the 4Store httpd service - allowing for easy handling of sparql results, and adding, appending and deleting graphs. Second, <a href="https://github.com/wwaites/py4s">py4s</a>, although this seems to be a much more experimental library (geared towards multi process queries). Furthemore, there is also an application for the Django web framework called <a href="https://github.com/66laps/django-4store#readme">django-4store</a> that makes it easier to query and load rdf data into 4store when running Django. The application offers some support for constructing sparql-based Django <a href="https://github.com/66laps/django-4store/blob/master/src/fourstore/views.py">views</a>.</p>
+<ul>
+<li>This blog post shows how to install 4store: <a href="http://www.jenitennison.com/blog/node/152">Getting Started with RDF and SPARQL Using 4store and RDF.rb</a> .</li>
+</ul>
+<p>End of the survey.. <em>have I missed out on something</em>? Please let me know if I did - I'll try to keep adding stuff to this list as I move on with my project work!</p>
+
+            </div>
+
+
+          <hr>
+            <p class="text-muted">Cite this article:</p>
+
+            <div class="well well-big lead">
+              Michele Pasin. <a href="index.html" class="bluelink">Survey of Pythonic tools for RDF and Linked Data programming</a>. Blog post on www.michelepasin.org. Published on Feb. 24, 2011.
+            </div>
+            <br />
+
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-1 col-md-offset-1">
+
+
+            
+            <p class="text-muted">Linkout:</p>
+
+            <div class="-lead">
+
+              
+              <li><a href="https://www.michelepasin.org/blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/index.html">Legacy Blog</a></li>
+                
+              
+
+            </div>
+            <br />
+            
+
+
+        </div>
+        
+      </div>
+
+
+
+
+      
+
+      
+
+
+
+
+
+    <div class="row">
+      <h5 class="text-muted">See also:</h5>
+      </div>
+
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2019</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2019</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2019/05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/index.html" class="bluelink ">Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</a>.
+              <br />
+              <span class="">Beyza Yaman, Michele Pasin, Markus Freudenberg</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Second biennial conference on Language, Data and Knowledge (LDK 2019),</span>
+              
+              
+                <span class='pubplace'> Leipzig, Germany,</span>
+              
+              
+                <span class='pubdate'> May 2019.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2018</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2018</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2018/05/23/sn-scigraph-is-part-of-the-linked-open-data-cloud-2018/index.html" class="bluelink ">SN SciGraph is part of the Linked Open Data Cloud 2018</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> May 2018.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2017</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Nov 2017</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2017/11/14/scigraph-publishes-1-billion-facts-as-linked-open-data/index.html" class="bluelink ">SciGraph publishes 1 billion facts as Linked Open Data</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Nov 2017.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2017</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2017/10/19/data-integration-and-disintegration-managing-springer-nature-scigraph-with-shacl-and-owl/index.html" class="bluelink ">Data integration and disintegration: Managing Springer Nature SciGraph with SHACL and OWL</a>.
+              <br />
+              <span class="">Tony Hammond, Michele Pasin, Evangelos Theodoridis</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Industry Track, International Semantic Web Conference (ISWC-17),</span>
+              
+              
+                <span class='pubplace'> Vienna, Austria,</span>
+              
+              
+                <span class='pubdate'> Oct 2017.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2017</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2017/10/11/using-linked-open-data-to-bootstrap-a-knowledge-base-of-classical-texts/index.html" class="bluelink ">Using Linked Open Data to Bootstrap a Knowledge Base of Classical Texts</a>.
+              <br />
+              <span class="">Matteo Romanello, Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> WHiSe 2017 - 2nd Workshop on Humanities in the Semantic web (colocated with ISWC17),</span>
+              
+              
+                <span class='pubplace'> Vienna, Austria,</span>
+              
+              
+                <span class='pubdate'> Oct 2017.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Apr 2017</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/index.html" class="bluelink ">Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Apr 2017.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2016</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2016</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2016/10/21/open-data-summit-2016/index.html" class="bluelink ">Open Data Summit 2016</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Oct 2016.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Apr 2016</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2016/04/01/insights-into-natures-data-publishing-portal/index.html" class="bluelink ">Insights into Nature’s Data Publishing Portal</a>.
+              <br />
+              <span class="">Michele Pasin, Tony Hammond</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> The Semantic Puzzle (online interview),</span>
+              
+              
+              
+              
+                <span class='pubdate'> Apr 2016.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2015</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Sep 2015</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2015/09/13/learning-how-to-become-a-linked-data-publisher-the-naturecom-ontologies-portal/index.html" class="bluelink ">Learning how to become a linked data publisher: the nature.com ontologies portal.</a>.
+              <br />
+              <span class="">Tony Hammond, Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> 5th Workshop on Linked Science 2015, colocated with ISWC 2015.,</span>
+              
+              
+                <span class='pubplace'> Bethlehem, USA,</span>
+              
+              
+                <span class='pubdate'> Sep 2015.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2014</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Dec 2014</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2014/12/22/italian-public-spending-data/index.html" class="bluelink ">Italian public spending data: a review</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Dec 2014.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2014</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2014/10/22/linked-data-experience-at-macmillan-building-discovery-services-for-scientific-and-scholarly-content-on-top-of-a-semantic-data-model/index.html" class="bluelink ">Linked data experience at Macmillan: Building discovery services for scientific and scholarly content on top of a semantic data model</a>.
+              <br />
+              <span class="">Tony Hammond, Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> International Semantic Web Conference (ISWC-14),</span>
+              
+              
+                <span class='pubplace'> Riva del Garda, Italy,</span>
+              
+              
+                <span class='pubdate'> Oct 2014.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2013</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2013</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2013/10/11/moving-emlot-towards-the-web-of-data-an-approach-to-the-representation-of-humanities-citations-based-on-role-theory-and-formal-ontology/index.html" class="bluelink ">Moving EMLoT towards the web of data: an approach to the representation of humanities citations based on role theory and formal ontology</a>.
+              <br />
+              <span class="">Michele Pasin, Riichiro Mizoguchi</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> New Technologies in Medieval and Renaissance Studies,</span>
+              
+              
+              
+              
+                <span class='text-warning'> (forthcoming). </span>
+              
+              
+                <span class='extrainfo'> (part of the 'Envisioning REED in the Digital Age' collection)</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2013</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/index.html" class="bluelink ">Messing around wih D3.js and hierarchical data</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2013.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2012</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2012</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2012/10/12/teaching-programming-concepts-visually-with-the-online-python-tutor/index.html" class="bluelink ">Teaching programming concepts visually with the Online Python Tutor</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Oct 2012.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jul 2012</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2012/07/26/exploring-prosopographical-resources-through-novel-tools-and-visualizations-a-preliminary-investigation/index.html" class="bluelink ">Exploring Prosopographical Resources Through Novel Tools and Visualizations: a Preliminary Investigation</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Digital Humanities 2012,</span>
+              
+              
+                <span class='pubplace'> Hamburg, Germany,</span>
+              
+              
+                <span class='pubdate'> Jul 2012.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2011</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2011/06/22/browsing-highly-interconnected-humanities-databases-through-multiresult-faceted-browsers/index.html" class="bluelink ">Browsing highly interconnected humanities databases through multi-result faceted browsers</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Digital Humanities 2011 ,</span>
+              
+              
+                <span class='pubplace'> Stanford, USA,</span>
+              
+              
+                <span class='pubdate'> Jun 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Apr 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../04/14/allegro-cl-graph/index.html" class="bluelink ">RDF programming with AllegroCL and AllegroGraph</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Apr 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Mar 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../03/17/a-few-useful-linked-data-resources/index.html" class="bluelink ">A few useful Linked Data resources</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Mar 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Feb 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="index.html" class="bluelink paper-active">Survey of Pythonic tools for RDF and Linked Data programming</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Feb 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2010</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2010</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2010/10/21/editing-pdf-metadata-on-osx-ie-having-the-kindle-display-the-right-titleauthor-with-pdfs/index.html" class="bluelink ">Editing PDF metadata on OSx (ie: having the Kindle display the right title/author with pdfs)</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Oct 2010.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2010</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2010/06/10/data-integration-perspectives-from-the-london-theatres-bibliography-project/index.html" class="bluelink ">Data integration perspectives from the London Theatres Bibliography project</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Annual Conference of the Canadian Society for Digital Humanities / Société pour l&#39;étude des médias interactifs (SDH-SEMI 2010),</span>
+              
+              
+                <span class='pubplace'> Montreal, Canada,</span>
+              
+              
+                <span class='pubdate'> Jun 2010.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Mar 2010</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2010/03/29/algorithms-are-thoughts-chainsaws-are-tools/index.html" class="bluelink ">Algorithms are Thoughts, Chainsaws are Tools</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Mar 2010.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2009</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Aug 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/08/06/representing-hierarchical-data-with-django-and-mptt/index.html" class="bluelink ">Representing hierarchical data with Django and MPTT</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Aug 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2009/06/30/laying-the-conceptual-foundations-for-data-integration-in-the-humanities/index.html" class="bluelink ">Laying the Conceptual Foundations for Data Integration in the Humanities</a>.
+              <br />
+              <span class="">Michele Pasin, Arianna Ciula</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Proc. of the Digital Humanities Conference (DH09),</span>
+              
+              
+                <span class='pubplace'> Maryland, USA,</span>
+              
+              
+                <span class='pubdate'> Jun 2009.</span>
+              
+              
+                <span class='extrainfo'> pp. 211-215</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Mar 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/03/10/db-visualize-the-universal-database-tool/index.html" class="bluelink ">DB visualize : The Universal Database Tool</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Mar 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2008</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Apr 2008</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2008/04/03/comparing-programming-languages/index.html" class="bluelink ">Comparing programming languages</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Apr 2008.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2006</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Dec 2006</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2006/12/14/time-matters-watching-lisp-experts-programming/index.html" class="bluelink ">Time matters: watching lisp experts programming</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Dec 2006.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    
+
+
+
+  </div> <!-- /container -->
+
+
+
+
+
+	</div>
+
+
+  
+
+
+
+  
+
+
+
+
+  <footer class="footer">
+    <div class="container">
+    
+      <p class="text-muted">Find me also on: &nbsp;
+      
+
+  <a href="http://kcl.academia.edu/MichelePasin" target="_blank">Academia</a> | 
+  <a href="https://github.com/lambdamusic" target="_blank">GitHub</a> | 
+  <a href="https://scholar.google.com/citations?user=zj-99x0AAAAJ&hl=en" target="_blank">Google Scholar</a> | 
+  <a href="https://www.instagram.com/lambdamusic/" target="_blank">Instagram</a> |
+  <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0" target="_blank">LinkedIn</a> |
+  <a href="http://www.mendeley.com/profiles/michele-pasin/" target="_blank">Mendeley</a> |
+  <a href="http://orcid.org/0000-0001-8909-7766" target="_blank">Orcid</a> |
+  <a href="http://www.slideshare.net/mpasin" target="_blank">SlideShare</a> |
+  <a href="https://soundcloud.com/magicrebirth" target="_blank">Soundcloud</a> |
+  <a href="http://stackoverflow.com/users/109304/magicrebirth" target="_blank">StackOverflow</a> |
+  <a href="http://twitter.com/#!/lambdaman" target="_blank">Twitter</a> |
+  <a href="https://vimeo.com/lambdamusic" target="_blank">Vimeo</a>
+      
+      </p>
+    
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../../../../media/static/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+
+
+
+    
+
+  </body>
+</html>

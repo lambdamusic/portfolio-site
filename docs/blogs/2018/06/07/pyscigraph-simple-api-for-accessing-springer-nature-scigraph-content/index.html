@@ -1,0 +1,1125 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../../media/static/favicon.ico">
+
+	
+  <title>Blogs | Michele Pasin</title>
+
+
+    <!-- Bootstrap core CSS -->
+    
+    <!-- Bootswatch:  -->
+    <!-- cerulean  | cyborg |  flatly |  lumen |  sandstone |   spacelab  |  yeti | cosmo |  darkly |  paper | simplex | superhero |  journal | readable  |   slate |  united -->
+    <link href="../../../../../media/static/libs/bootswatch3.2/simplex/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css">
+
+    .tooltip-inner {
+        max-width: 200px;
+        /* If max-width does not work, try using width instead */
+        width: 200px; 
+    }
+    .lead-plus {font-size: 26.5px;}
+    .label-dark {background: #2c3e50; color: white; padding: 1px;}
+    .margin50 {margin-top: 50px; margin-bottom: 50px;}
+    .marginb100 {margin-bottom: 100px;}
+
+    .breadcrumbs {margin-top: 80px;}
+    .namespaces {background: #ced2d6; width: 100%;}
+    .footer {background-color: #3e3f3a;}
+    .footer a {color: #cac0bf;}
+
+    .margin50Top {margin-top: 50px;}
+    .margin20Top {margin-top: 20px;}
+    .margin50Bottom { margin-bottom: 50px;}
+    .margin20Bottom { margin-bottom: 20px;}
+
+    /*so that the d3plus tooltip panel doesnt cover the top banner*/
+    .navbar {z-index: 3000;}
+
+
+    .navbar-alpha {
+        font-size: 65%;
+        font-style: italic;
+        font-weight: bold;
+        color: darkgoldenrod;
+    }
+
+
+    .btn-xxs {
+    padding: 1px 4px;
+    font-size: 10px;
+    line-height: 1.2;
+    border-radius: 2px;
+    }
+
+
+    .code-example {
+        overflow: auto;
+        height: 400px;
+    }
+
+
+    #side_title a {
+        color: blue;
+        text-decoration: underline;
+
+    }
+    .text-dark {
+        color: #5d5c5c;
+        
+    }
+
+
+    .paragraph_embed {
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+
+    .thumb-div {
+      padding: 20px;
+
+    }
+
+    .thumbnail{
+      
+
+      
+
+    }
+
+    .thumb-img {
+      height: 200px;
+
+    }
+
+    .thumb-title b {
+      font-weight: bold;
+      color: black;
+
+    }
+
+
+
+    a.project-title {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a.project-title:hover {
+      background: indianred;
+      color: white;
+    }
+
+    a.project-active {
+      background: indianred;
+      color: white;
+    }
+
+    .keyword {
+      font-style: italic;
+      color: grey;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    a.paper-active {
+      background: indianred;
+      color: white;
+    }
+
+    a.ext_link {
+      color: darkgrey;
+    }
+
+    .text-black {
+      color: black;
+    }
+
+    a.sounds-active {
+      background: indianred;
+      color: white;
+    }
+
+    img.project-screenshots {
+      margin-botton: 30px;
+    }
+
+
+
+    
+
+    .blogentry {
+      font-size: 14px;
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .blogentry p:first-of-type {
+      font-size: 22px;
+      font-weight: bold;
+      min-height: 20px;
+      padding: 19px;
+      margin-bottom: 20px;
+      background-color: #f4f4f4;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    }
+
+    .blogentry p {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .blogentry img {
+      max-width: 80%;
+    }
+
+
+</style>
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+
+
+
+
+
+    
+
+    
+
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../../../index.html">michelepasin<sup style="color: red;">&nbsp;.org</sup></a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+
+        <li >
+          <a href="../../../../../index.html">Projects</a></li>
+
+        <li class="active">
+            <a href="../../../../../words/index.html">Words</a></li>
+
+       <li >
+            <a href="../../../../../sounds/index.html">Sounds</a></li>
+
+        <li >
+          <a href="../../../../../events/index.html">Events</a></li>
+          
+          
+
+        <li 
+        
+          ><a href="../../../../../about/index.html">About</a></li>
+
+          <!-- <li>
+            <a href="/blog" target="_blank">Blog</a></li> -->
+            
+
+      </ul>
+    </div><!--/.nav-collapse -->
+
+  </div>
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+    <!-- Begin page content -->
+    <div class="container">
+
+
+	
+
+  <div class="page-header">
+      
+      Words > Blogs > 2018 > <i>PySciGraph: simple API for accessing SN SciGraph content</i>
+  </div>
+
+  <div class="container">
+
+
+      <div class="row" style="margin-bottom:50px;">
+          
+        <div class="col-md-8">
+
+
+          <p class="text-muted">Title:</p>
+
+          <div class="lead -well">
+            <h3><b>PySciGraph: simple API for accessing SN SciGraph content</b></h3>
+            
+          </div>
+
+
+          <p class="text-muted">Year:</p>
+
+          <div class="lead -well">
+            <h3>2018</h3>
+          </div>
+
+
+            <div class="blogentry"> 
+
+            <p>PySciGraph is a small open source Python library that makes it easier to access data from <a href="https://scigraph.springernature.com/explorer">Springer Nature SciGraph.</a> It is available on <a href="https://pypi.org/project/pyscigraph/">Pypi</a> and <a href="https://github.com/lambdamusic/pyscigraph">Github</a>. I created it mainly because I wanted to be able to quickly check from the command line whether an object exists in SN SciGraph, or what metadata it returns. But of course this could be developed further e.g. so to allow to navigate the graph by following links from one object to the other.</p>
+<blockquote>
+<p><strong>What is SN SciGraph?</strong> SciGraph is the Springer Nature Linked Data platform that collates information from across the research landscape, i.e. the things, documents, people, places and relations of importance to the science and scholarly domain. Metadata for millions of entities are available to explore, as well as for downloading to reuse within your own application under a CC-BY and CC-BY-NC license (you can follow <a href="https://researchdata.springernature.com/users/82895-sn-scigraph">SN SciGraph blog posts here</a>)</p>
+</blockquote>
+<p><a href="https://www.springernature.com/gp/researchers/scigraph"><img alt="scigraph" src="../../../../../media/static/blog_img/scigraph.png" /></a></p>
+<p>Here's an example of how the library can be used from the command line:</p>
+<p>```</p>
+<h1>check if an object is on SciGraph via its URI</h1>
+<p>$ pyscigraph --uri http://www.grid.ac/institutes/grid.443610.4
+Parsing 12 triples..
+URI:  http://www.grid.ac/institutes/grid.443610.4
+DOI:  N/A
+Label:  Hakodate University
+Title:  N/A
+Types:  foaf:Organization grid:Education</p>
+<h1>check if a publication is on SciGraph via its DOI</h1>
+<p>$ pyscigraph --doi 10.1038/171737a0
+Parsing 251 triples..
+URI:  http://scigraph.springernature.com/things/articles/f5ac1e9c7a520ca2a34cb13af4809bdd
+DOI:  10.1038/171737a0
+Label:  Article: Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid
+Title:  Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid
+Types:  sg:Article</p>
+<h1>retrieve all metadata via an RDF serialization</h1>
+<p>$ pyscigraph --doi 10.1038/171737a0 --rdf n3
+Parsing 251 triples..
+@prefix dc: <a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a> .
+@prefix foaf: <a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a> .
+@prefix grid: <a href="http://www.grid.ac/ontology/">http://www.grid.ac/ontology/</a> .
+@prefix owl: <a href="http://www.w3.org/2002/07/owl#">http://www.w3.org/2002/07/owl#</a> .
+@prefix rdf: <a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#">http://www.w3.org/1999/02/22-rdf-syntax-ns#</a> .
+@prefix rdfs: <a href="http://www.w3.org/2000/01/rdf-schema#">http://www.w3.org/2000/01/rdf-schema#</a> .
+@prefix sg: <a href="http://scigraph.springernature.com/ontologies/core/">http://scigraph.springernature.com/ontologies/core/</a> .
+@prefix sh: <a href="http://www.w3.org/ns/shacl#">http://www.w3.org/ns/shacl#</a> .
+@prefix skos: <a href="http://www.w3.org/2004/02/skos/core#">http://www.w3.org/2004/02/skos/core#</a> .
+@prefix vann: <a href="http://purl.org/vocab/vann/">http://purl.org/vocab/vann/</a> .
+@prefix vivo: <a href="http://vivoweb.org/ontology/core#">http://vivoweb.org/ontology/core#</a> .
+@prefix void: <a href="http://rdfs.org/ns/void#">http://rdfs.org/ns/void#</a> .
+@prefix xml: <a href="http://www.w3.org/XML/1998/namespace">http://www.w3.org/XML/1998/namespace</a> .
+@prefix xsd: <a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a> .</p>
+<p><a href="http://scigraph.springernature.com/things/articles/f5ac1e9c7a520ca2a34cb13af4809bdd">http://scigraph.springernature.com/things/articles/f5ac1e9c7a520ca2a34cb13af4809bdd</a> a sg:Article ;
+    rdfs:label "Article: Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid" ;
+    sg:coverDate "1953-04-25"^^xsd:date ;
+    sg:coverYear "1953-01-01"^^xsd:gYear ;
+    sg:coverYearMonth "1953-04-01"^^xsd:gYearMonth ;
+    sg:ddsIdJournalBrand "41586" ;
+    sg:doi "10.1038/171737a0" ;
+    sg:doiLink <a href="http://dx.doi.org/10.1038/171737a0">http://dx.doi.org/10.1038/171737a0</a> ;
+    sg:hasArticleType <a href="http://scigraph.springernature.com/things/article-types/af">http://scigraph.springernature.com/things/article-types/af</a> ;
+    sg:hasContributingOrganization <a href="http://www.grid.ac/institutes/grid.5335.0">http://www.grid.ac/institutes/grid.5335.0</a> ;
+    sg:hasContribution <a href="http://scigraph.springernature.com/things/contributions/7325bd1cadf3a1cc253c611682bc62fd">http://scigraph.springernature.com/things/contributions/7325bd1cadf3a1cc253c611682bc62fd</a>,
+        <a href="http://scigraph.springernature.com/things/contributions/989a6a2607c882ffd99341144836d1fc">http://scigraph.springernature.com/things/contributions/989a6a2607c882ffd99341144836d1fc</a> ;
+    sg:hasFieldOfResearchCode <a href="http://purl.org/au-research/vocabulary/anzsrc-for/2008/03">http://purl.org/au-research/vocabulary/anzsrc-for/2008/03</a>,
+        <a href="http://purl.org/au-research/vocabulary/anzsrc-for/2008/0306">http://purl.org/au-research/vocabulary/anzsrc-for/2008/0306</a> ;
+    sg:hasJournal <a href="http://scigraph.springernature.com/things/journals/5ea8996a5bb089dd0562d3bfe24eaad9">http://scigraph.springernature.com/things/journals/5ea8996a5bb089dd0562d3bfe24eaad9</a>,
+        <a href="http://scigraph.springernature.com/things/journals/723ba46cf7980ad6089b3da0ba4b0b47">http://scigraph.springernature.com/things/journals/723ba46cf7980ad6089b3da0ba4b0b47</a> ;
+    sg:hasJournalBrand <a href="http://scigraph.springernature.com/things/journal-brands/012496b06989edb434c6b8e1d0b0a7db">http://scigraph.springernature.com/things/journal-brands/012496b06989edb434c6b8e1d0b0a7db</a> ;
+    sg:issnElectronic "1476-4687" ;
+    sg:issnPrint "0028-0836" ;
+    sg:issue "4356" ;
+    sg:license <a href="http://scigraph.springernature.com/explorer/license/">http://scigraph.springernature.com/explorer/license/</a> ;
+    sg:npgId "171737a0" ;
+    sg:pageEnd "738" ;
+    sg:pageStart "737" ;
+    sg:publicationDate "1953-04-25"^^xsd:date ;
+    sg:publicationYear "1953-01-01"^^xsd:gYear ;
+    sg:publicationYearMonth "1953-04-01"^^xsd:gYearMonth ;
+    sg:scigraphId "f5ac1e9c7a520ca2a34cb13af4809bdd" ;
+    sg:title "Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid" ;
+    sg:volume "171" .
+```</p>
+<p>The current release (0.4) just offers basic functionalities but I'm planning to do more work on this over the next months.</p>
+<p>Any ideas? Comments? Please <a href="https://github.com/lambdamusic/pyscigraph/issues">open an issue on Github!</a></p>
+
+            </div>
+
+
+          <hr>
+            <p class="text-muted">Cite this article:</p>
+
+            <div class="well well-big lead">
+              Michele Pasin. <a href="index.html" class="bluelink">PySciGraph: simple API for accessing SN SciGraph content</a>. Blog post on www.michelepasin.org. Published on June 7, 2018.
+            </div>
+            <br />
+
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-1 col-md-offset-1">
+
+
+            
+            <p class="text-muted">Linkout:</p>
+
+            <div class="-lead">
+
+              
+              <li><a href="https://www.michelepasin.org/blog/2018/06/07/pyscigraph-simple-api-for-accessing-springer-nature-scigraph-content/index.html">Legacy Blog</a></li>
+                
+              
+
+            </div>
+            <br />
+            
+
+
+        </div>
+        
+      </div>
+
+
+
+
+      
+
+      
+
+
+
+
+
+    <div class="row">
+      <h5 class="text-muted">See also:</h5>
+      </div>
+
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2019</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2019</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2019/06/03/modeling-publications-in-sn-scigraph-20122019/index.html" class="bluelink ">Modeling publications in SN SciGraph 2012-2019</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Workshop on Scholarly Digital Editions, Graph Data-Models and Semantic Web Technologies,</span>
+              
+              
+                <span class='pubplace'> Université de Lausanne,</span>
+              
+              
+                <span class='pubdate'> Jun 2019.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2019</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2019/05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/index.html" class="bluelink ">Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</a>.
+              <br />
+              <span class="">Beyza Yaman, Michele Pasin, Markus Freudenberg</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Second biennial conference on Language, Data and Knowledge (LDK 2019),</span>
+              
+              
+                <span class='pubplace'> Leipzig, Germany,</span>
+              
+              
+                <span class='pubdate'> May 2019.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Mar 2019</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2019/03/22/sn-scigraph-latest-release-patents-clinical-trials-and-many-new-features/index.html" class="bluelink ">SN SciGraph Latest Release: Patents, Clinical Trials and many new features</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Mar 2019.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2018</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Aug 2018</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../08/01/sn-scigraph-latest-website-release-make-it-easier-to-discover-related-content/index.html" class="bluelink ">SN SciGraph: latest website release make it easier to discover related content</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Aug 2018.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2018</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="index.html" class="bluelink paper-active">PySciGraph: simple API for accessing SN SciGraph content</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2018.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2018</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../05/23/sn-scigraph-is-part-of-the-linked-open-data-cloud-2018/index.html" class="bluelink ">SN SciGraph is part of the Linked Open Data Cloud 2018</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> May 2018.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2017</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Nov 2017</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2017/11/14/scigraph-publishes-1-billion-facts-as-linked-open-data/index.html" class="bluelink ">SciGraph publishes 1 billion facts as Linked Open Data</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Nov 2017.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2017</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2017/10/19/data-integration-and-disintegration-managing-springer-nature-scigraph-with-shacl-and-owl/index.html" class="bluelink ">Data integration and disintegration: Managing Springer Nature SciGraph with SHACL and OWL</a>.
+              <br />
+              <span class="">Tony Hammond, Michele Pasin, Evangelos Theodoridis</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Industry Track, International Semantic Web Conference (ISWC-17),</span>
+              
+              
+                <span class='pubplace'> Vienna, Austria,</span>
+              
+              
+                <span class='pubdate'> Oct 2017.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Apr 2017</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/index.html" class="bluelink ">Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Apr 2017.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2015</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Nov 2015</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2015/11/28/accessing-os-x-dictionary-with-python/index.html" class="bluelink ">Accessing OS X dictionary with Python</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Nov 2015.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2014</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2014</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2014/10/22/linked-data-experience-at-macmillan-building-discovery-services-for-scientific-and-scholarly-content-on-top-of-a-semantic-data-model/index.html" class="bluelink ">Linked data experience at Macmillan: Building discovery services for scientific and scholarly content on top of a semantic data model</a>.
+              <br />
+              <span class="">Tony Hammond, Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> International Semantic Web Conference (ISWC-14),</span>
+              
+              
+                <span class='pubplace'> Riva del Garda, Italy,</span>
+              
+              
+                <span class='pubdate'> Oct 2014.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2008</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2008</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2008/06/30/formalizing-philosophical-narratives-the-tension-between-form-and-content/index.html" class="bluelink ">Formalizing ʻphilosophicalʼ narratives: the tension between form and content</a>.
+              <br />
+              <span class="">Michele Pasin, Simon Buckingham-Shum, Enrico Motta</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> European Computing and Philosophy Conference (ECAP08),</span>
+              
+              
+                <span class='pubplace'> Montpellier, France,</span>
+              
+              
+                <span class='pubdate'> Jun 2008.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    
+
+
+
+  </div> <!-- /container -->
+
+
+
+
+
+	</div>
+
+
+  
+
+
+
+  
+
+
+
+
+  <footer class="footer">
+    <div class="container">
+    
+      <p class="text-muted">Find me also on: &nbsp;
+      
+
+  <a href="http://kcl.academia.edu/MichelePasin" target="_blank">Academia</a> | 
+  <a href="https://github.com/lambdamusic" target="_blank">GitHub</a> | 
+  <a href="https://scholar.google.com/citations?user=zj-99x0AAAAJ&hl=en" target="_blank">Google Scholar</a> | 
+  <a href="https://www.instagram.com/lambdamusic/" target="_blank">Instagram</a> |
+  <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0" target="_blank">LinkedIn</a> |
+  <a href="http://www.mendeley.com/profiles/michele-pasin/" target="_blank">Mendeley</a> |
+  <a href="http://orcid.org/0000-0001-8909-7766" target="_blank">Orcid</a> |
+  <a href="http://www.slideshare.net/mpasin" target="_blank">SlideShare</a> |
+  <a href="https://soundcloud.com/magicrebirth" target="_blank">Soundcloud</a> |
+  <a href="http://stackoverflow.com/users/109304/magicrebirth" target="_blank">StackOverflow</a> |
+  <a href="http://twitter.com/#!/lambdaman" target="_blank">Twitter</a> |
+  <a href="https://vimeo.com/lambdamusic" target="_blank">Vimeo</a>
+      
+      </p>
+    
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../../../../media/static/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+
+
+
+    
+
+  </body>
+</html>

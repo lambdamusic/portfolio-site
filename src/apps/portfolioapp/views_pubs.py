@@ -139,7 +139,7 @@ def blog_detail(request, year="", month="", day="", namedetail=""):
 	# NOTE local file name is stored in `md_file`
 	TITLE, DATE, REVIEW, PURE_MARKDOWN= parse_markdown(BLOGS_ROOT + return_item.md_file)
 
-	html_blog_entry = markdown.markdown(PURE_MARKDOWN)
+	html_blog_entry = markdown.markdown(PURE_MARKDOWN, extensions=['fenced_code', 'codehilite'])
 
 	context = {
 		'return_item' : return_item,
@@ -221,7 +221,6 @@ def get_pubs(query, ttype):
 		if ttype == "blogs":
 
 			ddset = QSET.filter(pubtype__groupfk__pk=6)
-			print(QSET)
 
 		elif ttype == "papers":
 
@@ -234,8 +233,6 @@ def get_pubs(query, ttype):
 		else:
 
 			ddset = QSET.exclude(pubtype=talks)
-
-		print(ddset)
 
 		valid_years = list(
 			set([

@@ -1,0 +1,1166 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../../media/static/favicon.ico">
+
+	
+  <title>Blogs | Michele Pasin</title>
+
+
+    <!-- Bootstrap core CSS -->
+    
+    <!-- Bootswatch:  -->
+    <!-- cerulean  | cyborg |  flatly |  lumen |  sandstone |   spacelab  |  yeti | cosmo |  darkly |  paper | simplex | superhero |  journal | readable  |   slate |  united -->
+    <link href="../../../../../media/static/libs/bootswatch3.2/simplex/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css">
+
+    .tooltip-inner {
+        max-width: 200px;
+        /* If max-width does not work, try using width instead */
+        width: 200px; 
+    }
+    .lead-plus {font-size: 26.5px;}
+    .label-dark {background: #2c3e50; color: white; padding: 1px;}
+    .margin50 {margin-top: 50px; margin-bottom: 50px;}
+    .marginb100 {margin-bottom: 100px;}
+
+    .breadcrumbs {margin-top: 80px;}
+    .namespaces {background: #ced2d6; width: 100%;}
+    .footer {background-color: #3e3f3a;}
+    .footer a {color: #cac0bf;}
+
+    .margin50Top {margin-top: 50px;}
+    .margin20Top {margin-top: 20px;}
+    .margin50Bottom { margin-bottom: 50px;}
+    .margin20Bottom { margin-bottom: 20px;}
+
+    /*so that the d3plus tooltip panel doesnt cover the top banner*/
+    .navbar {z-index: 3000;}
+
+
+    .navbar-alpha {
+        font-size: 65%;
+        font-style: italic;
+        font-weight: bold;
+        color: darkgoldenrod;
+    }
+
+
+    .btn-xxs {
+    padding: 1px 4px;
+    font-size: 10px;
+    line-height: 1.2;
+    border-radius: 2px;
+    }
+
+
+    .code-example {
+        overflow: auto;
+        height: 400px;
+    }
+
+
+    #side_title a {
+        color: blue;
+        text-decoration: underline;
+
+    }
+    .text-dark {
+        color: #5d5c5c;
+        
+    }
+
+
+    .paragraph_embed {
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+
+    .thumb-div {
+      padding: 20px;
+
+    }
+
+    .thumbnail{
+      
+
+      
+
+    }
+
+    .thumb-img {
+      height: 200px;
+
+    }
+
+    .thumb-title b {
+      font-weight: bold;
+      color: black;
+
+    }
+
+
+
+    a.project-title {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a.project-title:hover {
+      background: indianred;
+      color: white;
+    }
+
+    a.project-active {
+      background: indianred;
+      color: white;
+    }
+
+    .keyword {
+      font-style: italic;
+      color: grey;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    a.paper-active {
+      background: indianred;
+      color: white;
+    }
+
+    a.ext_link {
+      color: darkgrey;
+    }
+
+    .text-black {
+      color: black;
+    }
+
+    a.sounds-active {
+      background: indianred;
+      color: white;
+    }
+
+    img.project-screenshots {
+      margin-botton: 30px;
+    }
+
+
+
+    
+
+    .blogentry {
+      font-size: 14px;
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .blogentry p:first-of-type {
+      font-size: 22px;
+      font-weight: bold;
+      min-height: 20px;
+      padding: 19px;
+      margin-bottom: 20px;
+      background-color: #f4f4f4;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    }
+
+    .blogentry p {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .blogentry img {
+      max-width: 80%;
+    }
+
+
+</style>
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+
+
+
+
+
+    
+
+    
+
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../../../index.html">michelepasin<sup style="color: red;">&nbsp;.org</sup></a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+
+        <li >
+          <a href="../../../../../index.html">Projects</a></li>
+
+        <li class="active">
+            <a href="../../../../../words/index.html">Words</a></li>
+
+       <li >
+            <a href="../../../../../sounds/index.html">Sounds</a></li>
+
+        <li >
+          <a href="../../../../../events/index.html">Events</a></li>
+          
+          
+
+        <li 
+        
+          ><a href="../../../../../about/index.html">About</a></li>
+
+          <!-- <li>
+            <a href="/blog" target="_blank">Blog</a></li> -->
+            
+
+      </ul>
+    </div><!--/.nav-collapse -->
+
+  </div>
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+    <!-- Begin page content -->
+    <div class="container">
+
+
+	
+
+  <div class="page-header">
+      
+      Words > Blogs > 2011 > <i>Article: Algorithmic Composition: Computational Thinking in Music</i>
+  </div>
+
+  <div class="container">
+
+
+      <div class="row" style="margin-bottom:50px;">
+          
+        <div class="col-md-8">
+
+
+          <p class="text-muted">Title:</p>
+
+          <div class="lead -well">
+            <h3><b>Article: Algorithmic Composition: Computational Thinking in Music</b></h3>
+            
+          </div>
+
+
+          <p class="text-muted">Year:</p>
+
+          <div class="lead -well">
+            <h3>2011</h3>
+          </div>
+
+
+            <div class="blogentry"> 
+
+            <p>An article by <a href="http://people.ace.ed.ac.uk/staff/medward2/">Michael Edwards</a> on algorithmic composition has been published last month on the Communications of the ACM journal. The article is titled <a href="http://cacm.acm.org/magazines/2011/7/109891-algorithmic-composition/fulltext">Algorithmic Composition: Computational Thinking in Music</a>.</p>
+<p>Although the article is quite introductory (Edwards makes it clear that the article "is more illustrative than all-inclusive, presenting examples of particular techniques and some of the music that has been produced with them") it is defintely an interesting read. I found quite a few nice ideas in it and also references to musics and musicians I wasn't familiar with.</p>
+<p>Follows a list of 'highlights' from my iPad reader, to which I added hyperlinks to relevant explanatory materials:</p>
+<ul>
+<li>SERIALISM AS A CONTINUATION OF EARLY ALGORITHMIC COMPOSITION</li>
+</ul>
+<blockquote>
+<p>After World War II, many Western classical music composers continued to develop the serial technique invented by <a href="http://en.wikipedia.org/wiki/Arnold_Schoenberg">Arnold Schönberg</a> (1874–1951) et al. Though generally seen as a radical break with tradition, in light of the earlier historical examples just presented, <a href="http://en.wikipedia.org/wiki/Serialism">serialism’s</a> detailed organization can be viewed as no more than a continuation of the tradition of formalizing musical composition. Indeed, one of the new generation’s criticisms of Schönberg was that he radicalized only pitch structure, leaving other parameters (such as rhythm, dynamic, even form) in the 19th century. They looked to the music of Schönberg’s pupil <a href="http://en.wikipedia.org/wiki/Anton_Webern">Anton von Webern</a> for inspiration in organizing these other parameters according to serial principles. Hence the rise of the total serialists: <a href="http://en.wikipedia.org/wiki/Pierre_Boulez">Boulez</a>, <a href="http://en.wikipedia.org/wiki/Karlheinz_Stockhausen">Stockhausen</a>, <a href="http://en.wikipedia.org/wiki/Henri_Pousseur">Pousseur</a>, <a href="http://en.wikipedia.org/wiki/Luigi_Nono">Nono</a>, and others in Europe, and <a href="http://en.wikipedia.org/wiki/Milton_Babbitt">Milton Babbitt</a> and his students at Princeton.</p>
+</blockquote>
+<ul>
+<li>COMPOSERS: HILLER AND "THE ILLIAC SUITE FOR STRING QUARTET"</li>
+</ul>
+<blockquote>
+<p><a href="http://en.wikipedia.org/wiki/Lejaren_Hiller">Lejaren Hiller</a> (1924–1994) is widely recognized as the first composer to have applied computer programs to algorithmic composition. The use of specially designed, unique computer hardware was common at U.S. universities in the mid-20th century. Hiller used the Illiac computer at the University of Illinois, Urbana-Champaign, to create experimental new music with algorithms. His collaboration with Leonard Isaacson resulted in 1956 in the first known computer-aided composition, The Illiac Suite for String Quartet (<a href="http://en.wikipedia.org/wiki/Illiac_Suite">wiki</a> | <a href="http://www.youtube.com/watch?v=isvYe6yOPXQ&amp;feature=related">video</a>), programmed in binary, and using, among other techniques, Markov Chains in “random walk” pitch generation algorithms.</p>
+</blockquote>
+<ul>
+<li>CAGE ON THE DIFFERENCE BETWEEN TRADITIONAL AND COMPUTER- ASSISTED COMPOSITION</li>
+</ul>
+<blockquote>
+<p><a href="http://en.wikipedia.org/wiki/John_Cage">Cage</a> said in an interview during the composition of HPSCHD (<a href="http://en.wikipedia.org/wiki/HPSCHD">wiki</a> | <a href="http://www.youtube.com/watch?v=t_hTxJpWITw">video</a>), "Formerly, when one worked alone, at a given point a decision was made, and one went in one direction rather than another; whereas, in the case of working with another person and with computer facilities, the need to work as though decisions were scarce—as though you had to limit yourself to one idea—is no longer pressing. It’s a change from the influences of scarcity or economy to the influences of abundance and - I’d be willing to say—waste."</p>
+</blockquote>
+<ul>
+<li>COMPOSERS: XENAKIS</li>
+</ul>
+<blockquote>
+<p>Known primarily for his instrumental compositions but also as an engineer and architect, <a href="http://en.wikipedia.org/wiki/Iannis_Xenakis">Iannis Xenakis</a> was a pioneer of algorithmic composition and computer music. Using language typical of the sci-fi age, he wrote, “With the aid of electronic computers, the composer becomes a sort of pilot: he presses buttons, introduces coordinates, and supervises the controls of a cosmic vessel sailing in the space of sound, across sonic constellations and galaxies that he could formerly glimpse only in a distant dream. [...] Xenakis’s approach, which led to the <a href="http://en.wikipedia.org/wiki/Stochastic">Stochastic</a> Music Programme (henceforth SMP) and radically new pieces (such as <a href="http://www.youtube.com/watch?v=sWdQBblec0M">Pithoprakta</a>, 1956), used formulae originally developed by scientists to explain the behavior of gas particles (Maxwell’s and Boltzmann’s Kinetic Theory of Gases). He saw his stochastic compositions as clouds of sound, with individual notes as the analogue of gas particles. [...] His <a href="http://www.youtube.com/watch?v=vbU69HObLeg">Eonta</a> (1963–1964) for two trumpets, three tenor trombones, and piano was composed with SMP. The program was applied in particular to the creation of the massively complex opening piano solo.</p>
+</blockquote>
+<ul>
+<li>COMPOSERS: KOENIG</li>
+</ul>
+<blockquote>
+<p><a href="http://en.wikipedia.org/wiki/Gottfried_Michael_Koenig">Koenig</a> saw transcription (from computer output to musical score) as an important part of the process of algorithmic composition, writing, "Neither the histograms nor the connection algorithm contains any hints about the envisaged, ‘unfolded’ score, which consists of instructions for dividing the labor of the production changes mode, that is, the division into performance parts. The histogram, unfolded to reveal the individual time and parameter values, has to be split up into voices."</p>
+</blockquote>
+<ul>
+<li>THE CONTEMPORARY LANDSCAPE: A DIVISION BETWEEN COMPOSERS AND AI RESEARCHERS</li>
+</ul>
+<blockquote>
+<p>Contemporary (late 20th century) techniques tend to be hybrids of <a href="http://en.wikipedia.org/wiki/Deterministic_algorithm">deterministic</a> and <a href="http://en.wikipedia.org/wiki/Stochastic">stochastic</a> approaches. Systems using techniques from artificial intelligence (AI) and/or linguistics.. [...] While naturally significant to AI research, linguistics, and computer science, such systems tend to be of limited use to composers writing music in a modern and personal style that perhaps resists codification because of its notational and sonic complexity and, more simply, its lack of sufficient and stylistically consistent data [...] Thus we can witness a division between composers concerned with creating new music with personalized systems and researchers interested in developing systems for machine learning and AI. The latter may quite understandably find it more useful to generate music in well-known styles not only because there is extant data but also because familiarity of material simplifies some aspects of the assessment of results. Naturally though, more collaboration between composers and researchers could lead to fruitful, aesthetically progressive results.</p>
+</blockquote>
+<ul>
+<li>ALGORITHMIC COMPOSITION OUTSIDE ACADEMIA: BRIAN ENO</li>
+</ul>
+<blockquote>
+<p>Application of algorithmic-composition techniques is not restricted to academia or to the classical avant garde. Pop/ambient musician <a href="http://en.wikipedia.org/wiki/Brian_Eno">Brian Eno</a> (1948–) is known for his admiration and use of generative systems in Music for Airports (1978) [<a href="http://en.wikipedia.org/wiki/Ambient_1:_Music_for_Airports">wiki</a> | <a href="http://www.youtube.com/watch?v=B9kPIp4MtX0">video</a>] and other pieces. Eno was inspired by the American <a href="http://en.wikipedia.org/wiki/Minimalist_music">minimalists</a>, in particular <a href="http://en.wikipedia.org/wiki/Steve_Reich">Steve Reich</a> (1936–) and his tape piece It’s Gonna Rain (1965) [<a href="http://en.wikipedia.org/wiki/It's_Gonna_Rain">wiki</a> | <a href="http://www.youtube.com/watch?v=q0DQRfm0uL8">video</a>]. [...] Eno said about his Discreet Music (1975) [<a href="http://en.wikipedia.org/wiki/Discreet_Music">wiki</a> | <a href="http://www.youtube.com/watch?v=SrBoE0ItRLc">video</a>], "Since I have always preferred making plans to executing them, I have gravitated towards situations and systems that, once set into operation, could create music with little or no intervention on my part. That is to say, I tend towards the roles of planner and programmer, and then become an audience to the results".</p>
+</blockquote>
+<ul>
+<li>LIGETI ON THE RELATION BETWEEN MUSIC AND MATHEMATICS</li>
+</ul>
+<blockquote>
+<p>After leaving his native Hungary in the late 1950s, <a href="http://en.wikipedia.org/wiki/Ligeti">Ligeti</a> worked in the same studios as Cologne electronic music pioneers Karlheinz Stockhausen and Gottfried Michael Koenig though produced little electronic music of his own. However, his interest in science and mathematics led to several instrumental pieces influenced by, for example, fractal geometry and chaos theory. But these influences did not lead to a computer-based algorithmic approach. He was quoted in Steinitz saying, "Somewhere underneath, very deeply, there’s a common place in our spirit where the beauty of mathematics and the beauty of music meet. But they don’t meet on the level of algorithms or making music by calculation. It’s much lower, much deeper—or much higher, you could say."</p>
+</blockquote>
+<ul>
+<li>EXAMPLE: AN ALGORITHMIC MODEL OF LIGETI'S DESORDRE</li>
+</ul>
+<blockquote>
+<p>I have implemented algorithmic models of the first part of <a href="http://www.youtube.com/watch?v=qj9QlWltv8s">Désordre</a> in the open-source software system <a href="http://puredata.info/">Pure Data</a>, which, along with the following discussion, is based on analyses by Tobias Kunze,26 used here with permission, and Hartmut Kinzler. It is freely downloadable from my Web site <a href="http://www.michael-edwards.org/software/desordre.zip">http://www.michael-edwards.org/software/desordre.zip</a> [...] The main argument of Désordre consists of foreground and background textures.. [...] In Désordre we experience a clear, compelling, yet not entirely predictable musical development of rhythmic acceleration coupled with a movement from the middle piano register to the extremes of high and low, all expressed through two related and repeating melodic cycles with slightly differing lengths resulting in a combination that dislocates and leads to metrical disorder. I invite the reader to investigate this in more detail by downloading my software implementation.</p>
+</blockquote>
+<ul>
+<li>ON THE NEGATIVE RECEPTION OF ALGORITHMIC COMPOSITION</li>
+</ul>
+<blockquote>
+<p>There has been (and still is) considerable resistance to algorithmic composition from all sides, from musicians to the general public. This resistance bears comparison to the reception of the supposedly overly mathematical serial approach introduced by the composers of the <a href="http://en.wikipedia.org/wiki/Second_Viennese_School">Second Viennese School</a> of the 1920s and 1930s. Alongside the techniques of other music composed from the beginning of the 20th century onward, the serial principle itself is frequently considered to be the reason the music—so-called modern music, though now close to 100 years old — may not appeal. [...] Algorithmic composition is often viewed as a sideline in contemporary musical activity, as opposed to a logical application and incorporation of compositional technique into the digital domain. Without wishing to imply that instrumental composition is in a general state of stagnation, if the computer is the universal tool, there is surely no doubt that not applying it to composition would be, if not exactly an example of Luddism, then at least to risk missing important aesthetic developments that only the computer can facilitate, and that other artistic fields already take advantage of.</p>
+</blockquote>
+<ul>
+<li>COMPOSING USING ALGORITHMIC METHODS: MISCONCEPTIONS</li>
+</ul>
+<blockquote>
+<p>Much of the resistance to algorithmic composition that persists to this day stems from the misguided bias that the computer, not the composer, composes the music. In the vast majority of cases where the composer is also the programmer, this is simply not true. As composer and computer musician Curtis Roads pointed out more than 15 years ago, it takes a good composer to design algorithms that result in music that captures the imagination. [...] Furthermore, using algorithmic-composition techniques does not by necessity imply less composition work or a shortcut to musical results; rather, it is a change of focus from note-to-note com- position to a top-down formalization of compositional process. Composition is, in fact, often slowed by the requirement that musical ideas be expressed and their characteristics encapsulated in a highly structured and non-musical general programming language. Learning the discipline of programming is itself a time-consuming and, for some composers, an insurmountable problem.</p>
+</blockquote>
+
+            </div>
+
+
+          <hr>
+            <p class="text-muted">Cite this article:</p>
+
+            <div class="well well-big lead">
+              Michele Pasin. <a href="index.html" class="bluelink">Article: Algorithmic Composition: Computational Thinking in Music</a>. Blog post on www.michelepasin.org. Published on Oct. 6, 2011.
+            </div>
+            <br />
+
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-1 col-md-offset-1">
+
+
+            
+            <p class="text-muted">Linkout:</p>
+
+            <div class="-lead">
+
+              
+              <li><a href="https://www.michelepasin.org/blog/2011/10/06/article-algorithmic-composition-computational-thinking-in-music/index.html">Legacy Blog</a></li>
+                
+              
+
+            </div>
+            <br />
+            
+
+
+        </div>
+        
+      </div>
+
+
+
+
+      
+
+      
+
+
+
+
+
+    <div class="row">
+      <h5 class="text-muted">See also:</h5>
+      </div>
+
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2020</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Nov 2020</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2020/11/23/a-new-livecoding-project-the-musical-code/index.html" class="bluelink ">A new livecoding project: &#39;The Musical Code&#39;</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Nov 2020.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2011</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Dec 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../12/26/article-thought-and-performance-live-coding-music-explained-to-anyone/index.html" class="bluelink ">Article: Thought and Performance, Live Coding Music, Explained to Anyone</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Dec 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="index.html" class="bluelink paper-active">Article: Algorithmic Composition: Computational Thinking in Music</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Oct 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../06/26/bjork-redefines-the-musicians-product-with-biophilia-albumapp/index.html" class="bluelink ">Bjork redefines the musician&#39;s product with &#39;Biophilia&#39; album/app</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2010</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Dec 2010</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2010/12/09/jmusic-music-composition-in-java/index.html" class="bluelink ">JMusic: music composition in Java</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Dec 2010.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Sep 2010</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2010/09/16/musorg-tons-of-classical-music-for-free/index.html" class="bluelink ">Musorg : tons of classical music for free</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Sep 2010.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Sep 2010</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2010/09/01/little-brilliant-music-player-pico-play/index.html" class="bluelink ">Little brilliant music player: Pico Play</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Sep 2010.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2010</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2010/06/19/aviary-roc-online-free-music-sequencer/index.html" class="bluelink ">Aviary&#39; ROC: online free music sequencer</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2010.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2009</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/10/27/lilypond-music-notation-for-everyone/index.html" class="bluelink ">LilyPond ... music notation for everyone</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Oct 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/06/23/algorithmic-music-exercise-1/index.html" class="bluelink ">Algorithmic music: exercise #1</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jan 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/01/07/musicbox-maps-future-for-managing-large-music-collections/index.html" class="bluelink ">MusicBox: Mapping and visualizing music collections</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jan 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2007</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Sep 2007</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2007/09/28/jamendo-free-and-quality-music-online/index.html" class="bluelink ">Jamendo: free and quality music online</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Sep 2007.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2007</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2007/06/07/sw-vs-ai-new-and-old-stuff/index.html" class="bluelink ">Article: \&quot;The Semantic Web: The Origins of Artificial Intelligence Redux\&quot;</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2007.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2007</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2007/05/12/impromptu-scheme-based-music-and-video/index.html" class="bluelink ">Impromptu : scheme-based music and video</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> May 2007.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    
+
+
+
+  </div> <!-- /container -->
+
+
+
+
+
+	</div>
+
+
+  
+
+
+
+  
+
+
+
+
+  <footer class="footer">
+    <div class="container">
+    
+      <p class="text-muted">Find me also on: &nbsp;
+      
+
+  <a href="http://kcl.academia.edu/MichelePasin" target="_blank">Academia</a> | 
+  <a href="https://github.com/lambdamusic" target="_blank">GitHub</a> | 
+  <a href="https://scholar.google.com/citations?user=zj-99x0AAAAJ&hl=en" target="_blank">Google Scholar</a> | 
+  <a href="https://www.instagram.com/lambdamusic/" target="_blank">Instagram</a> |
+  <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0" target="_blank">LinkedIn</a> |
+  <a href="http://www.mendeley.com/profiles/michele-pasin/" target="_blank">Mendeley</a> |
+  <a href="http://orcid.org/0000-0001-8909-7766" target="_blank">Orcid</a> |
+  <a href="http://www.slideshare.net/mpasin" target="_blank">SlideShare</a> |
+  <a href="https://soundcloud.com/magicrebirth" target="_blank">Soundcloud</a> |
+  <a href="http://stackoverflow.com/users/109304/magicrebirth" target="_blank">StackOverflow</a> |
+  <a href="http://twitter.com/#!/lambdaman" target="_blank">Twitter</a> |
+  <a href="https://vimeo.com/lambdamusic" target="_blank">Vimeo</a>
+      
+      </p>
+    
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../../../../media/static/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+
+
+
+    
+
+  </body>
+</html>

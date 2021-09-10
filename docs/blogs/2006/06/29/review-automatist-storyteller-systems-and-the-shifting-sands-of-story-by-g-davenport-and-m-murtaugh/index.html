@@ -1,0 +1,703 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../../media/static/favicon.ico">
+
+	
+  <title>Blogs | Michele Pasin</title>
+
+
+    <!-- Bootstrap core CSS -->
+    
+    <!-- Bootswatch:  -->
+    <!-- cerulean  | cyborg |  flatly |  lumen |  sandstone |   spacelab  |  yeti | cosmo |  darkly |  paper | simplex | superhero |  journal | readable  |   slate |  united -->
+    <link href="../../../../../media/static/libs/bootswatch3.2/simplex/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css">
+
+    .tooltip-inner {
+        max-width: 200px;
+        /* If max-width does not work, try using width instead */
+        width: 200px; 
+    }
+    .lead-plus {font-size: 26.5px;}
+    .label-dark {background: #2c3e50; color: white; padding: 1px;}
+    .margin50 {margin-top: 50px; margin-bottom: 50px;}
+    .marginb100 {margin-bottom: 100px;}
+
+    .breadcrumbs {margin-top: 80px;}
+    .namespaces {background: #ced2d6; width: 100%;}
+    .footer {background-color: #3e3f3a;}
+    .footer a {color: #cac0bf;}
+
+    .margin50Top {margin-top: 50px;}
+    .margin20Top {margin-top: 20px;}
+    .margin50Bottom { margin-bottom: 50px;}
+    .margin20Bottom { margin-bottom: 20px;}
+
+    /*so that the d3plus tooltip panel doesnt cover the top banner*/
+    .navbar {z-index: 3000;}
+
+
+    .navbar-alpha {
+        font-size: 65%;
+        font-style: italic;
+        font-weight: bold;
+        color: darkgoldenrod;
+    }
+
+
+    .btn-xxs {
+    padding: 1px 4px;
+    font-size: 10px;
+    line-height: 1.2;
+    border-radius: 2px;
+    }
+
+
+    .code-example {
+        overflow: auto;
+        height: 400px;
+    }
+
+
+    #side_title a {
+        color: blue;
+        text-decoration: underline;
+
+    }
+    .text-dark {
+        color: #5d5c5c;
+        
+    }
+
+
+    .paragraph_embed {
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+
+    .thumb-div {
+      padding: 20px;
+
+    }
+
+    .thumbnail{
+      
+
+      
+
+    }
+
+    .thumb-img {
+      height: 200px;
+
+    }
+
+    .thumb-title b {
+      font-weight: bold;
+      color: black;
+
+    }
+
+
+
+    a.project-title {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a.project-title:hover {
+      background: indianred;
+      color: white;
+    }
+
+    a.project-active {
+      background: indianred;
+      color: white;
+    }
+
+    .keyword {
+      font-style: italic;
+      color: grey;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    a.paper-active {
+      background: indianred;
+      color: white;
+    }
+
+    a.ext_link {
+      color: darkgrey;
+    }
+
+    .text-black {
+      color: black;
+    }
+
+    a.sounds-active {
+      background: indianred;
+      color: white;
+    }
+
+    img.project-screenshots {
+      margin-botton: 30px;
+    }
+
+
+
+    
+
+    .blogentry {
+      font-size: 14px;
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .blogentry p:first-of-type {
+      font-size: 22px;
+      font-weight: bold;
+      min-height: 20px;
+      padding: 19px;
+      margin-bottom: 20px;
+      background-color: #f4f4f4;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    }
+
+    .blogentry p {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .blogentry img {
+      max-width: 80%;
+    }
+
+
+</style>
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+
+
+
+
+
+    
+
+    
+
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../../../index.html">michelepasin<sup style="color: red;">&nbsp;.org</sup></a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+
+        <li >
+          <a href="../../../../../index.html">Projects</a></li>
+
+        <li class="active">
+            <a href="../../../../../words/index.html">Words</a></li>
+
+       <li >
+            <a href="../../../../../sounds/index.html">Sounds</a></li>
+
+        <li >
+          <a href="../../../../../events/index.html">Events</a></li>
+          
+          
+
+        <li 
+        
+          ><a href="../../../../../about/index.html">About</a></li>
+
+          <!-- <li>
+            <a href="/blog" target="_blank">Blog</a></li> -->
+            
+
+      </ul>
+    </div><!--/.nav-collapse -->
+
+  </div>
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+    <!-- Begin page content -->
+    <div class="container">
+
+
+	
+
+  <div class="page-header">
+      
+      Words > Blogs > 2006 > <i>Review: Automatist storyteller systems and the shifting sands of story, by G. Davenport and M. Murtaugh</i>
+  </div>
+
+  <div class="container">
+
+
+      <div class="row" style="margin-bottom:50px;">
+          
+        <div class="col-md-8">
+
+
+          <p class="text-muted">Title:</p>
+
+          <div class="lead -well">
+            <h3><b>Review: Automatist storyteller systems and the shifting sands of story, by G. Davenport and M. Murtaugh</b></h3>
+            
+          </div>
+
+
+          <p class="text-muted">Year:</p>
+
+          <div class="lead -well">
+            <h3>2006</h3>
+          </div>
+
+
+            <div class="blogentry"> 
+
+            <p>A few notes after reading a <a href="http://mf.media.mit.edu/pubs/detail.php?id=1311">seminal paper (1997) by MIT research Glorianna Davenport on 'storyteller systems'</a>. I would say that these systems can be seen as the precursors of current systems that support semantic exploration through stories (the only difference is the technology being used). This is a very good article in terms of language, internal references (art, history) and precision - the ideas are presented clearly and succinctly, without indulging too much in the boring details of the technical implementation...</p>
+<p>Here is a list of key ideas from the paper:</p>
+<p><strong>- The Problem With the Tv Medium</strong></p>
+<blockquote>
+<p>Television severely limits the ways in which an author can "grow" a story. A story must be composed into a fixed, unchanging form before the audience can see and react to it: there is no obvious way to connect viewers to the process of story construction. Similarly, the medium offers no intrinsic, immediately available way to interconnect the larger community of viewers who wish to engage in debate about a particular story.</p>
+</blockquote>
+<p><strong>- The Editor in Software Idea</strong></p>
+<blockquote>
+<p>Many years ago, when I was working on my first "interactive" documentary, I was introduced to the concept of relational databases. From that time forward, I have had the sense that if we could only find the right way to index documentary film segments, then we could design an "editor in software" that would emulate the processes and expertise of the film editor. Such a system would support the human user by offering relevant suggestions, or could navigate a large database filled with many aspects of a complex story and "make choices about what the viewer would like to see next."</p>
+</blockquote>
+<p><strong>- Purpose: Bringing to an Understanding of the Whys and the Hows</strong></p>
+<blockquote>
+<p>As the ever-optimistic filmmaker/explorer collects material, he or she hopes that a network of composite observations ("Who did what where?" etc.) will provide a way of understanding the larger "whys" and "hows" of the matter.</p>
+</blockquote>
+<p><strong>- The Emergence of the Story in the Editing</strong></p>
+<blockquote>
+<p>..each shot is placed in position, the demands of coherence, context, and continuity dictate to some degree which shots and scenes can meaningfully precede or follow. As the various pieces fall into place, a specific story--with its own particular themes, central characters, and motivations--begins to emerge.</p>
+</blockquote>
+<p><strong>- There Is No Final-Cut, the Story Is Undetermined</strong></p>
+<blockquote>
+<p>the storyteller system does not allow the author to explicitly sequence story elements into a finished tale: there is no "final cut" of the film. Instead, editing decisions are deferred until the moment of playout.</p>
+</blockquote>
+<p><strong>- Notion of Evolving Stories</strong></p>
+<blockquote>
+<p>The system is open-ended on the author's side as well. Real-world stories are seldom complete in themselves; a detailed picture of circumstances may only emerge over the course of days, or weeks, or even several lifetimes. Thus, the resources of a story (and its associated descriptive database) can grow and evolve as newly discovered information is added, or as users add their own commentary and evaluations of quality and veracity. Stories of this type may be described as having "emergent" or "evolving" properties over time.</p>
+</blockquote>
+<p><strong>- Notion of Self-Playout</strong></p>
+<blockquote>
+<p>The ability for automatic- or self-playout, therefore, serves as a powerful design heuristic for building a storyteller system. Designing around the potential absence of a viewer requires that a system be built with enough base-level competence to present its content autonomously. The addition of interactivity poses an interesting challenge, as the role and value of the interaction must always be gauged against its absence.</p>
+</blockquote>
+<p><strong>- Ai Design, Without 'Plans'</strong></p>
+<blockquote>
+<p>Pattie Maes describes a shift in artificial intelligence research from approaches based on "deliberate thinking" and "explicit knowledge" to ones based on "distributedness and decentralization." She notes how these new approaches avoid the "brittleness" and "inflexibility" of the former by using "dynamic interaction with the environment and intrinsic mechanisms to cope with resource limitations and incomplete knowledge." The applicability or usefulness of each action is a function of the current state of the environment. When an action is selected and performed, its invocation alters the environment, thus influencing the selection of future actions. In this way, a sequence of actions--a plan--emerges.</p>
+</blockquote>
+<p><strong>- Taking Inspiration from recent Research in AI, the Concept of Emergence is introduced As Some Sort of Feedback Looping mechanism That Feeds New Input Values Into the Same recursive Algorythm....</strong></p>
+<blockquote>
+<p>The applicability or usefulness of each action is a function of the current state of the environment. When an action is selected and performed, its invocation alters the environment, thus influencing the selection of future actions. In this way, a sequence of actions--a plan--emerges.</p>
+</blockquote>
+<p><strong>- And the Same Process Is Located in the Hypermedia Generation Process: the Story As an Emergent Property of the Interaction</strong></p>
+<blockquote>
+<p>When invoked, both materials and keywords spread activation to their associated modules. The resulting interaction of the spreading activation forms the basis of how materials are selected and sequenced. Thus, the resulting structure of the story is an "emergent property" of the interaction of individual material presentations.</p>
+</blockquote>
+<p><strong>- Expressions, Not Characters</strong></p>
+<blockquote>
+<p>In an automatist storyteller system, the fundamental units of structure are not events to be expressed but expressions themselves in the form of discrete units of content. Instead of characters interacting in an environment that is literally the "story world," individual expressions interact in an environment that is the process of storytelling.</p>
+</blockquote>
+<p><strong>- Rousseau's Invisible Hand Theory</strong></p>
+<blockquote>
+<p>In this decentralized approach, the viewer is a full-fledged member of the system and consistently integrated into the experience. This contrasts with the model of hypermedia, where the consistency of viewer interactivity depends on the author's consistency in establishing links. In addition, while the operation of the system is open to the influence of viewer interaction, it is never dependent upon it.</p>
+</blockquote>
+<p><strong>- Activation Mechanism Drive the Visual Features</strong></p>
+<blockquote>
+<p>Every keyword and material in ConTour has an associated activation value. When a keyword is clicked on or a material is presented to the viewer, the activation value of the element is raised (the element is injected with activation). Together, the activation values of every keyword and material in ConTour form a closed or "relative value system," which serves as the basis for both the automatic material selection algorithm and the system's graphical display. Activation values are used to determine how elements are drawn on the screen; the element's size, depth or z-coordinate, and brightness are all derived from its activation value. The system uses activation to represent an individual element's relevance to the current "context" of the story playout.</p>
+</blockquote>
+<p><strong>- ..thus: Constructing a 'Good' Story Is Analogous to Constructing a 'Well Formed Formula'.</strong></p>
+<blockquote>
+<p>The process of story construction is typically viewed as one of generating a sequence of events, or a plot, based on the potential actions of characters' internal rules (or "motivations") while maintaining certain global rules (such as gravity or logical cause and effect). Ultimately, the challenge of constructing a "good" story is reduced to the process of creatively expressing a well-formed chain of events.</p>
+</blockquote>
+<p><strong>- This Is a Key Difference With a First-Person Role Game, for Example. the Fundamental Units of Structure Are Already Some Expressions of Events, Not Events to Be Expressed! This Aspect Can Have Further Development: in the Different Cases What Is the Story-World / Narration-World Relationship?</strong> I</p>
+<blockquote>
+<p>n an automatist storyteller system, the fundamental units of structure are not events to be expressed but expressions themselves in the form of discrete units of content. Instead of characters interacting in an environment that is literally the "story world," individual expressions interact in an environment that is the process of storytelling.</p>
+</blockquote>
+<p><strong>- More Experimental Results:</strong></p>
+<blockquote>
+<p>Based on the casual observation of hundreds of demonstrations, the visualization of spreading activation is an extremely effective communicative device. [...] Respondents especially liked the nonlinear approach toward the subject and presentation of content. [...] All respondents were in fact, able to piece together concepts, ideas, and facts from "Random Walk" and make statements which indicated their assimilation of these ideas. In evaluating a storyteller system, it is difficult to separate the form and content of a story from the system itself. Evaluating story, particularly a somewhat esoteric documentary story, will inevitably remain problematic--as Yeats observed, "How do we tell the dancer from the dance?"</p>
+</blockquote>
+
+            </div>
+
+
+          <hr>
+            <p class="text-muted">Cite this article:</p>
+
+            <div class="well well-big lead">
+              Michele Pasin. <a href="index.html" class="bluelink">Review: Automatist storyteller systems and the shifting sands of story, by G. Davenport and M. Murtaugh</a>. Blog post on www.michelepasin.org. Published on June 29, 2006.
+            </div>
+            <br />
+
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-1 col-md-offset-1">
+
+
+            
+            <p class="text-muted">Linkout:</p>
+
+            <div class="-lead">
+
+              
+              <li><a href="https://www.michelepasin.org/blog/2006/06/29/review-automatist-storyteller-systems-and-the-shifting-sands-of-story-by-g-davenport-and-m-murtaugh/index.html">Legacy Blog</a></li>
+                
+              
+
+            </div>
+            <br />
+            
+
+
+        </div>
+        
+      </div>
+
+
+
+
+      
+
+      
+
+
+
+
+
+    <div class="row">
+      <h5 class="text-muted">See also:</h5>
+      </div>
+
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2011</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Sep 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2011/09/29/luc-steels-on-creating-artificial-semiotic-systems/index.html" class="bluelink ">Luc Steels on creating artificial semiotic systems</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Sep 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2007</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2007</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2007/06/20/conference-saso-2007/index.html" class="bluelink ">Conference: SASO 2007 on Self-Organizing systems</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2007.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2006</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2006</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="index.html" class="bluelink paper-active">Review: Automatist storyteller systems and the shifting sands of story, by G. Davenport and M. Murtaugh</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2006.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    
+
+
+
+  </div> <!-- /container -->
+
+
+
+
+
+	</div>
+
+
+  
+
+
+
+  
+
+
+
+
+  <footer class="footer">
+    <div class="container">
+    
+      <p class="text-muted">Find me also on: &nbsp;
+      
+
+  <a href="http://kcl.academia.edu/MichelePasin" target="_blank">Academia</a> | 
+  <a href="https://github.com/lambdamusic" target="_blank">GitHub</a> | 
+  <a href="https://scholar.google.com/citations?user=zj-99x0AAAAJ&hl=en" target="_blank">Google Scholar</a> | 
+  <a href="https://www.instagram.com/lambdamusic/" target="_blank">Instagram</a> |
+  <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0" target="_blank">LinkedIn</a> |
+  <a href="http://www.mendeley.com/profiles/michele-pasin/" target="_blank">Mendeley</a> |
+  <a href="http://orcid.org/0000-0001-8909-7766" target="_blank">Orcid</a> |
+  <a href="http://www.slideshare.net/mpasin" target="_blank">SlideShare</a> |
+  <a href="https://soundcloud.com/magicrebirth" target="_blank">Soundcloud</a> |
+  <a href="http://stackoverflow.com/users/109304/magicrebirth" target="_blank">StackOverflow</a> |
+  <a href="http://twitter.com/#!/lambdaman" target="_blank">Twitter</a> |
+  <a href="https://vimeo.com/lambdamusic" target="_blank">Vimeo</a>
+      
+      </p>
+    
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../../../../media/static/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+
+
+
+    
+
+  </body>
+</html>

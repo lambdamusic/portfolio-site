@@ -19,7 +19,7 @@ Colab has become extremely popular with data scientists and in particular people
 
 There are tons of videos on [Youtube](https://www.youtube.com/results?search_query=google+colab) and tutorials on [Medium](https://towardsdatascience.com/search?q=google%20colab), so I'm not gonna describe it any further, because there is definitely no shortage of learning materials if you want to find out more about it.
 
-\[youtube https://www.youtube.com/watch?v=inN8seMm7UI&w=560&h=315\]
+<iframe width="560" height="315" src="https://www.youtube.com/embed/inN8seMm7UI?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### How I'm using Colab
 

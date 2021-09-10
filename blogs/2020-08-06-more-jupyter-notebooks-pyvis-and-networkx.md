@@ -16,26 +16,30 @@ Lately I've been spending more time creating Jupyter notebooks that demonstrate 
 
 The [networkx](https://networkx.github.io/documentation/stable/reference/introduction.html) and [pyvis](https://pyvis.readthedocs.io/en/latest/tutorial.html) libraries are used for _generating_ and _visualizing_ network data, respectively.
 
-Pyvis is fundamentally a python wrapper around the popular [Javascript visJS library.](https://visjs.github.io/vis-network/examples/) Networkx instead of is a pretty sophisticated package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.
+Pyvis is fundamentally a python wrapper around the popular [Javascript visJS library.](https://visjs.github.io/vis-network/examples/) 
+Networkx, instead, of is a pretty sophisticated package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.
 
-\>>> from pyvis.network import Network
-\>>> import networkx as nx
-\# generate generic network graph instance
-\>>> nx\_graph \= nx.Graph()
-\# add some nodes and edges
-\>>> nx\_graph.nodes\[1\]\['title'\] \= 'Number 1'
-\>>> nx\_graph.nodes\[1\]\['group'\] \= 1
-\>>> nx\_graph.nodes\[3\]\['title'\] \= 'I belong to a different group!'
-\>>> nx\_graph.nodes\[3\]\['group'\] \= 10
-\>>> nx\_graph.add\_node(20, size\=20, title\='couple', group\=2)
-\>>> nx\_graph.add\_node(21, size\=15, title\='couple', group\=2)
-\>>> nx\_graph.add\_edge(20, 21, weight\=5)
-\>>> nx\_graph.add\_node(25, size\=25, label\='lonely', title\='lonely node', group\=3)
-\# instantiatet pyvis network
->>> nt \= Network("500px", "500px")
-\# populates pyvis network from networkx instance
-\>>> nt.from\_nx(nx\_graph)
-\>>> nt.show("nx.html")
+
+```python
+>>> from pyvis.network import Network
+>>> import networkx as nx
+# generate generic network graph instance
+>>> nx_graph = nx.Graph()
+# add some nodes and edges
+>>> nx_graph.nodes[1]['title'] = 'Number 1'
+>>> nx_graph.nodes[1]['group'] = 1
+>>> nx_graph.nodes[3]['title'] = 'I belong to a different group!'
+>>> nx_graph.nodes[3]['group'] = 10
+>>> nx_graph.add_node(20, size=20, title='couple', group=2)
+>>> nx_graph.add_node(21, size=15, title='couple', group=2)
+>>> nx_graph.add_edge(20, 21, weight=5)
+>>> nx_graph.add_node(25, size=25, label='lonely', title='lonely node', group=3)
+# instantiatet pyvis network
+>>> nt = Network("500px", "500px")
+# populates pyvis network from networkx instance
+>>> nt.from_nx(nx_graph)
+>>> nt.show("nx.html")
+```
 
 It took me a little to familiarise with the libraries' concepts and to generate some basic graphs. So, the tutorials linked below are meant to provide some reusable _code_ building blocks for working with these tools.
 

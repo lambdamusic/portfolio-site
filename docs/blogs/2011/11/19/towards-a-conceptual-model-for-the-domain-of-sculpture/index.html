@@ -1,0 +1,1254 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../../media/static/favicon.ico">
+
+	
+  <title>Blogs | Michele Pasin</title>
+
+
+    <!-- Bootstrap core CSS -->
+    
+    <!-- Bootswatch:  -->
+    <!-- cerulean  | cyborg |  flatly |  lumen |  sandstone |   spacelab  |  yeti | cosmo |  darkly |  paper | simplex | superhero |  journal | readable  |   slate |  united -->
+    <link href="../../../../../media/static/libs/bootswatch3.2/simplex/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css">
+
+    .tooltip-inner {
+        max-width: 200px;
+        /* If max-width does not work, try using width instead */
+        width: 200px; 
+    }
+    .lead-plus {font-size: 26.5px;}
+    .label-dark {background: #2c3e50; color: white; padding: 1px;}
+    .margin50 {margin-top: 50px; margin-bottom: 50px;}
+    .marginb100 {margin-bottom: 100px;}
+
+    .breadcrumbs {margin-top: 80px;}
+    .namespaces {background: #ced2d6; width: 100%;}
+    .footer {background-color: #3e3f3a;}
+    .footer a {color: #cac0bf;}
+
+    .margin50Top {margin-top: 50px;}
+    .margin20Top {margin-top: 20px;}
+    .margin50Bottom { margin-bottom: 50px;}
+    .margin20Bottom { margin-bottom: 20px;}
+
+    /*so that the d3plus tooltip panel doesnt cover the top banner*/
+    .navbar {z-index: 3000;}
+
+
+    .navbar-alpha {
+        font-size: 65%;
+        font-style: italic;
+        font-weight: bold;
+        color: darkgoldenrod;
+    }
+
+
+    .btn-xxs {
+    padding: 1px 4px;
+    font-size: 10px;
+    line-height: 1.2;
+    border-radius: 2px;
+    }
+
+
+    .code-example {
+        overflow: auto;
+        height: 400px;
+    }
+
+
+    #side_title a {
+        color: blue;
+        text-decoration: underline;
+
+    }
+    .text-dark {
+        color: #5d5c5c;
+        
+    }
+
+
+    .paragraph_embed {
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+
+    .thumb-div {
+      padding: 20px;
+
+    }
+
+    .thumbnail{
+      
+
+      
+
+    }
+
+    .thumb-img {
+      height: 200px;
+
+    }
+
+    .thumb-title b {
+      font-weight: bold;
+      color: black;
+
+    }
+
+
+
+    a.project-title {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a.project-title:hover {
+      background: indianred;
+      color: white;
+    }
+
+    a.project-active {
+      background: indianred;
+      color: white;
+    }
+
+    .keyword {
+      font-style: italic;
+      color: grey;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    a.paper-active {
+      background: indianred;
+      color: white;
+    }
+
+    a.ext_link {
+      color: darkgrey;
+    }
+
+    .text-black {
+      color: black;
+    }
+
+    a.sounds-active {
+      background: indianred;
+      color: white;
+    }
+
+    img.project-screenshots {
+      margin-botton: 30px;
+    }
+
+
+
+    
+
+    .blogentry {
+      font-size: 14px;
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .blogentry p:first-of-type {
+      font-size: 22px;
+      font-weight: bold;
+      min-height: 20px;
+      padding: 19px;
+      margin-bottom: 20px;
+      background-color: #f4f4f4;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    }
+
+    .blogentry p {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .blogentry img {
+      max-width: 80%;
+    }
+
+
+</style>
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+
+
+
+
+
+    
+
+    
+
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../../../index.html">michelepasin<sup style="color: red;">&nbsp;.org</sup></a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+
+        <li >
+          <a href="../../../../../index.html">Projects</a></li>
+
+        <li class="active">
+            <a href="../../../../../words/index.html">Words</a></li>
+
+       <li >
+            <a href="../../../../../sounds/index.html">Sounds</a></li>
+
+        <li >
+          <a href="../../../../../events/index.html">Events</a></li>
+          
+          
+
+        <li 
+        
+          ><a href="../../../../../about/index.html">About</a></li>
+
+          <!-- <li>
+            <a href="/blog" target="_blank">Blog</a></li> -->
+            
+
+      </ul>
+    </div><!--/.nav-collapse -->
+
+  </div>
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+    <!-- Begin page content -->
+    <div class="container">
+
+
+	
+
+  <div class="page-header">
+      
+      Words > Blogs > 2011 > <i>Towards a conceptual model for the domain of sculpture</i>
+  </div>
+
+  <div class="container">
+
+
+      <div class="row" style="margin-bottom:50px;">
+          
+        <div class="col-md-8">
+
+
+          <p class="text-muted">Title:</p>
+
+          <div class="lead -well">
+            <h3><b>Towards a conceptual model for the domain of sculpture</b></h3>
+            
+          </div>
+
+
+          <p class="text-muted">Year:</p>
+
+          <div class="lead -well">
+            <h3>2011</h3>
+          </div>
+
+
+            <div class="blogentry"> 
+
+            <p>For the next two years I'll be collaborating with the <a href="http://www.artofmaking.ac.uk/">Art of Making</a> project. The project investigates the processes involved in the carving of stone during the Roman period, in particular it aims at analysing them using the insights and understanding <a href="http://www.geoffreyrockwell.com/PRportfolio/">Peter Rockwell</a> (son of <a href="http://en.wikipedia.org/wiki/Norman_Rockwell">Norman Rockwell</a>) developed during his lifelong experience as a sculptor. Eventually we will present these results by means of a freely accessible online digital resource that guides users through examples of stone carving. In this post I just wanted to report on the very first discussions I had with the sculpture and art scholars I'm working with, to the purpose of creating a shared model for this domain.</p>
+<p>The project started this July, it is based at <a href="http://www.kcl.ac.uk/">King’s College London</a> and is funded by the Leverhulme Trust. I'm more involved with the digital aspects of the project, and as usual one of the first steps involved in the building of a digital resource (in particular, a database-backed digital resource) is the construction of a <strong>conceptual model</strong> that can represent the main <strong>types of things</strong> being dealt with.</p>
+<p>In other words, it is fundamental to identify which are the things our database and web-application should 'talk about'; later on, this model can be refined and extended so to become an abstract template of the data-manipulation tasks the software application must be capable of supporting (e.g. entering data into the system, searching and visualising them).</p>
+<p>Here's a nice example of the sculptures (a <a href="http://www.artofmaking.ac.uk/2012/01/03/image-of-the-month-january-2012/">sarcophagus from Aphrodisias</a>) that constitute our 'source' materials:</p>
+<p><img alt="" src="../../../../../media/static/blog_img/7-4.jpg" /></p>
+<h3>What are the key entities in the sculpture domain?</h3>
+<p>To this purpose, a few weeks ago we had a very productive brainstorming session aimed at fleshing out the main items of interest in the world of sculpture. This is a very first step towards the construction of a formal model for this domain; nonetheless, I think that we have already managed to pin down the key elements we're going to be dealing with in the next two years.</p>
+<p>Here's a list of the main objects we identified:</p>
+<ul>
+<li>- <strong>People</strong>, such as craftsman's etc..</li>
+<li>- <strong>Sculptures</strong> (of various kinds)</li>
+<li>- <strong>Materials</strong></li>
+<li>- <strong>Tools</strong></li>
+<li>- Generic <strong>processes</strong> that are part of a sculpting project, such as quarrying and transport.</li>
+<li>- More specific <strong>methods</strong> being used within a particular process, e.g. carving styles, or approaches to quarrying.</li>
+<li>- <strong>Traditions</strong>, conceptualisations of the 'way of doing things' that, in turn, can inspire the way methods and processes are carried out nowadays.</li>
+</ul>
+<p>We encoded the results of our discussions in a <a href="http://en.wikipedia.org/wiki/Mind_map">mind map</a> for better readability, and also in order to use a technology that would make it easier to share our findings later on. I added it below.. (in case the interactive image doesn't work, you can find it here too).</p>
+<iframe id="xmindshare_embedviewer" src="http://www.xmind.net/share/_embed/magicrebirth/xmind-972121/" width="600px" height="600px" frameborder="0" scrolling="no"></iframe>
+
+<h3>Fleshing out the model a bit more</h3>
+<p>After a few weeks of work we did a reiteration of the conceptual map above. The good news was that it soon became evident to us that we got it quite right on the first round; that is, we didn't really feel like adding or removing anything from the map.</p>
+<p>On the other hand, we thought we should try to add some <strong>relations</strong> (= links, arcs) among the concepts (=bubbles) previously identified, so to characterize their semantics a bit more. I had a go at adding some relations first, and here's the result:</p>
+<iframe id="xmindshare_embedviewer" src="http://www.xmind.net/share/_embed/magicrebirth/main-entities-relations/" width="600px" height="400px" frameborder="0" scrolling="no"></iframe>
+
+<p>I should specify that I have no knowledge whatsoever of the domain of sculpture, so the stuff I added to the map came out entirely from the (little) research I've been doing on the subject (on and off) during the last weeks.</p>
+<p>At the same time, also Will and Ben (the art historians I'm collaborating with) worked independently at the task of fleshing out the mind map with more relations. Needeless to say, what they came up with is way more dense and intricate than what I could have ever imagined! This is probably not surprising, as one would expect to see a significant difference between a non-expert's representation of a subject domain and another one which is instead created by experts. Still, it was interesting to see it happening with my own eyes! Here it is:</p>
+<iframe id="xmindshare_embedviewer" src="http://www.xmind.net/share/_embed/magicrebirth/the-art-of-making-structure/" width="600px" height="400px" frameborder="0" scrolling="no"></iframe>
+
+<p>The next step will be trying to reduce the (natural) complexity of the portion of the world we are representing to a more manageable size… then, formalize it, and start building our database based on that.. stay tuned for more!</p>
+
+            </div>
+
+
+          <hr>
+            <p class="text-muted">Cite this article:</p>
+
+            <div class="well well-big lead">
+              Michele Pasin. <a href="index.html" class="bluelink">Towards a conceptual model for the domain of sculpture</a>. Blog post on www.michelepasin.org. Published on Nov. 19, 2011.
+            </div>
+            <br />
+
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-1 col-md-offset-1">
+
+
+            
+            <p class="text-muted">Linkout:</p>
+
+            <div class="-lead">
+
+              
+              <li><a href="https://www.michelepasin.org/blog/2011/11/19/towards-a-conceptual-model-for-the-domain-of-sculpture/index.html">Legacy Blog</a></li>
+                
+              
+
+            </div>
+            <br />
+            
+
+
+        </div>
+        
+      </div>
+
+
+
+
+      
+
+      
+
+
+
+
+
+    <div class="row">
+      <h5 class="text-muted">See also:</h5>
+      </div>
+
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2019</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2019</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2019/06/03/modeling-publications-in-sn-scigraph-20122019/index.html" class="bluelink ">Modeling publications in SN SciGraph 2012-2019</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Workshop on Scholarly Digital Editions, Graph Data-Models and Semantic Web Technologies,</span>
+              
+              
+                <span class='pubplace'> Université de Lausanne,</span>
+              
+              
+                <span class='pubdate'> Jun 2019.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2015</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2015</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2015/06/17/towards-an-ontology-for-philosophy-really/index.html" class="bluelink ">Towards an ontology for philosophy</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2015.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2014</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Dec 2014</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2014/12/03/factoidbased-prosopography-and-computer-ontologies-towards-an-integrated-approach/index.html" class="bluelink ">Factoid-based Prosopography and Computer Ontologies: towards an integrated approach</a>.
+              <br />
+              <span class="">Michele Pasin, John Bradley</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Digital Scholarship in the Humanities,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Dec 2014.</span>
+              
+              
+                <span class='extrainfo'> doi: 10.1093/llc/fqt037</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2014</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2014/10/22/linked-data-experience-at-macmillan-building-discovery-services-for-scientific-and-scholarly-content-on-top-of-a-semantic-data-model/index.html" class="bluelink ">Linked data experience at Macmillan: Building discovery services for scientific and scholarly content on top of a semantic data model</a>.
+              <br />
+              <span class="">Tony Hammond, Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> International Semantic Web Conference (ISWC-14),</span>
+              
+              
+                <span class='pubplace'> Riva del Garda, Italy,</span>
+              
+              
+                <span class='pubdate'> Oct 2014.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2013</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2013</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2013/10/11/moving-emlot-towards-the-web-of-data-an-approach-to-the-representation-of-humanities-citations-based-on-role-theory-and-formal-ontology/index.html" class="bluelink ">Moving EMLoT towards the web of data: an approach to the representation of humanities citations based on role theory and formal ontology</a>.
+              <br />
+              <span class="">Michele Pasin, Riichiro Mizoguchi</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> New Technologies in Medieval and Renaissance Studies,</span>
+              
+              
+              
+              
+                <span class='text-warning'> (forthcoming). </span>
+              
+              
+                <span class='extrainfo'> (part of the 'Envisioning REED in the Digital Age' collection)</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Aug 2013</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2013/08/15/structuring-that-whichcannotbe-structured-a-roleforformal-models-in-representing-aspects-of-medieval-scotland/index.html" class="bluelink ">Structuring that which cannot be structured: A role	for	formal models in representing aspects of Medieval Scotland</a>.
+              <br />
+              <span class="">John Bradley, Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> New Perspectives on Medieval Scotland: 1093-1286,</span>
+              
+              
+              
+                <span class='pubplace'> Woodbridge, Suffolk: Boydell and Brewer, Studies in Celtic History Series,</span>
+              
+              
+                <span class='pubdate'> Aug 2013.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2012</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Feb 2012</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2012/02/16/capturing-the-meaning-of-roman-sculpture/index.html" class="bluelink ">Capturing the Meaning of Roman Sculpture</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Digital Humanities Symposium &quot;Virtualisation and Heritage&quot;,</span>
+              
+              
+                <span class='pubplace'> York,</span>
+              
+              
+                <span class='pubdate'> Feb 2012.</span>
+              
+              
+                <span class='extrainfo'> (Poster paper)</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2011</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Nov 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="index.html" class="bluelink paper-active">Towards a conceptual model for the domain of sculpture</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Nov 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Sep 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2011/09/27/prosopography-and-computer-ontologies-towards-a-formal-representation-of-the-factoid-model-by-means-of-cidoccrm/index.html" class="bluelink ">Prosopography and Computer Ontologies: towards a formal representation of the ‘factoid’ model by means of CIDOC-CRM</a>.
+              <br />
+              <span class="">John Bradley, Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Representing Knowledge in the Digital Humanities,</span>
+              
+              
+                <span class='pubplace'> Lawrence, Kansas,</span>
+              
+              
+                <span class='pubdate'> Sep 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2010</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Aug 2010</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2010/08/30/semantic-technologies-for-elearning-a-case-study-in-the-philosophical-domain-representing-wittgensteins-tractatus-logicophilosophicus/index.html" class="bluelink ">Semantic Technologies for ELearning: A case study in the philosophical domain: representing Wittgenstein&#39;s Tractatus Logico-Philosophicus</a>.
+              <br />
+              <span class="">Michele Pasin, Enrico Motta, Zdenek Zdrahal</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> LAP LAMBERT Academic Publishing,</span>
+              
+              
+              
+                <span class='pubdate'> Aug 2010.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2009</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2009/06/30/laying-the-conceptual-foundations-for-data-integration-in-the-humanities/index.html" class="bluelink ">Laying the Conceptual Foundations for Data Integration in the Humanities</a>.
+              <br />
+              <span class="">Michele Pasin, Arianna Ciula</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Proc. of the Digital Humanities Conference (DH09),</span>
+              
+              
+                <span class='pubplace'> Maryland, USA,</span>
+              
+              
+                <span class='pubdate'> Jun 2009.</span>
+              
+              
+                <span class='extrainfo'> pp. 211-215</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Mar 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/03/05/faceted-browsing-a-conceptual-map/index.html" class="bluelink ">Faceted Browsing: a conceptual map</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Mar 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2007</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Mar 2007</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2007/03/30/modeling-representations-take-2/index.html" class="bluelink ">Modeling Representations (take 2)</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Mar 2007.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2006</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2006</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2006/06/30/paving-the-way-towards-the-ehumanities-a-semantic-web-approach-to-support-the-learning-of-philosophy/index.html" class="bluelink ">Paving the way towards the e-humanities: a Semantic Web approach to support the learning of philosophy </a>.
+              <br />
+              <span class="">Michele Pasin, Enrico Motta</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Poster paper presented at the 3rd European Semantic Web Conference (ESWC-06),</span>
+              
+              
+                <span class='pubplace'> Budva, Montenegro,</span>
+              
+              
+                <span class='pubdate'> Jun 2006.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    
+
+
+
+  </div> <!-- /container -->
+
+
+
+
+
+	</div>
+
+
+  
+
+
+
+  
+
+
+
+
+  <footer class="footer">
+    <div class="container">
+    
+      <p class="text-muted">Find me also on: &nbsp;
+      
+
+  <a href="http://kcl.academia.edu/MichelePasin" target="_blank">Academia</a> | 
+  <a href="https://github.com/lambdamusic" target="_blank">GitHub</a> | 
+  <a href="https://scholar.google.com/citations?user=zj-99x0AAAAJ&hl=en" target="_blank">Google Scholar</a> | 
+  <a href="https://www.instagram.com/lambdamusic/" target="_blank">Instagram</a> |
+  <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0" target="_blank">LinkedIn</a> |
+  <a href="http://www.mendeley.com/profiles/michele-pasin/" target="_blank">Mendeley</a> |
+  <a href="http://orcid.org/0000-0001-8909-7766" target="_blank">Orcid</a> |
+  <a href="http://www.slideshare.net/mpasin" target="_blank">SlideShare</a> |
+  <a href="https://soundcloud.com/magicrebirth" target="_blank">Soundcloud</a> |
+  <a href="http://stackoverflow.com/users/109304/magicrebirth" target="_blank">StackOverflow</a> |
+  <a href="http://twitter.com/#!/lambdaman" target="_blank">Twitter</a> |
+  <a href="https://vimeo.com/lambdamusic" target="_blank">Vimeo</a>
+      
+      </p>
+    
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../../../../media/static/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+
+
+
+    
+
+  </body>
+</html>

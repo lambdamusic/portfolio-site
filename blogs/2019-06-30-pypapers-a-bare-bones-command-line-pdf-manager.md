@@ -14,7 +14,7 @@ Ever felt like softwares like [Mendeley](https://www.mendeley.com/homepage-2-1?i
 
 Yes - that's right - [command line](https://en.wikipedia.org/wiki/Terminal_(macOS)). So not for everyone. Also: this is bare bones and pre-alpha. So don't expect wonders. It basically provides a simple interface for searching a folder full of PDFs. That's all for now!
 
-\[youtube https://www.youtube.com/watch?v=o74Ct1EwZwI&w=560&h=315\]
+<iframe width="560" height="315" src="https://www.youtube.com/embed/o74Ct1EwZwI?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ### Key features (or lack of)
 

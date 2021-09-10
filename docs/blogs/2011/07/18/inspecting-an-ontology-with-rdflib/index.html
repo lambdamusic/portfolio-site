@@ -1,0 +1,2860 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../../media/static/favicon.ico">
+
+	
+  <title>Blogs | Michele Pasin</title>
+
+
+    <!-- Bootstrap core CSS -->
+    
+    <!-- Bootswatch:  -->
+    <!-- cerulean  | cyborg |  flatly |  lumen |  sandstone |   spacelab  |  yeti | cosmo |  darkly |  paper | simplex | superhero |  journal | readable  |   slate |  united -->
+    <link href="../../../../../media/static/libs/bootswatch3.2/simplex/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css">
+
+    .tooltip-inner {
+        max-width: 200px;
+        /* If max-width does not work, try using width instead */
+        width: 200px; 
+    }
+    .lead-plus {font-size: 26.5px;}
+    .label-dark {background: #2c3e50; color: white; padding: 1px;}
+    .margin50 {margin-top: 50px; margin-bottom: 50px;}
+    .marginb100 {margin-bottom: 100px;}
+
+    .breadcrumbs {margin-top: 80px;}
+    .namespaces {background: #ced2d6; width: 100%;}
+    .footer {background-color: #3e3f3a;}
+    .footer a {color: #cac0bf;}
+
+    .margin50Top {margin-top: 50px;}
+    .margin20Top {margin-top: 20px;}
+    .margin50Bottom { margin-bottom: 50px;}
+    .margin20Bottom { margin-bottom: 20px;}
+
+    /*so that the d3plus tooltip panel doesnt cover the top banner*/
+    .navbar {z-index: 3000;}
+
+
+    .navbar-alpha {
+        font-size: 65%;
+        font-style: italic;
+        font-weight: bold;
+        color: darkgoldenrod;
+    }
+
+
+    .btn-xxs {
+    padding: 1px 4px;
+    font-size: 10px;
+    line-height: 1.2;
+    border-radius: 2px;
+    }
+
+
+    .code-example {
+        overflow: auto;
+        height: 400px;
+    }
+
+
+    #side_title a {
+        color: blue;
+        text-decoration: underline;
+
+    }
+    .text-dark {
+        color: #5d5c5c;
+        
+    }
+
+
+    .paragraph_embed {
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+
+    .thumb-div {
+      padding: 20px;
+
+    }
+
+    .thumbnail{
+      
+
+      
+
+    }
+
+    .thumb-img {
+      height: 200px;
+
+    }
+
+    .thumb-title b {
+      font-weight: bold;
+      color: black;
+
+    }
+
+
+
+    a.project-title {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a.project-title:hover {
+      background: indianred;
+      color: white;
+    }
+
+    a.project-active {
+      background: indianred;
+      color: white;
+    }
+
+    .keyword {
+      font-style: italic;
+      color: grey;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    a.paper-active {
+      background: indianred;
+      color: white;
+    }
+
+    a.ext_link {
+      color: darkgrey;
+    }
+
+    .text-black {
+      color: black;
+    }
+
+    a.sounds-active {
+      background: indianred;
+      color: white;
+    }
+
+    img.project-screenshots {
+      margin-botton: 30px;
+    }
+
+
+
+    
+
+    .blogentry {
+      font-size: 14px;
+      margin-top: 50px;
+      margin-bottom: 100px;
+    }
+
+    .blogentry p:first-of-type {
+      font-size: 22px;
+      font-weight: bold;
+      min-height: 20px;
+      padding: 19px;
+      margin-bottom: 20px;
+      background-color: #f4f4f4;
+      border: 1px solid #e3e3e3;
+      border-radius: 4px;
+      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
+    }
+
+    .blogentry p {
+      margin-top: 40px;
+      margin-bottom: 40px;
+    }
+
+    .blogentry img {
+      max-width: 80%;
+    }
+
+
+</style>
+
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+
+
+
+
+
+    
+
+    
+
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../../../index.html">michelepasin<sup style="color: red;">&nbsp;.org</sup></a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+
+        <li >
+          <a href="../../../../../index.html">Projects</a></li>
+
+        <li class="active">
+            <a href="../../../../../words/index.html">Words</a></li>
+
+       <li >
+            <a href="../../../../../sounds/index.html">Sounds</a></li>
+
+        <li >
+          <a href="../../../../../events/index.html">Events</a></li>
+          
+          
+
+        <li 
+        
+          ><a href="../../../../../about/index.html">About</a></li>
+
+          <!-- <li>
+            <a href="/blog" target="_blank">Blog</a></li> -->
+            
+
+      </ul>
+    </div><!--/.nav-collapse -->
+
+  </div>
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+    <!-- Begin page content -->
+    <div class="container">
+
+
+	
+
+  <div class="page-header">
+      
+      Words > Blogs > 2011 > <i>Inspecting an ontology with RDFLib</i>
+  </div>
+
+  <div class="container">
+
+
+      <div class="row" style="margin-bottom:50px;">
+          
+        <div class="col-md-8">
+
+
+          <p class="text-muted">Title:</p>
+
+          <div class="lead -well">
+            <h3><b>Inspecting an ontology with RDFLib</b></h3>
+            
+          </div>
+
+
+          <p class="text-muted">Year:</p>
+
+          <div class="lead -well">
+            <h3>2011</h3>
+          </div>
+
+
+            <div class="blogentry"> 
+
+            <p>RDFLib (<a href="http://www.rdflib.net/">homepage</a>) is a pretty solid and comprehensive rdf-programming kit for Python. In a <a href="http://www.michelepasin.org/blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/">previous post</a> I already discussed what pythonic options are currently available out there for doing semantic web programming; after some more in depth testing I realized that Rdflib is the most accessible and complete of them all (in fact many of the available libraries are based on Rdflib's APIs). So.. here we go: in this post I'm giving an overview of some of the things you can do with this library.</p>
+<p><em><strong>Update 2014-10-04</strong>: the latest version of the Python library described in this post is available on <a href="https://github.com/lambdamusic/ontosPy">GitHub</a></em></p>
+<p>The <a href="http://linkeddata.org/">Linked Data</a> world is <em>primarily</em> made up of <a href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>, many would say, so the most important thing is being able to parse and extract information from this simple but versatile language. A quite well known mantra in this community is the '<a href="http://www.cs.rpi.edu/~hendler/LittleSemanticsWeb.html">a little semantics goes a long way</a>', which expresses succinctly the idea that there's no need to fixate on the construction of large-scale <a href="http://en.wikipedia.org/wiki/Cyc">CYC</a>-like knowledge-based systems in order to get something going in an open-world scenario such as the web (of data).</p>
+<p>In other words, this idea suggests that (for now) it's enough to make your application spit out structured data using a standard data model (RDF, that is), and possibly connect your RDF dataset to other datasets in the '<a href="http://richard.cyganiak.de/2007/10/lod/">cloud</a>' by creating <a href="http://linkeddatabook.com/editions/1.0/#htoc18">rdf-links</a>. Once you've done that, you can take it easy and stop worrying about the data integration problems your RDF might generate, or the 'big picture'. Others will figure out how to use your data; <strong>it's an incremental approach</strong>, there will be some sort of snowball effect at some stage, semantic web enthusiasts seem to suggest. This and other arguments are a bit make-believe, I have to say; but at the same time they also do make some sense: unless we have some real stuff to play with out there on the data-web, not much will <em>ever</em> happen!</p>
+<h3>Hullo, RDFlib</h3>
+<p>After quickly ascertaining that it's not a total waste of time to work with RDF, it's now time to get practical and experiment a bit with RDFlib. This is a great python library for it lets you process RDF data <em>very very easily</em>. Example:</p>
+<p><code># open a graph &gt;&gt;&gt; import rdflib &gt;&gt;&gt; graph = rdflib.Graph()  # load some data &gt;&gt;&gt; graph.parse('http://dbpedia.org/resource/Semantic_Web') )&gt; &gt;&gt;&gt; len(graph) 98  # query the data &gt;&gt;&gt; list(graph)[:10] [(rdflib.term.URIRef('http://dbpedia.org/resource/SUPER'), rdflib.term.URIRef('http://dbpedia.org/property/keywords'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_internet'), rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageRedirects'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/SW'), rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageDisambiguates'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_integrity'), rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageRedirects'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Ontotext'), rdflib.term.URIRef('http://dbpedia.org/ontology/industry'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://mpii.de/yago/resource/Semantic_Web'), rdflib.term.URIRef('http://www.w3.org/2002/07/owl#sameAs'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Deborah_McGuinness'), rdflib.term.URIRef('http://dbpedia.org/ontology/knownFor'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/The_semantic_web'), rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageRedirects'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Access-eGov'), rdflib.term.URIRef('http://dbpedia.org/property/keywords'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/SOA4All'), rdflib.term.URIRef('http://dbpedia.org/property/keywords'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web'))]  # print out some triples &gt;&gt;&gt; for s, p, o in graph: ...     print s, "n--- ", p, "n------ ", o ...  http://dbpedia.org/resource/SUPER --- http://dbpedia.org/property/keywords  ------ http://dbpedia.org/resource/Semantic_Web http://dbpedia.org/resource/Semantic_internet --- http://dbpedia.org/ontology/wikiPageRedirects  ------ http://dbpedia.org/resource/Semantic_Web http://dbpedia.org/resource/SW --- http://dbpedia.org/ontology/wikiPageDisambiguates  ------ http://dbpedia.org/resource/Semantic_Web http://dbpedia.org/resource/Semantic_integrity --- http://dbpedia.org/ontology/wikiPageRedirects  ------ http://dbpedia.org/resource/Semantic_Web http://dbpedia.org/resource/Semantic_Web  --- http://dbpedia.org/ontology/abstract  ------ Con il termine web semantico, termine coniato dal suo ideatore, Tim Berners-Lee, si intende la trasformazione del World Wide Web in un ambiente dove i documenti pubblicati (pagine HTML, file, immagini, e così via) siano associati ad informazioni e dati che ne specifichino il contesto semantico in un formato adatto all'interrogazione, all'interpretazione e, più in generale, all'elaborazione automatica. Con l'interpretazione del contenuto dei documenti che il Web Semantico propugna, saranno possibili ricerche molto più evolute delle attuali, basate sulla presenza nel documento di parole chiave, ed altre operazioni specialistiche come la costruzione di reti di relazioni e connessioni tra documenti secondo logiche più elaborate del semplice link ipertestuale. http://dbpedia.org/resource/Semantic_Web  --- etc. etc etc................</code></p>
+<p>Pretty straightforward uh? In a nutshell, what we've just done is:<br />
+<strong>a)</strong> loading the RDF description of the 'Semantic Web' page on <a href="http://dbpedia.org/About">DBPedia</a> (http://dbpedia.org/resource/Semantic_Web); <strong>b)</strong> showing the first 10 triples in that RDF graph; <strong>c)</strong> iterating through all the triples in the graph and printing them out in a format that reflects the subject-predicate-object structure of RDF.</p>
+<p><strong>However we still don't know much about those data</strong>. Meaning: what is the abstract structure used to define them? Do they conform to some sound and thorough data-model or is it just some automatically-generated messy agglomerate of database records? In other words, what I want to know is, what's the <a href="http://en.wikipedia.org/wiki/Ontology_(information_science)">ontology</a> behind these data? How can I see it? Shall I reuse it (and thus endorse it) within my own application, or does my application require something slightly different?</p>
+<p>I'm probably biased here, cause I personally get much more satisfaction from creating and thinking about ontologies rather than fiddling with large quantities of rdf-xml triples. Still, <strong>I think that being able to evaluate the ontology a bunch of rdf refers to is of vital importance</strong>, in order to judge whether that RDF is what you're looking for or not, and how to best integrate it in your application.</p>
+<p><strong>Long story short, I couldn't find anything in RdfLib that would let me print out the hierarchy tree</strong> of an ontology and other related information. So I thought, here's a good candidate-task for me to learn how to use the library better.</p>
+<h3>Inspecting an ontology using RDFLib</h3>
+<p>I created a small class called '<strong>OntoInspector</strong>' that you can instantiate with an RDFS/OWL ontology and then query to find out basic information about that ontology. I know - all of this could have been done using one of the many (and constantly increasing) ontology editing tools - but hey this is all about learning isn't it? You can find all the source code on BitBucket <a href="https://github.com/lambdamusic/ontosPy">GitHub</a>. Feel free to get it and modify as needed. Also, I integrated this python toolkit within a <strong>django application</strong> that let you browse ontologies online (beware - it's just a hack really). This is called (surprise) <strong>OntoView</strong>, and it's <a href="http://www.michelepasin.org/hacks/ontoview/">accessible here</a>.</p>
+<p>The first thing to do in our class definition is (obviously) loading up the RDFLib library. I've developed this using RDFlib 2.4, but recently tested it with 3.0 (the latest release available) and it all still works fine. By loading up the RDF and RDFS modules we'll have access to all the constants needed to query for classes and subclasses. Note that I added an OWL module as that is not part of RDFLib. You can find it in the source code, it's just a list of all predicates in the <a href="http://www.w3.org/TR/owl-guide/">OWL vocabulary</a>.</p>
+<pre><code>`from rdflib import ConjunctiveGraph, Namespace, exceptions  from rdflib import URIRef, RDFS, RDF, BNode  import OWL`
+</code></pre>
+<p>Now let's set up the basic structure of the OntoInspector class. In principle, an OntoInspector object should contain all the information necessary to query an ontology. An ontology is referred to using its URI, so that's all is needed for creating an instance of OntoInspector too:</p>
+<p>```
+class OntoInspector(object):</p>
+<pre><code>"""Class that includes methods for querying an RDFS/OWL ontology"""
+
+def __init__(self, uri, language=""):
+    super(OntoInspector, self).__init__()
+
+    self.rdfGraph = ConjunctiveGraph()
+    try:
+        self.rdfGraph.parse(uri, format="xml")
+    except:
+        try:
+            self.rdfGraph.parse(uri, format="n3")
+        except:
+            raise exceptions.Error("Could not parse the file! Is it a valid RDF/OWL ontology?")
+
+    finally:
+        # let's cache some useful info for faster access
+        self.baseURI = self.get_OntologyURI() or uri            
+        self.allclasses = self.__getAllClasses(classPredicate)
+        self.toplayer = self.__getTopclasses()
+        self.tree = self.__getTree()
+
+
+def get_OntologyURI(self, ....):
+    # todo
+    pass
+
+def __getAllClasses(self, ....):
+    # todo
+    pass
+
+
+def __getTopclasses(self, ....):
+    pass
+
+
+def __getTree(self, ....):
+    # todo
+    pass
+</code></pre>
+<p>```</p>
+<p>As you can see the __init__ method tries to load the ontology file (which can be expressed in either rdf/xml or n3 format) and then sets up 4 class attributes. These attributes will contain some key information about the ontology: its <strong>URI</strong>, a list of <strong>all the classes</strong> available, the classes in the <strong>top layer</strong> and the main <strong>taxonomical tree</strong> of the ontology. We're now going to implement the methods needed to fill out these 4 attributes.</p>
+<h3>Getting the ontology URI</h3>
+<p>If we're dealing with an OWL ontology, it may be the case that the URI we have just used to retrieve the ontology file is not the 'official' URI of the ontology. In fact OWL provides a construct that can be used to 'state' which is the base URI of an ontology (essentially, this is equivalent to stating that an RDF resource has rdf:type http://www.w3.org/2002/07/owl#Ontology). So in the following method first we check if an URI of rdf:type OWL:Ontology exists, and return that if available (when we return None, the URI value defaults to the URI originally provided when creating the OntoInspector object - see the constructor code above):</p>
+<p>```
+def get_OntologyURI(self, return_as_string=True):
+    """ 
+    In [15]: [x for x in o.rdfGraph.triples((None, RDF.type, OWL.Ontology))]
+    Out[15]: 
+    [(rdflib.URIRef('http://purl.com/net/sails'),
+      rdflib.URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
+      rdflib.URIRef('http://www.w3.org/2002/07/owl#Ontology'))]</p>
+<pre><code>Mind that this will work only for OWL ontologies.
+In other cases we just return None, and use the URI passed at loading time
+"""
+
+test = [x for x, y, z in self.rdfGraph.triples((None, RDF.type, OWL.Ontology))]
+
+if test:
+    if return_as_string:
+        return str(test[0])
+    else:
+        return test[0]
+else:
+    return None
+</code></pre>
+<p>```</p>
+<h3>Extracting all the classes</h3>
+<p>Essentially, there are only <strong>two ways to define a class</strong>: you can either specify that an entity has a property RDF:type with value rdfs:Class, or that it has a property RDF:type with value owl:Class. Note that the owl:Class predicate is defined as a <em>subclass</em> of rdfs:Class. The rationale for having a separate OWL class construct lies in the restrictions on OWL DL (and thus also on OWL Lite), which imply that not all RDFS classes are legal OWL DL classes. In OWL Full these restrictions do not exist and therefore owl:Class and rdfs:Class are equivalent in OWL Full (more info here: <a href="http://www.w3.org/TR/owl-ref/">http://www.w3.org/TR/owl-ref/</a>, section 3.1).</p>
+<p>Thus, In order to retrieve all the classes defined in an ontology we can just query the RDF graph for triples that have this form:</p>
+<p>someURI - rdf:type - rdf:Class OR owl:Class .</p>
+<p>This approach will work in the majority of cases. However, things are complicated by the fact that people are sometimes sloppy when they define ontologies, or because they use different tools that automatically generate different styles of RDF code. For example, often an entity is defined as being an rdfs:subclassOf another entity, without explicitly declaring that both of them are (rdfs, or owl) classes; another common case is that one of classes mentioned in the domain/range values of properties (via the rdfs.domain and rdfs.range properties) but not declared explicitly.</p>
+<p>Since we want to be as comprehensive as possible when looking for *all* the classes present in an ontology, I added a couple of methods that deal with these borderline cases. If you don't want to include all of this stuff, you can still bypass these extra checks by using the <em>classPredicate</em> argument.</p>
+<p>```
+def __getAllClasses(self, classPredicate = "", removeBlankNodes = True):
+    """<br />
+    Extracts all the classes from a model
+    We use the RDFS and OWL predicate by default; also, we extract non explicitly declared classes
+    """</p>
+<pre><code>rdfGraph = self.rdfGraph
+exit = []
+
+if not classPredicate:          
+    for s, v, o in rdfGraph.triples((None, RDF.type , OWL.Class)): 
+        exit.append(s)
+    for s, v, o in rdfGraph.triples((None, RDF.type , RDFS.Class)):
+        exit.append(s)
+
+    # this extra routine makes sure we include classes not declared explicitly
+    # eg when importing another onto and subclassing one of its classes...
+    for s, v, o in rdfGraph.triples((None, RDFS.subClassOf , None)):
+        if s not in exit:
+            exit.append(s)
+        if o not in exit:
+            exit.append(o)
+
+    # this extra routine includes classes found only in rdfs:domain and rdfs:range definitions
+    for s, v, o in rdfGraph.triples((None, RDFS.domain , None)):
+        if o not in exit:
+            exit.append(o)
+    for s, v, o in rdfGraph.triples((None, RDFS.range , None)):
+        if o not in exit:
+            exit.append(o)
+
+else:
+    if classPredicate == "rdfs" or classPredicate == "rdf":
+        for s, v, o in rdfGraph.triples((None, RDF.type , RDFS.Class)):
+            exit.append(s)
+    elif classPredicate == "owl":
+        for s, v, o in rdfGraph.triples((None, RDF.type , OWL.Class)): 
+            exit.append(s)
+    else:
+        raise exceptions.Error("ClassPredicate must be either rdf, rdfs or owl")
+
+exit = remove_duplicates(exit)
+
+if removeBlankNodes:
+    exit = [x for x in exit if not self.__isBlankNode(x)]
+
+return sort_uri_list_by_name(exit)
+</code></pre>
+<p>```</p>
+<p>You probably noticed that there are a couple of other methods mentioned in the snippet above: they are used for checking if a URI is a BlankNode (which we're normally not interested in, when dealing with ontologies) and for other utility functions, such as sorting and removing duplicates from our list of classes. You'll find all the details about this stuff in the source code obviously..</p>
+<p>Next, we want to be able to <strong>move around the ontology hierarchy</strong>. So we need methods to get <em>super</em> and <em>sub</em> classes from a given class. This is easily done by querying the graph for triples containing the rdfs.subClassOf predicate:</p>
+<p>```</p>
+<h1>methods for getting ancestores and descendants of classes: by default, we do not include blank nodes</h1>
+<p>def get_classDirectSupers(self, aClass, excludeBnodes = True):
+    returnlist = []
+    for s, v, o in self.rdfGraph.triples((aClass, RDFS.subClassOf , None)):
+        if excludeBnodes:
+            if not self.__isBlankNode(o):
+                returnlist.append(o)
+        else:
+            returnlist.append(o)</p>
+<pre><code>return sort_uri_list_by_name(remove_duplicates(returnlist))
+</code></pre>
+<p>def get_classDirectSubs(self, aClass, excludeBnodes = True):
+    returnlist = []
+    for s, v, o in self.rdfGraph.triples((None, RDFS.subClassOf , aClass)):
+        if excludeBnodes:
+            if not self.__isBlankNode(s):
+                returnlist.append(s)</p>
+<pre><code>    else:
+        returnlist.append(s)
+
+return sort_uri_list_by_name(remove_duplicates(returnlist))
+</code></pre>
+<p>def get_classAllSubs(self, aClass, returnlist = [], excludeBnodes = True):
+    for sub in self.get_classDirectSubs(aClass, excludeBnodes):
+        returnlist.append(sub)
+        self.get_classAllSubs(sub, returnlist, excludeBnodes)
+    return sort_uri_list_by_name(remove_duplicates(returnlist))</p>
+<p>def get_classAllSupers(self, aClass, returnlist = [], excludeBnodes = True ):
+    for ssuper in self.get_classDirectSupers(aClass, excludeBnodes):
+        returnlist.append(ssuper)
+        self.get_classAllSupers(ssuper, returnlist, excludeBnodes)
+    return sort_uri_list_by_name(remove_duplicates(returnlist))</p>
+<p>def get_classSiblings(self, aClass, excludeBnodes = True):
+    returnlist = []
+    for father in self.get_classDirectSupers(aClass, excludeBnodes):
+        for child in self.get_classDirectSubs(father, excludeBnodes):
+            if child != aClass:
+                returnlist.append(child)</p>
+<pre><code>return sort_uri_list_by_name(remove_duplicates(returnlist))
+</code></pre>
+<p>```</p>
+<h3>Getting the top layer</h3>
+<p>We're now all set for retrieving the classes at the top of the taxonomic hierarchy of our ontology, that is, its 'top-layer'. This can be done by reusing the get_classDirectSupers method previously defined, so to search for all classes that have no superclasses:</p>
+<p>```
+def __getTopclasses(self, classPredicate = ''):</p>
+<pre><code>""" Finds the topclass in an ontology (works also when we have more than on superclass)
+"""
+
+returnlist = []
+
+# gets all the classes
+for eachclass in self.__getAllClasses(classPredicate):
+    x = self.get_classDirectSupers(eachclass)
+    if not x:
+        returnlist.append(eachclass)
+
+return sort_uri_list_by_name(returnlist)
+</code></pre>
+<p>```</p>
+<h3>Reconstructing the ontology tree</h3>
+<p>Now that we know which are the top classes in our taxonomy, we can parse the tree recursively using the get_classDirectSubs method defined above, and reconstruct the whole taxonomical structure of the ontology.</p>
+<p>```
+def __getTree(self, father=None, out=None):</p>
+<pre><code>""" Reconstructs the taxonomical tree of an ontology, from the 'topClasses' (= classes with no supers, see below)
+    Returns a dictionary in which each class is a key, and its direct subs are the values.
+    The top classes have key = 0
+
+    Eg.
+    {'0' : [class1, class2], class1: [class1-2, class1-3], class2: [class2-1, class2-2]}
+"""
+
+if not father:
+    out = {}
+    topclasses = self.toplayer
+    out[0] = topclasses
+
+    for top in topclasses:
+        children = self.get_classDirectSubs(top)
+        out[top] = children
+        for potentialfather in children:
+            self.__getTree(potentialfather, out)
+
+    return out
+
+else:
+    children = self.get_classDirectSubs(father)
+    out[father] = children
+    for ch in children:
+        self.__getTree(ch, out)
+</code></pre>
+<p>```</p>
+<p>That's it really. Given this abstract tree representation, it can be printed out differently depending on the context (html, command line) but the core will remain intact.</p>
+<h3>Wrapping up</h3>
+<p>The <a href="https://github.com/lambdamusic/ontosPy">source code on GitHub</a> contains also other utilities I added, eg for handling class comments, namespaces, for nice-printing of classes' names, and for outputting the ontology tree as an image, using the <a href="http://www.graphviz.org/">Graphviz</a> library (which needs to be installed separately).</p>
+<p>Here's an example of how OntoInspector can be used in the python interactive shell for inspecting the <a href="http://xmlns.com/foaf/spec/">Friend Of A Friend</a> lightweight ontology:</p>
+<p>```
+In [1]: from onto_inspector import *</p>
+<p>In [2]: onto = OntoInspector("http://xmlns.com/foaf/spec/20100809.rdf")         </p>
+<p>In [3]: onto.toplayer</p>
+<p>Out[3]: 
+[rdflib.URIRef('http://xmlns.com/foaf/0.1/Agent'),
+ rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#Class'),
+ rdflib.URIRef('http://www.w3.org/2004/02/skos/core#Concept'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/Document'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/LabelProperty'),
+ rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#Literal'),
+ rdflib.URIRef('http://www.w3.org/2000/10/swap/pim/contact#Person'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/Project'),
+ rdflib.URIRef('http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing'),
+ rdflib.URIRef('http://www.w3.org/2002/07/owl#Thing')]</p>
+<p>In [4]: onto.printTree()
+foaf:Agent
+----foaf:Group
+----foaf:Organization
+----foaf:Person
+rdfs:Class
+http://www.w3.org/2004/02/skos/core#Concept
+foaf:Document
+----foaf:Image
+----foaf:PersonalProfileDocument
+foaf:LabelProperty
+rdfs:Literal
+http://www.w3.org/2000/10/swap/pim/contact#Person
+----foaf:Person
+foaf:Project
+http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
+----foaf:Person
+owl:Thing
+----foaf:OnlineAccount
+--------foaf:OnlineChatAccount
+--------foaf:OnlineEcommerceAccount
+--------foaf:OnlineGamingAccount</p>
+<p>In [5]: document = onto.find_class_byname("document")</p>
+<p>In [6]: document
+Out[6]: 
+[rdflib.URIRef('http://xmlns.com/foaf/0.1/Document'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/PersonalProfileDocument')]</p>
+<p>In [7]: document = document[0]</p>
+<p>In [8]: document
+Out[8]: rdflib.URIRef('http://xmlns.com/foaf/0.1/Document')</p>
+<p>In [9]: onto.get_classAllSubs(document)
+Out[9]: 
+[rdflib.URIRef('http://xmlns.com/foaf/0.1/Image'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/PersonalProfileDocument')]</p>
+<p>In [10]: onto.get_classAllSupers(document)
+Out[10]: []</p>
+<p>In [11]: onto.get_classComment(document)
+Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
+```</p>
+<p>Any comments? As I said I'm still learning/improving this... so any feedback is welcome!</p>
+
+            </div>
+
+
+          <hr>
+            <p class="text-muted">Cite this article:</p>
+
+            <div class="well well-big lead">
+              Michele Pasin. <a href="index.html" class="bluelink">Inspecting an ontology with RDFLib</a>. Blog post on www.michelepasin.org. Published on July 18, 2011.
+            </div>
+            <br />
+
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-1 col-md-offset-1">
+
+
+            
+            <p class="text-muted">Linkout:</p>
+
+            <div class="-lead">
+
+              
+              <li><a href="https://www.michelepasin.org/blog/2011/07/18/inspecting-an-ontology-with-rdflib/index.html">Legacy Blog</a></li>
+                
+              
+
+            </div>
+            <br />
+            
+
+
+        </div>
+        
+      </div>
+
+
+
+
+      
+
+      
+
+
+
+
+
+    <div class="row">
+      <h5 class="text-muted">See also:</h5>
+      </div>
+
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2020</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jan 2020</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2020/01/30/getting-to-grips-with-google-colab/index.html" class="bluelink ">Getting to grips with Google Colab</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jan 2020.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2019</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2019</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2019/05/03/running-jupyter-demos-via-mybinder-org/index.html" class="bluelink ">Running interactive Jupyter demos with  mybinder.org</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> May 2019.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2017</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2017</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2017/10/19/data-integration-and-disintegration-managing-springer-nature-scigraph-with-shacl-and-owl/index.html" class="bluelink ">Data integration and disintegration: Managing Springer Nature SciGraph with SHACL and OWL</a>.
+              <br />
+              <span class="">Tony Hammond, Michele Pasin, Evangelos Theodoridis</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Industry Track, International Semantic Web Conference (ISWC-17),</span>
+              
+              
+                <span class='pubplace'> Vienna, Austria,</span>
+              
+              
+                <span class='pubdate'> Oct 2017.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jan 2017</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2017/01/01/fitting-personal-interpretation-with-the-semantic-web-lessons-learned-from-pliny/index.html" class="bluelink ">Fitting Personal Interpretation with the Semantic Web: lessons learned from Pliny</a>.
+              <br />
+              <span class="">John Bradley, Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Digital Humanities Quarterly,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jan 2017.</span>
+              
+              
+                <span class='extrainfo'> Volume 11 Number 1</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2015</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Nov 2015</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2015/11/28/accessing-os-x-dictionary-with-python/index.html" class="bluelink ">Accessing OS X dictionary with Python</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Nov 2015.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Sep 2015</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2015/09/21/another-experiment-with-wittgensteins-tractatus/index.html" class="bluelink ">Another experiment with Wittgenstein&#39;s Tractatus</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Sep 2015.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2015</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2015/06/17/towards-an-ontology-for-philosophy-really/index.html" class="bluelink ">Towards an ontology for philosophy</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2015.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jan 2015</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2015/01/05/introducing-resquotes-com/index.html" class="bluelink ">Take control of your digital annotations with ResQuotes.com</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jan 2015.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2014</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Aug 2014</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2014/08/22/visualising-a-big-taxonomy-in-a-small-screen-in-pure-html/index.html" class="bluelink ">How to visualize a big taxonomy within a single webpage?</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Aug 2014.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2013</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Dec 2013</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2013/12/16/annotating-the-web-with-scrible/index.html" class="bluelink ">Annotating the web with Scrible</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Dec 2013.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2013</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2013/10/11/moving-emlot-towards-the-web-of-data-an-approach-to-the-representation-of-humanities-citations-based-on-role-theory-and-formal-ontology/index.html" class="bluelink ">Moving EMLoT towards the web of data: an approach to the representation of humanities citations based on role theory and formal ontology</a>.
+              <br />
+              <span class="">Michele Pasin, Riichiro Mizoguchi</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> New Technologies in Medieval and Renaissance Studies,</span>
+              
+              
+              
+              
+                <span class='text-warning'> (forthcoming). </span>
+              
+              
+                <span class='extrainfo'> (part of the 'Envisioning REED in the Digital Age' collection)</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Sep 2013</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2013/09/15/building-a-master-volumes-ui-in-impromptu/index.html" class="bluelink ">Building a master volumes UI with impromptu</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Sep 2013.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jul 2013</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2013/07/25/creating-useful-classifications-with-taxonomies-part-1/index.html" class="bluelink ">Creating useful classifications with taxonomies (part 1)</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jul 2013.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jul 2013</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2013/07/16/fitting-personal-interpretations-with-the-semantic-web/index.html" class="bluelink ">Fitting Personal Interpretations with the Semantic Web</a>.
+              <br />
+              <span class="">John Bradley, Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Digital Humanities 2013,</span>
+              
+              
+                <span class='pubplace'> University of Nebraska–Lincoln,</span>
+              
+              
+                <span class='pubdate'> Jul 2013.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2012</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2012</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2012/10/12/teaching-programming-concepts-visually-with-the-online-python-tutor/index.html" class="bluelink ">Teaching programming concepts visually with the Online Python Tutor</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Oct 2012.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jul 2012</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2012/07/17/annotation-and-ontology-in-most-humanities-research-accommodating-a-more-informal-interpretation-context/index.html" class="bluelink ">Annotation and Ontology in most Humanities research: accommodating a more informal interpretation context</a>.
+              <br />
+              <span class="">John Bradley, Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> NeDiMaH workshop on ontology based annotation, held in conjunction with Digital Humanities 2012,</span>
+              
+              
+                <span class='pubplace'> Hamburg, Germany,</span>
+              
+              
+                <span class='pubdate'> Jul 2012.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2012</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2012/06/01/crowdsourcing-interpretation-with-prism-a-new-software-from-the-scholars-lab/index.html" class="bluelink ">Crowdsourcing interpretation with Prism, a new software from the Scholar&#39;s Lab</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2012.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2012</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html" class="bluelink ">Getting hold of your Flickr collections with Python</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> May 2012.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2011</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Aug 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../08/25/first-steps-with-canvas-and-html5/index.html" class="bluelink ">First steps with Canvas and HTML5</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Aug 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jul 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="index.html" class="bluelink paper-active">Inspecting an ontology with RDFLib</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jul 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../06/26/bjork-redefines-the-musicians-product-with-biophilia-albumapp/index.html" class="bluelink ">Bjork redefines the musician&#39;s product with &#39;Biophilia&#39; album/app</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Apr 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../04/14/allegro-cl-graph/index.html" class="bluelink ">RDF programming with AllegroCL and AllegroGraph</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Apr 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Apr 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../04/09/a-space-odyssey-live-with-philharmonia-orchestra/index.html" class="bluelink ">A Space Odyssey Live with Philharmonia Orchestra</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Apr 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Mar 2011</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../03/29/an-alternative-to-the-play-macro-iplay-and-with-instrument/index.html" class="bluelink ">An alternative to the &#39;play&#39; macro: &#39;iplay&#39; and &#39;with-instrument&#39;</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Mar 2011.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2010</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Oct 2010</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2010/10/21/editing-pdf-metadata-on-osx-ie-having-the-kindle-display-the-right-titleauthor-with-pdfs/index.html" class="bluelink ">Editing PDF metadata on OSx (ie: having the Kindle display the right title/author with pdfs)</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Oct 2010.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2010</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2010/05/13/review-of-interontology-conference-2010/index.html" class="bluelink ">Review of Interontology conference 2010</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Humana Mente, Journal of Philosophical Studies, 13,</span>
+              
+              
+              
+              
+                <span class='pubdate'> May 2010.</span>
+              
+              
+                <span class='extrainfo'> Issue 13</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2009</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Dec 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/12/03/creating-questionnaires-with-django/index.html" class="bluelink ">Creating Questionnaires with Django</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Dec 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Nov 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/11/23/new-song-with-impromptu-kali/index.html" class="bluelink ">New song with Impromptu: KALI</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Nov 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Aug 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/08/13/freeze-any-webapp-with-fluid/index.html" class="bluelink ">Freeze any webapp with Fluid</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Aug 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Aug 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/08/06/representing-hierarchical-data-with-django-and-mptt/index.html" class="bluelink ">Representing hierarchical data with Django and MPTT</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Aug 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/06/19/logic-and-ontology/index.html" class="bluelink ">Logic and Ontology</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/06/10/share-and-browse-links-with-multiurl/index.html" class="bluelink ">Share and browse links with MultiUrl</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jun 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/05/14/layer-the-web-with-blerp/index.html" class="bluelink ">Layer the web with Blerp!</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> May 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/05/07/installing-rdflib-on-osx/index.html" class="bluelink ">Installing RDFlib on osX</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> May 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Apr 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/04/02/augmented-reality-with-mits-sixth-sense-game-changing-wearable-tech/index.html" class="bluelink ">Augmented reality with MIT&#39;s \&quot;Sixth Sense\&quot; game-changing wearable tech</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Apr 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Feb 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink ">Pysmell - Python auto-complete - works with TextMate too!</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Feb 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jan 2009</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2009/01/26/apple-introduces-revolutionary-new-laptop-with-no-keyboard/index.html" class="bluelink ">Apple Introduces Revolutionary New Laptop With No Keyboard</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Jan 2009.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2008</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2008</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2008/05/30/approach-and-ontology-in-philosurfical/index.html" class="bluelink ">Approach and ontology in PhiloSURFical</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> COST EU Workshop,</span>
+              
+              
+                <span class='pubplace'> Ancona University,</span>
+              
+              
+                <span class='pubdate'> May 2008.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Feb 2008</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2008/02/27/ajax-in-lisp-with-jquery/index.html" class="bluelink ">AJAX in Lisp with JQuery</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Feb 2008.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2007</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Sep 2007</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2007/09/30/aqualog-an-ontologydriven-question-answering-system-for-organizational-semantic-intranets/index.html" class="bluelink ">AquaLog: An ontology-driven question answering system for organizational semantic intranets</a>.
+              <br />
+              <span class="">Vanessa Lopez, Victoria Uren, Enrico Motta, Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Journal of Web Semantics,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Sep 2007.</span>
+              
+              
+                <span class='extrainfo'> Vol. 5, 2, (72-105), Elsevier</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Aug 2007</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2007/08/30/philosurfical-browse-wittgensteins-tractatus-with-the-semantic-web/index.html" class="bluelink ">PhiloSURFical: browse Wittgensteinʼs Tractatus with the Semantic Web</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Wittgenstein and the Philosophy of Information - Proceedings of the 30th International Ludwig Wittgenstein Symposium,</span>
+              
+              
+                <span class='pubplace'> Kirchberg, Austria,</span>
+              
+              
+                <span class='pubdate'> Aug 2007.</span>
+              
+              
+                <span class='extrainfo'> pp. 319-335</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Apr 2007</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2007/04/02/indiana-philosophy-ontology-project/index.html" class="bluelink ">Indiana Philosophy Ontology Project</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Apr 2007.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Mar 2007</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2007/03/05/ontology-of-representations/index.html" class="bluelink ">Ontology of Representations</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Mar 2007.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Mar 2007</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2007/03/02/dear-old-paper-how-could-we-do-without-you/index.html" class="bluelink ">Dear old paper, how could we do without you?</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Mar 2007.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2006</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Nov 2006</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../2006/11/30/knowledge-elicitation-playing-with-cards/index.html" class="bluelink ">Knowledge Elicitation: playing with cards</a>.
+              <br />
+              <span class="">Michele Pasin</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+              
+              
+              
+                <span class='pubdate'> Nov 2006.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">Jun 2006</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2006/06/30/an-ontology-for-the-description-and-navigation-through-philosophical-resources/index.html" class="bluelink ">An ontology for the description and navigation through philosophical resources</a>.
+              <br />
+              <span class="">Michele Pasin, Enrico Motta</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> European Conference on Philosophy and Computing (ECAP-06),</span>
+              
+              
+                <span class='pubplace'> Trondheim, Norway,</span>
+              
+              
+                <span class='pubdate'> Jun 2006.</span>
+              
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2005</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+            <small class="text-muted">May 2005</small>
+
+            <p class='lead' style="font-size: 13px;">
+              <a href="../../../../../papers/2005/05/30/aqualog-a-ontologyportable-question-answering-interface-for-the-semantic-web/index.html" class="bluelink ">AquaLog A Ontology-portable Question Answering interface for the Semantic Web</a>.
+              <br />
+              <span class="">Vanessa Lopez, Michele Pasin, Enrico Motta</span>
+            </p>
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> 2nd European Semantic Web Conference (ESWC05),</span>
+              
+              
+                <span class='pubplace'> Heraklion, Crete, Greece,</span>
+              
+              
+                <span class='pubdate'> May 2005.</span>
+              
+              
+                <span class='extrainfo'> pp. 546-562</span>
+              
+              
+              
+              
+
+            </p>
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+
+
+
+
+
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    
+
+
+
+  </div> <!-- /container -->
+
+
+
+
+
+	</div>
+
+
+  
+
+
+
+  
+
+
+
+
+  <footer class="footer">
+    <div class="container">
+    
+      <p class="text-muted">Find me also on: &nbsp;
+      
+
+  <a href="http://kcl.academia.edu/MichelePasin" target="_blank">Academia</a> | 
+  <a href="https://github.com/lambdamusic" target="_blank">GitHub</a> | 
+  <a href="https://scholar.google.com/citations?user=zj-99x0AAAAJ&hl=en" target="_blank">Google Scholar</a> | 
+  <a href="https://www.instagram.com/lambdamusic/" target="_blank">Instagram</a> |
+  <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0" target="_blank">LinkedIn</a> |
+  <a href="http://www.mendeley.com/profiles/michele-pasin/" target="_blank">Mendeley</a> |
+  <a href="http://orcid.org/0000-0001-8909-7766" target="_blank">Orcid</a> |
+  <a href="http://www.slideshare.net/mpasin" target="_blank">SlideShare</a> |
+  <a href="https://soundcloud.com/magicrebirth" target="_blank">Soundcloud</a> |
+  <a href="http://stackoverflow.com/users/109304/magicrebirth" target="_blank">StackOverflow</a> |
+  <a href="http://twitter.com/#!/lambdaman" target="_blank">Twitter</a> |
+  <a href="https://vimeo.com/lambdamusic" target="_blank">Vimeo</a>
+      
+      </p>
+    
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../../../../media/static/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+
+
+
+    
+
+  </body>
+</html>

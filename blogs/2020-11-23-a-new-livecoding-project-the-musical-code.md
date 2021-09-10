@@ -22,4 +22,3 @@ Hence there's a [YouTube channel](https://www.youtube.com/channel/UCanqSICbxzRNE
 
 [![](/media/static/blog_img/YouTubeMusicalCode-1024x679.jpg)](https://www.youtube.com/channel/UCanqSICbxzRNEZGMlu8qfyw)
 
-Hope someone will find something of interest in there. Comments and feedback totally welcome!
