@@ -1,0 +1,157 @@
+{# this is the homepage: mind that the 3columns css file is used here!  #}
+
+{% extends "researchapp/base.html" %}
+{% load static %}
+{% load extrafilters %}
+
+
+{% block page_specific %}
+
+
+    <div class="row -top-row">
+
+        <div id="mynetwork" style="width: 80%; border:0px solid lightgrey;">
+        </div>
+
+    </div>
+
+
+
+    <div class="row" style="margin-top: 20px;">
+    
+        <div class="col-md-9">
+            <span class="lead headline">Hi, I'm Michele Pasin.</span>
+            <br /><br />
+            <span class="belowheadline"  style="font-size: 18px;">I'm a data scientist with a background in academic research. </span>
+            <hr>
+        </div>
+
+        <div class="-lead black belowheadline col-md-6" style="color: #404040;">
+            <br /><br />
+            My work revolves around three  areas:
+            <br /><br>	
+            <li class="lihome">
+                <span class="hl" style="background: #09ed99;">Knowledge Modeling</span> and Data Architecture in all of its flavors: logical, relational, document oriented, ontology-based, linked data, knowledge graphs etc.. 
+            </li>
+            <li class="lihome">
+                <span class="hl" style="background: #09ed99;">Web Development</span> in particular software tools that support collecting, curating, exploring and distributing richly interconnected datasets in academic or research contexts.
+            </li>
+            <li class="lihome">
+                <span class="hl" style="background: #09ed99;">Data Science</span>, Data Visualization, Exploratory Data Analysis and more generally approaches aimed at facilitating the process of information discovery and sense-making.
+            </li>		
+
+
+            <br />
+            <br />
+            <hr>
+
+            <span class="belowheadline" style="color: #908888;">Want to find out more?</span>
+            <br /><br />
+            Great! Take a look at my <a href="{% url 'researchapp:page_dispatcher' 'projects' %}">projects</a>, my <a href="/blog">blog</a> or my <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0">LinkedIn CV</a>.
+
+            <br />
+            <br />
+        </div>
+   
+    </div> 
+    {% comment %} second row ends {% endcomment %}
+
+
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<script type="text/javascript" src="{% static 'js/vis-network.min.js' %}" ></script>
+
+<script type="text/javascript">
+  // create an array with nodes
+
+  var nodes = new vis.DataSet([
+    {% for t in topics_unique %}
+        {% if t in top_topics %}
+            {id: "{{t}}", label: "{{t}}", value : 20, color:'#09ed99'},
+        {% else %}
+            {id: "{{t}}", label: "{{t}}", value : 10 },
+        {% endif %}     
+    {% endfor %}
+  ]);
+
+  // create an array with edges
+  var edges = new vis.DataSet([
+    {% for t in topics_links %}
+        {from: "{{t.0}}", to: "{{t.1}}"},
+    {% endfor %}
+  ]);
+
+  // create a network
+  var container = document.getElementById('mynetwork');
+  var h = window.innerHeight - 200;
+  container.style.height = h + "px";
+  //console.log(w, w-20)
+  var data = {
+    nodes: nodes,
+    edges: edges
+  };
+  var options = {
+    nodes: { 
+      shape: "dot",  // ellipse, circle, database, box, text, dot, square, icon
+      borderWidth: 1,
+      borderWidthSelected: 2,
+      color: {
+        border: 'grey',
+        background: 'lightgray',
+        highlight: {
+          border: '#2B7CE9',
+          background: '#D2E5FF'
+        },
+        hover: {
+          border: '#2B7CE9',
+          background: '#D2E5FF'
+        }
+      },
+      },
+    edges: {
+      shadow:{
+        enabled: true,
+        color: 'rgba(0,0,0,0.5)',
+        size:10,
+        x:5,
+        y:5
+      },
+    },
+    physics: {
+      stabilization: false,
+      barnesHut: {
+        springLength: 100
+      }
+    },
+  };
+  var network = new vis.Network(container, data, options);
+
+ function focusRandom() {
+    //var nodeId = Math.floor(Math.random() * amountOfNodes);
+    var ids = nodes.getIds();
+    var nodeId = ids[Math.floor(Math.random()*ids.length)];
+
+    var options = {
+        // position: {x:positionx,y:positiony}, // this is not relevant when focusing on nodes
+        scale: 1.0,
+        offset: {x:0,y:0},
+        animation: {
+            duration: 1000,
+            easingFunction: "easeInOutQuad",
+        }
+    };
+    network.focus(nodeId, options);
+    } 
+
+  // start focus loop and repeat
+  setInterval(focusRandom, 4000);
+
+</script>
+
+
+
+{% endblock extra_js %}

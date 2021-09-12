@@ -33,7 +33,7 @@
             {% if pub.pubtype.name == "Blog" %}
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="{{pub.get_absolute_url}}" class="bluelink {% if pub.id == return_item.id %}paper-active{% endif %}">{{pub.title|capfirst}}</a>
+              <a {% if pub.id != return_item.id %}href="{{pub.get_absolute_url}}"{% endif %} class="bluelink {% if pub.id == return_item.id %}paper-active{% endif %}" {% if pub.id == return_item.id %}title="The article on this page"{% endif %}>{{pub.title|capfirst}}</a>
               <!-- <br /> -->
               <!-- <span class="">{{pub|printmanyauthors}}</span> -->
             </p>
@@ -46,7 +46,7 @@
 
             <p class='lead' style="font-size: 13px;">
               <span class='label label-warning'>paper</span>&nbsp;
-              <a href="{{pub.get_absolute_url}}" class="bluelink {% if pub.id == return_item.id %}paper-active{% endif %}">{{pub.title|capfirst}}</a>
+              <a {% if pub.id != return_item.id %}href="{{pub.get_absolute_url}}"{% endif %} class="bluelink {% if pub.id == return_item.id %}paper-active{% endif %}" {% if pub.id == return_item.id %}title="The article on this page"{% endif %}>{{pub.title|capfirst}}</a>
               <!-- <br />
               <span class="">{{pub|printmanyauthors}}</span> -->
             </p>
