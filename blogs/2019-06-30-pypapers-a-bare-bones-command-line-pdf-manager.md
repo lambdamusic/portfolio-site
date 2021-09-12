@@ -10,7 +10,7 @@ tags:
   - "reference_manager"
 ---
 
-Ever felt like softwares like [Mendeley](https://www.mendeley.com/homepage-2-1?interaction_required=true&mboxSession=ea3c06ad39f14ce29d625b9d3be138c5) or [Papers](https://www.papersapp.com/) are great, but somehow slow you down? Ever felt like none of the many [reference manager softwares](https://en.wikipedia.org/wiki/Comparison_of_reference_management_software) out there will ever cut it for you, cause you need something R E A L L Y SIMPLE? I did. Many times. So I've finally crossed the line and tried out building a simple commmand-line PDF manager. [PyPapers](https://github.com/lambdamusic/pypapers), is called.
+> Ever felt like softwares like [Mendeley](https://www.mendeley.com/homepage-2-1?interaction_required=true&mboxSession=ea3c06ad39f14ce29d625b9d3be138c5) or [Papers](https://www.papersapp.com/) are great, but somehow slow you down? Ever felt like none of the many [reference manager softwares](https://en.wikipedia.org/wiki/Comparison_of_reference_management_software) out there will ever cut it for you, cause you need something R E A L L Y SIMPLE? I did. Many times. So I've finally crossed the line and tried out building a simple commmand-line PDF manager. [PyPapers](https://github.com/lambdamusic/pypapers), is called.
 
 Yes - that's right - [command line](https://en.wikipedia.org/wiki/Terminal_(macOS)). So not for everyone. Also: this is bare bones and pre-alpha. So don't expect wonders. It basically provides a simple interface for searching a folder full of PDFs. That's all for now!
 
@@ -30,4 +30,4 @@ Yes - that's right - [command line](https://en.wikipedia.org/wiki/Terminal_(macO
 
 Pretty good. Was concerned I was gonna miss things like collections or tags. But I found a workaround: first, identify the papers I am interested in. Then, create a folder in the same directory and symlink them in there (= create an [alias](https://kb.iu.edu/d/achy)).
 
-It's not quite like [uncarved wood,](https://www.taoistic.com/taoquotes/taoquotes-12-simplicity-stillness-silence.htm) but it definitely feels simple enough.
+It's not quite like [uncarved wood](https://www.taoistic.com/taoquotes/taoquotes-12-simplicity-stillness-silence.htm)... but it definitely feels simple enough!

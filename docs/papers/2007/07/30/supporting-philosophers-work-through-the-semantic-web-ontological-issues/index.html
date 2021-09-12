@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -327,7 +432,8 @@
             <p class="text-muted">Full reference:</p>
 
             <div class="well well-big lead">
-              Michele Pasin, Enrico Motta. Supporting Philosophers’ Work through the Semantic Web: Ontological Issues - Fifth International Workshop on Ontologies and Semantic Web for E-Learning (SWEL-07), held in conjunction with AIED-07 Marina Del Rey, California, USA July 2007 .
+              Michele Pasin, Enrico Motta. Supporting Philosophers’ Work through the Semantic Web: Ontological Issues - Fifth International Workshop on Ontologies and Semantic Web for E-Learning (SWEL-07), held in conjunction with AIED-07 Marina Del Rey, California, USA July 2007 . 
+              <a href="https://lambdamusic.github.io/support.michelepasin.org/public_articles/2007-Pasin-SWEL.pdf" title="Article: Supporting Philosophers’ Work through the Semantic Web: Ontological Issues">PDF</a>  
             </div>
             <br />
 
@@ -399,30 +505,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2020</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2020/08/06/more-jupyter-notebooks-pyvis-and-networkx/index.html" class="bluelink ">More Jupyter notebooks: pyvis and networkx</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2020/08/06/more-jupyter-notebooks-pyvis-and-networkx/index.html" class="bluelink " >More Jupyter notebooks: pyvis and networkx</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2020.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -458,13 +554,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2017</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jan 2017</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2017/01/01/fitting-personal-interpretation-with-the-semantic-web-lessons-learned-from-pliny/index.html" class="bluelink ">Fitting Personal Interpretation with the Semantic Web: lessons learned from Pliny</a>.
-              <br />
-              <span class="">John Bradley, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2017/01/01/fitting-personal-interpretation-with-the-semantic-web-lessons-learned-from-pliny/index.html" class="bluelink " >Fitting Personal Interpretation with the Semantic Web: lessons learned from Pliny</a>
+              <!-- <br />
+              <span class="">John Bradley, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -484,6 +587,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -519,30 +627,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2016</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2016/10/25/leipzig-semantics-2016-conference/index.html" class="bluelink ">Leipzig Semantics 2016 conference</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2016/10/25/leipzig-semantics-2016-conference/index.html" class="bluelink " >Leipzig Semantics 2016 conference</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2016.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -578,30 +676,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2014</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2014/11/25/iswc14-paper-a-hybrid-semantic-publishing-architecture-combining-xml-and-rdf/index.html" class="bluelink ">ISWC14 paper: a hybrid semantic publishing architecture combining XML and RDF</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2014/11/25/iswc14-paper-a-hybrid-semantic-publishing-architecture-combining-xml-and-rdf/index.html" class="bluelink " >ISWC14 paper: a hybrid semantic publishing architecture combining XML and RDF</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2014.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -616,13 +704,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2014</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2014</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2014/10/22/linked-data-experience-at-macmillan-building-discovery-services-for-scientific-and-scholarly-content-on-top-of-a-semantic-data-model/index.html" class="bluelink ">Linked data experience at Macmillan: Building discovery services for scientific and scholarly content on top of a semantic data model</a>.
-              <br />
-              <span class="">Tony Hammond, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2014/10/22/linked-data-experience-at-macmillan-building-discovery-services-for-scientific-and-scholarly-content-on-top-of-a-semantic-data-model/index.html" class="bluelink " >Linked data experience at Macmillan: Building discovery services for scientific and scholarly content on top of a semantic data model</a>
+              <!-- <br />
+              <span class="">Tony Hammond, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -642,6 +737,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -677,13 +777,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2013</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jul 2013</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/07/16/fitting-personal-interpretations-with-the-semantic-web/index.html" class="bluelink ">Fitting Personal Interpretations with the Semantic Web</a>.
-              <br />
-              <span class="">John Bradley, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2013/07/16/fitting-personal-interpretations-with-the-semantic-web/index.html" class="bluelink " >Fitting Personal Interpretations with the Semantic Web</a>
+              <!-- <br />
+              <span class="">John Bradley, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -703,6 +810,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -717,30 +829,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2013/05/20/rdf-semantics-genius-or-madness/index.html" class="bluelink ">[coming soon] RDF semantics - genius or madness?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2013/05/20/rdf-semantics-genius-or-madness/index.html" class="bluelink " >[coming soon] RDF semantics - genius or madness?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -776,30 +878,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2012/11/27/semantic-web-cheat-sheets/index.html" class="bluelink ">Semantic Web Cheat Sheets</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2012/11/27/semantic-web-cheat-sheets/index.html" class="bluelink " >Semantic Web Cheat Sheets</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -814,30 +906,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2012/09/10/navigating-through-the-people-of-medieval-scotland/index.html" class="bluelink ">Navigating through the people of medieval Scotland... one step at a time</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2012/09/10/navigating-through-the-people-of-medieval-scotland/index.html" class="bluelink " >Navigating through the people of medieval Scotland... one step at a time</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -852,13 +934,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2012</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jul 2012</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/07/26/exploring-prosopographical-resources-through-novel-tools-and-visualizations-a-preliminary-investigation/index.html" class="bluelink ">Exploring Prosopographical Resources Through Novel Tools and Visualizations: a Preliminary Investigation</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2012/07/26/exploring-prosopographical-resources-through-novel-tools-and-visualizations-a-preliminary-investigation/index.html" class="bluelink " >Exploring Prosopographical Resources Through Novel Tools and Visualizations: a Preliminary Investigation</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -878,6 +967,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -913,13 +1007,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2011</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2011</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/10/20/semantic-web-approaches-in-digital-history-an-introduction/index.html" class="bluelink ">Semantic Web Approaches in Digital History: an Introduction</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2011/10/20/semantic-web-approaches-in-digital-history-an-introduction/index.html" class="bluelink " >Semantic Web Approaches in Digital History: an Introduction</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -937,6 +1038,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -951,30 +1057,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2011/07/11/workshop-on-live-coding-rmll-11/index.html" class="bluelink ">Workshop on Live Coding @ RMLL-11</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2011/07/11/workshop-on-live-coding-rmll-11/index.html" class="bluelink " >Workshop on Live Coding @ RMLL-11</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -989,53 +1085,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2011</small>
-
-            <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/06/22/browsing-highly-interconnected-humanities-databases-through-multiresult-faceted-browsers/index.html" class="bluelink ">Browsing highly interconnected humanities databases through multi-result faceted browsers</a>.
-              <br />
-              <span class="">Michele Pasin</span>
-            </p>
-
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-              
-              
-                <span class='conference'> Digital Humanities 2011 ,</span>
-              
-              
-                <span class='pubplace'> Stanford, USA,</span>
-              
-              
-                <span class='pubdate'> Jun 2011.</span>
-              
-              
-              
-              
-              
-
-            </p>
 
             
-              <hr>
-            
 
 
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-            <small class="text-muted">Jun 2011</small>
+           
+            <!-- <small class="text-muted">Jun 2011</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/06/16/an-ontological-view-of-canonical-citations/index.html" class="bluelink ">An Ontological View of Canonical Citations</a>.
-              <br />
-              <span class="">Matteo Romanello, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2011/06/22/browsing-highly-interconnected-humanities-databases-through-multiresult-faceted-browsers/index.html" class="bluelink " >Browsing highly interconnected humanities databases through multi-result faceted browsers</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1055,6 +1118,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1069,23 +1137,32 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2011</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2011</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2011/01/07/working-toward-meritocracy-in-italy/index.html" class="bluelink ">Working toward meritocracy in Italy</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2011/06/16/an-ontological-view-of-canonical-citations/index.html" class="bluelink " >An Ontological View of Canonical Citations</a>
+              <!-- <br />
+              <span class="">Matteo Romanello, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
               
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
+              
+                <span class='conference'> Digital Humanities 2011 ,</span>
               
               
+                <span class='pubplace'> Stanford, USA,</span>
               
               
-                <span class='pubdate'> Jan 2011.</span>
+                <span class='pubdate'> Jun 2011.</span>
               
               
               
@@ -1093,6 +1170,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1107,13 +1189,48 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2011</small>
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2011/01/07/working-toward-meritocracy-in-italy/index.html" class="bluelink " >Working toward meritocracy in Italy</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jan 2011</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/01/01/ontological-requirements-for-annotation-and-navigation-of-philosophical-resources/index.html" class="bluelink ">Ontological Requirements for Annotation and Navigation of Philosophical Resources</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2011/01/01/ontological-requirements-for-annotation-and-navigation-of-philosophical-resources/index.html" class="bluelink " >Ontological Requirements for Annotation and Navigation of Philosophical Resources</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1131,6 +1248,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -1166,13 +1288,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2010</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Aug 2010</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/08/30/semantic-technologies-for-elearning-a-case-study-in-the-philosophical-domain-representing-wittgensteins-tractatus-logicophilosophicus/index.html" class="bluelink ">Semantic Technologies for ELearning: A case study in the philosophical domain: representing Wittgenstein&#39;s Tractatus Logico-Philosophicus</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta, Zdenek Zdrahal</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2010/08/30/semantic-technologies-for-elearning-a-case-study-in-the-philosophical-domain-representing-wittgensteins-tractatus-logicophilosophicus/index.html" class="bluelink " >Semantic Technologies for ELearning: A case study in the philosophical domain: representing Wittgenstein&#39;s Tractatus Logico-Philosophicus</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta, Zdenek Zdrahal</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1190,6 +1319,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1204,30 +1338,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2010/08/30/kr-workshop-2-introducing-cidoc-crm-and-frbr-oo/index.html" class="bluelink ">KR workshop #2: introducing CIDOC-CRM and FRBR-OO</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2010/08/30/kr-workshop-2-introducing-cidoc-crm-and-frbr-oo/index.html" class="bluelink " >KR workshop #2: introducing CIDOC-CRM and FRBR-OO</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1242,30 +1366,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2010/07/26/knowledge-representation-workshop-cch/index.html" class="bluelink ">Knowledge Representation workshop @ CCH</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2010/07/26/knowledge-representation-workshop-cch/index.html" class="bluelink " >Knowledge Representation workshop @ CCH</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1280,30 +1394,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2010/02/04/getting-back-to-the-ontological-work/index.html" class="bluelink ">Getting back to the ontological work..</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2010/02/04/getting-back-to-the-ontological-work/index.html" class="bluelink " >Getting back to the ontological work..</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1339,13 +1443,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2009</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2009</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/10/30/philosurfical-an-ontological-approach-to-support-philosophy-learning/index.html" class="bluelink ">PhiloSURFical: An Ontological Approach To Support Philosophy Learning</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2009/10/30/philosurfical-an-ontological-approach-to-support-philosophy-learning/index.html" class="bluelink " >PhiloSURFical: An Ontological Approach To Support Philosophy Learning</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1365,6 +1476,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1379,13 +1495,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2009</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jul 2009</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/07/30/ontological-requirement-for-supporting-smart-navigation-of-philosophical-resources/index.html" class="bluelink ">Ontological Requirement for Supporting Smart Navigation of Philosophical Resources</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta, Zdenek Zdrahal</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2009/07/30/ontological-requirement-for-supporting-smart-navigation-of-philosophical-resources/index.html" class="bluelink " >Ontological Requirement for Supporting Smart Navigation of Philosophical Resources</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta, Zdenek Zdrahal</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1405,6 +1528,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1419,30 +1547,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2009/07/21/roman-port-networks-project/index.html" class="bluelink ">Roman Port Networks project</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2009/07/21/roman-port-networks-project/index.html" class="bluelink " >Roman Port Networks project</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1457,30 +1575,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink ">Pysmell - Python auto-complete - works with TextMate too!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink " >Pysmell - Python auto-complete - works with TextMate too!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1516,30 +1624,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2008</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2008/01/13/how-semantic-is-the-semantic-web/index.html" class="bluelink ">How semantic is the semantic web?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2008/01/13/how-semantic-is-the-semantic-web/index.html" class="bluelink " >How semantic is the semantic web?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2008.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1575,13 +1673,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2007</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Sep 2007</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../09/30/aqualog-an-ontologydriven-question-answering-system-for-organizational-semantic-intranets/index.html" class="bluelink ">AquaLog: An ontology-driven question answering system for organizational semantic intranets</a>.
-              <br />
-              <span class="">Vanessa Lopez, Victoria Uren, Enrico Motta, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../09/30/aqualog-an-ontologydriven-question-answering-system-for-organizational-semantic-intranets/index.html" class="bluelink " >AquaLog: An ontology-driven question answering system for organizational semantic intranets</a>
+              <!-- <br />
+              <span class="">Vanessa Lopez, Victoria Uren, Enrico Motta, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1601,6 +1706,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1615,13 +1725,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2007</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Aug 2007</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../08/30/philosurfical-browse-wittgensteins-tractatus-with-the-semantic-web/index.html" class="bluelink ">PhiloSURFical: browse Wittgensteinʼs Tractatus with the Semantic Web</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../08/30/philosurfical-browse-wittgensteins-tractatus-with-the-semantic-web/index.html" class="bluelink " >PhiloSURFical: browse Wittgensteinʼs Tractatus with the Semantic Web</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1643,6 +1760,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1657,13 +1779,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2007</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jul 2007</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Supporting Philosophers’ Work through the Semantic Web: Ontological Issues</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Supporting Philosophers’ Work through the Semantic Web: Ontological Issues</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1683,6 +1812,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1697,30 +1831,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2007/06/07/sw-vs-ai-new-and-old-stuff/index.html" class="bluelink ">Article: \&quot;The Semantic Web: The Origins of Artificial Intelligence Redux\&quot;</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2007/06/07/sw-vs-ai-new-and-old-stuff/index.html" class="bluelink " >Article: \&quot;The Semantic Web: The Origins of Artificial Intelligence Redux\&quot;</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1756,30 +1880,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2006/11/28/pathway-wiki-semantic-navigator/index.html" class="bluelink ">Pathway: Wiki Semantic Navigator</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2006/11/28/pathway-wiki-semantic-navigator/index.html" class="bluelink " >Pathway: Wiki Semantic Navigator</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1794,30 +1908,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2006/11/23/multimedian-semantic-navigator/index.html" class="bluelink ">MultimediaN semantic navigator</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2006/11/23/multimedian-semantic-navigator/index.html" class="bluelink " >MultimediaN semantic navigator</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1832,30 +1936,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2006/10/23/semantic-wikipedia-some-issues/index.html" class="bluelink ">Semantic Wikipedia: some issues</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2006/10/23/semantic-wikipedia-some-issues/index.html" class="bluelink " >Semantic Wikipedia: some issues</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1870,30 +1964,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2006/07/19/a-random-walk-through-the-20th-century/index.html" class="bluelink ">A Random Walk through the 20th Century</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2006/07/19/a-random-walk-through-the-20th-century/index.html" class="bluelink " >A Random Walk through the 20th Century</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1908,13 +1992,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2006</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2006</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2006/06/30/an-ontology-for-the-description-and-navigation-through-philosophical-resources/index.html" class="bluelink ">An ontology for the description and navigation through philosophical resources</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2006/06/30/an-ontology-for-the-description-and-navigation-through-philosophical-resources/index.html" class="bluelink " >An ontology for the description and navigation through philosophical resources</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1934,6 +2025,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1948,13 +2044,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2006</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2006</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2006/06/30/a-task-based-approach-to-support-situating-learning-for-the-semantic-web/index.html" class="bluelink ">A Task Based Approach to Support Situating Learning for the Semantic Web</a>.
-              <br />
-              <span class="">Michele Pasin, Martin Dzbor</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2006/06/30/a-task-based-approach-to-support-situating-learning-for-the-semantic-web/index.html" class="bluelink " >A Task Based Approach to Support Situating Learning for the Semantic Web</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Martin Dzbor</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1974,6 +2077,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1988,13 +2096,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2006</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2006</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2006/06/30/paving-the-way-towards-the-ehumanities-a-semantic-web-approach-to-support-the-learning-of-philosophy/index.html" class="bluelink ">Paving the way towards the e-humanities: a Semantic Web approach to support the learning of philosophy </a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2006/06/30/paving-the-way-towards-the-ehumanities-a-semantic-web-approach-to-support-the-learning-of-philosophy/index.html" class="bluelink " >Paving the way towards the e-humanities: a Semantic Web approach to support the learning of philosophy </a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2014,6 +2129,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -2049,13 +2169,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2005</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2005</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2005/10/30/semantic-learning-narratives/index.html" class="bluelink ">Semantic Learning Narratives</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2005/10/30/semantic-learning-narratives/index.html" class="bluelink " >Semantic Learning Narratives</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2075,6 +2202,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -2089,13 +2221,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2005</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">May 2005</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2005/05/30/aqualog-a-ontologyportable-question-answering-interface-for-the-semantic-web/index.html" class="bluelink ">AquaLog A Ontology-portable Question Answering interface for the Semantic Web</a>.
-              <br />
-              <span class="">Vanessa Lopez, Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2005/05/30/aqualog-a-ontologyportable-question-answering-interface-for-the-semantic-web/index.html" class="bluelink " >AquaLog A Ontology-portable Question Answering interface for the Semantic Web</a>
+              <!-- <br />
+              <span class="">Vanessa Lopez, Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2117,6 +2256,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 

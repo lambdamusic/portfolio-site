@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -321,6 +426,9 @@
 
             <div class="blogentry"> 
 
+              <hr>
+
+
             <p>Went to the <a href="http://gigs.southbankcentre.co.uk/2011/04/02/ether-2011-trailer-for-2001-a-space-odyssey-live-with-philharmonia-orchestra/">SouthBank Centre</a> the other night, to see Kubrick's 2001: A Space Odyssey Live with Philharmonia Orchestra. Very very nice, almost moving even if I've seen the movie a dozen times already!</p>
 <blockquote>
 <p>Following a sell-out success in June 2010, Southbank Centre presents Stanley Kubrick’s seminal film <a href="http://en.wikipedia.org/wiki/2001:_A_Space_Odyssey_(film)">2001: A Space Odyssey</a> with live music. Conducted by <a href="http://www.andrederidder.com/biog.html">André de Ridder</a>, the enormous forces of <a href="http://www.philharmonia.co.uk/">Philharmonia Orchestra and Philharmonia Voices</a> join together to perform the film’s extraordinary soundtrack, as live accompaniment to a screening in Royal Festival Hall. Long recognised as one of the greatest science fiction films of all time, 2001 – A Space Odyssey is celebrated for its technological realism, its innovative Oscar-winning special effects and a <a href="http://en.wikipedia.org/wiki/2001:_A_Space_Odyssey_(score)">bold use of music</a>. The film brought worldwide fame to both Richard Strauss’ Also Sprach Zarathustra and the music of Gyorgy Ligeti; it also created one of cinema’s most memorable images as a spaceship floats serenely through space to the strains of Johann Strauss’ Blue Danube waltz.</p>
@@ -332,7 +440,7 @@
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">A Space Odyssey Live with Philharmonia Orchestra</a>. Blog post on www.michelepasin.org. Published on April 9, 2011.
@@ -407,30 +515,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2020</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2020/11/23/a-new-livecoding-project-the-musical-code/index.html" class="bluelink ">A new livecoding project: &#39;The Musical Code&#39;</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2020/11/23/a-new-livecoding-project-the-musical-code/index.html" class="bluelink " >A new livecoding project: &#39;The Musical Code&#39;</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2020.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -445,30 +543,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2020</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2020/01/30/getting-to-grips-with-google-colab/index.html" class="bluelink ">Getting to grips with Google Colab</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2020/01/30/getting-to-grips-with-google-colab/index.html" class="bluelink " >Getting to grips with Google Colab</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2020.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -504,30 +592,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2019</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2019/05/03/running-jupyter-demos-via-mybinder-org/index.html" class="bluelink ">Running interactive Jupyter demos with  mybinder.org</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2019/05/03/running-jupyter-demos-via-mybinder-org/index.html" class="bluelink " >Running interactive Jupyter demos with  mybinder.org</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2019.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -563,13 +641,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2017</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2017</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2017/10/19/data-integration-and-disintegration-managing-springer-nature-scigraph-with-shacl-and-owl/index.html" class="bluelink ">Data integration and disintegration: Managing Springer Nature SciGraph with SHACL and OWL</a>.
-              <br />
-              <span class="">Tony Hammond, Michele Pasin, Evangelos Theodoridis</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2017/10/19/data-integration-and-disintegration-managing-springer-nature-scigraph-with-shacl-and-owl/index.html" class="bluelink " >Data integration and disintegration: Managing Springer Nature SciGraph with SHACL and OWL</a>
+              <!-- <br />
+              <span class="">Tony Hammond, Michele Pasin, Evangelos Theodoridis</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -589,6 +674,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -603,13 +693,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2017</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jan 2017</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2017/01/01/fitting-personal-interpretation-with-the-semantic-web-lessons-learned-from-pliny/index.html" class="bluelink ">Fitting Personal Interpretation with the Semantic Web: lessons learned from Pliny</a>.
-              <br />
-              <span class="">John Bradley, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2017/01/01/fitting-personal-interpretation-with-the-semantic-web-lessons-learned-from-pliny/index.html" class="bluelink " >Fitting Personal Interpretation with the Semantic Web: lessons learned from Pliny</a>
+              <!-- <br />
+              <span class="">John Bradley, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -629,6 +726,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -664,30 +766,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2015/11/28/accessing-os-x-dictionary-with-python/index.html" class="bluelink ">Accessing OS X dictionary with Python</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2015/11/28/accessing-os-x-dictionary-with-python/index.html" class="bluelink " >Accessing OS X dictionary with Python</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -702,30 +794,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2015/09/21/another-experiment-with-wittgensteins-tractatus/index.html" class="bluelink ">Another experiment with Wittgenstein&#39;s Tractatus</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2015/09/21/another-experiment-with-wittgensteins-tractatus/index.html" class="bluelink " >Another experiment with Wittgenstein&#39;s Tractatus</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -740,30 +822,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2015/01/05/introducing-resquotes-com/index.html" class="bluelink ">Take control of your digital annotations with ResQuotes.com</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2015/01/05/introducing-resquotes-com/index.html" class="bluelink " >Take control of your digital annotations with ResQuotes.com</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -799,30 +871,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2014</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2014/08/22/visualising-a-big-taxonomy-in-a-small-screen-in-pure-html/index.html" class="bluelink ">How to visualize a big taxonomy within a single webpage?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2014/08/22/visualising-a-big-taxonomy-in-a-small-screen-in-pure-html/index.html" class="bluelink " >How to visualize a big taxonomy within a single webpage?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2014.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -858,30 +920,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/12/16/annotating-the-web-with-scrible/index.html" class="bluelink ">Annotating the web with Scrible</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/12/16/annotating-the-web-with-scrible/index.html" class="bluelink " >Annotating the web with Scrible</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -896,30 +948,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/11/27/new-livecoding-screencast-ziggurat-51/index.html" class="bluelink ">New livecoding screencast: Ziggurat 51</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/11/27/new-livecoding-screencast-ziggurat-51/index.html" class="bluelink " >New livecoding screencast: Ziggurat 51</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -934,30 +976,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/09/15/building-a-master-volumes-ui-in-impromptu/index.html" class="bluelink ">Building a master volumes UI with impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/09/15/building-a-master-volumes-ui-in-impromptu/index.html" class="bluelink " >Building a master volumes UI with impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -972,30 +1004,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/07/25/creating-useful-classifications-with-taxonomies-part-1/index.html" class="bluelink ">Creating useful classifications with taxonomies (part 1)</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/07/25/creating-useful-classifications-with-taxonomies-part-1/index.html" class="bluelink " >Creating useful classifications with taxonomies (part 1)</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1010,13 +1032,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2013</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jul 2013</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2013/07/16/fitting-personal-interpretations-with-the-semantic-web/index.html" class="bluelink ">Fitting Personal Interpretations with the Semantic Web</a>.
-              <br />
-              <span class="">John Bradley, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2013/07/16/fitting-personal-interpretations-with-the-semantic-web/index.html" class="bluelink " >Fitting Personal Interpretations with the Semantic Web</a>
+              <!-- <br />
+              <span class="">John Bradley, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1036,6 +1065,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -1071,30 +1105,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/10/12/teaching-programming-concepts-visually-with-the-online-python-tutor/index.html" class="bluelink ">Teaching programming concepts visually with the Online Python Tutor</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/10/12/teaching-programming-concepts-visually-with-the-online-python-tutor/index.html" class="bluelink " >Teaching programming concepts visually with the Online Python Tutor</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1109,30 +1133,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/06/01/crowdsourcing-interpretation-with-prism-a-new-software-from-the-scholars-lab/index.html" class="bluelink ">Crowdsourcing interpretation with Prism, a new software from the Scholar&#39;s Lab</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/06/01/crowdsourcing-interpretation-with-prism-a-new-software-from-the-scholars-lab/index.html" class="bluelink " >Crowdsourcing interpretation with Prism, a new software from the Scholar&#39;s Lab</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1147,30 +1161,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html" class="bluelink ">Getting hold of your Flickr collections with Python</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html" class="bluelink " >Getting hold of your Flickr collections with Python</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1185,30 +1189,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/01/13/special-issue-of-cmj-dvd-on-livecoding/index.html" class="bluelink ">Special issue of CMJ DVD on livecoding</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/01/13/special-issue-of-cmj-dvd-on-livecoding/index.html" class="bluelink " >Special issue of CMJ DVD on livecoding</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1244,30 +1238,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../12/26/article-thought-and-performance-live-coding-music-explained-to-anyone/index.html" class="bluelink ">Article: Thought and Performance, Live Coding Music, Explained to Anyone</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../12/26/article-thought-and-performance-live-coding-music-explained-to-anyone/index.html" class="bluelink " >Article: Thought and Performance, Live Coding Music, Explained to Anyone</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1282,30 +1266,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../08/25/first-steps-with-canvas-and-html5/index.html" class="bluelink ">First steps with Canvas and HTML5</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../08/25/first-steps-with-canvas-and-html5/index.html" class="bluelink " >First steps with Canvas and HTML5</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1320,30 +1294,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../07/18/inspecting-an-ontology-with-rdflib/index.html" class="bluelink ">Inspecting an ontology with RDFLib</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../07/18/inspecting-an-ontology-with-rdflib/index.html" class="bluelink " >Inspecting an ontology with RDFLib</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1358,30 +1322,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../07/11/workshop-on-live-coding-rmll-11/index.html" class="bluelink ">Workshop on Live Coding @ RMLL-11</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../07/11/workshop-on-live-coding-rmll-11/index.html" class="bluelink " >Workshop on Live Coding @ RMLL-11</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1396,30 +1350,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../07/08/livecoding-in-paris-stransbourg/index.html" class="bluelink ">Livecoding in Paris &amp; Strasbourg</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../07/08/livecoding-in-paris-stransbourg/index.html" class="bluelink " >Livecoding in Paris &amp; Strasbourg</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1434,30 +1378,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../06/29/livecoding-is-like-gardening/index.html" class="bluelink ">Livecoding is like gardening</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../06/29/livecoding-is-like-gardening/index.html" class="bluelink " >Livecoding is like gardening</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1472,30 +1406,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../06/26/bjork-redefines-the-musicians-product-with-biophilia-albumapp/index.html" class="bluelink ">Bjork redefines the musician&#39;s product with &#39;Biophilia&#39; album/app</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../06/26/bjork-redefines-the-musicians-product-with-biophilia-albumapp/index.html" class="bluelink " >Bjork redefines the musician&#39;s product with &#39;Biophilia&#39; album/app</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1510,30 +1434,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../05/02/the-new-livecoding-error-hook-in-impromptu/index.html" class="bluelink ">The new Livecoding Error Hook in Impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../05/02/the-new-livecoding-error-hook-in-impromptu/index.html" class="bluelink " >The new Livecoding Error Hook in Impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1548,30 +1462,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../14/allegro-cl-graph/index.html" class="bluelink ">RDF programming with AllegroCL and AllegroGraph</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../14/allegro-cl-graph/index.html" class="bluelink " >RDF programming with AllegroCL and AllegroGraph</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1586,30 +1490,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">A Space Odyssey Live with Philharmonia Orchestra</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">A Space Odyssey Live with Philharmonia Orchestra</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1624,30 +1518,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../03/29/an-alternative-to-the-play-macro-iplay-and-with-instrument/index.html" class="bluelink ">An alternative to the &#39;play&#39; macro: &#39;iplay&#39; and &#39;with-instrument&#39;</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../03/29/an-alternative-to-the-play-macro-iplay-and-with-instrument/index.html" class="bluelink " >An alternative to the &#39;play&#39; macro: &#39;iplay&#39; and &#39;with-instrument&#39;</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1662,30 +1546,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../02/24/new-livecoding-documentary-available/index.html" class="bluelink ">&#39;Show us your screens&#39;: new Livecoding documentary</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../02/24/new-livecoding-documentary-available/index.html" class="bluelink " >&#39;Show us your screens&#39;: new Livecoding documentary</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1700,30 +1574,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../01/21/live-coding-in-clojure/index.html" class="bluelink ">Live coding in clojure</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../01/21/live-coding-in-clojure/index.html" class="bluelink " >Live coding in clojure</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1759,30 +1623,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/12/09/livecoding-xmas-event-at-goldsmith-college/index.html" class="bluelink ">Livecoding Xmas event at Goldsmith College</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/12/09/livecoding-xmas-event-at-goldsmith-college/index.html" class="bluelink " >Livecoding Xmas event at Goldsmith College</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1797,30 +1651,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/10/29/ozric-tentacles-live-islington-academy-london/index.html" class="bluelink ">Ozric Tentacles live @ Islington Academy, London</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/10/29/ozric-tentacles-live-islington-academy-london/index.html" class="bluelink " >Ozric Tentacles live @ Islington Academy, London</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1835,30 +1679,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/10/28/jeff-beck-live-at-the-royal-albert-hall/index.html" class="bluelink ">Jeff Beck live at the Royal Albert Hall</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/10/28/jeff-beck-live-at-the-royal-albert-hall/index.html" class="bluelink " >Jeff Beck live at the Royal Albert Hall</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1873,30 +1707,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/10/21/editing-pdf-metadata-on-osx-ie-having-the-kindle-display-the-right-titleauthor-with-pdfs/index.html" class="bluelink ">Editing PDF metadata on OSx (ie: having the Kindle display the right title/author with pdfs)</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/10/21/editing-pdf-metadata-on-osx-ie-having-the-kindle-display-the-right-titleauthor-with-pdfs/index.html" class="bluelink " >Editing PDF metadata on OSx (ie: having the Kindle display the right title/author with pdfs)</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1911,30 +1735,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/07/13/space-invaders-for-iphone/index.html" class="bluelink ">Space Invaders for iPhone</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/07/13/space-invaders-for-iphone/index.html" class="bluelink " >Space Invaders for iPhone</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1949,30 +1763,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/07/05/gong-how-to-stay-alive-video-clip/index.html" class="bluelink ">Gong - How To Stay Alive video clip</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/07/05/gong-how-to-stay-alive-video-clip/index.html" class="bluelink " >Gong - How To Stay Alive video clip</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1987,30 +1791,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/04/02/finally-some-more-livecoding/index.html" class="bluelink ">Finally some more livecoding</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/04/02/finally-some-more-livecoding/index.html" class="bluelink " >Finally some more livecoding</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2025,30 +1819,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/02/12/video-recordings-of-the-livecoding-session-anatomy-theatre/index.html" class="bluelink ">Video recordings of the livecoding session @ anatomy theatre</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/02/12/video-recordings-of-the-livecoding-session-anatomy-theatre/index.html" class="bluelink " >Video recordings of the livecoding session @ anatomy theatre</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2063,30 +1847,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/01/10/livecoding-night-kings-college-coming-up/index.html" class="bluelink ">Livecoding night @ kings college coming up</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/01/10/livecoding-night-kings-college-coming-up/index.html" class="bluelink " >Livecoding night @ kings college coming up</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -2122,30 +1896,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/12/03/creating-questionnaires-with-django/index.html" class="bluelink ">Creating Questionnaires with Django</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/12/03/creating-questionnaires-with-django/index.html" class="bluelink " >Creating Questionnaires with Django</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2160,30 +1924,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/11/23/new-song-with-impromptu-kali/index.html" class="bluelink ">New song with Impromptu: KALI</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/11/23/new-song-with-impromptu-kali/index.html" class="bluelink " >New song with Impromptu: KALI</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2198,30 +1952,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/08/13/freeze-any-webapp-with-fluid/index.html" class="bluelink ">Freeze any webapp with Fluid</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/08/13/freeze-any-webapp-with-fluid/index.html" class="bluelink " >Freeze any webapp with Fluid</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2236,30 +1980,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/08/06/representing-hierarchical-data-with-django-and-mptt/index.html" class="bluelink ">Representing hierarchical data with Django and MPTT</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/08/06/representing-hierarchical-data-with-django-and-mptt/index.html" class="bluelink " >Representing hierarchical data with Django and MPTT</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2274,30 +2008,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/06/10/share-and-browse-links-with-multiurl/index.html" class="bluelink ">Share and browse links with MultiUrl</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/06/10/share-and-browse-links-with-multiurl/index.html" class="bluelink " >Share and browse links with MultiUrl</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2312,30 +2036,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/05/14/layer-the-web-with-blerp/index.html" class="bluelink ">Layer the web with Blerp!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/05/14/layer-the-web-with-blerp/index.html" class="bluelink " >Layer the web with Blerp!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2350,30 +2064,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/04/02/augmented-reality-with-mits-sixth-sense-game-changing-wearable-tech/index.html" class="bluelink ">Augmented reality with MIT&#39;s \&quot;Sixth Sense\&quot; game-changing wearable tech</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/04/02/augmented-reality-with-mits-sixth-sense-game-changing-wearable-tech/index.html" class="bluelink " >Augmented reality with MIT&#39;s \&quot;Sixth Sense\&quot; game-changing wearable tech</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2388,30 +2092,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink ">Pysmell - Python auto-complete - works with TextMate too!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink " >Pysmell - Python auto-complete - works with TextMate too!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2426,30 +2120,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/01/26/apple-introduces-revolutionary-new-laptop-with-no-keyboard/index.html" class="bluelink ">Apple Introduces Revolutionary New Laptop With No Keyboard</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/01/26/apple-introduces-revolutionary-new-laptop-with-no-keyboard/index.html" class="bluelink " >Apple Introduces Revolutionary New Laptop With No Keyboard</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -2485,30 +2169,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2008</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2008/02/27/ajax-in-lisp-with-jquery/index.html" class="bluelink ">AJAX in Lisp with JQuery</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2008/02/27/ajax-in-lisp-with-jquery/index.html" class="bluelink " >AJAX in Lisp with JQuery</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2008.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -2544,13 +2218,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2007</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Aug 2007</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2007/08/30/philosurfical-browse-wittgensteins-tractatus-with-the-semantic-web/index.html" class="bluelink ">PhiloSURFical: browse Wittgensteinʼs Tractatus with the Semantic Web</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2007/08/30/philosurfical-browse-wittgensteins-tractatus-with-the-semantic-web/index.html" class="bluelink " >PhiloSURFical: browse Wittgensteinʼs Tractatus with the Semantic Web</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2572,6 +2253,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -2586,30 +2272,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2007/03/02/dear-old-paper-how-could-we-do-without-you/index.html" class="bluelink ">Dear old paper, how could we do without you?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2007/03/02/dear-old-paper-how-could-we-do-without-you/index.html" class="bluelink " >Dear old paper, how could we do without you?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -2645,30 +2321,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2006/12/01/a-cyberspace-atlas/index.html" class="bluelink ">A Cyberspace Atlas</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2006/12/01/a-cyberspace-atlas/index.html" class="bluelink " >A Cyberspace Atlas</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2683,30 +2349,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2006/11/30/knowledge-elicitation-playing-with-cards/index.html" class="bluelink ">Knowledge Elicitation: playing with cards</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2006/11/30/knowledge-elicitation-playing-with-cards/index.html" class="bluelink " >Knowledge Elicitation: playing with cards</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 

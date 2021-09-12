@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -321,79 +426,95 @@
 
             <div class="blogentry"> 
 
+              <hr>
+
+
             <iframe src="http://player.vimeo.com/video/7434643?autoplay=1" width="400" height="300" frameborder="0"></iframe>
 
 <p>Andrew Sorensen <a href="http://lists.moso.com.au/pipermail/impromptu/2009-October/000414.html">posted some code in the Impromptu mailing list</a> showing <strong>how to add graphics (and various other things) on top of a code 'image'</strong>. As usual I regret not having a whole free day to play with this, but just by messing around a bit with some parameters it's easy to achieve some interesting effects...</p>
 <p>Here's the source code from Andrew:</p>
-<p>```</p>
-<p>(gfx:start-live-video)</p>
-<p>(define canvas (gfx:make-canvas 640 480))</p>
-<p>(define gl (gl:make-opengl))
-(gl:open-opengl gl '(0 0 640 480))</p>
-<p>;; draw code behind a rotating cube
-;; if you wanted you could now call gfx:start-movie-capture
-;; and pass the gl context where canvas usually goes.</p>
-<p>(define loop-gl
-    (lambda (beat)
-       (let<em> ((code (gfx:get-code-image))
-              (flipped (gfx:flip-image code))
-              (width (car (gfx:get-image-size code)))
-              (height (cdr (gfx:get-image-size code))))
-          (gl:clear gl (+ </em>gl:color-buffer-bit<em> </em>gl:depth-buffer-bit<em>))
-          (gl:window-pos gl 0 0 .99)
-          (gl:draw-pixels gl width height </em>gl:rgba<em> </em>gl:unsigned-byte<em> flipped)
-          (gl:load-identity gl)
-          (gl:translate gl 0 0 .5)
-          (gl:rotate gl (</em> beat 10) 1 1 1)
-          (gl:color gl 1 1 1 1)
-          (glut:wire-cube gl 0.5)
-          (gl:flush gl)
-          (gl:update-backing-image gl)
-          (objc:release (+ (now) 5000) code flipped)
-          (callback (<em>metro</em> (+ beat (* .5 1/6))) 'loop-gl (+ beat 1/6)))))</p>
-<p>(loop-gl (<em>metro</em> 'get-beat 4))8</p>
-<p>;; define an image to use as layer3</p>
-<p>(define layer3 (gfx:make-image 640 480))</p>
-<p>;; draw paths to layer3
-(define draw-on-layer3
-    (lambda (beat)
-       (gfx:clear-image layer3)
-       (dotimes (i 10)
-          (gfx:path2image (gfx:make-circle (cosr 320 200 (/ i 100))
-                                           (sinr 240 200 (/ i 100))
-                                           20)
-                          layer3
-                          '() (list (/ i 5) 0 1 1)))
-       (callback (<em>metro</em> (+ beat (* .5 1/6))) 'draw-on-layer3 (+ beat 1/6))))</p>
-<p>(draw-on-layer3 (<em>metro</em> 'get-beat 4))</p>
-<p>;; draw video and layer3 transparently into the opengl bitmap
-;; then render the opengl bitmap to the canvas
-;;
-;; You could easily replace
-;; (gl:get-image-from-opengl gl) with (gfx:get-code-image)
-;; if you didn't want to use any opengl</p>
-<p>(define capture-code
-    (lambda (time)
-       (let ((video (gfx:get-live-frame))
-             (opengl (gl:get-image-from-opengl gl)))
-          (gfx:image2image video opengl .3)
-          (gfx:image2image layer3 opengl 1)
-          (gfx:draw-image time canvas opengl .9)
-          (objc:release (+ time 5000) opengl video))
-       (callback (+ time 2000) 'capture-code (+ time 5000))))</p>
-<p>(capture-code (now))</p>
-<p>;; start-movie-capture takes a canvas OR an opengl context
-;; so you could call (gfx:start-movie-capture gl ...
-;; as long as your gl code calls gl:update-backing-image</p>
-<p>(gfx:start-movie-capture canvas "~/tmp/my.mov" #t)
-;(gfx:stop-movie-capture canvas)</p>
-<p>```</p>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">start</span><span class="o">-</span><span class="n">live</span><span class="o">-</span><span class="n">video</span><span class="p">)</span>
+
+<span class="p">(</span><span class="n">define</span> <span class="n">canvas</span> <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">make</span><span class="o">-</span><span class="n">canvas</span> <span class="mi">640</span> <span class="mi">480</span><span class="p">))</span>
+
+<span class="p">(</span><span class="n">define</span> <span class="n">gl</span> <span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="n">make</span><span class="o">-</span><span class="n">opengl</span><span class="p">))</span>
+<span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="n">open</span><span class="o">-</span><span class="n">opengl</span> <span class="n">gl</span> <span class="s1">&#39;(0 0 640 480))</span>
+
+<span class="p">;;</span> <span class="n">draw</span> <span class="n">code</span> <span class="n">behind</span> <span class="n">a</span> <span class="n">rotating</span> <span class="n">cube</span>
+<span class="p">;;</span> <span class="k">if</span> <span class="n">you</span> <span class="n">wanted</span> <span class="n">you</span> <span class="n">could</span> <span class="n">now</span> <span class="n">call</span> <span class="n">gfx</span><span class="p">:</span><span class="n">start</span><span class="o">-</span><span class="n">movie</span><span class="o">-</span><span class="n">capture</span>
+<span class="p">;;</span> <span class="ow">and</span> <span class="k">pass</span> <span class="n">the</span> <span class="n">gl</span> <span class="n">context</span> <span class="n">where</span> <span class="n">canvas</span> <span class="n">usually</span> <span class="n">goes</span><span class="o">.</span>
+
+<span class="p">(</span><span class="n">define</span> <span class="n">loop</span><span class="o">-</span><span class="n">gl</span>
+    <span class="p">(</span><span class="n">lambda</span> <span class="p">(</span><span class="n">beat</span><span class="p">)</span>
+       <span class="p">(</span><span class="n">let</span><span class="o">*</span> <span class="p">((</span><span class="n">code</span> <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">get</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="n">image</span><span class="p">))</span>
+              <span class="p">(</span><span class="n">flipped</span> <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">flip</span><span class="o">-</span><span class="n">image</span> <span class="n">code</span><span class="p">))</span>
+              <span class="p">(</span><span class="n">width</span> <span class="p">(</span><span class="n">car</span> <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">get</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">size</span> <span class="n">code</span><span class="p">)))</span>
+              <span class="p">(</span><span class="n">height</span> <span class="p">(</span><span class="n">cdr</span> <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">get</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">size</span> <span class="n">code</span><span class="p">))))</span>
+          <span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="n">clear</span> <span class="n">gl</span> <span class="p">(</span><span class="o">+</span> <span class="o">*</span><span class="n">gl</span><span class="p">:</span><span class="n">color</span><span class="o">-</span><span class="n">buffer</span><span class="o">-</span><span class="n">bit</span><span class="o">*</span> <span class="o">*</span><span class="n">gl</span><span class="p">:</span><span class="n">depth</span><span class="o">-</span><span class="n">buffer</span><span class="o">-</span><span class="n">bit</span><span class="o">*</span><span class="p">))</span>
+          <span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="n">window</span><span class="o">-</span><span class="n">pos</span> <span class="n">gl</span> <span class="mi">0</span> <span class="mi">0</span> <span class="o">.</span><span class="mi">99</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="n">draw</span><span class="o">-</span><span class="n">pixels</span> <span class="n">gl</span> <span class="n">width</span> <span class="n">height</span> <span class="o">*</span><span class="n">gl</span><span class="p">:</span><span class="n">rgba</span><span class="o">*</span> <span class="o">*</span><span class="n">gl</span><span class="p">:</span><span class="n">unsigned</span><span class="o">-</span><span class="n">byte</span><span class="o">*</span> <span class="n">flipped</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="nb">load</span><span class="o">-</span><span class="n">identity</span> <span class="n">gl</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="n">translate</span> <span class="n">gl</span> <span class="mi">0</span> <span class="mi">0</span> <span class="o">.</span><span class="mi">5</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="n">rotate</span> <span class="n">gl</span> <span class="p">(</span><span class="o">*</span> <span class="n">beat</span> <span class="mi">10</span><span class="p">)</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="n">color</span> <span class="n">gl</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">glut</span><span class="p">:</span><span class="n">wire</span><span class="o">-</span><span class="n">cube</span> <span class="n">gl</span> <span class="mf">0.5</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="n">flush</span> <span class="n">gl</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="n">update</span><span class="o">-</span><span class="n">backing</span><span class="o">-</span><span class="n">image</span> <span class="n">gl</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">objc</span><span class="p">:</span><span class="n">release</span> <span class="p">(</span><span class="o">+</span> <span class="p">(</span><span class="n">now</span><span class="p">)</span> <span class="mi">5000</span><span class="p">)</span> <span class="n">code</span> <span class="n">flipped</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">callback</span> <span class="p">(</span><span class="o">*</span><span class="n">metro</span><span class="o">*</span> <span class="p">(</span><span class="o">+</span> <span class="n">beat</span> <span class="p">(</span><span class="o">*</span> <span class="o">.</span><span class="mi">5</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)))</span> <span class="s1">&#39;loop-gl (+ beat 1/6)))))</span>
+
+<span class="p">(</span><span class="n">loop</span><span class="o">-</span><span class="n">gl</span> <span class="p">(</span><span class="o">*</span><span class="n">metro</span><span class="o">*</span> <span class="s1">&#39;get-beat 4))8</span>
+
+<span class="p">;;</span> <span class="n">define</span> <span class="n">an</span> <span class="n">image</span> <span class="n">to</span> <span class="n">use</span> <span class="k">as</span> <span class="n">layer3</span>
+
+<span class="p">(</span><span class="n">define</span> <span class="n">layer3</span> <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">make</span><span class="o">-</span><span class="n">image</span> <span class="mi">640</span> <span class="mi">480</span><span class="p">))</span>
+
+<span class="p">;;</span> <span class="n">draw</span> <span class="n">paths</span> <span class="n">to</span> <span class="n">layer3</span>
+<span class="p">(</span><span class="n">define</span> <span class="n">draw</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">layer3</span>
+    <span class="p">(</span><span class="n">lambda</span> <span class="p">(</span><span class="n">beat</span><span class="p">)</span>
+       <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">clear</span><span class="o">-</span><span class="n">image</span> <span class="n">layer3</span><span class="p">)</span>
+       <span class="p">(</span><span class="n">dotimes</span> <span class="p">(</span><span class="n">i</span> <span class="mi">10</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">path2image</span> <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">make</span><span class="o">-</span><span class="n">circle</span> <span class="p">(</span><span class="n">cosr</span> <span class="mi">320</span> <span class="mi">200</span> <span class="p">(</span><span class="o">/</span> <span class="n">i</span> <span class="mi">100</span><span class="p">))</span>
+                                           <span class="p">(</span><span class="n">sinr</span> <span class="mi">240</span> <span class="mi">200</span> <span class="p">(</span><span class="o">/</span> <span class="n">i</span> <span class="mi">100</span><span class="p">))</span>
+                                           <span class="mi">20</span><span class="p">)</span>
+                          <span class="n">layer3</span>
+                          <span class="s1">&#39;() (list (/ i 5) 0 1 1)))</span>
+       <span class="p">(</span><span class="n">callback</span> <span class="p">(</span><span class="o">*</span><span class="n">metro</span><span class="o">*</span> <span class="p">(</span><span class="o">+</span> <span class="n">beat</span> <span class="p">(</span><span class="o">*</span> <span class="o">.</span><span class="mi">5</span> <span class="mi">1</span><span class="o">/</span><span class="mi">6</span><span class="p">)))</span> <span class="s1">&#39;draw-on-layer3 (+ beat 1/6))))</span>
+
+<span class="p">(</span><span class="n">draw</span><span class="o">-</span><span class="n">on</span><span class="o">-</span><span class="n">layer3</span> <span class="p">(</span><span class="o">*</span><span class="n">metro</span><span class="o">*</span> <span class="s1">&#39;get-beat 4))</span>
+
+<span class="p">;;</span> <span class="n">draw</span> <span class="n">video</span> <span class="ow">and</span> <span class="n">layer3</span> <span class="n">transparently</span> <span class="n">into</span> <span class="n">the</span> <span class="n">opengl</span> <span class="n">bitmap</span>
+<span class="p">;;</span> <span class="n">then</span> <span class="n">render</span> <span class="n">the</span> <span class="n">opengl</span> <span class="n">bitmap</span> <span class="n">to</span> <span class="n">the</span> <span class="n">canvas</span>
+<span class="p">;;</span>
+<span class="p">;;</span> <span class="n">You</span> <span class="n">could</span> <span class="n">easily</span> <span class="n">replace</span>
+<span class="p">;;</span> <span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="n">get</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">from</span><span class="o">-</span><span class="n">opengl</span> <span class="n">gl</span><span class="p">)</span> <span class="n">with</span> <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">get</span><span class="o">-</span><span class="n">code</span><span class="o">-</span><span class="n">image</span><span class="p">)</span>
+<span class="p">;;</span> <span class="k">if</span> <span class="n">you</span> <span class="n">didn</span><span class="s1">&#39;t want to use any opengl</span>
+
+<span class="p">(</span><span class="n">define</span> <span class="n">capture</span><span class="o">-</span><span class="n">code</span>
+    <span class="p">(</span><span class="n">lambda</span> <span class="p">(</span><span class="n">time</span><span class="p">)</span>
+       <span class="p">(</span><span class="n">let</span> <span class="p">((</span><span class="n">video</span> <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">get</span><span class="o">-</span><span class="n">live</span><span class="o">-</span><span class="n">frame</span><span class="p">))</span>
+             <span class="p">(</span><span class="n">opengl</span> <span class="p">(</span><span class="n">gl</span><span class="p">:</span><span class="n">get</span><span class="o">-</span><span class="n">image</span><span class="o">-</span><span class="n">from</span><span class="o">-</span><span class="n">opengl</span> <span class="n">gl</span><span class="p">)))</span>
+          <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">image2image</span> <span class="n">video</span> <span class="n">opengl</span> <span class="o">.</span><span class="mi">3</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">image2image</span> <span class="n">layer3</span> <span class="n">opengl</span> <span class="mi">1</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">draw</span><span class="o">-</span><span class="n">image</span> <span class="n">time</span> <span class="n">canvas</span> <span class="n">opengl</span> <span class="o">.</span><span class="mi">9</span><span class="p">)</span>
+          <span class="p">(</span><span class="n">objc</span><span class="p">:</span><span class="n">release</span> <span class="p">(</span><span class="o">+</span> <span class="n">time</span> <span class="mi">5000</span><span class="p">)</span> <span class="n">opengl</span> <span class="n">video</span><span class="p">))</span>
+       <span class="p">(</span><span class="n">callback</span> <span class="p">(</span><span class="o">+</span> <span class="n">time</span> <span class="mi">2000</span><span class="p">)</span> <span class="s1">&#39;capture-code (+ time 5000))))</span>
+
+<span class="p">(</span><span class="n">capture</span><span class="o">-</span><span class="n">code</span> <span class="p">(</span><span class="n">now</span><span class="p">))</span>
+
+<span class="p">;;</span> <span class="n">start</span><span class="o">-</span><span class="n">movie</span><span class="o">-</span><span class="n">capture</span> <span class="n">takes</span> <span class="n">a</span> <span class="n">canvas</span> <span class="n">OR</span> <span class="n">an</span> <span class="n">opengl</span> <span class="n">context</span>
+<span class="p">;;</span> <span class="n">so</span> <span class="n">you</span> <span class="n">could</span> <span class="n">call</span> <span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">start</span><span class="o">-</span><span class="n">movie</span><span class="o">-</span><span class="n">capture</span> <span class="n">gl</span> <span class="o">...</span>
+<span class="p">;;</span> <span class="k">as</span> <span class="n">long</span> <span class="k">as</span> <span class="n">your</span> <span class="n">gl</span> <span class="n">code</span> <span class="n">calls</span> <span class="n">gl</span><span class="p">:</span><span class="n">update</span><span class="o">-</span><span class="n">backing</span><span class="o">-</span><span class="n">image</span>
+
+<span class="p">(</span><span class="n">gfx</span><span class="p">:</span><span class="n">start</span><span class="o">-</span><span class="n">movie</span><span class="o">-</span><span class="n">capture</span> <span class="n">canvas</span> <span class="s2">&quot;~/tmp/my.mov&quot;</span> <span class="c1">#t)</span>
+<span class="p">;(</span><span class="n">gfx</span><span class="p">:</span><span class="n">stop</span><span class="o">-</span><span class="n">movie</span><span class="o">-</span><span class="n">capture</span> <span class="n">canvas</span><span class="p">)</span>
+</code></pre></div>
 
             </div>
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">Graphics over code in Impromptu</a>. Blog post on www.michelepasin.org. Published on Nov. 4, 2009.
@@ -468,30 +589,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2020</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2020/11/23/a-new-livecoding-project-the-musical-code/index.html" class="bluelink ">A new livecoding project: &#39;The Musical Code&#39;</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2020/11/23/a-new-livecoding-project-the-musical-code/index.html" class="bluelink " >A new livecoding project: &#39;The Musical Code&#39;</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2020.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -527,13 +638,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2019</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">May 2019</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2019/05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/index.html" class="bluelink ">Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</a>.
-              <br />
-              <span class="">Beyza Yaman, Michele Pasin, Markus Freudenberg</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2019/05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/index.html" class="bluelink " >Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</a>
+              <!-- <br />
+              <span class="">Beyza Yaman, Michele Pasin, Markus Freudenberg</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -553,6 +671,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -588,30 +711,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2018</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2018/08/01/sn-scigraph-latest-website-release-make-it-easier-to-discover-related-content/index.html" class="bluelink ">SN SciGraph: latest website release make it easier to discover related content</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2018/08/01/sn-scigraph-latest-website-release-make-it-easier-to-discover-related-content/index.html" class="bluelink " >SN SciGraph: latest website release make it easier to discover related content</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2018.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -647,30 +760,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2015/05/06/impromptu-language-documentation-back-online/index.html" class="bluelink ">Impromptu language documentation back online!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2015/05/06/impromptu-language-documentation-back-online/index.html" class="bluelink " >Impromptu language documentation back online!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -706,13 +809,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2014</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2014</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2014/10/22/linked-data-experience-at-macmillan-building-discovery-services-for-scientific-and-scholarly-content-on-top-of-a-semantic-data-model/index.html" class="bluelink ">Linked data experience at Macmillan: Building discovery services for scientific and scholarly content on top of a semantic data model</a>.
-              <br />
-              <span class="">Tony Hammond, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2014/10/22/linked-data-experience-at-macmillan-building-discovery-services-for-scientific-and-scholarly-content-on-top-of-a-semantic-data-model/index.html" class="bluelink " >Linked data experience at Macmillan: Building discovery services for scientific and scholarly content on top of a semantic data model</a>
+              <!-- <br />
+              <span class="">Tony Hammond, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -732,6 +842,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -767,30 +882,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/09/15/building-a-master-volumes-ui-in-impromptu/index.html" class="bluelink ">Building a master volumes UI with impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/09/15/building-a-master-volumes-ui-in-impromptu/index.html" class="bluelink " >Building a master volumes UI with impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -805,30 +910,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/02/20/a-metronome-object-for-impromptu/index.html" class="bluelink ">A metronome object for Impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/02/20/a-metronome-object-for-impromptu/index.html" class="bluelink " >A metronome object for Impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -864,30 +959,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/11/14/infographics-course-week-2/index.html" class="bluelink ">Infographics Course, Week 2</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/11/14/infographics-course-week-2/index.html" class="bluelink " >Infographics Course, Week 2</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -902,30 +987,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/11/06/infographics-course-week-1/index.html" class="bluelink ">Infographics Course, Week 1</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/11/06/infographics-course-week-1/index.html" class="bluelink " >Infographics Course, Week 1</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -961,30 +1036,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/12/21/using-impromptu-to-visualize-rss-feeds/index.html" class="bluelink ">Using Impromptu to visualize RSS feeds</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/12/21/using-impromptu-to-visualize-rss-feeds/index.html" class="bluelink " >Using Impromptu to visualize RSS feeds</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -999,30 +1064,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/05/02/the-new-livecoding-error-hook-in-impromptu/index.html" class="bluelink ">The new Livecoding Error Hook in Impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/05/02/the-new-livecoding-error-hook-in-impromptu/index.html" class="bluelink " >The new Livecoding Error Hook in Impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1037,30 +1092,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/02/07/what-is-the-reaper-time-in-impromptu/index.html" class="bluelink ">What is the reaper time in Impromptu?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/02/07/what-is-the-reaper-time-in-impromptu/index.html" class="bluelink " >What is the reaper time in Impromptu?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1075,30 +1120,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/01/29/opening-a-finders-window-from-impromptu-alas-how-to-use-the-applescript-bridge/index.html" class="bluelink ">Opening a Finder&#39;s window from Impromptu (alas how to use the applescript bridge..)</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/01/29/opening-a-finders-window-from-impromptu-alas-how-to-use-the-applescript-bridge/index.html" class="bluelink " >Opening a Finder&#39;s window from Impromptu (alas how to use the applescript bridge..)</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1134,30 +1169,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/10/13/impromptu-2-5/index.html" class="bluelink ">Impromptu 2.5 released</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/10/13/impromptu-2-5/index.html" class="bluelink " >Impromptu 2.5 released</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1172,30 +1197,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/09/19/raphael-js-library-for-scalar-vector-graphics/index.html" class="bluelink ">Raphael: js library for Scalar Vector Graphics</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/09/19/raphael-js-library-for-scalar-vector-graphics/index.html" class="bluelink " >Raphael: js library for Scalar Vector Graphics</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1210,30 +1225,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/index.html" class="bluelink ">Impromptu: access the Wiki docs from the editor</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/index.html" class="bluelink " >Impromptu: access the Wiki docs from the editor</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1269,30 +1274,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../23/new-song-with-impromptu-kali/index.html" class="bluelink ">New song with Impromptu: KALI</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../23/new-song-with-impromptu-kali/index.html" class="bluelink " >New song with Impromptu: KALI</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1307,30 +1302,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Graphics over code in Impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Graphics over code in Impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1345,30 +1330,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../10/29/impromptu-if-mod-macro/index.html" class="bluelink ">Impromptu: If-mod macro</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../10/29/impromptu-if-mod-macro/index.html" class="bluelink " >Impromptu: If-mod macro</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1383,30 +1358,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../10/18/impromptu-zebra-a-perfect-match/index.html" class="bluelink ">Impromptu &amp; Zebra: a perfect match!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../10/18/impromptu-zebra-a-perfect-match/index.html" class="bluelink " >Impromptu &amp; Zebra: a perfect match!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1421,30 +1386,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../10/07/new-impromptu-screencast/index.html" class="bluelink ">New Impromptu screencast and a few lessons learned</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../10/07/new-impromptu-screencast/index.html" class="bluelink " >New Impromptu screencast and a few lessons learned</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1480,30 +1435,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2007/06/12/discovery-philosophy-in-the-digital-era/index.html" class="bluelink ">Discovery: philosophy in the digital Era</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2007/06/12/discovery-philosophy-in-the-digital-era/index.html" class="bluelink " >Discovery: philosophy in the digital Era</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1518,30 +1463,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2007/05/12/impromptu-scheme-based-music-and-video/index.html" class="bluelink ">Impromptu : scheme-based music and video</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2007/05/12/impromptu-scheme-based-music-and-video/index.html" class="bluelink " >Impromptu : scheme-based music and video</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 

@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -321,9 +426,15 @@
 
             <div class="blogentry"> 
 
-            <p>Ever felt like softwares like <a href="https://www.mendeley.com/homepage-2-1?interaction_required=true&amp;mboxSession=ea3c06ad39f14ce29d625b9d3be138c5">Mendeley</a> or <a href="https://www.papersapp.com/">Papers</a> are great, but somehow slow you down? Ever felt like none of the many <a href="https://en.wikipedia.org/wiki/Comparison_of_reference_management_software">reference manager softwares</a> out there will ever cut it for you, cause you need something R E A L L Y SIMPLE? I did. Many times. So I've finally crossed the line and tried out building a simple commmand-line PDF manager. <a href="https://github.com/lambdamusic/pypapers">PyPapers</a>, is called.</p>
+              <hr>
+
+
+            <blockquote>
+<p>Ever felt like softwares like <a href="https://www.mendeley.com/homepage-2-1?interaction_required=true&amp;mboxSession=ea3c06ad39f14ce29d625b9d3be138c5">Mendeley</a> or <a href="https://www.papersapp.com/">Papers</a> are great, but somehow slow you down? Ever felt like none of the many <a href="https://en.wikipedia.org/wiki/Comparison_of_reference_management_software">reference manager softwares</a> out there will ever cut it for you, cause you need something R E A L L Y SIMPLE? I did. Many times. So I've finally crossed the line and tried out building a simple commmand-line PDF manager. <a href="https://github.com/lambdamusic/pypapers">PyPapers</a>, is called.</p>
+</blockquote>
 <p>Yes - that's right - <a href="https://en.wikipedia.org/wiki/Terminal_(macOS)">command line</a>. So not for everyone. Also: this is bare bones and pre-alpha. So don't expect wonders. It basically provides a simple interface for searching a folder full of PDFs. That's all for now!</p>
-<p>[youtube https://www.youtube.com/watch?v=o74Ct1EwZwI&amp;w=560&amp;h=315]</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/o74Ct1EwZwI?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 <h3>Key features (or lack of)</h3>
 <ul>
 <li><strong>Mac only, I'm afraid.</strong> I'm sitting on the shoulders of a giant. That is, <a href="https://ss64.com/osx/mdfind.html">mdfind</a>.</li>
@@ -336,13 +447,13 @@
 </ul>
 <h3>First impressions</h3>
 <p>Pretty good. Was concerned I was gonna miss things like collections or tags. But I found a workaround: first, identify the papers I am interested in. Then, create a folder in the same directory and symlink them in there (= create an <a href="https://kb.iu.edu/d/achy">alias</a>).</p>
-<p>It's not quite like <a href="https://www.taoistic.com/taoquotes/taoquotes-12-simplicity-stillness-silence.htm">uncarved wood,</a> but it definitely feels simple enough.</p>
+<p>It's not quite like <a href="https://www.taoistic.com/taoquotes/taoquotes-12-simplicity-stillness-silence.htm">uncarved wood</a>... but it definitely feels simple enough!</p>
 
             </div>
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">Pypapers: a bare-bones, command line,  PDF manager</a>. Blog post on www.michelepasin.org. Published on June 30, 2019.
@@ -417,30 +528,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2019</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Pypapers: a bare-bones, command line,  PDF manager</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Pypapers: a bare-bones, command line,  PDF manager</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2019.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -476,30 +577,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/08/21/social-reference-manager-mendeley/index.html" class="bluelink ">Social Reference Manager: Mendeley</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/08/21/social-reference-manager-mendeley/index.html" class="bluelink " >Social Reference Manager: Mendeley</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -514,30 +605,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/05/07/soundmanager-2-makes-it-easier-to-play-sounds-using-javascript/index.html" class="bluelink ">SoundManager 2 makes it easier to play sounds using Javascript</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/05/07/soundmanager-2-makes-it-easier-to-play-sounds-using-javascript/index.html" class="bluelink " >SoundManager 2 makes it easier to play sounds using Javascript</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -573,30 +654,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2007/03/15/ecto-multiple-blog-manager-and-wusiwyg-editor/index.html" class="bluelink ">Ecto : multiple blog manager and WUSIWYG editor</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2007/03/15/ecto-multiple-blog-manager-and-wusiwyg-editor/index.html" class="bluelink " >Ecto : multiple blog manager and WUSIWYG editor</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 

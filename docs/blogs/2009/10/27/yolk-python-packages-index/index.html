@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -321,6 +426,9 @@
 
             <div class="blogentry"> 
 
+              <hr>
+
+
             <blockquote>
 <p><a href="http://pypi.python.org/pypi/yolk">Yolk</a> is a Python tool for obtaining information about packages installed by distutils, setuptools and easy_install and querying packages on PyPI (Python Package Index a.k.a. The Cheese Shop).</p>
 <p>Yolk can list all the packages installed by distutils or setuptools on your system by &gt;=Python2.5 or packages installed by setuptools if you have &lt;=Python2.4. You can see which packages are active, non-active or in development mode and show you which have newer versions available by querying PyPI.</p>
@@ -332,33 +440,33 @@
 <p><strong>$ yolk --entry-map nose</strong> Show entry map for the nose package</p>
 <p><strong>$ yolk --entry-points nose.plugins</strong> Show all setuptools entry points for nose.plugins</p>
 <p>>&gt;&gt; e.g.:</p>
-<p>```</p>
-<p>[mac]@mac99:~&gt;yolk -l
-BzrTools        - 1.18.0       - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/site-packages)
-Conch           - 0.8.0        - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python)
-Django          - 1.0.2-final  - active
-Loom            - 1.4.0dev0    - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/site-packages)
-PIL             - 1.1.6        - active
-PyRSS2Gen       - 1.0.0        - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python)
-Python          - 2.5.1        - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/lib-dynload)
-Twisted Lore    - 0.3.0        - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python)
-Twisted Mail    - 0.4.0        - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python)
-Twisted Names   - 0.4.0        - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python)
-Twisted News    - 0.3.0        - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python)
-Twisted Runner  - 0.2.0        - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python)
-Twisted Web     - 0.7.0        - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python)
-Twisted Words   - 0.5.0        - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python)
-Twisted         - 2.5.0        - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python)
-altgraph        - 0.6.8.dev    - active development (/System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python)
-antlr-python-runtime - 3.0.1        - non-active</p>
-<p>```</p>
+<div class="codehilite"><pre><span></span><code><span class="o">[</span><span class="n">mac</span><span class="o">]</span><span class="nv">@mac99</span><span class="err">:</span><span class="o">~&gt;</span><span class="n">yolk</span><span class="w"> </span><span class="o">-</span><span class="n">l</span><span class="w"></span>
+<span class="n">BzrTools</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="mf">1.18.0</span><span class="w">       </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="mf">.5</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="p">)</span><span class="w"></span>
+<span class="n">Conch</span><span class="w">           </span><span class="o">-</span><span class="w"> </span><span class="mf">0.8.0</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">Extras</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python</span><span class="p">)</span><span class="w"></span>
+<span class="n">Django</span><span class="w">          </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0.2</span><span class="o">-</span><span class="n">final</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"></span>
+<span class="n">Loom</span><span class="w">            </span><span class="o">-</span><span class="w"> </span><span class="mf">1.4.0</span><span class="n">dev0</span><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="mf">.5</span><span class="o">/</span><span class="n">site</span><span class="o">-</span><span class="n">packages</span><span class="p">)</span><span class="w"></span>
+<span class="n">PIL</span><span class="w">             </span><span class="o">-</span><span class="w"> </span><span class="mf">1.1.6</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"></span>
+<span class="n">PyRSS2Gen</span><span class="w">       </span><span class="o">-</span><span class="w"> </span><span class="mf">1.0.0</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">Extras</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python</span><span class="p">)</span><span class="w"></span>
+<span class="n">Python</span><span class="w">          </span><span class="o">-</span><span class="w"> </span><span class="mf">2.5.1</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python2</span><span class="mf">.5</span><span class="o">/</span><span class="n">lib</span><span class="o">-</span><span class="n">dynload</span><span class="p">)</span><span class="w"></span>
+<span class="n">Twisted</span><span class="w"> </span><span class="n">Lore</span><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="mf">0.3.0</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">Extras</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python</span><span class="p">)</span><span class="w"></span>
+<span class="n">Twisted</span><span class="w"> </span><span class="n">Mail</span><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="mf">0.4.0</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">Extras</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python</span><span class="p">)</span><span class="w"></span>
+<span class="n">Twisted</span><span class="w"> </span><span class="k">Names</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="mf">0.4.0</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">Extras</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python</span><span class="p">)</span><span class="w"></span>
+<span class="n">Twisted</span><span class="w"> </span><span class="n">News</span><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="mf">0.3.0</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">Extras</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python</span><span class="p">)</span><span class="w"></span>
+<span class="n">Twisted</span><span class="w"> </span><span class="n">Runner</span><span class="w">  </span><span class="o">-</span><span class="w"> </span><span class="mf">0.2.0</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">Extras</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python</span><span class="p">)</span><span class="w"></span>
+<span class="n">Twisted</span><span class="w"> </span><span class="n">Web</span><span class="w">     </span><span class="o">-</span><span class="w"> </span><span class="mf">0.7.0</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">Extras</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python</span><span class="p">)</span><span class="w"></span>
+<span class="n">Twisted</span><span class="w"> </span><span class="n">Words</span><span class="w">   </span><span class="o">-</span><span class="w"> </span><span class="mf">0.5.0</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">Extras</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python</span><span class="p">)</span><span class="w"></span>
+<span class="n">Twisted</span><span class="w">         </span><span class="o">-</span><span class="w"> </span><span class="mf">2.5.0</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">Extras</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python</span><span class="p">)</span><span class="w"></span>
+<span class="n">altgraph</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="mf">0.6.8</span><span class="p">.</span><span class="n">dev</span><span class="w">    </span><span class="o">-</span><span class="w"> </span><span class="n">active</span><span class="w"> </span><span class="n">development</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="k">System</span><span class="o">/</span><span class="n">Library</span><span class="o">/</span><span class="n">Frameworks</span><span class="o">/</span><span class="n">Python</span><span class="p">.</span><span class="n">framework</span><span class="o">/</span><span class="n">Versions</span><span class="o">/</span><span class="mf">2.5</span><span class="o">/</span><span class="n">Extras</span><span class="o">/</span><span class="n">lib</span><span class="o">/</span><span class="n">python</span><span class="p">)</span><span class="w"></span>
+<span class="n">antlr</span><span class="o">-</span><span class="n">python</span><span class="o">-</span><span class="n">runtime</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mf">3.0.1</span><span class="w">        </span><span class="o">-</span><span class="w"> </span><span class="n">non</span><span class="o">-</span><span class="n">active</span><span class="w"></span>
+</code></pre></div>
+
 <p>...</p>
 
             </div>
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">Yolk : Python packages index</a>. Blog post on www.michelepasin.org. Published on Oct. 27, 2009.
@@ -433,30 +541,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2019</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2019/05/24/introducing-dimcli-a-python-cli-for-dimensions-api/index.html" class="bluelink ">Introducing DimCli: a Python CLI for the Dimensions API</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2019/05/24/introducing-dimcli-a-python-cli-for-dimensions-api/index.html" class="bluelink " >Introducing DimCli: a Python CLI for the Dimensions API</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2019.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -492,30 +590,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2015/11/28/accessing-os-x-dictionary-with-python/index.html" class="bluelink ">Accessing OS X dictionary with Python</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2015/11/28/accessing-os-x-dictionary-with-python/index.html" class="bluelink " >Accessing OS X dictionary with Python</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -551,30 +639,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2014</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2014/12/03/dereference-a-doi-using-python/index.html" class="bluelink ">Dereference a DOI using python</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2014/12/03/dereference-a-doi-using-python/index.html" class="bluelink " >Dereference a DOI using python</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2014.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -610,30 +688,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/10/12/teaching-programming-concepts-visually-with-the-online-python-tutor/index.html" class="bluelink ">Teaching programming concepts visually with the Online Python Tutor</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/10/12/teaching-programming-concepts-visually-with-the-online-python-tutor/index.html" class="bluelink " >Teaching programming concepts visually with the Online Python Tutor</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -648,30 +716,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html" class="bluelink ">Getting hold of your Flickr collections with Python</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html" class="bluelink " >Getting hold of your Flickr collections with Python</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -707,30 +765,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/index.html" class="bluelink ">Survey of Pythonic tools for RDF and Linked Data programming</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/index.html" class="bluelink " >Survey of Pythonic tools for RDF and Linked Data programming</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -745,30 +793,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/02/03/python-links-and-more-7211/index.html" class="bluelink ">Python links (and more) 7/2/11</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/02/03/python-links-and-more-7211/index.html" class="bluelink " >Python links (and more) 7/2/11</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -804,30 +842,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/02/12/python-debugging-and-textmate/index.html" class="bluelink ">Python debugging and Textmate</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/02/12/python-debugging-and-textmate/index.html" class="bluelink " >Python debugging and Textmate</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -863,30 +891,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../12/12/pyglet-multimedia-library-for-python/index.html" class="bluelink ">Pyglet: multimedia library for python</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../12/12/pyglet-multimedia-library-for-python/index.html" class="bluelink " >Pyglet: multimedia library for python</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -901,30 +919,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Yolk : Python packages index</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Yolk : Python packages index</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -939,30 +947,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../08/30/mysql-python-and-apple-osx-10-5-leopard/index.html" class="bluelink ">MySQL-Python and Apple OSX 10.5 (Leopard)</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../08/30/mysql-python-and-apple-osx-10-5-leopard/index.html" class="bluelink " >MySQL-Python and Apple OSX 10.5 (Leopard)</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -977,30 +975,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../07/28/python-web-parsing-libraries/index.html" class="bluelink ">Python web-parsing libraries</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../07/28/python-web-parsing-libraries/index.html" class="bluelink " >Python web-parsing libraries</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1015,30 +1003,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../05/18/python-pitfall-passing-mutable-objects-as-default-args/index.html" class="bluelink ">Python pitfall: Passing Mutable Objects as Default Args</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../05/18/python-pitfall-passing-mutable-objects-as-default-args/index.html" class="bluelink " >Python pitfall: Passing Mutable Objects as Default Args</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1053,30 +1031,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../02/25/macpythonleopard-pythoninfo-wiki/index.html" class="bluelink ">MacPython/Leopard - PythonInfo Wiki</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../02/25/macpythonleopard-pythoninfo-wiki/index.html" class="bluelink " >MacPython/Leopard - PythonInfo Wiki</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1091,30 +1059,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink ">Pysmell - Python auto-complete - works with TextMate too!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink " >Pysmell - Python auto-complete - works with TextMate too!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1129,30 +1087,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../02/09/komodo-edit-a-nice-free-python-editor/index.html" class="bluelink ">Komodo-Edit :: a nice free python editor!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../02/09/komodo-edit-a-nice-free-python-editor/index.html" class="bluelink " >Komodo-Edit :: a nice free python editor!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1167,30 +1115,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../01/27/python-easyinstall-the-peak-developers-center/index.html" class="bluelink ">Python easy_install - The PEAK Developers&#39; Center</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../01/27/python-easyinstall-the-peak-developers-center/index.html" class="bluelink " >Python easy_install - The PEAK Developers&#39; Center</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1205,30 +1143,20 @@ antlr-python-runtime - 3.0.1        - non-active</p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../01/06/pythons-phenotype/index.html" class="bluelink ">Python&#39;s phenotype</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../01/06/pythons-phenotype/index.html" class="bluelink " >Python&#39;s phenotype</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 

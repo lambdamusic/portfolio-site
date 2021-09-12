@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -327,7 +432,8 @@
             <p class="text-muted">Full reference:</p>
 
             <div class="well well-big lead">
-              Michele Pasin. Building a Linked Open Data Knowledge Graph - London Info International 2017 London, UK December 2017 .
+              Michele Pasin. Building a Linked Open Data Knowledge Graph - London Info International 2017 London, UK December 2017 . 
+              <a href="https://lambdamusic.github.io/support.michelepasin.org/public_articles/2017_Pasin_London_Info_International_Scigraph.pdf" title="Article: Building a Linked Open Data Knowledge Graph">PDF</a>  
             </div>
             <br />
 
@@ -399,13 +505,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2019</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2019</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2019/06/03/modeling-publications-in-sn-scigraph-20122019/index.html" class="bluelink ">Modeling publications in SN SciGraph 2012-2019</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2019/06/03/modeling-publications-in-sn-scigraph-20122019/index.html" class="bluelink " >Modeling publications in SN SciGraph 2012-2019</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -425,6 +538,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -439,13 +557,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2019</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">May 2019</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2019/05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/index.html" class="bluelink ">Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</a>.
-              <br />
-              <span class="">Beyza Yaman, Michele Pasin, Markus Freudenberg</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2019/05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/index.html" class="bluelink " >Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</a>
+              <!-- <br />
+              <span class="">Beyza Yaman, Michele Pasin, Markus Freudenberg</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -465,6 +590,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -479,30 +609,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2019</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2019/03/22/sn-scigraph-latest-release-patents-clinical-trials-and-many-new-features/index.html" class="bluelink ">SN SciGraph Latest Release: Patents, Clinical Trials and many new features</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2019/03/22/sn-scigraph-latest-release-patents-clinical-trials-and-many-new-features/index.html" class="bluelink " >SN SciGraph Latest Release: Patents, Clinical Trials and many new features</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2019.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -538,30 +658,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2018</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2018/08/01/sn-scigraph-latest-website-release-make-it-easier-to-discover-related-content/index.html" class="bluelink ">SN SciGraph: latest website release make it easier to discover related content</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2018/08/01/sn-scigraph-latest-website-release-make-it-easier-to-discover-related-content/index.html" class="bluelink " >SN SciGraph: latest website release make it easier to discover related content</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2018.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -576,30 +686,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2018</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2018/06/07/pyscigraph-simple-api-for-accessing-springer-nature-scigraph-content/index.html" class="bluelink ">PySciGraph: simple API for accessing SN SciGraph content</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2018/06/07/pyscigraph-simple-api-for-accessing-springer-nature-scigraph-content/index.html" class="bluelink " >PySciGraph: simple API for accessing SN SciGraph content</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2018.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -614,30 +714,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2018</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2018/05/23/sn-scigraph-is-part-of-the-linked-open-data-cloud-2018/index.html" class="bluelink ">SN SciGraph is part of the Linked Open Data Cloud 2018</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2018/05/23/sn-scigraph-is-part-of-the-linked-open-data-cloud-2018/index.html" class="bluelink " >SN SciGraph is part of the Linked Open Data Cloud 2018</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2018.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -673,30 +763,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2017</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2017/11/14/scigraph-publishes-1-billion-facts-as-linked-open-data/index.html" class="bluelink ">SciGraph publishes 1 billion facts as Linked Open Data</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2017/11/14/scigraph-publishes-1-billion-facts-as-linked-open-data/index.html" class="bluelink " >SciGraph publishes 1 billion facts as Linked Open Data</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2017.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -711,13 +791,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2017</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2017</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../10/19/data-integration-and-disintegration-managing-springer-nature-scigraph-with-shacl-and-owl/index.html" class="bluelink ">Data integration and disintegration: Managing Springer Nature SciGraph with SHACL and OWL</a>.
-              <br />
-              <span class="">Tony Hammond, Michele Pasin, Evangelos Theodoridis</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../10/19/data-integration-and-disintegration-managing-springer-nature-scigraph-with-shacl-and-owl/index.html" class="bluelink " >Data integration and disintegration: Managing Springer Nature SciGraph with SHACL and OWL</a>
+              <!-- <br />
+              <span class="">Tony Hammond, Michele Pasin, Evangelos Theodoridis</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -737,6 +824,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -751,13 +843,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2017</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2017</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../10/11/using-linked-open-data-to-bootstrap-a-knowledge-base-of-classical-texts/index.html" class="bluelink ">Using Linked Open Data to Bootstrap a Knowledge Base of Classical Texts</a>.
-              <br />
-              <span class="">Matteo Romanello, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../10/11/using-linked-open-data-to-bootstrap-a-knowledge-base-of-classical-texts/index.html" class="bluelink " >Using Linked Open Data to Bootstrap a Knowledge Base of Classical Texts</a>
+              <!-- <br />
+              <span class="">Matteo Romanello, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -777,6 +876,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -791,30 +895,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2017</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/index.html" class="bluelink ">Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/index.html" class="bluelink " >Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2017.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -850,30 +944,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2016</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2016/10/21/open-data-summit-2016/index.html" class="bluelink ">Open Data Summit 2016</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2016/10/21/open-data-summit-2016/index.html" class="bluelink " >Open Data Summit 2016</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2016.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -888,13 +972,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2016</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Apr 2016</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2016/04/01/insights-into-natures-data-publishing-portal/index.html" class="bluelink ">Insights into Nature’s Data Publishing Portal</a>.
-              <br />
-              <span class="">Michele Pasin, Tony Hammond</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2016/04/01/insights-into-natures-data-publishing-portal/index.html" class="bluelink " >Insights into Nature’s Data Publishing Portal</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Tony Hammond</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -912,6 +1003,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -926,30 +1022,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2016</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2016/01/03/nature-com-subjects-stream-graph/index.html" class="bluelink ">Nature.com Subjects Stream Graph</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2016/01/03/nature-com-subjects-stream-graph/index.html" class="bluelink " >Nature.com Subjects Stream Graph</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2016.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -985,13 +1071,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2015</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Sep 2015</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2015/09/13/learning-how-to-become-a-linked-data-publisher-the-naturecom-ontologies-portal/index.html" class="bluelink ">Learning how to become a linked data publisher: the nature.com ontologies portal.</a>.
-              <br />
-              <span class="">Tony Hammond, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2015/09/13/learning-how-to-become-a-linked-data-publisher-the-naturecom-ontologies-portal/index.html" class="bluelink " >Learning how to become a linked data publisher: the nature.com ontologies portal.</a>
+              <!-- <br />
+              <span class="">Tony Hammond, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1011,6 +1104,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1025,30 +1123,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2015/09/02/is-wikipedia-a-valid-source-of-scientific-knowledge/index.html" class="bluelink ">Is wikipedia a valid source of scientific knowledge?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2015/09/02/is-wikipedia-a-valid-source-of-scientific-knowledge/index.html" class="bluelink " >Is wikipedia a valid source of scientific knowledge?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1084,30 +1172,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2014</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2014/12/22/italian-public-spending-data/index.html" class="bluelink ">Italian public spending data: a review</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2014/12/22/italian-public-spending-data/index.html" class="bluelink " >Italian public spending data: a review</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2014.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1122,13 +1200,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2014</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Dec 2014</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2014/12/03/factoidbased-prosopography-and-computer-ontologies-towards-an-integrated-approach/index.html" class="bluelink ">Factoid-based Prosopography and Computer Ontologies: towards an integrated approach</a>.
-              <br />
-              <span class="">Michele Pasin, John Bradley</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2014/12/03/factoidbased-prosopography-and-computer-ontologies-towards-an-integrated-approach/index.html" class="bluelink " >Factoid-based Prosopography and Computer Ontologies: towards an integrated approach</a>
+              <!-- <br />
+              <span class="">Michele Pasin, John Bradley</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1148,6 +1233,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1162,13 +1252,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2014</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2014</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2014/10/22/linked-data-experience-at-macmillan-building-discovery-services-for-scientific-and-scholarly-content-on-top-of-a-semantic-data-model/index.html" class="bluelink ">Linked data experience at Macmillan: Building discovery services for scientific and scholarly content on top of a semantic data model</a>.
-              <br />
-              <span class="">Tony Hammond, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2014/10/22/linked-data-experience-at-macmillan-building-discovery-services-for-scientific-and-scholarly-content-on-top-of-a-semantic-data-model/index.html" class="bluelink " >Linked data experience at Macmillan: Building discovery services for scientific and scholarly content on top of a semantic data model</a>
+              <!-- <br />
+              <span class="">Tony Hammond, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1188,6 +1285,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1202,30 +1304,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2014</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/index.html" class="bluelink ">Installing GraphDB (aka OWLIM) triplestore on mac os</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/index.html" class="bluelink " >Installing GraphDB (aka OWLIM) triplestore on mac os</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2014.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1261,13 +1353,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2013</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2013</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/10/11/moving-emlot-towards-the-web-of-data-an-approach-to-the-representation-of-humanities-citations-based-on-role-theory-and-formal-ontology/index.html" class="bluelink ">Moving EMLoT towards the web of data: an approach to the representation of humanities citations based on role theory and formal ontology</a>.
-              <br />
-              <span class="">Michele Pasin, Riichiro Mizoguchi</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2013/10/11/moving-emlot-towards-the-web-of-data-an-approach-to-the-representation-of-humanities-citations-based-on-role-theory-and-formal-ontology/index.html" class="bluelink " >Moving EMLoT towards the web of data: an approach to the representation of humanities citations based on role theory and formal ontology</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Riichiro Mizoguchi</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1287,6 +1386,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1301,30 +1405,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2013/09/15/building-a-master-volumes-ui-in-impromptu/index.html" class="bluelink ">Building a master volumes UI with impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2013/09/15/building-a-master-volumes-ui-in-impromptu/index.html" class="bluelink " >Building a master volumes UI with impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1339,30 +1433,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/index.html" class="bluelink ">Messing around wih D3.js and hierarchical data</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2013/06/21/messing-around-wih-d3-js-and-hierarchical-data/index.html" class="bluelink " >Messing around wih D3.js and hierarchical data</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1398,30 +1482,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2012/11/14/infographics-course-week-2/index.html" class="bluelink ">Infographics Course, Week 2</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2012/11/14/infographics-course-week-2/index.html" class="bluelink " >Infographics Course, Week 2</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1436,30 +1510,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2012/11/06/infographics-course-week-1/index.html" class="bluelink ">Infographics Course, Week 1</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2012/11/06/infographics-course-week-1/index.html" class="bluelink " >Infographics Course, Week 1</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1474,30 +1538,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2012/09/21/open-knowledge-festival-helsinki-18-22-september-2012/index.html" class="bluelink ">Open Knowledge Festival – Helsinki, 18-22 September 2012</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2012/09/21/open-knowledge-festival-helsinki-18-22-september-2012/index.html" class="bluelink " >Open Knowledge Festival – Helsinki, 18-22 September 2012</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1512,13 +1566,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2012</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jul 2012</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/07/26/exploring-prosopographical-resources-through-novel-tools-and-visualizations-a-preliminary-investigation/index.html" class="bluelink ">Exploring Prosopographical Resources Through Novel Tools and Visualizations: a Preliminary Investigation</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2012/07/26/exploring-prosopographical-resources-through-novel-tools-and-visualizations-a-preliminary-investigation/index.html" class="bluelink " >Exploring Prosopographical Resources Through Novel Tools and Visualizations: a Preliminary Investigation</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1538,6 +1599,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -1573,13 +1639,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2011</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Sep 2011</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/09/27/prosopography-and-computer-ontologies-towards-a-formal-representation-of-the-factoid-model-by-means-of-cidoccrm/index.html" class="bluelink ">Prosopography and Computer Ontologies: towards a formal representation of the ‘factoid’ model by means of CIDOC-CRM</a>.
-              <br />
-              <span class="">John Bradley, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2011/09/27/prosopography-and-computer-ontologies-towards-a-formal-representation-of-the-factoid-model-by-means-of-cidoccrm/index.html" class="bluelink " >Prosopography and Computer Ontologies: towards a formal representation of the ‘factoid’ model by means of CIDOC-CRM</a>
+              <!-- <br />
+              <span class="">John Bradley, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1599,6 +1672,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1613,13 +1691,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2011</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2011</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/06/22/browsing-highly-interconnected-humanities-databases-through-multiresult-faceted-browsers/index.html" class="bluelink ">Browsing highly interconnected humanities databases through multi-result faceted browsers</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2011/06/22/browsing-highly-interconnected-humanities-databases-through-multiresult-faceted-browsers/index.html" class="bluelink " >Browsing highly interconnected humanities databases through multi-result faceted browsers</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1639,6 +1724,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1653,30 +1743,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2011/04/14/allegro-cl-graph/index.html" class="bluelink ">RDF programming with AllegroCL and AllegroGraph</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2011/04/14/allegro-cl-graph/index.html" class="bluelink " >RDF programming with AllegroCL and AllegroGraph</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1691,30 +1771,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2011/04/03/sound-reasoning-an-open-educational-resource/index.html" class="bluelink ">Sound Reasoning: an open educational resource</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2011/04/03/sound-reasoning-an-open-educational-resource/index.html" class="bluelink " >Sound Reasoning: an open educational resource</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1729,30 +1799,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2011/03/17/a-few-useful-linked-data-resources/index.html" class="bluelink ">A few useful Linked Data resources</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2011/03/17/a-few-useful-linked-data-resources/index.html" class="bluelink " >A few useful Linked Data resources</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1767,30 +1827,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/index.html" class="bluelink ">Survey of Pythonic tools for RDF and Linked Data programming</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/index.html" class="bluelink " >Survey of Pythonic tools for RDF and Linked Data programming</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1805,30 +1855,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2011/01/29/opening-a-finders-window-from-impromptu-alas-how-to-use-the-applescript-bridge/index.html" class="bluelink ">Opening a Finder&#39;s window from Impromptu (alas how to use the applescript bridge..)</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2011/01/29/opening-a-finders-window-from-impromptu-alas-how-to-use-the-applescript-bridge/index.html" class="bluelink " >Opening a Finder&#39;s window from Impromptu (alas how to use the applescript bridge..)</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1864,30 +1904,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2010/10/21/editing-pdf-metadata-on-osx-ie-having-the-kindle-display-the-right-titleauthor-with-pdfs/index.html" class="bluelink ">Editing PDF metadata on OSx (ie: having the Kindle display the right title/author with pdfs)</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2010/10/21/editing-pdf-metadata-on-osx-ie-having-the-kindle-display-the-right-titleauthor-with-pdfs/index.html" class="bluelink " >Editing PDF metadata on OSx (ie: having the Kindle display the right title/author with pdfs)</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1902,13 +1932,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2010</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2010</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/10/02/how-do-philosophers-think-their-own-discipline-reports-from-a-knowledge-elicitation-experiment/index.html" class="bluelink ">How do philosophers think their own discipline? Reports from a knowledge elicitation experiment</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2010/10/02/how-do-philosophers-think-their-own-discipline-reports-from-a-knowledge-elicitation-experiment/index.html" class="bluelink " >How do philosophers think their own discipline? Reports from a knowledge elicitation experiment</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1928,6 +1965,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1942,30 +1984,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2010/09/19/raphael-js-library-for-scalar-vector-graphics/index.html" class="bluelink ">Raphael: js library for Scalar Vector Graphics</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2010/09/19/raphael-js-library-for-scalar-vector-graphics/index.html" class="bluelink " >Raphael: js library for Scalar Vector Graphics</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1980,30 +2012,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2010/07/26/knowledge-representation-workshop-cch/index.html" class="bluelink ">Knowledge Representation workshop @ CCH</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2010/07/26/knowledge-representation-workshop-cch/index.html" class="bluelink " >Knowledge Representation workshop @ CCH</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2018,13 +2040,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2010</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2010</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/06/10/data-integration-perspectives-from-the-london-theatres-bibliography-project/index.html" class="bluelink ">Data integration perspectives from the London Theatres Bibliography project</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2010/06/10/data-integration-perspectives-from-the-london-theatres-bibliography-project/index.html" class="bluelink " >Data integration perspectives from the London Theatres Bibliography project</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2044,6 +2073,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -2079,30 +2113,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2009/11/04/graphics-over-code-in-impromptu/index.html" class="bluelink ">Graphics over code in Impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2009/11/04/graphics-over-code-in-impromptu/index.html" class="bluelink " >Graphics over code in Impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2117,30 +2141,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2009/10/14/installing-pygraphviz-tested-on-osx-leopard/index.html" class="bluelink ">Installing PyGraphviz [tested on OSx Leopard]</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2009/10/14/installing-pygraphviz-tested-on-osx-leopard/index.html" class="bluelink " >Installing PyGraphviz [tested on OSx Leopard]</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2155,30 +2169,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2009/08/06/representing-hierarchical-data-with-django-and-mptt/index.html" class="bluelink ">Representing hierarchical data with Django and MPTT</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2009/08/06/representing-hierarchical-data-with-django-and-mptt/index.html" class="bluelink " >Representing hierarchical data with Django and MPTT</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2193,13 +2197,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2009</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2009</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/06/30/laying-the-conceptual-foundations-for-data-integration-in-the-humanities/index.html" class="bluelink ">Laying the Conceptual Foundations for Data Integration in the Humanities</a>.
-              <br />
-              <span class="">Michele Pasin, Arianna Ciula</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2009/06/30/laying-the-conceptual-foundations-for-data-integration-in-the-humanities/index.html" class="bluelink " >Laying the Conceptual Foundations for Data Integration in the Humanities</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Arianna Ciula</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2221,6 +2232,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -2235,30 +2251,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2009/04/16/opening-uif-files-on-mac/index.html" class="bluelink ">Opening UIF files on Mac</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2009/04/16/opening-uif-files-on-mac/index.html" class="bluelink " >Opening UIF files on Mac</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2273,13 +2279,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2009</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Mar 2009</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/03/19/meaning-and-structure-in-the-london-theatres-bibliography/index.html" class="bluelink ">Meaning and Structure in the London Theatres Bibliography</a>.
-              <br />
-              <span class="">Michele Pasin, John Bradley</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2009/03/19/meaning-and-structure-in-the-london-theatres-bibliography/index.html" class="bluelink " >Meaning and Structure in the London Theatres Bibliography</a>
+              <!-- <br />
+              <span class="">Michele Pasin, John Bradley</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2299,6 +2312,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -2313,30 +2331,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2009/03/10/db-visualize-the-universal-database-tool/index.html" class="bluelink ">DB visualize : The Universal Database Tool</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2009/03/10/db-visualize-the-universal-database-tool/index.html" class="bluelink " >DB visualize : The Universal Database Tool</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -2372,30 +2380,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2008</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2008/03/06/new-book-on-knowledge-technologies/index.html" class="bluelink ">New Book on Knowledge Technologies</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2008/03/06/new-book-on-knowledge-technologies/index.html" class="bluelink " >New Book on Knowledge Technologies</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2008.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -2431,13 +2429,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2007</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2007</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2007/10/30/capturing-knowledge-about-philosophy/index.html" class="bluelink ">Capturing Knowledge About Philosophy</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta, Zdenek Zdrahal</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2007/10/30/capturing-knowledge-about-philosophy/index.html" class="bluelink " >Capturing Knowledge About Philosophy</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta, Zdenek Zdrahal</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2459,6 +2464,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -2494,30 +2504,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2006/11/30/knowledge-elicitation-playing-with-cards/index.html" class="bluelink ">Knowledge Elicitation: playing with cards</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2006/11/30/knowledge-elicitation-playing-with-cards/index.html" class="bluelink " >Knowledge Elicitation: playing with cards</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -2553,13 +2553,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2003</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Sep 2003</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2003/09/30/theory-of-knowledge-in-the-postfordistic-society/index.html" class="bluelink ">Theory of Knowledge in the Postfordistic Society</a>.
-              <br />
-              <span class="">Michele Pasin, Umberto Margiotta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2003/09/30/theory-of-knowledge-in-the-postfordistic-society/index.html" class="bluelink " >Theory of Knowledge in the Postfordistic Society</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Umberto Margiotta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2579,6 +2586,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 

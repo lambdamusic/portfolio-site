@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -321,6 +426,9 @@
 
             <div class="blogentry"> 
 
+              <hr>
+
+
             <p>The latest issue of the <a href="http://www.mitpressjournals.org/loi/comj?ai=sj&amp;mi=0&amp;af=R">Computer Music Journal</a> is now available, and it includes a DVD full of livecoding bonanza.</p>
 <blockquote>
 <p>Because this is the <a href="http://www.mitpressjournals.org/toc/comj/35/4">Winter issue</a>, it includes the annual CMJ DVD, whose program notes appear near the end of the issue. The curators for the compositions on this year’s DVD are specialists in live coding, the practice of onstage computer programming whose real-time output is an improvised and often collaborative musical performance. As always, the DVD also includes sound and video examples to accompany recent articles, as well as related files on the DVD-ROM portion of the disc.</p>
@@ -336,7 +444,7 @@
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">Special issue of CMJ DVD on livecoding</a>. Blog post on www.michelepasin.org. Published on Jan. 13, 2012.
@@ -411,30 +519,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2020</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2020/11/23/a-new-livecoding-project-the-musical-code/index.html" class="bluelink ">A new livecoding project: &#39;The Musical Code&#39;</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2020/11/23/a-new-livecoding-project-the-musical-code/index.html" class="bluelink " >A new livecoding project: &#39;The Musical Code&#39;</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2020.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -470,30 +568,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/11/27/new-livecoding-screencast-ziggurat-51/index.html" class="bluelink ">New livecoding screencast: Ziggurat 51</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/11/27/new-livecoding-screencast-ziggurat-51/index.html" class="bluelink " >New livecoding screencast: Ziggurat 51</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -529,30 +617,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Special issue of CMJ DVD on livecoding</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Special issue of CMJ DVD on livecoding</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -588,30 +666,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/07/08/livecoding-in-paris-stransbourg/index.html" class="bluelink ">Livecoding in Paris &amp; Strasbourg</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/07/08/livecoding-in-paris-stransbourg/index.html" class="bluelink " >Livecoding in Paris &amp; Strasbourg</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -626,30 +694,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/06/29/livecoding-is-like-gardening/index.html" class="bluelink ">Livecoding is like gardening</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/06/29/livecoding-is-like-gardening/index.html" class="bluelink " >Livecoding is like gardening</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -664,30 +722,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/05/02/the-new-livecoding-error-hook-in-impromptu/index.html" class="bluelink ">The new Livecoding Error Hook in Impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/05/02/the-new-livecoding-error-hook-in-impromptu/index.html" class="bluelink " >The new Livecoding Error Hook in Impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -702,30 +750,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/02/24/new-livecoding-documentary-available/index.html" class="bluelink ">&#39;Show us your screens&#39;: new Livecoding documentary</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/02/24/new-livecoding-documentary-available/index.html" class="bluelink " >&#39;Show us your screens&#39;: new Livecoding documentary</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -761,30 +799,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/12/09/livecoding-xmas-event-at-goldsmith-college/index.html" class="bluelink ">Livecoding Xmas event at Goldsmith College</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/12/09/livecoding-xmas-event-at-goldsmith-college/index.html" class="bluelink " >Livecoding Xmas event at Goldsmith College</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -799,30 +827,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/04/02/finally-some-more-livecoding/index.html" class="bluelink ">Finally some more livecoding</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/04/02/finally-some-more-livecoding/index.html" class="bluelink " >Finally some more livecoding</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -837,30 +855,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/02/12/video-recordings-of-the-livecoding-session-anatomy-theatre/index.html" class="bluelink ">Video recordings of the livecoding session @ anatomy theatre</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/02/12/video-recordings-of-the-livecoding-session-anatomy-theatre/index.html" class="bluelink " >Video recordings of the livecoding session @ anatomy theatre</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -875,30 +883,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/01/10/livecoding-night-kings-college-coming-up/index.html" class="bluelink ">Livecoding night @ kings college coming up</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/01/10/livecoding-night-kings-college-coming-up/index.html" class="bluelink " >Livecoding night @ kings college coming up</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -934,13 +932,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2007</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jul 2007</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2007/07/30/supporting-philosophers-work-through-the-semantic-web-ontological-issues/index.html" class="bluelink ">Supporting Philosophers’ Work through the Semantic Web: Ontological Issues</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2007/07/30/supporting-philosophers-work-through-the-semantic-web-ontological-issues/index.html" class="bluelink " >Supporting Philosophers’ Work through the Semantic Web: Ontological Issues</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -960,6 +965,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -995,30 +1005,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2006/10/23/semantic-wikipedia-some-issues/index.html" class="bluelink ">Semantic Wikipedia: some issues</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2006/10/23/semantic-wikipedia-some-issues/index.html" class="bluelink " >Semantic Wikipedia: some issues</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 

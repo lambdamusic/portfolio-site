@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -321,6 +426,9 @@
 
             <div class="blogentry"> 
 
+              <hr>
+
+
             <p>I guess this is just part of the huge e-learning revolution happening in our century.. what I'm referring to is that through <a href="http://www.apple.com/education/mobile-learning/">ITunesU</a> - a sort of <a href="http://www.apple.com/education/mobile-learning/">university-centered section of iTunes</a> that delivers podcasts/videocasts - you can learn an incredible amount of stuff from the top-teachers in the world. Free of charge, anywhere, anytime.</p>
 <p>I listened to the first episode of <a href="http://www.stanford.edu/class/cs193p/cgi-bin/index.php">CS193: iPhone Application Programming</a> and it's just amazing. Please check out the <a href="http://itunes.stanford.edu/">various other things offered at Stanford</a>, really high quality material!</p>
 <p><img alt="Picture 1" src="../../../../../media/static/blog_img/picture-1.png" title="Picture 1" /></p>
@@ -329,7 +437,7 @@
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">Learning iPhone development while sitting on your couch</a>. Blog post on www.michelepasin.org. Published on Sept. 13, 2009.
@@ -404,30 +512,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2019</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2019/02/11/zero-hunger-hack-day/index.html" class="bluelink ">Zero Hunger Hack Day: surfacing research about the Sustainable Development Goals program</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2019/02/11/zero-hunger-hack-day/index.html" class="bluelink " >Zero Hunger Hack Day: surfacing research about the Sustainable Development Goals program</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2019.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -463,13 +561,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2015</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Sep 2015</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2015/09/13/learning-how-to-become-a-linked-data-publisher-the-naturecom-ontologies-portal/index.html" class="bluelink ">Learning how to become a linked data publisher: the nature.com ontologies portal.</a>.
-              <br />
-              <span class="">Tony Hammond, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2015/09/13/learning-how-to-become-a-linked-data-publisher-the-naturecom-ontologies-portal/index.html" class="bluelink " >Learning how to become a linked data publisher: the nature.com ontologies portal.</a>
+              <!-- <br />
+              <span class="">Tony Hammond, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -489,6 +594,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -503,13 +613,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2015</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jan 2015</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2015/01/15/resquotescom-turn-your-notes-and-highlights-into-research-ideas/index.html" class="bluelink ">ResQuotes.com: Turn your Notes and Highlights into Research Ideas</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2015/01/15/resquotescom-turn-your-notes-and-highlights-into-research-ideas/index.html" class="bluelink " >ResQuotes.com: Turn your Notes and Highlights into Research Ideas</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -529,6 +646,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -543,30 +665,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2015/01/05/introducing-resquotes-com/index.html" class="bluelink ">Take control of your digital annotations with ResQuotes.com</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2015/01/05/introducing-resquotes-com/index.html" class="bluelink " >Take control of your digital annotations with ResQuotes.com</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -602,30 +714,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/index.html" class="bluelink ">Using Mendeley and Dropbox to sync your pdf library across computers</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/index.html" class="bluelink " >Using Mendeley and Dropbox to sync your pdf library across computers</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -640,30 +742,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html" class="bluelink ">Getting hold of your Flickr collections with Python</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html" class="bluelink " >Getting hold of your Flickr collections with Python</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -699,30 +791,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/02/24/new-livecoding-documentary-available/index.html" class="bluelink ">&#39;Show us your screens&#39;: new Livecoding documentary</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/02/24/new-livecoding-documentary-available/index.html" class="bluelink " >&#39;Show us your screens&#39;: new Livecoding documentary</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -758,13 +840,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2010</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Aug 2010</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2010/08/30/semantic-technologies-for-elearning-a-case-study-in-the-philosophical-domain-representing-wittgensteins-tractatus-logicophilosophicus/index.html" class="bluelink ">Semantic Technologies for ELearning: A case study in the philosophical domain: representing Wittgenstein&#39;s Tractatus Logico-Philosophicus</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta, Zdenek Zdrahal</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2010/08/30/semantic-technologies-for-elearning-a-case-study-in-the-philosophical-domain-representing-wittgensteins-tractatus-logicophilosophicus/index.html" class="bluelink " >Semantic Technologies for ELearning: A case study in the philosophical domain: representing Wittgenstein&#39;s Tractatus Logico-Philosophicus</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta, Zdenek Zdrahal</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -782,6 +871,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -796,30 +890,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/08/10/learning-resources-about-scheme/index.html" class="bluelink ">Learning resources about Scheme</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/08/10/learning-resources-about-scheme/index.html" class="bluelink " >Learning resources about Scheme</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -834,30 +918,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/07/13/space-invaders-for-iphone/index.html" class="bluelink ">Space Invaders for iPhone</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/07/13/space-invaders-for-iphone/index.html" class="bluelink " >Space Invaders for iPhone</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -872,30 +946,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/03/25/links-to-cs-193p-iphone-dev-lectures/index.html" class="bluelink ">Links to CS 193P iPhone dev lectures</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/03/25/links-to-cs-193p-iphone-dev-lectures/index.html" class="bluelink " >Links to CS 193P iPhone dev lectures</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -931,13 +995,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2009</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2009</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2009/10/30/philosurfical-an-ontological-approach-to-support-philosophy-learning/index.html" class="bluelink ">PhiloSURFical: An Ontological Approach To Support Philosophy Learning</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2009/10/30/philosurfical-an-ontological-approach-to-support-philosophy-learning/index.html" class="bluelink " >PhiloSURFical: An Ontological Approach To Support Philosophy Learning</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -957,6 +1028,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -971,30 +1047,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Learning iPhone development while sitting on your couch</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Learning iPhone development while sitting on your couch</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1009,30 +1075,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../05/20/how-to-get-the-iphone-to-stop-automatic-back-ups/index.html" class="bluelink ">How to get the iPhone to stop automatic back ups</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../05/20/how-to-get-the-iphone-to-stop-automatic-back-ups/index.html" class="bluelink " >How to get the iPhone to stop automatic back ups</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1047,30 +1103,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../04/15/the-leaf-trombone-on-iphone/index.html" class="bluelink ">The Leaf Trombone on iPhone</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../04/15/the-leaf-trombone-on-iphone/index.html" class="bluelink " >The Leaf Trombone on iPhone</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1085,30 +1131,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../03/10/netnewswire-great-rss-reader-for-maciphone/index.html" class="bluelink ">NetNewsWire - Great RSS reader for mac/iphone!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../03/10/netnewswire-great-rss-reader-for-maciphone/index.html" class="bluelink " >NetNewsWire - Great RSS reader for mac/iphone!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1123,30 +1159,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../01/27/how-to-make-a-mac-screen-saver-that-shows-your-uptime/index.html" class="bluelink ">How to make a (Mac) screen saver that shows your uptime</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../01/27/how-to-make-a-mac-screen-saver-that-shows-your-uptime/index.html" class="bluelink " >How to make a (Mac) screen saver that shows your uptime</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1182,30 +1208,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2007/07/04/mamp-php-development-made-really-easy/index.html" class="bluelink ">MAMP - php development made REALLY easy</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2007/07/04/mamp-php-development-made-really-easy/index.html" class="bluelink " >MAMP - php development made REALLY easy</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1241,30 +1257,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2006/11/02/free-learning-resources-from-the-ou/index.html" class="bluelink ">Free learning resources from the OU</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2006/11/02/free-learning-resources-from-the-ou/index.html" class="bluelink " >Free learning resources from the OU</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1279,13 +1285,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2006</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2006</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2006/06/30/a-task-based-approach-to-support-situating-learning-for-the-semantic-web/index.html" class="bluelink ">A Task Based Approach to Support Situating Learning for the Semantic Web</a>.
-              <br />
-              <span class="">Michele Pasin, Martin Dzbor</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2006/06/30/a-task-based-approach-to-support-situating-learning-for-the-semantic-web/index.html" class="bluelink " >A Task Based Approach to Support Situating Learning for the Semantic Web</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Martin Dzbor</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1305,6 +1318,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1319,13 +1337,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2006</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2006</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2006/06/30/paving-the-way-towards-the-ehumanities-a-semantic-web-approach-to-support-the-learning-of-philosophy/index.html" class="bluelink ">Paving the way towards the e-humanities: a Semantic Web approach to support the learning of philosophy </a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2006/06/30/paving-the-way-towards-the-ehumanities-a-semantic-web-approach-to-support-the-learning-of-philosophy/index.html" class="bluelink " >Paving the way towards the e-humanities: a Semantic Web approach to support the learning of philosophy </a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1345,6 +1370,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1359,30 +1389,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2006/03/06/a-doctor-hidden-in-the-mac/index.html" class="bluelink ">A doctor hidden in your mac</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2006/03/06/a-doctor-hidden-in-the-mac/index.html" class="bluelink " >A doctor hidden in your mac</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1418,13 +1438,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2005</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2005</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2005/10/30/semantic-learning-narratives/index.html" class="bluelink ">Semantic Learning Narratives</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2005/10/30/semantic-learning-narratives/index.html" class="bluelink " >Semantic Learning Narratives</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1444,6 +1471,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 

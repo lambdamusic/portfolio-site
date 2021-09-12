@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -327,7 +432,8 @@
             <p class="text-muted">Full reference:</p>
 
             <div class="well well-big lead">
-              Michele Pasin. Modeling publications in SN SciGraph 2012-2019 - Workshop on Scholarly Digital Editions, Graph Data-Models and Semantic Web Technologies Université de Lausanne June 2019 .
+              Michele Pasin. Modeling publications in SN SciGraph 2012-2019 - Workshop on Scholarly Digital Editions, Graph Data-Models and Semantic Web Technologies Université de Lausanne June 2019 . 
+              <a href="https://lambdamusic.github.io/support.michelepasin.org/public_articles/2019-Pasin-Lausanne.pdf" title="Article: Modeling publications in SN SciGraph 2012-2019">PDF</a>  
             </div>
             <br />
 
@@ -399,13 +505,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2019</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2019</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Modeling publications in SN SciGraph 2012-2019</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Modeling publications in SN SciGraph 2012-2019</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -425,6 +538,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -439,13 +557,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2019</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">May 2019</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/index.html" class="bluelink ">Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</a>.
-              <br />
-              <span class="">Beyza Yaman, Michele Pasin, Markus Freudenberg</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/index.html" class="bluelink " >Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</a>
+              <!-- <br />
+              <span class="">Beyza Yaman, Michele Pasin, Markus Freudenberg</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -465,6 +590,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -479,30 +609,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2019</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2019/03/22/sn-scigraph-latest-release-patents-clinical-trials-and-many-new-features/index.html" class="bluelink ">SN SciGraph Latest Release: Patents, Clinical Trials and many new features</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2019/03/22/sn-scigraph-latest-release-patents-clinical-trials-and-many-new-features/index.html" class="bluelink " >SN SciGraph Latest Release: Patents, Clinical Trials and many new features</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2019.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -538,30 +658,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2018</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2018/11/23/exploring-scholarly-publications-via-dbpedia/index.html" class="bluelink ">Exploring scholarly publications using DBPedia concepts: an experiment</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2018/11/23/exploring-scholarly-publications-via-dbpedia/index.html" class="bluelink " >Exploring scholarly publications using DBPedia concepts: an experiment</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2018.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -576,30 +686,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2018</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2018/08/01/sn-scigraph-latest-website-release-make-it-easier-to-discover-related-content/index.html" class="bluelink ">SN SciGraph: latest website release make it easier to discover related content</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2018/08/01/sn-scigraph-latest-website-release-make-it-easier-to-discover-related-content/index.html" class="bluelink " >SN SciGraph: latest website release make it easier to discover related content</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2018.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -614,30 +714,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2018</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2018/06/07/pyscigraph-simple-api-for-accessing-springer-nature-scigraph-content/index.html" class="bluelink ">PySciGraph: simple API for accessing SN SciGraph content</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2018/06/07/pyscigraph-simple-api-for-accessing-springer-nature-scigraph-content/index.html" class="bluelink " >PySciGraph: simple API for accessing SN SciGraph content</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2018.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -652,30 +742,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2018</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2018/05/23/sn-scigraph-is-part-of-the-linked-open-data-cloud-2018/index.html" class="bluelink ">SN SciGraph is part of the Linked Open Data Cloud 2018</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2018/05/23/sn-scigraph-is-part-of-the-linked-open-data-cloud-2018/index.html" class="bluelink " >SN SciGraph is part of the Linked Open Data Cloud 2018</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2018.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -711,30 +791,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2017</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2017/11/14/scigraph-publishes-1-billion-facts-as-linked-open-data/index.html" class="bluelink ">SciGraph publishes 1 billion facts as Linked Open Data</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2017/11/14/scigraph-publishes-1-billion-facts-as-linked-open-data/index.html" class="bluelink " >SciGraph publishes 1 billion facts as Linked Open Data</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2017.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -749,13 +819,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2017</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2017</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2017/10/19/data-integration-and-disintegration-managing-springer-nature-scigraph-with-shacl-and-owl/index.html" class="bluelink ">Data integration and disintegration: Managing Springer Nature SciGraph with SHACL and OWL</a>.
-              <br />
-              <span class="">Tony Hammond, Michele Pasin, Evangelos Theodoridis</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2017/10/19/data-integration-and-disintegration-managing-springer-nature-scigraph-with-shacl-and-owl/index.html" class="bluelink " >Data integration and disintegration: Managing Springer Nature SciGraph with SHACL and OWL</a>
+              <!-- <br />
+              <span class="">Tony Hammond, Michele Pasin, Evangelos Theodoridis</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -775,6 +852,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -789,30 +871,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2017</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/index.html" class="bluelink ">Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/index.html" class="bluelink " >Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2017.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -848,30 +920,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../blogs/2007/03/30/modeling-representations-take-2/index.html" class="bluelink ">Modeling Representations (take 2)</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blogs/2007/03/30/modeling-representations-take-2/index.html" class="bluelink " >Modeling Representations (take 2)</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 

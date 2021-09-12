@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -321,39 +426,41 @@
 
             <div class="blogentry"> 
 
+              <hr>
+
+
             <p>I attended the <a href="https://www.force11.org/">https://www.force11.org/</a> conference in Oxford the last couple of days (the conference was previously called 'Beyond the PDF').</p>
 <blockquote>
 <p>Force11 is a community of scholars, librarians, archivists, publishers and research funders that has arisen organically to help facilitate the change toward improved knowledge creation and sharing. Individually and collectively, we aim to bring about a change in modern scholarly communications through the effective use of information technology. [<a href="https://www.force11.org/about">About Force 11</a>]</p>
 </blockquote>
-<p>Rather than the presentations, I would say that the most valuable aspect of this event are the many <strong>conversations</strong> you can have with people from different backgrounds: techies, publishers, policy makers, academics etc.. Nonetheless, here's a (very short and biased) list of things that seemed to stand out.- A talk titled <em><strong>Who's Sharing with Who? Acknowledgements-driven identification of resources</strong></em> by <a href="https://www.icts.uiowa.edu/Loki/research/browseResearch.jsp?browse=E&amp;id=950712">David Eichmann</a>, University of Iowa. He is working on a (seemingly very effective) method for extracting contributors roles from scientific articles</p>
+<p>Rather than the presentations, I would say that the most valuable aspect of this event are the many <strong>conversations</strong> you can have with people from different backgrounds: techies, publishers, policy makers, academics etc.. Nonetheless, here's a (very short and biased) list of things that seemed to stand out.</p>
+<h3>1. Extracting Scientific Contributors Roles</h3>
+<p>A talk titled <em><strong>Who's Sharing with Who? Acknowledgements-driven identification of resources</strong></em> by <a href="https://www.icts.uiowa.edu/Loki/research/browseResearch.jsp?browse=E&amp;id=950712">David Eichmann</a>, University of Iowa. He is working on a (seemingly very effective) method for extracting contributors roles from scientific articles</p>
 <blockquote>
 <p>This presentation describes my recent work in semantic analysis of the acknowledgement section of biomedical research articles, specifically the sharing of resources (instruments, reagents, model organisms, etc.) between the author articles and other non-author investigators. The resulting semantic graph complements the knowledge currently captured by research profiling systems, which primarily focus on investigators, publications and grants. My approach results in much finer-grained information, at the individual author contribution level, and the specific resources shared by external parties. The long-term goal for this work is unification with the VIVO-ISF-based CTSAsearch federated search engine, which currently contains research profiles from 60 institutions worldwide.</p>
 </blockquote>
-<ul>
-<li>A talk titled <em><strong>Why are we so attached to attachments? Let's ditch them and improve publishing</strong></em> by Kaveh Bazargan, head of <a href="http://rivervalleytechnologies.com/">River Valley Technologies</a>. He demoed a <a href="http://rivervalleytechnologies.com/river-valley-technologies-launch-automated-xml-publishing/#more-179">prototype manuscript tracking system</a> that allows editors, authors and reviewers to create new versions of the same document via an online google-doc-like system which has JATS XML in the background</li>
-</ul>
+<h3>2. JATS XML web editor</h3>
+<p>A talk titled <em><strong>Why are we so attached to attachments? Let's ditch them and improve publishing</strong></em> by Kaveh Bazargan, head of <a href="http://rivervalleytechnologies.com/">River Valley Technologies</a>. He demoed a <a href="http://rivervalleytechnologies.com/river-valley-technologies-launch-automated-xml-publishing/#more-179">prototype manuscript tracking system</a> that allows editors, authors and reviewers to create new versions of the same document via an online google-doc-like system which has JATS XML in the background</p>
 <blockquote>
 <p>I argue that it is precisely the ubiquitous use of attachments that has held up progress in publishing. We have the technology right now to allow the author to write online and have the file saved automatically as XML. All subsequent work on the "manuscript" (e.g. copy editing, QC, etc) can also be done online. At the end of the process the XML is automatically "rendered" to PDF, Epub, etc, and delivered to the end user, on demand. This system is quicker as there are no emails or attachments to hold it up, cheaper as there is no admin involved, and more accurate as there is only one definitive file (the XML) which is the "format of record".</p>
 </blockquote>
-<ul>
-<li><a href="http://blog.f1000.com/author/rebecca-lawrence/">Rebecca Lawrence</a> from <a href="http://f1000.com/">F1000</a> presented and gave me a walk through of a <a href="http://f1000.com/beta/">new suite of tools they're working on</a>. That was quite impressing I must say, especially due to the variety of features they offer: tools to organize and store references, annotate and discuss articles and web pages, import them into word documents etc.. All packed within a nicely looking and user friendly application. This is due to go public beta some time in March, but you can try to get access to it sooner by signing up <a href="http://f1000.com/beta/">here</a>.</li>
-</ul>
+<h3>3. F1000 Annotations Manager</h3>
+<p><a href="http://blog.f1000.com/author/rebecca-lawrence/">Rebecca Lawrence</a> from <a href="http://f1000.com/">F1000</a> presented and gave me a walk through of a <a href="http://f1000.com/beta/">new suite of tools they're working on</a>. That was quite impressing I must say, especially due to the variety of features they offer: tools to organize and store references, annotate and discuss articles and web pages, import them into word documents etc.. All packed within a nicely looking and user friendly application. This is due to go public beta some time in March, but you can try to get access to it sooner by signing up <a href="http://f1000.com/beta/">here</a>.</p>
 <p><a href="http://michelepasin.org/blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-17-at-18.18.18.png"><img alt="Screen Shot 2015 01 17 at 18 18 18" src="../../../../../media/static/blog_img/Screen-Shot-2015-01-17-at-18.18.18.png" /></a></p>
-<ul>
-<li>The best <strong>poster</strong> award went to <em><strong>101 Innovations in Scholarly Communication - the Changing Research Workflow</strong></em>. This is a project aiming to chart innovation in scholarly information and communication flows. Very inspiring and definitely <a href="http://figshare.com/articles/101_Innovations_in_Scholarly_Communication_the_Changing_Research_Workflow/1286826">worth a look</a>.</li>
-</ul>
+<h3>4. Innovations in Scholarly Communication</h3>
+<p>The best <strong>poster</strong> award went to <em><strong>101 Innovations in Scholarly Communication - the Changing Research Workflow</strong></em>. This is a project aiming to chart innovation in scholarly information and communication flows. Very inspiring and definitely <a href="http://figshare.com/articles/101_Innovations_in_Scholarly_Communication_the_Changing_Research_Workflow/1286826">worth a look</a>.</p>
 <p><a href="http://michelepasin.org/blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-15-at-11.49.58-AM.png"><img alt="Screen+Shot+2015 01 15+at+11 49 58+AM" src="../../../../../media/static/blog_img/Screen-Shot-2015-01-15-at-11.49.58-AM.png" /></a></p>
-<ul>
-<li>Finally, I'm proud to say that the best <strong>demo</strong> award went to my own <a href="http://www.resquotes.com/">resquotes.com</a>, a personal quotations-manager online tool which I've just <a href="http://michelepasin.org/blog/2015/01/05/introducing-resquotes-com/">launched</a> a couple of weeks ago. Needless to say, it was great to get vote of confidence from this community!</li>
-</ul>
+<h3>5. Best demo: resquotes.com</h3>
+<p>Finally, I'm proud to say that the best <strong>demo</strong> award went to my own <a href="http://www.resquotes.com/">resquotes.com</a>, a personal quotations-manager online tool which I've just <a href="http://michelepasin.org/blog/2015/01/05/introducing-resquotes-com/">launched</a> a couple of weeks ago. Needless to say, it was great to get vote of confidence from this community!</p>
 <p><a href="http://michelepasin.org/blog/wp-content/uploads/2015/01/Screen-Shot-2015-01-06-at-08.48.30.png"><img alt="Screen Shot 2015 01 06 at 08 48 30" src="../../../../../media/static/blog_img/Screen-Shot-2015-01-06-at-08.48.30.png" /></a></p>
+<hr />
 <p>If you want more, it's worth taking a look directly at the <a href="https://www.force11.org/meetings/force2015/detailed-agenda">conference agenda</a> and in particular the <a href="https://www.force11.org/meetings/force2015/demos-and-posters">demo/poster session</a> agenda. And hopefully see you next year in Portland, Oregon :-)</p>
 
             </div>
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">Notes from the Force11 annual conference</a>. Blog post on www.michelepasin.org. Published on Jan. 17, 2015.
@@ -428,13 +535,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2017</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jan 2017</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2017/01/01/fitting-personal-interpretation-with-the-semantic-web-lessons-learned-from-pliny/index.html" class="bluelink ">Fitting Personal Interpretation with the Semantic Web: lessons learned from Pliny</a>.
-              <br />
-              <span class="">John Bradley, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2017/01/01/fitting-personal-interpretation-with-the-semantic-web-lessons-learned-from-pliny/index.html" class="bluelink " >Fitting Personal Interpretation with the Semantic Web: lessons learned from Pliny</a>
+              <!-- <br />
+              <span class="">John Bradley, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -454,6 +568,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -489,30 +608,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2016</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2016/12/24/extracting-snippets-from-github-gists-to-dash/index.html" class="bluelink ">How to copy snippets from Github Gists to Dash</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2016/12/24/extracting-snippets-from-github-gists-to-dash/index.html" class="bluelink " >How to copy snippets from Github Gists to Dash</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2016.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -527,30 +636,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2016</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2016/11/03/apple-keynote-extracting-presenter-notes-to-markdown/index.html" class="bluelink ">Apple Keynote: extracting presenter notes to Markdown</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2016/11/03/apple-keynote-extracting-presenter-notes-to-markdown/index.html" class="bluelink " >Apple Keynote: extracting presenter notes to Markdown</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2016.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -565,30 +664,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2016</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2016/10/25/leipzig-semantics-2016-conference/index.html" class="bluelink ">Leipzig Semantics 2016 conference</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2016/10/25/leipzig-semantics-2016-conference/index.html" class="bluelink " >Leipzig Semantics 2016 conference</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2016.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -624,30 +713,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../06/14/recent-projects-from-crossref-org/index.html" class="bluelink ">Recent projects from CrossRef.org</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../06/14/recent-projects-from-crossref-org/index.html" class="bluelink " >Recent projects from CrossRef.org</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -662,30 +741,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Notes from the Force11 annual conference</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Notes from the Force11 annual conference</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -700,13 +769,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2015</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jan 2015</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2015/01/15/resquotescom-turn-your-notes-and-highlights-into-research-ideas/index.html" class="bluelink ">ResQuotes.com: Turn your Notes and Highlights into Research Ideas</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2015/01/15/resquotescom-turn-your-notes-and-highlights-into-research-ideas/index.html" class="bluelink " >ResQuotes.com: Turn your Notes and Highlights into Research Ideas</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -726,6 +802,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -761,30 +842,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/06/05/eswc-2013-report-from-the-conference/index.html" class="bluelink ">ESWC 2013 - report from the conference</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/06/05/eswc-2013-report-from-the-conference/index.html" class="bluelink " >ESWC 2013 - report from the conference</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -799,30 +870,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/04/27/annual-bliss-classification-association-lecture-using-faceted-browsers-in-the-dh/index.html" class="bluelink ">Annual Bliss Classification Association Lecture: using faceted browsers in the DH</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/04/27/annual-bliss-classification-association-lecture-using-faceted-browsers-in-the-dh/index.html" class="bluelink " >Annual Bliss Classification Association Lecture: using faceted browsers in the DH</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -858,30 +919,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/06/01/crowdsourcing-interpretation-with-prism-a-new-software-from-the-scholars-lab/index.html" class="bluelink ">Crowdsourcing interpretation with Prism, a new software from the Scholar&#39;s Lab</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/06/01/crowdsourcing-interpretation-with-prism-a-new-software-from-the-scholars-lab/index.html" class="bluelink " >Crowdsourcing interpretation with Prism, a new software from the Scholar&#39;s Lab</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -896,30 +947,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/03/28/conference-computer-applications-and-quantitative-methods-in-archeology/index.html" class="bluelink ">Conference: Computer Applications and Quantitative Methods in Archeology</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/03/28/conference-computer-applications-and-quantitative-methods-in-archeology/index.html" class="bluelink " >Conference: Computer Applications and Quantitative Methods in Archeology</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -955,30 +996,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/06/30/digital-humanities-conference-2011-a-short-review/index.html" class="bluelink ">Event: Digital Humanities conference 2011</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/06/30/digital-humanities-conference-2011-a-short-review/index.html" class="bluelink " >Event: Digital Humanities conference 2011</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -993,30 +1024,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/01/29/opening-a-finders-window-from-impromptu-alas-how-to-use-the-applescript-bridge/index.html" class="bluelink ">Opening a Finder&#39;s window from Impromptu (alas how to use the applescript bridge..)</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/01/29/opening-a-finders-window-from-impromptu-alas-how-to-use-the-applescript-bridge/index.html" class="bluelink " >Opening a Finder&#39;s window from Impromptu (alas how to use the applescript bridge..)</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1052,13 +1073,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2010</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2010</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2010/10/02/how-do-philosophers-think-their-own-discipline-reports-from-a-knowledge-elicitation-experiment/index.html" class="bluelink ">How do philosophers think their own discipline? Reports from a knowledge elicitation experiment</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2010/10/02/how-do-philosophers-think-their-own-discipline-reports-from-a-knowledge-elicitation-experiment/index.html" class="bluelink " >How do philosophers think their own discipline? Reports from a knowledge elicitation experiment</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1078,6 +1106,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1092,13 +1125,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2010</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2010</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2010/06/10/data-integration-perspectives-from-the-london-theatres-bibliography-project/index.html" class="bluelink ">Data integration perspectives from the London Theatres Bibliography project</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2010/06/10/data-integration-perspectives-from-the-london-theatres-bibliography-project/index.html" class="bluelink " >Data integration perspectives from the London Theatres Bibliography project</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1118,6 +1158,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1132,13 +1177,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2010</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">May 2010</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2010/05/13/review-of-interontology-conference-2010/index.html" class="bluelink ">Review of Interontology conference 2010</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2010/05/13/review-of-interontology-conference-2010/index.html" class="bluelink " >Review of Interontology conference 2010</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1158,6 +1210,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1172,30 +1229,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/03/11/tale-of-tales-artistic-interactive-games-from-belgium/index.html" class="bluelink ">Tale of tales: artistic interactive games from Belgium</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/03/11/tale-of-tales-artistic-interactive-games-from-belgium/index.html" class="bluelink " >Tale of tales: artistic interactive games from Belgium</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1210,30 +1257,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/index.html" class="bluelink ">Impromptu: access the Wiki docs from the editor</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/index.html" class="bluelink " >Impromptu: access the Wiki docs from the editor</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1269,30 +1306,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2008</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2008/07/10/quotation-from-gregory-bateson/index.html" class="bluelink ">Quotation from Gregory Bateson</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2008/07/10/quotation-from-gregory-bateson/index.html" class="bluelink " >Quotation from Gregory Bateson</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2008.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1328,30 +1355,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2007/06/20/conference-saso-2007/index.html" class="bluelink ">Conference: SASO 2007 on Self-Organizing systems</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2007/06/20/conference-saso-2007/index.html" class="bluelink " >Conference: SASO 2007 on Self-Organizing systems</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1366,30 +1383,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2007/02/06/lisp-conference-in-cambridge/index.html" class="bluelink ">Lisp conference in Cambridge</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2007/02/06/lisp-conference-in-cambridge/index.html" class="bluelink " >Lisp conference in Cambridge</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1425,30 +1432,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2006/11/02/free-learning-resources-from-the-ou/index.html" class="bluelink ">Free learning resources from the OU</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2006/11/02/free-learning-resources-from-the-ou/index.html" class="bluelink " >Free learning resources from the OU</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 

@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -321,6 +426,9 @@
 
             <div class="blogentry"> 
 
+              <hr>
+
+
             <p>RDFLib (<a href="http://www.rdflib.net/">homepage</a>) is a pretty solid and comprehensive rdf-programming kit for Python. In a <a href="http://www.michelepasin.org/blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/">previous post</a> I already discussed what pythonic options are currently available out there for doing semantic web programming; after some more in depth testing I realized that Rdflib is the most accessible and complete of them all (in fact many of the available libraries are based on Rdflib's APIs). So.. here we go: in this post I'm giving an overview of some of the things you can do with this library.</p>
 <p><em><strong>Update 2014-10-04</strong>: the latest version of the Python library described in this post is available on <a href="https://github.com/lambdamusic/ontosPy">GitHub</a></em></p>
 <p>The <a href="http://linkeddata.org/">Linked Data</a> world is <em>primarily</em> made up of <a href="http://en.wikipedia.org/wiki/Resource_Description_Framework">RDF</a>, many would say, so the most important thing is being able to parse and extract information from this simple but versatile language. A quite well known mantra in this community is the '<a href="http://www.cs.rpi.edu/~hendler/LittleSemanticsWeb.html">a little semantics goes a long way</a>', which expresses succinctly the idea that there's no need to fixate on the construction of large-scale <a href="http://en.wikipedia.org/wiki/Cyc">CYC</a>-like knowledge-based systems in order to get something going in an open-world scenario such as the web (of data).</p>
@@ -336,291 +444,314 @@
 <h3>Inspecting an ontology using RDFLib</h3>
 <p>I created a small class called '<strong>OntoInspector</strong>' that you can instantiate with an RDFS/OWL ontology and then query to find out basic information about that ontology. I know - all of this could have been done using one of the many (and constantly increasing) ontology editing tools - but hey this is all about learning isn't it? You can find all the source code on BitBucket <a href="https://github.com/lambdamusic/ontosPy">GitHub</a>. Feel free to get it and modify as needed. Also, I integrated this python toolkit within a <strong>django application</strong> that let you browse ontologies online (beware - it's just a hack really). This is called (surprise) <strong>OntoView</strong>, and it's <a href="http://www.michelepasin.org/hacks/ontoview/">accessible here</a>.</p>
 <p>The first thing to do in our class definition is (obviously) loading up the RDFLib library. I've developed this using RDFlib 2.4, but recently tested it with 3.0 (the latest release available) and it all still works fine. By loading up the RDF and RDFS modules we'll have access to all the constants needed to query for classes and subclasses. Note that I added an OWL module as that is not part of RDFLib. You can find it in the source code, it's just a list of all predicates in the <a href="http://www.w3.org/TR/owl-guide/">OWL vocabulary</a>.</p>
-<pre><code>`from rdflib import ConjunctiveGraph, Namespace, exceptions  from rdflib import URIRef, RDFS, RDF, BNode  import OWL`
-</code></pre>
+<div class="codehilite"><pre><span></span><code><span class="err">`</span><span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">ConjunctiveGraph</span><span class="p">,</span> <span class="n">Namespace</span><span class="p">,</span> <span class="n">exceptions</span>  <span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">URIRef</span><span class="p">,</span> <span class="n">RDFS</span><span class="p">,</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">BNode</span>  <span class="kn">import</span> <span class="nn">OWL</span><span class="err">`</span>
+</code></pre></div>
+
 <p>Now let's set up the basic structure of the OntoInspector class. In principle, an OntoInspector object should contain all the information necessary to query an ontology. An ontology is referred to using its URI, so that's all is needed for creating an instance of OntoInspector too:</p>
-<p>```
-class OntoInspector(object):</p>
-<pre><code>"""Class that includes methods for querying an RDFS/OWL ontology"""
+<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="n">OntoInspector</span>(<span class="n">object</span>):
 
-def __init__(self, uri, language=""):
-    super(OntoInspector, self).__init__()
+    <span class="s">&quot;&quot;&quot;Class that includes methods for querying an RDFS/OWL ontology&quot;&quot;&quot;</span>        
 
-    self.rdfGraph = ConjunctiveGraph()
-    try:
-        self.rdfGraph.parse(uri, format="xml")
-    except:
-        try:
-            self.rdfGraph.parse(uri, format="n3")
-        except:
-            raise exceptions.Error("Could not parse the file! Is it a valid RDF/OWL ontology?")
+    <span class="n">def</span> <span class="n">__init__</span>(<span class="nb">self</span>, <span class="n">uri</span>, <span class="n">language</span>=<span class="s">&quot;&quot;</span>):
+        <span class="n">super</span>(<span class="n">OntoInspector</span>, <span class="nb">self</span>).<span class="n">__init__</span>()
 
-    finally:
-        # let's cache some useful info for faster access
-        self.baseURI = self.get_OntologyURI() or uri            
-        self.allclasses = self.__getAllClasses(classPredicate)
-        self.toplayer = self.__getTopclasses()
-        self.tree = self.__getTree()
+        <span class="nb">self</span>.<span class="n">rdfGraph</span> = <span class="n">ConjunctiveGraph</span>()
+        <span class="n">try:</span>
+            <span class="nb">self</span>.<span class="n">rdfGraph</span>.<span class="nb">parse</span>(<span class="n">uri</span>, <span class="nb">format</span>=<span class="s">&quot;xml&quot;</span>)
+        <span class="n">except:</span>
+            <span class="n">try:</span>
+                <span class="nb">self</span>.<span class="n">rdfGraph</span>.<span class="nb">parse</span>(<span class="n">uri</span>, <span class="nb">format</span>=<span class="s">&quot;n3&quot;</span>)
+            <span class="n">except:</span>
+                <span class="n">raise</span> <span class="n">exceptions</span>.<span class="n">Error</span>(<span class="s">&quot;Could not parse the file! Is it a valid RDF/OWL ontology?&quot;</span>)
 
-
-def get_OntologyURI(self, ....):
-    # todo
-    pass
-
-def __getAllClasses(self, ....):
-    # todo
-    pass
+        <span class="n">finally:</span>
+            <span class="c1"># let&#39;s cache some useful info for faster access</span>
+            <span class="nb">self</span>.<span class="n">baseURI</span> = <span class="nb">self</span>.<span class="n">get_OntologyURI</span>() <span class="o">or</span> <span class="n">uri</span>            
+            <span class="nb">self</span>.<span class="n">allclasses</span> = <span class="nb">self</span>.<span class="n">__getAllClasses</span>(<span class="n">classPredicate</span>)
+            <span class="nb">self</span>.<span class="n">toplayer</span> = <span class="nb">self</span>.<span class="n">__getTopclasses</span>()
+            <span class="nb">self</span>.<span class="nb">tree</span> = <span class="nb">self</span>.<span class="n">__getTree</span>()
 
 
-def __getTopclasses(self, ....):
-    pass
+    <span class="n">def</span> <span class="n">get_OntologyURI</span>(<span class="nb">self</span>, ....):
+        <span class="c1"># todo</span>
+        <span class="nb">pass</span>
+
+    <span class="n">def</span> <span class="n">__getAllClasses</span>(<span class="nb">self</span>, ....):
+        <span class="c1"># todo</span>
+        <span class="nb">pass</span>
 
 
-def __getTree(self, ....):
-    # todo
-    pass
-</code></pre>
-<p>```</p>
+    <span class="n">def</span> <span class="n">__getTopclasses</span>(<span class="nb">self</span>, ....):
+        <span class="nb">pass</span>
+
+
+    <span class="n">def</span> <span class="n">__getTree</span>(<span class="nb">self</span>, ....):
+        <span class="c1"># todo</span>
+        <span class="nb">pass</span>
+</code></pre></div>
+
 <p>As you can see the __init__ method tries to load the ontology file (which can be expressed in either rdf/xml or n3 format) and then sets up 4 class attributes. These attributes will contain some key information about the ontology: its <strong>URI</strong>, a list of <strong>all the classes</strong> available, the classes in the <strong>top layer</strong> and the main <strong>taxonomical tree</strong> of the ontology. We're now going to implement the methods needed to fill out these 4 attributes.</p>
 <h3>Getting the ontology URI</h3>
 <p>If we're dealing with an OWL ontology, it may be the case that the URI we have just used to retrieve the ontology file is not the 'official' URI of the ontology. In fact OWL provides a construct that can be used to 'state' which is the base URI of an ontology (essentially, this is equivalent to stating that an RDF resource has rdf:type http://www.w3.org/2002/07/owl#Ontology). So in the following method first we check if an URI of rdf:type OWL:Ontology exists, and return that if available (when we return None, the URI value defaults to the URI originally provided when creating the OntoInspector object - see the constructor code above):</p>
-<p>```
-def get_OntologyURI(self, return_as_string=True):
-    """ 
-    In [15]: [x for x in o.rdfGraph.triples((None, RDF.type, OWL.Ontology))]
-    Out[15]: 
-    [(rdflib.URIRef('http://purl.com/net/sails'),
-      rdflib.URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
-      rdflib.URIRef('http://www.w3.org/2002/07/owl#Ontology'))]</p>
-<pre><code>Mind that this will work only for OWL ontologies.
-In other cases we just return None, and use the URI passed at loading time
-"""
+<div class="codehilite"><pre><span></span><code><span class="n">def</span> <span class="n">get_OntologyURI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">return_as_string</span><span class="o">=</span><span class="n">True</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; </span>
+<span class="sd">    In [15]: [x for x in o.rdfGraph.triples((None, RDF.type, OWL.Ontology))]</span>
+<span class="sd">    Out[15]: </span>
+<span class="sd">    [(rdflib.URIRef(&#39;http://purl.com/net/sails&#39;),</span>
+<span class="sd">      rdflib.URIRef(&#39;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&#39;),</span>
+<span class="sd">      rdflib.URIRef(&#39;http://www.w3.org/2002/07/owl#Ontology&#39;))]</span>
 
-test = [x for x, y, z in self.rdfGraph.triples((None, RDF.type, OWL.Ontology))]
+<span class="sd">    Mind that this will work only for OWL ontologies.</span>
+<span class="sd">    In other cases we just return None, and use the URI passed at loading time</span>
+<span class="sd">    &quot;&quot;&quot;</span>
 
-if test:
-    if return_as_string:
-        return str(test[0])
-    else:
-        return test[0]
-else:
-    return None
-</code></pre>
-<p>```</p>
+    <span class="n">test</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="n">None</span><span class="p">,</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">OWL</span><span class="o">.</span><span class="n">Ontology</span><span class="p">))]</span>
+
+    <span class="k">if</span> <span class="n">test</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">return_as_string</span><span class="p">:</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="n">None</span>
+</code></pre></div>
+
 <h3>Extracting all the classes</h3>
 <p>Essentially, there are only <strong>two ways to define a class</strong>: you can either specify that an entity has a property RDF:type with value rdfs:Class, or that it has a property RDF:type with value owl:Class. Note that the owl:Class predicate is defined as a <em>subclass</em> of rdfs:Class. The rationale for having a separate OWL class construct lies in the restrictions on OWL DL (and thus also on OWL Lite), which imply that not all RDFS classes are legal OWL DL classes. In OWL Full these restrictions do not exist and therefore owl:Class and rdfs:Class are equivalent in OWL Full (more info here: <a href="http://www.w3.org/TR/owl-ref/">http://www.w3.org/TR/owl-ref/</a>, section 3.1).</p>
 <p>Thus, In order to retrieve all the classes defined in an ontology we can just query the RDF graph for triples that have this form:</p>
 <p>someURI - rdf:type - rdf:Class OR owl:Class .</p>
 <p>This approach will work in the majority of cases. However, things are complicated by the fact that people are sometimes sloppy when they define ontologies, or because they use different tools that automatically generate different styles of RDF code. For example, often an entity is defined as being an rdfs:subclassOf another entity, without explicitly declaring that both of them are (rdfs, or owl) classes; another common case is that one of classes mentioned in the domain/range values of properties (via the rdfs.domain and rdfs.range properties) but not declared explicitly.</p>
 <p>Since we want to be as comprehensive as possible when looking for *all* the classes present in an ontology, I added a couple of methods that deal with these borderline cases. If you don't want to include all of this stuff, you can still bypass these extra checks by using the <em>classPredicate</em> argument.</p>
-<p>```
-def __getAllClasses(self, classPredicate = "", removeBlankNodes = True):
-    """<br />
-    Extracts all the classes from a model
-    We use the RDFS and OWL predicate by default; also, we extract non explicitly declared classes
-    """</p>
-<pre><code>rdfGraph = self.rdfGraph
-exit = []
+<div class="codehilite"><pre><span></span><code><span class="nv">def</span> <span class="nv">__getAllClasses</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">classPredicate</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>, <span class="nv">removeBlankNodes</span> <span class="o">=</span> <span class="nv">True</span><span class="ss">)</span>:
+    <span class="s2">&quot;&quot;&quot;</span><span class="s">  </span>
+    <span class="nv">Extracts</span> <span class="nv">all</span> <span class="nv">the</span> <span class="nv">classes</span> <span class="nv">from</span> <span class="nv">a</span> <span class="nv">model</span>
+    <span class="nv">We</span> <span class="nv">use</span> <span class="nv">the</span> <span class="nv">RDFS</span> <span class="nv">and</span> <span class="nv">OWL</span> <span class="nv">predicate</span> <span class="nv">by</span> <span class="nv">default</span><span class="c1">; also, we extract non explicitly declared classes</span>
+    <span class="s2">&quot;&quot;&quot;</span>
 
-if not classPredicate:          
-    for s, v, o in rdfGraph.triples((None, RDF.type , OWL.Class)): 
-        exit.append(s)
-    for s, v, o in rdfGraph.triples((None, RDF.type , RDFS.Class)):
-        exit.append(s)
+    <span class="nv">rdfGraph</span> <span class="o">=</span> <span class="nv">self</span>.<span class="nv">rdfGraph</span>
+    <span class="k">exit</span> <span class="o">=</span> []       
 
-    # this extra routine makes sure we include classes not declared explicitly
-    # eg when importing another onto and subclassing one of its classes...
-    for s, v, o in rdfGraph.triples((None, RDFS.subClassOf , None)):
-        if s not in exit:
-            exit.append(s)
-        if o not in exit:
-            exit.append(o)
+    <span class="k">if</span> <span class="nv">not</span> <span class="nv">classPredicate</span>:          
+        <span class="k">for</span> <span class="nv">s</span>, <span class="nv">v</span>, <span class="nv">o</span> <span class="nv">in</span> <span class="nv">rdfGraph</span>.<span class="nv">triples</span><span class="ss">((</span><span class="nv">None</span>, <span class="nv">RDF</span>.<span class="nv">type</span> , <span class="nv">OWL</span>.<span class="nv">Class</span><span class="ss">))</span>: 
+            <span class="k">exit</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
+        <span class="k">for</span> <span class="nv">s</span>, <span class="nv">v</span>, <span class="nv">o</span> <span class="nv">in</span> <span class="nv">rdfGraph</span>.<span class="nv">triples</span><span class="ss">((</span><span class="nv">None</span>, <span class="nv">RDF</span>.<span class="nv">type</span> , <span class="nv">RDFS</span>.<span class="nv">Class</span><span class="ss">))</span>:
+            <span class="k">exit</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
 
-    # this extra routine includes classes found only in rdfs:domain and rdfs:range definitions
-    for s, v, o in rdfGraph.triples((None, RDFS.domain , None)):
-        if o not in exit:
-            exit.append(o)
-    for s, v, o in rdfGraph.triples((None, RDFS.range , None)):
-        if o not in exit:
-            exit.append(o)
+        # <span class="nv">this</span> <span class="nv">extra</span> <span class="nv">routine</span> <span class="nv">makes</span> <span class="nv">sure</span> <span class="nv">we</span> <span class="k">include</span> <span class="nv">classes</span> <span class="nv">not</span> <span class="nv">declared</span> <span class="nv">explicitly</span>
+        # <span class="nv">eg</span> <span class="nv">when</span> <span class="nv">importing</span> <span class="nv">another</span> <span class="nv">onto</span> <span class="nv">and</span> <span class="nv">subclassing</span> <span class="nv">one</span> <span class="nv">of</span> <span class="nv">its</span> <span class="nv">classes</span>...
+        <span class="k">for</span> <span class="nv">s</span>, <span class="nv">v</span>, <span class="nv">o</span> <span class="nv">in</span> <span class="nv">rdfGraph</span>.<span class="nv">triples</span><span class="ss">((</span><span class="nv">None</span>, <span class="nv">RDFS</span>.<span class="nv">subClassOf</span> , <span class="nv">None</span><span class="ss">))</span>:
+            <span class="k">if</span> <span class="nv">s</span> <span class="nv">not</span> <span class="nv">in</span> <span class="k">exit</span>:
+                <span class="k">exit</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
+            <span class="k">if</span> <span class="nv">o</span> <span class="nv">not</span> <span class="nv">in</span> <span class="k">exit</span>:
+                <span class="k">exit</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">o</span><span class="ss">)</span>
 
-else:
-    if classPredicate == "rdfs" or classPredicate == "rdf":
-        for s, v, o in rdfGraph.triples((None, RDF.type , RDFS.Class)):
-            exit.append(s)
-    elif classPredicate == "owl":
-        for s, v, o in rdfGraph.triples((None, RDF.type , OWL.Class)): 
-            exit.append(s)
-    else:
-        raise exceptions.Error("ClassPredicate must be either rdf, rdfs or owl")
+        # <span class="nv">this</span> <span class="nv">extra</span> <span class="nv">routine</span> <span class="nv">includes</span> <span class="nv">classes</span> <span class="nv">found</span> <span class="nv">only</span> <span class="nv">in</span> <span class="nv">rdfs</span>:<span class="nv">domain</span> <span class="nv">and</span> <span class="nv">rdfs</span>:<span class="nv">range</span> <span class="nv">definitions</span>
+        <span class="k">for</span> <span class="nv">s</span>, <span class="nv">v</span>, <span class="nv">o</span> <span class="nv">in</span> <span class="nv">rdfGraph</span>.<span class="nv">triples</span><span class="ss">((</span><span class="nv">None</span>, <span class="nv">RDFS</span>.<span class="nv">domain</span> , <span class="nv">None</span><span class="ss">))</span>:
+            <span class="k">if</span> <span class="nv">o</span> <span class="nv">not</span> <span class="nv">in</span> <span class="k">exit</span>:
+                <span class="k">exit</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">o</span><span class="ss">)</span>
+        <span class="k">for</span> <span class="nv">s</span>, <span class="nv">v</span>, <span class="nv">o</span> <span class="nv">in</span> <span class="nv">rdfGraph</span>.<span class="nv">triples</span><span class="ss">((</span><span class="nv">None</span>, <span class="nv">RDFS</span>.<span class="nv">range</span> , <span class="nv">None</span><span class="ss">))</span>:
+            <span class="k">if</span> <span class="nv">o</span> <span class="nv">not</span> <span class="nv">in</span> <span class="k">exit</span>:
+                <span class="k">exit</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">o</span><span class="ss">)</span>
 
-exit = remove_duplicates(exit)
+    <span class="k">else</span>:
+        <span class="k">if</span> <span class="nv">classPredicate</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="s">rdfs</span><span class="s2">&quot;</span> <span class="nv">or</span> <span class="nv">classPredicate</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="s">rdf</span><span class="s2">&quot;</span>:
+            <span class="k">for</span> <span class="nv">s</span>, <span class="nv">v</span>, <span class="nv">o</span> <span class="nv">in</span> <span class="nv">rdfGraph</span>.<span class="nv">triples</span><span class="ss">((</span><span class="nv">None</span>, <span class="nv">RDF</span>.<span class="nv">type</span> , <span class="nv">RDFS</span>.<span class="nv">Class</span><span class="ss">))</span>:
+                <span class="k">exit</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
+        <span class="nv">elif</span> <span class="nv">classPredicate</span> <span class="o">==</span> <span class="s2">&quot;</span><span class="s">owl</span><span class="s2">&quot;</span>:
+            <span class="k">for</span> <span class="nv">s</span>, <span class="nv">v</span>, <span class="nv">o</span> <span class="nv">in</span> <span class="nv">rdfGraph</span>.<span class="nv">triples</span><span class="ss">((</span><span class="nv">None</span>, <span class="nv">RDF</span>.<span class="nv">type</span> , <span class="nv">OWL</span>.<span class="nv">Class</span><span class="ss">))</span>: 
+                <span class="k">exit</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
+        <span class="k">else</span>:
+            <span class="nv">raise</span> <span class="nv">exceptions</span>.<span class="nv">Error</span><span class="ss">(</span><span class="s2">&quot;</span><span class="s">ClassPredicate must be either rdf, rdfs or owl</span><span class="s2">&quot;</span><span class="ss">)</span>
 
-if removeBlankNodes:
-    exit = [x for x in exit if not self.__isBlankNode(x)]
+    <span class="k">exit</span> <span class="o">=</span> <span class="nv">remove_duplicates</span><span class="ss">(</span><span class="k">exit</span><span class="ss">)</span>
 
-return sort_uri_list_by_name(exit)
-</code></pre>
-<p>```</p>
+    <span class="k">if</span> <span class="nv">removeBlankNodes</span>:
+        <span class="k">exit</span> <span class="o">=</span> [<span class="nv">x</span> <span class="k">for</span> <span class="nv">x</span> <span class="nv">in</span> <span class="k">exit</span> <span class="k">if</span> <span class="nv">not</span> <span class="nv">self</span>.<span class="nv">__isBlankNode</span><span class="ss">(</span><span class="nv">x</span><span class="ss">)</span>]
+
+    <span class="k">return</span> <span class="nv">sort_uri_list_by_name</span><span class="ss">(</span><span class="k">exit</span><span class="ss">)</span>
+</code></pre></div>
+
 <p>You probably noticed that there are a couple of other methods mentioned in the snippet above: they are used for checking if a URI is a BlankNode (which we're normally not interested in, when dealing with ontologies) and for other utility functions, such as sorting and removing duplicates from our list of classes. You'll find all the details about this stuff in the source code obviously..</p>
 <p>Next, we want to be able to <strong>move around the ontology hierarchy</strong>. So we need methods to get <em>super</em> and <em>sub</em> classes from a given class. This is easily done by querying the graph for triples containing the rdfs.subClassOf predicate:</p>
-<p>```</p>
-<h1>methods for getting ancestores and descendants of classes: by default, we do not include blank nodes</h1>
-<p>def get_classDirectSupers(self, aClass, excludeBnodes = True):
-    returnlist = []
-    for s, v, o in self.rdfGraph.triples((aClass, RDFS.subClassOf , None)):
-        if excludeBnodes:
-            if not self.__isBlankNode(o):
-                returnlist.append(o)
-        else:
-            returnlist.append(o)</p>
-<pre><code>return sort_uri_list_by_name(remove_duplicates(returnlist))
-</code></pre>
-<p>def get_classDirectSubs(self, aClass, excludeBnodes = True):
-    returnlist = []
-    for s, v, o in self.rdfGraph.triples((None, RDFS.subClassOf , aClass)):
-        if excludeBnodes:
-            if not self.__isBlankNode(s):
-                returnlist.append(s)</p>
-<pre><code>    else:
-        returnlist.append(s)
+<div class="codehilite"><pre><span></span><code># <span class="nv">methods</span> <span class="k">for</span> <span class="nv">getting</span> <span class="nv">ancestores</span> <span class="nv">and</span> <span class="nv">descendants</span> <span class="nv">of</span> <span class="nv">classes</span>: <span class="nv">by</span> <span class="nv">default</span>, <span class="nv">we</span> <span class="k">do</span> <span class="nv">not</span> <span class="k">include</span> <span class="nv">blank</span> <span class="nv">nodes</span>
 
-return sort_uri_list_by_name(remove_duplicates(returnlist))
-</code></pre>
-<p>def get_classAllSubs(self, aClass, returnlist = [], excludeBnodes = True):
-    for sub in self.get_classDirectSubs(aClass, excludeBnodes):
-        returnlist.append(sub)
-        self.get_classAllSubs(sub, returnlist, excludeBnodes)
-    return sort_uri_list_by_name(remove_duplicates(returnlist))</p>
-<p>def get_classAllSupers(self, aClass, returnlist = [], excludeBnodes = True ):
-    for ssuper in self.get_classDirectSupers(aClass, excludeBnodes):
-        returnlist.append(ssuper)
-        self.get_classAllSupers(ssuper, returnlist, excludeBnodes)
-    return sort_uri_list_by_name(remove_duplicates(returnlist))</p>
-<p>def get_classSiblings(self, aClass, excludeBnodes = True):
-    returnlist = []
-    for father in self.get_classDirectSupers(aClass, excludeBnodes):
-        for child in self.get_classDirectSubs(father, excludeBnodes):
-            if child != aClass:
-                returnlist.append(child)</p>
-<pre><code>return sort_uri_list_by_name(remove_duplicates(returnlist))
-</code></pre>
-<p>```</p>
+<span class="nv">def</span> <span class="nv">get_classDirectSupers</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">aClass</span>, <span class="nv">excludeBnodes</span> <span class="o">=</span> <span class="nv">True</span><span class="ss">)</span>:
+    <span class="nv">returnlist</span> <span class="o">=</span> []
+    <span class="k">for</span> <span class="nv">s</span>, <span class="nv">v</span>, <span class="nv">o</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">rdfGraph</span>.<span class="nv">triples</span><span class="ss">((</span><span class="nv">aClass</span>, <span class="nv">RDFS</span>.<span class="nv">subClassOf</span> , <span class="nv">None</span><span class="ss">))</span>:
+        <span class="k">if</span> <span class="nv">excludeBnodes</span>:
+            <span class="k">if</span> <span class="nv">not</span> <span class="nv">self</span>.<span class="nv">__isBlankNode</span><span class="ss">(</span><span class="nv">o</span><span class="ss">)</span>:
+                <span class="nv">returnlist</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">o</span><span class="ss">)</span>
+        <span class="k">else</span>:
+            <span class="nv">returnlist</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">o</span><span class="ss">)</span>
+
+    <span class="k">return</span> <span class="nv">sort_uri_list_by_name</span><span class="ss">(</span><span class="nv">remove_duplicates</span><span class="ss">(</span><span class="nv">returnlist</span><span class="ss">))</span> 
+
+
+<span class="nv">def</span> <span class="nv">get_classDirectSubs</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">aClass</span>, <span class="nv">excludeBnodes</span> <span class="o">=</span> <span class="nv">True</span><span class="ss">)</span>:
+    <span class="nv">returnlist</span> <span class="o">=</span> []
+    <span class="k">for</span> <span class="nv">s</span>, <span class="nv">v</span>, <span class="nv">o</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">rdfGraph</span>.<span class="nv">triples</span><span class="ss">((</span><span class="nv">None</span>, <span class="nv">RDFS</span>.<span class="nv">subClassOf</span> , <span class="nv">aClass</span><span class="ss">))</span>:
+        <span class="k">if</span> <span class="nv">excludeBnodes</span>:
+            <span class="k">if</span> <span class="nv">not</span> <span class="nv">self</span>.<span class="nv">__isBlankNode</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>:
+                <span class="nv">returnlist</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
+
+        <span class="k">else</span>:
+            <span class="nv">returnlist</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">s</span><span class="ss">)</span>
+
+    <span class="k">return</span> <span class="nv">sort_uri_list_by_name</span><span class="ss">(</span><span class="nv">remove_duplicates</span><span class="ss">(</span><span class="nv">returnlist</span><span class="ss">))</span>
+
+
+<span class="nv">def</span> <span class="nv">get_classAllSubs</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">aClass</span>, <span class="nv">returnlist</span> <span class="o">=</span> [], <span class="nv">excludeBnodes</span> <span class="o">=</span> <span class="nv">True</span><span class="ss">)</span>:
+    <span class="k">for</span> <span class="nv">sub</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">get_classDirectSubs</span><span class="ss">(</span><span class="nv">aClass</span>, <span class="nv">excludeBnodes</span><span class="ss">)</span>:
+        <span class="nv">returnlist</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">sub</span><span class="ss">)</span>
+        <span class="nv">self</span>.<span class="nv">get_classAllSubs</span><span class="ss">(</span><span class="nv">sub</span>, <span class="nv">returnlist</span>, <span class="nv">excludeBnodes</span><span class="ss">)</span>
+    <span class="k">return</span> <span class="nv">sort_uri_list_by_name</span><span class="ss">(</span><span class="nv">remove_duplicates</span><span class="ss">(</span><span class="nv">returnlist</span><span class="ss">))</span>
+
+
+
+<span class="nv">def</span> <span class="nv">get_classAllSupers</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">aClass</span>, <span class="nv">returnlist</span> <span class="o">=</span> [], <span class="nv">excludeBnodes</span> <span class="o">=</span> <span class="nv">True</span> <span class="ss">)</span>:
+    <span class="k">for</span> <span class="nv">ssuper</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">get_classDirectSupers</span><span class="ss">(</span><span class="nv">aClass</span>, <span class="nv">excludeBnodes</span><span class="ss">)</span>:
+        <span class="nv">returnlist</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">ssuper</span><span class="ss">)</span>
+        <span class="nv">self</span>.<span class="nv">get_classAllSupers</span><span class="ss">(</span><span class="nv">ssuper</span>, <span class="nv">returnlist</span>, <span class="nv">excludeBnodes</span><span class="ss">)</span>
+    <span class="k">return</span> <span class="nv">sort_uri_list_by_name</span><span class="ss">(</span><span class="nv">remove_duplicates</span><span class="ss">(</span><span class="nv">returnlist</span><span class="ss">))</span>
+
+
+
+<span class="nv">def</span> <span class="nv">get_classSiblings</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">aClass</span>, <span class="nv">excludeBnodes</span> <span class="o">=</span> <span class="nv">True</span><span class="ss">)</span>:
+    <span class="nv">returnlist</span> <span class="o">=</span> []
+    <span class="k">for</span> <span class="nv">father</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">get_classDirectSupers</span><span class="ss">(</span><span class="nv">aClass</span>, <span class="nv">excludeBnodes</span><span class="ss">)</span>:
+        <span class="k">for</span> <span class="nv">child</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">get_classDirectSubs</span><span class="ss">(</span><span class="nv">father</span>, <span class="nv">excludeBnodes</span><span class="ss">)</span>:
+            <span class="k">if</span> <span class="nv">child</span> <span class="o">!=</span> <span class="nv">aClass</span>:
+                <span class="nv">returnlist</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">child</span><span class="ss">)</span>
+
+    <span class="k">return</span> <span class="nv">sort_uri_list_by_name</span><span class="ss">(</span><span class="nv">remove_duplicates</span><span class="ss">(</span><span class="nv">returnlist</span><span class="ss">))</span>
+</code></pre></div>
+
 <h3>Getting the top layer</h3>
 <p>We're now all set for retrieving the classes at the top of the taxonomic hierarchy of our ontology, that is, its 'top-layer'. This can be done by reusing the get_classDirectSupers method previously defined, so to search for all classes that have no superclasses:</p>
-<p>```
-def __getTopclasses(self, classPredicate = ''):</p>
-<pre><code>""" Finds the topclass in an ontology (works also when we have more than on superclass)
-"""
+<div class="codehilite"><pre><span></span><code><span class="nv">def</span> <span class="nv">__getTopclasses</span><span class="ss">(</span><span class="nv">self</span>, <span class="nv">classPredicate</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="ss">)</span>:
 
-returnlist = []
+    <span class="s2">&quot;&quot;&quot;</span><span class="s"> Finds the topclass in an ontology (works also when we have more than on superclass)</span>
+    <span class="s2">&quot;&quot;&quot;</span>
 
-# gets all the classes
-for eachclass in self.__getAllClasses(classPredicate):
-    x = self.get_classDirectSupers(eachclass)
-    if not x:
-        returnlist.append(eachclass)
+    <span class="nv">returnlist</span> <span class="o">=</span> []
 
-return sort_uri_list_by_name(returnlist)
-</code></pre>
-<p>```</p>
+    # <span class="nv">gets</span> <span class="nv">all</span> <span class="nv">the</span> <span class="nv">classes</span>
+    <span class="k">for</span> <span class="nv">eachclass</span> <span class="nv">in</span> <span class="nv">self</span>.<span class="nv">__getAllClasses</span><span class="ss">(</span><span class="nv">classPredicate</span><span class="ss">)</span>:
+        <span class="nv">x</span> <span class="o">=</span> <span class="nv">self</span>.<span class="nv">get_classDirectSupers</span><span class="ss">(</span><span class="nv">eachclass</span><span class="ss">)</span>
+        <span class="k">if</span> <span class="nv">not</span> <span class="nv">x</span>:
+            <span class="nv">returnlist</span>.<span class="nv">append</span><span class="ss">(</span><span class="nv">eachclass</span><span class="ss">)</span>
+
+    <span class="k">return</span> <span class="nv">sort_uri_list_by_name</span><span class="ss">(</span><span class="nv">returnlist</span><span class="ss">)</span>
+</code></pre></div>
+
 <h3>Reconstructing the ontology tree</h3>
 <p>Now that we know which are the top classes in our taxonomy, we can parse the tree recursively using the get_classDirectSubs method defined above, and reconstruct the whole taxonomical structure of the ontology.</p>
-<p>```
-def __getTree(self, father=None, out=None):</p>
-<pre><code>""" Reconstructs the taxonomical tree of an ontology, from the 'topClasses' (= classes with no supers, see below)
-    Returns a dictionary in which each class is a key, and its direct subs are the values.
-    The top classes have key = 0
+<div class="codehilite"><pre><span></span><code><span class="n">def</span><span class="w"> </span><span class="n">__getTree</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">father</span><span class="o">=</span><span class="k">None</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="o">=</span><span class="k">None</span><span class="p">)</span><span class="err">:</span><span class="w"></span>
 
-    Eg.
-    {'0' : [class1, class2], class1: [class1-2, class1-3], class2: [class2-1, class2-2]}
-"""
+<span class="w">    </span><span class="ss">&quot;&quot;&quot; Reconstructs the taxonomical tree of an ontology, from the &#39;topClasses&#39; (= classes with no supers, see below)</span>
+<span class="ss">        Returns a dictionary in which each class is a key, and its direct subs are the values.</span>
+<span class="ss">        The top classes have key = 0</span>
 
-if not father:
-    out = {}
-    topclasses = self.toplayer
-    out[0] = topclasses
+<span class="ss">        Eg.</span>
+<span class="ss">        {&#39;0&#39; : [class1, class2], class1: [class1-2, class1-3], class2: [class2-1, class2-2]}</span>
+<span class="ss">    &quot;&quot;&quot;</span><span class="w"></span>
 
-    for top in topclasses:
-        children = self.get_classDirectSubs(top)
-        out[top] = children
-        for potentialfather in children:
-            self.__getTree(potentialfather, out)
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="ow">not</span><span class="w"> </span><span class="nl">father</span><span class="p">:</span><span class="w"></span>
+<span class="w">        </span><span class="k">out</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="err">{}</span><span class="w"></span>
+<span class="w">        </span><span class="n">topclasses</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">toplayer</span><span class="w"></span>
+<span class="w">        </span><span class="k">out</span><span class="o">[</span><span class="n">0</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">topclasses</span><span class="w"></span>
 
-    return out
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="k">top</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">topclasses</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">get_classDirectSubs</span><span class="p">(</span><span class="k">top</span><span class="p">)</span><span class="w"></span>
+<span class="w">            </span><span class="k">out</span><span class="o">[</span><span class="n">top</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">children</span><span class="w"></span>
+<span class="w">            </span><span class="k">for</span><span class="w"> </span><span class="n">potentialfather</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">children</span><span class="p">:</span><span class="w"></span>
+<span class="w">                </span><span class="n">self</span><span class="p">.</span><span class="n">__getTree</span><span class="p">(</span><span class="n">potentialfather</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="p">)</span><span class="w"></span>
 
-else:
-    children = self.get_classDirectSubs(father)
-    out[father] = children
-    for ch in children:
-        self.__getTree(ch, out)
-</code></pre>
-<p>```</p>
+<span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="k">out</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">else</span><span class="err">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">children</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">.</span><span class="n">get_classDirectSubs</span><span class="p">(</span><span class="n">father</span><span class="p">)</span><span class="w"></span>
+<span class="w">        </span><span class="k">out</span><span class="o">[</span><span class="n">father</span><span class="o">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">children</span><span class="w"></span>
+<span class="w">        </span><span class="k">for</span><span class="w"> </span><span class="n">ch</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="nl">children</span><span class="p">:</span><span class="w"></span>
+<span class="w">            </span><span class="n">self</span><span class="p">.</span><span class="n">__getTree</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span><span class="w"> </span><span class="k">out</span><span class="p">)</span><span class="w"></span>
+</code></pre></div>
+
 <p>That's it really. Given this abstract tree representation, it can be printed out differently depending on the context (html, command line) but the core will remain intact.</p>
 <h3>Wrapping up</h3>
 <p>The <a href="https://github.com/lambdamusic/ontosPy">source code on GitHub</a> contains also other utilities I added, eg for handling class comments, namespaces, for nice-printing of classes' names, and for outputting the ontology tree as an image, using the <a href="http://www.graphviz.org/">Graphviz</a> library (which needs to be installed separately).</p>
 <p>Here's an example of how OntoInspector can be used in the python interactive shell for inspecting the <a href="http://xmlns.com/foaf/spec/">Friend Of A Friend</a> lightweight ontology:</p>
-<p>```
-In [1]: from onto_inspector import *</p>
-<p>In [2]: onto = OntoInspector("http://xmlns.com/foaf/spec/20100809.rdf")         </p>
-<p>In [3]: onto.toplayer</p>
-<p>Out[3]: 
-[rdflib.URIRef('http://xmlns.com/foaf/0.1/Agent'),
- rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#Class'),
- rdflib.URIRef('http://www.w3.org/2004/02/skos/core#Concept'),
- rdflib.URIRef('http://xmlns.com/foaf/0.1/Document'),
- rdflib.URIRef('http://xmlns.com/foaf/0.1/LabelProperty'),
- rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#Literal'),
- rdflib.URIRef('http://www.w3.org/2000/10/swap/pim/contact#Person'),
- rdflib.URIRef('http://xmlns.com/foaf/0.1/Project'),
- rdflib.URIRef('http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing'),
- rdflib.URIRef('http://www.w3.org/2002/07/owl#Thing')]</p>
-<p>In [4]: onto.printTree()
-foaf:Agent
-----foaf:Group
-----foaf:Organization
-----foaf:Person
-rdfs:Class
-http://www.w3.org/2004/02/skos/core#Concept
-foaf:Document
-----foaf:Image
-----foaf:PersonalProfileDocument
-foaf:LabelProperty
-rdfs:Literal
-http://www.w3.org/2000/10/swap/pim/contact#Person
-----foaf:Person
-foaf:Project
-http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
-----foaf:Person
-owl:Thing
-----foaf:OnlineAccount
---------foaf:OnlineChatAccount
---------foaf:OnlineEcommerceAccount
---------foaf:OnlineGamingAccount</p>
-<p>In [5]: document = onto.find_class_byname("document")</p>
-<p>In [6]: document
-Out[6]: 
-[rdflib.URIRef('http://xmlns.com/foaf/0.1/Document'),
- rdflib.URIRef('http://xmlns.com/foaf/0.1/PersonalProfileDocument')]</p>
-<p>In [7]: document = document[0]</p>
-<p>In [8]: document
-Out[8]: rdflib.URIRef('http://xmlns.com/foaf/0.1/Document')</p>
-<p>In [9]: onto.get_classAllSubs(document)
-Out[9]: 
-[rdflib.URIRef('http://xmlns.com/foaf/0.1/Image'),
- rdflib.URIRef('http://xmlns.com/foaf/0.1/PersonalProfileDocument')]</p>
-<p>In [10]: onto.get_classAllSupers(document)
-Out[10]: []</p>
-<p>In [11]: onto.get_classComment(document)
-Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
-```</p>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">onto_inspector</span> <span class="kn">import</span> <span class="o">*</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">onto</span> <span class="o">=</span> <span class="n">OntoInspector</span><span class="p">(</span><span class="s2">&quot;http://xmlns.com/foaf/spec/20100809.rdf&quot;</span><span class="p">)</span>         
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">onto</span><span class="o">.</span><span class="n">toplayer</span>
+
+<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> 
+<span class="p">[</span><span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/Agent&#39;</span><span class="p">),</span>
+ <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2000/01/rdf-schema#Class&#39;</span><span class="p">),</span>
+ <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2004/02/skos/core#Concept&#39;</span><span class="p">),</span>
+ <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/Document&#39;</span><span class="p">),</span>
+ <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/LabelProperty&#39;</span><span class="p">),</span>
+ <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2000/01/rdf-schema#Literal&#39;</span><span class="p">),</span>
+ <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2000/10/swap/pim/contact#Person&#39;</span><span class="p">),</span>
+ <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/Project&#39;</span><span class="p">),</span>
+ <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing&#39;</span><span class="p">),</span>
+ <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2002/07/owl#Thing&#39;</span><span class="p">)]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">onto</span><span class="o">.</span><span class="n">printTree</span><span class="p">()</span>
+<span class="n">foaf</span><span class="p">:</span><span class="n">Agent</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Group</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Organization</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Person</span>
+<span class="n">rdfs</span><span class="p">:</span><span class="n">Class</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2004</span><span class="o">/</span><span class="mi">02</span><span class="o">/</span><span class="n">skos</span><span class="o">/</span><span class="n">core</span><span class="c1">#Concept</span>
+<span class="n">foaf</span><span class="p">:</span><span class="n">Document</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Image</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">PersonalProfileDocument</span>
+<span class="n">foaf</span><span class="p">:</span><span class="n">LabelProperty</span>
+<span class="n">rdfs</span><span class="p">:</span><span class="n">Literal</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2000</span><span class="o">/</span><span class="mi">10</span><span class="o">/</span><span class="n">swap</span><span class="o">/</span><span class="n">pim</span><span class="o">/</span><span class="n">contact</span><span class="c1">#Person</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Person</span>
+<span class="n">foaf</span><span class="p">:</span><span class="n">Project</span>
+<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2003</span><span class="o">/</span><span class="mi">01</span><span class="o">/</span><span class="n">geo</span><span class="o">/</span><span class="n">wgs84_pos</span><span class="c1">#SpatialThing</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Person</span>
+<span class="n">owl</span><span class="p">:</span><span class="n">Thing</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">OnlineAccount</span>
+<span class="o">--------</span><span class="n">foaf</span><span class="p">:</span><span class="n">OnlineChatAccount</span>
+<span class="o">--------</span><span class="n">foaf</span><span class="p">:</span><span class="n">OnlineEcommerceAccount</span>
+<span class="o">--------</span><span class="n">foaf</span><span class="p">:</span><span class="n">OnlineGamingAccount</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">document</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">find_class_byname</span><span class="p">(</span><span class="s2">&quot;document&quot;</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">document</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> 
+<span class="p">[</span><span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/Document&#39;</span><span class="p">),</span>
+ <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/PersonalProfileDocument&#39;</span><span class="p">)]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">document</span> <span class="o">=</span> <span class="n">document</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">document</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/Document&#39;</span><span class="p">)</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">onto</span><span class="o">.</span><span class="n">get_classAllSubs</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> 
+<span class="p">[</span><span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/Image&#39;</span><span class="p">),</span>
+ <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/PersonalProfileDocument&#39;</span><span class="p">)]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">onto</span><span class="o">.</span><span class="n">get_classAllSupers</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="p">[]</span>
+
+<span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">onto</span><span class="o">.</span><span class="n">get_classComment</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
+<span class="n">Out</span><span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">Literal</span><span class="p">(</span><span class="s1">&#39;A document.&#39;</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+</code></pre></div>
+
 <p>Any comments? As I said I'm still learning/improving this... so any feedback is welcome!</p>
 
             </div>
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">Inspecting an ontology with RDFLib</a>. Blog post on www.michelepasin.org. Published on July 18, 2011.
@@ -695,30 +826,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2020</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2020/01/30/getting-to-grips-with-google-colab/index.html" class="bluelink ">Getting to grips with Google Colab</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2020/01/30/getting-to-grips-with-google-colab/index.html" class="bluelink " >Getting to grips with Google Colab</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2020.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -754,30 +875,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2019</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2019/05/03/running-jupyter-demos-via-mybinder-org/index.html" class="bluelink ">Running interactive Jupyter demos with  mybinder.org</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2019/05/03/running-jupyter-demos-via-mybinder-org/index.html" class="bluelink " >Running interactive Jupyter demos with  mybinder.org</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2019.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -813,13 +924,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2017</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2017</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2017/10/19/data-integration-and-disintegration-managing-springer-nature-scigraph-with-shacl-and-owl/index.html" class="bluelink ">Data integration and disintegration: Managing Springer Nature SciGraph with SHACL and OWL</a>.
-              <br />
-              <span class="">Tony Hammond, Michele Pasin, Evangelos Theodoridis</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2017/10/19/data-integration-and-disintegration-managing-springer-nature-scigraph-with-shacl-and-owl/index.html" class="bluelink " >Data integration and disintegration: Managing Springer Nature SciGraph with SHACL and OWL</a>
+              <!-- <br />
+              <span class="">Tony Hammond, Michele Pasin, Evangelos Theodoridis</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -839,6 +957,11 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -853,13 +976,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2017</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jan 2017</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2017/01/01/fitting-personal-interpretation-with-the-semantic-web-lessons-learned-from-pliny/index.html" class="bluelink ">Fitting Personal Interpretation with the Semantic Web: lessons learned from Pliny</a>.
-              <br />
-              <span class="">John Bradley, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2017/01/01/fitting-personal-interpretation-with-the-semantic-web-lessons-learned-from-pliny/index.html" class="bluelink " >Fitting Personal Interpretation with the Semantic Web: lessons learned from Pliny</a>
+              <!-- <br />
+              <span class="">John Bradley, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -879,6 +1009,11 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -914,30 +1049,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2015/11/28/accessing-os-x-dictionary-with-python/index.html" class="bluelink ">Accessing OS X dictionary with Python</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2015/11/28/accessing-os-x-dictionary-with-python/index.html" class="bluelink " >Accessing OS X dictionary with Python</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -952,30 +1077,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2015/09/21/another-experiment-with-wittgensteins-tractatus/index.html" class="bluelink ">Another experiment with Wittgenstein&#39;s Tractatus</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2015/09/21/another-experiment-with-wittgensteins-tractatus/index.html" class="bluelink " >Another experiment with Wittgenstein&#39;s Tractatus</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -990,30 +1105,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2015/06/17/towards-an-ontology-for-philosophy-really/index.html" class="bluelink ">Towards an ontology for philosophy</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2015/06/17/towards-an-ontology-for-philosophy-really/index.html" class="bluelink " >Towards an ontology for philosophy</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1028,30 +1133,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2015/01/05/introducing-resquotes-com/index.html" class="bluelink ">Take control of your digital annotations with ResQuotes.com</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2015/01/05/introducing-resquotes-com/index.html" class="bluelink " >Take control of your digital annotations with ResQuotes.com</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1087,30 +1182,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2014</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2014/08/22/visualising-a-big-taxonomy-in-a-small-screen-in-pure-html/index.html" class="bluelink ">How to visualize a big taxonomy within a single webpage?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2014/08/22/visualising-a-big-taxonomy-in-a-small-screen-in-pure-html/index.html" class="bluelink " >How to visualize a big taxonomy within a single webpage?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2014.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1146,30 +1231,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/12/16/annotating-the-web-with-scrible/index.html" class="bluelink ">Annotating the web with Scrible</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/12/16/annotating-the-web-with-scrible/index.html" class="bluelink " >Annotating the web with Scrible</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1184,13 +1259,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2013</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2013</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2013/10/11/moving-emlot-towards-the-web-of-data-an-approach-to-the-representation-of-humanities-citations-based-on-role-theory-and-formal-ontology/index.html" class="bluelink ">Moving EMLoT towards the web of data: an approach to the representation of humanities citations based on role theory and formal ontology</a>.
-              <br />
-              <span class="">Michele Pasin, Riichiro Mizoguchi</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2013/10/11/moving-emlot-towards-the-web-of-data-an-approach-to-the-representation-of-humanities-citations-based-on-role-theory-and-formal-ontology/index.html" class="bluelink " >Moving EMLoT towards the web of data: an approach to the representation of humanities citations based on role theory and formal ontology</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Riichiro Mizoguchi</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1210,6 +1292,11 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1224,30 +1311,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/09/15/building-a-master-volumes-ui-in-impromptu/index.html" class="bluelink ">Building a master volumes UI with impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/09/15/building-a-master-volumes-ui-in-impromptu/index.html" class="bluelink " >Building a master volumes UI with impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1262,30 +1339,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/07/25/creating-useful-classifications-with-taxonomies-part-1/index.html" class="bluelink ">Creating useful classifications with taxonomies (part 1)</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/07/25/creating-useful-classifications-with-taxonomies-part-1/index.html" class="bluelink " >Creating useful classifications with taxonomies (part 1)</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1300,13 +1367,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2013</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jul 2013</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2013/07/16/fitting-personal-interpretations-with-the-semantic-web/index.html" class="bluelink ">Fitting Personal Interpretations with the Semantic Web</a>.
-              <br />
-              <span class="">John Bradley, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2013/07/16/fitting-personal-interpretations-with-the-semantic-web/index.html" class="bluelink " >Fitting Personal Interpretations with the Semantic Web</a>
+              <!-- <br />
+              <span class="">John Bradley, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1326,6 +1400,11 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -1361,30 +1440,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/10/12/teaching-programming-concepts-visually-with-the-online-python-tutor/index.html" class="bluelink ">Teaching programming concepts visually with the Online Python Tutor</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/10/12/teaching-programming-concepts-visually-with-the-online-python-tutor/index.html" class="bluelink " >Teaching programming concepts visually with the Online Python Tutor</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1399,13 +1468,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2012</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jul 2012</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2012/07/17/annotation-and-ontology-in-most-humanities-research-accommodating-a-more-informal-interpretation-context/index.html" class="bluelink ">Annotation and Ontology in most Humanities research: accommodating a more informal interpretation context</a>.
-              <br />
-              <span class="">John Bradley, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2012/07/17/annotation-and-ontology-in-most-humanities-research-accommodating-a-more-informal-interpretation-context/index.html" class="bluelink " >Annotation and Ontology in most Humanities research: accommodating a more informal interpretation context</a>
+              <!-- <br />
+              <span class="">John Bradley, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1425,6 +1501,11 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -1439,30 +1520,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/06/01/crowdsourcing-interpretation-with-prism-a-new-software-from-the-scholars-lab/index.html" class="bluelink ">Crowdsourcing interpretation with Prism, a new software from the Scholar&#39;s Lab</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/06/01/crowdsourcing-interpretation-with-prism-a-new-software-from-the-scholars-lab/index.html" class="bluelink " >Crowdsourcing interpretation with Prism, a new software from the Scholar&#39;s Lab</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1477,30 +1548,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html" class="bluelink ">Getting hold of your Flickr collections with Python</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html" class="bluelink " >Getting hold of your Flickr collections with Python</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1536,30 +1597,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../08/25/first-steps-with-canvas-and-html5/index.html" class="bluelink ">First steps with Canvas and HTML5</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../08/25/first-steps-with-canvas-and-html5/index.html" class="bluelink " >First steps with Canvas and HTML5</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1574,30 +1625,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Inspecting an ontology with RDFLib</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Inspecting an ontology with RDFLib</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1612,30 +1653,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../06/26/bjork-redefines-the-musicians-product-with-biophilia-albumapp/index.html" class="bluelink ">Bjork redefines the musician&#39;s product with &#39;Biophilia&#39; album/app</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../06/26/bjork-redefines-the-musicians-product-with-biophilia-albumapp/index.html" class="bluelink " >Bjork redefines the musician&#39;s product with &#39;Biophilia&#39; album/app</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1650,30 +1681,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../04/14/allegro-cl-graph/index.html" class="bluelink ">RDF programming with AllegroCL and AllegroGraph</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../04/14/allegro-cl-graph/index.html" class="bluelink " >RDF programming with AllegroCL and AllegroGraph</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1688,30 +1709,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../04/09/a-space-odyssey-live-with-philharmonia-orchestra/index.html" class="bluelink ">A Space Odyssey Live with Philharmonia Orchestra</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../04/09/a-space-odyssey-live-with-philharmonia-orchestra/index.html" class="bluelink " >A Space Odyssey Live with Philharmonia Orchestra</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1726,30 +1737,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../03/29/an-alternative-to-the-play-macro-iplay-and-with-instrument/index.html" class="bluelink ">An alternative to the &#39;play&#39; macro: &#39;iplay&#39; and &#39;with-instrument&#39;</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../03/29/an-alternative-to-the-play-macro-iplay-and-with-instrument/index.html" class="bluelink " >An alternative to the &#39;play&#39; macro: &#39;iplay&#39; and &#39;with-instrument&#39;</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1785,30 +1786,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/10/21/editing-pdf-metadata-on-osx-ie-having-the-kindle-display-the-right-titleauthor-with-pdfs/index.html" class="bluelink ">Editing PDF metadata on OSx (ie: having the Kindle display the right title/author with pdfs)</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/10/21/editing-pdf-metadata-on-osx-ie-having-the-kindle-display-the-right-titleauthor-with-pdfs/index.html" class="bluelink " >Editing PDF metadata on OSx (ie: having the Kindle display the right title/author with pdfs)</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1823,13 +1814,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2010</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">May 2010</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2010/05/13/review-of-interontology-conference-2010/index.html" class="bluelink ">Review of Interontology conference 2010</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2010/05/13/review-of-interontology-conference-2010/index.html" class="bluelink " >Review of Interontology conference 2010</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -1849,6 +1847,11 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -1884,30 +1887,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/12/03/creating-questionnaires-with-django/index.html" class="bluelink ">Creating Questionnaires with Django</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/12/03/creating-questionnaires-with-django/index.html" class="bluelink " >Creating Questionnaires with Django</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1922,30 +1915,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/11/23/new-song-with-impromptu-kali/index.html" class="bluelink ">New song with Impromptu: KALI</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/11/23/new-song-with-impromptu-kali/index.html" class="bluelink " >New song with Impromptu: KALI</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1960,30 +1943,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/08/13/freeze-any-webapp-with-fluid/index.html" class="bluelink ">Freeze any webapp with Fluid</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/08/13/freeze-any-webapp-with-fluid/index.html" class="bluelink " >Freeze any webapp with Fluid</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1998,30 +1971,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/08/06/representing-hierarchical-data-with-django-and-mptt/index.html" class="bluelink ">Representing hierarchical data with Django and MPTT</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/08/06/representing-hierarchical-data-with-django-and-mptt/index.html" class="bluelink " >Representing hierarchical data with Django and MPTT</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2036,30 +1999,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/06/19/logic-and-ontology/index.html" class="bluelink ">Logic and Ontology</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/06/19/logic-and-ontology/index.html" class="bluelink " >Logic and Ontology</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2074,30 +2027,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/06/10/share-and-browse-links-with-multiurl/index.html" class="bluelink ">Share and browse links with MultiUrl</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/06/10/share-and-browse-links-with-multiurl/index.html" class="bluelink " >Share and browse links with MultiUrl</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2112,30 +2055,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/05/14/layer-the-web-with-blerp/index.html" class="bluelink ">Layer the web with Blerp!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/05/14/layer-the-web-with-blerp/index.html" class="bluelink " >Layer the web with Blerp!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2150,30 +2083,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/05/07/installing-rdflib-on-osx/index.html" class="bluelink ">Installing RDFlib on osX</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/05/07/installing-rdflib-on-osx/index.html" class="bluelink " >Installing RDFlib on osX</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2188,30 +2111,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/04/02/augmented-reality-with-mits-sixth-sense-game-changing-wearable-tech/index.html" class="bluelink ">Augmented reality with MIT&#39;s \&quot;Sixth Sense\&quot; game-changing wearable tech</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/04/02/augmented-reality-with-mits-sixth-sense-game-changing-wearable-tech/index.html" class="bluelink " >Augmented reality with MIT&#39;s \&quot;Sixth Sense\&quot; game-changing wearable tech</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2226,30 +2139,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink ">Pysmell - Python auto-complete - works with TextMate too!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink " >Pysmell - Python auto-complete - works with TextMate too!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2264,30 +2167,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/01/26/apple-introduces-revolutionary-new-laptop-with-no-keyboard/index.html" class="bluelink ">Apple Introduces Revolutionary New Laptop With No Keyboard</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/01/26/apple-introduces-revolutionary-new-laptop-with-no-keyboard/index.html" class="bluelink " >Apple Introduces Revolutionary New Laptop With No Keyboard</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -2323,13 +2216,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2008</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">May 2008</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2008/05/30/approach-and-ontology-in-philosurfical/index.html" class="bluelink ">Approach and ontology in PhiloSURFical</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2008/05/30/approach-and-ontology-in-philosurfical/index.html" class="bluelink " >Approach and ontology in PhiloSURFical</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2349,6 +2249,11 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -2363,30 +2268,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2008</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2008/02/27/ajax-in-lisp-with-jquery/index.html" class="bluelink ">AJAX in Lisp with JQuery</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2008/02/27/ajax-in-lisp-with-jquery/index.html" class="bluelink " >AJAX in Lisp with JQuery</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2008.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -2422,13 +2317,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2007</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Sep 2007</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2007/09/30/aqualog-an-ontologydriven-question-answering-system-for-organizational-semantic-intranets/index.html" class="bluelink ">AquaLog: An ontology-driven question answering system for organizational semantic intranets</a>.
-              <br />
-              <span class="">Vanessa Lopez, Victoria Uren, Enrico Motta, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2007/09/30/aqualog-an-ontologydriven-question-answering-system-for-organizational-semantic-intranets/index.html" class="bluelink " >AquaLog: An ontology-driven question answering system for organizational semantic intranets</a>
+              <!-- <br />
+              <span class="">Vanessa Lopez, Victoria Uren, Enrico Motta, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2448,6 +2350,11 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -2462,13 +2369,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2007</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Aug 2007</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2007/08/30/philosurfical-browse-wittgensteins-tractatus-with-the-semantic-web/index.html" class="bluelink ">PhiloSURFical: browse Wittgensteinʼs Tractatus with the Semantic Web</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2007/08/30/philosurfical-browse-wittgensteins-tractatus-with-the-semantic-web/index.html" class="bluelink " >PhiloSURFical: browse Wittgensteinʼs Tractatus with the Semantic Web</a>
+              <!-- <br />
+              <span class="">Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2490,6 +2404,11 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -2504,30 +2423,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2007/04/02/indiana-philosophy-ontology-project/index.html" class="bluelink ">Indiana Philosophy Ontology Project</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2007/04/02/indiana-philosophy-ontology-project/index.html" class="bluelink " >Indiana Philosophy Ontology Project</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2542,30 +2451,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2007/03/05/ontology-of-representations/index.html" class="bluelink ">Ontology of Representations</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2007/03/05/ontology-of-representations/index.html" class="bluelink " >Ontology of Representations</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2580,30 +2479,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2007/03/02/dear-old-paper-how-could-we-do-without-you/index.html" class="bluelink ">Dear old paper, how could we do without you?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2007/03/02/dear-old-paper-how-could-we-do-without-you/index.html" class="bluelink " >Dear old paper, how could we do without you?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -2639,30 +2528,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2006/11/30/knowledge-elicitation-playing-with-cards/index.html" class="bluelink ">Knowledge Elicitation: playing with cards</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2006/11/30/knowledge-elicitation-playing-with-cards/index.html" class="bluelink " >Knowledge Elicitation: playing with cards</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -2677,13 +2556,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2006</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Jun 2006</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2006/06/30/an-ontology-for-the-description-and-navigation-through-philosophical-resources/index.html" class="bluelink ">An ontology for the description and navigation through philosophical resources</a>.
-              <br />
-              <span class="">Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2006/06/30/an-ontology-for-the-description-and-navigation-through-philosophical-resources/index.html" class="bluelink " >An ontology for the description and navigation through philosophical resources</a>
+              <!-- <br />
+              <span class="">Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2703,6 +2589,11 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -2738,13 +2629,20 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2005</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">May 2005</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2005/05/30/aqualog-a-ontologyportable-question-answering-interface-for-the-semantic-web/index.html" class="bluelink ">AquaLog A Ontology-portable Question Answering interface for the Semantic Web</a>.
-              <br />
-              <span class="">Vanessa Lopez, Michele Pasin, Enrico Motta</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2005/05/30/aqualog-a-ontologyportable-question-answering-interface-for-the-semantic-web/index.html" class="bluelink " >AquaLog A Ontology-portable Question Answering interface for the Semantic Web</a>
+              <!-- <br />
+              <span class="">Vanessa Lopez, Michele Pasin, Enrico Motta</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -2766,6 +2664,11 @@ Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
               
 
             </p>
+            
+
+
+
+
 
             
 

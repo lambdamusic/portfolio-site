@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -321,6 +426,9 @@
 
             <div class="blogentry"> 
 
+              <hr>
+
+
             <p><a href="http://clojure.org/">Clojure</a> is a quite recent programming language that's becoming popular among developers; the big selling point is that it's <a href="http://clojure.org/state">functional</a> and <a href="http://en.wikipedia.org/wiki/Dynamic_typing#Dynamic_typing">dynamically</a> typed (such as Lisp or Python), but since it uses Java's Virtual Runtime as its platform it also accommodates the needs of the many developers have been growing up in the Java world.</p>
 <p>The book <a href="http://www.pragprog.com/titles/shcloj/programming-clojure">Programming Clojure</a> sums up well the pros of this language:</p>
 <blockquote>
@@ -328,23 +436,23 @@
 </blockquote>
 <p>I've been programming in Lisp for a while, then moved to Python in order to use something less dated and to be able to do more agile web development. But the strengths of Lisp, together with that kind of magic that comes with it (maybe coming from the <a href="http://en.wikipedia.org/wiki/Homoiconicity">code-as-data paradigm</a>) is something which I bet all Lisp programmers miss in other languages. So I decided to give Clojure a go..</p>
 <p>Installation is surprisingly super easy - and I mean it - especially if you are on mac osX. Clojure is a java library, so all you have to do is <a href="http://clojure.org/getting_started">download the package and run it from the command line using your java compiler</a>. That gives you the basic interactive environment:</p>
-<p>```</p>
-<p>java -cp clojure.jar clojure.main
-```</p>
+<div class="codehilite"><pre><span></span><code>java -cp clojure.jar clojure.main
+</code></pre></div>
+
 <p>The interpreter is good for testing, but not for building large programs. So the next step is getting an IDE. Looks like there are <a href="http://www.bestinclass.dk/index.clj/2010/03/clojure-ides-the-grand-tour-getting-started.html">many choices available</a>, so just pick one of your liking. I personally love <a href="http://macromates.com/">TextMate</a> a lot, so I was happy to find out that there is a <a href="https://github.com/swannodette/textmate-clojure">clojure bundle</a> that contains all that you need to get started (yes, the clojure environment too, so you can even skip the step above). Easy beasy to install, but first you need to install <a href="https://github.com/ninjudd/cake">Cake</a>, a build tool that you can get via ruby's gem command (usually preinstalled on OSx). So:</p>
-<p>```</p>
-<p>sudo gem install cake
-```</p>
+<div class="codehilite"><pre><span></span><code>sudo gem install cake
+</code></pre></div>
+
 <p>Then install Textmate's bundle for clojure like this:</p>
-<p>```</p>
-<p>$ cd ~/Library/Application Support/TextMate/Bundles
-$ git clone git://github.com/swannodette/textmate-clojure.git Clojure.tmbundle
-$ osascript -e 'tell app "TextMate" to reload bundles'
-```</p>
+<div class="codehilite"><pre><span></span><code><span class="o">$</span> <span class="n">cd</span> <span class="o">~/</span><span class="n">Library</span><span class="o">/</span><span class="n">Application</span> <span class="n">Support</span><span class="o">/</span><span class="n">TextMate</span><span class="o">/</span><span class="n">Bundles</span>
+<span class="o">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">swannodette</span><span class="o">/</span><span class="n">textmate</span><span class="o">-</span><span class="n">clojure</span><span class="o">.</span><span class="n">git</span> <span class="n">Clojure</span><span class="o">.</span><span class="n">tmbundle</span>
+<span class="o">$</span> <span class="n">osascript</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;tell app &quot;TextMate&quot; to reload bundles&#39;</span>
+</code></pre></div>
+
 <p>I don't use Ruby, so the final step for me was adding to the system path the location of ruby's gems (so that Cake can be run from Textmate). Open up you ~/.bash_profile and add this line:</p>
-<p>```</p>
-<p>export PATH="/Users/mike/.gem/ruby/1.8/bin:$PATH"
-```</p>
+<div class="codehilite"><pre><span></span><code><span class="k">export</span> <span class="n">PATH</span><span class="o">=</span><span class="s2">&quot;/Users/mike/.gem/ruby/1.8/bin:$PATH&quot;</span>
+</code></pre></div>
+
 <p>That's it! A nice fellow created a really good video tutorial about how to use Textmate with the Clojure bundle, so I was able to run my first application quite quickly:</p>
 <p>Once you've familiarized with the environment, copy and paste the code below - it's an implementation of the Tetris game in clojure (which I found <a href="https://github.com/yogthos/Clojure-Tetris/blob/master/src/tetris.clj">here</a>). Very useful as a learning resource!</p>
 <p>(ns tetris
@@ -403,13 +511,14 @@ $ osascript -e 'tell app "TextMate" to reload bundles'
                             (fn [[tx ty] [x y]]
                               [(<strong>+</strong> tx x), (<strong>+</strong> ty y)]))
                           (<strong>map</strong> #(int (<strong>/</strong> % 4))))</p>
-<pre><code>      rotated (**map** (fn \[\[x y\]\]
-                     \[(int (**+** avg-x (**\-** y avg-y)))
-                      (int (**\-** avg-y (**\-** x avg-x)))\])
-                shape)\]
-  (**if** (collides? board rotated)
-    shape rotated))))
-</code></pre>
+<div class="codehilite"><pre><span></span><code>      <span class="nv">rotated</span> <span class="ss">(</span><span class="o">**</span><span class="nv">map</span><span class="o">**</span> <span class="ss">(</span><span class="nv">fn</span> \[\[<span class="nv">x</span> <span class="nv">y</span>\]\]
+                     \[<span class="ss">(</span><span class="nv">int</span> <span class="ss">(</span><span class="o">**+**</span> <span class="nv">avg</span><span class="o">-</span><span class="nv">x</span> <span class="ss">(</span><span class="o">**</span>\<span class="o">-**</span> <span class="nv">y</span> <span class="nv">avg</span><span class="o">-</span><span class="nv">y</span><span class="ss">)))</span>
+                      <span class="ss">(</span><span class="nv">int</span> <span class="ss">(</span><span class="o">**</span>\<span class="o">-**</span> <span class="nv">avg</span><span class="o">-</span><span class="nv">y</span> <span class="ss">(</span><span class="o">**</span>\<span class="o">-**</span> <span class="nv">x</span> <span class="nv">avg</span><span class="o">-</span><span class="nv">x</span><span class="ss">)))</span>\]<span class="ss">)</span>
+                <span class="nv">shape</span><span class="ss">)</span>\]
+  <span class="ss">(</span><span class="o">**</span><span class="k">if</span><span class="o">**</span> <span class="ss">(</span><span class="nv">collides</span>? <span class="nv">board</span> <span class="nv">rotated</span><span class="ss">)</span>
+    <span class="nv">shape</span> <span class="nv">rotated</span><span class="ss">))))</span>
+</code></pre></div>
+
 <p>(defn shift [board shape]
   (<strong>let</strong> [shifted (<strong>map</strong>
                   (fn [[x y]]
@@ -467,11 +576,12 @@ $ osascript -e 'tell app "TextMate" to reload bundles'
         g       (.getDrawGraphics buffer)]
     (try
       (draw-fn g)</p>
-<pre><code>  (finally (.dispose g)))
-(**if** (**not** (.contentsLost buffer))
-  (. buffer show))
-(.. Toolkit (getDefaultToolkit) (sync))))
-</code></pre>
+<div class="codehilite"><pre><span></span><code>  <span class="ss">(</span><span class="nv">finally</span> <span class="ss">(</span>.<span class="nv">dispose</span> <span class="nv">g</span><span class="ss">)))</span>
+<span class="ss">(</span><span class="o">**</span><span class="k">if</span><span class="o">**</span> <span class="ss">(</span><span class="o">**</span><span class="nv">not</span><span class="o">**</span> <span class="ss">(</span>.<span class="nv">contentsLost</span> <span class="nv">buffer</span><span class="ss">))</span>
+  <span class="ss">(</span>. <span class="nv">buffer</span> <span class="k">show</span><span class="ss">))</span>
+<span class="ss">(</span>.. <span class="nv">Toolkit</span> <span class="ss">(</span><span class="nv">getDefaultToolkit</span><span class="ss">)</span> <span class="ss">(</span><span class="nv">sync</span><span class="ss">))))</span>
+</code></pre></div>
+
 <p>(defn draw-square [x y #^Graphics g]
   (<strong>let</strong> [width  (<strong>/</strong> <strong>*width*</strong> <strong>*cols*</strong>)
         height (<strong>/</strong> <strong>*height*</strong> <strong>*rows*</strong>)
@@ -492,14 +602,15 @@ $ osascript -e 'tell app "TextMate" to reload bundles'
     (doto g
       (.setColor Color/BLACK)
       (.fillRect 0 0 <strong>*width*</strong> <strong>*height*</strong>))</p>
-<pre><code>(doseq \[square (range (**count** board))\]
+<div class="codehilite"><pre><span></span><code>(doseq \[square (range (**count** board))\]
   (**when** (**not** (**get** board square))
    (**let** \[\[x y\] (pos-to-xy square)\]
      (draw-square x y g))))
 
 (doseq \[\[x y\] shape\]
   (draw-square x y g))))
-</code></pre>
+</code></pre></div>
+
 <p>(defn -main [&amp; args]
   (<strong>let</strong> [frame  (JFrame. "Tetris")
         canvas (Canvas.)]
@@ -509,13 +620,13 @@ $ osascript -e 'tell app "TextMate" to reload bundles'
       (.setResizable false)
       (.add canvas)
       (.setVisible true))</p>
-<pre><code>(doto canvas
+<div class="codehilite"><pre><span></span><code>(doto canvas
   (.createBufferStrategy 2)
   (.addKeyListener (input-listener))
   (.setVisible true)
 (.requestFocus))
 
-;;game loop
+<span class="c">;;game loop</span>
 (**loop** \[board    (get-board)
        shape    (get-shape)
        old-time (System/currentTimeMillis)\]
@@ -545,7 +656,8 @@ $ osascript -e 'tell app "TextMate" to reload bundles'
         (transform board shape drop?)
         new-time)
       )))))
-</code></pre>
+</code></pre></div>
+
 <p>(-main)</p>
 <p>Quite amazing isn'it? However, the very next question for me was, why investing time and money into this new language? It's definitely interesting, but does it compare to python and django (for example) when it comes to build social web apps? Can't really answer to these questions at the moment, but I found really useful the conclusions of an article I found online (on <a href="http://java.ociweb.com/mark/clojure/article.html">Java News Brief</a>):</p>
 <blockquote>
@@ -559,7 +671,7 @@ $ osascript -e 'tell app "TextMate" to reload bundles'
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">Clojure or not clojure?</a>. Blog post on www.michelepasin.org. Published on Nov. 25, 2010.
@@ -634,30 +746,20 @@ $ osascript -e 'tell app "TextMate" to reload bundles'
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2011/01/21/live-coding-in-clojure/index.html" class="bluelink ">Live coding in clojure</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/01/21/live-coding-in-clojure/index.html" class="bluelink " >Live coding in clojure</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -693,30 +795,20 @@ $ osascript -e 'tell app "TextMate" to reload bundles'
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Clojure or not clojure?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Clojure or not clojure?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 

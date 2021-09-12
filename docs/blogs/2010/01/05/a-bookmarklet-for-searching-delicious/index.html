@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -321,6 +426,9 @@
 
             <div class="blogentry"> 
 
+              <hr>
+
+
             <p>This has been long overdue for me. A <strong>way to quickly search</strong> <a href="http://delicious.com/"><strong>delicious.com</strong></a> <strong>without relying on third-party apps</strong> (which often you have to pay for). And it's got to be super simple too: something like a bookmarklet that you click on and then takes you there. Just one of those things you never have the time to do....</p>
 <p>So today I got around doing it. I didn't know much about <a href="http://en.wikipedia.org/wiki/Bookmarklet">bookmarklets</a> but a few google searches gave me all I needed.  These are a few links I found useful while working on this little thing:- <a href="http://www.mvps.org/dmcritchie/ie/bookmarklets.htm">What are bookmarklets?</a>
 - <a href="http://www.bookmarklets.com/">bookmarklets.com</a>
@@ -329,23 +437,21 @@
 <p>Essentially bookmarklets are <strong>javascript code formatted in a browser-friendly syntax</strong>, that is, by url-escaping all of its characters. So I set off to create a bookmarklet for opening delicious at a specific tag-page. This button will take whatever you have highlighted on the web page and search for that string on delicious <strong>as a tag</strong> (not as a search string! but obviously you can modify that). If you have nothing selected the script should ask the user for a value to use.</p>
 <p>The bookmarklet would look something like the following: <a href="http://delicious.com/tag/" title="+ escape(q).replace(/ /g, &quot;+">search on delicious</a>; void 0)</p>
 <p>Mind that t<strong>he bookmarklet above won't work</strong> <strong>if you drag it to your browser button-bar</strong>, 'cause WordPress stripped off its behaviour (for security reasons I suppose). Too bad - you can easily recreate it yourself. The source code was something like this (note that <strong>it should be all on a single line</strong>,):</p>
-<p>```</p>
-<p>&lt;a href="javascript:q = "" + (window.getSelection ? window.getSelection() : document.getSelection ? document.getSelection() : document.selection.createRange().text); if (!q) q = prompt("You didn't select any text.  Enter a search phrase:", ""); if (q!=null) location="http://delicious.com/tag/" + escape(q).replace(/ /g, "+"); void 0"</p>
-<blockquote>
-<p>search on delicious</a>
-```</p>
-</blockquote>
+<div class="codehilite"><pre><span></span><code><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;javascript:q = &quot;</span><span class="err">&quot;</span> <span class="err">+</span> <span class="err">(window.getSelection</span> <span class="err">?</span> <span class="err">window.getSelection()</span> <span class="err">:</span> <span class="err">document.getSelection</span> <span class="err">?</span> <span class="err">document.getSelection()</span> <span class="err">:</span> <span class="err">document.selection.createRange().text);</span> <span class="err">if</span> <span class="err">(!q)</span> <span class="na">q =</span> <span class="s">prompt(&quot;You</span> <span class="err">didn&#39;t</span> <span class="err">select</span> <span class="err">any</span> <span class="err">text.</span>  <span class="err">Enter</span> <span class="err">a</span> <span class="err">search</span> <span class="err">phrase:&quot;,</span> <span class="err">&quot;&quot;);</span> <span class="err">if</span> <span class="err">(q!=null)</span> <span class="na">location=</span><span class="s">&quot;http://delicious.com/tag/&quot;</span> <span class="err">+</span> <span class="err">escape(q).replace(/</span> <span class="err">/g,</span> <span class="err">&quot;+&quot;);</span> <span class="err">void</span> <span class="err">0&quot;</span>
+<span class="nt">&gt;</span>search on delicious<span class="nt">&lt;/a&gt;</span>
+</code></pre></div>
+
 <p>The script above worked for me on Apple's Safari - the only other thing I had to do was url-escaping it. Thus the code would look as follows (again, make sure it is on a single line):</p>
-<p>```</p>
-<p>javascript:q%20=%20%22%22%20+%20(window.getSelection%20?%20window.getSelection()%20:%20document.getSelection%20?%20document.getSelection()%20:%20document.selection.createRange().text);%20if%20(!q)%20q%20=%20prompt(%22You%20didn't%20select%20any%20text.%20%20Enter%20a%20search%20phrase:%22,%20%22%22);%20if%20(q!=null)%20location=%22http://delicious.com/tag/%22%20+%20escape(q).replace(/%20/g,%20%22+%22);%20void%200
-```</p>
+<div class="codehilite"><pre><span></span><code><span class="n">javascript</span><span class="o">:</span><span class="n">q</span><span class="o">%</span><span class="mi">20</span><span class="o">=%</span><span class="mi">20</span><span class="o">%</span><span class="mi">22</span><span class="o">%</span><span class="mi">22</span><span class="o">%</span><span class="mi">20</span><span class="o">+%</span><span class="mi">20</span><span class="o">(</span><span class="n">window</span><span class="o">.</span><span class="na">getSelection</span><span class="o">%</span><span class="mi">20</span><span class="o">?%</span><span class="mi">20</span><span class="n">window</span><span class="o">.</span><span class="na">getSelection</span><span class="o">()%</span><span class="mi">20</span><span class="o">:%</span><span class="mi">20</span><span class="n">document</span><span class="o">.</span><span class="na">getSelection</span><span class="o">%</span><span class="mi">20</span><span class="o">?%</span><span class="mi">20</span><span class="n">document</span><span class="o">.</span><span class="na">getSelection</span><span class="o">()%</span><span class="mi">20</span><span class="o">:%</span><span class="mi">20</span><span class="n">document</span><span class="o">.</span><span class="na">selection</span><span class="o">.</span><span class="na">createRange</span><span class="o">().</span><span class="n">text</span><span class="o">);%</span><span class="mi">20</span><span class="k">if</span><span class="o">%</span><span class="mi">20</span><span class="o">(!</span><span class="n">q</span><span class="o">)%</span><span class="mi">20</span><span class="n">q</span><span class="o">%</span><span class="mi">20</span><span class="o">=%</span><span class="mi">20</span><span class="n">prompt</span><span class="o">(%</span><span class="mi">22</span><span class="n">You</span><span class="o">%</span><span class="mi">20</span><span class="n">didn</span><span class="err">&#39;</span><span class="n">t</span><span class="o">%</span><span class="mi">20</span><span class="n">select</span><span class="o">%</span><span class="mi">20</span><span class="n">any</span><span class="o">%</span><span class="mi">20</span><span class="n">text</span><span class="o">.%</span><span class="mi">20</span><span class="o">%</span><span class="mi">20</span><span class="n">Enter</span><span class="o">%</span><span class="mi">20</span><span class="n">a</span><span class="o">%</span><span class="mi">20</span><span class="n">search</span><span class="o">%</span><span class="mi">20</span><span class="n">phrase</span><span class="o">:%</span><span class="mi">22</span><span class="o">,%</span><span class="mi">20</span><span class="o">%</span><span class="mi">22</span><span class="o">%</span><span class="mi">22</span><span class="o">);%</span><span class="mi">20</span><span class="k">if</span><span class="o">%</span><span class="mi">20</span><span class="o">(</span><span class="n">q</span><span class="o">!=</span><span class="kc">null</span><span class="o">)%</span><span class="mi">20</span><span class="n">location</span><span class="o">=%</span><span class="mi">22</span><span class="n">http</span><span class="o">://</span><span class="n">delicious</span><span class="o">.</span><span class="na">com</span><span class="sr">/tag/%22%20+%20escape(q).replace(/%20/g</span><span class="o">,%</span><span class="mi">20</span><span class="o">%</span><span class="mi">22</span><span class="o">+%</span><span class="mi">22</span><span class="o">);%</span><span class="mi">20</span><span class="kc">void</span><span class="o">%</span><span class="mi">200</span>
+</code></pre></div>
+
 <p>You can paste the code above onto a browser's url bar to test it :-).</p>
 <p>But if you want to save it as a bookmarklet do the following: copy this code, open up the 'Show all Bookmarks' window on Safari and create a new bookmark named 'delicious search' (or anything else), right click on the newly created bookmark and hit the 'edit address' command. Finally, in the address field paste the code you have copied and you're ready to go!</p>
 <p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/01/picture-2.png"><img alt="" src="../../../../../media/static/blog_img/picture-2.png" title="Picture 2" /></a> <a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/01/picture-3.png"><img alt="" src="../../../../../media/static/blog_img/picture-3.png" title="Picture 3" /></a></p>
 <p>That's it! Last thing: you might want to <strong>search only through your personal tags</strong> on delicious (that's what I do most of the time). All you have to do is modify the search string by replacing the '/tag/' ending with '/username/', where 'username' is your delicious username.. that's the standard url format delicious.com accepts for searching personal tags. So:</p>
-<p>```</p>
-<p>javascript:q%20=%20%22%22%20+%20(window.getSelection%20?%20window.getSelection()%20:%20document.getSelection%20?%20document.getSelection()%20:%20document.selection.createRange().text);%20if%20(!q)%20q%20=%20prompt(%22You%20didn't%20select%20any%20text.%20%20Enter%20a%20search%20phrase:%22,%20%22%22);%20if%20(q!=null)%20location=%22http://delicious.com/YOUR-USERNAME/%22%20+%20escape(q).replace(/%20/g,%20%22+%22);%20void%200
-```</p>
+<div class="codehilite"><pre><span></span><code><span class="n">javascript</span><span class="o">:</span><span class="n">q</span><span class="o">%</span><span class="mi">20</span><span class="o">=%</span><span class="mi">20</span><span class="o">%</span><span class="mi">22</span><span class="o">%</span><span class="mi">22</span><span class="o">%</span><span class="mi">20</span><span class="o">+%</span><span class="mi">20</span><span class="o">(</span><span class="n">window</span><span class="o">.</span><span class="na">getSelection</span><span class="o">%</span><span class="mi">20</span><span class="o">?%</span><span class="mi">20</span><span class="n">window</span><span class="o">.</span><span class="na">getSelection</span><span class="o">()%</span><span class="mi">20</span><span class="o">:%</span><span class="mi">20</span><span class="n">document</span><span class="o">.</span><span class="na">getSelection</span><span class="o">%</span><span class="mi">20</span><span class="o">?%</span><span class="mi">20</span><span class="n">document</span><span class="o">.</span><span class="na">getSelection</span><span class="o">()%</span><span class="mi">20</span><span class="o">:%</span><span class="mi">20</span><span class="n">document</span><span class="o">.</span><span class="na">selection</span><span class="o">.</span><span class="na">createRange</span><span class="o">().</span><span class="n">text</span><span class="o">);%</span><span class="mi">20</span><span class="k">if</span><span class="o">%</span><span class="mi">20</span><span class="o">(!</span><span class="n">q</span><span class="o">)%</span><span class="mi">20</span><span class="n">q</span><span class="o">%</span><span class="mi">20</span><span class="o">=%</span><span class="mi">20</span><span class="n">prompt</span><span class="o">(%</span><span class="mi">22</span><span class="n">You</span><span class="o">%</span><span class="mi">20</span><span class="n">didn</span><span class="err">&#39;</span><span class="n">t</span><span class="o">%</span><span class="mi">20</span><span class="n">select</span><span class="o">%</span><span class="mi">20</span><span class="n">any</span><span class="o">%</span><span class="mi">20</span><span class="n">text</span><span class="o">.%</span><span class="mi">20</span><span class="o">%</span><span class="mi">20</span><span class="n">Enter</span><span class="o">%</span><span class="mi">20</span><span class="n">a</span><span class="o">%</span><span class="mi">20</span><span class="n">search</span><span class="o">%</span><span class="mi">20</span><span class="n">phrase</span><span class="o">:%</span><span class="mi">22</span><span class="o">,%</span><span class="mi">20</span><span class="o">%</span><span class="mi">22</span><span class="o">%</span><span class="mi">22</span><span class="o">);%</span><span class="mi">20</span><span class="k">if</span><span class="o">%</span><span class="mi">20</span><span class="o">(</span><span class="n">q</span><span class="o">!=</span><span class="kc">null</span><span class="o">)%</span><span class="mi">20</span><span class="n">location</span><span class="o">=%</span><span class="mi">22</span><span class="n">http</span><span class="o">://</span><span class="n">delicious</span><span class="o">.</span><span class="na">com</span><span class="sr">/YOUR-USERNAME/%22%20+%20escape(q).replace(/%20/g</span><span class="o">,%</span><span class="mi">20</span><span class="o">%</span><span class="mi">22</span><span class="o">+%</span><span class="mi">22</span><span class="o">);%</span><span class="mi">20</span><span class="kc">void</span><span class="o">%</span><span class="mi">200</span>
+</code></pre></div>
+
 <p>In conclusion, using the same approach you can create bookmarklets of all sorts!</p>
 <p>...</p>
 
@@ -353,7 +459,7 @@
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">A bookmarklet for searching delicious</a>. Blog post on www.michelepasin.org. Published on Jan. 5, 2010.
@@ -428,30 +534,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">A bookmarklet for searching delicious</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">A bookmarklet for searching delicious</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 

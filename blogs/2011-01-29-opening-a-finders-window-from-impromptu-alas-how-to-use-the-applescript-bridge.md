@@ -18,15 +18,18 @@ I spent some time trying to figure this out, and the answer is yes! Quite a nice
 
 Originally I thought, let's do it via impromptu's [ObjC bridge](http://moso.com.au/wiki/index.php?title=ObjC_Functions). I don't know much about ObjC but after a bit of googling it seemed evident that the [quickest way to accomplish this](http://stackoverflow.com/questions/1446814/open-a-terminal-window-to-a-specified-folder-from-a-cocoa-app) is by writing ObjC code that, in turns, runs a simple [applescript](http://www.macosxautomation.com/applescript/) command that opens a window:
 
+```c
 [NSString](http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/) \*s \= \[[NSString](http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/) stringWithFormat:  
-     @"tell application "Terminal" to do script "cd %@"", folderPath\];  
+     @"tell application "Terminal" to do script "cd %@"", folderPath];  
   
 [NSAppleScript](http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSAppleScript_Class/) \*as \= \[\[[NSAppleScript](http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSAppleScript_Class/) alloc\] initWithSource: s\];  
-\[as executeAndReturnError:nil\];
+[as executeAndReturnError:nil];
+```
 
 So I translated the bottom part of the code above into impromptu/scheme:
 
-(define run\_applescript  
+```scheme
+(define run_applescript  
    (lambda (script)  
       (objc:call (objc:call (objc:call "NSAppleScript" "alloc")  
                             "initWithSource:"  
@@ -52,13 +55,15 @@ That is a generic script-running function, that is, you can pass any script and 
                 end tell")  
   
 ;; finally, let's choose randomly one of the scripts above and run it  
-(run\_applescript (random '(script0 script1 script2)))
+(run_applescript (random '(script0 script1 script2)))
+```
 
 Now, back to the original problem: in order to open a Finder's window at a specified location we need to pass the location variable to our function _run\_applescript_; also, we want to be able to pass unix path expressions (eg '/Users/mike/music/'), so we've got to transform that path syntax into the semicolon-delimited macintosh syntax ("Macintosh HD:Users:mike:music") needed by the applescript function we're using. That's easily done with _string-replace_, so here we go:
 
-(define open\_finder\_at  
+```scheme
+(define open_finder_at  
    (lambda (location)  
-      (let\* ((llocation (string\-replace location "/" ":"))  
+      (let* ((llocation (string-replace location "/" ":"))  
               (script (string-append "tell application "Finder" to activate open folder "Macintosh HD" llocation """)))  
          (objc:call (objc:call (objc:call "NSAppleScript" "alloc")  
                                "initWithSource:"  
@@ -66,7 +71,8 @@ Now, back to the original problem: in order to open a Finder's window at a speci
                     "executeAndReturnError:" ))))  
   
   
-(open\_finder\_at "/Users/me/")
+(open_finder_at "/Users/me/")
+```
 
 That's pretty much it really... now we can easily open OsX Finder's windows from within Impromptu.
 

@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -321,6 +426,9 @@
 
             <div class="blogentry"> 
 
+              <hr>
+
+
             <p>Some time ago I've been experimenting with the processing and display of <a href="http://www.google.co.uk/url?sa=t&amp;rct=j&amp;q=rss%20feed&amp;source=web&amp;cd=1&amp;ved=0CD0QFjAA&amp;url=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FRSS&amp;ei=K9jxTtyyMY-K4gSwibHBAQ&amp;usg=AFQjCNEdBSkFc9gzQ_IRDoz4mZzyuZwfbw">RSS feeds</a> within <a href="http://impromptu.moso.com.au/">Impromptu</a>, and as a result I built a small app that retrieves the news feed from <a href="http://www.guardian.co.uk/">The Guardian</a> online and displays on a canvas. I've had a bit of free time these days, so last night I thought it was time to polish it a little and make it available on this blog (who knows maybe someone else will use it as starting point for another project).</p>
 <p><a href="http://www.flickr.com/photos/mikele/6549002895/" title="Visualizing rss feeds with Impromptu by MagIcReBirth, on Flickr"><img alt="Visualizing rss feeds with Impromptu" src="../../../../../media/static/blog_img/6549002895_2b42b95cef.jpg" /></a></p>
 <blockquote>
@@ -412,7 +520,7 @@
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">Using Impromptu to visualize RSS feeds</a>. Blog post on www.michelepasin.org. Published on Dec. 21, 2011.
@@ -487,13 +595,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2019</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">May 2019</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2019/05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/index.html" class="bluelink ">Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</a>.
-              <br />
-              <span class="">Beyza Yaman, Michele Pasin, Markus Freudenberg</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2019/05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/index.html" class="bluelink " >Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</a>
+              <!-- <br />
+              <span class="">Beyza Yaman, Michele Pasin, Markus Freudenberg</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -513,6 +628,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
 
@@ -548,30 +668,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2018</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2018/11/23/exploring-scholarly-publications-via-dbpedia/index.html" class="bluelink ">Exploring scholarly publications using DBPedia concepts: an experiment</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2018/11/23/exploring-scholarly-publications-via-dbpedia/index.html" class="bluelink " >Exploring scholarly publications using DBPedia concepts: an experiment</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2018.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -607,13 +717,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2017</small>
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2017</small> -->
 
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../../papers/2017/10/11/using-linked-open-data-to-bootstrap-a-knowledge-base-of-classical-texts/index.html" class="bluelink ">Using Linked Open Data to Bootstrap a Knowledge Base of Classical Texts</a>.
-              <br />
-              <span class="">Matteo Romanello, Michele Pasin</span>
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2017/10/11/using-linked-open-data-to-bootstrap-a-knowledge-base-of-classical-texts/index.html" class="bluelink " >Using Linked Open Data to Bootstrap a Knowledge Base of Classical Texts</a>
+              <!-- <br />
+              <span class="">Matteo Romanello, Michele Pasin</span> -->
             </p>
+
 
             <p class="pubinfo text-muted" style="margin-top: -15px;">
 
@@ -633,6 +750,11 @@
               
 
             </p>
+            
+
+
+
+
 
             
               <hr>
@@ -647,30 +769,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2017</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/index.html" class="bluelink ">Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/index.html" class="bluelink " >Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2017.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -706,30 +818,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2015</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2015/05/06/impromptu-language-documentation-back-online/index.html" class="bluelink ">Impromptu language documentation back online!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2015/05/06/impromptu-language-documentation-back-online/index.html" class="bluelink " >Impromptu language documentation back online!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2015.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -765,30 +867,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2014</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2014/12/03/dereference-a-doi-using-python/index.html" class="bluelink ">Dereference a DOI using python</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2014/12/03/dereference-a-doi-using-python/index.html" class="bluelink " >Dereference a DOI using python</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2014.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -803,30 +895,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2014</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2014/08/22/visualising-a-big-taxonomy-in-a-small-screen-in-pure-html/index.html" class="bluelink ">How to visualize a big taxonomy within a single webpage?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2014/08/22/visualising-a-big-taxonomy-in-a-small-screen-in-pure-html/index.html" class="bluelink " >How to visualize a big taxonomy within a single webpage?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2014.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -862,30 +944,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/09/15/building-a-master-volumes-ui-in-impromptu/index.html" class="bluelink ">Building a master volumes UI with impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/09/15/building-a-master-volumes-ui-in-impromptu/index.html" class="bluelink " >Building a master volumes UI with impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -900,30 +972,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/04/27/annual-bliss-classification-association-lecture-using-faceted-browsers-in-the-dh/index.html" class="bluelink ">Annual Bliss Classification Association Lecture: using faceted browsers in the DH</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/04/27/annual-bliss-classification-association-lecture-using-faceted-browsers-in-the-dh/index.html" class="bluelink " >Annual Bliss Classification Association Lecture: using faceted browsers in the DH</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -938,30 +1000,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2013/02/20/a-metronome-object-for-impromptu/index.html" class="bluelink ">A metronome object for Impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2013/02/20/a-metronome-object-for-impromptu/index.html" class="bluelink " >A metronome object for Impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -997,30 +1049,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/index.html" class="bluelink ">Using Mendeley and Dropbox to sync your pdf library across computers</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/index.html" class="bluelink " >Using Mendeley and Dropbox to sync your pdf library across computers</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1056,30 +1098,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Using Impromptu to visualize RSS feeds</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Using Impromptu to visualize RSS feeds</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1094,30 +1126,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../05/02/the-new-livecoding-error-hook-in-impromptu/index.html" class="bluelink ">The new Livecoding Error Hook in Impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../05/02/the-new-livecoding-error-hook-in-impromptu/index.html" class="bluelink " >The new Livecoding Error Hook in Impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1132,30 +1154,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../02/07/what-is-the-reaper-time-in-impromptu/index.html" class="bluelink ">What is the reaper time in Impromptu?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../02/07/what-is-the-reaper-time-in-impromptu/index.html" class="bluelink " >What is the reaper time in Impromptu?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1170,30 +1182,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../01/29/opening-a-finders-window-from-impromptu-alas-how-to-use-the-applescript-bridge/index.html" class="bluelink ">Opening a Finder&#39;s window from Impromptu (alas how to use the applescript bridge..)</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../01/29/opening-a-finders-window-from-impromptu-alas-how-to-use-the-applescript-bridge/index.html" class="bluelink " >Opening a Finder&#39;s window from Impromptu (alas how to use the applescript bridge..)</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1229,30 +1231,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/10/13/impromptu-2-5/index.html" class="bluelink ">Impromptu 2.5 released</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/10/13/impromptu-2-5/index.html" class="bluelink " >Impromptu 2.5 released</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1267,30 +1259,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/index.html" class="bluelink ">Impromptu: access the Wiki docs from the editor</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/index.html" class="bluelink " >Impromptu: access the Wiki docs from the editor</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1326,30 +1308,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/11/23/new-song-with-impromptu-kali/index.html" class="bluelink ">New song with Impromptu: KALI</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/11/23/new-song-with-impromptu-kali/index.html" class="bluelink " >New song with Impromptu: KALI</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1364,30 +1336,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/11/04/graphics-over-code-in-impromptu/index.html" class="bluelink ">Graphics over code in Impromptu</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/11/04/graphics-over-code-in-impromptu/index.html" class="bluelink " >Graphics over code in Impromptu</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1402,30 +1364,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/10/29/impromptu-if-mod-macro/index.html" class="bluelink ">Impromptu: If-mod macro</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/10/29/impromptu-if-mod-macro/index.html" class="bluelink " >Impromptu: If-mod macro</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1440,30 +1392,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/10/18/impromptu-zebra-a-perfect-match/index.html" class="bluelink ">Impromptu &amp; Zebra: a perfect match!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/10/18/impromptu-zebra-a-perfect-match/index.html" class="bluelink " >Impromptu &amp; Zebra: a perfect match!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1478,30 +1420,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/10/07/new-impromptu-screencast/index.html" class="bluelink ">New Impromptu screencast and a few lessons learned</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/10/07/new-impromptu-screencast/index.html" class="bluelink " >New Impromptu screencast and a few lessons learned</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1516,30 +1448,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/index.html" class="bluelink ">Using jquery&#39;s autocomplete in django admin: how about inlines?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/index.html" class="bluelink " >Using jquery&#39;s autocomplete in django admin: how about inlines?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1554,30 +1476,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/09/15/using-django-mptt-lessons-learned/index.html" class="bluelink ">Using Django-MPTT: lessons learned...</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/09/15/using-django-mptt-lessons-learned/index.html" class="bluelink " >Using Django-MPTT: lessons learned...</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1592,30 +1504,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/06/03/wordsift-visualize-text/index.html" class="bluelink ">WordSift: visualize text</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/06/03/wordsift-visualize-text/index.html" class="bluelink " >WordSift: visualize text</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1630,30 +1532,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/05/07/soundmanager-2-makes-it-easier-to-play-sounds-using-javascript/index.html" class="bluelink ">SoundManager 2 makes it easier to play sounds using Javascript</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/05/07/soundmanager-2-makes-it-easier-to-play-sounds-using-javascript/index.html" class="bluelink " >SoundManager 2 makes it easier to play sounds using Javascript</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1668,30 +1560,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Mar 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/03/10/db-visualize-the-universal-database-tool/index.html" class="bluelink ">DB visualize : The Universal Database Tool</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/03/10/db-visualize-the-universal-database-tool/index.html" class="bluelink " >DB visualize : The Universal Database Tool</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Mar 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1706,30 +1588,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/02/24/using-the-os-x-terminal-application/index.html" class="bluelink ">Using the OS X Terminal Application</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/02/24/using-the-os-x-terminal-application/index.html" class="bluelink " >Using the OS X Terminal Application</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1765,30 +1637,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2007</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2007/05/12/impromptu-scheme-based-music-and-video/index.html" class="bluelink ">Impromptu : scheme-based music and video</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2007/05/12/impromptu-scheme-based-music-and-video/index.html" class="bluelink " >Impromptu : scheme-based music and video</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2007.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -1824,30 +1686,20 @@
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2006</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2006/10/24/lets-visualize-em/index.html" class="bluelink ">Let&#39;s visualize &#39;em</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2006/10/24/lets-visualize-em/index.html" class="bluelink " >Let&#39;s visualize &#39;em</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2006.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 

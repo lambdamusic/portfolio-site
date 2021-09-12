@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -320,6 +425,9 @@
 
 
             <div class="blogentry"> 
+
+              <hr>
+
 
             <p>Django's <a href="https://docs.djangoproject.com/en/1.4/ref/contrib/admin/">admin framework</a> includes the basic functionalities for logging in and out of the admin site, but if you're building a so-called 'social' application and want people to be able to sign-up, log in and thus benefit from additional site functionalities then you need to use a more generic 'registration' application. The good news is: most of the work has already been done, so it's just a matter of putting things together correctly.</p>
 <p>I found a nicely written <a href="http://www.stonemind.net/blog/2007/04/13/django-registration-for-newbies/">blog post</a> on this topic, so in what follows I'm just doing a re-cap of the main steps involved and adding some other useful info.</p>
@@ -435,23 +543,28 @@ DEFAULT_FROM_EMAIL \= 'testing@example.com'</p>
 <p>bash-3.2$ python -m smtpd -n -c DebuggingServer localhost:1025</p>
 <p>This local SMTP server remains there waiting for incoming messages. If now you go to <em>/accounts/register/</em>, fill out the form and hit ‘send’ you’ll see the registration email printed out in the console. Basically what happened is this: the ‘dummy’ python SMTP server we’ve just set up picked up django’s email-sending request and consequently printed out the email contents. If this is indeed what happened, it means that your code is working properly… and that you can use the url provided in the email to test the <strong>activation</strong> functionality too.</p>
 <p>For example, here is what you would see in the console after registering:</p>
-<p>```</p>
-<p>---------- MESSAGE FOLLOWS ----------
-Content-Type: text/plain; charset="utf-8"
-MIME-Version: 1.0
-Content-Transfer-Encoding: quoted-printable
-Subject: Activate your djangoproject.com account - you have 2 days!
-From: testing@example.com
-To: michele.pasin@hotmail.com
-Date: Wed, 12 Jan 2011 16:49:59 -0000
-Message-ID: <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;&#50;&#48;&#49;&#49;&#48;&#49;&#49;&#50;&#49;&#54;&#52;&#57;&#53;&#57;&#46;&#51;&#51;&#54;&#54;&#46;&#51;&#53;&#54;&#51;&#56;&#64;&#109;&#121;&#109;&#97;&#99;&#46;&#108;&#111;&#99;&#97;&#108;">&#50;&#48;&#49;&#49;&#48;&#49;&#49;&#50;&#49;&#54;&#52;&#57;&#53;&#57;&#46;&#51;&#51;&#54;&#54;&#46;&#51;&#53;&#54;&#51;&#56;&#64;&#109;&#121;&#109;&#97;&#99;&#46;&#108;&#111;&#99;&#97;&#108;</a>
-X-Peer: 127.0.0.1</p>
-<p>Someone, hopefully you, signed up for a new account at djangoproject.com using this email address. If it was you, and you'd like to activate and use your
-account, click the link below or copy and paste it into your web browser's address bar:</p>
-<p>http://127.0.0.1:8000/accounts/activate/6342fca5ffd430a820be6d98acde6e59a4c2d29c/</p>
-<p>If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in two days.</p>
-<p>------------ END MESSAGE ------------
-```</p>
+<div class="codehilite"><pre><span></span><code><span class="o">----------</span><span class="w"> </span><span class="n">MESSAGE</span><span class="w"> </span><span class="n">FOLLOWS</span><span class="w"> </span><span class="o">----------</span><span class="w"></span>
+<span class="n">Content</span><span class="o">-</span><span class="nl">Type</span><span class="p">:</span><span class="w"> </span><span class="nc">text</span><span class="o">/</span><span class="n">plain</span><span class="p">;</span><span class="w"> </span><span class="n">charset</span><span class="o">=</span><span class="ss">&quot;utf-8&quot;</span><span class="w"></span>
+<span class="n">MIME</span><span class="o">-</span><span class="nl">Version</span><span class="p">:</span><span class="w"> </span><span class="mf">1.0</span><span class="w"></span>
+<span class="n">Content</span><span class="o">-</span><span class="n">Transfer</span><span class="o">-</span><span class="nl">Encoding</span><span class="p">:</span><span class="w"> </span><span class="n">quoted</span><span class="o">-</span><span class="n">printable</span><span class="w"></span>
+<span class="nl">Subject</span><span class="p">:</span><span class="w"> </span><span class="n">Activate</span><span class="w"> </span><span class="n">your</span><span class="w"> </span><span class="n">djangoproject</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">have</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="n">days</span><span class="err">!</span><span class="w"></span>
+<span class="k">From</span><span class="err">:</span><span class="w"> </span><span class="n">testing</span><span class="nv">@example</span><span class="p">.</span><span class="n">com</span><span class="w"></span>
+<span class="k">To</span><span class="err">:</span><span class="w"> </span><span class="n">michele</span><span class="p">.</span><span class="n">pasin</span><span class="nv">@hotmail</span><span class="p">.</span><span class="n">com</span><span class="w"></span>
+<span class="nc">Date</span><span class="err">:</span><span class="w"> </span><span class="n">Wed</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="n">Jan</span><span class="w"> </span><span class="mi">2011</span><span class="w"> </span><span class="mi">16</span><span class="err">:</span><span class="mi">49</span><span class="err">:</span><span class="mi">59</span><span class="w"> </span><span class="o">-</span><span class="mi">0000</span><span class="w"></span>
+<span class="n">Message</span><span class="o">-</span><span class="nl">ID</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="mf">20110112164959.3366.35638</span><span class="nv">@mymac</span><span class="p">.</span><span class="k">local</span><span class="o">&gt;</span><span class="w"></span>
+<span class="n">X</span><span class="o">-</span><span class="nl">Peer</span><span class="p">:</span><span class="w"> </span><span class="mf">127.0.0.1</span><span class="w"></span>
+
+
+<span class="n">Someone</span><span class="p">,</span><span class="w"> </span><span class="n">hopefully</span><span class="w"> </span><span class="n">you</span><span class="p">,</span><span class="w"> </span><span class="n">signed</span><span class="w"> </span><span class="n">up</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="k">at</span><span class="w"> </span><span class="n">djangoproject</span><span class="p">.</span><span class="n">com</span><span class="w"> </span><span class="k">using</span><span class="w"> </span><span class="n">this</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="n">address</span><span class="p">.</span><span class="w"> </span><span class="k">If</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="n">was</span><span class="w"> </span><span class="n">you</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">you</span><span class="s1">&#39;d like to activate and use your</span>
+<span class="s1">account, click the link below or copy and paste it into your web browser&#39;</span><span class="n">s</span><span class="w"> </span><span class="n">address</span><span class="w"> </span><span class="nl">bar</span><span class="p">:</span><span class="w"></span>
+
+<span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="mf">127.0.0.1</span><span class="err">:</span><span class="mi">8000</span><span class="o">/</span><span class="n">accounts</span><span class="o">/</span><span class="n">activate</span><span class="o">/</span><span class="mi">6342</span><span class="n">fca5ffd430a820be6d98acde6e59a4c2d29c</span><span class="o">/</span><span class="w"></span>
+
+<span class="k">If</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">didn</span><span class="s1">&#39;t request this, you don&#39;</span><span class="n">t</span><span class="w"> </span><span class="n">need</span><span class="w"> </span><span class="k">to</span><span class="w"> </span><span class="n">do</span><span class="w"> </span><span class="n">anything</span><span class="p">;</span><span class="w"> </span><span class="n">you</span><span class="w"> </span><span class="n">won</span><span class="err">&#39;</span><span class="n">t</span><span class="w"> </span><span class="n">receive</span><span class="w"> </span><span class="ow">any</span><span class="w"> </span><span class="n">more</span><span class="w"> </span><span class="n">email</span><span class="w"> </span><span class="k">from</span><span class="w"> </span><span class="n">us</span><span class="p">,</span><span class="w"> </span><span class="ow">and</span><span class="w"> </span><span class="n">the</span><span class="w"> </span><span class="n">account</span><span class="w"> </span><span class="n">will</span><span class="w"> </span><span class="n">expire</span><span class="w"> </span><span class="n">automatically</span><span class="w"> </span><span class="ow">in</span><span class="w"> </span><span class="n">two</span><span class="w"> </span><span class="n">days</span><span class="p">.</span><span class="w"></span>
+
+<span class="c1">------------ END MESSAGE ------------</span>
+</code></pre></div>
+
 <p><strong>Pasting</strong> the 'activation' url in your browser should allow you to complete the registration process and check the rest of your code.</p>
 <p>Finally, keep in mind also that the django-registration application sends out emails that contain your site’s URL for the activation link, and that URL is dynamically determined using the <a href="https://docs.djangoproject.com/en/dev/ref/contrib/sites/?from=olddocs/">'sites' application</a> (normally added via settings.py). By default, your domain name is listed as ‘example.com’, and the easiest way to change this is to log into the admin application and click on the ‘Sites’ link on the admin home page to get to the relevant entry.</p>
 <p>\===== ++ =====</p>
@@ -464,7 +577,7 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">Setting up Django Registration</a>. Blog post on www.michelepasin.org. Published on Jan. 14, 2011.
@@ -539,30 +652,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2012</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2012/01/24/setting-up-the-new-staticfiles-app-on-django-1-3/index.html" class="bluelink ">Setting up the new &#39;staticfiles&#39; app on Django 1.3</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/01/24/setting-up-the-new-staticfiles-app-on-django-1-3/index.html" class="bluelink " >Setting up the new &#39;staticfiles&#39; app on Django 1.3</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2012.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -598,30 +701,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../10/12/django-b_project-available-on-github/index.html" class="bluelink ">Django B_project available on gitHub</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../10/12/django-b_project-available-on-github/index.html" class="bluelink " >Django B_project available on gitHub</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -636,30 +729,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../06/09/djfacet-a-django-faceted-browser/index.html" class="bluelink ">DJFacet: a faceted browser for Django</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../06/09/djfacet-a-django-faceted-browser/index.html" class="bluelink " >DJFacet: a faceted browser for Django</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -674,30 +757,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../02/08/installing-pil-on-djangostack-1-1-1/index.html" class="bluelink ">Installing PIL on Djangostack 1.1.1/1.2/1.3</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../02/08/installing-pil-on-djangostack-1-1-1/index.html" class="bluelink " >Installing PIL on Djangostack 1.1.1/1.2/1.3</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -712,30 +785,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jan 2011</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Setting up Django Registration</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Setting up Django Registration</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2011.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -771,30 +834,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/11/17/preloading-stuff-in-djangos-interactive-shell/index.html" class="bluelink ">Preloading stuff in django&#39;s interactive shell</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/11/17/preloading-stuff-in-djangos-interactive-shell/index.html" class="bluelink " >Preloading stuff in django&#39;s interactive shell</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -809,30 +862,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/08/03/trying-out-django-cms/index.html" class="bluelink ">Trying out Django-cms</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/08/03/trying-out-django-cms/index.html" class="bluelink " >Trying out Django-cms</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -847,30 +890,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jul 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/07/20/the-power-of-djangos-q-objects/index.html" class="bluelink ">The power of django&#39;s Q objects</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/07/20/the-power-of-djangos-q-objects/index.html" class="bluelink " >The power of django&#39;s Q objects</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jul 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -885,30 +918,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Jun 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/06/30/djangocon-europe-2010/index.html" class="bluelink ">DjangoCon Europe 2010</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/06/30/djangocon-europe-2010/index.html" class="bluelink " >DjangoCon Europe 2010</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jun 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -923,30 +946,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/05/24/django-debug-toolbar/index.html" class="bluelink ">Django debug toolbar</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/05/24/django-debug-toolbar/index.html" class="bluelink " >Django debug toolbar</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -982,30 +995,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Dec 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/12/03/creating-questionnaires-with-django/index.html" class="bluelink ">Creating Questionnaires with Django</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/12/03/creating-questionnaires-with-django/index.html" class="bluelink " >Creating Questionnaires with Django</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Dec 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1020,30 +1023,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/11/11/django-signals/index.html" class="bluelink ">Django signals</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/11/11/django-signals/index.html" class="bluelink " >Django signals</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1058,30 +1051,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Nov 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/11/02/django-1-1-logout-links-apparently-broken/index.html" class="bluelink ">Django 1.1: LogOut links apparently broken</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/11/02/django-1-1-logout-links-apparently-broken/index.html" class="bluelink " >Django 1.1: LogOut links apparently broken</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Nov 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1096,30 +1079,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/10/20/uml-to-django/index.html" class="bluelink ">UML to django</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/10/20/uml-to-django/index.html" class="bluelink " >UML to django</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1134,30 +1107,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/10/12/autocomplete-in-django-2/index.html" class="bluelink ">Autocomplete in Django #2</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/10/12/autocomplete-in-django-2/index.html" class="bluelink " >Autocomplete in Django #2</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1172,30 +1135,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/index.html" class="bluelink ">Using jquery&#39;s autocomplete in django admin: how about inlines?</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/index.html" class="bluelink " >Using jquery&#39;s autocomplete in django admin: how about inlines?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1210,30 +1163,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/09/28/project-django-soclone/index.html" class="bluelink ">Project: django SOCLONE</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/09/28/project-django-soclone/index.html" class="bluelink " >Project: django SOCLONE</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1248,30 +1191,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/09/15/using-django-mptt-lessons-learned/index.html" class="bluelink ">Using Django-MPTT: lessons learned...</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/09/15/using-django-mptt-lessons-learned/index.html" class="bluelink " >Using Django-MPTT: lessons learned...</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1286,30 +1219,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Sep 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/09/11/weird-example-com-urls-appearing-on-my-django-site/index.html" class="bluelink ">Weird &#39;example.com&#39; urls appearing on my django site...</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/09/11/weird-example-com-urls-appearing-on-my-django-site/index.html" class="bluelink " >Weird &#39;example.com&#39; urls appearing on my django site...</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1324,30 +1247,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/08/18/django-admin-and-mptt-2/index.html" class="bluelink ">Django admin and MPTT #2</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/08/18/django-admin-and-mptt-2/index.html" class="bluelink " >Django admin and MPTT #2</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1362,30 +1275,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/08/06/representing-hierarchical-data-with-django-and-mptt/index.html" class="bluelink ">Representing hierarchical data with Django and MPTT</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/08/06/representing-hierarchical-data-with-django-and-mptt/index.html" class="bluelink " >Representing hierarchical data with Django and MPTT</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1400,30 +1303,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">May 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/05/27/snippet-to-quickly-load-stuff-in-the-django-shell/index.html" class="bluelink ">Snippet to load stuff quickly in the Django shell</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/05/27/snippet-to-quickly-load-stuff-in-the-django-shell/index.html" class="bluelink " >Snippet to load stuff quickly in the Django shell</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> May 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -1438,30 +1331,20 @@ From the Django book:- <a href="http://www.djangobook.com/en/beta/chapter12/">Ch
 
           <div class='pubitem'>
 
-            <small class="text-muted">Apr 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/04/29/offline-django-docs/index.html" class="bluelink ">Offline django docs</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/04/29/offline-django-docs/index.html" class="bluelink " >Offline django docs</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Apr 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 

@@ -182,36 +182,141 @@
     
 
     .blogentry {
-      font-size: 14px;
+      font-size: 17px;
       margin-top: 50px;
-      margin-bottom: 100px;
+      margin-bottom: 120px;
     }
 
-    .blogentry p:first-of-type {
-      font-size: 22px;
-      font-weight: bold;
-      min-height: 20px;
-      padding: 19px;
-      margin-bottom: 20px;
-      background-color: #f4f4f4;
-      border: 1px solid #e3e3e3;
-      border-radius: 4px;
-      -webkit-box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-      box-shadow: inset 0 1px 1px rgb(0 0 0 / 5%);
-    }
 
     .blogentry p {
-      margin-top: 40px;
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
       margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
     }
 
     .blogentry img {
       max-width: 80%;
     }
 
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
 
 </style>
 
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
 
 
 
@@ -321,24 +426,33 @@
 
             <div class="blogentry"> 
 
+              <hr>
+
+
             <p>I recently ran into the Textmate <a href="https://github.com/peta/turtle.tmbundle">bundle for Turtle</a>, an extension for the <a href="https://github.com/textmate/textmate">Textmate</a> osx editor aimed at facilitating working with RDF and SPARQL. If you happen to be using these technologies, well I'd suggest you take a look at the following post.</p>
 <p>The Resource Description Framework is a <em>general-purpose language for representing information</em> which is widely used on the web in order to encode metadata in a machine-interoperable format.</p>
 <p>Turtle, the <a href="http://www.w3.org/TeamSubmission/turtle/">terse RDF Triple Language</a>, is a textual syntax for RDF which aims at human readability and compactness (among other things). This is what it looks like:</p>
-<p>```</p>
-<p>@prefix rdf: 
-@prefix rdfs: 
-@prefix xsd: .
-@base </p>
-<p>:MotorVehicle a rdfs:Class.</p>
-<p>:PassengerVehicle a rdfs:Class;
-   rdfs:subClassOf :MotorVehicle.</p>
-<p>:Person a rdfs:Class.</p>
-<p>xsd:integer a rdfs:Datatype.</p>
-<p>:registeredTo a rdf:Property;
-   rdfs:domain :MotorVehicle;
-   rdfs:range  :Person.</p>
-<p>:myLittleCar a PassengerVehicle
-```</p>
+<div class="codehilite"><pre><span></span><code><span class="err">@prefix</span> <span class="nn">rdf</span><span class="p">:</span> 
+<span class="err">@prefix</span> <span class="nn">rdfs</span><span class="p">:</span> 
+<span class="err">@prefix</span> <span class="nn">xsd</span><span class="p">:</span> <span class="p">.</span>
+<span class="err">@base</span> 
+
+<span class="p">:</span><span class="nt">MotorVehicle</span> <span class="kt">a</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">Class</span><span class="p">.</span>
+
+<span class="p">:</span><span class="nt">PassengerVehicle</span> <span class="kt">a</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">Class</span><span class="p">;</span>
+   <span class="nn">rdfs</span><span class="p">:</span><span class="nt">subClassOf</span> <span class="p">:</span><span class="nt">MotorVehicle</span><span class="p">.</span>
+
+<span class="p">:</span><span class="nt">Person</span> <span class="kt">a</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">Class</span><span class="p">.</span>
+
+<span class="nn">xsd</span><span class="p">:</span><span class="nt">integer</span> <span class="kt">a</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">Datatype</span><span class="p">.</span>
+
+<span class="p">:</span><span class="nt">registeredTo</span> <span class="kt">a</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">Property</span><span class="p">;</span>
+   <span class="nn">rdfs</span><span class="p">:</span><span class="nt">domain</span> <span class="p">:</span><span class="nt">MotorVehicle</span><span class="p">;</span>
+   <span class="nn">rdfs</span><span class="p">:</span><span class="nt">range</span>  <span class="p">:</span><span class="nt">Person</span><span class="p">.</span>
+
+<span class="p">:</span><span class="nt">myLittleCar</span> <span class="kt">a</span> <span class="err">PassengerVehicle</span>
+</code></pre></div>
+
 <p>The termite library in question, in a nutshell, provides a bunch of snippets and query mechanisms that make it easier to work with Turtle RDF and related technologies. More precisely, here's the official features breakdown:</p>
 <blockquote>
 <ul>
@@ -354,39 +468,42 @@
 </blockquote>
 <h3>Example</h3>
 <p>In order to query a SPARQL endpoint (eg DBPedia) just type this in and run it (apple-R):</p>
-<p>```</p>
-<h1>QUERY <a href="http://dbpedia.org/sparql">http://dbpedia.org/sparql</a></h1>
-<p>SELECT DISTINCT ?s ?label                           <br />
-WHERE {                                             <br />
-    ?s <a href="http://dbpedia.org/property/season">http://dbpedia.org/property/season</a> ?o .    <br />
-}<br />
-```</p>
+<div class="codehilite"><pre><span></span><code>#QUERY &lt;http://dbpedia.org/sparql&gt;                    
+SELECT DISTINCT ?s ?label                             
+WHERE {                                               
+    ?s &lt;http://dbpedia.org/property/season&gt; ?o .      
+}  
+</code></pre></div>
+
 <p>Obviously you can query any endpoint, e.g. <a href="http://data.nature.com/query">data.nature.com</a>:</p>
-<p>```</p>
-<h1>QUERY <a href="http://data.nature.com/sparql">http://data.nature.com/sparql</a></h1>
-<p>PREFIX bibo:<a href="http://purl.org/ontology/bibo/">http://purl.org/ontology/bibo/</a>
-PREFIX dc:<a href="http://purl.org/dc/elements/1.1/">http://purl.org/dc/elements/1.1/</a>
-PREFIX dcterms:<a href="http://purl.org/dc/terms/">http://purl.org/dc/terms/</a>
-PREFIX foaf:<a href="http://xmlns.com/foaf/0.1/">http://xmlns.com/foaf/0.1/</a>
-PREFIX npg:<a href="http://ns.nature.com/terms/">http://ns.nature.com/terms/</a>
-PREFIX npgg:<a href="http://ns.nature.com/graphs/">http://ns.nature.com/graphs/</a>
-PREFIX npgx:<a href="http://ns.nature.com/extensions/">http://ns.nature.com/extensions/</a>
-PREFIX owl:<a href="http://www.w3.org/2002/07/owl#">http://www.w3.org/2002/07/owl#</a>
-PREFIX prism:<a href="http://prismstandard.org/namespaces/basic/2.1/">http://prismstandard.org/namespaces/basic/2.1/</a>
-PREFIX rdf:<a href="http://www.w3.org/1999/02/22-rdf-syntax-ns#">http://www.w3.org/1999/02/22-rdf-syntax-ns#</a>
-PREFIX rdfs:<a href="http://www.w3.org/2000/01/rdf-schema#">http://www.w3.org/2000/01/rdf-schema#</a>
-PREFIX sc:<a href="http://purl.org/science/owl/sciencecommons/">http://purl.org/science/owl/sciencecommons/</a>
-PREFIX skos:<a href="http://www.w3.org/2004/02/skos/core#">http://www.w3.org/2004/02/skos/core#</a>
-PREFIX void:<a href="http://rdfs.org/ns/void#">http://rdfs.org/ns/void#</a>
-PREFIX xsd:<a href="http://www.w3.org/2001/XMLSchema#">http://www.w3.org/2001/XMLSchema#</a></p>
-<p>SELECT *                          <br />
-WHERE {                                              <br />
+<div class="codehilite"><pre><span></span><code>#QUERY &lt;http://data.nature.com/sparql&gt;
+
+PREFIX bibo:&lt;http://purl.org/ontology/bibo/&gt;
+PREFIX dc:&lt;http://purl.org/dc/elements/1.1/&gt;
+PREFIX dcterms:&lt;http://purl.org/dc/terms/&gt;
+PREFIX foaf:&lt;http://xmlns.com/foaf/0.1/&gt;
+PREFIX npg:&lt;http://ns.nature.com/terms/&gt;
+PREFIX npgg:&lt;http://ns.nature.com/graphs/&gt;
+PREFIX npgx:&lt;http://ns.nature.com/extensions/&gt;
+PREFIX owl:&lt;http://www.w3.org/2002/07/owl#&gt;
+PREFIX prism:&lt;http://prismstandard.org/namespaces/basic/2.1/&gt;
+PREFIX rdf:&lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt;
+PREFIX rdfs:&lt;http://www.w3.org/2000/01/rdf-schema#&gt;
+PREFIX sc:&lt;http://purl.org/science/owl/sciencecommons/&gt;
+PREFIX skos:&lt;http://www.w3.org/2004/02/skos/core#&gt;
+PREFIX void:&lt;http://rdfs.org/ns/void#&gt;
+PREFIX xsd:&lt;http://www.w3.org/2001/XMLSchema#&gt;
+
+
+SELECT *                            
+WHERE {                                                
     ?doi a npg:Article . 
     ?doi dc:title ?title .
     ?doi prism:publicationDate ?date
 } 
-limit 100 </p>
-<p>```</p>
+limit 100 
+</code></pre></div>
+
 <p>And this is just the tip of the iceberg. Autocompletion, visualisations etc… it may be the Textmate-Semantic Web swiss army knife you've been looking for.</p>
 <p><img alt="" src="../../../../../media/static/blog_img/screenshot-editor.png" /></p>
 <p><img alt="" src="../../../../../media/static/blog_img/screenshot-sparql.png" /></p>
@@ -396,7 +513,7 @@ limit 100 </p>
 
 
           <hr>
-            <p class="text-muted">Cite this article:</p>
+            <p class="text-muted">Cite this blog post:</p>
 
             <div class="well well-big lead">
               Michele Pasin. <a href="index.html" class="bluelink">Textmate bundle for Turtle and Sparql</a>. Blog post on www.michelepasin.org. Published on Aug. 13, 2013.
@@ -471,30 +588,20 @@ limit 100 </p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Oct 2014</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2014/10/12/interactive-turtle-shell/index.html" class="bluelink ">An interactive Turtle shell</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2014/10/12/interactive-turtle-shell/index.html" class="bluelink " >An interactive Turtle shell</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Oct 2014.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -530,30 +637,20 @@ limit 100 </p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Aug 2013</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="index.html" class="bluelink paper-active">Textmate bundle for Turtle and Sparql</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Textmate bundle for Turtle and Sparql</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Aug 2013.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -589,30 +686,20 @@ limit 100 </p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2010</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2010/02/12/python-debugging-and-textmate/index.html" class="bluelink ">Python debugging and Textmate</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/02/12/python-debugging-and-textmate/index.html" class="bluelink " >Python debugging and Textmate</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2010.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 
@@ -648,30 +735,20 @@ limit 100 </p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/02/26/textmate-basics-tutorial/index.html" class="bluelink ">TextMate Basics Tutorial</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/02/26/textmate-basics-tutorial/index.html" class="bluelink " >TextMate Basics Tutorial</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
               <hr>
@@ -686,30 +763,20 @@ limit 100 </p>
 
           <div class='pubitem'>
 
-            <small class="text-muted">Feb 2009</small>
 
+            
             <p class='lead' style="font-size: 13px;">
-              <a href="../../../../2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink ">Pysmell - Python auto-complete - works with TextMate too!</a>.
-              <br />
-              <span class="">Michele Pasin</span>
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink " >Pysmell - Python auto-complete - works with TextMate too!</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
+            
 
-              
-                <span class='journal'> Blog entry on www.michelepasin.org .,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Feb 2009.</span>
-              
-              
-              
-              
-              
 
-            </p>
+
+
 
             
 

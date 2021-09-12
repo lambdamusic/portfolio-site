@@ -10,14 +10,14 @@ tags:
   - "visualization"
 ---
 
-Lately I've been spending more time creating Jupyter notebooks that demonstrate how to use the [Dimensions API for research analytics.](https://api-lab.dimensions.ai/) In this post I'll talk a little bit about two cool Python technologies I've discovered for working with graph data: pyvis and networkx.
+> Lately I've been spending more time creating Jupyter notebooks that demonstrate how to use the [Dimensions API for research analytics.](https://api-lab.dimensions.ai/) In this post I'll talk a little bit about two cool Python libraries I've recenlty discovered for working with **graph** data: **pyvis** and **networkx**.
 
 ### pyvis and networkx
 
 The [networkx](https://networkx.github.io/documentation/stable/reference/introduction.html) and [pyvis](https://pyvis.readthedocs.io/en/latest/tutorial.html) libraries are used for _generating_ and _visualizing_ network data, respectively.
 
-Pyvis is fundamentally a python wrapper around the popular [Javascript visJS library.](https://visjs.github.io/vis-network/examples/) 
-Networkx, instead, of is a pretty sophisticated package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.
+**Pyvis** is fundamentally a python wrapper around the popular [Javascript visJS library.](https://visjs.github.io/vis-network/examples/) 
+**Networkx**, instead, of is a pretty sophisticated package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.
 
 
 ```python
@@ -41,24 +41,24 @@ Networkx, instead, of is a pretty sophisticated package for the creation, manipu
 >>> nt.show("nx.html")
 ```
 
-It took me a little to familiarise with the libraries' concepts and to generate some basic graphs. So, the tutorials linked below are meant to provide some reusable _code_ building blocks for working with these tools.
+It took me a little to familiarise with the libraries' concepts and to generate some basic graphs. Once I got the hang of it though, the fun part began. What are the best data variables to represent in the graph? What color coding strategy is making it easier to explore the data? How many nodes/edges to display? Can we add some interactivity to the visualizations? Check out the resulting visualizations below for more ideas.
 
-Once you get the hang of it though, the fun part begins. What are the best data variables to represent in the graph? What color coding strategy is making it easier to explore the data? How many nodes/edges to display? Can we add some interactivity to the visualizations? Check out the resulting visualizations below for more ideas.
-
-### Dataviz: concepts co-occurence network
+### Building a concepts co-occurence network
 
 The [Building a concepts co-occurence network](https://api-lab.dimensions.ai/cookbooks/2-publications/Concepts-network-graph.html) notebook shows how to turn document keywords extracted from 'semantic web' publications into a simple topic map - by virtue of their co-occurrence within the same documents.
 
-See also the standalone html version of the interactive visualization: [concepts\_network\_2020-08-05.html](http://api-sample-data.dimensions.ai/dataviz-exports/concets-cooccurence/concepts_network_2020-08-05.html)
-
 [![graph2](/media/static/blog_img/graph2-1024x513.jpg)](http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2.jpg)
 
- 
+> An interactive HTML html version of the 'Semantic Web' concepts network can be found here: [concepts\_network\_2020-08-05.html](http://api-sample-data.dimensions.ai/dataviz-exports/concets-cooccurence/concepts_network_2020-08-05.html)
 
-### Dataviz: Organizations Collaboration Network
+
+
+### Building an Organizations Collaboration Network Diagram
 
 The [Building an Organizations Collaboration Network Diagram](https://api-lab.dimensions.ai/cookbooks/8-organizations/3-Organizations-Collaboration-Network.html) notebook shows how to use publications' authors and [GRID](https://grid.ac/) data to generate a network of collaborating research organizations.
 
-See also the standalone html version of the interactive visualization: [network\_2\_levels\_grid.412125.1.html](http://api-sample-data.dimensions.ai/dataviz-exports/3-Organizations-Collaboration-Network/network_2_levels_grid.412125.1.html)
 
 [![graph1](/media/static/blog_img/graph1-1024x515.jpg)](http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1.jpg)
+
+
+> An interactive HTML html version of the Organizations Collaboration Network can be found here:  [network\_2\_levels\_grid.412125.1.html](http://api-sample-data.dimensions.ai/dataviz-exports/3-Organizations-Collaboration-Network/network_2_levels_grid.412125.1.html)
