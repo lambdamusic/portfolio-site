@@ -1,6 +1,7 @@
 ---
 title: "Firefox 2.0  - will I ever go back to Safari?"
 date: "2006-10-28"
+review: true
 categories: 
   - "justblogging"
 ---

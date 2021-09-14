@@ -5,6 +5,13 @@ categories:
   - "justblogging"
 ---
 
-It's the best-looking online game i've ever seen - stunning graphics which resemble a "normal" game: it's [GET THE GLASS!](http://www.gettheglass.com/)
+It's the best-looking online game i've ever seen - stunning graphics that resemble a "normal" game: it's [GET THE GLASS!](https://www.northkingdom.com/case/get-the-glass)
 
-[![Picture 11.png](/media/static/blog_img/Picture%2011.png)](http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2007/05/Picture%2011.png "Picture 11.png")
+[![title](/media/static/blog_img/get_the_glass1.jpg)](/media/static/blog_img/get_the_glass1.jpg)
+
+
+### Update / *2021-09-14*
+
+Game is not online anymore unfortunately, but found a cool video on how it was made:
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/4WnW_0JnL0Y" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
