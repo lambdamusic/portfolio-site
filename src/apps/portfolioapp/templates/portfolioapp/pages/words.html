@@ -27,11 +27,13 @@
   <div class="container">
 
 			<div class="text-muted -text-right -col-md-12">{# Publications #}
-
 				View:
-				<a class="h1links -text-muted" href="?query=date&type=all"> all</a>&nbsp;|
-				<a class="h1links -text-muted" href="?query=date&type=papers"> research papers</a>&nbsp;|
-				<a class="h1links -text-muted" href="?query=date&type=blogs"> blogs</a>&nbsp;
+				
+				<a class="h1links {% if ttype == 'all' %}project-active{% endif %}" href="?query=date&type=all"> all</a>&nbsp;|
+				
+				<a class="h1links {% if ttype == 'papers' %}project-active{% endif %}" href="?query=date&type=papers"> research papers</a>&nbsp;|
+				
+				<a class="h1links {% if ttype == 'blogs' %}project-active{% endif %}" href="?query=date&type=blogs"> blogs</a>&nbsp;
 				
 				{% comment %}
 				<a class="h1links -text-muted" href="?query=date&type=misc"> misc</a>&nbsp;
@@ -42,9 +44,11 @@
 							
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Order by:
-				<a class="h1links -text-muted" href="?query=date"> date</a>&nbsp;|
-				<a class="h1links -text-muted" href="?query=type"> type</a>&nbsp;|
-				<a class="h1links -text-muted" href="?query=project"> project</a>
+				<a class="h1links {% if query == 'date' %}project-active{% endif %}" href="?query=date"> date</a>&nbsp;|
+				
+				<a class="h1links {% if query == 'type' %}project-active{% endif %}" href="?query=type"> type</a>&nbsp;|
+				
+				<a class="h1links {% if query == 'project' %}project-active{% endif %}" href="?query=project&type=papers"> project</a>
 
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 				Format: <a class="h1links -text-muted" href="?format=txt">txt</a> |
@@ -72,7 +76,10 @@
 				 <hr>
 
  			 	<div class="col-sm-2 col-md-3">
-				  <p style="color: #e8e5e5; font-size: 500%; ">{{group_and_pubs.0}}</p>
+				  
+					<p style="color: #e8e5e5; {% if query == 'date' %}font-size: 600%;{% else %}font-size: 300%;{% endif %} ">
+					  {{group_and_pubs.0}}
+					</p>
 
  			 	</div>
 
@@ -82,7 +89,6 @@
 
 					{% for pub in group_and_pubs.1 %}
 
-					<br />
 
 						<div class='pubitem'>
 
@@ -102,14 +108,10 @@
 								<b class="text-muted">{{pub.pubdate|date:"M Y"}}</b>
 								<!-- {{pub.journal}} -->
 
-								
-
 							</p>
 
 							{% else %}
 							
-								
-
 
 							<p class='lead' style="-font-size: 13px;">
 								<span class='label label-warning'>paper</span>&nbsp;

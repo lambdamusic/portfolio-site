@@ -54,6 +54,8 @@ def words(request):
 	context = {
 		'return_items': return_items,
 		'urlname': "papers",
+		'query': query,
+		'ttype': ttype,
 	}
 	
 	return render(request, APP + '/pages/' + templatee, context)
@@ -207,7 +209,7 @@ def get_pubs(query, ttype):
 			return_items.append((x, QSET.exclude(
 				pubtype=talks).filter(project__title=x)))
 		return_items.sort()  # sort by alpha
-		return_items.append(('Miscellaneous',
+		return_items.append(('Misc',
 							 QSET.filter(project=None)))
 		return return_items
 
