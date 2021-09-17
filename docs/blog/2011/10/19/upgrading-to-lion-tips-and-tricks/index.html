@@ -1,464 +1,706 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
-	<head profile="http://gmpg.org/xfn/11">
-		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-		<title>Parerga und Paralipomena  &raquo; Blog Archive   &raquo; Upgrading to Lion: tips and tricks		</title>
-		<meta name="generator" content="WordPress 5.2.11" /> <!-- leave this for stats -->
-		<link rel="stylesheet" href="../../../../wp-content/themes/ub_modio/style.css" type="text/css" media="screen" />
-		<link rel="alternate" type="application/rss+xml" title="Parerga und Paralipomena RSS Feed" href="../../../../feed/index.html" />
-		<link rel="pingback" href="http://www.michelepasin.org/blog/xmlrpc.php" />
-		
-		<!--[if lte IE 6]>
-		<link rel="stylesheet" type="text/css" href="http://www.michelepasin.org/blog/wp-content/themes/ub_modio/ie.css">
-		<![endif]-->
-		<link rel="shortcut icon" href="http://www.michelepasin.org/blog/2011/10/19/upgrading-to-lion-tips-and-tricks/favicon.ico">
-<link rel='dns-prefetch' href='http://secure.gravatar.com/' />
-<link rel='dns-prefetch' href='http://s.w.org/' />
-<link rel="alternate" type="application/rss+xml" title="Parerga und Paralipomena &raquo; Upgrading to Lion: tips and tricks Comments Feed" href="feed/index.html" />
-<!-- This site uses the Google Analytics by MonsterInsights plugin v7.15.1 - Using Analytics tracking - https://www.monsterinsights.com/ -->
-<script type="text/javascript" data-cfasync="false">
-    (window.gaDevIds=window.gaDevIds||[]).push("dZGIzZG");
-	var mi_version         = '7.15.1';
-	var mi_track_user      = true;
-	var mi_no_track_reason = '';
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../../../../media/static/favicon.ico">
+
 	
-	var disableStr = 'ga-disable-UA-2000254-3';
+  <title>Blogs | Michele Pasin</title>
 
-	/* Function to detect opted out users */
-	function __gaTrackerIsOptedOut() {
-		return document.cookie.indexOf(disableStr + '=true') > -1;
-	}
 
-	/* Disable tracking if the opt-out cookie exists. */
-	if ( __gaTrackerIsOptedOut() ) {
-		window[disableStr] = true;
-	}
+    <!-- Bootstrap core CSS -->
+    
+    <!-- Bootswatch:  -->
+    <!-- cerulean  | cyborg |  flatly |  lumen |  sandstone |   spacelab  |  yeti | cosmo |  darkly |  paper | simplex | superhero |  journal | readable  |   slate |  united -->
+    <link href="../../../../../media/static/libs/bootswatch3.2/simplex/bootstrap.min.css" rel="stylesheet">
 
-	/* Opt-out function */
-	function __gaTrackerOptout() {
-	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-	  window[disableStr] = true;
-	}
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
 
-	if ( 'undefined' === typeof gaOptout ) {
-		function gaOptout() {
-			__gaTrackerOptout();
-		}
-	}
+    <!-- Custom styles for this template -->
+    <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+<style type="text/css">
+
+    .tooltip-inner {
+        max-width: 200px;
+        /* If max-width does not work, try using width instead */
+        width: 200px; 
+    }
+    .lead-plus {font-size: 26.5px;}
+    .label-dark {background: #2c3e50; color: white; padding: 1px;}
+    .margin50 {margin-top: 50px; margin-bottom: 50px;}
+    .marginb100 {margin-bottom: 100px;}
+
+    .breadcrumbs {margin-top: 80px;}
+    .namespaces {background: #ced2d6; width: 100%;}
+    .footer {background-color: #3e3f3a;}
+    .footer a {color: #cac0bf;}
+
+    .margin50Top {margin-top: 50px;}
+    .margin20Top {margin-top: 20px;}
+    .margin50Bottom { margin-bottom: 50px;}
+    .margin20Bottom { margin-bottom: 20px;}
+
+    /*so that the d3plus tooltip panel doesnt cover the top banner*/
+    .navbar {z-index: 3000;}
+
+
+    .navbar-alpha {
+        font-size: 65%;
+        font-style: italic;
+        font-weight: bold;
+        color: darkgoldenrod;
+    }
+
+
+    .btn-xxs {
+    padding: 1px 4px;
+    font-size: 10px;
+    line-height: 1.2;
+    border-radius: 2px;
+    }
+
+
+    .code-example {
+        overflow: auto;
+        height: 400px;
+    }
+
+
+    #side_title a {
+        color: blue;
+        text-decoration: underline;
+
+    }
+    .text-dark {
+        color: #5d5c5c;
+        
+    }
+
+
+    .paragraph_embed {
+      margin-top: 50px;
+      margin-bottom: 20px;
+    }
+
+
+    .thumb-div {
+      padding: 20px;
+
+    }
+
+    .thumbnail{
+      
+
+      
+
+    }
+
+    .thumb-img {
+      height: 200px;
+
+    }
+
+    .thumb-title b {
+      font-weight: bold;
+      color: black;
+
+    }
+
+    div.pubitem {
+      margin-top: 15px;
+    }
+
+
+
+    a.project-title {
+      color: black;
+      font-weight: bold;
+      text-decoration: none;
+    }
+
+    a.project-title:hover {
+      background: indianred;
+      color: white;
+    }
+
+    a.project-active {
+      background: indianred;
+      color: white;
+    }
+
+    .keyword {
+      font-style: italic;
+      color: grey;
+      text-decoration: none;
+      font-size: 12px;
+    }
+
+    a.paper-active {
+      background: indianred;
+      color: white;
+    }
+
+    a.ext_link {
+      color: darkgrey;
+    }
+
+    .text-black {
+      color: black;
+    }
+
+    a.sounds-active {
+      background: indianred;
+      color: white;
+    }
+
+    img.project-screenshots {
+      margin-botton: 30px;
+    }
+
+
+
+    
+
+    .blogentry {
+      font-size: 17px;
+      margin-top: 50px;
+      margin-bottom: 120px;
+      color: black;
+    }
+
+
+    .blogentry p {
+      margin-top: 10px;
+      margin-bottom: 50px;
+    }
+
+    .blogentry blockquote:first-of-type {
+      font-size: 20px;
+      background: #f9f9f9;
+      border-left: 10px solid #ccc;
+      margin: 1.5em 10px;
+      padding: 0.7em 10px;
+    }
+
+
+    .blogentry blockquote {
+      font-size: 16px;
+      background: #f9f9f9;
+      margin: 10px 30px 40px 10px; /* top right bottom left */
+      padding: 25px;
+    }
+
+    .blogentry pre {
+      margin-bottom: 40px;
+    }
+
+    .blogentry h1,  
+    .blogentry h2,  
+    .blogentry h3,  
+    .blogentry h4  {
+      margin-top: 50px;
+      margin-bottom: 30px;
+      font-weight: bold;
+    }
+
+    .blogentry img {
+      max-width: 80%;
+    }
+
+    .blogentry ul {
+      margin-bottom: 50px;
+    }
+
+    .blogentry li {
+      padding: 10px;
+    }
+
+
+</style>
+
+
+<style>
+
+pre { line-height: 125%; }
+td.linenos .normal { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+span.linenos { color: inherit; background-color: transparent; padding-left: 5px; padding-right: 5px; }
+td.linenos .special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 5px; padding-right: 5px; }
+.codehilite .hll { background-color: #ffffcc }
+.codehilite { background: #f8f8f8; }
+.codehilite .c { color: #408080; font-style: italic } /* Comment */
+.codehilite .err { border: 1px solid #FF0000 } /* Error */
+.codehilite .k { color: #008000; font-weight: bold } /* Keyword */
+.codehilite .o { color: #666666 } /* Operator */
+.codehilite .ch { color: #408080; font-style: italic } /* Comment.Hashbang */
+.codehilite .cm { color: #408080; font-style: italic } /* Comment.Multiline */
+.codehilite .cp { color: #BC7A00 } /* Comment.Preproc */
+.codehilite .cpf { color: #408080; font-style: italic } /* Comment.PreprocFile */
+.codehilite .c1 { color: #408080; font-style: italic } /* Comment.Single */
+.codehilite .cs { color: #408080; font-style: italic } /* Comment.Special */
+.codehilite .gd { color: #A00000 } /* Generic.Deleted */
+.codehilite .ge { font-style: italic } /* Generic.Emph */
+.codehilite .gr { color: #FF0000 } /* Generic.Error */
+.codehilite .gh { color: #000080; font-weight: bold } /* Generic.Heading */
+.codehilite .gi { color: #00A000 } /* Generic.Inserted */
+.codehilite .go { color: #888888 } /* Generic.Output */
+.codehilite .gp { color: #000080; font-weight: bold } /* Generic.Prompt */
+.codehilite .gs { font-weight: bold } /* Generic.Strong */
+.codehilite .gu { color: #800080; font-weight: bold } /* Generic.Subheading */
+.codehilite .gt { color: #0044DD } /* Generic.Traceback */
+.codehilite .kc { color: #008000; font-weight: bold } /* Keyword.Constant */
+.codehilite .kd { color: #008000; font-weight: bold } /* Keyword.Declaration */
+.codehilite .kn { color: #008000; font-weight: bold } /* Keyword.Namespace */
+.codehilite .kp { color: #008000 } /* Keyword.Pseudo */
+.codehilite .kr { color: #008000; font-weight: bold } /* Keyword.Reserved */
+.codehilite .kt { color: #B00040 } /* Keyword.Type */
+.codehilite .m { color: #666666 } /* Literal.Number */
+.codehilite .s { color: #BA2121 } /* Literal.String */
+.codehilite .na { color: #7D9029 } /* Name.Attribute */
+.codehilite .nb { color: #008000 } /* Name.Builtin */
+.codehilite .nc { color: #0000FF; font-weight: bold } /* Name.Class */
+.codehilite .no { color: #880000 } /* Name.Constant */
+.codehilite .nd { color: #AA22FF } /* Name.Decorator */
+.codehilite .ni { color: #999999; font-weight: bold } /* Name.Entity */
+.codehilite .ne { color: #D2413A; font-weight: bold } /* Name.Exception */
+.codehilite .nf { color: #0000FF } /* Name.Function */
+.codehilite .nl { color: #A0A000 } /* Name.Label */
+.codehilite .nn { color: #0000FF; font-weight: bold } /* Name.Namespace */
+.codehilite .nt { color: #008000; font-weight: bold } /* Name.Tag */
+.codehilite .nv { color: #19177C } /* Name.Variable */
+.codehilite .ow { color: #AA22FF; font-weight: bold } /* Operator.Word */
+.codehilite .w { color: #bbbbbb } /* Text.Whitespace */
+.codehilite .mb { color: #666666 } /* Literal.Number.Bin */
+.codehilite .mf { color: #666666 } /* Literal.Number.Float */
+.codehilite .mh { color: #666666 } /* Literal.Number.Hex */
+.codehilite .mi { color: #666666 } /* Literal.Number.Integer */
+.codehilite .mo { color: #666666 } /* Literal.Number.Oct */
+.codehilite .sa { color: #BA2121 } /* Literal.String.Affix */
+.codehilite .sb { color: #BA2121 } /* Literal.String.Backtick */
+.codehilite .sc { color: #BA2121 } /* Literal.String.Char */
+.codehilite .dl { color: #BA2121 } /* Literal.String.Delimiter */
+.codehilite .sd { color: #BA2121; font-style: italic } /* Literal.String.Doc */
+.codehilite .s2 { color: #BA2121 } /* Literal.String.Double */
+.codehilite .se { color: #BB6622; font-weight: bold } /* Literal.String.Escape */
+.codehilite .sh { color: #BA2121 } /* Literal.String.Heredoc */
+.codehilite .si { color: #BB6688; font-weight: bold } /* Literal.String.Interpol */
+.codehilite .sx { color: #008000 } /* Literal.String.Other */
+.codehilite .sr { color: #BB6688 } /* Literal.String.Regex */
+.codehilite .s1 { color: #BA2121 } /* Literal.String.Single */
+.codehilite .ss { color: #19177C } /* Literal.String.Symbol */
+.codehilite .bp { color: #008000 } /* Name.Builtin.Pseudo */
+.codehilite .fm { color: #0000FF } /* Name.Function.Magic */
+.codehilite .vc { color: #19177C } /* Name.Variable.Class */
+.codehilite .vg { color: #19177C } /* Name.Variable.Global */
+.codehilite .vi { color: #19177C } /* Name.Variable.Instance */
+.codehilite .vm { color: #19177C } /* Name.Variable.Magic */
+.codehilite .il { color: #666666 } /* Literal.Number.Integer.Long */
+
+
+</style>
+
+
+
+
+
+
+
+  </head>
+
+  <body>
+
+
+
+
+
+    
+
+    
+
+
+<!-- Fixed navbar -->
+<nav class="navbar navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="../../../../../index.html">michelepasin<sup style="color: red;">&nbsp;.org</sup></a>
+    </div>
+    <div id="navbar" class="collapse navbar-collapse">
+      <ul class="nav navbar-nav">
+
+        <li >
+          <a href="../../../../../index.html">Projects</a></li>
+
+        <li class="active">
+            <a href="../../../../../words/index.html">Words</a></li>
+
+       <li >
+            <a href="../../../../../sounds/index.html">Sounds</a></li>
+
+        <li >
+          <a href="../../../../../events/index.html">Events</a></li>
+          
+          
+
+        <li 
+        
+          ><a href="../../../../../about/index.html">About</a></li>
+
+          <!-- <li>
+            <a href="/blog" target="_blank">Blog</a></li> -->
+            
+
+      </ul>
+    </div><!--/.nav-collapse -->
+
+  </div>
+</nav>
+
+
+    
+
+
+
+
+
+
+
+
+    <!-- Begin page content -->
+    <div class="container">
+
+
 	
-	if ( mi_track_user ) {
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
 
-		__gaTracker('create', 'UA-2000254-3', 'auto');
-		__gaTracker('set', 'forceSSL', true);
-		__gaTracker('send','pageview');
-	} else {
-		console.log( "" );
-		(function() {
-			/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
-			var noopfn = function() {
-				return null;
-			};
-			var noopnullfn = function() {
-				return null;
-			};
-			var Tracker = function() {
-				return null;
-			};
-			var p = Tracker.prototype;
-			p.get = noopfn;
-			p.set = noopfn;
-			p.send = noopfn;
-			var __gaTracker = function() {
-				var len = arguments.length;
-				if ( len === 0 ) {
-					return;
-				}
-				var f = arguments[len-1];
-				if ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {
-					console.log( 'Not running function __gaTracker(' + arguments[0] + " ....) because you are not being tracked. " + mi_no_track_reason );
-					return;
-				}
-				try {
-					f.hitCallback();
-				} catch (ex) {
+  <div class="page-header">
+      
+      Words > <a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs.html">Blogs</a> > 2011 > <i>Upgrading to Lion: tips and tricks</i>
+  </div>
 
-				}
-			};
-			__gaTracker.create = function() {
-				return new Tracker();
-			};
-			__gaTracker.getByName = noopnullfn;
-			__gaTracker.getAll = function() {
-				return [];
-			};
-			__gaTracker.remove = noopfn;
-			window['__gaTracker'] = __gaTracker;
-					})();
-		}
-</script>
-<!-- / Google Analytics by MonsterInsights -->
-		<script type="text/javascript">
-			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.michelepasin.org\/blog\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.11"}};
-			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])?!1:!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
-		</script>
-		<style type="text/css">
-img.wp-smiley,
-img.emoji {
-	display: inline !important;
-	border: none !important;
-	box-shadow: none !important;
-	height: 1em !important;
-	width: 1em !important;
-	margin: 0 .07em !important;
-	vertical-align: -0.1em !important;
-	background: none !important;
-	padding: 0 !important;
-}
-</style>
-	<link rel='stylesheet' id='wp-block-library-css'  href='../../../../wp-includes/css/dist/block-library/style.min.css%3Fver=5.2.11.css' type='text/css' media='all' />
-<style id='wp-block-library-inline-css' type='text/css'>
-.has-text-align-justify{text-align:justify;}
-</style>
-<link rel='stylesheet' id='ctf_styles-css'  href='../../../../wp-content/plugins/custom-twitter-feeds/css/ctf-styles.min.css%3Fver=1.7.css' type='text/css' media='all' />
-<link rel='stylesheet' id='monsterinsights-popular-posts-style-css'  href='../../../../wp-content/plugins/google-analytics-for-wordpress/assets/css/frontend.min.css%3Fver=7.15.1.css' type='text/css' media='all' />
-<link rel='stylesheet' id='wordpress-popular-posts-css-css'  href='../../../../wp-content/plugins/wordpress-popular-posts/assets/css/wpp.css%3Fver=5.2.4.css' type='text/css' media='all' />
-<link rel='stylesheet' id='jetpack_css-css'  href='../../../../wp-content/plugins/jetpack/css/jetpack.css%3Fver=8.1.2.css' type='text/css' media='all' />
-<script type='text/javascript'>
-/* <![CDATA[ */
-var monsterinsights_frontend = {"js_events_tracking":"true","download_extensions":"doc,pdf,ppt,zip,xls,docx,pptx,xlsx","inbound_paths":"[]","home_url":"http:\/\/www.michelepasin.org\/blog","hash_tracking":"false"};
-/* ]]> */
-</script>
-<script type='text/javascript' src='../../../../wp-content/plugins/google-analytics-for-wordpress/assets/js/frontend.min.js%3Fver=7.15.1'></script>
-<script type='application/json' id="wpp-json">
-{"sampling_active":0,"sampling_rate":100,"ajax_url":"http:\/\/www.michelepasin.org\/blog\/wp-json\/wordpress-popular-posts\/v1\/popular-posts","ID":1643,"token":"10a27ddbef","lang":0,"debug":0}
-</script>
-<script type='text/javascript' src='../../../../wp-content/plugins/wordpress-popular-posts/assets/js/wpp.min.js%3Fver=5.2.4'></script>
-<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery.js%3Fver=1.12.4-wp'></script>
-<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min.js%3Fver=1.4.1'></script>
-<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
-<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc.php%3Frsd" />
-<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
-<link rel='prev' title='Seminar: Tagore digital editions and Bengali textual computing' href='../../13/seminar-tagore-digital-editions-and-bengali-textual-computing/index.html' />
-<link rel='next' title='Towards a conceptual model for the domain of sculpture' href='../../../11/19/towards-a-conceptual-model-for-the-domain-of-sculpture/index.html' />
-<meta name="generator" content="WordPress 5.2.11" />
-<link rel="canonical" href="index.html" />
-<link rel='shortlink' href='https://wp.me/pW0Ls-qv' />
-<link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=http:%252F%252Fwww.michelepasin.org%252Fblog%252F2011%252F10%252F19%252Fupgrading-to-lion-tips-and-tricks%252F" />
-<link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=http:%252F%252Fwww.michelepasin.org%252Fblog%252F2011%252F10%252F19%252Fupgrading-to-lion-tips-and-tricks%252F&amp;format=xml" />
-<style data-context="foundation-flickity-css">/*! Flickity v2.0.2
-http://flickity.metafizzy.co
----------------------------------------------- */.flickity-enabled{position:relative}.flickity-enabled:focus{outline:0}.flickity-viewport{overflow:hidden;position:relative;height:100%}.flickity-slider{position:absolute;width:100%;height:100%}.flickity-enabled.is-draggable{-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.flickity-enabled.is-draggable .flickity-viewport{cursor:move;cursor:-webkit-grab;cursor:grab}.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down{cursor:-webkit-grabbing;cursor:grabbing}.flickity-prev-next-button{position:absolute;top:50%;width:44px;height:44px;border:none;border-radius:50%;background:#fff;background:hsla(0,0%,100%,.75);cursor:pointer;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.flickity-prev-next-button:hover{background:#fff}.flickity-prev-next-button:focus{outline:0;box-shadow:0 0 0 5px #09f}.flickity-prev-next-button:active{opacity:.6}.flickity-prev-next-button.previous{left:10px}.flickity-prev-next-button.next{right:10px}.flickity-rtl .flickity-prev-next-button.previous{left:auto;right:10px}.flickity-rtl .flickity-prev-next-button.next{right:auto;left:10px}.flickity-prev-next-button:disabled{opacity:.3;cursor:auto}.flickity-prev-next-button svg{position:absolute;left:20%;top:20%;width:60%;height:60%}.flickity-prev-next-button .arrow{fill:#333}.flickity-page-dots{position:absolute;width:100%;bottom:-25px;padding:0;margin:0;list-style:none;text-align:center;line-height:1}.flickity-rtl .flickity-page-dots{direction:rtl}.flickity-page-dots .dot{display:inline-block;width:10px;height:10px;margin:0 8px;background:#333;border-radius:50%;opacity:.25;cursor:pointer}.flickity-page-dots .dot.is-selected{opacity:1}</style><style data-context="foundation-slideout-css">.slideout-menu{position:fixed;left:0;top:0;bottom:0;right:auto;z-index:0;width:256px;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none}.slideout-menu.pushit-right{left:auto;right:0}.slideout-panel{position:relative;z-index:1;will-change:transform}.slideout-open,.slideout-open .slideout-panel,.slideout-open body{overflow:hidden}.slideout-open .slideout-menu{display:block}.pushit{display:none}</style>
-<link rel='dns-prefetch' href='http://v0.wordpress.com/'/>
-<style type='text/css'>img#wpstats{display:none}</style>
-<!-- Jetpack Open Graph Tags -->
-<meta property="og:type" content="article" />
-<meta property="og:title" content="Upgrading to Lion: tips and tricks" />
-<meta property="og:url" content="http://www.michelepasin.org/blog/2011/10/19/upgrading-to-lion-tips-and-tricks/" />
-<meta property="og:description" content="I&#8217;ve finally decided to upgrade my mac operating system from Snow Leopard (10.6.8) to Lion (10.7.2). Not really for the new features such as Mission Control and LaunchPad (which although bein…" />
-<meta property="article:published_time" content="2011-10-19T14:01:18+00:00" />
-<meta property="article:modified_time" content="2011-10-19T14:01:18+00:00" />
-<meta property="og:site_name" content="Parerga und Paralipomena" />
-<meta property="og:image" content="https://s0.wp.com/i/blank.jpg" />
-<meta property="og:locale" content="en_US" />
-<meta name="twitter:text:title" content="Upgrading to Lion: tips and tricks" />
-<meta name="twitter:card" content="summary" />
+  <div class="container">
 
-<!-- End Jetpack Open Graph Tags -->
-<style>.ios7.web-app-mode.has-fixed header{ background-color: rgba(3,122,221,.88);}</style>			<style type="text/css" id="wp-custom-css">
-				.entry ul li {
-	list-style: disc;
-}
 
-.entry ol li {
-	list-style: lower-roman;
-}
+      <div class="row" style="margin-bottom:50px;">
+          
+        <div class="col-md-8">
 
-			</style>
-			</head>
-	<body>
-		<div class="page">
-			<div id="header">
-				<a href="../../../../index.html">Parerga und Paralipomena</a> / <span class="description">At the core of all well-founded belief lies belief that is unfounded &#8211; Wittgenstein</span><span style="float:right;"><a href="../../../../feed/index.html" title="">
-						<img src="../../../../wp-content/themes/ub_modio/images/rss_black.png" alt="Parerga und Paralipomena Feed" width="14" height="14"/>
-					</a>
-				</span>
-			</div><!-- end header --><div id="content" class="widecolumn">
 
-		<div class="post" id="post-1643">
-		<h2><a href="index.html" rel="bookmark" title="Permanent Link: Upgrading to Lion: tips and tricks">Upgrading to Lion: tips and tricks</a>
-		</h2>
-		<div class="entry">
-				<p>I&#8217;ve finally decided to upgrade my mac operating system from Snow Leopard (10.6.8) to Lion (10.7.2). Not really for the <a href="http://www.apple.com/uk/macosx/whats-new/features.html">new features</a> such as Mission Control and LaunchPad (which although being pretty cool are not going to change my life) but mostly for the fact that the new OS is well integrated with <a href="http://www.apple.com/uk/icloud/">iCloud</a>. Sharing my iCal calendars, Address book contacts and other useful stuff across my apple computers and mobile devices is going to be a digital-life-changer, hopefully for the better.</p>
-<p>Unfortunately as usual an OS upgrade is never as smooth as I would like it to be; so here&#8217;s a list of the problems I ran into (and still am), with pointers to solutions whenever I found one.</p>
-<blockquote><p>Tip: A useful place where to get info about Lion is here: <a href="http://osxdaily.com/tag/mac-os-x-10-7/">http://osxdaily.com/tag/mac-os-x-10-7/</a></p></blockquote>
+          <p class="text-muted">Title:</p>
+
+          <div class="lead -well">
+            <h3><b>Upgrading to Lion: tips and tricks</b></h3>
+            
+          </div>
+
+
+          <p class="text-muted">Year:</p>
+
+          <div class="lead -well">
+            <h3>2011</h3>
+          </div>
+
+
+            <div class="blogentry"> 
+
+              <hr>
+
+
+            <p>I've finally decided to upgrade my mac operating system from Snow Leopard (10.6.8) to Lion (10.7.2). Not really for the <a href="http://www.apple.com/uk/macosx/whats-new/features.html">new features</a> such as Mission Control and LaunchPad (which although being pretty cool are not going to change my life) but mostly for the fact that the new OS is well integrated with <a href="http://www.apple.com/uk/icloud/">iCloud</a>. Sharing my iCal calendars, Address book contacts and other useful stuff across my apple computers and mobile devices is going to be a digital-life-changer, hopefully for the better.</p>
+<p>Unfortunately as usual an OS upgrade is never as smooth as I would like it to be; so here's a list of the problems I ran into (and still am), with pointers to solutions whenever I found one.</p>
+<blockquote>
+<p>Tip: A useful place where to get info about Lion is here: <a href="http://osxdaily.com/tag/mac-os-x-10-7/">http://osxdaily.com/tag/mac-os-x-10-7/</a></p>
+</blockquote>
 <h3>1. Wi-Fi disconnection issues</h3>
-<p>This is quite a bad one: my wifi connection wouldn&#8217;t stay on for more than 2-3 minutes at times, making it impossible to do any continuative work online. After a lot of swearing and searching online, I found a good solution on <a href="http://www.ilounge.com/index.php/backstage/comments/os-x-lion-serious-wi-fi-disconnect-problems-for-macs-and-solutions/">this article on iLounge.com</a>. The article offers many solutions, but the one that worked for me is to manually downgrading the Atheros WiFi driver which seems to be ill on Lion to the version provided with Snow Leopard (comment 53). Here&#8217;s the recipy:</p>
-<blockquote><p>
-1. run <span style="font-family:monospace;color:#000000; ">kextstat | grep -i atheros</span><br />
-  if a line was returned, you are most likely using Atheros WiFi card and the related kext<br />
-2. In your home folder create two directories: <span style="font-family:monospace;color:#000000; ">cd &#038;&#038; mkdir New Old</span><br />
-3. If you have a copy (time machine backup) or other system installed with Snow Leopard (as latest as possible), take a copy of <span style="font-family:monospace;color:#000000; ">/System/Library/Extensions/IO80211Family.kext </span>and put it into <span style="font-family:monospace;color:#000000; ">~/Old/</span> directory<br />
-[<em>P.S. if you don&#8217;t know where to get that file, I&#8217;ve uploaded a copy here: <a href="http://www.box.net/shared/8igl4hybcml0e4zc5dzx">IO80211Family.kext.zip</a></em>]<br />
-4. (Back on to your main system) gain root access: <span style="font-family:monospace;color:#000000; ">sudo -s</span><br />
-5. Move: <span style="font-family:monospace;color:#000000; ">mv /System/Library/Extensions/IO80211Family.kext ~/New/</span><br />
-6. Move cache file: <span style="font-family:monospace;color:#000000; ">mv /System/Library/Caches/com.apple.kext.caches/Startup/kernelcache ~/New/</span><br />
-7. copy old kext: <span style="font-family:monospace;color:#000000; ">cp -r ~/Old/IO80211Family.kext /System/Library/Extensions/</span><br />
-8. go to: <span style="font-family:monospace;color:#000000; ">cd /System/Library/Caches/com.apple.kext.caches/Startup/</span><br />
-9. rebuild cache: <span style="font-family:monospace;color:#000000; ">kextcache -v 1 -a i386 -a x86_64 -mkext kernelcache /System/Library/Extensions</span><br />
-10. Using GUI Utilities->Disk Utility->Macintosh HD->Repair permissions<br />
-11. pray and reboot</p></blockquote>
+<p>This is quite a bad one: my wifi connection wouldn't stay on for more than 2-3 minutes at times, making it impossible to do any continuative work online. After a lot of swearing and searching online, I found a good solution on <a href="http://www.ilounge.com/index.php/backstage/comments/os-x-lion-serious-wi-fi-disconnect-problems-for-macs-and-solutions/">this article on iLounge.com</a>. The article offers many solutions, but the one that worked for me is to manually downgrading the Atheros WiFi driver which seems to be ill on Lion to the version provided with Snow Leopard (comment 53). Here's the recipy:</p>
+<blockquote>
+<p>1. run kextstat | grep -i atheros if a line was returned, you are most likely using Atheros WiFi card and the related kext 2. In your home folder create two directories: cd &amp;&amp; mkdir New Old 3. If you have a copy (time machine backup) or other system installed with Snow Leopard (as latest as possible), take a copy of /System/Library/Extensions/IO80211Family.kext and put it into ~/Old/ directory [<em>P.S. if you don't know where to get that file, I've uploaded a copy here: <a href="http://www.box.net/shared/8igl4hybcml0e4zc5dzx">IO80211Family.kext.zip</a></em>] 4. (Back on to your main system) gain root access: sudo -s 5. Move: mv /System/Library/Extensions/IO80211Family.kext ~/New/ 6. Move cache file: mv /System/Library/Caches/com.apple.kext.caches/Startup/kernelcache ~/New/ 7. copy old kext: cp -r ~/Old/IO80211Family.kext /System/Library/Extensions/ 8. go to: cd /System/Library/Caches/com.apple.kext.caches/Startup/ 9. rebuild cache: kextcache -v 1 -a i386 -a x86_64 -mkext kernelcache /System/Library/Extensions 10. Using GUI Utilities-&gt;Disk Utility-&gt;Macintosh HD-&gt;Repair permissions 11. pray and reboot</p>
+</blockquote>
 <h3>2. Install the latest Xcode and Developer Tools</h3>
-<p>This is number 2 in the list, but really it should be number 1 if you are a software developer. The latest Xcode (4.2, get it on the <a href="http://itunes.apple.com/us/app/xcode/id448457090?mt=12">apple store</a> for free) includes all sorts of low and high level programming frameworks, from C compilers to Python interpreters. In other words, without reinstalling Xcode tons of software development environments won&#8217;t run as usual!</p>
-<p>Installing Xcode is very easy, here&#8217;s a nice tip to keep in mind though (as found <a href="http://jessenoller.com/2011/07/30/quick-pythondeveloper-tips-for-osx-lion/">here</a>):   </p>
-<blockquote><p>When installing XCode, for some unknown unholy rea­son, if you have not quit itunes, and itunes helper (see activ­ity mon­i­tor) prior to start­ing the XCode installer, the install will hang. Do your­self a favor and kill it with fire.</p></blockquote>
-<p>Also, two more crucial things to keep in mind: </p>
-<blockquote><p>&#8211; Remem­ber; the binary direc­tory for the dev tools is in <span style="font-family:monospace;color:#000000; ">/Developer/usr/bin/</span> — this includes gcc-4.2<br />
-&#8211; Do your­self a favor, drop “<span style="font-family:monospace;color:#000000; ">export ARCHFLAGS=&#8221;-arch x86_64&#8243;</span>” into your <span style="font-family:monospace;color:#000000; ">.bash_profile</span>.</p></blockquote>
-<p>The last point is extremely important; make sure you do that otherwise you&#8217;ll easily run into all sorts of 32 vs 64 bits architectures conflicts that (if you&#8217;re like me) you have no time to get into (<a href="http://stackoverflow.com/questions/5256397/python-easy-install-fails-with-assembler-for-architecture-ppc-not-installed-on">more info here</a>).</p>
+<p>This is number 2 in the list, but really it should be number 1 if you are a software developer. The latest Xcode (4.2, get it on the <a href="http://itunes.apple.com/us/app/xcode/id448457090?mt=12">apple store</a> for free) includes all sorts of low and high level programming frameworks, from C compilers to Python interpreters. In other words, without reinstalling Xcode tons of software development environments won't run as usual!</p>
+<p>Installing Xcode is very easy, here's a nice tip to keep in mind though (as found <a href="http://jessenoller.com/2011/07/30/quick-pythondeveloper-tips-for-osx-lion/">here</a>):</p>
+<blockquote>
+<p>When installing XCode, for some unknown unholy rea­son, if you have not quit itunes, and itunes helper (see activ­ity mon­i­tor) prior to start­ing the XCode installer, the install will hang. Do your­self a favor and kill it with fire.</p>
+</blockquote>
+<p>Also, two more crucial things to keep in mind:</p>
+<blockquote>
+<p>- Remem­ber; the binary direc­tory for the dev tools is in /Developer/usr/bin/ — this includes gcc-4.2 - Do your­self a favor, drop “export ARCHFLAGS="-arch x86_64"” into your .bash_profile.</p>
+</blockquote>
+<p>The last point is extremely important; make sure you do that otherwise you'll easily run into all sorts of 32 vs 64 bits architectures conflicts that (if you're like me) you have no time to get into (<a href="http://stackoverflow.com/questions/5256397/python-easy-install-fails-with-assembler-for-architecture-ppc-not-installed-on">more info here</a>).</p>
 <h3>3. Fix your Python installation</h3>
-<p>On my iMac I couldn&#8217;t run <a href="http://ipython.org/">iPython</a> anymore; this was surprisingly easy to fix, I just run again <span style="font-family:monospace;color:#000000; ">easy_install ipython</span> from the command line and there you go iPython went back up (version 2.7, the default one with Lion).</p>
-<p>This didn&#8217;t work on my other mac though (a slightly older MacBook); the <span style="font-family:monospace;color:#000000; ">easy_install ipython</span> trick failed with a <span style="font-family:monospace;color:#000000; ">DistributionNotFound </span> error; if this is the case, you probably have to re-install Apple&#8217;s Developer Tools (see point 2 above).<br />
-However before doing that you might want to consider this <strong>good tip</strong> which I found <a href="index.html">here</a>:</p>
-<blockquote><p>1. Make a list of all the third-party libraries you currently have installed under Python 2.6, because you’ll have to reinstall all of them for 2.7 and you won’t have the 2.6 <span style="font-family:monospace;color:#000000; ">site-packages</span> directory to refer to.<br />
-2. Update to Lion.<br />
-3. Update to Xcode 4.1. It’s free in the App Store. </p></blockquote>
-<p>Good, so I installed XCode 4 (= Apple&#8217;s Developer Tools) but I still had a problem: for some reason the default python binary (<span style="font-family:monospace;color:#000000; ">/usr/bin/python</span>) was still pointing at the 2.5 release, instead of the 2.7 that comes with Lion. This was easily fixed by issuing this command: </p>
-<blockquote><p><span style="font-family:monospace;color:#000000; ">defaults write com.apple.versioner.python Version 2.7</span></p></blockquote>
-<p>Two final steps are then required: </p>
-<blockquote><p>a) <a href="http://pypi.python.org/pypi/setuptools#downloads">Download</a> the 2.7 version of setuptools and install it (e.g. <span style="font-family:monospace;color:#000000; ">sudo sh setuptools-0.6c11-py2.7.egg</span>);<br />
-b) re-install iPython via setuptools: <span style="font-family:monospace;color:#000000; ">sudo easy_install ipython</span></p></blockquote>
-<p>Obviously I&#8217;ll have to manually install under 2.7 all the libraries I used to have on 2.6, but that can be done incrementally and thanks to <span style="font-family:monospace;color:#000000; ">easy_install</span> it&#8217;s also quite quick. </p>
+<p>On my iMac I couldn't run <a href="http://ipython.org/">iPython</a> anymore; this was surprisingly easy to fix, I just run again easy_install ipython from the command line and there you go iPython went back up (version 2.7, the default one with Lion).</p>
+<p>This didn't work on my other mac though (a slightly older MacBook); the easy_install ipython trick failed with a DistributionNotFound error; if this is the case, you probably have to re-install Apple's Developer Tools (see point 2 above). However before doing that you might want to consider this <strong>good tip</strong> which I found here:</p>
+<blockquote>
+<p>1. Make a list of all the third-party libraries you currently have installed under Python 2.6, because you’ll have to reinstall all of them for 2.7 and you won’t have the 2.6 site-packages directory to refer to. 2. Update to Lion. 3. Update to Xcode 4.1. It’s free in the App Store.</p>
+</blockquote>
+<p>Good, so I installed XCode 4 (= Apple's Developer Tools) but I still had a problem: for some reason the default python binary (/usr/bin/python) was still pointing at the 2.5 release, instead of the 2.7 that comes with Lion. This was easily fixed by issuing this command:</p>
+<blockquote>
+<p>defaults write com.apple.versioner.python Version 2.7</p>
+</blockquote>
+<p>Two final steps are then required:</p>
+<blockquote>
+<p>a) <a href="http://pypi.python.org/pypi/setuptools#downloads">Download</a> the 2.7 version of setuptools and install it (e.g. sudo sh setuptools-0.6c11-py2.7.egg); b) re-install iPython via setuptools: sudo easy_install ipython</p>
+</blockquote>
+<p>Obviously I'll have to manually install under 2.7 all the libraries I used to have on 2.6, but that can be done incrementally and thanks to easy_install it's also quite quick.</p>
 <p>For more discussions on python and Lion, check out these posts: <a href="http://jessenoller.com/2011/07/30/quick-pythondeveloper-tips-for-osx-lion/">Quick Python/Developer tips for OSX Lion</a> and <a href="http://www.leancrew.com/all-this/2011/07/python-problems-on-lion-mostly-self-inflicted/">Python problems on Lion</a>.</p>
 <h3>4. The Mercurial binaries disappeared</h3>
 <p>What the heck. You need to reinstall Mercurial using the package available here: <a href="http://mercurial.berkwood.com/">http://mercurial.berkwood.com/</a> and Python problems on Lion</p>
-<h3>5. Omnigraffle can&#8217;t save files anymore</h3>
-<p>My 5.0 copy of Omnigraffle loaded and let me create stuff just fine, but it won&#8217;t save files anymore. I got an error message that looked like an internal error (&#8220;class bla bla can&#8217;t be subclassed by bla bla bla&#8221;) each time I tried to save my work. Bugger. </p>
-<p>Couldn&#8217;t find a solution to this; I guess that getting the latest version (5.3 I think) will solve the issue (it&#8217; 70 dollars though).</p>
+<h3>5. Omnigraffle can't save files anymore</h3>
+<p>My 5.0 copy of Omnigraffle loaded and let me create stuff just fine, but it won't save files anymore. I got an error message that looked like an internal error ("class bla bla can't be subclassed by bla bla bla") each time I tried to save my work. Bugger.</p>
+<p>Couldn't find a solution to this; I guess that getting the latest version (5.3 I think) will solve the issue (it' 70 dollars though).</p>
 <h3>6. Java runtime missing</h3>
-<p>Lion does not provide a Java runtime by default, so you need to install it separately. No worries: that&#8217;s going to happen automatically as soon as you try to run a Java application; alternatively, you can do that manually <a href="http://support.apple.com/kb/dl1421">here</a>.</p>
+<p>Lion does not provide a Java runtime by default, so you need to install it separately. No worries: that's going to happen automatically as soon as you try to run a Java application; alternatively, you can do that manually <a href="http://support.apple.com/kb/dl1421">here</a>.</p>
 <h3>7. The Finder Sidebar Icons colours (well lack of..) are depressing</h3>
-<p>Why on earth haven&#8217;t they made that a preference we can change? There&#8217;s a way around it though, and it is <a href="http://osxdaily.com/2011/08/25/get-color-sidebar-icons-back-in-mac-os-x-10-7-lion-finder-windows/">described here</a>. This is the gist of it:</p>
-<blockquote><p>
-&#8211; Download and install SIMBL, which you can <a href="http://www.culater.net/software/SIMBL/SIMBL.php">get here</a><br />
-&#8211; Download the <a href="http://cooviewerzoom.web.fc2.com/ColorfulSidebar1.0.dmg.zip">ColorfulSidebar SIMBL plugin</a> (direct link) or <a href="http://cooviewerzoom.web.fc2.com/colorfulsidebar.html">visit the developers home</a> and mount the DMG file<br />
-&#8211; Move the <span style="font-family:monospace;color:#000000; ">ColorfulSidebar.bundle</span> into the following SIMBL plugin folder: <span style="font-family:monospace;color:#000000; ">~/Library/Application Support/SIMBL/Plugins/</span><br />
-&#8211; Either login and logout of Mac OS X, or just kill the Finder through the Terminal to relaunch it: <span style="font-family:monospace;color:#000000; ">killall Finder</span></p></blockquote>
-<p>Unfortunately this solution won&#8217;t stick after an OS reload; but it&#8217;s enough to relaunch the Finder (<span style="font-family:monospace;color:#000000; ">killall Finder</span>) to reload the plugin. </p>
-<p>P.S. If you can&#8217;t access the <span style="font-family:monospace;color:#000000; ">~/Library</span> folder using Finder, check out point 12 below!</p>
-<h3>8. Safari Won&#8217;t Reopen To HomePage</h3>
-<p>Apple <a href="https://discussions.apple.com/message/15662314#15662314">changed</a> the way new windows open. In Safari, if you set the &#8220;New windows open with&#8221; preference to &#8220;Homepage&#8221;, then ALL new windows will now open with your homepage setting, including the initial startup window. In past versions, you could set that preference to &#8220;Same Page&#8221; while startup would auto open the homepage. </p>
-<p>Solution: go to <em>System Preferences/General/</em> and uncheck the &#8220;Restore windows when quitting and re-opening apps&#8221; option.</p>
+<p>Why on earth haven't they made that a preference we can change? There's a way around it though, and it is <a href="http://osxdaily.com/2011/08/25/get-color-sidebar-icons-back-in-mac-os-x-10-7-lion-finder-windows/">described here</a>. This is the gist of it:</p>
+<blockquote>
+<p>- Download and install SIMBL, which you can <a href="http://www.culater.net/software/SIMBL/SIMBL.php">get here</a> - Download the <a href="http://cooviewerzoom.web.fc2.com/ColorfulSidebar1.0.dmg.zip">ColorfulSidebar SIMBL plugin</a> (direct link) or <a href="http://cooviewerzoom.web.fc2.com/colorfulsidebar.html">visit the developers home</a> and mount the DMG file - Move the ColorfulSidebar.bundle into the following SIMBL plugin folder: ~/Library/Application Support/SIMBL/Plugins/ - Either login and logout of Mac OS X, or just kill the Finder through the Terminal to relaunch it: killall Finder</p>
+</blockquote>
+<p>Unfortunately this solution won't stick after an OS reload; but it's enough to relaunch the Finder (killall Finder) to reload the plugin.</p>
+<p>P.S. If you can't access the ~/Library folder using Finder, check out point 12 below!</p>
+<h3>8. Safari Won't Reopen To HomePage</h3>
+<p>Apple <a href="https://discussions.apple.com/message/15662314#15662314">changed</a> the way new windows open. In Safari, if you set the "New windows open with" preference to "Homepage", then ALL new windows will now open with your homepage setting, including the initial startup window. In past versions, you could set that preference to "Same Page" while startup would auto open the homepage.</p>
+<p>Solution: go to <em>System Preferences/General/</em> and uncheck the "Restore windows when quitting and re-opening apps" option.</p>
 <h3>9. The CD-TO utility disappeared</h3>
-<p>A small utility I&#8217;ve been using all the time is <a href="http://code.google.com/p/cdto/">cdto</a>, a mini application that opens a Terminal.app window cd&#8217;d to the front most finder window. </p>
-<p>That doesn&#8217;t work anymore, but the good news is that as of Mac OS X Lion 10.7, Terminal includes exactly this functionality as a Service, which you can set by going to System <span style="font-family:monospace;color:#000000; ">Preferences > Keyboard > Keyboard Shortcuts > Services</span> (check this useful <a href="http://www.tech-recipes.com/rx/16708/os-x-lion-how-to-easily-open-a-new-terminal-or-terminal-tab-at-a-folder/">blog post for more details</a>). Also, a more in-depth discussion of the various options available can be found on <a href="http://stackoverflow.com/questions/420456/open-terminal-here-in-mac-os-finder">stackOverflow</a>. </p>
+<p>A small utility I've been using all the time is <a href="http://code.google.com/p/cdto/">cdto</a>, a mini application that opens a Terminal.app window cd'd to the front most finder window.</p>
+<p>That doesn't work anymore, but the good news is that as of Mac OS X Lion 10.7, Terminal includes exactly this functionality as a Service, which you can set by going to System Preferences &gt; Keyboard &gt; Keyboard Shortcuts &gt; Services (check this useful <a href="http://www.tech-recipes.com/rx/16708/os-x-lion-how-to-easily-open-a-new-terminal-or-terminal-tab-at-a-folder/">blog post for more details</a>). Also, a more in-depth discussion of the various options available can be found on <a href="http://stackoverflow.com/questions/420456/open-terminal-here-in-mac-os-finder">stackOverflow</a>.</p>
 <p>In addition, Lion Terminal will open a new terminal window if you drag a folder (or pathname) onto the Terminal application icon, and you can also drag to the tab bar of an existing window to create a new tab.</p>
 <p><strong>Update</strong>: CDTO has a <a href="http://code.google.com/p/cdto/downloads/list">Lion version</a> available too. Also, another free software that offers the same functionalities is <a href="http://itunes.apple.com/us/app/go2shell/id445770608?mt=12">Go2Shell</a>.</p>
-<h3>10. Visor doesn&#8217;t work anymore</h3>
-<p>Yes because Visor (a pumped-up version of the terminal application) relied on SIMBL, which is handled different on Lion. Not a problem, just download <a href="http://totalterminal.binaryage.com/">TotalTerminal</a>, which is an updated and more stable version of Visor. </p>
+<h3>10. Visor doesn't work anymore</h3>
+<p>Yes because Visor (a pumped-up version of the terminal application) relied on SIMBL, which is handled different on Lion. Not a problem, just download <a href="http://totalterminal.binaryage.com/">TotalTerminal</a>, which is an updated and more stable version of Visor.</p>
 <p>For original Visor 2.2 users: TotalTerminal plugin is not injected into Terminal.app automatically like with SIMBL. You have to launch TotalTerminal.app to inject the plugin into Terminal.app. You might want to put TotalTerminal.app into Startup Items.</p>
-<h3>11. VmwareFusion won&#8217;t work</h3>
-<p>VmwareFusion is a Virtual-PC software that people use to run windows on a mac; I was using an older version of it and it looks as if this is incompatible with the 64-bit architecture of the Lion operating system. </p>
+<h3>11. VmwareFusion won't work</h3>
+<p>VmwareFusion is a Virtual-PC software that people use to run windows on a mac; I was using an older version of it and it looks as if this is incompatible with the 64-bit architecture of the Lion operating system.</p>
 <p>Solution: nothing else than getting the <a href="http://www.vmware.com/products/fusion/overview.html">latest version of VmwareFusion</a>, which currently sells for 50 dollars. Bugger.</p>
 <h3>12. Customize the Finder</h3>
-<p>Get the Library folder to show again: by default, the <span style="font-family:monospace;color:#000000; ">Library</span> folder in your home directory doesn&#8217;t show in Finder. Just type this into your terminal app to fix it:</p>
-<blockquote><p><span style="font-family:monospace;color:#000000; ">chflags nohidden ~/Library/</span></p></blockquote>
+<p>Get the Library folder to show again: by default, the Library folder in your home directory doesn't show in Finder. Just type this into your terminal app to fix it:</p>
+<blockquote>
+<p>chflags nohidden ~/Library/</p>
+</blockquote>
 <p>Show hidden files in finder: beware though, this might result in a lot of information being displayed which is not needed.</p>
-<blockquote><p><span style="font-family:monospace;color:#000000; ">defaults write com.apple.finder AppleShowAllFiles -bool YES</span>
-</p></blockquote>
-<p>Show full paths in finder: it&#8217;s quite useful to know always where you are.</p>
-<blockquote><p><span style="font-family:monospace;color:#000000; ">defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES</span></p></blockquote>
-<p>.. and many more customisations are listed on <a href="http://secrets.blacktree.com/">http://secrets.blacktree.com/</a>. </p>
+<blockquote>
+<p>defaults write com.apple.finder AppleShowAllFiles -bool YES</p>
+</blockquote>
+<p>Show full paths in finder: it's quite useful to know always where you are.</p>
+<blockquote>
+<p>defaults write com.apple.finder _FXShowPosixPathInTitle -bool YES</p>
+</blockquote>
+<p>.. and many more customisations are listed on <a href="http://secrets.blacktree.com/">http://secrets.blacktree.com/</a>.</p>
 <p>Alternatively, you can customise your mac to the bone without touching the console by downloading a free utility software called <a href="http://www.bresink.com/osx/0TinkerTool/download.php5">TinkerTool</a>.</p>
 <h3>13. Get the Old Apple Mail Back</h3>
-<p>The new Apple Mail interface is quite slick, but I still have some problems adapting to it. </p>
-<p>You can easily revert back to the old interface just by going to the <span style="font-family:monospace;color:#000000; ">Mail</span> menu and choose <span style="font-family:monospace;color:#000000; ">Preferences</span>. From there, click <span style="font-family:monospace;color:#000000; ">Viewing</span> and you&#8217;ll find the options you want right at the top.</p>
-<h3>14. .. ? (still looking for it!)</p>
-<p>&nbsp;</p>
-				
-			<!-- <script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script> -->
-			<!-- AddToAny BEGIN -->
-			<a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_256_24.png" width="256" height="24" border="0" alt="Share/Bookmark"/></a>
-			<script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
-			<!-- AddToAny END -->
-			
-			
-						</div><!-- end entry --><br/><br/>
-	</div><!-- end post -->
-	<ul class="post">
-		<li><b>META</b> / ABOUT THIS POST</li>
-		<li>This entry was posted
-									on Wednesday, October 19th, 2011 at 2:01 pm			and is filed under <a href="../../../../category/tips-and-tricks/index.html" rel="category tag">Tips and Tricks</a>. Tags: <a href="../../../../tag/lion/index.html" rel="tag">lion</a>, <a href="../../../../tag/mac/index.html" rel="tag">mac</a>, <a href="../../../../tag/osx/index.html" rel="tag">osx</a>.
-			You can follow any responses to this entry through the <a href="feed/index.html">RSS 2.0</a> feed.
+<p>The new Apple Mail interface is quite slick, but I still have some problems adapting to it.</p>
+<p>You can easily revert back to the old interface just by going to the Mail menu and choose Preferences. From there, click Viewing and you'll find the options you want right at the top.</p>
+<h3>14. .. ? (still looking for it!)</h3>
 
-									Both comments and pings are currently closed.
-
-								</li>
-	</ul><br/><br/>
-	<ul class="post">
-		<li><b>PAGES</b> / FORWARD OR BACK?</li>
-		<li>Previous: <a href="../../13/seminar-tagore-digital-editions-and-bengali-textual-computing/index.html" rel="prev">Seminar: Tagore digital editions and Bengali textual computing</a></li>
-		<li>Next: <a href="../../../11/19/towards-a-conceptual-model-for-the-domain-of-sculpture/index.html" rel="next">Towards a conceptual model for the domain of sculpture</a></li>
-	</ul><br/><br/>
-					
-							
-			
-	
-<!-- You can start editing here. -->
-
-<h3 class="comments"><span class="dsq-postid" data-dsqidentifier="1643 http://www.michelepasin.org/blog/?p=1643">2 Responses</span> to &#8220;Upgrading to Lion: tips and tricks&#8221;
-</h3>
-
-	<div class="alt bubble" id="comment-216">
-	<blockquote><p>Very helpful &#8211; thanks &#8211; except&#8230;&#8230;.surely you were on 10.6.8 ! Or tell me where to get the elusive 10.6.9 update.</p>
-</blockquote>
-	<cite>Steve Burchell added these pithy words on <a href="index.html#comment-216" title="">Oct 19 11 at 5:53 pm</a> 	</cite> 
-			</div>
-
-	
-	<div class=" bubble" id="comment-217">
-	<blockquote><p>haha thanks well spotted!</p>
-</blockquote>
-	<cite>mike added these pithy words on <a href="index.html#comment-217" title="">Oct 19 11 at 6:12 pm</a> 	</cite> 
-			</div>
-
-	
-	
-
- 
+            </div>
 
 
-	</div><!-- end content -->	
-<div id="sidebar">
+          <hr>
+            <p class="text-muted">Cite this blog post:</p>
+
+            <div class="well well-big lead">
+              Michele Pasin. <a href="index.html" class="bluelink">Upgrading to Lion: tips and tricks</a>. Blog post on www.michelepasin.org. Published on Oct. 19, 2011.
+            </div>
+            <br />
+
+        
 
 
-	<p class="menu"><B>INSIDE&nbsp;&nbsp;&nbsp;&nbsp;&larr;</b></p><br/>
-		<p><a href="../../../../index.html">Parerga und Paralipomena</a></p>
-		<li id="pages-2" class="widget widget_pages"><h2 class="widgettitle">Pages</h2>
-		<ul>
-			<li class="page_item page-item-532"><a href="../../../../about-2/index.html">About Me</a></li>
-<li class="page_item page-item-3355"><a href="../../../../latest-from-twitter/index.html">Latest from Twitter</a></li>
-		</ul>
-			</li>
-<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Categories</h2>
-		<ul>
-				<li class="cat-item cat-item-408"><a href="../../../../category/computermusic/index.html">Computer Music</a>
-</li>
-	<li class="cat-item cat-item-3"><a href="../../../../category/culturalinformatics/index.html">Cultural Informatics</a>
-</li>
-	<li class="cat-item cat-item-455"><a href="../../../../category/data-science/index.html">Data science</a>
-</li>
-	<li class="cat-item cat-item-4"><a href="../../../../category/informationarchitecture/index.html">Information Architecture</a>
-</li>
-	<li class="cat-item cat-item-5"><a href="../../../../category/justblogging/index.html">Just Blogging</a>
-</li>
-	<li class="cat-item cat-item-6"><a href="../../../../category/semantic-web/index.html">Semantic Web</a>
-</li>
-	<li class="cat-item cat-item-7"><a href="../../../../category/techlife/index.html">TechLife</a>
-</li>
-	<li class="cat-item cat-item-8"><a href="../../../../category/tips-and-tricks/index.html">Tips and Tricks</a>
-</li>
-		</ul>
-			</li>
- 
-		
-		<!-- mikele: the stuff above doesn't get activated so I put it here -->
-<br/><br/>
-		<ul style="text-align:right;">
-
-			<p><b>FIND</b> / SEARCH</p>
-			<form method="get" id="search_form" action="../../../../index.html">
-				<input type="text" class="search_input" value="Type and hit enter..." name="s" id="s" onfocus="if (this.value == 'Type and hit enter...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Type and hit enter...';}" />
-				<input type="hidden" id="searchsubmit" value="Search" />
-			</form>
-		</ul><br/>
+          <br /><br />
 
 
-<!-- 	
-		<!-- mikele: adsense 
-		<br/>
-                 <ul style="text-align:right;">
-		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        </div> 
+        
+      
 
-		<ins class="adsbygoogle"
-		     style="display:block"
-		     data-ad-client="ca-pub-8108687655438913"
-		     data-ad-slot="2230044782"
-		     data-ad-format="auto"></ins>
-		<script>
-		(adsbygoogle = window.adsbygoogle || []).push({});
-		</script>
-                </ul><br/> 
--->
+        <div class="col-md-1 col-md-offset-1">
 
-		
-		
-		
-	</div><!-- end sidebar --><div class="footer">
-	<p><b>FOOTER</b> / LEST WE FORGET<br/>
-<!-- If you'd like to support WordPress, having the "powered by" link someone on your blog is the best way, it's our only promotion or advertising. -->
 
-<!-- Change this theme as you wish, but PLEASE keep a visible link to http://www.upstartblogger.com/ somewhere on every page of your blog (for example, in the sidebar or footer). You aren't going to delete the WordPress link, are you? Please don't delete mine. Thanks! -->
-		Copyright &copy; 2004-2007 by Parerga und Paralipomena, unless otherwise noted. All rights reserved. Powered by <a href="http://wordpress.org/" title="WordPress">WordPress</a>. Original Modio theme by <a href="http://www.upstartblogger.com/" title="Upstart Blogger">Upstart Blogger</a>, modified by Michele Pasin.
+            
+            <p class="text-muted">Linkout:</p>
+
+            <div class="-lead">
+
+              
+              <li><a href="https://www.michelepasin.org/archived/blog/2011/10/19/upgrading-to-lion-tips-and-tricks/index.html">Legacy Blog</a></li>
+                
+              
+
+            </div>
+            <br />
+            
+
+
+        </div>
+        
+      </div>
+
+
+
+
+      
+
+      
+
+
+
+
+
+    <div class="row">
+      <h5 class="text-muted">See also:</h5>
+      </div>
+
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2011</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a  class="bluelink paper-active" title="The article on this page">Upgrading to Lion: tips and tricks</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
 
 
 
 
 
 
-</p>
-	<!-- 45 queries. 0.316 seconds. -->
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    
+
+
+
+  </div> <!-- /container -->
 
 
 
 
 
-</div><!-- end footer -->
-
-<!-- Start of Flickr Badge -->
-<style type="text/css">
-#flickr_badge_source_txt {padding:0; font: 11px Arial, Helvetica, Sans serif; color:#666666;}
-#flickr_badge_icon {display:block !important; margin:0 !important; border: 1px solid rgb(0, 0, 0) !important;}
-#flickr_icon_td {padding:0 5px 0 0 !important;}
-.flickr_badge_image {text-align:center !important;}
-.flickr_badge_image img {border: 1px solid black !important;}
-#flickr_www {display:block; padding:0 10px 0 10px !important; font: 11px Arial, Helvetica, Sans serif !important; color:#3993ff !important;}
-#flickr_badge_uber_wrapper table {margin-left:265px; margin-top:50px; position:absolute;}
-#flickr_badge_uber_wrapper a:hover,
-#flickr_badge_uber_wrapper a:link,
-#flickr_badge_uber_wrapper a:active,
-#flickr_badge_uber_wrapper a:visited {text-decoration:none !important; background:inherit !important;color:#3993ff;}
-#flickr_badge_wrapper {background-color:#ffffff;border: solid 1px #000000}
-#flickr_badge_source {padding:0 !important; font: 11px Arial, Helvetica, Sans serif !important; color:#666666 !important;}
-</style>
-<table id="flickr_badge_uber_wrapper" cellpadding="0" cellspacing="10" border="0"><tr><td><table cellpadding="0" cellspacing="10" border="0" id="flickr_badge_wrapper">
-<tr>
-<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=5&display=random&size=s&layout=h&source=user&user=76186999%40N00"></script>
-</tr>
-</table>
-</td></tr></table>
-<!-- End of Flickr Badge -->
-
-
-</div><!-- end page -->
-<!-- Powered by WPtouch: 4.3.39 -->	<div style="display:none">
 	</div>
-<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2021Augaa'></script>
-<script type='text/javascript'>
-/* <![CDATA[ */
-var WPGroHo = {"my_hash":""};
-/* ]]> */
-</script>
-<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/modules/wpgroho.js%3Fver=5.2.11'></script>
-<script type='text/javascript' src='../../../../wp-includes/js/wp-embed.min.js%3Fver=5.2.11'></script>
-<script type='text/javascript' src='https://stats.wp.com/e-202134.js' async='async' defer='defer'></script>
-<script type='text/javascript'>
-	_stq = window._stq || [];
-	_stq.push([ 'view', {v:'ext',j:'1:8.1.2',blog:'13825966',post:'1643',tz:'0',srv:'www.michelepasin.org'} ]);
-	_stq.push([ 'clickTrackerInit', '13825966', '1643' ]);
-</script>
-</body>
+
+
+  
+
+
+
+  
+
+
+
+
+  <footer class="footer">
+    <div class="container">
+    
+      <p class="text-muted">Find me also on: &nbsp;
+      
+
+  <a href="http://kcl.academia.edu/MichelePasin" target="_blank">Academia</a> | 
+  <a href="https://github.com/lambdamusic" target="_blank">GitHub</a> | 
+  <a href="https://scholar.google.com/citations?user=zj-99x0AAAAJ&hl=en" target="_blank">Google Scholar</a> | 
+  <a href="https://www.instagram.com/lambdamusic/" target="_blank">Instagram</a> |
+  <a href="http://www.linkedin.com/pub/michele-pasin/1/223/a0" target="_blank">LinkedIn</a> |
+  <a href="http://www.mendeley.com/profiles/michele-pasin/" target="_blank">Mendeley</a> |
+  <a href="http://orcid.org/0000-0001-8909-7766" target="_blank">Orcid</a> |
+  <a href="http://www.slideshare.net/mpasin" target="_blank">SlideShare</a> |
+  <a href="https://soundcloud.com/magicrebirth" target="_blank">Soundcloud</a> |
+  <a href="http://stackoverflow.com/users/109304/magicrebirth" target="_blank">StackOverflow</a> |
+  <a href="http://twitter.com/#!/lambdaman" target="_blank">Twitter</a> |
+  <a href="https://vimeo.com/lambdamusic" target="_blank">Vimeo</a>
+      
+      </p>
+    
+    </div>
+  </footer>
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="../../../../../media/static/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script src="../../../../../media/static/libs/bootstrap-3.3.7-dist/js/ie10-viewport-bug-workaround.js"></script>
+
+
+    
+
+
+
+    
+
+  </body>
 </html>

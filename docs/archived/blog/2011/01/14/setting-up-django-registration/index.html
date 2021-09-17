@@ -1,0 +1,725 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-US">
+	<head profile="http://gmpg.org/xfn/11">
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<title>Parerga und Paralipomena  &raquo; Blog Archive   &raquo; Setting up Django Registration		</title>
+		<meta name="generator" content="WordPress 5.2.11" /> <!-- leave this for stats -->
+		<link rel="stylesheet" href="../../../../wp-content/themes/ub_modio/style.css" type="text/css" media="screen" />
+		<link rel="alternate" type="application/rss+xml" title="Parerga und Paralipomena RSS Feed" href="../../../../feed/index.html" />
+		<link rel="pingback" href="http://www.michelepasin.org/blog/xmlrpc.php" />
+		
+		<!--[if lte IE 6]>
+		<link rel="stylesheet" type="text/css" href="http://www.michelepasin.org/blog/wp-content/themes/ub_modio/ie.css">
+		<![endif]-->
+		<link rel="shortcut icon" href="http://www.michelepasin.org/blog/2011/01/14/setting-up-django-registration/favicon.ico">
+<link rel='dns-prefetch' href='http://secure.gravatar.com/' />
+<link rel='dns-prefetch' href='http://s.w.org/' />
+<link rel="alternate" type="application/rss+xml" title="Parerga und Paralipomena &raquo; Setting up Django Registration Comments Feed" href="feed/index.html" />
+<!-- This site uses the Google Analytics by MonsterInsights plugin v7.15.1 - Using Analytics tracking - https://www.monsterinsights.com/ -->
+<script type="text/javascript" data-cfasync="false">
+    (window.gaDevIds=window.gaDevIds||[]).push("dZGIzZG");
+	var mi_version         = '7.15.1';
+	var mi_track_user      = true;
+	var mi_no_track_reason = '';
+	
+	var disableStr = 'ga-disable-UA-2000254-3';
+
+	/* Function to detect opted out users */
+	function __gaTrackerIsOptedOut() {
+		return document.cookie.indexOf(disableStr + '=true') > -1;
+	}
+
+	/* Disable tracking if the opt-out cookie exists. */
+	if ( __gaTrackerIsOptedOut() ) {
+		window[disableStr] = true;
+	}
+
+	/* Opt-out function */
+	function __gaTrackerOptout() {
+	  document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+	  window[disableStr] = true;
+	}
+
+	if ( 'undefined' === typeof gaOptout ) {
+		function gaOptout() {
+			__gaTrackerOptout();
+		}
+	}
+	
+	if ( mi_track_user ) {
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','__gaTracker');
+
+		__gaTracker('create', 'UA-2000254-3', 'auto');
+		__gaTracker('set', 'forceSSL', true);
+		__gaTracker('send','pageview');
+	} else {
+		console.log( "" );
+		(function() {
+			/* https://developers.google.com/analytics/devguides/collection/analyticsjs/ */
+			var noopfn = function() {
+				return null;
+			};
+			var noopnullfn = function() {
+				return null;
+			};
+			var Tracker = function() {
+				return null;
+			};
+			var p = Tracker.prototype;
+			p.get = noopfn;
+			p.set = noopfn;
+			p.send = noopfn;
+			var __gaTracker = function() {
+				var len = arguments.length;
+				if ( len === 0 ) {
+					return;
+				}
+				var f = arguments[len-1];
+				if ( typeof f !== 'object' || f === null || typeof f.hitCallback !== 'function' ) {
+					console.log( 'Not running function __gaTracker(' + arguments[0] + " ....) because you are not being tracked. " + mi_no_track_reason );
+					return;
+				}
+				try {
+					f.hitCallback();
+				} catch (ex) {
+
+				}
+			};
+			__gaTracker.create = function() {
+				return new Tracker();
+			};
+			__gaTracker.getByName = noopnullfn;
+			__gaTracker.getAll = function() {
+				return [];
+			};
+			__gaTracker.remove = noopfn;
+			window['__gaTracker'] = __gaTracker;
+					})();
+		}
+</script>
+<!-- / Google Analytics by MonsterInsights -->
+		<script type="text/javascript">
+			window._wpemojiSettings = {"baseUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/72x72\/","ext":".png","svgUrl":"https:\/\/s.w.org\/images\/core\/emoji\/12.0.0-1\/svg\/","svgExt":".svg","source":{"concatemoji":"http:\/\/www.michelepasin.org\/blog\/wp-includes\/js\/wp-emoji-release.min.js?ver=5.2.11"}};
+			!function(e,a,t){var n,r,o,i=a.createElement("canvas"),p=i.getContext&&i.getContext("2d");function s(e,t){var a=String.fromCharCode;p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,e),0,0);e=i.toDataURL();return p.clearRect(0,0,i.width,i.height),p.fillText(a.apply(this,t),0,0),e===i.toDataURL()}function c(e){var t=a.createElement("script");t.src=e,t.defer=t.type="text/javascript",a.getElementsByTagName("head")[0].appendChild(t)}for(o=Array("flag","emoji"),t.supports={everything:!0,everythingExceptFlag:!0},r=0;r<o.length;r++)t.supports[o[r]]=function(e){if(!p||!p.fillText)return!1;switch(p.textBaseline="top",p.font="600 32px Arial",e){case"flag":return s([55356,56826,55356,56819],[55356,56826,8203,55356,56819])?!1:!s([55356,57332,56128,56423,56128,56418,56128,56421,56128,56430,56128,56423,56128,56447],[55356,57332,8203,56128,56423,8203,56128,56418,8203,56128,56421,8203,56128,56430,8203,56128,56423,8203,56128,56447]);case"emoji":return!s([55357,56424,55356,57342,8205,55358,56605,8205,55357,56424,55356,57340],[55357,56424,55356,57342,8203,55358,56605,8203,55357,56424,55356,57340])}return!1}(o[r]),t.supports.everything=t.supports.everything&&t.supports[o[r]],"flag"!==o[r]&&(t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&t.supports[o[r]]);t.supports.everythingExceptFlag=t.supports.everythingExceptFlag&&!t.supports.flag,t.DOMReady=!1,t.readyCallback=function(){t.DOMReady=!0},t.supports.everything||(n=function(){t.readyCallback()},a.addEventListener?(a.addEventListener("DOMContentLoaded",n,!1),e.addEventListener("load",n,!1)):(e.attachEvent("onload",n),a.attachEvent("onreadystatechange",function(){"complete"===a.readyState&&t.readyCallback()})),(n=t.source||{}).concatemoji?c(n.concatemoji):n.wpemoji&&n.twemoji&&(c(n.twemoji),c(n.wpemoji)))}(window,document,window._wpemojiSettings);
+		</script>
+		<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+	<link rel='stylesheet' id='wp-block-library-css'  href='../../../../wp-includes/css/dist/block-library/style.min.css%3Fver=5.2.11.css' type='text/css' media='all' />
+<style id='wp-block-library-inline-css' type='text/css'>
+.has-text-align-justify{text-align:justify;}
+</style>
+<link rel='stylesheet' id='ctf_styles-css'  href='../../../../wp-content/plugins/custom-twitter-feeds/css/ctf-styles.min.css%3Fver=1.7.css' type='text/css' media='all' />
+<link rel='stylesheet' id='monsterinsights-popular-posts-style-css'  href='../../../../wp-content/plugins/google-analytics-for-wordpress/assets/css/frontend.min.css%3Fver=7.15.1.css' type='text/css' media='all' />
+<link rel='stylesheet' id='wordpress-popular-posts-css-css'  href='../../../../wp-content/plugins/wordpress-popular-posts/assets/css/wpp.css%3Fver=5.2.4.css' type='text/css' media='all' />
+<link rel='stylesheet' id='jetpack_css-css'  href='../../../../wp-content/plugins/jetpack/css/jetpack.css%3Fver=8.1.2.css' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var monsterinsights_frontend = {"js_events_tracking":"true","download_extensions":"doc,pdf,ppt,zip,xls,docx,pptx,xlsx","inbound_paths":"[]","home_url":"http:\/\/www.michelepasin.org\/blog","hash_tracking":"false"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/google-analytics-for-wordpress/assets/js/frontend.min.js%3Fver=7.15.1'></script>
+<script type='application/json' id="wpp-json">
+{"sampling_active":0,"sampling_rate":100,"ajax_url":"http:\/\/www.michelepasin.org\/blog\/wp-json\/wordpress-popular-posts\/v1\/popular-posts","ID":1057,"token":"10a27ddbef","lang":0,"debug":0}
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/wordpress-popular-posts/assets/js/wpp.min.js%3Fver=5.2.4'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery.js%3Fver=1.12.4-wp'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/jquery/jquery-migrate.min.js%3Fver=1.4.1'></script>
+<link rel='https://api.w.org/' href='../../../../wp-json/index.html' />
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="../../../../xmlrpc.php%3Frsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="../../../../wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='The Digital Story of Nativity and other inspiring stuff' href='../../08/the-digital-story-of-nativity-and-other-inspiring-stuff/index.html' />
+<link rel='next' title='Live coding in clojure' href='../../21/live-coding-in-clojure/index.html' />
+<meta name="generator" content="WordPress 5.2.11" />
+<link rel="canonical" href="index.html" />
+<link rel='shortlink' href='https://wp.me/pW0Ls-h3' />
+<link rel="alternate" type="application/json+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=http:%252F%252Fwww.michelepasin.org%252Fblog%252F2011%252F01%252F14%252Fsetting-up-django-registration%252F" />
+<link rel="alternate" type="text/xml+oembed" href="../../../../wp-json/oembed/1.0/embed%3Furl=http:%252F%252Fwww.michelepasin.org%252Fblog%252F2011%252F01%252F14%252Fsetting-up-django-registration%252F&amp;format=xml" />
+<style data-context="foundation-flickity-css">/*! Flickity v2.0.2
+http://flickity.metafizzy.co
+---------------------------------------------- */.flickity-enabled{position:relative}.flickity-enabled:focus{outline:0}.flickity-viewport{overflow:hidden;position:relative;height:100%}.flickity-slider{position:absolute;width:100%;height:100%}.flickity-enabled.is-draggable{-webkit-tap-highlight-color:transparent;tap-highlight-color:transparent;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.flickity-enabled.is-draggable .flickity-viewport{cursor:move;cursor:-webkit-grab;cursor:grab}.flickity-enabled.is-draggable .flickity-viewport.is-pointer-down{cursor:-webkit-grabbing;cursor:grabbing}.flickity-prev-next-button{position:absolute;top:50%;width:44px;height:44px;border:none;border-radius:50%;background:#fff;background:hsla(0,0%,100%,.75);cursor:pointer;-webkit-transform:translateY(-50%);transform:translateY(-50%)}.flickity-prev-next-button:hover{background:#fff}.flickity-prev-next-button:focus{outline:0;box-shadow:0 0 0 5px #09f}.flickity-prev-next-button:active{opacity:.6}.flickity-prev-next-button.previous{left:10px}.flickity-prev-next-button.next{right:10px}.flickity-rtl .flickity-prev-next-button.previous{left:auto;right:10px}.flickity-rtl .flickity-prev-next-button.next{right:auto;left:10px}.flickity-prev-next-button:disabled{opacity:.3;cursor:auto}.flickity-prev-next-button svg{position:absolute;left:20%;top:20%;width:60%;height:60%}.flickity-prev-next-button .arrow{fill:#333}.flickity-page-dots{position:absolute;width:100%;bottom:-25px;padding:0;margin:0;list-style:none;text-align:center;line-height:1}.flickity-rtl .flickity-page-dots{direction:rtl}.flickity-page-dots .dot{display:inline-block;width:10px;height:10px;margin:0 8px;background:#333;border-radius:50%;opacity:.25;cursor:pointer}.flickity-page-dots .dot.is-selected{opacity:1}</style><style data-context="foundation-slideout-css">.slideout-menu{position:fixed;left:0;top:0;bottom:0;right:auto;z-index:0;width:256px;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none}.slideout-menu.pushit-right{left:auto;right:0}.slideout-panel{position:relative;z-index:1;will-change:transform}.slideout-open,.slideout-open .slideout-panel,.slideout-open body{overflow:hidden}.slideout-open .slideout-menu{display:block}.pushit{display:none}</style>
+<link rel='dns-prefetch' href='http://v0.wordpress.com/'/>
+<style type='text/css'>img#wpstats{display:none}</style>
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Setting up Django Registration" />
+<meta property="og:url" content="http://www.michelepasin.org/blog/2011/01/14/setting-up-django-registration/" />
+<meta property="og:description" content="Django&#8217;s admin framework includes the basic functionalities for logging in and out of the admin site, but if you&#8217;re building a so-called &#8216;social&#8217; application and want people…" />
+<meta property="article:published_time" content="2011-01-14T14:16:06+00:00" />
+<meta property="article:modified_time" content="2012-11-30T17:17:21+00:00" />
+<meta property="og:site_name" content="Parerga und Paralipomena" />
+<meta property="og:image" content="https://s0.wp.com/i/blank.jpg" />
+<meta property="og:locale" content="en_US" />
+<meta name="twitter:text:title" content="Setting up Django Registration" />
+<meta name="twitter:card" content="summary" />
+
+<!-- End Jetpack Open Graph Tags -->
+<style>.ios7.web-app-mode.has-fixed header{ background-color: rgba(3,122,221,.88);}</style>			<style type="text/css" id="wp-custom-css">
+				.entry ul li {
+	list-style: disc;
+}
+
+.entry ol li {
+	list-style: lower-roman;
+}
+
+			</style>
+			</head>
+	<body>
+		<div class="page">
+			<div id="header">
+				<a href="../../../../index.html">Parerga und Paralipomena</a> / <span class="description">At the core of all well-founded belief lies belief that is unfounded &#8211; Wittgenstein</span><span style="float:right;"><a href="../../../../feed/index.html" title="">
+						<img src="../../../../wp-content/themes/ub_modio/images/rss_black.png" alt="Parerga und Paralipomena Feed" width="14" height="14"/>
+					</a>
+				</span>
+			</div><!-- end header --><div id="content" class="widecolumn">
+
+		<div class="post" id="post-1057">
+		<h2><a href="index.html" rel="bookmark" title="Permanent Link: Setting up Django Registration">Setting up Django Registration</a>
+		</h2>
+		<div class="entry">
+				<p>Django&#8217;s <a href="https://docs.djangoproject.com/en/1.4/ref/contrib/admin/">admin framework</a> includes the basic functionalities for logging in and out of the admin site, but if you&#8217;re building a so-called &#8216;social&#8217; application and want people to be able to sign-up, log in and thus benefit from additional site functionalities then you need to use a more generic &#8216;registration&#8217; application. The good news is: most of the work has already been done, so it&#8217;s just a matter of putting things together correctly.</p>
+<p>I found a nicely written <a href="http://www.stonemind.net/blog/2007/04/13/django-registration-for-newbies/">blog post</a> on this topic, so in what follows I&#8217;m just doing a re-cap of the main steps involved and adding some other useful info.</p>
+<p>Before we start: what follows has been tested on <strike>Django 1.1</strike> <span style="color: red;">Django 1.3</span>, Python 2.6 and MySQL (note: on <span style="color: darkred;">13/8/12 I revised this post</span> so that the code would work on django 1.3 &#8211; <span style="color: darkred;">many thanks</span> to the folks who left comments and pointed out what needed to be updated!)</p>
+<h3>1) Install</h3>
+<p>Download the package from <a href="https://bitbucket.org/ubernostrum/django-registration/downloads">bitbucket</a> and add it to your application directory (or put it somewhere else and then modify your python path as needed). Then add the &#8216;registration&#8217; app to the <em>installed_apps</em> tuple in your <span style="font-family:monospace;color:#000000; ">settings.py</span>:</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '>INSTALLED_APPS <span style='color:#308080; '>=</span> <span style='color:#308080; '>(</span>
+    <span style='color:#1060b6; '>'django.contrib.auth'</span><span style='color:#308080; '>,</span>
+    <span style='color:#1060b6; '>'django.contrib.humanize'</span><span style='color:#308080; '>,</span>
+    <span style='color:#1060b6; '>'django.contrib.contenttypes'</span><span style='color:#308080; '>,</span>
+    <span style='color:#1060b6; '>'django.contrib.sessions'</span><span style='color:#308080; '>,</span>
+    <span style='color:#1060b6; '>'django.contrib.sites'</span><span style='color:#308080; '>,</span>
+    <span style='color:#1060b6; '>'django.contrib.admin'</span><span style='color:#308080; '>,</span>
+    <span style='color:#595979; '># etc..</span>
+    <span style='color:#1060b6; '>'registration'</span><span style='color:#308080; '>,</span>
+<span style='color:#308080; '>)</span>
+</pre>
+<h3>2) Syncdb</h3>
+<p>Do a quick <em><a href="http://docs.djangoproject.com/en/dev/ref/django-admin/#syncdb">syncdb</a></em> from the console, which will result in one new table being created in the DB, &#8216;RegistrationProfile&#8217;. All it contains is its primary key, the &#8216;user&#8217; key, and the &#8216;activation code&#8217; fields. Now we&#8217;ve got the data structures needed for setting up the registration application!</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '><span style='color:#308080; '>></span> python manage<span style='color:#308080; '>.</span>py syncdb
+</pre>
+<h3>3) Setting.py</h3>
+<p>Create some registration <strong>settings</strong> in <span style="font-family:monospace;color:#000000; ">settings.py</span>:</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '>ACCOUNT_ACTIVATION_DAYS<span style='color:#308080; '>=</span><span style='color:#008c00; '>7</span>
+EMAIL_HOST<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'localhost'</span>
+EMAIL_PORT<span style='color:#308080; '>=</span><span style='color:#008c00; '>1023</span>
+EMAIL_HOST_USER<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'username'</span>
+EMAIL_HOST_PASSWORD<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'password'</span>
+</pre>
+<p>Obviously you&#8217;ve got to <strong>change</strong> the settings above depending on your specific server setup (more information is available <a href="https://bitbucket.org/ubernostrum/django-registration/src/tip/docs/quickstart.rst">here</a> or <a href="http://docs.djangoproject.com/en/dev/ref/settings/?from=olddocs#email-host">here</a>). Also, see point 7 below if you&#8217;re just testing things out without a SMTP server available.</p>
+<h3>4) Urls.py</h3>
+<p>Include the required registration <strong>urls</strong> to your <span style="font-family:monospace;color:#000000; ">urls.py</span>:</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '>urlpatterns <span style='color:#308080; '>=</span> patterns<span style='color:#308080; '>(</span>"<span style='color:#308080; '>,</span>
+  <span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^admin/'</span><span style='color:#308080; '>,</span> include<span style='color:#308080; '>(</span><span style='color:#1060b6; '>'django.contrib.admin.urls'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+  <span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^accounts/'</span><span style='color:#308080; '>,</span> include<span style='color:#308080; '>(</span><span style='color:#1060b6; '>'registration.urls'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+<span style='color:#308080; '>)</span>
+</pre>
+<h3>5) Templates</h3>
+<p>Add the registration <strong>templates</strong> to your django-templates directory. The django-registration package we downloaded earlier on doesn&#8217;t include any templates, but you can easily find <em>some</em> of them online (for example <a href="http://code.djangoproject.com/browser/djangoproject.com/django_website/templates/registration">here</a>).<br />
+Anyways, no need to do that: I took those templates and added some other ones too so to create the minimal working package that&#8217;ll get you going (that doesn&#8217;t include any fancy css styling but all the basic html stuff is there). You can <a href="https://www.box.com/s/68191c48af306e450c29">download the templates here</a>, expand the zip file and put it in <span style="font-family:monospace;color:#000000; ">templates/registration</span>.</p>
+<h3>6) Done! Let&#8217;s recap..</h3>
+<p>We&#8217;re now <strong>ready</strong> to go. Let&#8217;s pause for a moment and recap what we achieved: we installed and activated django-registration, which sets up a whole bunch of new urls. These are divided into two groups:</p>
+<p><strong>a)</strong> <em>/login</em>, <em>/logout</em>, the two-step password change at <em>password/change/</em> and   <em>password/change/done/</em>; the four-step password reset at <em>password/reset/</em>,  <em>password/reset/confirm/</em>, <em>password/reset/complete/</em> and  <em>password/reset/done/</em>.<br />
+This is the original URL specification source code (you can see it on <a href="https://bitbucket.org/ubernostrum/django-registration/src/d36a38202ee3/registration/auth_urls.py">bitbucket</a> too) :</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '><span style='color:#595979; '># from django-registration / registration / auth_urls.py</span>
+urlpatterns <span style='color:#308080; '>=</span> patterns<span style='color:#308080; '>(</span><span style='color:#1060b6; '>''</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^login/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>login<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/login.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_login'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^logout/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>logout<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/logout.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_logout'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^password/change/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>password_change<span style='color:#308080; '>,</span>
+                            <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/password_change_form.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_password_change'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^password/change/done/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>password_change_done<span style='color:#308080; '>,</span>
+                            <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/password_change_done.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_password_change_done'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^password/reset/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>password_reset<span style='color:#308080; '>,</span>
+                            <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/password_reset_form.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_password_reset'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^password/reset/confirm/(?P&lt;uidb36>[0-9A-Za-z]+)-(?P&lt;token>.+)/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>password_reset_confirm<span style='color:#308080; '>,</span>
+                            <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/password_reset_confirm.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_password_reset_confirm'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^password/reset/complete/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>password_reset_complete<span style='color:#308080; '>,</span>
+                            <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/password_reset_complete.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_password_reset_complete'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^password/reset/done/$'</span><span style='color:#308080; '>,</span>
+                           auth_views<span style='color:#308080; '>.</span>password_reset_done<span style='color:#308080; '>,</span>
+                            <span style='color:#406080; '>{</span><span style='color:#1060b6; '>'template_name'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/password_reset_done.html'</span><span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'auth_password_reset_done'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+<span style='color:#308080; '>)</span>
+</pre>
+<p><strong>b)</strong> the second group of urls are <em>/activate</em> and <em>/register</em>:<br />
+This is the original URL specification source (see it on <a href="https://bitbucket.org/ubernostrum/django-registration/src/d36a38202ee3/registration/backends/default/urls.py">bitbucket</a>) :</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '><span style='color:#595979; '># django-registration / registration / backends / default / urls.py </span>
+urlpatterns <span style='color:#308080; '>=</span> patterns<span style='color:#308080; '>(</span><span style='color:#1060b6; '>''</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^activate/complete/$'</span><span style='color:#308080; '>,</span>
+                           direct_to_template<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span> <span style='color:#1060b6; '>'template'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/activation_complete.html'</span> <span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'registration_activation_complete'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       <span style='color:#595979; '># Activation keys get matched by w+ instead of the more specific</span>
+                       <span style='color:#595979; '># [a-fA-F0-9]{40} because a bad activation key should still get to the view;</span>
+                       <span style='color:#595979; '># that way it can return a sensible "invalid key" message instead of a</span>
+                       <span style='color:#595979; '># confusing 404.</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^activate/(?P&lt;activation_key>w+)/$'</span><span style='color:#308080; '>,</span>
+                           activate<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span> <span style='color:#1060b6; '>'backend'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration.backends.default.DefaultBackend'</span> <span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'registration_activate'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^register/$'</span><span style='color:#308080; '>,</span>
+                           register<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span> <span style='color:#1060b6; '>'backend'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration.backends.default.DefaultBackend'</span> <span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'registration_register'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^register/complete/$'</span><span style='color:#308080; '>,</span>
+                           direct_to_template<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span> <span style='color:#1060b6; '>'template'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/registration_complete.html'</span> <span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'registration_complete'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       url<span style='color:#308080; '>(</span><span style='color:#1060b6; '>r'^register/closed/$'</span><span style='color:#308080; '>,</span>  <span style='color:#595979; '># UNUSED</span>
+                           direct_to_template<span style='color:#308080; '>,</span>
+                           <span style='color:#406080; '>{</span> <span style='color:#1060b6; '>'template'</span><span style='color:#308080; '>:</span> <span style='color:#1060b6; '>'registration/registration_closed.html'</span> <span style='color:#406080; '>}</span><span style='color:#308080; '>,</span>
+                           name<span style='color:#308080; '>=</span><span style='color:#1060b6; '>'registration_disallowed'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                        <span style='color:#595979; '># this is the default django login module </span>
+                       <span style='color:#308080; '>(</span><span style='color:#1060b6; '>r''</span><span style='color:#308080; '>,</span> include<span style='color:#308080; '>(</span><span style='color:#1060b6; '>'registration.auth_urls'</span><span style='color:#308080; '>)</span><span style='color:#308080; '>)</span><span style='color:#308080; '>,</span>
+                       <span style='color:#308080; '>)</span>
+</pre>
+<h3>7) Testing</h3>
+<p>If you&#8217;re testing things on a development server you might not have access to an <a href="http://en.wikipedia.org/wiki/Simple_Mail_Transfer_Protocol">SMTP server</a> (needed to test the email-based registration process). In such a case you can still try out your application using a workaround. In your <span style="font-family:monospace;color:#000000; ">settings.py</span> file change the registration settings with the following ones:</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '>EMAIL_HOST <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'localhost'</span>
+EMAIL_PORT <span style='color:#308080; '>=</span> <span style='color:#008c00; '>1025</span>
+EMAIL_HOST_USER <span style='color:#308080; '>=</span> "
+EMAIL_HOST_PASSWORD <span style='color:#308080; '>=</span> "
+EMAIL_USE_TLS <span style='color:#308080; '>=</span> <span style='color:#e34adc; '>False</span>
+DEFAULT_FROM_EMAIL <span style='color:#308080; '>=</span> <span style='color:#1060b6; '>'testing@example.com'</span>
+</pre>
+<p>Then open up another <strong>console window</strong> and run a temporary &#8216;dummy&#8217; SMTP server with <a href="http://docs.python.org/library/smtpd.html">python</a>:</p>
+<pre style='color:#000020;background:#f6f8ff; padding: 9px; border: 1px dashed black; overflow: auto; '>bash<span style='color:#308080; '>-</span><span style='color:#008000; '>3.2</span>$ python <span style='color:#308080; '>-</span>m smtpd <span style='color:#308080; '>-</span>n <span style='color:#308080; '>-</span>c DebuggingServer localhost<span style='color:#308080; '>:</span><span style='color:#008c00; '>1025</span>
+</pre>
+<p>This local SMTP server remains there waiting for incoming messages. If now you go to <em>/accounts/register/</em>, fill out the form and hit ‘send’ you’ll see the registration email printed out in the console. Basically what happened is this: the ‘dummy’ python SMTP server we’ve just set up picked up django’s email-sending request and consequently printed out the email contents. If this is indeed what happened, it means that your code is working properly… and that you can use the url provided in the email to test the <strong>activation</strong> functionality too.</p>
+<p>For example, here is what you would see in the console after registering:</p>
+<pre><code style="font-size:14px;color:#000000; background:lavender; overflow:auto;">
+---------- MESSAGE FOLLOWS ----------
+Content-Type: text/plain; charset="utf-8"
+MIME-Version: 1.0
+Content-Transfer-Encoding: quoted-printable
+Subject: Activate your djangoproject.com account - you have 2 days!
+From: testing@example.com
+To: michele.pasin@hotmail.com
+Date: Wed, 12 Jan 2011 16:49:59 -0000
+Message-ID: <20110112164959.3366.35638@mymac.local>
+X-Peer: 127.0.0.1
+
+
+Someone, hopefully you, signed up for a new account at djangoproject.com using this email address. If it was you, and you'd like to activate and use your
+account, click the link below or copy and paste it into your web browser's address bar:
+
+http://127.0.0.1:8000/accounts/activate/6342fca5ffd430a820be6d98acde6e59a4c2d29c/
+
+If you didn't request this, you don't need to do anything; you won't receive any more email from us, and the account will expire automatically in two days.
+
+------------ END MESSAGE ------------</code></pre>
+<p><strong>Pasting</strong> the &#8216;activation&#8217; url in your browser should allow you to complete the registration process and check the rest of your code.</p>
+<p>Finally, keep in mind also that the django-registration application sends out emails that contain your site’s URL for the activation link, and that URL is dynamically determined using the <a href="https://docs.djangoproject.com/en/dev/ref/contrib/sites/?from=olddocs/">&#8216;sites&#8217; application</a> (normally added via <span style="font-family:monospace;color:#000000; ">settings.py</span>). By default, your domain name is listed as ‘example.com’, and the easiest way to change this is to log into the admin application and click on the ‘Sites’ link on the admin home page to get to the relevant entry.</p>
+<p>===== ++ =====</p>
+<h4>Some other possibly useful links: </h4>
+<p>Fromt the Django website: </p>
+<li><a href="http://docs.djangoproject.com/en/1.1/topics/auth/">User authentication in django</a> </li>
+<li><a href="http://docs.djangoproject.com/en/dev/topics/email/">Sending emails</a></li>
+<p>From the Django book: </p>
+<li><a href="http://www.djangobook.com/en/beta/chapter12/">Chapter 12: Sessions, users, and registration</a></li>
+<p>&nbsp;</p>
+				
+			<!-- <script src="http://digg.com/tools/diggthis.js" type="text/javascript"></script> -->
+			<!-- AddToAny BEGIN -->
+			<a class="a2a_dd" href="http://www.addtoany.com/share_save"><img src="http://static.addtoany.com/buttons/share_save_256_24.png" width="256" height="24" border="0" alt="Share/Bookmark"/></a>
+			<script type="text/javascript" src="http://static.addtoany.com/menu/page.js"></script>
+			<!-- AddToAny END -->
+			
+			
+						</div><!-- end entry --><br/><br/>
+	</div><!-- end post -->
+	<ul class="post">
+		<li><b>META</b> / ABOUT THIS POST</li>
+		<li>This entry was posted
+									on Friday, January 14th, 2011 at 2:16 pm			and is filed under <a href="../../../../category/techlife/index.html" rel="category tag">TechLife</a>, <a href="../../../../category/tips-and-tricks/index.html" rel="category tag">Tips and Tricks</a>. Tags: <a href="../../../../tag/django/index.html" rel="tag">django</a>, <a href="../../../../tag/email/index.html" rel="tag">email</a>, <a href="../../../../tag/python/index.html" rel="tag">python</a>, <a href="../../../../tag/registration/index.html" rel="tag">registration</a>, <a href="../../../../tag/smtp/index.html" rel="tag">smtp</a>, <a href="../../../../tag/smtpd/index.html" rel="tag">smtpd</a>.
+			You can follow any responses to this entry through the <a href="feed/index.html">RSS 2.0</a> feed.
+
+									Both comments and pings are currently closed.
+
+								</li>
+	</ul><br/><br/>
+	<ul class="post">
+		<li><b>PAGES</b> / FORWARD OR BACK?</li>
+		<li>Previous: <a href="../../08/the-digital-story-of-nativity-and-other-inspiring-stuff/index.html" rel="prev">The Digital Story of Nativity and other inspiring stuff</a></li>
+		<li>Next: <a href="../../21/live-coding-in-clojure/index.html" rel="next">Live coding in clojure</a></li>
+	</ul><br/><br/>
+					
+							
+			
+	
+<!-- You can start editing here. -->
+
+<h3 class="comments"><span class="dsq-postid" data-dsqidentifier="1057 http://www.michelepasin.org/blog/?p=1057">23 Responses</span> to &#8220;Setting up Django Registration&#8221;
+</h3>
+
+	<div class="alt bubble" id="comment-180">
+	<blockquote><p>Cool, nice post. As Django newbie, I followed it step by step and the setup went smooth. Cheers! :)</p>
+</blockquote>
+	<cite><a href='http://www.mr56k.info' rel='external nofollow' class='url'>56k</a> added these pithy words on <a href="index.html#comment-180" title="">Feb 04 11 at 2:30 pm</a> 	</cite> 
+			</div>
+
+	
+	<div class=" bubble" id="comment-181">
+	<blockquote><p>Unfortunately I get this.</p>
+<p>Reason given for failure:<br />
+    CSRF token missing or incorrect.</p>
+<p>In general, this can occur when there is a genuine Cross Site Request Forgery, or when Django&#8217;s CSRF mechanism has not been used correctly. For POST forms, you need to ensure:</p>
+</blockquote>
+	<cite>maraka added these pithy words on <a href="index.html#comment-181" title="">Oct 13 11 at 3:06 am</a> 	</cite> 
+			</div>
+
+	
+	<div class="alt bubble" id="comment-182">
+	<blockquote><p>@maraka: That has to do with the extra security layer added to recent django versions; there might be a variety of causes why you get the error, this page could help you though: <a href="http://stackoverflow.com/questions/1765723/django-csrf-framework-having-many-failures" rel="nofollow">http://stackoverflow.com/questions/1765723/django-csrf-framework-having-many-failures</a></p>
+</blockquote>
+	<cite>mike added these pithy words on <a href="index.html#comment-182" title="">Oct 13 11 at 8:22 am</a> 	</cite> 
+			</div>
+
+	
+	<div class=" bubble" id="comment-183">
+	<blockquote><p>I&#8217;m getting the exact same CSRF error as maraka&#8230; too bad, I was so stoked to have it almost working! This was really the best tutorial I found on this topic. &lt;3</p>
+</blockquote>
+	<cite>Mia added these pithy words on <a href="index.html#comment-183" title="">Nov 09 11 at 12:49 am</a> 	</cite> 
+			</div>
+
+	
+	<div class="alt bubble" id="comment-184">
+	<blockquote><p>Fixed issue by adding  {% csrf_token %} after the opening of the form</p>
+</blockquote>
+	<cite>Mia added these pithy words on <a href="index.html#comment-184" title="">Nov 09 11 at 1:21 am</a> 	</cite> 
+			</div>
+
+	
+	<div class=" bubble" id="comment-185">
+	<blockquote><p>[&#8230;] into it earlier but the tutorials were all confusing to me. I finally found one that made sense by Michele Pasin, in which setting up the registration package, the views and the SMTP debugging server are [&#8230;]</p>
+</blockquote>
+	<cite><a href='http://simpleappgroup.com/blog/2012/02/django-registration-authentication-and-users-names/' rel='external nofollow' class='url'>Django Registration, Authentication and User&#8217;s Names | Simple App Group, LLC</a> added these pithy words on <a href="index.html#comment-185" title="">Feb 26 12 at 9:03 pm</a> 	</cite> 
+			</div>
+
+	
+	<div class="alt bubble" id="comment-186">
+	<blockquote><p>Very nice tutorial. It works for me, a django newbie, using django 1.4 after I added the {% csrf_token %}  to forms as<br />
+someone suggested.<br />
+(A minor point: some of your code snippets contain<br />
+&#8220;smart&#8221; quotes. Straight quotes would make copying and pasting<br />
+easier.)</p>
+</blockquote>
+	<cite>pskin added these pithy words on <a href="index.html#comment-186" title="">May 22 12 at 12:31 am</a> 	</cite> 
+			</div>
+
+	
+	<div class=" bubble" id="comment-187">
+	<blockquote><p>Great tutorial.</p>
+<p>Like others, I had to:<br />
+&#8211; add the {% csrf_token %} in the template registration_form.html below the opening tag<br />
+&#8211; add the app &#8216;django.contrib.humanize&#8217; to the list of INSTALLED_APPS in settings.py<br />
+&#8211; convert the &#8220;strange&#8221; quotes that you use in your code snippets and change them into regular quotes to avoid encoding errors</p>
+</blockquote>
+	<cite>Ziegen added these pithy words on <a href="index.html#comment-187" title="">Jun 06 12 at 1:43 am</a> 	</cite> 
+			</div>
+
+	
+	<div class="alt bubble" id="comment-188">
+	<blockquote><p>Thanks! I updated the post (fixed the smart quotes issue) and the templates (added the csrf token tag) so now it all should be working on django 1.3..</p>
+</blockquote>
+	<cite>mike added these pithy words on <a href="index.html#comment-188" title="">Aug 13 12 at 5:29 pm</a> 	</cite> 
+			</div>
+
+	
+	<div class=" bubble" id="comment-189">
+	<blockquote><p>I tried all the steps but I am getting this error<br />
+&#8220;Import error at /login/<br />
+no module named urls&#8221;<br />
+I am adding django registration to my web app<br />
+and in the settings.py when I change<br />
+ROOT_URLCONF=&#8217;myapp.urls&#8217;to<br />
+ROOT_URLCONF=&#8217;registration.urls&#8217; then it works fine<br />
+but then I cannot get my site views to work<br />
+please help I am just starting to learn django</p>
+</blockquote>
+	<cite>saad added these pithy words on <a href="index.html#comment-189" title="">Sep 11 12 at 2:04 pm</a> 	</cite> 
+			</div>
+
+	
+	<div class="alt bubble" id="comment-190">
+	<blockquote><p>Hi saad,<br />
+your ROOT_URLCONF variable normally should point at the main urls.py file for your django project, not the registration app. In order to link up the registration app you should just modify the main urls.py file as described in point 4 above.</p>
+</blockquote>
+	<cite>mike added these pithy words on <a href="index.html#comment-190" title="">Sep 11 12 at 2:33 pm</a> 	</cite> 
+			</div>
+
+	
+	<div class=" bubble" id="comment-304">
+	<blockquote><p>The simple template using humanize<br />
+{% load humanize %}<br />
+so..<br />
+need &#8216;django.contrib.humanize&#8217; on INSTALLED_APPS.</p>
+<p>hope you are mind to edit the post, and yeah, it&#8217;s very useful and detailed.</p>
+<p>Thanks and sorry</p>
+</blockquote>
+	<cite>Shy added these pithy words on <a href="index.html#comment-304" title="">Oct 07 12 at 5:19 pm</a> 	</cite> 
+			</div>
+
+	
+	<div class="alt bubble" id="comment-306">
+	<blockquote><p>oh ya,<br />
+and for &#8220;mike on Sep 11 12 at 2:33 pm&#8221;<br />
+and anyone else having the &#8220;url&#8221; problem.</p>
+<p>I commented a line to<br />
+# (r&#8217;^admin/&#8217;, include(&#8216;django.contrib.admin.urls&#8217;)),<br />
+on urls.py</p>
+<p>it works for me, and hope it will work too for some random people.</p>
+<p>Sorry and Thanks :)</p>
+</blockquote>
+	<cite>Shy added these pithy words on <a href="index.html#comment-306" title="">Oct 07 12 at 5:24 pm</a> 	</cite> 
+			</div>
+
+	
+	<div class=" bubble" id="comment-2932">
+	<blockquote><p>This is a really great tutorial; thanks for putting it together! I&#8217;ve followed it and got everything working. I have one question:</p>
+<p>Is there a way to set it up so that once the user clicks the confirmation link and goes to the website, the user is logged in as a result? Right now, it seems that the confirmation activates the user, but then the user still has to click login and fill in his login details.</p>
+<p>Thanks</p>
+</blockquote>
+	<cite>Frank V added these pithy words on <a href="index.html#comment-2932" title="">Jan 16 13 at 3:10 pm</a> 	</cite> 
+			</div>
+
+	
+	<div class="alt bubble" id="comment-3374">
+	<blockquote><p>In your activate.html ,there is a line {% if account %} .Where does the account object come from?</p>
+</blockquote>
+	<cite>Sajanjoseph added these pithy words on <a href="index.html#comment-3374" title="">Jan 30 13 at 1:47 pm</a> 	</cite> 
+			</div>
+
+	
+	<div class=" bubble" id="comment-11513">
+	<blockquote><p>Great tutorial. Up and running in no time, Thanks.</p>
+</blockquote>
+	<cite>Designer023 added these pithy words on <a href="index.html#comment-11513" title="">Jun 21 13 at 3:20 pm</a> 	</cite> 
+			</div>
+
+	
+	<div class="alt bubble" id="comment-12091">
+	<blockquote><p>The current URL, accounts/, didn&#8217;t match any of these.</p>
+<p>^accounts/</p>
+<p>                ^activate/complete/$<br />
+                [name=&#8217;registration_activation_complete&#8217;]</p>
+<p>and so on.<br />
+any solution?<br />
+i am just a noob :(</p>
+</blockquote>
+	<cite>Mrinmoy Das added these pithy words on <a href="index.html#comment-12091" title="">Jul 03 13 at 6:33 am</a> 	</cite> 
+			</div>
+
+	
+	<div class=" bubble" id="comment-20144">
+	<blockquote><p>Brilliant tutorial, Got it working like a charm. Awesome thanks.</p>
+</blockquote>
+	<cite>rakesh manohar added these pithy words on <a href="index.html#comment-20144" title="">Nov 03 13 at 7:24 pm</a> 	</cite> 
+			</div>
+
+	
+	<div class="alt bubble" id="comment-21011">
+	<blockquote><p>Thanks for the post it will help me roll out my new site soon</p>
+</blockquote>
+	<cite>Ham Kibz added these pithy words on <a href="index.html#comment-21011" title="">Nov 17 13 at 2:12 pm</a> 	</cite> 
+			</div>
+
+	
+	<div class=" bubble" id="comment-33419">
+	<blockquote><p>Be careful when cutting-and-pasting the code here.  The email config in section 7 uses one / double quote in two places where there should be two / single quotes.  Python syntax error.</p>
+</blockquote>
+	<cite>face_facts added these pithy words on <a href="index.html#comment-33419" title="">Apr 25 14 at 7:06 am</a> 	</cite> 
+			</div>
+
+	
+	<div class="alt bubble" id="comment-43738">
+	<blockquote><p>I thought I should point out that the login.html template included in this tutorial includes the line :</p>
+<p>{% csrf_token %}</p>
+<p>this means the default behaviour is to redirect to / following successful login, not to the url specified by LOGIN_REDIRECT_URL in urls.py, which stumped me for a while . To redirect to LOGIN_REDIRECT_URL, just remove |default:&#8221;/&#8221; :</p>
+<p>{% csrf_token %}</p>
+<p> Hopefully I&#8217;ll have saved someone from a bit of head scratching.</p>
+</blockquote>
+	<cite>Dylan Ross added these pithy words on <a href="index.html#comment-43738" title="">Aug 03 14 at 10:19 am</a> 	</cite> 
+			</div>
+
+	
+	<div class=" bubble" id="comment-43889">
+	<blockquote><p>thanks Dylan that&#8217;s a very good point</p>
+</blockquote>
+	<cite><a href='http://michelepasin.org/' rel='external nofollow' class='url'>Mikele</a> added these pithy words on <a href="index.html#comment-43889" title="">Aug 04 14 at 11:23 am</a> 	</cite> 
+			</div>
+
+	
+	<div class="alt bubble" id="comment-66267">
+	<blockquote><p>Hi, does anyone have a clue on how to implement two step authentication with this module ?</p>
+</blockquote>
+	<cite>Flavio added these pithy words on <a href="index.html#comment-66267" title="">Jun 06 16 at 4:54 pm</a> 	</cite> 
+			</div>
+
+	
+	
+
+ 
+
+
+	</div><!-- end content -->	
+<div id="sidebar">
+
+
+	<p class="menu"><B>INSIDE&nbsp;&nbsp;&nbsp;&nbsp;&larr;</b></p><br/>
+		<p><a href="../../../../index.html">Parerga und Paralipomena</a></p>
+		<li id="pages-2" class="widget widget_pages"><h2 class="widgettitle">Pages</h2>
+		<ul>
+			<li class="page_item page-item-532"><a href="../../../../about-2/index.html">About Me</a></li>
+<li class="page_item page-item-3355"><a href="../../../../latest-from-twitter/index.html">Latest from Twitter</a></li>
+		</ul>
+			</li>
+<li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Categories</h2>
+		<ul>
+				<li class="cat-item cat-item-408"><a href="../../../../category/computermusic/index.html">Computer Music</a>
+</li>
+	<li class="cat-item cat-item-3"><a href="../../../../category/culturalinformatics/index.html">Cultural Informatics</a>
+</li>
+	<li class="cat-item cat-item-455"><a href="../../../../category/data-science/index.html">Data science</a>
+</li>
+	<li class="cat-item cat-item-4"><a href="../../../../category/informationarchitecture/index.html">Information Architecture</a>
+</li>
+	<li class="cat-item cat-item-5"><a href="../../../../category/justblogging/index.html">Just Blogging</a>
+</li>
+	<li class="cat-item cat-item-6"><a href="../../../../category/semantic-web/index.html">Semantic Web</a>
+</li>
+	<li class="cat-item cat-item-7"><a href="../../../../category/techlife/index.html">TechLife</a>
+</li>
+	<li class="cat-item cat-item-8"><a href="../../../../category/tips-and-tricks/index.html">Tips and Tricks</a>
+</li>
+		</ul>
+			</li>
+ 
+		
+		<!-- mikele: the stuff above doesn't get activated so I put it here -->
+<br/><br/>
+		<ul style="text-align:right;">
+
+			<p><b>FIND</b> / SEARCH</p>
+			<form method="get" id="search_form" action="../../../../index.html">
+				<input type="text" class="search_input" value="Type and hit enter..." name="s" id="s" onfocus="if (this.value == 'Type and hit enter...') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Type and hit enter...';}" />
+				<input type="hidden" id="searchsubmit" value="Search" />
+			</form>
+		</ul><br/>
+
+
+<!-- 	
+		<!-- mikele: adsense 
+		<br/>
+                 <ul style="text-align:right;">
+		<script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+
+		<ins class="adsbygoogle"
+		     style="display:block"
+		     data-ad-client="ca-pub-8108687655438913"
+		     data-ad-slot="2230044782"
+		     data-ad-format="auto"></ins>
+		<script>
+		(adsbygoogle = window.adsbygoogle || []).push({});
+		</script>
+                </ul><br/> 
+-->
+
+		
+		
+		
+	</div><!-- end sidebar --><div class="footer">
+	<p><b>FOOTER</b> / LEST WE FORGET<br/>
+<!-- If you'd like to support WordPress, having the "powered by" link someone on your blog is the best way, it's our only promotion or advertising. -->
+
+<!-- Change this theme as you wish, but PLEASE keep a visible link to http://www.upstartblogger.com/ somewhere on every page of your blog (for example, in the sidebar or footer). You aren't going to delete the WordPress link, are you? Please don't delete mine. Thanks! -->
+		Copyright &copy; 2004-2007 by Parerga und Paralipomena, unless otherwise noted. All rights reserved. Powered by <a href="http://wordpress.org/" title="WordPress">WordPress</a>. Original Modio theme by <a href="http://www.upstartblogger.com/" title="Upstart Blogger">Upstart Blogger</a>, modified by Michele Pasin.
+
+
+
+
+
+
+</p>
+	<!-- 47 queries. 0.317 seconds. -->
+
+
+
+
+
+</div><!-- end footer -->
+
+<!-- Start of Flickr Badge -->
+<style type="text/css">
+#flickr_badge_source_txt {padding:0; font: 11px Arial, Helvetica, Sans serif; color:#666666;}
+#flickr_badge_icon {display:block !important; margin:0 !important; border: 1px solid rgb(0, 0, 0) !important;}
+#flickr_icon_td {padding:0 5px 0 0 !important;}
+.flickr_badge_image {text-align:center !important;}
+.flickr_badge_image img {border: 1px solid black !important;}
+#flickr_www {display:block; padding:0 10px 0 10px !important; font: 11px Arial, Helvetica, Sans serif !important; color:#3993ff !important;}
+#flickr_badge_uber_wrapper table {margin-left:265px; margin-top:50px; position:absolute;}
+#flickr_badge_uber_wrapper a:hover,
+#flickr_badge_uber_wrapper a:link,
+#flickr_badge_uber_wrapper a:active,
+#flickr_badge_uber_wrapper a:visited {text-decoration:none !important; background:inherit !important;color:#3993ff;}
+#flickr_badge_wrapper {background-color:#ffffff;border: solid 1px #000000}
+#flickr_badge_source {padding:0 !important; font: 11px Arial, Helvetica, Sans serif !important; color:#666666 !important;}
+</style>
+<table id="flickr_badge_uber_wrapper" cellpadding="0" cellspacing="10" border="0"><tr><td><table cellpadding="0" cellspacing="10" border="0" id="flickr_badge_wrapper">
+<tr>
+<script type="text/javascript" src="http://www.flickr.com/badge_code_v2.gne?count=5&display=random&size=s&layout=h&source=user&user=76186999%40N00"></script>
+</tr>
+</table>
+</td></tr></table>
+<!-- End of Flickr Badge -->
+
+
+</div><!-- end page -->
+<!-- Powered by WPtouch: 4.3.39 -->	<div style="display:none">
+	</div>
+<script type='text/javascript' src='https://secure.gravatar.com/js/gprofiles.js?ver=2021Augaa'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":""};
+/* ]]> */
+</script>
+<script type='text/javascript' src='../../../../wp-content/plugins/jetpack/modules/wpgroho.js%3Fver=5.2.11'></script>
+<script type='text/javascript' src='../../../../wp-includes/js/wp-embed.min.js%3Fver=5.2.11'></script>
+<script type='text/javascript' src='https://stats.wp.com/e-202134.js' async='async' defer='defer'></script>
+<script type='text/javascript'>
+	_stq = window._stq || [];
+	_stq.push([ 'view', {v:'ext',j:'1:8.1.2',blog:'13825966',post:'1057',tz:'0',srv:'www.michelepasin.org'} ]);
+	_stq.push([ 'clickTrackerInit', '13825966', '1057' ]);
+</script>
+</body>
+</html>
