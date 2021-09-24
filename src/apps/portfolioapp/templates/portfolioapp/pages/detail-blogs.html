@@ -25,7 +25,12 @@
       {% if admin_change_url %}
       &nbsp;<a href="{{admin_change_url}}" target="_blanks" class="editbtn btn-xs btn-info">edit</a>
       {% endif %}
-      Words > <a href="{% url 'portfolioapp:words' %}?query=date&type=blogs">Blogs</a> > {{year}} > <i>{{itemtitle}}</i>
+      Words > <a href="{% url 'portfolioapp:words' %}?query=date&type=blogs">Blogs</a> > {{year}} 
+      
+      {% comment %}
+      > <i>{{itemtitle}}</i>
+      {% endcomment %}
+         
   </div>
 
   <div class="container">
@@ -39,15 +44,15 @@
           <p class="text-muted">Title:</p>
 
           <div class="lead -well">
-            <h3><b>{{itemtitle}}</b></h3>
+            <h2><b>{{itemtitle}}</b></h2>
             {# <h2><b>{{itemtitle}}</b></h2> #}
           </div>
 
 
-          <p class="text-muted">Year:</p>
+          <p class="text-muted">Date:</p>
 
           <div class="lead -well">
-            <h3>{{year}}</h3>
+            <h3>{{itempubdate}}</h3>
           </div>
 
 
