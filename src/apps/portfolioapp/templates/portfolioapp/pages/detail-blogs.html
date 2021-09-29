@@ -41,20 +41,16 @@
         <div class="col-md-8">
 
 
-          <p class="text-muted">Title:</p>
+          {% comment %}<p class="text-muted">Title:</p>  {% endcomment %}
 
-          <div class="lead -well">
-            <h2><b>{{itemtitle}}</b></h2>
-            {# <h2><b>{{itemtitle}}</b></h2> #}
+          <div>
+            <h2 class="blogtitle"><b>{{itemtitle}}</b></h2>
           </div>
 
 
-          <p class="text-muted">Date:</p>
+          <!-- <p>{{itempubdate}}</p> -->
 
-          <div class="lead -well">
-            <h3>{{itempubdate}}</h3>
-          </div>
-
+          
 
             <div class="blogentry"> 
 
@@ -93,7 +89,7 @@
             <div class="-lead">
 
               {% for x in all_urls  %}
-              <li><a href="{{x.0}}">{{x.1}}</a></li>
+              <li><a href="{{x.0|old_blog_url}}">{{x.1}}</a></li>
                 {% if not forloop.last %}{% endif %}
               {% endfor %}
 
