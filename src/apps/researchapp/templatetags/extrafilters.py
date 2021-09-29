@@ -5,6 +5,15 @@ import random
 register = template.Library()
 
 
+# ad hoc replacement for craeting valid bibtex
+@register.filter(name='old_blog_url')
+@stringfilter
+def old_blog_url(value):
+	return value.replace('/blog/', '/archived/blog/')
+	
+	
+
+
 @register.filter
 @stringfilter
 def add_braces(value):
