@@ -9,17 +9,19 @@ tags:
   - "sharing"
 ---
 
-> The online tool [mybinder.org](https://mybinder.org/) allows to turn a Git repo into a collection of interactive notebooks with one click.
+The online tool [mybinder.org](https://mybinder.org/) allows to turn a Git repo into a collection of interactive notebooks with one click.
+
+I played with it a little today and was pretty impressed! A very useful tool e.g. if you have a repository of Jupyter notebooks and want to showcase them to someone with no access to a Jupyter environment.
 
 [![](/media/static/blog_img/Screenshot-2019-05-03-binder.png)](Screenshot-2019-05-03-binder.png)
 
-I played with it a little today and was pretty impressed! A very useful tool e.g. if you have a repository of Jupyter notebooks and want to showcase them to someone with no access to a Jupyter environment.
+I was able to run many of the [Dimensions API notebooks](https://github.com/digital-science/dimensions-api) I've been working on in the last months, with little or no changes (follow [this link to try them](https://hub.mybinder.org/user/digital-science-dimensions-api-y3409gua/tree) yourself). Dependencies can be loaded on the fly, and new files (eg local settings) create just as if you are working within a normal Jupyter notebook.
 
 [![](/media/static/blog_img/Screenshot-2019-05-03-binder2.png)](Screenshot-2019-05-03-binder2.png)
 
 > See the official [docs](https://mybinder.readthedocs.io/en/latest/) for more info.
 
-I was able to run many of the [Dimensions API notebooks](https://github.com/digital-science/dimensions-api) I've been working on in the last months, with little or no changes (follow [this link to try them](https://hub.mybinder.org/user/digital-science-dimensions-api-y3409gua/tree) yourself). Dependencies can be loaded on the fly, and new files (eg local settings) create just as if you are working within a normal Jupyter notebook.
+
 
 ### Current limitations (at the time of writing)
 

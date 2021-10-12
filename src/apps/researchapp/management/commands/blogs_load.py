@@ -39,16 +39,28 @@ class Command(BaseCommand):
 		# parser.add_argument('poll_ids', nargs='+', type=int)
 
 		# Named (optional) arguments
+
 		parser.add_argument(
 			'--delete',
 			action='store_true',
 			help='Delete all blogs before adding new',
 		)
 
-	def handle(self, *args, **options):
+		parser.add_argument(
+			'--all',
+			action='store_true',
+			help='ReLoad all blogs entries, new and old, even if preexisting',
+		)
 
+	def handle(self, *args, **options):
+		
 		if options['delete']:
 			delete_all_blogs()
+
+		if options['all']:
+			OVERWRITE_ALL=True
+		else:
+			OVERWRITE_ALL=False
 
 		self.stdout.write("Reading...")
 		counter1, counter2, counter3 = 0, 0, 0
@@ -59,14 +71,17 @@ class Command(BaseCommand):
 				# blog files need to start with a date with hyphens
 				TITLE, DATE, REVIEW, PURE_MARKDOWN = parse_markdown(BLOGS_SOURCE_DIR+"/"+f)
 				# print(TITLE, PURE_MARKDOWN)
-				success = write_record(f, 
+				result = write_record(f, 
 								TITLE, 
 								DATE, 
 								REVIEW,
-								PURE_MARKDOWN)
-				if success: 
+								PURE_MARKDOWN, 
+								OVERWRITE_ALL,
+								)
+				print(result)
+				if result == "NEW": 
 					counter2 +=1
-				else:
+				elif result == "MODIFIED":
 					counter3 +=1
 
 
@@ -131,7 +146,7 @@ def parse_markdown(full_file_path):
 
 
 
-def write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN):
+def write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN, OVERWRITE_ALL):
 	"""write a record to DB
 	Input data eg:
 	2006-06-29 / review-automatist-storyteller-systems-and-the-shifting-sands-of-story-by-g-davenport-and-m-murtaugh.md
@@ -144,17 +159,19 @@ def write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN):
 	x1 = FILENAMEID[:10]
 	x2 = FILENAMEID[11:].replace(".md", "")
 
-	new_rec_flag = False
+	new_rec_flag = "MODIFIED"
 	try:
 		# if there's an object with same name, we keep that one!
 		pub = Publication.objects.get(md_file=FILENAMEID)
 		print("++++++++++++++++++++++++++ found existing obj:	%s"	 % (pub))
+		if not OVERWRITE_ALL:
+			return "SKIP"
 	except:
 		pub = Publication(md_file=FILENAMEID)
 		pub.permalink = x1.replace("-", "/") + "/" + x2
 		pub.save()
 		print("======= created new obj:	  %s"  % (pub.id))
-		new_rec_flag = True
+		new_rec_flag = "NEW"
 	
 
 	

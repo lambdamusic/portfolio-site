@@ -21,32 +21,22 @@
 
   {% block bodycontent %}
 
-  <div class="page-header">
-      {% if admin_change_url %}
-      &nbsp;<a href="{{admin_change_url}}" target="_blanks" class="editbtn btn-xs btn-info">edit</a>
-      {% endif %}
-      Words > <a href="{% url 'portfolioapp:words' %}?query=date&type=blogs">Blogs</a> > {{year}} 
-      
-      {% comment %}
-      > <i>{{itemtitle}}</i>
-      {% endcomment %}
-         
-  </div>
 
   <div class="container">
 
 
       <div class="row" style="margin-bottom:50px;">
           
-        <div class="col-md-8">
+        <div class="col-md-7">
 
 
-          {% comment %}<p class="text-muted">Title:</p>  {% endcomment %}
 
           <div>
             <h2 class="blogtitle"><b>{{itemtitle}}</b></h2>
           </div>
-
+          {% if admin_change_url %}
+          &nbsp;<a href="{{admin_change_url}}" target="_blanks" class="editbtn btn-xs btn-info">edit</a>
+          {% endif %}
 
           <!-- <p>{{itempubdate}}</p> -->
 
@@ -80,7 +70,16 @@
         {% comment %} end of left col {% endcomment %}
       
 
-        <div class="col-md-1 col-md-offset-1">
+        <div class="col-md-2 col-md-offset-1">
+
+          <p style="color: #e8e5e5; margin-top: 50px;">
+          <span style="font-size: 500%;">
+					  {{return_item.pubdate|date:"M"}}
+					</span>
+          <span style="font-size: 700%;">
+					  {{return_item.pubdate|date:"Y"}}
+					</span>
+          </p>
 
 
             {% if all_urls %}

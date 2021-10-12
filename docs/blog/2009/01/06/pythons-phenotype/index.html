@@ -6,7 +6,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2000254-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
+  gtag('config', 'UA-2000254-3');
+</script>
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
@@ -197,8 +206,13 @@
       margin-top: 50px;
       margin-bottom: 120px;
       color: #444;
+      /* font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;  */
     }
 
+    .blogentry p:first-of-type {
+      font-weight: bold;
+      font-size: 1.0em;
+    }
 
     .blogentry p {
       margin-top: 10px;
@@ -207,6 +221,7 @@
 
     .blogentry blockquote:first-of-type {
       font-size: 22px;
+      font-weight: normal;
       background: #f9f9f9;
       border-left: 10px solid #ccc;
       margin: 1.5em 10px;
@@ -409,28 +424,20 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 	
 
-  <div class="page-header">
-      
-      Words > <a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs.html">Blogs</a> > 2009 
-      
-      
-         
-  </div>
 
   <div class="container">
 
 
       <div class="row" style="margin-bottom:50px;">
           
-        <div class="col-md-8">
+        <div class="col-md-7">
 
 
-          
 
           <div>
             <h2 class="blogtitle"><b>Python&#39;s phenotype</b></h2>
           </div>
-
+          
 
           <!-- <p>Jan. 6, 2009</p> -->
 
@@ -442,10 +449,21 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
             <p>Phenotype: <em>any observable characteristic or trait of an organism: such as its morphology, development, biochemical or physiological properties, or behavior</em>.</p>
-<p>..</p>
-<p><code>IDLE 1.2 &gt;&gt;&gt; type('aaa') &lt;type 'str'&gt; &gt;&gt;&gt; type('aaa') &lt;type 'str'&gt; &gt;&gt;&gt; type('aaa') == type('a') True &gt;&gt;&gt; type(type('aaa') == type('a')) &lt;type 'bool'&gt; &gt;&gt;&gt; type(type(type('aaa') == type('a'))) &lt;type 'type'&gt; &gt;&gt;&gt; type(type(type(type('aaa') == type('a')))) &lt;type 'type'&gt; &gt;&gt;&gt; type(type(type(type(type('aaa') == type('a'))))) &lt;type 'type'&gt;</code></p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span> 
+<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;str&#39;</span><span class="o">&gt;</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> 
+<span class="kc">True</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span> 
+<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;bool&#39;</span><span class="o">&gt;</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)))</span> 
+<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;type&#39;</span><span class="o">&gt;</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))))</span> 
+<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;type&#39;</span><span class="o">&gt;</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)))))</span> 
+<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;type&#39;</span><span class="o">&gt;</span>
+</code></pre></div>
+
 <p>If you don’t know what’s going on, I’ve just been fooling around with python's <a href="http://www.cafepy.com/article/python_types_and_objects/python_types_and_objects.html">type system</a> and <a href="https://docs.python.org/3/library/idle.html">IDLE</a></p>
-<p>.</p>
 
             </div>
 
@@ -468,7 +486,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         
       
 
-        <div class="col-md-1 col-md-offset-1">
+        <div class="col-md-2 col-md-offset-1">
+
+          <p style="color: #e8e5e5; margin-top: 50px;">
+          <span style="font-size: 500%;">
+					  Jan
+					</span>
+          <span style="font-size: 700%;">
+					  2009
+					</span>
+          </p>
 
 
             
@@ -630,15 +657,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
     
 
-      <!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-2000254-3"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'UA-2000254-3');
-</script>
+      
 
 
 

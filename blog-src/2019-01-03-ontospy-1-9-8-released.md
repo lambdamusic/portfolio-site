@@ -11,7 +11,7 @@ tags:
   - "semantic-web"
 ---
 
-> Ontospy version 1.9.8 has been just released and it contains tons of improvements and new features. [Ontospy](http://lambdamusic.github.io/Ontospy/) is a lightweight open-source Python library and command line tool for working with vocabularies encoded in the [RDF](https://en.wikipedia.org/wiki/Resource_Description_Framework) family of languages.
+Ontospy version 1.9.8 has been just released and it contains tons of improvements and new features. [Ontospy](http://lambdamusic.github.io/Ontospy/) is a lightweight open-source Python library and command line tool for working with vocabularies encoded in the [RDF](https://en.wikipedia.org/wiki/Resource_Description_Framework) family of languages.
 
 Over the past month I've been working on a new version of Ontospy, which is now available for download on [Pypi](https://pypi.org/project/ontospy/). It's been quite some time in the making, so pretty glad it's finally out now.
 
