@@ -202,25 +202,30 @@
 
 
     .blogentry {
-      font-size: 1.4em;
+      font-size: 1.3em;
       margin-top: 50px;
       margin-bottom: 120px;
       color: #444;
       /* font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;  */
     }
 
-    .blogentry p:first-of-type {
+    .blogentry p.first-paragraph {
       font-weight: bold;
-      font-size: 1.0em;
+      font-size: 1.1em;
     }
 
     .blogentry p {
-      margin-top: 10px;
-      margin-bottom: 50px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .blogentry div {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .blogentry blockquote:first-of-type {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: normal;
       background: #f9f9f9;
       border-left: 10px solid #ccc;
@@ -252,14 +257,21 @@
 
     .blogentry img {
       max-width: 80%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .blogentry iframe {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .blogentry ul {
-      margin-bottom: 50px;
+      margin-bottom: 20px;
     }
 
     .blogentry li {
-      padding: 10px;
+      padding: 5px;
     }
 
 
@@ -448,13 +460,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2010/10/Screen-shot-2010-10-13-at-16.39.24.png"><img alt="Screen shot 2010-10-13 at 16.39.24.png" src="http://127.0.0.1:8000/media/static/blog_img/Screen-shot-2010-10-13-at-16.39.24.png" /></a></p>
-<p>Good news for livecoders: a <a href="http://impromptu.moso.com.au/downloads.html">new version of Impromptu is available</a> (direct link to the <a href="http://impromptu.moso.com.au/extras/impromptu_2.5.dmg">2.5 dmg package)</a>.</p>
+            <p>Good news for livecoders: a <a href="http://impromptu.moso.com.au/downloads.html">new version of Impromptu is available</a> (direct link to the <a href="http://impromptu.moso.com.au/extras/impromptu_2.5.dmg">2.5 dmg package)</a>.</p>
 <p>Apart from various bug fixes, it looks like as if the major development is the ICR (<a href="http://impromptu.moso.com.au/extras/ICR.html">impromptu compiler runtime</a>), a new set of scheme functions that facilitate the creation of faster bytecode, so that computationally-intensive tasks such as real time audio processing or open-gl can perform more efficiently.</p>
 <blockquote>
 <p>The new compiler is a far more robust and serious attempt at providing <strong>low level, but completely dynamic</strong> programming support within the Impromptu ecosystem. It is designed for situations which require low-level systems style programming. Two primary examples are audio signal processing and opengl programming - both of which require the production of highly efficient code. While attempting to achieve runtime efficiency the ICR also tries to maintain Impromptu's love of all things dynamic and is designed to coexist with the rest of Impromptu's infrastructure (Scheme, Objective-C, AudioUnits etc..).</p>
+</blockquote>
+<p>The new compiler seems to be introducing some pretty foundamental improvements:</p>
+<blockquote>
 <p>It is important to state from the outset that the new Impromptu compiler is NOT a scheme compiler. <strong>It is really its own language</strong>. This language looks like scheme (sexpr's and alike) but is in many ways semantically closer to C (a nice functional version of C :-). This is because the ICR is designed for purposes that are not suitable for the standard scheme interpreted environment. Low level tasks that require efficient processing - such as audio signal processing, graphics programming, or general numerical programming.</p>
-<p><strong>Unlike Scheme the Impromptu compiler is statically typed. You may not always see the static typing but it is always there in the background</strong>. The reason that you won't always see the typing is that the compiler includes a type-inferencer that attempts to guess at your types based on static analysis of your code. Sometimes this works great, sometimes it doesn't. When things fail, as they surely will, you are able to explicitly specify types to the compiler.</p>
+<p>Unlike Scheme the Impromptu compiler is statically typed. You may not always see the static typing but it is always there in the background. The reason that you won't always see the typing is that the compiler includes a type-inferencer that attempts to guess at your types based on static analysis of your code. Sometimes this works great, sometimes it doesn't. When things fail, as they surely will, you are able to explicitly specify types to the compiler.</p>
 </blockquote>
 <p>A big thanks to Andrew Sorensen for keeping up (and free) this great work!</p>
 
@@ -464,31 +478,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
           <hr>
             <p class="text-muted">Cite this blog post:</p>
 
-            <div class="well well-big lead">
+            <div class="well well-big">
               Michele Pasin. <a href="index.html" class="bluelink">Impromptu 2.5 released</a>. Blog post on www.michelepasin.org. Published on Oct. 13, 2010.
             </div>
             <br />
-
-        
-
-
-          <br /><br />
-
-
-        </div> 
-        
-      
-
-        <div class="col-md-2 col-md-offset-1">
-
-          <p style="color: #e8e5e5; margin-top: 50px;">
-          <span style="font-size: 500%;">
-					  Oct
-					</span>
-          <span style="font-size: 700%;">
-					  2010
-					</span>
-          </p>
 
 
             
@@ -504,6 +497,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             </div>
             <br />
             
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-2 col-md-offset-1">
+
+          <p style="color: #e8e5e5; margin-top: 10px;">
+          <span style="font-size: 500%;">
+					  Oct
+					</span>
+          <span style="font-size: 700%;">
+					  2010
+					</span>
+          </p>
 
 
         </div>
@@ -1191,6 +1204,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
     
+
+
+<script>
+
+  $( document ).ready(function() {
+    $("div.blogentry p:first").addClass( "first-paragraph" );
+});
+
+
+</script>
+
 
 
 

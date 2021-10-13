@@ -14,7 +14,7 @@ The Extempore functions explorer has been updated with the latest version of the
 
 The Extempore functions explorer is a little webapp I built [a while ago](http://www.michelepasin.org/projects/impromptudocs/) in order to make it easier to browse (and learn about) the Extempore programming language.
 
-![xtm-explorer.gif](/media/static/blog_img/xtm-explorer.gif)
+[![demo](/media/static/blog_img/xtm-explorer.gif)](/media/static/blog_img/xtm-explorer.gif)
 
 
 ### What is Extempore?

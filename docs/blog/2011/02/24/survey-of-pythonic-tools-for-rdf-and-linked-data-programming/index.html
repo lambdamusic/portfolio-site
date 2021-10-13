@@ -202,25 +202,30 @@
 
 
     .blogentry {
-      font-size: 1.4em;
+      font-size: 1.3em;
       margin-top: 50px;
       margin-bottom: 120px;
       color: #444;
       /* font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;  */
     }
 
-    .blogentry p:first-of-type {
+    .blogentry p.first-paragraph {
       font-weight: bold;
-      font-size: 1.0em;
+      font-size: 1.1em;
     }
 
     .blogentry p {
-      margin-top: 10px;
-      margin-bottom: 50px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .blogentry div {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .blogentry blockquote:first-of-type {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: normal;
       background: #f9f9f9;
       border-left: 10px solid #ccc;
@@ -252,14 +257,21 @@
 
     .blogentry img {
       max-width: 80%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .blogentry iframe {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .blogentry ul {
-      margin-bottom: 50px;
+      margin-bottom: 20px;
     }
 
     .blogentry li {
-      padding: 10px;
+      padding: 5px;
     }
 
 
@@ -448,22 +460,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>In this post I'm reporting on a recent survey I made in the context of a <a href="http://en.wikipedia.org/wiki/Linked_Data">Linked Data</a> project I'm working on, <a href="http://sailsproject.cerch.kcl.ac.uk/">SAILS</a>. The <a href="http://en.wikipedia.org/wiki/Resource_Description_Framework">Resource Description Framework</a> (RDF) is a data model and language which is quickly gaining momentum in the open-data and data-integration worlds. In SAILS we're developing a prototype for rdf-data manipulation and querying, but since the final application (of which the rdf-components is part of) will be written in Python and Django, in what follows I tried to gather information about all the existing libraries and frameworks for doing rdf-programming using python.</p>
+            <p>The <a href="http://en.wikipedia.org/wiki/Resource_Description_Framework">Resource Description Framework</a> (RDF) is a data model and language which is quickly gaining momentum in the open-data and data-integration worlds. In this post I'm reporting on a recent survey I made in the context of a <a href="http://en.wikipedia.org/wiki/Linked_Data">Linked Data</a> project I'm working on, <a href="http://sailsproject.cerch.kcl.ac.uk/">SAILS</a>.  In SAILS we're developing a prototype for RDF-data manipulation and querying, but since the final application will be written in Python and Django, in what follows I tried to gather information about all the existing libraries and frameworks for doing RDF-programming using python.</p>
 <h2>1. Python libraries for working with Rdf</h2>
 <h3>RdfLib <a href="http://www.rdflib.net/">http://www.rdflib.net/</a></h3>
 <p>RdfLib (<a href="http://www.rdflib.net/rdflib-3.0.0.tar.gz">download</a>) is a pretty solid and extensive rdf-programming kit for python. It contains parsers and serializers for RDF/XML, N3, NTriples, Turtle, TriX and RDFa. The library presents a Graph interface which can be backed by any one of a number of store implementations, including, memory, MySQL, Redland, SQLite, Sleepycat, ZODB and SQLObject.</p>
 <p>The latest release is <strong>RdfLib 3.0</strong>, although I have the feeling that many are still using the previous release, <strong>2.4</strong>. One big difference between the two is that in 3.0 some libraries have been separated into another package (called <a href="http://code.google.com/p/rdfextras/">rdfextras</a>); among these libraries there's also the one you need for processing <a href="http://en.wikipedia.org/wiki/SPARQL">sparql</a> queries (the rdf query language), so it's likely that you want to install that too. A short overview of the difference between these two recent releases of RdfLib can be found <a href="http://code.google.com/p/rdflib/wiki/UpgradingToVersion3">here</a>. The APIs documentation for RdfLib 2.4 is available <a href="http://www.rdflib.net/rdflib-2.4.0/html/index.html">here</a>, while the one for RdfLib 3.0 can be found <a href="http://code.alcidesfonseca.com/docs/rdflib/index.html">here</a>. Finally, there are also some other (a bit older, but possibly useful) docs on the <a href="http://code.google.com/p/rdflib/w/list">wiki</a>.</p>
 <p>Next thing, you might want to check out these tutorials:</p>
 <ul>
-<li>
-<p><a href="http://semanticweb.org/wiki/Getting_data_from_the_Semantic_Web.html">Getting data from the Semantic Web</a>: a nice example of how to use RdfLib and python in order to get data from <a href="http://dbpedia.org/">DBPedia</a>, the Semantic Web version of Wikipedia.</p>
-</li>
-<li>
-<p><a href="http://johngoodwin225.wordpress.com/2011/01/18/how-can-i-use-the-ordnance-survey-linked-data-a-python-rdflib-example/">How can I use the Ordnance Survey Linked Data</a>: shows how to install RdfLib and query the linked data offered by <a href="http://blog.ordnancesurvey.co.uk/2011/01/how-linked-data-can-reap-benefits/">Ordnance Survey</a>.</p>
-</li>
-<li>
-<p><a href="http://gromgull.net/blog/2011/01/a-quick-and-dirty-guide-to-your-first-time-with-rdf/">A quick and dirty guide to YOUR first time with RDF</a>: another example of querying Uk government data found on <a href="http://data.gov.uk/">data.gov.uk</a> using RdfLib and Berkely/Sleepycat DB.</p>
-</li>
+<li><a href="http://semanticweb.org/wiki/Getting_data_from_the_Semantic_Web.html">Getting data from the Semantic Web</a>: a nice example of how to use RdfLib and python in order to get data from <a href="http://dbpedia.org/">DBPedia</a>, the Semantic Web version of Wikipedia.</li>
+<li><a href="http://johngoodwin225.wordpress.com/2011/01/18/how-can-i-use-the-ordnance-survey-linked-data-a-python-rdflib-example/">How can I use the Ordnance Survey Linked Data</a>: shows how to install RdfLib and query the linked data offered by <a href="http://blog.ordnancesurvey.co.uk/2011/01/how-linked-data-can-reap-benefits/">Ordnance Survey</a>.</li>
+<li><a href="http://gromgull.net/blog/2011/01/a-quick-and-dirty-guide-to-your-first-time-with-rdf/">A quick and dirty guide to YOUR first time with RDF</a>: another example of querying Uk government data found on <a href="http://data.gov.uk/">data.gov.uk</a> using RdfLib and Berkely/Sleepycat DB.</li>
 </ul>
 <h3>RdfAlchemy <a href="http://www.openvest.com/trac/wiki/RDFAlchemy">http://www.openvest.com/trac/wiki/RDFAlchemy</a></h3>
 <p>The goal of RDFAlchemy (<a href="http://www.openvest.com/trac/wiki/RDFAlchemy#Installation">install</a> | <a href="http://www.openvest.com/public/docs/rdfalchemy/api/">apidocs</a> | <a href="http://groups.google.com/group/rdfalchemy-dev">usergroup</a>) is to allow anyone who uses python to have a object type API access to an RDF Triplestore. In a nutshell, the same way that <a href="http://www.sqlalchemy.org/">SQLAlchemy</a> is an ORM (Object Relational Mapper) for relational database users, RDFAlchemy is an ORM (Object RDF Mapper) for semantic web users.</p>
@@ -494,21 +500,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>SuRF (<a href="http://packages.python.org/SuRF/install.html#installing-rdflib">install</a> | <a href="http://packages.python.org/SuRF/#documentation">docs</a>) is an Object - RDF Mapper based on the RDFLIB python library. It exposes the RDF triple sets as sets of resources and seamlessly integrates them into the Object Oriented paradigm of python in a similar manner as ActiveRDF does for ruby.</p>
 <h3>Other smaller (but possibly useful) python libraries for rdf:</h3>
 <ul>
-<li>
-<p><a href="http://ivan-herman.name/2007/07/06/sparql-endpoint-interface-to-python/">Sparql Interface to python</a>: a minimalistic solution for querying sparql endpoints using python (<a href="http://www.ivan-herman.net/Misc/PythonStuff/SPARQL/">download</a> | <a href="http://www.ivan-herman.net/Misc/PythonStuff/SPARQL/Doc-SPARQL/">apidocs</a>). <em>UPDATE: Ivan Herman pointed out that this library has been discontinued and merged with the 'SPARQL Endpoint interface to Python' below.</em></p>
-</li>
-<li>
-<p><a href="http://sparql-wrapper.sourceforge.net/">SPARQL Endpoint interface to Python</a> another little utility for talking to a SPARQL endpoint, including having select-results mapped to rdflib terms or returned in JSON format (<a href="http://sourceforge.net/projects/sparql-wrapper/">download</a>)</p>
-</li>
-<li>
-<p><a href="http://code.google.com/p/pysparql/source/browse/trunk/src/sparql.py">PySparql</a>: again, a minimal library that does SELECT and ASK queries on an endpoint which implements the HTTP (GET or POST) bindings of the SPARQL Protocol (<a href="http://code.google.com/p/pysparql/source/browse/trunk/src/sparql.py">code page</a>)</p>
-</li>
-<li>
-<p><a href="https://github.com/mnot/sparta/">Sparta</a>: Sparts is a simple, resource-centric API for RDF graphs, built on top of RDFLIB.</p>
-</li>
-<li>
-<p><a href="http://oort.to/">Oort</a>: another Python toolkit for accessing RDF graphs as plain objects, based on RDFLIB. The project homepage hasn't been updated for a while, although there is trace of recent activity on its <a href="http://code.google.com/p/oort/">google project</a> page.</p>
-</li>
+<li><a href="http://ivan-herman.name/2007/07/06/sparql-endpoint-interface-to-python/">Sparql Interface to python</a>: a minimalistic solution for querying sparql endpoints using python (<a href="http://www.ivan-herman.net/Misc/PythonStuff/SPARQL/">download</a> | <a href="http://www.ivan-herman.net/Misc/PythonStuff/SPARQL/Doc-SPARQL/">apidocs</a>). <em>UPDATE: Ivan Herman pointed out that this library has been discontinued and merged with the 'SPARQL Endpoint interface to Python' below.</em></li>
+<li><a href="http://sparql-wrapper.sourceforge.net/">SPARQL Endpoint interface to Python</a> another little utility for talking to a SPARQL endpoint, including having select-results mapped to rdflib terms or returned in JSON format (<a href="http://sourceforge.net/projects/sparql-wrapper/">download</a>)</li>
+<li><a href="http://code.google.com/p/pysparql/source/browse/trunk/src/sparql.py">PySparql</a>: again, a minimal library that does SELECT and ASK queries on an endpoint which implements the HTTP (GET or POST) bindings of the SPARQL Protocol (<a href="http://code.google.com/p/pysparql/source/browse/trunk/src/sparql.py">code page</a>)</li>
+<li><a href="https://github.com/mnot/sparta/">Sparta</a>: Sparts is a simple, resource-centric API for RDF graphs, built on top of RDFLIB.</li>
+<li><a href="http://oort.to/">Oort</a>: another Python toolkit for accessing RDF graphs as plain objects, based on RDFLIB. The project homepage hasn't been updated for a while, although there is trace of recent activity on its <a href="http://code.google.com/p/oort/">google project</a> page.</li>
 </ul>
 <h2>2. RDF Triplestores that are python-friendly</h2>
 <p>An important component of a linked-data application is the <a href="http://en.wikipedia.org/wiki/Triplestore">triplestore</a> (that is, an RDF database): many commercial and non-commercial triplestores are available, but only a few offer out-of-the-box python interfaces. Here's a list of them:</p>
@@ -551,31 +547,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
           <hr>
             <p class="text-muted">Cite this blog post:</p>
 
-            <div class="well well-big lead">
+            <div class="well well-big">
               Michele Pasin. <a href="index.html" class="bluelink">Survey of Pythonic tools for RDF and Linked Data programming</a>. Blog post on www.michelepasin.org. Published on Feb. 24, 2011.
             </div>
             <br />
-
-        
-
-
-          <br /><br />
-
-
-        </div> 
-        
-      
-
-        <div class="col-md-2 col-md-offset-1">
-
-          <p style="color: #e8e5e5; margin-top: 50px;">
-          <span style="font-size: 500%;">
-					  Feb
-					</span>
-          <span style="font-size: 700%;">
-					  2011
-					</span>
-          </p>
 
 
             
@@ -591,6 +566,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             </div>
             <br />
             
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-2 col-md-offset-1">
+
+          <p style="color: #e8e5e5; margin-top: 10px;">
+          <span style="font-size: 500%;">
+					  Feb
+					</span>
+          <span style="font-size: 700%;">
+					  2011
+					</span>
+          </p>
 
 
         </div>
@@ -1859,55 +1854,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
       
 
-      <div class="row row_pubitem">
-
-        <hr>
-
-        <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2006</p>
-        </div>
-
-
-        <div class="col-sm-7 col-md-9">
-
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2006/12/14/time-matters-watching-lisp-experts-programming/index.html" class="bluelink " >Time matters: watching lisp experts programming</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-
-
-          </div>
-
-        
-
-
-        </div>
-
-
-
-      </div>
-
-      
-
 
 
 
@@ -1976,6 +1922,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
     
+
+
+<script>
+
+  $( document ).ready(function() {
+    $("div.blogentry p:first").addClass( "first-paragraph" );
+});
+
+
+</script>
+
 
 
 

@@ -20,7 +20,7 @@ from settings import STATICFILES_DIRS, BLOGS_ROOT
 from researchapp.models import *
 from researchapp.topics import *
 
-from researchapp.management.commands.blogs_load import parse_markdown
+from researchapp.management.commands.do_blogs_reindex import parse_markdown
 
 APP = "portfolioapp"
 

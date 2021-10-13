@@ -55,31 +55,10 @@
           <hr>
             <p class="text-muted">Cite this blog post:</p>
 
-            <div class="well well-big lead">
+            <div class="well well-big">
               Michele Pasin. <a href="{{return_item.get_absolute_url}}" class="bluelink">{{return_item.title}}</a>. Blog post on www.michelepasin.org. Published on {{itempubdate}}.
             </div>
             <br />
-
-        
-
-
-          <br /><br />
-
-
-        </div> 
-        {% comment %} end of left col {% endcomment %}
-      
-
-        <div class="col-md-2 col-md-offset-1">
-
-          <p style="color: #e8e5e5; margin-top: 50px;">
-          <span style="font-size: 500%;">
-					  {{return_item.pubdate|date:"M"}}
-					</span>
-          <span style="font-size: 700%;">
-					  {{return_item.pubdate|date:"Y"}}
-					</span>
-          </p>
 
 
             {% if all_urls %}
@@ -95,6 +74,26 @@
             </div>
             <br />
             {% endif %}
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        {% comment %} end of left col {% endcomment %}
+      
+
+        <div class="col-md-2 col-md-offset-1">
+
+          <p style="color: #e8e5e5; margin-top: 10px;">
+          <span style="font-size: 500%;">
+					  {{return_item.pubdate|date:"M"}}
+					</span>
+          <span style="font-size: 700%;">
+					  {{return_item.pubdate|date:"Y"}}
+					</span>
+          </p>
 
 
         </div>
@@ -129,5 +128,16 @@
 
 
 {% block extra_js %}
+
+
+<script>
+
+  $( document ).ready(function() {
+    $("div.blogentry p:first").addClass( "first-paragraph" );
+});
+
+
+</script>
+
 
 {% endblock extra_js %}

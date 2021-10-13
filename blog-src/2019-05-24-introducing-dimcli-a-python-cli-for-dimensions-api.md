@@ -12,7 +12,7 @@ tags:
   - "scholarly-analytics"
 ---
 
-> For the last couple of months I've been working on a new open source Python project. This is called **DimCli**  and it's a command-line library aimed at making it simpler to work with the Dimensions Analytics API.
+For the last couple of months I've been working on a new open source Python project. This is called **DimCli**  and it's a command-line library aimed at making it simpler to work with the Dimensions Analytics API.
 
 The project is [available on Github](https://github.com/lambdamusic/dimcli). In a nutshell, DimCli helps people becoming productive with the powerful scholarly analytics API from Dimensions. See the video below for a quick taster of the functionalities available.
 

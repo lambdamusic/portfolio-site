@@ -11,11 +11,11 @@ It basically scans the `zoneinfo` data already existing on your Mac and return t
 <script src="https://gist.github.com/lambdamusic/4a5b852c8f9051b1f29033619cd38e36.js"></script>
 
 
-On my Mac I found the `zoneinfo` data in this location:
+NOTE On my Mac I found the `zoneinfo` data in this location:
 
 `/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/pytz/zoneinfo/`
 
-That is needed for the script to work. You can customise that path of course, see below how to do it. 
+That path is needed for the script to work. You can customise it of course, see below how to do it. 
 
 
 ## Set up

@@ -202,25 +202,30 @@
 
 
     .blogentry {
-      font-size: 1.4em;
+      font-size: 1.3em;
       margin-top: 50px;
       margin-bottom: 120px;
       color: #444;
       /* font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;  */
     }
 
-    .blogentry p:first-of-type {
+    .blogentry p.first-paragraph {
       font-weight: bold;
-      font-size: 1.0em;
+      font-size: 1.1em;
     }
 
     .blogentry p {
-      margin-top: 10px;
-      margin-bottom: 50px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .blogentry div {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .blogentry blockquote:first-of-type {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: normal;
       background: #f9f9f9;
       border-left: 10px solid #ccc;
@@ -252,14 +257,21 @@
 
     .blogentry img {
       max-width: 80%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .blogentry iframe {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .blogentry ul {
-      margin-bottom: 50px;
+      margin-bottom: 20px;
     }
 
     .blogentry li {
-      padding: 10px;
+      padding: 5px;
     }
 
 
@@ -448,9 +460,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <blockquote>
-<p>Ever felt like softwares like <a href="https://www.mendeley.com/homepage-2-1?interaction_required=true&amp;mboxSession=ea3c06ad39f14ce29d625b9d3be138c5">Mendeley</a> or <a href="https://www.papersapp.com/">Papers</a> are great, but somehow slow you down? Ever felt like none of the many <a href="https://en.wikipedia.org/wiki/Comparison_of_reference_management_software">reference manager softwares</a> out there will ever cut it for you, cause you need something R E A L L Y SIMPLE? I did. Many times. So I've finally crossed the line and tried out building a simple commmand-line PDF manager. <a href="https://github.com/lambdamusic/pypapers">PyPapers</a>, is called.</p>
-</blockquote>
+            <p>Ever felt like softwares like <a href="https://www.mendeley.com/homepage-2-1?interaction_required=true&amp;mboxSession=ea3c06ad39f14ce29d625b9d3be138c5">Mendeley</a> or <a href="https://www.papersapp.com/">Papers</a> are great, but somehow slow you down? Ever felt like none of the many <a href="https://en.wikipedia.org/wiki/Comparison_of_reference_management_software">reference manager softwares</a> out there will ever cut it for you, cause you need something R E A L L Y SIMPLE? I did. Many times. So I've finally crossed the line and tried out building a simple commmand-line PDF manager. <a href="https://github.com/lambdamusic/pypapers">PyPapers</a>, is called.</p>
 <p>Yes - that's right - <a href="https://en.wikipedia.org/wiki/Terminal_(macOS)">command line</a>. So not for everyone. Also: this is bare bones and pre-alpha. So don't expect wonders. It basically provides a simple interface for searching a folder full of PDFs. That's all for now!</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/o74Ct1EwZwI?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -474,31 +484,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
           <hr>
             <p class="text-muted">Cite this blog post:</p>
 
-            <div class="well well-big lead">
+            <div class="well well-big">
               Michele Pasin. <a href="index.html" class="bluelink">Pypapers: a bare-bones, command line,  PDF manager</a>. Blog post on www.michelepasin.org. Published on June 30, 2019.
             </div>
             <br />
-
-        
-
-
-          <br /><br />
-
-
-        </div> 
-        
-      
-
-        <div class="col-md-2 col-md-offset-1">
-
-          <p style="color: #e8e5e5; margin-top: 50px;">
-          <span style="font-size: 500%;">
-					  Jun
-					</span>
-          <span style="font-size: 700%;">
-					  2019
-					</span>
-          </p>
 
 
             
@@ -514,6 +503,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             </div>
             <br />
             
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-2 col-md-offset-1">
+
+          <p style="color: #e8e5e5; margin-top: 10px;">
+          <span style="font-size: 500%;">
+					  Jun
+					</span>
+          <span style="font-size: 700%;">
+					  2019
+					</span>
+          </p>
 
 
         </div>
@@ -781,6 +790,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
     
+
+
+<script>
+
+  $( document ).ready(function() {
+    $("div.blogentry p:first").addClass( "first-paragraph" );
+});
+
+
+</script>
+
 
 
 

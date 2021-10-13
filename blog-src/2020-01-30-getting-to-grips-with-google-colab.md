@@ -9,7 +9,7 @@ tags:
   - "jupyter"
 ---
 
-> I've been using Google Colab on a regular basis during the last few months, as I was curious to see whether I could make the switch to it (from a more traditional Jupyter/Jupyterlab environment). As it turns out, Colab is pretty amazing in many respects but there are still situations where a local Jupyter notebook is my first choice. Keep reading to discover why!
+I've been using Google Colab on a regular basis during the last few months, as I was curious to see whether I could make the switch to it (from a more traditional Jupyter/Jupyterlab environment). As it turns out, Colab is pretty amazing in many respects but there are still situations where a local Jupyter notebook is my first choice. Keep reading to discover why!
 
 ### Google Colab VS Jupyter
 

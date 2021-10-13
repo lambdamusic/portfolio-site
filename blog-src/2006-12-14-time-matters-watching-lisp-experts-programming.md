@@ -6,6 +6,7 @@ categories:
   - "tips-and-tricks"
 tags: 
   - "lisp"
+review: true
 ---
 
 Yesterday my friend [Chris](http://systems.open.ac.uk/page.cfm?pageid=ChrisHhome) said: **you can learn more from watching an expert doing smth for 10 mins, than reading a book for an hour.**

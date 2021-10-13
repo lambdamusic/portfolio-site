@@ -5,7 +5,7 @@ categories:
   - "data-science"
 ---
 
-> A new [tutorial](https://api-lab.dimensions.ai/cookbooks/8-organizations/2-Industry-Collaboration.html) demostrating how to extract and visualize data about _industry collaborations_, by combining the Dimensions data with GRID.
+A new [tutorial](https://api-lab.dimensions.ai/cookbooks/8-organizations/2-Industry-Collaboration.html) demostrating how to extract and visualize data about _industry collaborations_, by combining the Dimensions data with GRID.
 
 Dimensions uses [GRID](https://grid.ac/) (the Global Research Identifiers Database) to unambiguously identify research organizations. GRID includes a wealth of data, for example whether an organization has type 'Education' or 'Industry'. So it's pretty easy to take advantage of these metadata in order to highlight collaboration patterns between a selected university and other organizations from the industry sector.
 

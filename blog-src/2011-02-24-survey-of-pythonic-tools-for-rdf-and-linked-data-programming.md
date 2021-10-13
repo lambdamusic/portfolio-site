@@ -12,7 +12,7 @@ tags:
   - "semanticweb"
 ---
 
-In this post I'm reporting on a recent survey I made in the context of a [Linked Data](http://en.wikipedia.org/wiki/Linked_Data) project I'm working on, [SAILS](http://sailsproject.cerch.kcl.ac.uk/). The [Resource Description Framework](http://en.wikipedia.org/wiki/Resource_Description_Framework) (RDF) is a data model and language which is quickly gaining momentum in the open-data and data-integration worlds. In SAILS we're developing a prototype for rdf-data manipulation and querying, but since the final application (of which the rdf-components is part of) will be written in Python and Django, in what follows I tried to gather information about all the existing libraries and frameworks for doing rdf-programming using python.
+The [Resource Description Framework](http://en.wikipedia.org/wiki/Resource_Description_Framework) (RDF) is a data model and language which is quickly gaining momentum in the open-data and data-integration worlds. In this post I'm reporting on a recent survey I made in the context of a [Linked Data](http://en.wikipedia.org/wiki/Linked_Data) project I'm working on, [SAILS](http://sailsproject.cerch.kcl.ac.uk/).  In SAILS we're developing a prototype for RDF-data manipulation and querying, but since the final application will be written in Python and Django, in what follows I tried to gather information about all the existing libraries and frameworks for doing RDF-programming using python.
 
 ## 1\. Python libraries for working with Rdf
 
@@ -25,9 +25,7 @@ The latest release is **RdfLib 3.0**, although I have the feeling that many are 
 Next thing, you might want to check out these tutorials:
 
 - [Getting data from the Semantic Web](http://semanticweb.org/wiki/Getting_data_from_the_Semantic_Web.html): a nice example of how to use RdfLib and python in order to get data from [DBPedia](http://dbpedia.org/), the Semantic Web version of Wikipedia.
-
 - [How can I use the Ordnance Survey Linked Data](http://johngoodwin225.wordpress.com/2011/01/18/how-can-i-use-the-ordnance-survey-linked-data-a-python-rdflib-example/): shows how to install RdfLib and query the linked data offered by [Ordnance Survey](http://blog.ordnancesurvey.co.uk/2011/01/how-linked-data-can-reap-benefits/).
-
 - [A quick and dirty guide to YOUR first time with RDF](http://gromgull.net/blog/2011/01/a-quick-and-dirty-guide-to-your-first-time-with-rdf/): another example of querying Uk government data found on [data.gov.uk](http://data.gov.uk/) using RdfLib and Berkely/Sleepycat DB.
 
 ### RdfAlchemy [http://www.openvest.com/trac/wiki/RDFAlchemy](http://www.openvest.com/trac/wiki/RDFAlchemy)
@@ -79,13 +77,9 @@ SuRF ([install](http://packages.python.org/SuRF/install.html#installing-rdflib) 
 ### Other smaller (but possibly useful) python libraries for rdf:
 
 - [Sparql Interface to python](http://ivan-herman.name/2007/07/06/sparql-endpoint-interface-to-python/): a minimalistic solution for querying sparql endpoints using python ([download](http://www.ivan-herman.net/Misc/PythonStuff/SPARQL/) | [apidocs](http://www.ivan-herman.net/Misc/PythonStuff/SPARQL/Doc-SPARQL/)). _UPDATE: Ivan Herman pointed out that this library has been discontinued and merged with the 'SPARQL Endpoint interface to Python' below._
-
 - [SPARQL Endpoint interface to Python](http://sparql-wrapper.sourceforge.net/) another little utility for talking to a SPARQL endpoint, including having select-results mapped to rdflib terms or returned in JSON format ([download](http://sourceforge.net/projects/sparql-wrapper/))
-
 - [PySparql](http://code.google.com/p/pysparql/source/browse/trunk/src/sparql.py): again, a minimal library that does SELECT and ASK queries on an endpoint which implements the HTTP (GET or POST) bindings of the SPARQL Protocol ([code page](http://code.google.com/p/pysparql/source/browse/trunk/src/sparql.py))
-
 - [Sparta](https://github.com/mnot/sparta/): Sparts is a simple, resource-centric API for RDF graphs, built on top of RDFLIB.
-
 - [Oort](http://oort.to/): another Python toolkit for accessing RDF graphs as plain objects, based on RDFLIB. The project homepage hasn't been updated for a while, although there is trace of recent activity on its [google project](http://code.google.com/p/oort/) page.
 
   

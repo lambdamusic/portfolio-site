@@ -202,25 +202,30 @@
 
 
     .blogentry {
-      font-size: 1.4em;
+      font-size: 1.3em;
       margin-top: 50px;
       margin-bottom: 120px;
       color: #444;
       /* font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;  */
     }
 
-    .blogentry p:first-of-type {
+    .blogentry p.first-paragraph {
       font-weight: bold;
-      font-size: 1.0em;
+      font-size: 1.1em;
     }
 
     .blogentry p {
-      margin-top: 10px;
-      margin-bottom: 50px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .blogentry div {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .blogentry blockquote:first-of-type {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: normal;
       background: #f9f9f9;
       border-left: 10px solid #ccc;
@@ -252,14 +257,21 @@
 
     .blogentry img {
       max-width: 80%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .blogentry iframe {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .blogentry ul {
-      margin-bottom: 50px;
+      margin-bottom: 20px;
     }
 
     .blogentry li {
-      padding: 10px;
+      padding: 5px;
     }
 
 
@@ -448,9 +460,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <blockquote>
-<p>I've been using Google Colab on a regular basis during the last few months, as I was curious to see whether I could make the switch to it (from a more traditional Jupyter/Jupyterlab environment). As it turns out, Colab is pretty amazing in many respects but there are still situations where a local Jupyter notebook is my first choice. Keep reading to discover why!</p>
-</blockquote>
+            <p>I've been using Google Colab on a regular basis during the last few months, as I was curious to see whether I could make the switch to it (from a more traditional Jupyter/Jupyterlab environment). As it turns out, Colab is pretty amazing in many respects but there are still situations where a local Jupyter notebook is my first choice. Keep reading to discover why!</p>
 <h3>Google Colab VS Jupyter</h3>
 <p><a href="https://colab.research.google.com/">Google Colaboratory</a> (also known as Colab, see the <a href="https://research.google.com/colaboratory/faq.html">faqs</a>) is a free <a href="https://en.wikipedia.org/wiki/Project_Jupyter">Jupyter</a> notebook environment that runs in the cloud and stores its notebooks on Google Drive.</p>
 <p>Colab has become extremely popular with data scientists and in particular people doing some kind of <strong>machine learning tasks</strong>. Party, I guess, that's because Colab has deep integration with Google's ML tools (eg <a href="https://en.wikipedia.org/wiki/TensorFlow">Tensorflow</a>) and in fact Colab actually permits to switch to a <a href="https://en.wikipedia.org/wiki/Tensor_processing_unit">Tensor Processing Unit</a> (TSU) when running your notebook.  For FREE. . Which, by itself, is pretty remarkable already.</p>
@@ -513,31 +523,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
           <hr>
             <p class="text-muted">Cite this blog post:</p>
 
-            <div class="well well-big lead">
+            <div class="well well-big">
               Michele Pasin. <a href="index.html" class="bluelink">Getting to grips with Google Colab</a>. Blog post on www.michelepasin.org. Published on Jan. 30, 2020.
             </div>
             <br />
-
-        
-
-
-          <br /><br />
-
-
-        </div> 
-        
-      
-
-        <div class="col-md-2 col-md-offset-1">
-
-          <p style="color: #e8e5e5; margin-top: 50px;">
-          <span style="font-size: 500%;">
-					  Jan
-					</span>
-          <span style="font-size: 700%;">
-					  2020
-					</span>
-          </p>
 
 
             
@@ -553,6 +542,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             </div>
             <br />
             
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-2 col-md-offset-1">
+
+          <p style="color: #e8e5e5; margin-top: 10px;">
+          <span style="font-size: 500%;">
+					  Jan
+					</span>
+          <span style="font-size: 700%;">
+					  2020
+					</span>
+          </p>
 
 
         </div>
@@ -2164,6 +2173,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
     
+
+
+<script>
+
+  $( document ).ready(function() {
+    $("div.blogentry p:first").addClass( "first-paragraph" );
+});
+
+
+</script>
+
 
 
 

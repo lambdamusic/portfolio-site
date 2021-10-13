@@ -202,25 +202,30 @@
 
 
     .blogentry {
-      font-size: 1.4em;
+      font-size: 1.3em;
       margin-top: 50px;
       margin-bottom: 120px;
       color: #444;
       /* font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;  */
     }
 
-    .blogentry p:first-of-type {
+    .blogentry p.first-paragraph {
       font-weight: bold;
-      font-size: 1.0em;
+      font-size: 1.1em;
     }
 
     .blogentry p {
-      margin-top: 10px;
-      margin-bottom: 50px;
+      margin-top: 30px;
+      margin-bottom: 30px;
+    }
+
+    .blogentry div {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .blogentry blockquote:first-of-type {
-      font-size: 22px;
+      font-size: 20px;
       font-weight: normal;
       background: #f9f9f9;
       border-left: 10px solid #ccc;
@@ -252,14 +257,21 @@
 
     .blogentry img {
       max-width: 80%;
+      margin-top: 20px;
+      margin-bottom: 20px;
+    }
+
+    .blogentry iframe {
+      margin-top: 20px;
+      margin-bottom: 20px;
     }
 
     .blogentry ul {
-      margin-bottom: 50px;
+      margin-bottom: 20px;
     }
 
     .blogentry li {
-      padding: 10px;
+      padding: 5px;
     }
 
 
@@ -453,28 +465,29 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h3>1. Setting up a canvas and drawing some lines on it.</h3>
 <p>This is easily done using the <em>moveTo</em> and <em>lineTo</em> functions. So let's create a simple symmetrical geometrical shape..</p>
 <p>Your browser does not support the canvas element.</p>
-<p>[inline]</p>
-<p>[script type="text/javascript"]</p>
-<p>var c=document.getElementById("myCanvas1"); var cxt=c.getContext("2d"); var i=0;</p>
-<p>for (i=1;i&lt;=5;i++) { cxt.moveTo(0, 400); cxt.lineTo(100, i * 40); cxt.lineTo(300, i * 60); cxt.lineTo(400, i * 30); cxt.lineTo(500, i * 60); cxt.lineTo(700, i * 40); cxt.lineTo(800, 400); }</p>
-<p>cxt.stroke();</p>
-<p>[/script]</p>
-<p>[/inline]</p>
+<div class="codehilite"><pre><span></span><code><span class="k">var</span> <span class="n">c</span><span class="o">=</span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;myCanvas1&quot;</span><span class="p">);</span> <span class="k">var</span> <span class="n">cxt</span><span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span> <span class="k">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">30</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="p">}</span>
+
+<span class="n">cxt</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
+</code></pre></div>
+
 <p>Here's the source code:</p>
-<!DOCTYPE HTML>
-<p>&lt;html>
-&lt;body></p>
-<canvas id\="myCanvas1" width\="800" height\="400" style\="border:1px dashed #c3c3c3;"\>
+<div class="codehilite"><pre><span></span><code><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
+<span class="p">&lt;</span><span class="nt">html</span><span class="err">\</span><span class="p">&gt;</span>
+<span class="p">&lt;</span><span class="nt">body</span><span class="err">\</span><span class="p">&gt;</span>
+
+<span class="p">&lt;</span><span class="nt">canvas</span> <span class="na">id</span><span class="err">\=&quot;</span><span class="na">myCanvas1</span><span class="err">&quot;</span> <span class="na">width</span><span class="err">\=&quot;</span><span class="na">800</span><span class="err">&quot;</span> <span class="na">height</span><span class="err">\=&quot;</span><span class="na">400</span><span class="err">&quot;</span> <span class="na">style</span><span class="err">\=&quot;</span><span class="na">border:1px</span> <span class="na">dashed</span> <span class="err">#</span><span class="na">c3c3c3</span><span class="err">;&quot;\</span><span class="p">&gt;</span>
 Your browser does not support the canvas element.
-</canvas\>
+<span class="err">&lt;</span>/canvas\&gt;
 
-<script type="text/javascript"\>
+<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="err">\</span><span class="p">&gt;</span>
 
-var c\=document.getElementById("myCanvas1");
-var cxt\=c.getContext("2d");
+var c\=document.getElementById(&quot;myCanvas1&quot;);
+var cxt\=c.getContext(&quot;2d&quot;);
 var i\=0;
 
-for (i\=1;i<=5;i++)
+for (i\=1;i<span class="err">&lt;</span>=5;i++)
 {
 cxt.moveTo(0, 400);
 cxt.lineTo(100, i \* 40);
@@ -487,161 +500,113 @@ cxt.lineTo(800, 400);
 
 cxt.stroke();
 
-</script\>
+<span class="err">&lt;</span>/script\&gt;
 
-</body\>
-</html\>
+<span class="err">&lt;</span>/body\&gt;
+<span class="err">&lt;</span>/html\&gt;
+</code></pre></div>
 
-### 2\. Creating a mirroring effect
+<h3>2. Creating a mirroring effect</h3>
+<p>Now we can increase the size of the canvas to 800 and replicate these lines at the bottom of the canvas so to achieve a 'mirroring' effect.. since we know the max Y value of the canvas (800), let's just add another loop that draws the same lines but <em>inverts</em> the Y position. This is easily achieved by subtracting the constant-dependent parameter from the max value of Y.</p>
+<div class="codehilite"><pre><span></span><code><span class="k">var</span> <span class="n">c</span><span class="o">=</span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;myCanvas2&quot;</span><span class="p">);</span> <span class="k">var</span> <span class="n">cxt</span><span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span> <span class="k">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
-Now we can increase the size of the canvas to 800 and replicate these lines at the bottom of the canvas so to achieve a 'mirroring' effect.. since we know the max Y value of the canvas (800), let's just add another loop that draws the same lines but _inverts_ the Y position. This is easily achieved by subtracting the constant-dependent parameter from the max value of Y.
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">30</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="p">}</span>
 
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span> <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">30</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="p">}</span>
 
+<span class="n">cxt</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
+</code></pre></div>
 
-Your browser does not support the canvas element.
+<p>This is how the new source code looks like:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">var</span> <span class="n">c</span>\<span class="o">=</span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;myCanvas2&quot;</span><span class="p">);</span>
+<span class="k">var</span> <span class="n">cxt</span>\<span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
+<span class="k">var</span> <span class="n">i</span>\<span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
-\[inline\]
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span>\<span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">);</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">);</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">30</span><span class="p">);</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">);</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">);</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+<span class="p">}</span>
 
-\[script type="text/javascript"\]
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span>\<span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span>\<span class="o">&gt;=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span>\<span class="o">--</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">));</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">));</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">30</span><span class="p">));</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">));</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">));</span>
+<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+<span class="p">}</span>
 
-var c=document.getElementById("myCanvas2"); var cxt=c.getContext("2d"); var i=0;
+<span class="n">cxt</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
+</code></pre></div>
 
-for (i=1;i<=5;i++) { cxt.moveTo(0, 400); cxt.lineTo(100, i \* 40); cxt.lineTo(300, i \* 60); cxt.lineTo(400, i \* 30); cxt.lineTo(500, i \* 60); cxt.lineTo(700, i \* 40); cxt.lineTo(800, 400); }
+<h3>3. Adding more graphical interest</h3>
+<p>Finally, let's parametrize a bit more the construction of this geometrical pattern by including everything into another loop, and using this new counter to increment the points ordinate position. We'll add a new variable y and use it to run the external loop 20 times. Here's the result:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">var</span> <span class="n">c</span><span class="o">=</span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;myCanvas3&quot;</span><span class="p">);</span> <span class="k">var</span> <span class="n">cxt</span><span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span> <span class="k">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="k">var</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
-for (i=5;i>=1;i--) { cxt.moveTo(0, 400); cxt.lineTo(100, 800 - (i \* 40)); cxt.lineTo(300, 800 - (i \* 60)); cxt.lineTo(400, 800 - (i \* 30)); cxt.lineTo(500, 800 - (i \* 60)); cxt.lineTo(700, 800 - (i \* 40)); cxt.lineTo(800, 400); }
+<span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">y</span><span class="o">&lt;=</span><span class="mi">20</span><span class="p">;</span><span class="n">y</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">y</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">30</span><span class="o">+</span><span class="n">y</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">y</span><span class="p">);</span> <span class="p">}</span>
 
-cxt.stroke();
+<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span> <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">30</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">y</span><span class="p">);</span> <span class="p">}</span>
 
-\[/script\]
+<span class="p">}</span>
 
-\[/inline\]
+<span class="n">cxt</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
+</code></pre></div>
 
+<p>Not too bad uh? This last modification to the code looks like this:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">var</span> <span class="n">c</span>\<span class="o">=</span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;myCanvas3&quot;</span><span class="p">);</span>
+<span class="k">var</span> <span class="n">cxt</span>\<span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
+<span class="k">var</span> <span class="n">i</span>\<span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<span class="k">var</span> <span class="n">y</span>\<span class="o">=</span><span class="mi">0</span><span class="p">;</span>
 
+<span class="k">for</span> <span class="p">(</span><span class="n">y</span>\<span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">y</span><span class="o">&lt;=</span><span class="mi">20</span><span class="p">;</span><span class="n">y</span><span class="o">++</span><span class="p">)</span>
+<span class="p">{</span>
 
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span>\<span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">y</span><span class="p">);</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">));</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">));</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">30</span><span class="o">+</span><span class="n">y</span><span class="p">));</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">));</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">));</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">y</span><span class="p">);</span>
+    <span class="p">}</span>
 
-This is how the new source code looks like:
+    <span class="k">for</span> <span class="p">(</span><span class="n">i</span>\<span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span>\<span class="o">&gt;=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span>\<span class="o">--</span><span class="p">)</span>
+    <span class="p">{</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">30</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span>
+    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">y</span><span class="p">);</span>
+    <span class="p">}</span>
 
-<canvas id\="myCanvas2" width\="800" height\="800" style\="border:1px dashed #c3c3c3;"\>
-Your browser does not support the canvas element.
-</canvas\>
+<span class="p">}</span>
 
-<script type="text/javascript"\>
+<span class="n">cxt</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
+</code></pre></div>
 
-var c\=document.getElementById("myCanvas2");
-var cxt\=c.getContext("2d");
-var i\=0;
-
-for (i\=1;i<=5;i++)
-{
-cxt.moveTo(0, 400);
-cxt.lineTo(100, i \* 40);
-cxt.lineTo(300, i \* 60);
-cxt.lineTo(400, i \* 30);
-cxt.lineTo(500, i \* 60);
-cxt.lineTo(700, i \* 40);
-cxt.lineTo(800, 400);
-}
-
-for (i\=5;i\>=1;i\--)
-{
-cxt.moveTo(0, 400);
-cxt.lineTo(100, 800 \- (i \* 40));
-cxt.lineTo(300, 800 \- (i \* 60));
-cxt.lineTo(400, 800 \- (i \* 30));
-cxt.lineTo(500, 800 \- (i \* 60));
-cxt.lineTo(700, 800 \- (i \* 40));
-cxt.lineTo(800, 400);
-}
-
-cxt.stroke();
-
-</script\>
-
-### 3\. Adding more graphical interest
-
-Finally, let's parametrize a bit more the construction of this geometrical pattern by including everything into another loop, and using this new counter to increment the points ordinate position. We'll add a new variable y and use it to run the external loop 20 times. Here's the result:
-
-
-
-Your browser does not support the canvas element.
-
-\[inline\]
-
-\[script type="text/javascript"\]
-
-var c=document.getElementById("myCanvas3"); var cxt=c.getContext("2d"); var i=0; var y=0;
-
-for (y=1;y<=20;y++) { for (i=1;i<=5;i++) { cxt.moveTo(0, 400+y); cxt.lineTo(100, i \* (40+y)); cxt.lineTo(300, i \* (60+y)); cxt.lineTo(400, i \* (30+y)); cxt.lineTo(500, i \* (60+y)); cxt.lineTo(700, i \* (40+y)); cxt.lineTo(800, 400+y); }
-
-for (i=5;i>=1;i--) { cxt.moveTo(0, 400); cxt.lineTo(100, 800 - (i \* (40+y))); cxt.lineTo(300, 800 - (i \* (60+y))); cxt.lineTo(400, 800 - (i \* (30+y))); cxt.lineTo(500, 800 - (i \* (60+y))); cxt.lineTo(700, 800 - (i \* (40+y))); cxt.lineTo(800, 400+y); }
-
-}
-
-cxt.stroke();
-
-\[/script\]
-
-\[/inline\]
-
-
-
-
-Not too bad uh? This last modification to the code looks like this:
-
-<canvas id\="myCanvas3" width\="800" height\="800" style\="border:1px dashed #c3c3c3;"\>
-Your browser does not support the canvas element.
-</canvas\>
-
-<script type="text/javascript"\>
-
-var c\=document.getElementById("myCanvas3");
-var cxt\=c.getContext("2d");
-var i\=0;
-var y\=0;
-
-for (y\=1;y<=20;y++)
-{
-
-    for (i\=1;i<=5;i++)
-    {
-    cxt.moveTo(0, 400+y);
-    cxt.lineTo(100, i \* (40+y));
-    cxt.lineTo(300, i \* (60+y));
-    cxt.lineTo(400, i \* (30+y));
-    cxt.lineTo(500, i \* (60+y));
-    cxt.lineTo(700, i \* (40+y));
-    cxt.lineTo(800, 400+y);
-    }
-
-    for (i\=5;i\>=1;i\--)
-    {
-    cxt.moveTo(0, 400);
-    cxt.lineTo(100, 800 \- (i \* (40+y)));
-    cxt.lineTo(300, 800 \- (i \* (60+y)));
-    cxt.lineTo(400, 800 \- (i \* (30+y)));
-    cxt.lineTo(500, 800 \- (i \* (60+y)));
-    cxt.lineTo(700, 800 \- (i \* (40+y)));
-    cxt.lineTo(800, 400+y);
-    }
-
-}
-
-cxt.stroke();
-
-</script\>
-
-### Cool! I'd like to know more..
-
-Yes, I agree. This opens up a new world for web-based graphics.. and I just scratched the surface of it! In particular I'd like to see how this type of graphical components can be used to compose visualizations in the digital humanities - provided more interactivity is added to them.
-
-Here are a couple if learning resources I found useful:
-
-- [Learning the basics of HTML5](http://www.netmagazine.com/tutorials/learning-basics-html5-canvas) canvas on .Net magazine online
-- [Canvas tutorial](https://developer.mozilla.org/en/canvas_tutorial) on Mozilla.org (more advanced)
-- [Javascript Graphics and Effects Frameworks](http://ajaxpatterns.org/Javascript_Graphics_and_Effects_Frameworks): useful document providing a list of the most common libraries for doing javascript-based graphics
-- [Canvas and interactivity tutorial](http://billmill.org/static/canvastutorial/index.html): a step by step discussion on how to create a 'breakout' game clone that you can play in your browser, using javascript and the canvas element
-- [Creating an HTML 5 canvas painting application](http://dev.opera.com/articles/view/html5-canvas-painting/): nice tutorial that shows how to put together several canvas drawing techniques so to build a basic 'painting' application
-- [21 Ridiculously Impressive HTML5 Canvas Experiments](http://net.tutsplus.com/articles/web-roundups/21-ridiculously-impressive-html5-canvas-experiments/): a collection of some state-of-the-art HTML5 canvas-based experiments that will make you say, “Wow!”
+<h3>Cool! I'd like to know more..</h3>
+<p>Yes, I agree. This opens up a new world for web-based graphics.. and I just scratched the surface of it! In particular I'd like to see how this type of graphical components can be used to compose visualizations in the digital humanities - provided more interactivity is added to them.</p>
+<p>Here are a couple if learning resources I found useful:</p>
+<ul>
+<li><a href="http://www.netmagazine.com/tutorials/learning-basics-html5-canvas">Learning the basics of HTML5</a> canvas on .Net magazine online</li>
+<li><a href="https://developer.mozilla.org/en/canvas_tutorial">Canvas tutorial</a> on Mozilla.org (more advanced)</li>
+<li><a href="http://ajaxpatterns.org/Javascript_Graphics_and_Effects_Frameworks">Javascript Graphics and Effects Frameworks</a>: useful document providing a list of the most common libraries for doing javascript-based graphics</li>
+<li><a href="http://billmill.org/static/canvastutorial/index.html">Canvas and interactivity tutorial</a>: a step by step discussion on how to create a 'breakout' game clone that you can play in your browser, using javascript and the canvas element</li>
+<li><a href="http://dev.opera.com/articles/view/html5-canvas-painting/">Creating an HTML 5 canvas painting application</a>: nice tutorial that shows how to put together several canvas drawing techniques so to build a basic 'painting' application</li>
+<li><a href="http://net.tutsplus.com/articles/web-roundups/21-ridiculously-impressive-html5-canvas-experiments/">21 Ridiculously Impressive HTML5 Canvas Experiments</a>: a collection of some state-of-the-art HTML5 canvas-based experiments that will make you say, “Wow!”</li>
+</ul>
 
             </div>
 
@@ -649,31 +614,10 @@ Here are a couple if learning resources I found useful:
           <hr>
             <p class="text-muted">Cite this blog post:</p>
 
-            <div class="well well-big lead">
+            <div class="well well-big">
               Michele Pasin. <a href="index.html" class="bluelink">First steps with Canvas and HTML5</a>. Blog post on www.michelepasin.org. Published on Aug. 25, 2011.
             </div>
             <br />
-
-        
-
-
-          <br /><br />
-
-
-        </div> 
-        
-      
-
-        <div class="col-md-2 col-md-offset-1">
-
-          <p style="color: #e8e5e5; margin-top: 50px;">
-          <span style="font-size: 500%;">
-					  Aug
-					</span>
-          <span style="font-size: 700%;">
-					  2011
-					</span>
-          </p>
 
 
             
@@ -689,6 +633,26 @@ Here are a couple if learning resources I found useful:
             </div>
             <br />
             
+        
+
+
+          <br /><br />
+
+
+        </div> 
+        
+      
+
+        <div class="col-md-2 col-md-offset-1">
+
+          <p style="color: #e8e5e5; margin-top: 10px;">
+          <span style="font-size: 500%;">
+					  Aug
+					</span>
+          <span style="font-size: 700%;">
+					  2011
+					</span>
+          </p>
 
 
         </div>
@@ -2188,6 +2152,17 @@ Here are a couple if learning resources I found useful:
 
 
     
+
+
+<script>
+
+  $( document ).ready(function() {
+    $("div.blogentry p:first").addClass( "first-paragraph" );
+});
+
+
+</script>
+
 
 
 
