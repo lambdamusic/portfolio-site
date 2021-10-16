@@ -1,3 +1,26 @@
+"""
+
+```
+./tools/blogs-reindex -h
+```
+
+# PREREQUISITES 
+
+1. Blog files need to start with a date with hyphens
+1. Blog files need to be in SOURCE_DIR
+1. The directory is scanned to create a registry in the DB. The local directory is the master data. 
+1. Each blog entry should contain a title and a date. Optionally, also a review flag.
+1. The webapp uses the DB registry as an index, and the local files for the MD contents. 
+1. Changing the title or date in the file contents REQUIRES updating the DB index 
+1. The ID of blog entries is the file name, stored in `md_file` field. So new contents and same filename = update data in DB
+1. ID is stored in the `md_file` field of Publications. The DB ID is the auto-increment number as usual.
+1. Blogs permalink is similar to the Wordpress one, eg "/2018/11/23/exploring-scholarly-publications-via-dbpedia/"
+
+
+
+"""
+
+
 from django.core.management.base import BaseCommand, CommandError
 from researchapp.models import *
 
@@ -5,6 +28,7 @@ import os
 import datetime
 from django.utils import timezone
 
+import click
 
 from settings import BLOGS_ROOT
 BLOGS_SOURCE_DIR = BLOGS_ROOT
@@ -15,34 +39,13 @@ from myutils.myutils import printDebug
 
 
 
-######################
-# PREREQUISITES 
-
-# 1. Blog files need to start with a date with hyphens
-# 1. Blog files need to be in SOURCE_DIR
-# 1. The directory is scanned to create a registry in the DB. The local directory is the master data. 
-# 1. Each blog entry should contain a title and a date. Optionally, also a review flag.
-# 1. The webapp uses the DB registry as an index, and the local files for the MD contents. 
-# 1. Changing the title or date in the file contents REQUIRES updating the DB index 
-# 1. The ID of blog entries is the file name, stored in `md_file` field. So new contents and same filename = update data in DB
-# 1. ID is stored in the `md_file` field of Publications. The DB ID is the auto-increment number as usual.
-# 1. Blogs permalink is similar to the Wordpress one, eg "/2018/11/23/exploring-scholarly-publications-via-dbpedia/"
-
-#######################
-
-
-
 class Command(BaseCommand):
-	help = 'Running command ....'
+	help = """Reindex the blog files in BLOGS_SOURCE_DIR. For each file, parse the markdown content and add to the DB is the file is new or has changed. 
+	The ID of blog entries is the file name, stored in `md_file` field. """
 
 	def add_arguments(self, parser):
 
-		# Positional arguments
-		# parser.add_argument('poll_ids', nargs='+', type=int)
-
-		# Named (optional) arguments
-
-		# INHERITED FROM BASECOMMAND CLASS
+		# NOTE INHERITED FROM BASECOMMAND CLASS
         # parser.add_argument(
         #     '-v', '--verbosity', action='store', dest='verbosity', default=1,
         #     type=int, choices=[0, 1, 2, 3],
@@ -55,52 +58,43 @@ class Command(BaseCommand):
 			help='Empty all blogs entries in the Django database. NOTE: this does not zero the auto-IDs counter.',
 		)
 
-		# parser.add_argument(
-		# 	'--all',
-		# 	action='store_true',
-		# 	help='ReLoad all blogs entries, new and old, even if preexisting',
-		# )
-
 		parser.add_argument(
 			'--verbose',
 			action='store_true',
-			help='ReLoad all blogs entries, new and old, even if preexisting',
+			help='Verbose mode',
+		)
+
+		parser.add_argument(
+			'--force',
+			action='store_true',
+			help='Do not bother asking for validation before saving / deleting (USE WITH CAUTION).',
 		)
 
 	def handle(self, *args, **options):
 		
 		verbose = options['verbose']
+		force = options['force']
 
 		if options['resetdb']:
-			reset_blogs_db(verbose)
+			reset_blogs_db(verbose, force)
 			return 
 
-		# if options['all']:
-		# 	OVERWRITE_ALL=True
-		# else:
-		# 	OVERWRITE_ALL=False
+		filenames_list = do_parse_md_folder(verbose, force)
 
-
-		filenames_list = do_parse_md_folder(verbose)
-		print(len(filenames_list))
+		do_cleanup_db(filenames_list, verbose, force)
 
 		print("----------\nDone")
 
 
 
 
-def do_parse_md_folder(verbose=False):
+def do_parse_md_folder(verbose=False, force=False):
 	"""Go through the MD src folder, parse files and update the DB index if they are new/updated.
 
 	Filenames need to be like this `2021-09-07-template-post.md`
-	
-	Parameters
-	----------
-	show_results : bool, default=None
-		Desc
 
 	"""
-	print("Reading...")
+	printDebug("Reading...")
 	counter1, counter2, counter3 = 0, 0, 0
 
 	filenames_list = []
@@ -119,7 +113,8 @@ def do_parse_md_folder(verbose=False):
 										DATE, 
 										REVIEW,
 										PURE_MARKDOWN, 
-										verbose
+										verbose,
+										force
 										)
 			
 			if result == "NEW": 
@@ -128,7 +123,7 @@ def do_parse_md_folder(verbose=False):
 				counter3 +=1
 
 	# finally
-	print(f"""\n# Files read: {counter1}\n# Records added: {counter2}\n# Records modified: {counter3}\n""")
+	printDebug(f"""\n# Files read: {counter1}\n# Records added: {counter2}\n# Records modified: {counter3}\n""", "bold")
 	return(filenames_list)
 
 
@@ -151,7 +146,7 @@ def parse_markdown(full_file_path, verbose=False):
 	```
 
 	"""
-	if verbose: print("Parsing..: " + full_file_path)
+	if verbose: printDebug("Parsing..: " + full_file_path)
 	with open(full_file_path) as f:
 		lines = f.readlines()
 		text_begins_flag = 0
@@ -179,22 +174,42 @@ def parse_markdown(full_file_path, verbose=False):
 		
 
 
-def reset_blogs_db(verbose=False):
+def reset_blogs_db(verbose=False, force=False):
 	"""Utility to delete all blog entries from DB
 	
 	NOTE: this does not zero the auto-IDs counter
 	
 	"""
 	blogType = PubType.objects.get(pk=13) 
-	if verbose: print(".. deleting Publications with pubtype=13...")
-	Publication.objects.filter(pubtype=blogType).delete()
-	print("***\nAll database Blog entries DELETED\n***")
-	return True
+	printDebug("Deleting Publications with pubtype=13 (=blog)...")
+	if force or click.confirm(f"Are you sure?"):
+		Publication.objects.filter(pubtype=blogType).delete()
+		printDebug("***\nAll database Blog entries DELETED\n***", "bold")
+		return True
+	return False
 
 	
+def do_cleanup_db(filenames_list, verbose=False, force=False):
+	"""Check the database for files that are not present in the Markdown folder. Delete them cause they are stale.
+
+	filenames_list = list of `md_file` values
+	"""
+
+	blogType = PubType.objects.get(pk=13) 
+	blogs = Publication.objects.filter(pubtype=blogType)
+	printDebug("Cleaning db...\n")
+	printDebug(f"# Records in db : {blogs.count()}", "bold")
+	printDebug(f"# Markdown files: {len(filenames_list)}", "bold")
+	printDebug("")
+	if blogs.count() != len(filenames_list):
+		for p in blogs:
+			if p.md_file not in filenames_list:
+				printDebug(f"Missing MD file for DB record: \n {p}", "red")
+				if force or click.confirm("Delete DB record?"):
+					p.delete()
 
 
-def try_write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN, verbose=False):
+def try_write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN, verbose=False, force=False):
 	"""Write a record to DB, if it is new or modified. 
 	Existing records that have same metadata are not touched, so to improve performance.
 
@@ -217,22 +232,27 @@ def try_write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN, verbose=Fal
 		if verbose: printDebug(f"\t=> found existing obj: {pub}", "green")
 
 		if pub.title != TITLE:
-			if verbose: print(f"++Title has changed for: {pub}")
-			flag = "MODIFIED"
+			printDebug(f"=> Title has changed for: {FILENAMEID}", "red")
+			if force or click.confirm(f"Update record in database?"):
+				flag = "MODIFIED"
 		if pub.pubdate != DATE: 
-			if verbose: print(f"++Date has changed for: {pub}")
-			flag = "MODIFIED"
+			printDebug(f"=> Date has changed for: {FILENAMEID}", "red")
+			if force or click.confirm(f"Update record in database?"):
+				flag = "MODIFIED"
 		if pub.review != REVIEW: 
-			if verbose: print(f"++REVIEW has changed for: {pub}")
-			flag = "MODIFIED"
+			printDebug(f"=> REVIEW has changed for: {FILENAMEID}", "red")
+			if force or click.confirm(f"Update record in database?"):
+				flag = "MODIFIED"
 	except:
 		# create new object if not existing
 
 		pub = Publication(md_file=FILENAMEID)
-		pub.permalink = x1.replace("-", "/") + "/" + x2
-		pub.save()
-		if verbose: print("======= created new obj:	  %s"  % (pub.id))
-		flag = "NEW"
+		printDebug(f"=> Found new markdown file: {FILENAMEID}.", "red")
+		if force or click.confirm(f"Add to database?"):
+			pub.permalink = x1.replace("-", "/") + "/" + x2
+			pub.save()
+			printDebug("\t=> Created new obj: {pub}", "green")
+			flag = "NEW"
 	
 
 	# TEMPORARY
@@ -257,7 +277,7 @@ def try_write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN, verbose=Fal
 
 		#
 		pub.save()
-		if verbose: print("Object updated with Markdown file metadata")
+		if verbose: printDebug("\t=> Object updated from Markdown file metadata", "bold")
 		#
 
 		# add author info

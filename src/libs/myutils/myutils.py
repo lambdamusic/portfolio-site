@@ -113,7 +113,7 @@ def printDebug(text, mystyle="", err=True, **kwargs):
 
     if mystyle == "comment":
         click.secho(text, dim=True, err=err)
-    elif mystyle == "important":
+    elif (mystyle == "important") or (mystyle == "bold"):
         click.secho(text, bold=True, err=err)
     elif mystyle == "normal":
         click.secho(text, reset=True, err=err)
