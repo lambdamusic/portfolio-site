@@ -1,17 +1,34 @@
 ---
-title: "A template post that will not be made visible"
-date: "2021-09-07"
+title: "A template post used for cloning posts"
+date: "2021-09-08"
 review: true
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+A few tips on making posts below.
 
-## Adding an Image
+# Adding an Image
 
 With hyperlink to big size
 
 [![title](/media/static/blog_img/img.jpg)](/media/static/blog_img/img.jpg)
 
+
+# Obsidian workflow 
+
+1. Open obsidian
+
+2. Select the Vault with the blog entries in it
+
+3. Add / Modify / Delete
+
+4. Run `./tools/blogs-reindex` 
+
+5. Run `./tools/site-dump-and-publish`
+
+
+
+
+# Command line workflow to add a new post
 
 ## 1 Making a new post
 
@@ -28,13 +45,8 @@ Once it's done, reindex the blog metadata on the site (Django DB)
 
 
 ```bash
-$ blogs_reindex
-# just adds newly created blogs 
-$ blogs_reindex --delete
-# => empty the previously registered blogs first / like a hard sync
-$ blogs_reindex --all 
-# => refresh metadata for all posts, even if they preexists // used for syncing edits to 'review' or other tags (NOT THE CONTENT)
-
+$ ./tools/blogs-reindex
+# syncs local MD folder with DB // add, update, delete records as needed 
 ```
 
 NOTE All items, even with 'review' = True, are added to the DB
@@ -55,3 +67,5 @@ $ site-dump-and-publish
 ```
 
 If Django is running, the wget extraction script will pull the entire site, copy it to /docs and push it to Github
+
+
