@@ -479,7 +479,12 @@ class Publication(mymodels.EnhancedModel):
         ]
 
     def __str__(self):
-        return "%s [%s]" % (self.title, str(self.pubdate))
+        if self.md_file:
+            # it's a blog
+            return "<%s> [md_file: %s]" % (self.title, str(self.md_file))
+        else:
+            # regular pub
+            return "<%s> [pubdate: %s]" % (self.title, str(self.pubdate))
 
     # table_order = 5
 
