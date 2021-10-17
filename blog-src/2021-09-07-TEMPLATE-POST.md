@@ -1,5 +1,5 @@
 ---
-title: "A template post used for cloning posts"
+title: "A TEMPLATE POST USED FOR CLONING POSTS"
 date: "2021-09-08"
 review: true
 ---
@@ -23,7 +23,19 @@ With hyperlink to big size
 
 4. Run `./tools/blogs-reindex` 
 
-5. Run `./tools/site-dump-and-publish`
+5. Test on http://127.0.0.1:8000/words/?type=review
+
+6. Run `./tools/site-dump-and-publish`
+
+
+# KEY FACTS 
+
+1. Blog files need to start with a date with hyphens eg `2021-09-08`
+2. Each blog entry should contain a title and a date. Optionally, also a review flag.
+3. The webapp uses the DB registry as an index, and the local files for the MD contents. 
+4. The ID of blog entries is the file name. Blog ID is stored in the `md_file` field of Publications. Internal DB ID is the auto-increment number as usual.
+5. Blogs permalink is similar to the Wordpress one, eg "/2018/11/23/exploring-scholarly-publications-via-dbpedia/". Permalink depends entirely on file name (blog ID), not the publication date metadata found in MD file.
+6. Posts in 'review' mode are still visible in local Django. Eg http://127.0.0.1:8000/blog/2021/09/07/TEMPLATE-POST/
 
 
 
@@ -58,6 +70,10 @@ NOTE the blogs contents (= text) never enter the DB! Just the blog metadata.
 * log in Django admin
   * http://127.0.0.1:8000/admin/researchapp/publication/?review__exact=1
 * use the admin link 'view on site' 
+
+OR 
+
+Test on http://127.0.0.1:8000/words/?type=review
 
 
 ## 4 Publish it

@@ -37,6 +37,10 @@ def words(request):
 	ttype = request.GET.get('type', 'all')
 	format = request.GET.get('format', 'html')
 	
+	if request.user.is_superuser:
+		admin_change_url = True
+	else:
+		admin_change_url = False
 
 	if format == 'bibtex':
 		ttype = "papers" # show only research // PS filtered also in template!
@@ -56,6 +60,7 @@ def words(request):
 		'urlname': "papers",
 		'query': query,
 		'ttype': ttype,
+		'admin_change_url': admin_change_url,
 	}
 	
 	return render(request, APP + '/pages/' + templatee, context)
@@ -184,6 +189,7 @@ def get_pubs(query, ttype):
 
 	QSET = Publication.objects.exclude(review=True)
 
+	# SORT BY PUBTYPE
 	if query == 'type':
 		# exclude talks and blog
 		pubtypegroups_list = PubType.objects.exclude(pk=12).exclude(pk=13).values_list(
@@ -197,7 +203,7 @@ def get_pubs(query, ttype):
 					pubtype__groupfk__name=x[0])))
 		return return_items
 
-
+	# SORT BY PROJECT
 	elif query == 'project':
 		valid_projects = list(
 			set([
@@ -214,6 +220,7 @@ def get_pubs(query, ttype):
 		return return_items
 
 
+	# SORT BY DATE
 	else:
 		# ==>  query == 'date':  
 		# ==>  always fallback here
@@ -231,6 +238,10 @@ def get_pubs(query, ttype):
 		elif ttype == "misc":
 
 			ddset = QSET.filter(pubtype__groupfk__pk=3)
+
+		if ttype == "review":
+			# SHOW ANYTHING IN REVIEW
+			ddset = Publication.objects.filter(review=True)
 
 		else:
 

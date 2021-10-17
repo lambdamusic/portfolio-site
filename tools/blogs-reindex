@@ -2,18 +2,10 @@
 
 # this command reads the markdown folder and creates entries in the Django DB
 
-# NOTE All items, even with 'review' = True, are added to the DB
-
-# $ blogs_load --delete
-# => empty the DB first 
-# $ blogs_load --all 
-# => refresh all posts, even if the ID (= filename) preexists
-
-
 echo "+++++++++++++++++"
 echo -e "\nREFRESHING BLOGS INDEX..."
 echo "+++++++++++++++++"
 src/manage.py do_blogs_reindex $1
 
 
-# PS use --delete to empty the database too
+# $ blogs_reindex --help // more info
