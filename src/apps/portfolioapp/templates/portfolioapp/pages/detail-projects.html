@@ -26,10 +26,10 @@
 		&nbsp;<a href="{{admin_change_url}}" target="_blanks" class="editbtn btn-xs btn-info">edit</a>
 	{% endif %}
 	
-    Projects > {{project.title}}
+    Projects > {{return_item.title}}
 
 	&nbsp;&nbsp;&nbsp;
-	{% for t in project.tags.all  %}
+	{% for t in return_item.tags.all  %}
 		<a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="">#{{t.name|capfirst}}</a>{% if not forloop.last %}&nbsp;&nbsp;{% endif %}
 	{% endfor %}
 			
@@ -43,22 +43,22 @@
 				<br />
 				<div class="col-md-6">
 					{% comment %} <p class="text-muted">Description:</p> {% endcomment %}
-					<p class="bluelinks_inside">{{project.description|safe}}</p>
+					<p class="bluelinks_inside">{{return_item.description|safe}}</p>
 					
 
-					{% if project.embedcode1 %}
+					{% if return_item.embedcode1 %}
 
 						<div class="paragraph_embed">
 							{# <br /> #}
-							{{project.embedcode1|safe}}
+							{{return_item.embedcode1|safe}}
 						</div>
 
 					{% endif %}
 
-					{% if project.embedcode2 %}
+					{% if return_item.embedcode2 %}
 						<div class="paragraph_embed">
 							<br />
-							{{project.embedcode2|safe}}
+							{{return_item.embedcode2|safe}}
 						</div>
 
 					{% endif %}
@@ -71,23 +71,23 @@
 
 					{# ROLE #}
 					<span class="text-black">Role:</span>
-						&nbsp;&nbsp;{{project.myrole|safe}}  <br />
+						&nbsp;&nbsp;{{return_item.myrole|safe}}  <br />
 
-					{% if  project.datefrom and project.dateto %}
+					{% if  return_item.datefrom and return_item.dateto %}
 						<span class="text-black">Date:</span>
-						&nbsp;&nbsp;{{project.datefrom|date:"M Y"}} - {{project.dateto|date:"M Y"}}  <br />
+						&nbsp;&nbsp;{{return_item.datefrom|date:"M Y"}} - {{return_item.dateto|date:"M Y"}}  <br />
 					{% else %}
-						{% if  project.datefrom %}
+						{% if  return_item.datefrom %}
 							<span class="text-black">Date:</span>
-							&nbsp;&nbsp;{{project.datefrom|date:"M Y"}} <br />
+							&nbsp;&nbsp;{{return_item.datefrom|date:"M Y"}} <br />
 						{% endif %}
 					{% endif %}
 
 
 
 
-					{% if  project.all_urls %}
-						{% for u in project.all_urls %}
+					{% if  return_item.all_urls %}
+						{% for u in return_item.all_urls %}
 							<span class="text-black">Link:</span>
 							&nbsp;&nbsp;<a class='url' href="{{u.0}}" target="_blank">{{u.1}}</a><br />
 						{% endfor %}
@@ -111,8 +111,8 @@
 					{% for img in project_images_names  %}
 						<div class="col-md-8 col-sm-8 col-md-offset-2  ">
 							<div class="project-thumbnail">
-							<a href="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}" class="thumbnail" style="margin-bottom: 50px;">
-								<img src="{% static 'manual_img/' %}{{ project.urlstub }}/{{ img }}">
+							<a href="{% static 'manual_img/' %}{{ return_item.urlstub }}/{{ img }}" class="thumbnail" style="margin-bottom: 50px;">
+								<img src="{% static 'manual_img/' %}{{ return_item.urlstub }}/{{ img }}">
 							</a>
 							</div>
 						</div>
@@ -142,7 +142,7 @@
 				</a>
 				
 					
-				<p class="text-center thumb-title"><a class="project-title {% if p.id == project.id %}project-active{% endif %}" href="{{p.get_absolute_url}}">{{p.title}}</a>
+				<p class="text-center thumb-title"><a class="project-title {% if p.id == return_item.id %}project-active{% endif %}" href="{{p.get_absolute_url}}">{{p.title}}</a>
 					<br />
 					{% for t in p.tags.all  %}
 						<a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="keyword">{{t.name|capfirst}}</a>{% if not forloop.last %},&nbsp;{% endif %}

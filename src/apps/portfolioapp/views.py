@@ -179,7 +179,7 @@ def projects(request, namedetail=""):
 
 		context = {
 			'admin_change_url': admin_change_url,
-			'project': return_item,
+			'return_item': return_item,
 			'project_images_names': sorted(project_images_names),
 			'ALL_PROJECTS': Project.objects.all().order_by("-datefrom")
 		}
@@ -189,102 +189,6 @@ def projects(request, namedetail=""):
 
 	return render(request, APP + '/pages/' + templatee, context)
 
-
-
-
-# def papers(request, year="", month="", day="", namedetail=""):
-# 	"""
-# 	papers page
-# 	"""
-# 	context = {}
-
-# 	if not namedetail:
-
-# 		# PUBLICATIONS LIST  PAGE
-
-# 		query = request.GET.get('query', 'date')
-# 		ttype = request.GET.get('type', 'all')
-# 		format = request.GET.get('format', 'html')
-# 		return_items = get_pubs(query, ttype)
-# 		context = {
-# 			'return_items': return_items,
-# 			'urlname': "papers",
-# 		}
-# 		if format == 'bibtex':
-# 			templatee = "papers.bibtex.txt"
-
-# 		elif format == 'txt':
-# 			templatee = "papers.txt"
-
-# 		else:
-# 			templatee = "papers.html"
-
-
-
-# 	else:
-
-# 		permalink = f"""{year}/{month}/{day}/{namedetail}"""
-# 		# PAPERS DETAILs
-
-# 		return_item = get_object_or_404(Publication, permalink=permalink)
-
-# 		try:  # bugfix after changing logic for speaking events
-# 			pubtypegroup = return_item.pubtype.groupfk.name
-# 		except:
-# 			pubtypegroup = ""
-
-# 		if request.user.is_superuser:
-# 			admin_change_url = return_item.get_admin_url()
-# 		else:
-# 			admin_change_url = None
-
-# 		# CASE 1: # BLOG / MARKDOWN
-# 		if return_item.pubtype.pk == 13:  
-
-# 			#
-# 			# get the contents from the source MD files 
-# 			# NOTE local file name is stored in `url1`
-# 			TITLE, DATE, REVIEW, PURE_MARKDOWN= parse_markdown(BLOGS_ROOT + return_item.url1)
-
-# 			html_blog_entry = markdown.markdown(PURE_MARKDOWN)
-
-# 			context = {
-# 				'return_item' : return_item,
-# 				'admin_change_url' : admin_change_url,
-# 				'itemtitle': return_item.title,
-# 				'itempubdate': return_item.pubdate,
-# 				# 'summary': return_item.pub_summary(),
-# 				# 'abstract': return_item.abstract,
-# 				'blog_entry': html_blog_entry,
-# 				'year': return_item.pubdate.year,
-# 				'all_urls': return_item.all_urls(),
-# 				'type': pubtypegroup,
-# 				'all_papers_list' : get_related_pubs(return_item),
-# 			}
-
-# 			templatee = "detail-papers.html"
-
-# 		# CASE 2: # REGULAR RESEARCH PAPER
-# 		else:
-			
-# 			context = {
-# 				'return_item' : return_item,
-# 				'admin_change_url' : admin_change_url,
-# 				'itemtitle': return_item.title,
-# 				'itempubdate': return_item.pubdate,
-# 				'summary': return_item.pub_summary(),
-# 				'abstract': return_item.abstract,
-# 				'year': return_item.pubdate.year,
-# 				'all_urls': return_item.all_urls(),
-# 				'type': pubtypegroup,
-# 				'itemembed1': return_item.embedcode1,
-# 				'all_papers_list' : get_related_pubs(return_item),
-# 				# 'all_papers_list' : get_pubs('date')
-# 			}
-
-# 			templatee = "detail-papers.html"
-
-# 	return render(request, APP + '/pages/' + templatee, context)
 
 
 
@@ -347,7 +251,7 @@ def sounds(request, namedetail=""):
 			admin_change_url = None
 
 		context = {
-			'item': return_item,  # 2021-08-31 pass full object
+			'return_item': return_item,  # 2021-08-31 pass full object
 			'itemtitle': return_item.title,
 			'admin_change_url' : admin_change_url,
 			'itemdesc': return_item.description,

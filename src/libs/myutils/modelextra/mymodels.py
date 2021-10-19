@@ -110,6 +110,21 @@ class EnhancedModel(TimeStampedModel):
         # for attr, value in self.__dict__.iteritems():
         #	yield attr, value
 
+
+    @property
+    def convert_in_meta(self):
+        """Util to create a meta description text for search engines indexing
+        See https://stackoverflow.com/questions/66930647/can-you-add-html-meta-description-to-django-blog-post-model
+        """
+        title = (self.title)[0:50]
+        try:
+            description = (self.description)[0:100]
+        except: 
+            description = ""
+        meta_text = title + str(description)
+        return meta_text
+
+
     class Meta:
         abstract = True
 

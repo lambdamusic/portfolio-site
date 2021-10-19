@@ -379,6 +379,7 @@ class Publication(mymodels.EnhancedModel):
         return ll
 
     def pub_summary(self):
+        """Generate a nice collation of various key fields"""
         authors = printmanyauthors(self)
         title = self.title
         pubtype = self.journal or self.conference
