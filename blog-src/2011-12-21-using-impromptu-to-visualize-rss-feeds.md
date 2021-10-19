@@ -21,7 +21,9 @@ The application relies on a bunch of XML processing functions that I found withi
 
 By using that, I created a function that extracts title and url info from the guardian feed:
 
-(load "xml\_lib.scm")
+
+```scheme
+(load "xml_lib.scm")
 (define feedurl "http://feeds.guardian.co.uk/theguardian/world/rss")
 
 ;;
@@ -30,7 +32,7 @@ By using that, I created a function that extracts title and url info from the gu
 
 (define get-articles-online
      (lambda ()
-        (let\* ((out '())
+        (let* ((out '())
                (feed (xml:load-url feedurl))
                (titles (objc:nsarray->list (xml:xpath (xml:get-root-node feed)
                                                 "channel/item/title/text()")))
@@ -42,60 +44,67 @@ By using that, I created a function that extracts title and url info from the gu
                            (set! out (append out (list (list xx yy))))))
                 titles urls)
            out)))
+```
 
 Some feed titles are a bit longish, so I added a utility function formattext that wraps the titles' text if they exceed a predefined length.
 
+```scheme
 (define formattext 
    (lambda (maxlength txt posx posy)
       (let ((l (string-length txt)))      
-         (if (\> l maxlength)
+         (if (> l maxlength)
              (let loop ((i 0)
                         (j maxlength) ;; comparison value: it decreases at each recursion (except the first one) 
                         (topvalue maxlength)) ;; komodo value : must be equal to j at the beginning
-                (if (equal? (\- topvalue i) j) ;; the first time
+                (if (equal? (- topvalue i) j) ;; the first time
                     (loop (+ i 1) j topvalue)
                     (begin   ;(print (substring txt (- topvalue i) j))
-                             (if (string=? (substring txt (\- topvalue i) j) " ")
-                                 (string-append (substring txt 0 (\- topvalue i)) 
+                             (if (string=? (substring txt (- topvalue i) j) " ")
+                                 (string-append (substring txt 0 (- topvalue i)) 
                                                 "n" 
-                                                (substring txt (\- topvalue i) (string-length txt)))
+                                                (substring txt (- topvalue i) (string-length txt)))
                                  (if (< i topvalue) ;;avoid negative indexes in substring
-                                     (loop (+ i 1) (\- j 1) topvalue))))))
+                                     (loop (+ i 1) (- j 1) topvalue))))))
              txt))))
+```
 
 And here's the **main loop**: it goes through all the feed items at a predefined speed, and displays it on the canvas using a cosine oscillator to vary the colours a bit. At the end of it I'm also updating 3 global variables that are used for the mouse-click-capturing routine.
 
+```scheme
 (define displayloop
    (lambda (beat feeds) 
-      (let\* ((dur 5)
-             (posx  (random 0 (\- \*canvas\_max\_x\* 350)))
-             (posy  (random 10 (\- \*canvas\_max\_y\* 150)))
+      (let* ((dur 5)
+             (posx  (random 0 (- *canvas_max_x* 350)))
+             (posy  (random 10 (- *canvas_max_y* 150)))
              (txt (formattext 40 (car (car feeds)) posx posy))
              (dim ;(+ (length feeds) 10))                  
-                  (if (\= (length feeds) 29)
+                  (if (= (length feeds) 29)
                       60  ;; if it's the first element of the feed list make it bigger
                       (random 25 50)))
-             (fill (if (\= (length feeds) 29)
+             (fill (if (= (length feeds) 29)
                          '(1 0 (random) 1)  ;; if it's the first element of the feed list make it reddish
                          (list (random) 1 (random) 1)))
              (style (gfx:make-text-style "Arial" dim fill)))
-         (gfx:clear-canvas (\*metro\* beat) \*canvas\* (list (cosr .5 .6 .001) 0 (cosr .5 .6 .001) .5 ))
-         (gfx:draw-text (\*metro\* beat) \*canvas\* txt style (list posx posy))
-         (set! \*pos\_x\* posx)
-         (set! \*pos\_y\* posy)
-         (set! \*current\_url\* (cadr (car feeds)))
-     (callback (\*metro\* (+ beat (\* 1/2 dur))) 'displayloop (+ beat dur)
+         (gfx:clear-canvas (*metro* beat) *canvas* (list (cosr .5 .6 .001) 0 (cosr .5 .6 .001) .5 ))
+         (gfx:draw-text (*metro* beat) *canvas* txt style (list posx posy))
+         (set! *pos_x* posx)
+         (set! *pos_y* posy)
+         (set! *current_url* (cadr (car feeds)))
+     (callback (*metro* (+ beat (* 1/2 dur))) 'displayloop (+ beat dur)
                (if-cdr-notnull feeds 
                                (get-articles-online))))))
+```
 
 In order to capture the clicks on the feed titles I simply create a rectangle path based on the x,y coordinates randomly assigned when displaying the title on the canvas. These coordinates are stored in global variables so that they can be updated constantly.
 
-(io:register-mouse-events \*canvas\*)
+```scheme
+(io:register-mouse-events *canvas*)
 (define io:mouse-down
    (lambda (x y)
       (print x y)
-      (when (gfx:point-in-path? (gfx:make-rectangle \*pos\_x\* \*pos\_y\* 200 200) x y )
-            (util:open-url \*current\_url\*))))
+      (when (gfx:point-in-path? (gfx:make-rectangle *pos_x* *pos_y* 200 200) x y )
+            (util:open-url *current_url*))))
+```
 
 Finally, the util:open-url opens up a url string in your browser (I've already talked about it [here](http://www.michelepasin.org/blog/2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/)).
 
@@ -112,4 +121,3 @@ Some other things it'd be nice to do:
 - Refining the **xml-tree parsing** function, which now is very very minimal. We could extract news entries description and other stuff that can make the app more informative.
 - Adding some **background music** to it.
 
-Any other ideas?

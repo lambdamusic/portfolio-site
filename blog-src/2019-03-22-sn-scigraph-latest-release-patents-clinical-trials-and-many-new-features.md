@@ -14,7 +14,7 @@ We are pleased to announce the **third release** of [Springer Nature Scigraph Li
 
 This release includes a complete **refactoring of the SN SciGraph data model**. Following up on users feedback, we have simplified it using [Schema.org](https://schema.org/) and [JSON-LD](https://en.wikipedia.org/wiki/JSON-LD), so to make it easier to understand and consume the data also for non-linked data specialists.  
 
-This release includes **two brand new datasets** - Patents and Clinical Trials linked to Springer Nature publications - which have been made available by our partner [Digital Science](https://www.digital-science.com/), and in particular the [Dimensions](http://dimensions.ai) team.
+Also, this release includes **two brand new datasets** - Patents and Clinical Trials linked to Springer Nature publications - which have been made available by our partner [Digital Science](https://www.digital-science.com/), and in particular the [Dimensions](http://dimensions.ai) team.
 
 ## What's new
 

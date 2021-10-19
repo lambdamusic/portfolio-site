@@ -24,9 +24,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+
+    <meta name="author" content="Michele Pasin">
+  
+  <meta name="description" content="Exploring scholarly publications using DBPedia concepts: an experiment This post is about a recent prototype I developed, which allows to explore a sample collection of Springer Nature publications using subject tags automatically extracted ...">
+
+
+
     <link rel="icon" href="../../../../../media/static/favicon.ico">
 
 	
@@ -503,11 +507,27 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div class="container">
 
 
-      <div class="row" style="margin-bottom:50px;">
-          
-        <div class="col-md-7">
+      <div class="row " style="margin-bottom:50px;">
+
+        
+
+        <div class="col-xs-12 col-md-2 col-md-offset-1 col-md-push-7">
+
+          <p style="color: #e8e5e5; margin-top: 10px;">
+          <span style="font-size: 500%;">
+					  Nov
+					</span>
+          <span style="font-size: 700%;">
+					  2018
+					</span>
+          </p>
+
+        </div>
+        
 
 
+
+        <div class="col-xs-12 col-md-7 col-md-pull-3">
 
           <div>
             <h2 class="blogtitle"><b>Exploring scholarly publications using DBPedia concepts: an experiment</b></h2>
@@ -539,9 +559,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>We are working with Beyza to write up the results of this investigation as a research paper. The data and software is already freely available on <a href="https://github.com/dbpedia/sci-graph-links/">github</a>.</p>
 <h3>A couple of screenshots:</h3>
 <p>Eg see the topic '<a href="http://hacks2019.michelepasin.org/dbpedialinks/entities/63004">artificial intelligence</a>'</p>
-<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.15.07.png"><img alt="Screen Shot 2018-11-23 at 17.15.07.png" src="../../../../../media/static/blog_img/Screen-Shot-2018-11-23-at-17.15.07.png" /></a></p>
+<p><a href="../../../../../media/static/blog_img/Screen-Shot-2018-11-23-at-17.15.07.png"><img alt="Screen Shot 2018-11-23 at 17.15.07.png" src="../../../../../media/static/blog_img/Screen-Shot-2018-11-23-at-17.15.07.png" /></a></p>
 <p>One can add more subjects to a search in order to 'zoom in' into a results set, eg by <a href="http://hacks2019.michelepasin.org/dbpedialinks/entities/63004?filters=61361">adding 'China'</a> to the search:</p>
-<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.16.38.png"><img alt="Screen Shot 2018-11-23 at 17.16.38" src="../../../../../media/static/blog_img/Screen-Shot-2018-11-23-at-17.16.38.png" /></a></p>
+<p><a href="../../../../../media/static/blog_img/Screen-Shot-2018-11-23-at-17.16.38.png"><img alt="Screen Shot 2018-11-23 at 17.16.38" src="../../../../../media/static/blog_img/Screen-Shot-2018-11-23-at-17.16.38.png" /></a></p>
 <h3>Implementation details</h3>
 <ul>
 <li>Main webapp is using Python and <a href="https://www.djangoproject.com/">Django</a>. I've finally found a good excuse to upgrade to the latest release (<a href="https://docs.djangoproject.com/en/2.1/">2.1</a>) so very proud of myself!</li>
@@ -554,57 +574,55 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             </div>
 
 
-          <hr>
-            <p class="text-muted">Cite this blog post:</p>
+         
+            <div style="margin-bottom: 80px;"> 
+              <p class="text-muted">Cite this blog post:</p>
+              <hr>
 
-            <div class="well well-big" >
-              Michele Pasin. <a href="index.html" class="bluelink">Exploring scholarly publications using DBPedia concepts: an experiment</a>. Blog post on www.michelepasin.org. Published on Nov. 23, 2018.
+              <div class="well well-big" >
+                Michele Pasin. <a href="index.html" class="bluelink">Exploring scholarly publications using DBPedia concepts: an experiment</a>. Blog post on www.michelepasin.org. Published on Nov. 23, 2018.
+              </div>
             </div>
-
+<!-- 
 
             
-        
+         -->
+
+         <div style="margin-bottom: 80px;"> 
+              <p class="text-muted">Comments:</p>
+              <hr>
+            <div id="disqus_thread" ></div>
+              <script>
+                  /**
+                  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                  /*
+                  var disqus_config = function () {
+                  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                  };
+                  */
+                  (function() { // DON'T EDIT BELOW THIS LINE
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://pundp.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+ 
+          </div> 
 
 
-          <div id="disqus_thread" style="margin-top: 150px;"></div>
-            <script>
-                /**
-                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                /*
-                var disqus_config = function () {
-                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                };
-                */
-                (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = 'https://pundp.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-        </div> 
+        </div>  
         
       
 
-        <div class="col-md-2 col-md-offset-1">
-
-          <p style="color: #e8e5e5; margin-top: 10px;">
-          <span style="font-size: 500%;">
-					  Nov
-					</span>
-          <span style="font-size: 700%;">
-					  2018
-					</span>
-          </p>
 
 
-        </div>
-        
+
+
       </div>
 
 
@@ -1344,7 +1362,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/index.html" class="bluelink " >Using jquery&#39;s autocomplete in django admin: how about inlines?</a>
+              <a href="../../../../2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/index.html" class="bluelink " >Using jquery&#39;s autocomplete in Django&#39;s admin: what about &#39;inlines&#39;?</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>

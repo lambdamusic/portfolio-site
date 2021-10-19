@@ -13,7 +13,7 @@ PySciGraph is a small open source Python library that makes it easier to access 
 
 Here's an example of how the library can be used from the command line:
 
-```
+```bash
 # check if an object is on SciGraph via its URI
 $ pyscigraph --uri http://www.grid.ac/institutes/grid.443610.4
 Parsing 12 triples..

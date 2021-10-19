@@ -24,9 +24,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+
+    <meta name="author" content="Michele Pasin">
+  
+  <meta name="description" content="Using Impromptu to visualize RSS feeds Some time ago I&#39;ve been experimenting with the processing and display of RSS feeds within Impromptu, and as a result I built a small app ...">
+
+
+
     <link rel="icon" href="../../../../../media/static/favicon.ico">
 
 	
@@ -503,11 +507,27 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div class="container">
 
 
-      <div class="row" style="margin-bottom:50px;">
-          
-        <div class="col-md-7">
+      <div class="row " style="margin-bottom:50px;">
+
+        
+
+        <div class="col-xs-12 col-md-2 col-md-offset-1 col-md-push-7">
+
+          <p style="color: #e8e5e5; margin-top: 10px;">
+          <span style="font-size: 500%;">
+					  Dec
+					</span>
+          <span style="font-size: 700%;">
+					  2011
+					</span>
+          </p>
+
+        </div>
+        
 
 
+
+        <div class="col-xs-12 col-md-7 col-md-pull-3">
 
           <div>
             <h2 class="blogtitle"><b>Using Impromptu to visualize RSS feeds</b></h2>
@@ -530,73 +550,83 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </blockquote>
 <p>The application relies on a bunch of XML processing functions that I found within Impromptu 'examples' folder (specifically, it's the example named <a href="http://impromptu.moso.com.au/examples_2.5/35_objc_xml_lib.html">35_objc_xml_lib</a>). I pruned that a bit so to fit my purposes and renamed it xml_lib.scm.</p>
 <p>By using that, I created a function that extracts title and url info from the guardian feed:</p>
-<p>(load "xml_lib.scm")
-(define feedurl "http://feeds.guardian.co.uk/theguardian/world/rss")</p>
-<p>;;
-;; loads the feed and extracts title and url
-;;</p>
-<p>(define get-articles-online
-     (lambda ()
-        (let* ((out '())
-               (feed (xml:load-url feedurl))
-               (titles (objc:nsarray-&gt;list (xml:xpath (xml:get-root-node feed)
-                                                "channel/item/title/text()")))
-               (urls (objc:nsarray-&gt;list (xml:xpath (xml:get-root-node feed)
-                                                "channel/item/link/text()"))))                                               <br />
-           (for-each (lambda (x y)
-                        (let ((xx (objc:nsstring-&gt;string x))
-                              (yy (objc:nsstring-&gt;string y)))
-                           (set! out (append out (list (list xx yy))))))
-                titles urls)
-           out)))</p>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="nb">load </span><span class="s">&quot;xml_lib.scm&quot;</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">feedurl</span> <span class="s">&quot;http://feeds.guardian.co.uk/theguardian/world/rss&quot;</span><span class="p">)</span>
+
+<span class="c1">;;</span>
+<span class="c1">;; loads the feed and extracts title and url</span>
+<span class="c1">;;</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">get-articles-online</span>
+     <span class="p">(</span><span class="k">lambda </span><span class="p">()</span>
+        <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">out</span> <span class="o">&#39;</span><span class="p">())</span>
+               <span class="p">(</span><span class="nf">feed</span> <span class="p">(</span><span class="nf">xml:load-url</span> <span class="nv">feedurl</span><span class="p">))</span>
+               <span class="p">(</span><span class="nf">titles</span> <span class="p">(</span><span class="nf">objc:nsarray-&gt;list</span> <span class="p">(</span><span class="nf">xml:xpath</span> <span class="p">(</span><span class="nf">xml:get-root-node</span> <span class="nv">feed</span><span class="p">)</span>
+                                                <span class="s">&quot;channel/item/title/text()&quot;</span><span class="p">)))</span>
+               <span class="p">(</span><span class="nf">urls</span> <span class="p">(</span><span class="nf">objc:nsarray-&gt;list</span> <span class="p">(</span><span class="nf">xml:xpath</span> <span class="p">(</span><span class="nf">xml:get-root-node</span> <span class="nv">feed</span><span class="p">)</span>
+                                                <span class="s">&quot;channel/item/link/text()&quot;</span><span class="p">))))</span>                                                 
+           <span class="p">(</span><span class="nb">for-each </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span> <span class="nv">y</span><span class="p">)</span>
+                        <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">xx</span> <span class="p">(</span><span class="nf">objc:nsstring-&gt;string</span> <span class="nv">x</span><span class="p">))</span>
+                              <span class="p">(</span><span class="nf">yy</span> <span class="p">(</span><span class="nf">objc:nsstring-&gt;string</span> <span class="nv">y</span><span class="p">)))</span>
+                           <span class="p">(</span><span class="k">set! </span><span class="nv">out</span> <span class="p">(</span><span class="nb">append </span><span class="nv">out</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nb">list </span><span class="nv">xx</span> <span class="nv">yy</span><span class="p">))))))</span>
+                <span class="nv">titles</span> <span class="nv">urls</span><span class="p">)</span>
+           <span class="nv">out</span><span class="p">)))</span>
+</code></pre></div>
+
 <p>Some feed titles are a bit longish, so I added a utility function formattext that wraps the titles' text if they exceed a predefined length.</p>
-<p>(define formattext 
-   (lambda (maxlength txt posx posy)
-      (let ((l (string-length txt)))    <br />
-         (if (> l maxlength)
-             (let loop ((i 0)
-                        (j maxlength) ;; comparison value: it decreases at each recursion (except the first one) 
-                        (topvalue maxlength)) ;; komodo value : must be equal to j at the beginning
-                (if (equal? (- topvalue i) j) ;; the first time
-                    (loop (+ i 1) j topvalue)
-                    (begin   ;(print (substring txt (- topvalue i) j))
-                             (if (string=? (substring txt (- topvalue i) j) " ")
-                                 (string-append (substring txt 0 (- topvalue i)) 
-                                                "n" 
-                                                (substring txt (- topvalue i) (string-length txt)))
-                                 (if (&lt; i topvalue) ;;avoid negative indexes in substring
-                                     (loop (+ i 1) (- j 1) topvalue))))))
-             txt))))</p>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="nv">formattext</span> 
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">maxlength</span> <span class="nv">txt</span> <span class="nv">posx</span> <span class="nv">posy</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">l</span> <span class="p">(</span><span class="nb">string-length </span><span class="nv">txt</span><span class="p">)))</span>      
+         <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">l</span> <span class="nv">maxlength</span><span class="p">)</span>
+             <span class="p">(</span><span class="k">let </span><span class="nv">loop</span> <span class="p">((</span><span class="nf">i</span> <span class="mi">0</span><span class="p">)</span>
+                        <span class="p">(</span><span class="nf">j</span> <span class="nv">maxlength</span><span class="p">)</span> <span class="c1">;; comparison value: it decreases at each recursion (except the first one) </span>
+                        <span class="p">(</span><span class="nf">topvalue</span> <span class="nv">maxlength</span><span class="p">))</span> <span class="c1">;; komodo value : must be equal to j at the beginning</span>
+                <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">equal? </span><span class="p">(</span><span class="nb">- </span><span class="nv">topvalue</span> <span class="nv">i</span><span class="p">)</span> <span class="nv">j</span><span class="p">)</span> <span class="c1">;; the first time</span>
+                    <span class="p">(</span><span class="nf">loop</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">i</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">j</span> <span class="nv">topvalue</span><span class="p">)</span>
+                    <span class="p">(</span><span class="k">begin </span>  <span class="c1">;(print (substring txt (- topvalue i) j))</span>
+                             <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">string=? </span><span class="p">(</span><span class="nb">substring </span><span class="nv">txt</span> <span class="p">(</span><span class="nb">- </span><span class="nv">topvalue</span> <span class="nv">i</span><span class="p">)</span> <span class="nv">j</span><span class="p">)</span> <span class="s">&quot; &quot;</span><span class="p">)</span>
+                                 <span class="p">(</span><span class="nb">string-append </span><span class="p">(</span><span class="nb">substring </span><span class="nv">txt</span> <span class="mi">0</span> <span class="p">(</span><span class="nb">- </span><span class="nv">topvalue</span> <span class="nv">i</span><span class="p">))</span> 
+                                                <span class="s">&quot;n&quot;</span> 
+                                                <span class="p">(</span><span class="nb">substring </span><span class="nv">txt</span> <span class="p">(</span><span class="nb">- </span><span class="nv">topvalue</span> <span class="nv">i</span><span class="p">)</span> <span class="p">(</span><span class="nb">string-length </span><span class="nv">txt</span><span class="p">)))</span>
+                                 <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&lt; </span><span class="nv">i</span> <span class="nv">topvalue</span><span class="p">)</span> <span class="c1">;;avoid negative indexes in substring</span>
+                                     <span class="p">(</span><span class="nf">loop</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">i</span> <span class="mi">1</span><span class="p">)</span> <span class="p">(</span><span class="nb">- </span><span class="nv">j</span> <span class="mi">1</span><span class="p">)</span> <span class="nv">topvalue</span><span class="p">))))))</span>
+             <span class="nv">txt</span><span class="p">))))</span>
+</code></pre></div>
+
 <p>And here's the <strong>main loop</strong>: it goes through all the feed items at a predefined speed, and displays it on the canvas using a cosine oscillator to vary the colours a bit. At the end of it I'm also updating 3 global variables that are used for the mouse-click-capturing routine.</p>
-<p>(define displayloop
-   (lambda (beat feeds) 
-      (let* ((dur 5)
-             (posx  (random 0 (- *canvas_max_x* 350)))
-             (posy  (random 10 (- *canvas_max_y* 150)))
-             (txt (formattext 40 (car (car feeds)) posx posy))
-             (dim ;(+ (length feeds) 10))                <br />
-                  (if (\= (length feeds) 29)
-                      60  ;; if it's the first element of the feed list make it bigger
-                      (random 25 50)))
-             (fill (if (\= (length feeds) 29)
-                         '(1 0 (random) 1)  ;; if it's the first element of the feed list make it reddish
-                         (list (random) 1 (random) 1)))
-             (style (gfx:make-text-style "Arial" dim fill)))
-         (gfx:clear-canvas (*metro* beat) *canvas* (list (cosr .5 .6 .001) 0 (cosr .5 .6 .001) .5 ))
-         (gfx:draw-text (*metro* beat) *canvas* txt style (list posx posy))
-         (set! *pos_x* posx)
-         (set! *pos_y* posy)
-         (set! *current_url* (cadr (car feeds)))
-     (callback (*metro* (+ beat (* 1/2 dur))) 'displayloop (+ beat dur)
-               (if-cdr-notnull feeds 
-                               (get-articles-online))))))</p>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="nv">displayloop</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">beat</span> <span class="nv">feeds</span><span class="p">)</span> 
+      <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">dur</span> <span class="mi">5</span><span class="p">)</span>
+             <span class="p">(</span><span class="nf">posx</span>  <span class="p">(</span><span class="nf">random</span> <span class="mi">0</span> <span class="p">(</span><span class="nb">- </span><span class="nv">*canvas_max_x*</span> <span class="mi">350</span><span class="p">)))</span>
+             <span class="p">(</span><span class="nf">posy</span>  <span class="p">(</span><span class="nf">random</span> <span class="mi">10</span> <span class="p">(</span><span class="nb">- </span><span class="nv">*canvas_max_y*</span> <span class="mi">150</span><span class="p">)))</span>
+             <span class="p">(</span><span class="nf">txt</span> <span class="p">(</span><span class="nf">formattext</span> <span class="mi">40</span> <span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nb">car </span><span class="nv">feeds</span><span class="p">))</span> <span class="nv">posx</span> <span class="nv">posy</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">dim</span> <span class="c1">;(+ (length feeds) 10))                  </span>
+                  <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">length </span><span class="nv">feeds</span><span class="p">)</span> <span class="mi">29</span><span class="p">)</span>
+                      <span class="mi">60</span>  <span class="c1">;; if it&#39;s the first element of the feed list make it bigger</span>
+                      <span class="p">(</span><span class="nf">random</span> <span class="mi">25</span> <span class="mi">50</span><span class="p">)))</span>
+             <span class="p">(</span><span class="nf">fill</span> <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">length </span><span class="nv">feeds</span><span class="p">)</span> <span class="mi">29</span><span class="p">)</span>
+                         <span class="o">&#39;</span><span class="p">(</span><span class="mi">1</span> <span class="mi">0</span> <span class="p">(</span><span class="nf">random</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>  <span class="c1">;; if it&#39;s the first element of the feed list make it reddish</span>
+                         <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nf">random</span><span class="p">)</span> <span class="mi">1</span> <span class="p">(</span><span class="nf">random</span><span class="p">)</span> <span class="mi">1</span><span class="p">)))</span>
+             <span class="p">(</span><span class="nf">style</span> <span class="p">(</span><span class="nf">gfx:make-text-style</span> <span class="s">&quot;Arial&quot;</span> <span class="nv">dim</span> <span class="nv">fill</span><span class="p">)))</span>
+         <span class="p">(</span><span class="nf">gfx:clear-canvas</span> <span class="p">(</span><span class="nf">*metro*</span> <span class="nv">beat</span><span class="p">)</span> <span class="nv">*canvas*</span> <span class="p">(</span><span class="nb">list </span><span class="p">(</span><span class="nf">cosr</span> <span class="o">.</span><span class="mi">5</span> <span class="o">.</span><span class="mi">6</span> <span class="o">.</span><span class="mi">001</span><span class="p">)</span> <span class="mi">0</span> <span class="p">(</span><span class="nf">cosr</span> <span class="o">.</span><span class="mi">5</span> <span class="o">.</span><span class="mi">6</span> <span class="o">.</span><span class="mi">001</span><span class="p">)</span> <span class="o">.</span><span class="mi">5</span> <span class="p">))</span>
+         <span class="p">(</span><span class="nf">gfx:draw-text</span> <span class="p">(</span><span class="nf">*metro*</span> <span class="nv">beat</span><span class="p">)</span> <span class="nv">*canvas*</span> <span class="nv">txt</span> <span class="nv">style</span> <span class="p">(</span><span class="nb">list </span><span class="nv">posx</span> <span class="nv">posy</span><span class="p">))</span>
+         <span class="p">(</span><span class="k">set! </span><span class="nv">*pos_x*</span> <span class="nv">posx</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">set! </span><span class="nv">*pos_y*</span> <span class="nv">posy</span><span class="p">)</span>
+         <span class="p">(</span><span class="k">set! </span><span class="nv">*current_url*</span> <span class="p">(</span><span class="nb">cadr </span><span class="p">(</span><span class="nb">car </span><span class="nv">feeds</span><span class="p">)))</span>
+     <span class="p">(</span><span class="nf">callback</span> <span class="p">(</span><span class="nf">*metro*</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">beat</span> <span class="p">(</span><span class="nb">* </span><span class="mi">1</span><span class="nv">/2</span> <span class="nv">dur</span><span class="p">)))</span> <span class="ss">&#39;displayloop</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">beat</span> <span class="nv">dur</span><span class="p">)</span>
+               <span class="p">(</span><span class="nf">if-cdr-notnull</span> <span class="nv">feeds</span> 
+                               <span class="p">(</span><span class="nf">get-articles-online</span><span class="p">))))))</span>
+</code></pre></div>
+
 <p>In order to capture the clicks on the feed titles I simply create a rectangle path based on the x,y coordinates randomly assigned when displaying the title on the canvas. These coordinates are stored in global variables so that they can be updated constantly.</p>
-<p>(io:register-mouse-events *canvas*)
-(define io:mouse-down
-   (lambda (x y)
-      (print x y)
-      (when (gfx:point-in-path? (gfx:make-rectangle *pos_x* *pos_y* 200 200) x y )
-            (util:open-url *current_url*))))</p>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="nf">io:register-mouse-events</span> <span class="nv">*canvas*</span><span class="p">)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">io:mouse-down</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span> <span class="nv">y</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">print</span> <span class="nv">x</span> <span class="nv">y</span><span class="p">)</span>
+      <span class="p">(</span><span class="nf">when</span> <span class="p">(</span><span class="nf">gfx:point-in-path?</span> <span class="p">(</span><span class="nf">gfx:make-rectangle</span> <span class="nv">*pos_x*</span> <span class="nv">*pos_y*</span> <span class="mi">200</span> <span class="mi">200</span><span class="p">)</span> <span class="nv">x</span> <span class="nv">y</span> <span class="p">)</span>
+            <span class="p">(</span><span class="nf">util:open-url</span> <span class="nv">*current_url*</span><span class="p">))))</span>
+</code></pre></div>
+
 <p>Finally, the util:open-url opens up a url string in your browser (I've already talked about it <a href="http://www.michelepasin.org/blog/2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/">here</a>).</p>
 <p>You can see all of this code in action by <a href="http://www.box.com/s/oprvyybridp0gtij8j5d">downloading the app</a> and taking a look its contents (all the files are under Contents/Resources/app).</p>
 <p><a href="http://www.flickr.com/photos/mikele/6549002521/" title="Visualizing rss feeds with Impromptu by MagIcReBirth, on Flickr"><img alt="Visualizing rss feeds with Impromptu" src="../../../../../media/static/blog_img/6549002521_9b39fb2120.jpg" /></a></p>
@@ -608,62 +638,59 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>Refining the <strong>xml-tree parsing</strong> function, which now is very very minimal. We could extract news entries description and other stuff that can make the app more informative.</li>
 <li>Adding some <strong>background music</strong> to it.</li>
 </ul>
-<p>Any other ideas?</p>
 
             </div>
 
 
-          <hr>
-            <p class="text-muted">Cite this blog post:</p>
+         
+            <div style="margin-bottom: 80px;"> 
+              <p class="text-muted">Cite this blog post:</p>
+              <hr>
 
-            <div class="well well-big" >
-              Michele Pasin. <a href="index.html" class="bluelink">Using Impromptu to visualize RSS feeds</a>. Blog post on www.michelepasin.org. Published on Dec. 21, 2011.
+              <div class="well well-big" >
+                Michele Pasin. <a href="index.html" class="bluelink">Using Impromptu to visualize RSS feeds</a>. Blog post on www.michelepasin.org. Published on Dec. 21, 2011.
+              </div>
             </div>
-
+<!-- 
 
             
-        
+         -->
+
+         <div style="margin-bottom: 80px;"> 
+              <p class="text-muted">Comments:</p>
+              <hr>
+            <div id="disqus_thread" ></div>
+              <script>
+                  /**
+                  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                  /*
+                  var disqus_config = function () {
+                  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                  };
+                  */
+                  (function() { // DON'T EDIT BELOW THIS LINE
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://pundp.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+ 
+          </div> 
 
 
-          <div id="disqus_thread" style="margin-top: 150px;"></div>
-            <script>
-                /**
-                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                /*
-                var disqus_config = function () {
-                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                };
-                */
-                (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = 'https://pundp.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-        </div> 
+        </div>  
         
       
 
-        <div class="col-md-2 col-md-offset-1">
-
-          <p style="color: #e8e5e5; margin-top: 10px;">
-          <span style="font-size: 500%;">
-					  Dec
-					</span>
-          <span style="font-size: 700%;">
-					  2011
-					</span>
-          </p>
 
 
-        </div>
-        
+
+
       </div>
 
 
@@ -1559,7 +1586,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/index.html" class="bluelink " >Using jquery&#39;s autocomplete in django admin: how about inlines?</a>
+              <a href="../../../../2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/index.html" class="bluelink " >Using jquery&#39;s autocomplete in Django&#39;s admin: what about &#39;inlines&#39;?</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>

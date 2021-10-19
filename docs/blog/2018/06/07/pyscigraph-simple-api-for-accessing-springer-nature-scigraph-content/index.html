@@ -24,9 +24,13 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
+
+    <meta name="author" content="Michele Pasin">
+  
+  <meta name="description" content="PySciGraph: simple API for accessing SN SciGraph content PySciGraph is a small open source Python library that makes it easier to access data from Springer Nature SciGraph. It is available on Pypi and ...">
+
+
+
     <link rel="icon" href="../../../../../media/static/favicon.ico">
 
 	
@@ -503,11 +507,27 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <div class="container">
 
 
-      <div class="row" style="margin-bottom:50px;">
-          
-        <div class="col-md-7">
+      <div class="row " style="margin-bottom:50px;">
+
+        
+
+        <div class="col-xs-12 col-md-2 col-md-offset-1 col-md-push-7">
+
+          <p style="color: #e8e5e5; margin-top: 10px;">
+          <span style="font-size: 500%;">
+					  Jun
+					</span>
+          <span style="font-size: 700%;">
+					  2018
+					</span>
+          </p>
+
+        </div>
+        
 
 
+
+        <div class="col-xs-12 col-md-7 col-md-pull-3">
 
           <div>
             <h2 class="blogtitle"><b>PySciGraph: simple API for accessing SN SciGraph content</b></h2>
@@ -529,72 +549,72 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </blockquote>
 <p><a href="https://www.springernature.com/gp/researchers/scigraph"><img alt="scigraph" src="../../../../../media/static/blog_img/scigraph.png" /></a></p>
 <p>Here's an example of how the library can be used from the command line:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">#</span><span class="w"> </span><span class="k">check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="k">object</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">SciGraph</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">its</span><span class="w"> </span><span class="n">URI</span><span class="w"></span>
-<span class="err">$</span><span class="w"> </span><span class="n">pyscigraph</span><span class="w"> </span><span class="o">--</span><span class="n">uri</span><span class="w"> </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">grid</span><span class="p">.</span><span class="n">ac</span><span class="o">/</span><span class="n">institutes</span><span class="o">/</span><span class="n">grid</span><span class="mf">.443610.4</span><span class="w"></span>
-<span class="n">Parsing</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="n">triples</span><span class="p">..</span><span class="w"></span>
-<span class="nl">URI</span><span class="p">:</span><span class="w">  </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">grid</span><span class="p">.</span><span class="n">ac</span><span class="o">/</span><span class="n">institutes</span><span class="o">/</span><span class="n">grid</span><span class="mf">.443610.4</span><span class="w"></span>
-<span class="nl">DOI</span><span class="p">:</span><span class="w">  </span><span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="w"></span>
-<span class="nl">Label</span><span class="p">:</span><span class="w">  </span><span class="n">Hakodate</span><span class="w"> </span><span class="n">University</span><span class="w"></span>
-<span class="nl">Title</span><span class="p">:</span><span class="w">  </span><span class="n">N</span><span class="o">/</span><span class="n">A</span><span class="w"></span>
-<span class="nl">Types</span><span class="p">:</span><span class="w">  </span><span class="nl">foaf</span><span class="p">:</span><span class="n">Organization</span><span class="w"> </span><span class="nl">grid</span><span class="p">:</span><span class="n">Education</span><span class="w"></span>
+<div class="codehilite"><pre><span></span><code><span class="c1"># check if an object is on SciGraph via its URI</span>
+$ pyscigraph --uri http://www.grid.ac/institutes/grid.443610.4
+Parsing <span class="m">12</span> triples..
+URI:  http://www.grid.ac/institutes/grid.443610.4
+DOI:  N/A
+Label:  Hakodate University
+Title:  N/A
+Types:  foaf:Organization grid:Education
 
-<span class="err">#</span><span class="w"> </span><span class="k">check</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="n">publication</span><span class="w"> </span><span class="k">is</span><span class="w"> </span><span class="k">on</span><span class="w"> </span><span class="n">SciGraph</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">its</span><span class="w"> </span><span class="n">DOI</span><span class="w"></span>
-<span class="err">$</span><span class="w"> </span><span class="n">pyscigraph</span><span class="w"> </span><span class="o">--</span><span class="n">doi</span><span class="w"> </span><span class="mf">10.1038</span><span class="o">/</span><span class="mi">171737</span><span class="n">a0</span><span class="w"></span>
-<span class="n">Parsing</span><span class="w"> </span><span class="mi">251</span><span class="w"> </span><span class="n">triples</span><span class="p">..</span><span class="w"></span>
-<span class="nl">URI</span><span class="p">:</span><span class="w">  </span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">scigraph</span><span class="p">.</span><span class="n">springernature</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">things</span><span class="o">/</span><span class="n">articles</span><span class="o">/</span><span class="n">f5ac1e9c7a520ca2a34cb13af4809bdd</span><span class="w"></span>
-<span class="nl">DOI</span><span class="p">:</span><span class="w">  </span><span class="mf">10.1038</span><span class="o">/</span><span class="mi">171737</span><span class="n">a0</span><span class="w"></span>
-<span class="nl">Label</span><span class="p">:</span><span class="w">  </span><span class="nl">Article</span><span class="p">:</span><span class="w"> </span><span class="n">Molecular</span><span class="w"> </span><span class="k">Structure</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">Nucleic</span><span class="w"> </span><span class="nl">Acids</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">Structure</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Deoxyribose</span><span class="w"> </span><span class="n">Nucleic</span><span class="w"> </span><span class="n">Acid</span><span class="w"></span>
-<span class="nl">Title</span><span class="p">:</span><span class="w">  </span><span class="n">Molecular</span><span class="w"> </span><span class="k">Structure</span><span class="w"> </span><span class="k">of</span><span class="w"> </span><span class="n">Nucleic</span><span class="w"> </span><span class="nl">Acids</span><span class="p">:</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="k">Structure</span><span class="w"> </span><span class="k">for</span><span class="w"> </span><span class="n">Deoxyribose</span><span class="w"> </span><span class="n">Nucleic</span><span class="w"> </span><span class="n">Acid</span><span class="w"></span>
-<span class="nl">Types</span><span class="p">:</span><span class="w">  </span><span class="nl">sg</span><span class="p">:</span><span class="n">Article</span><span class="w"></span>
+<span class="c1"># check if a publication is on SciGraph via its DOI</span>
+$ pyscigraph --doi <span class="m">10</span>.1038/171737a0
+Parsing <span class="m">251</span> triples..
+URI:  http://scigraph.springernature.com/things/articles/f5ac1e9c7a520ca2a34cb13af4809bdd
+DOI:  <span class="m">10</span>.1038/171737a0
+Label:  Article: Molecular Structure of Nucleic Acids: A Structure <span class="k">for</span> Deoxyribose Nucleic Acid
+Title:  Molecular Structure of Nucleic Acids: A Structure <span class="k">for</span> Deoxyribose Nucleic Acid
+Types:  sg:Article
 
-<span class="err">#</span><span class="w"> </span><span class="n">retrieve</span><span class="w"> </span><span class="ow">all</span><span class="w"> </span><span class="n">metadata</span><span class="w"> </span><span class="n">via</span><span class="w"> </span><span class="n">an</span><span class="w"> </span><span class="n">RDF</span><span class="w"> </span><span class="n">serialization</span><span class="w"></span>
-<span class="err">$</span><span class="w"> </span><span class="n">pyscigraph</span><span class="w"> </span><span class="o">--</span><span class="n">doi</span><span class="w"> </span><span class="mf">10.1038</span><span class="o">/</span><span class="mi">171737</span><span class="n">a0</span><span class="w"> </span><span class="o">--</span><span class="n">rdf</span><span class="w"> </span><span class="n">n3</span><span class="w"></span>
-<span class="n">Parsing</span><span class="w"> </span><span class="mi">251</span><span class="w"> </span><span class="n">triples</span><span class="p">..</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">dc</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">dc</span><span class="o">/</span><span class="n">elements</span><span class="o">/</span><span class="mf">1.1</span><span class="o">/&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">foaf</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">xmlns</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">foaf</span><span class="o">/</span><span class="mf">0.1</span><span class="o">/&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">grid</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">grid</span><span class="p">.</span><span class="n">ac</span><span class="o">/</span><span class="n">ontology</span><span class="o">/&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">owl</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">w3</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2002</span><span class="o">/</span><span class="mi">07</span><span class="o">/</span><span class="n">owl</span><span class="err">#</span><span class="o">&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">rdf</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">w3</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="mi">1999</span><span class="o">/</span><span class="mi">02</span><span class="o">/</span><span class="mi">22</span><span class="o">-</span><span class="n">rdf</span><span class="o">-</span><span class="n">syntax</span><span class="o">-</span><span class="n">ns</span><span class="err">#</span><span class="o">&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">rdfs</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">w3</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2000</span><span class="o">/</span><span class="mi">01</span><span class="o">/</span><span class="n">rdf</span><span class="o">-</span><span class="k">schema</span><span class="err">#</span><span class="o">&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">sg</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">scigraph</span><span class="p">.</span><span class="n">springernature</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">ontologies</span><span class="o">/</span><span class="n">core</span><span class="o">/&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">sh</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">w3</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">ns</span><span class="o">/</span><span class="n">shacl</span><span class="err">#</span><span class="o">&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">skos</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">w3</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2004</span><span class="o">/</span><span class="mi">02</span><span class="o">/</span><span class="n">skos</span><span class="o">/</span><span class="n">core</span><span class="err">#</span><span class="o">&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">vann</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">vocab</span><span class="o">/</span><span class="n">vann</span><span class="o">/&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">vivo</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">vivoweb</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">ontology</span><span class="o">/</span><span class="n">core</span><span class="err">#</span><span class="o">&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">void</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">rdfs</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">ns</span><span class="o">/</span><span class="n">void</span><span class="err">#</span><span class="o">&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nc">xml</span><span class="err">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">w3</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="nc">XML</span><span class="o">/</span><span class="mi">1998</span><span class="o">/</span><span class="n">namespace</span><span class="o">&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
-<span class="nv">@prefix</span><span class="w"> </span><span class="nl">xsd</span><span class="p">:</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">w3</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2001</span><span class="o">/</span><span class="n">XMLSchema</span><span class="err">#</span><span class="o">&gt;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+<span class="c1"># retrieve all metadata via an RDF serialization</span>
+$ pyscigraph --doi <span class="m">10</span>.1038/171737a0 --rdf n3
+Parsing <span class="m">251</span> triples..
+@prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .
+@prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
+@prefix grid: &lt;http://www.grid.ac/ontology/&gt; .
+@prefix owl: &lt;http://www.w3.org/2002/07/owl#&gt; .
+@prefix rdf: &lt;http://www.w3.org/1999/02/22-rdf-syntax-ns#&gt; .
+@prefix rdfs: &lt;http://www.w3.org/2000/01/rdf-schema#&gt; .
+@prefix sg: &lt;http://scigraph.springernature.com/ontologies/core/&gt; .
+@prefix sh: &lt;http://www.w3.org/ns/shacl#&gt; .
+@prefix skos: &lt;http://www.w3.org/2004/02/skos/core#&gt; .
+@prefix vann: &lt;http://purl.org/vocab/vann/&gt; .
+@prefix vivo: &lt;http://vivoweb.org/ontology/core#&gt; .
+@prefix void: &lt;http://rdfs.org/ns/void#&gt; .
+@prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .
+@prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
-<span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">scigraph</span><span class="p">.</span><span class="n">springernature</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">things</span><span class="o">/</span><span class="n">articles</span><span class="o">/</span><span class="n">f5ac1e9c7a520ca2a34cb13af4809bdd</span><span class="o">&gt;</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="nl">sg</span><span class="p">:</span><span class="n">Article</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">rdfs</span><span class="p">:</span><span class="n">label</span><span class="w"> </span><span class="ss">&quot;Article: Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">coverDate</span><span class="w"> </span><span class="ss">&quot;1953-04-25&quot;</span><span class="o">^^</span><span class="nl">xsd</span><span class="p">:</span><span class="nc">date</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">coverYear</span><span class="w"> </span><span class="ss">&quot;1953-01-01&quot;</span><span class="o">^^</span><span class="nl">xsd</span><span class="p">:</span><span class="n">gYear</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">coverYearMonth</span><span class="w"> </span><span class="ss">&quot;1953-04-01&quot;</span><span class="o">^^</span><span class="nl">xsd</span><span class="p">:</span><span class="n">gYearMonth</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">ddsIdJournalBrand</span><span class="w"> </span><span class="ss">&quot;41586&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">doi</span><span class="w"> </span><span class="ss">&quot;10.1038/171737a0&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">doiLink</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">dx</span><span class="p">.</span><span class="n">doi</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="mf">10.1038</span><span class="o">/</span><span class="mi">171737</span><span class="n">a0</span><span class="o">&gt;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">hasArticleType</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">scigraph</span><span class="p">.</span><span class="n">springernature</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">things</span><span class="o">/</span><span class="n">article</span><span class="o">-</span><span class="n">types</span><span class="o">/</span><span class="n">af</span><span class="o">&gt;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">hasContributingOrganization</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="p">.</span><span class="n">grid</span><span class="p">.</span><span class="n">ac</span><span class="o">/</span><span class="n">institutes</span><span class="o">/</span><span class="n">grid</span><span class="mf">.5335.0</span><span class="o">&gt;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">hasContribution</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">scigraph</span><span class="p">.</span><span class="n">springernature</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">things</span><span class="o">/</span><span class="n">contributions</span><span class="o">/</span><span class="mi">7325</span><span class="n">bd1cadf3a1cc253c611682bc62fd</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">scigraph</span><span class="p">.</span><span class="n">springernature</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">things</span><span class="o">/</span><span class="n">contributions</span><span class="o">/</span><span class="mi">989</span><span class="n">a6a2607c882ffd99341144836d1fc</span><span class="o">&gt;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">hasFieldOfResearchCode</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">au</span><span class="o">-</span><span class="n">research</span><span class="o">/</span><span class="n">vocabulary</span><span class="o">/</span><span class="n">anzsrc</span><span class="o">-</span><span class="k">for</span><span class="o">/</span><span class="mi">2008</span><span class="o">/</span><span class="mi">03</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">purl</span><span class="p">.</span><span class="n">org</span><span class="o">/</span><span class="n">au</span><span class="o">-</span><span class="n">research</span><span class="o">/</span><span class="n">vocabulary</span><span class="o">/</span><span class="n">anzsrc</span><span class="o">-</span><span class="k">for</span><span class="o">/</span><span class="mi">2008</span><span class="o">/</span><span class="mi">0306</span><span class="o">&gt;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">hasJournal</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">scigraph</span><span class="p">.</span><span class="n">springernature</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">things</span><span class="o">/</span><span class="n">journals</span><span class="o">/</span><span class="mi">5</span><span class="n">ea8996a5bb089dd0562d3bfe24eaad9</span><span class="o">&gt;</span><span class="p">,</span><span class="w"></span>
-<span class="w">        </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">scigraph</span><span class="p">.</span><span class="n">springernature</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">things</span><span class="o">/</span><span class="n">journals</span><span class="o">/</span><span class="mi">723</span><span class="n">ba46cf7980ad6089b3da0ba4b0b47</span><span class="o">&gt;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">hasJournalBrand</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">scigraph</span><span class="p">.</span><span class="n">springernature</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">things</span><span class="o">/</span><span class="n">journal</span><span class="o">-</span><span class="n">brands</span><span class="o">/</span><span class="mi">012496</span><span class="n">b06989edb434c6b8e1d0b0a7db</span><span class="o">&gt;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">issnElectronic</span><span class="w"> </span><span class="ss">&quot;1476-4687&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">issnPrint</span><span class="w"> </span><span class="ss">&quot;0028-0836&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">issue</span><span class="w"> </span><span class="ss">&quot;4356&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">license</span><span class="w"> </span><span class="o">&lt;</span><span class="nl">http</span><span class="p">:</span><span class="o">//</span><span class="n">scigraph</span><span class="p">.</span><span class="n">springernature</span><span class="p">.</span><span class="n">com</span><span class="o">/</span><span class="n">explorer</span><span class="o">/</span><span class="n">license</span><span class="o">/&gt;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">npgId</span><span class="w"> </span><span class="ss">&quot;171737a0&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">pageEnd</span><span class="w"> </span><span class="ss">&quot;738&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">pageStart</span><span class="w"> </span><span class="ss">&quot;737&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">publicationDate</span><span class="w"> </span><span class="ss">&quot;1953-04-25&quot;</span><span class="o">^^</span><span class="nl">xsd</span><span class="p">:</span><span class="nc">date</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">publicationYear</span><span class="w"> </span><span class="ss">&quot;1953-01-01&quot;</span><span class="o">^^</span><span class="nl">xsd</span><span class="p">:</span><span class="n">gYear</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">publicationYearMonth</span><span class="w"> </span><span class="ss">&quot;1953-04-01&quot;</span><span class="o">^^</span><span class="nl">xsd</span><span class="p">:</span><span class="n">gYearMonth</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">scigraphId</span><span class="w"> </span><span class="ss">&quot;f5ac1e9c7a520ca2a34cb13af4809bdd&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">title</span><span class="w"> </span><span class="ss">&quot;Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid&quot;</span><span class="w"> </span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="nl">sg</span><span class="p">:</span><span class="n">volume</span><span class="w"> </span><span class="ss">&quot;171&quot;</span><span class="w"> </span><span class="p">.</span><span class="w"></span>
+&lt;http://scigraph.springernature.com/things/articles/f5ac1e9c7a520ca2a34cb13af4809bdd&gt; a sg:Article <span class="p">;</span>
+    rdfs:label <span class="s2">&quot;Article: Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid&quot;</span> <span class="p">;</span>
+    sg:coverDate <span class="s2">&quot;1953-04-25&quot;</span>^^xsd:date <span class="p">;</span>
+    sg:coverYear <span class="s2">&quot;1953-01-01&quot;</span>^^xsd:gYear <span class="p">;</span>
+    sg:coverYearMonth <span class="s2">&quot;1953-04-01&quot;</span>^^xsd:gYearMonth <span class="p">;</span>
+    sg:ddsIdJournalBrand <span class="s2">&quot;41586&quot;</span> <span class="p">;</span>
+    sg:doi <span class="s2">&quot;10.1038/171737a0&quot;</span> <span class="p">;</span>
+    sg:doiLink &lt;http://dx.doi.org/10.1038/171737a0&gt; <span class="p">;</span>
+    sg:hasArticleType &lt;http://scigraph.springernature.com/things/article-types/af&gt; <span class="p">;</span>
+    sg:hasContributingOrganization &lt;http://www.grid.ac/institutes/grid.5335.0&gt; <span class="p">;</span>
+    sg:hasContribution &lt;http://scigraph.springernature.com/things/contributions/7325bd1cadf3a1cc253c611682bc62fd&gt;,
+        &lt;http://scigraph.springernature.com/things/contributions/989a6a2607c882ffd99341144836d1fc&gt; <span class="p">;</span>
+    sg:hasFieldOfResearchCode &lt;http://purl.org/au-research/vocabulary/anzsrc-for/2008/03&gt;,
+        &lt;http://purl.org/au-research/vocabulary/anzsrc-for/2008/0306&gt; <span class="p">;</span>
+    sg:hasJournal &lt;http://scigraph.springernature.com/things/journals/5ea8996a5bb089dd0562d3bfe24eaad9&gt;,
+        &lt;http://scigraph.springernature.com/things/journals/723ba46cf7980ad6089b3da0ba4b0b47&gt; <span class="p">;</span>
+    sg:hasJournalBrand &lt;http://scigraph.springernature.com/things/journal-brands/012496b06989edb434c6b8e1d0b0a7db&gt; <span class="p">;</span>
+    sg:issnElectronic <span class="s2">&quot;1476-4687&quot;</span> <span class="p">;</span>
+    sg:issnPrint <span class="s2">&quot;0028-0836&quot;</span> <span class="p">;</span>
+    sg:issue <span class="s2">&quot;4356&quot;</span> <span class="p">;</span>
+    sg:license &lt;http://scigraph.springernature.com/explorer/license/&gt; <span class="p">;</span>
+    sg:npgId <span class="s2">&quot;171737a0&quot;</span> <span class="p">;</span>
+    sg:pageEnd <span class="s2">&quot;738&quot;</span> <span class="p">;</span>
+    sg:pageStart <span class="s2">&quot;737&quot;</span> <span class="p">;</span>
+    sg:publicationDate <span class="s2">&quot;1953-04-25&quot;</span>^^xsd:date <span class="p">;</span>
+    sg:publicationYear <span class="s2">&quot;1953-01-01&quot;</span>^^xsd:gYear <span class="p">;</span>
+    sg:publicationYearMonth <span class="s2">&quot;1953-04-01&quot;</span>^^xsd:gYearMonth <span class="p">;</span>
+    sg:scigraphId <span class="s2">&quot;f5ac1e9c7a520ca2a34cb13af4809bdd&quot;</span> <span class="p">;</span>
+    sg:title <span class="s2">&quot;Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid&quot;</span> <span class="p">;</span>
+    sg:volume <span class="s2">&quot;171&quot;</span> .
 </code></pre></div>
 
 <p>The current release (0.4) just offers basic functionalities but I'm planning to do more work on this over the next months.</p>
@@ -603,57 +623,55 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             </div>
 
 
-          <hr>
-            <p class="text-muted">Cite this blog post:</p>
+         
+            <div style="margin-bottom: 80px;"> 
+              <p class="text-muted">Cite this blog post:</p>
+              <hr>
 
-            <div class="well well-big" >
-              Michele Pasin. <a href="index.html" class="bluelink">PySciGraph: simple API for accessing SN SciGraph content</a>. Blog post on www.michelepasin.org. Published on June 7, 2018.
+              <div class="well well-big" >
+                Michele Pasin. <a href="index.html" class="bluelink">PySciGraph: simple API for accessing SN SciGraph content</a>. Blog post on www.michelepasin.org. Published on June 7, 2018.
+              </div>
             </div>
-
+<!-- 
 
             
-        
+         -->
+
+         <div style="margin-bottom: 80px;"> 
+              <p class="text-muted">Comments:</p>
+              <hr>
+            <div id="disqus_thread" ></div>
+              <script>
+                  /**
+                  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
+                  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
+                  /*
+                  var disqus_config = function () {
+                  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
+                  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
+                  };
+                  */
+                  (function() { // DON'T EDIT BELOW THIS LINE
+                  var d = document, s = d.createElement('script');
+                  s.src = 'https://pundp.disqus.com/embed.js';
+                  s.setAttribute('data-timestamp', +new Date());
+                  (d.head || d.body).appendChild(s);
+                  })();
+              </script>
+              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+ 
+          </div> 
 
 
-          <div id="disqus_thread" style="margin-top: 150px;"></div>
-            <script>
-                /**
-                *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                /*
-                var disqus_config = function () {
-                this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                };
-                */
-                (function() { // DON'T EDIT BELOW THIS LINE
-                var d = document, s = d.createElement('script');
-                s.src = 'https://pundp.disqus.com/embed.js';
-                s.setAttribute('data-timestamp', +new Date());
-                (d.head || d.body).appendChild(s);
-                })();
-            </script>
-            <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-
-
-        </div> 
+        </div>  
         
       
 
-        <div class="col-md-2 col-md-offset-1">
-
-          <p style="color: #e8e5e5; margin-top: 10px;">
-          <span style="font-size: 500%;">
-					  Jun
-					</span>
-          <span style="font-size: 700%;">
-					  2018
-					</span>
-          </p>
 
 
-        </div>
-        
+
+
       </div>
 
 

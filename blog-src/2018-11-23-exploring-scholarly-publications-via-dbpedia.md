@@ -38,11 +38,11 @@ We are working with Beyza to write up the results of this investigation as a res
 
 Eg see the topic '[artificial intelligence](http://hacks2019.michelepasin.org/dbpedialinks/entities/63004)'
 
-[![Screen Shot 2018-11-23 at 17.15.07.png](/media/static/blog_img/Screen-Shot-2018-11-23-at-17.15.07.png)](http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.15.07.png)
+[![Screen Shot 2018-11-23 at 17.15.07.png](/media/static/blog_img/Screen-Shot-2018-11-23-at-17.15.07.png)](/media/static/blog_img/Screen-Shot-2018-11-23-at-17.15.07.png)
 
 One can add more subjects to a search in order to 'zoom in' into a results set, eg by [adding 'China'](http://hacks2019.michelepasin.org/dbpedialinks/entities/63004?filters=61361) to the search:
 
-[![Screen Shot 2018-11-23 at 17.16.38](/media/static/blog_img/Screen-Shot-2018-11-23-at-17.16.38.png)](http://www.michelepasin.org/blog/wp-content/uploads/2018/11/Screen-Shot-2018-11-23-at-17.16.38.png)
+[![Screen Shot 2018-11-23 at 17.16.38](/media/static/blog_img/Screen-Shot-2018-11-23-at-17.16.38.png)](/media/static/blog_img/Screen-Shot-2018-11-23-at-17.16.38.png)
 
 ### Implementation details
 
