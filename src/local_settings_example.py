@@ -12,6 +12,10 @@ DJANGO_ROOT = os.path.dirname(os.path.realpath(django.__file__))
 SITE_ROOT = os.path.dirname(os.path.realpath(__file__)).rsplit('/', 1)[0]
 PROJECT_ROOT = os.path.dirname(os.path.realpath(__file__)).rsplit('/', 2)[0]
 
+# path where MD files are / change as needed
+BLOGS_ROOT = SITE_ROOT + "/blog-src/"
+
+
 # Location: modify as needed
 if True:
     ENVIRONMENT = 'local'

@@ -94,7 +94,7 @@ def do_parse_md_folder(verbose=False, force=False):
 	Filenames need to be like this `2021-09-07-template-post.md`
 
 	"""
-	printDebug("Reading...")
+	printDebug(f"Reading... <{BLOGS_SOURCE_DIR}>")
 	counter1, counter2, counter3 = 0, 0, 0
 
 	filenames_list = []
