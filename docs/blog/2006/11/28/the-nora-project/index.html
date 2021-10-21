@@ -260,6 +260,12 @@
       padding: 25px;
     }
 
+
+    .blogentry  blockquote p:first-child, blockquote ul:first-child, blockquote ol:first-child {
+      margin-top: 0;
+    }
+
+
     .blogentry pre {
       margin-bottom: 40px;
     }
@@ -543,18 +549,22 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>The <a href="http://www.noraproject.org/description.php">Nora Project</a> aims at putting together a big pool of digital texts in the <strong>humanities</strong> in order to develop and test <strong>data mining techniques specific to this domain</strong>. Various collaborations with other institutions have provided them already a testbed of about <strong>10,000 literary texts</strong> in English, from the 19th century, or about 5 GB of marked-up text. Started by the University of Illinois' Graduate School of Library and Information Science, it relies on several years of software development work that has been done at the University of Illinois' National Center for Supercomputing Applications (NCSA), developing the D2K (Data to Knowledge) software, in Michael Welge's <a href="http://alg.ncsa.uiuc.edu/do/index">Automated Learning Group</a>. As they explain:</p>
+            <p>The <a href="http://www.noraproject.org/description.php">Nora Project</a> aims at putting together a big pool of digital texts in the <strong>humanities</strong> in order to develop and test <strong>data mining techniques specific to this domain</strong>. Various collaborations with other institutions have provided them already a testbed of about <strong>10,000 literary texts</strong> in English, from the 19th century, or about 5 GB of marked-up text. </p>
+<p>Started by the University of Illinois' Graduate School of Library and Information Science, it relies on several years of software development work that has been done at the University of Illinois' National Center for Supercomputing Applications (NCSA), developing the D2K (Data to Knowledge) software, in Michael Welge's <a href="http://alg.ncsa.uiuc.edu/do/index">Automated Learning Group</a>. As they explain:</p>
 <blockquote>
 <p>[...] the goal of data-mining (including text-mining) is to <strong>produce new knowledge by exposing unanticipated similarities or differences, clustering or dispersal, co-occurrence and trends</strong>. Over the last decade, many millions of dollars have been invested in creating digital library collections: at this point, terabytes of full-text humanities resources are publicly available on the web. The goal of the nora project is to produce software for discovering, visualizing, and exploring significant patterns across large collections of full-text humanities resources in existing digital libraries.</p>
 </blockquote>
-<p>I tried the <a href="http://www.noraproject.org/nora_demo.php">online Nora Vis demo</a>, on the letters of Emily Dickinson, through the Java Web start:</p>
-<p><a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Picture%2022.png" title="Picture 22.png"><img alt="Picture 22.png" src="http://127.0.0.1:8000/media/static/blog_img/Picture%2022.png" /></a></p>
-<p>Didn't take too long to launch (well.. tx to KMi's super fast connection), and it automatically loads a text and some metadata we don't see initially. From the online guide I gathered that I have to browse the docs, and r<strong>ate them</strong> according to how much they represent a specific content (in the example, "erotic"...) <a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Picture%2031.png" title="Picture 31.png"><img alt="Picture 31.png" src="http://127.0.0.1:8000/media/static/blog_img/Picture%2031.png" /></a></p>
-<p>Different visualizations of the text are possible: <a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Picture%2041.png" title="Picture 41.png"><img alt="Picture 41.png" src="http://127.0.0.1:8000/media/static/blog_img/Picture%2041.png" /></a></p>
-<p>Metadata apparently associated with the documents - <strong>not very 'semantic'</strong>, are they? Maybe I'm leaving out something.... <a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Picture%205.png" title="Picture 5.png"><img alt="Picture 5.png" src="http://127.0.0.1:8000/media/static/blog_img/Picture%205.png" /></a></p>
-<p>The idea is to <strong>provide a training corpus</strong>, through the ranking on the right-bottom part of the page. Then to benefit from it by using it as a <strong>"pattern" to match other documents</strong>... at first sight, the result is a sort of linguistic similarity among literary texts. <a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Picture%206.png" title="Picture 6.png"><img alt="Picture 6.png" src="http://127.0.0.1:8000/media/static/blog_img/Picture%206.png" /></a></p>
-<p>So I set off to perform the analysis bit, but something got wrong, and it crashed... more on next episode!</p>
-<p><a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Picture%207.png" title="Picture 7.png"><img alt="Picture 7.png" src="http://127.0.0.1:8000/media/static/blog_img/Picture%207.png" /></a></p>
+<p>I tried the <a href="http://www.noraproject.org/nora_demo.php">online Nora Vis demo</a>, on the letters of Emily Dickinson, through the Java Web start. </p>
+<p>Didn't take too long to launch (well.. tx to KMi's super fast connection), and it automatically loads a text and some metadata we don't see initially. From the online guide I gathered that I have to browse the letters, and <strong>rank them</strong> according to how much they represent a specific content .</p>
+<p><a href="../../../../../media/static/blog_img/nora-project.png"><img alt="nora-shot" src="../../../../../media/static/blog_img/nora-project.png" /></a></p>
+<p>The tags associated with the documents are <strong>not very 'semantic'</strong>, are they? Maybe I'm missing something... nonetheless,  the idea is to <strong>provide a training corpus</strong>, through the ranking on the right-bottom part of the page. </p>
+<p>The training corpus can then be used as a <strong>"pattern" to match other documents</strong>. At first sight, the result is a sort of linguistic similarity search on other documents. </p>
+<p>Definitely an interesting concept that is worth more exploration! </p>
+<p>See also:</p>
+<ul>
+<li><a href="https://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.708.8921&amp;rep=rep1&amp;type=pdf">Exploring Erotics in Emily Dickinson's Correspondence with Text Mining and Visual Interfaces (PDF)</a></li>
+<li><a href="https://www.noraproject.org/publications.php">The Nora project homepage</a></li>
+</ul>
 
             </div>
 
