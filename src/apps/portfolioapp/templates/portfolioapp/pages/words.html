@@ -26,7 +26,8 @@
 
   <div class="container">
 
-			<div class="text-muted -text-right -col-md-12">{# Publications #}
+	<div class="row">
+			<div class="text-muted -text-right col-md-3">{# Publications #}
 				View:
 				
 				<a class="h1links {% if ttype == 'all' %}project-active{% endif %}" href="?query=date&type=all"> all</a>&nbsp;|
@@ -42,11 +43,12 @@
 				{% comment %}
 				<a class="h1links -text-muted" href="?query=date&type=misc"> misc</a>&nbsp;
 				{% endcomment %}
-					
+				
+			</div>
 				
 
-							
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<div class="text-muted -text-right col-md-4">				
+				
 				Order by:
 				<a class="h1links {% if query == 'date' %}project-active{% endif %}" href="?query=date"> date</a>&nbsp;|
 				
@@ -60,16 +62,30 @@
 
 				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
+			</div>
 
+
+			<div class="text-muted -text-right col-md-2">
+				
+				<a href="{% url 'portfolioapp:words-feed' %}">
+					<img height=20 src="{% static 'rss.png' %}" alt="Main image"/ >
+				</a>	
+			</div>
+
+
+			<div class="text-muted -text-right col-md-3">
 				{# <form action="" class="search-form" style="display: inline-block;">#}
-					<div class="form-group has-feedback" style="display: inline-block;">
+					<div class="form-group has-feedback" style="display: inline-block; margin-top: -10px;">
 						<label for="search" class="sr-only">Filter</label>
-						<input type="text" class="form-control" name="search" id="search-input" placeholder="enter a keyword">
+						<input type="text" class="form-control" name="search" id="search-input" placeholder="enter a keyword" >
 							<span class="glyphicon glyphicon-search form-control-feedback"></span>
 					</div>
 				{# </form>#}
 
 			</div>
+
+
+	</div>
 
 
 
