@@ -2,11 +2,11 @@
 
 echo "================="
 echo "DUMPING DATA"
-echo "Using local MySQL - saving to /data"
+echo "Using local MySQL - saving to /backups"
 echo "================="
 
 
-NAME="data/$(date +"%Y_%m_%d__%I_%M_%S_%p").json"
+NAME="backups/$(date +"%Y_%m_%d__%I_%M_%S_%p").json"
 src/manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude sessions --indent=4 > $NAME
 
 echo "DONE: $NAME"
