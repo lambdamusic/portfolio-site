@@ -24,34 +24,94 @@ fi
 #
 
 
-echo -e "\nCLEAN UP BUILD DIR"
-echo "+++++++++++++++++"
-rm -rf build/*
 
-echo -e "\nRSYNC /DOCS TO /DOCS-PREV"
+#
+# prep
+#
+
+
+DIR_BUILD="build"
+DIR_DOCS="docs"
+DIR_MD="/Users/michele.pasin/Dropbox/Apps/NVALT/001/Blog"
+
+DIR_ROOT_BACKUP="backups/$(date +"%Y_%m_%d__%I_%M_%S_%p")"
+DIR_DOCS_BACKUP="$DIR_ROOT_BACKUP/docs"
+DIR_MD_BACKUP="$DIR_ROOT_BACKUP/md"
+DIR_DB_BACKUP="$DIR_ROOT_BACKUP/data"
+
+
+#
+# backup DOCS SITE
+#
+echo -e "\nCREATE BACKUP DIRS in: $DIR_ROOT_BACKUP/" 
+echo "+++++++++++++++++"
+
+mkdir $DIR_ROOT_BACKUP
+mkdir $DIR_DOCS_BACKUP
+mkdir $DIR_MD_BACKUP
+mkdir $DIR_DB_BACKUP
+
+
+echo -e "\nBACKING UP SITE....RSYNC /DOCS TO /$DIR_DOCS_BACKUP"
 echo "+++++++++++++++++"
 # the legacy /blog static files don't need to be refreshed
-rsync -av --delete --exclude archived --exclude assets docs/ docs-prev/
+rsync -av --delete --exclude archived --exclude assets $DIR_DOCS/ $DIR_DOCS_BACKUP/
 
-echo -e "\nGRAB SITE INTO BUILD DIRECTORY" 
+
+
+#
+# backup DB data
+#
+
+echo -e "\nBACKING UP DB DATA ....src/manage.py dumpdata TO /$DIR_DB_BACKUP"
 echo "+++++++++++++++++"
-wget  -P build -mkEpnp -nH http://127.0.0.1:8000/ --wait=0.1 --exclude-domains www.michelepasin.org
+
+FILENAME="$DIR_DB_BACKUP/dump.json"
+src/manage.py dumpdata --exclude auth.permission --exclude contenttypes --exclude sessions --indent=4 > $FILENAME
+
+echo -e "\nDONE: $FILENAME\n"
+
+
+
+#
+# backup MD source files data
+#
+
+echo -e "\nBACKING UP MARKDOWN FILES from $DIR_MD TO /$DIR_MD_BACKUP"
+echo "+++++++++++++++++"
+
+cp -R $DIR_MD/* $DIR_MD_BACKUP/
+echo -e "\nDONE: $DIR_MD_BACKUP\n"
+
+
+
+
+#
+# get HTML site from local Django 
+#
+
+echo -e "\nCLEAN UP TEMP BUILD DIR.."
+echo "+++++++++++++++++"
+rm -rf $DIR_BUILD/*
+
+echo -e "\nWGET SITE INTO TEMP BUILD DIRECTORY.." 
+echo "+++++++++++++++++"
+wget  -P $DIR_BUILD -mkEpnp -nH http://127.0.0.1:8000/ --wait=0.1 --exclude-domains www.michelepasin.org
+
 # add a log file
-cd build
+cd $DIR_BUILD
 touch "$(date +"%Y_%m_%d_%I_%M_%p").log"
 cd ..
 
-echo -e "\RSYNC BUILD DIRECTORY TO /DOCS"
+
+#
+# save HTML site to docs folder
+#
+
+echo -e "\nRSYNC TEMP BUILD DIRECTORY INTO FINAL LOCATION:  /$DIR_DOCS"
 echo "+++++++++++++++++"
-rsync -av --delete --exclude '.nojekyll' --exclude 'CNAME' --exclude archived --exclude assets build/ docs/
+rsync -av --delete --exclude '.nojekyll' --exclude 'CNAME' --exclude archived --exclude assets $DIR_BUILD/ $DIR_DOCS/
 
-
-
-echo "================="
-echo "Dumping data.."
-echo "================="
-
-./tools/data-dump
 
 
 
