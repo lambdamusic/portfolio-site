@@ -27,7 +27,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="World date from the terminal A little Bash script to show information about world time zones. Because I love my colleagues abroad, but I constantly struggle to remember how many ...">
+  <meta name="description" content="Terminal script: getting the time in different world time zones A little Bash script to show information about world time zones. Because I love my colleagues abroad, but I constantly struggle to remember how many ...">
 
 
 
@@ -536,7 +536,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <div class="col-xs-12 col-md-7 col-md-pull-3">
 
           <div>
-            <h2 class="blogtitle"><b>World date from the terminal</b></h2>
+            <h2 class="blogtitle"><b>Terminal script: getting the time in different world time zones</b></h2>
           </div>
           
 
@@ -550,18 +550,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
             <p>A little Bash script to show information about world time zones. Because I love my colleagues abroad, but I constantly struggle to remember how many hours ahead (or behind?) they are.</p>
-<p>It basically scans the <code>zoneinfo</code> data already existing on your Mac and return the rows matching an input string.</p>
-<script src="https://gist.github.com/lambdamusic/4a5b852c8f9051b1f29033619cd38e36.js"></script>
-
-<p>NOTE On my Mac I found the <code>zoneinfo</code> data in this location:</p>
-<p><code>/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/pytz/zoneinfo/</code></p>
-<p>That path is needed for the script to work. You can customise it of course, see below how to do it. </p>
-<h2>Set up</h2>
-<p>Save the file above eg as <code>wdate</code> and then make it executable</p>
-<div class="codehilite"><pre><span></span><code>chmod +x wdate
-</code></pre></div>
-
-<p>Then you can run it eg</p>
+<p>I am using the script on a Mac, but it should work on other systems too with little or no changes. Basically, it scans the <code>zoneinfo</code> database (<a href="https://en.wikipedia.org/wiki/Tz_database">more info</a>) that most likely already exists on your computer, in order to return the rows matching an input string.</p>
+<p>For example - what's the time in Australia right now?</p>
 <div class="codehilite"><pre><span></span><code>$ wdate australia
 /Australia/Melbourne               Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
 /Australia/Queensland              Tue <span class="m">2021</span>-10-12 <span class="m">19</span>:47:48
@@ -588,6 +578,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 /Australia/Currie                  Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
 </code></pre></div>
 
+<h2>Set up</h2>
+<p>NOTE On my Mac I found the <code>zoneinfo</code> database in this location:</p>
+<p><code>/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/pytz/zoneinfo/</code></p>
+<p>This path is needed for the script to work. You can customise it of course, see below how to do it. </p>
+<script src="https://gist.github.com/lambdamusic/4a5b852c8f9051b1f29033619cd38e36.js"></script>
+
+<p>Save the file above eg as <code>wdate</code> and then make it executable</p>
+<div class="codehilite"><pre><span></span><code>chmod +x wdate
+</code></pre></div>
+
 <h2>Troubleshoot</h2>
 <p>If you don't know where to find <code>zoneinfo</code> data on your computer, just search for it. Eg on a Mac: </p>
 <div class="codehilite"><pre><span></span><code>mdfind -name zoneinfo
@@ -596,9 +596,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>That'll give you a list of possible candidates. </p>
 <h2>See also</h2>
 <ul>
-<li>The inspiration for this post: https://stackoverflow.com/questions/26802201/bash-get-date-and-time-from-another-time-zone</li>
-<li>Menu World Time - a <a href="https://apps.apple.com/us/app/menu-world-time/id1446377255">menu bar app</a></li>
-<li>Getting timezones in Python: https://stackoverflow.com/questions/16505501/get-timezone-from-city-in-python-django</li>
+<li>The inspiration for this post: <a href="https://stackoverflow.com/questions/26802201/bash-get-date-and-time-from-another-time-zone">a Stackoverflow thread</a></li>
+<li>Menu World Time - a free Mac <a href="https://apps.apple.com/us/app/menu-world-time/id1446377255">Menu Bar app</a></li>
+<li>Working with timezones in Python: <a href="https://stackoverflow.com/questions/16505501/get-timezone-from-city-in-python-django">more background info</a></li>
 </ul>
 
             </div>
@@ -610,7 +610,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
               <div class="well well-big" >
-                Michele Pasin. <a href="index.html" class="bluelink">World date from the terminal</a>. Blog post on www.michelepasin.org. Published on Sept. 7, 2021.
+                Michele Pasin. <a href="index.html" class="bluelink">Terminal script: getting the time in different world time zones</a>. Blog post on www.michelepasin.org. Published on Sept. 7, 2021.
               </div>
             </div>
 <!-- 
@@ -695,35 +695,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a  class="bluelink paper-active" title="The article on this page">World date from the terminal</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../02/01/extempore-functions-explorer-updated-to-latest-release-v0-8-7/index.html" class="bluelink " >Extempore functions explorer updated to latest release (v0.8.7)</a>
+              <a  class="bluelink paper-active" title="The article on this page">Terminal script: getting the time in different world time zones</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -755,80 +727,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <hr>
 
         <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2017</p>
-        </div>
-
-
-        <div class="col-sm-7 col-md-9">
-
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-
-
-           
-            <!-- <small class="text-muted">Jan 2017</small> -->
-
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-warning'>paper</span>&nbsp;
-              <a href="../../../../../papers/2017/01/01/fitting-personal-interpretation-with-the-semantic-web-lessons-learned-from-pliny/index.html" class="bluelink " >Fitting Personal Interpretation with the Semantic Web: lessons learned from Pliny</a>
-              <!-- <br />
-              <span class="">John Bradley, Michele Pasin</span> -->
-            </p>
-
-
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-              
-                <span class='journal'> Digital Humanities Quarterly,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2017.</span>
-              
-              
-                <span class='extrainfo'> Volume 11 Number 1</span>
-              
-              
-              
-              
-
-            </p>
-            
-
-
-
-
-
-            
-
-
-          </div>
-
-        
-
-
-        </div>
-
-
-
-      </div>
-
-      
-
-      <div class="row row_pubitem">
-
-        <hr>
-
-        <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2016</p>
+          <p style="color: lightgrey; font-size: 300%; ">2020</p>
         </div>
 
 
@@ -845,133 +744,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2016/12/24/extracting-snippets-from-github-gists-to-dash/index.html" class="bluelink " >How to copy snippets from Github Gists to Dash</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-
-
-          </div>
-
-        
-
-
-        </div>
-
-
-
-      </div>
-
-      
-
-      <div class="row row_pubitem">
-
-        <hr>
-
-        <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2015</p>
-        </div>
-
-
-        <div class="col-sm-7 col-md-9">
-
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2015/06/14/recent-projects-from-crossref-org/index.html" class="bluelink " >Recent projects from CrossRef.org</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2015/01/17/notes-from-the-force11-annual-conference/index.html" class="bluelink " >Notes from the Force11 annual conference</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-
-
-          </div>
-
-        
-
-
-        </div>
-
-
-
-      </div>
-
-      
-
-      <div class="row row_pubitem">
-
-        <hr>
-
-        <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2013</p>
-        </div>
-
-
-        <div class="col-sm-7 col-md-9">
-
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2013/06/05/eswc-2013-report-from-the-conference/index.html" class="bluelink " >ESWC 2013 - report from the conference</a>
+              <a href="../../../../2020/01/30/getting-to-grips-with-google-colab/index.html" class="bluelink " >Getting to grips with Google Colab</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1020,7 +793,35 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2012/06/01/crowdsourcing-interpretation-with-prism-a-new-software-from-the-scholars-lab/index.html" class="bluelink " >Crowdsourcing interpretation with Prism, a new software from the Scholar&#39;s Lab</a>
+              <a href="../../../../2012/09/10/navigating-through-the-people-of-medieval-scotland/index.html" class="bluelink " >Navigating through the people of medieval Scotland... one step at a time</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html" class="bluelink " >Getting hold of your Flickr collections with Python</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1097,7 +898,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2011/01/29/opening-a-finders-window-from-impromptu-alas-how-to-use-the-applescript-bridge/index.html" class="bluelink " >Opening a Finder&#39;s window from Impromptu (alas how to use the applescript bridge..)</a>
+              <a href="../../../../2011/02/07/what-is-the-reaper-time-in-impromptu/index.html" class="bluelink " >What is the reaper time in Impromptu?</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1144,113 +945,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
             
-
-
-           
-            <!-- <small class="text-muted">Oct 2010</small> -->
-
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-warning'>paper</span>&nbsp;
-              <a href="../../../../../papers/2010/10/02/how-do-philosophers-think-their-own-discipline-reports-from-a-knowledge-elicitation-experiment/index.html" class="bluelink " >How do philosophers think their own discipline? Reports from a knowledge elicitation experiment</a>
-              <!-- <br />
-              <span class="">Michele Pasin</span> -->
-            </p>
-
-
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-              
-              
-                <span class='conference'> European Philosophy and Computing conference, ECAP10,</span>
-              
-              
-                <span class='pubplace'> Munich, Germany,</span>
-              
-              
-                <span class='pubdate'> Oct 2010.</span>
-              
-              
-              
-              
-              
-
-            </p>
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-
-
-           
-            <!-- <small class="text-muted">Jun 2010</small> -->
-
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-warning'>paper</span>&nbsp;
-              <a href="../../../../../papers/2010/06/10/data-integration-perspectives-from-the-london-theatres-bibliography-project/index.html" class="bluelink " >Data integration perspectives from the London Theatres Bibliography project</a>
-              <!-- <br />
-              <span class="">Michele Pasin</span> -->
-            </p>
-
-
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-              
-              
-                <span class='conference'> Annual Conference of the Canadian Society for Digital Humanities / Société pour l&#39;étude des médias interactifs (SDH-SEMI 2010),</span>
-              
-              
-                <span class='pubplace'> Montreal, Canada,</span>
-              
-              
-                <span class='pubdate'> Jun 2010.</span>
-              
-              
-              
-              
-              
-
-            </p>
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2010/03/11/tale-of-tales-artistic-interactive-games-from-belgium/index.html" class="bluelink " >Tale of tales: artistic interactive games from Belgium</a>
+              <a href="../../../../2010/02/04/getting-back-to-the-ontological-work/index.html" class="bluelink " >Getting back to the ontological work..</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1278,7 +975,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/index.html" class="bluelink " >Impromptu: access the Wiki docs from the editor</a>
+              <a href="../../../../2010/01/13/macbook-getting-the-backlight-to-behave-the-way-you-want/index.html" class="bluelink " >MacBook: getting the backlight to behave the way you want</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1327,7 +1024,91 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/12/12/pyglet-multimedia-library-for-python/index.html" class="bluelink " >Pyglet: multimedia library for python</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/06/01/bug-osx-10-5-7-macbook-sleeps-once-freezes-second-time/index.html" class="bluelink " >Bug: OSx 10.5.7 - Macbook sleeps once, freezes second time</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
               <a href="../../../../2009/02/24/using-the-os-x-terminal-application/index.html" class="bluelink " >Using the OS X Terminal Application</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/01/27/how-to-make-a-mac-screen-saver-that-shows-your-uptime/index.html" class="bluelink " >How to make a (Mac) screen saver that shows your uptime</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1359,7 +1140,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <hr>
 
         <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2008</p>
+          <p style="color: lightgrey; font-size: 300%; ">2007</p>
         </div>
 
 
@@ -1376,7 +1157,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2008/07/10/quotation-from-gregory-bateson/index.html" class="bluelink " >Quotation from Gregory Bateson</a>
+              <a href="../../../../2007/09/03/wheres-all-the-time-gone/index.html" class="bluelink " >Where&#39;s all the time gone?</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1425,7 +1206,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2006/11/02/free-learning-resources-from-the-ou/index.html" class="bluelink " >Free learning resources from the OU</a>
+              <a href="../../../../2006/11/23/multimedian-semantic-navigator/index.html" class="bluelink " >MultimediaN semantic navigator</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
