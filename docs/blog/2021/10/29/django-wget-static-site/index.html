@@ -550,18 +550,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
             <p>If you're a Django developer and want to publish a website without the hassle (and costs) of deploying a web app, then this post may give you some useful tips. </p>
-<p>I found myself in this situation several times, so have created a time-saving workflow/set of tools for extracting a dynamic <a href="https://www.djangoproject.com/">Django</a> website into a <a href="https://en.wikipedia.org/wiki/Static_web_page">static</a> website (= a website that does not require back end technologies, just front end stuff like HTML+CSS+JS that can be rendered entirely in the browser). </p>
+<p>I found myself in this situation several times, so have created a time-saving workflow/set of tools for extracting a dynamic <a href="https://www.djangoproject.com/">Django</a> website into a <a href="https://en.wikipedia.org/wiki/Static_web_page">static</a> website (= a website that does not require a web application, just plain simple HTML pages). </p>
 <blockquote>
 <p>Disclaimer: this method is not suited for all types of websites. EG if your Django application is updated frequently (e.g. more than once a day), or if it has keyword search (or faceted search) pages that inherently rely on dynamical queries to the Django backed based on user input, then a static site won't cut it for you, most likely. </p>
 </blockquote>
 <p>In a nutshell - this is how it works:</p>
 <ol>
-<li>I create / edit the website contents locally, using <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> as much as I can, i.e. text files.</li>
-<li>The Markdown content is transformed to HTML using a <a href="https://www.djangoproject.com/">Django</a> (Python) application, which runs on <code>localhost</code> and is used to review/style these pages.</li>
+<li>On my computer, I create / edit the website contents using <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> as much as I can, i.e. text files.</li>
+<li>Markdown files are transformed to HTML using a <a href="https://www.djangoproject.com/">Django</a> (Python) application, which runs on <code>localhost</code> and is used to review/style these pages.</li>
 <li>Finally, I use the almighty <a href="https://en.wikipedia.org/wiki/Wget">wget</a> to extract the website HTML into a standalone static site that I can easily publish online, e.g. by syncing it to <a href="https://pages.github.com/">GitHub Pages</a> or any of the other free hosting services for static sites.</li>
 </ol>
 <p><a href="../../../../../media/static/blog_img/django-wget-1.jpg"><img alt="Image django-wget-1.jpg" src="../../../../../media/static/blog_img/django-wget-1.jpg" /></a></p>
-<p>Keep reading to find out more about each of these steps. </p>
+<p>All of the steps happen on your <strong>local computer</strong>. Keep reading to find out more about each of these steps. </p>
 <h2>1. Editing</h2>
 <p>It's useful to think of a concrete use-case, so I'll be talking about my personal site <a href="https://www.michelepasin.org/">www.michelepasin.org</a> (the site you're on right now) which happens to be the first site I've published following this method. </p>
 <p>My website has generally two types of pages: </p>
@@ -590,9 +590,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <div class="codehilite"><pre><span></span><code>$ python manage.py runserver
 </code></pre></div>
 
-<p>The interesting bit has to do with how the Markdown / static text pages get integrated into the website. This is happening via two steps.</p>
+<p>The interesting bit has to do with how the Markdown / static text pages get integrated into the website. There are two parts: markdown <em>indexing</em> and markdown <em>rendering</em>. </p>
 <h4>Markdown indexing</h4>
-<p>I have created a <strong>command line script</strong> that creates an index of all the Markdown files (in the blog posts folder). This index is basically a <strong>collection of metadata</strong> about these files (e.g. <em>title</em>, <em>publication date</em>, <em>tags</em>, file <em>location</em> on the computer), which get stored in the Django back-end database. </p>
+<p>A <strong>command line script</strong> creates an index of all the Markdown files (in the blog posts folder). This index is basically a <strong>collection of metadata</strong> about these files (e.g. <em>title</em>, <em>publication date</em>, <em>tags</em>, file <em>location</em> on the computer), which get stored in the Django back-end database. </p>
 <p>As a result, this metadata can be used by the Django web app in order to retrieve / search / filter the Markdown files, via the usual <em>model-view-controller</em> machinery Django provides.</p>
 <p>Here is a sample run of the interactive script, called <code>blogs-reindex</code>:</p>
 <div class="codehilite"><pre><span></span><code>$ ./tools/blogs-reindex
@@ -621,7 +621,7 @@ Done
 </code></pre></div>
 
 <p>See the <a href="https://github.com/lambdamusic/portfolio-site/blob/master/src/apps/researchapp/management/commands/do_blogs_reindex.py">full source code</a> on Github. </p>
-<h4>Django rendering</h4>
+<h4>Markdown rendering</h4>
 <p>The second part of this architecture simply consists of the Python functions that transform Markdown into HTML. Of course, that follows the usual Django pattern, i.e. a <code>url</code> controller and related <code>view</code> functions that know how to handle the Markdown format: </p>
 <div class="codehilite"><pre><span></span><code><span class="c1">#</span>
 <span class="c1"># in settings.py</span>
@@ -670,8 +670,8 @@ Done
 
 <p>The code above uses the <a href="https://python-markdown.github.io/">python-markdown</a> library in order to transform Markdown text to HTML. For more details, see the <a href="https://github.com/lambdamusic/portfolio-site/blob/master/src/apps/researchapp/management/commands/do_blogs_reindex.py#L133">source code</a> of the  <code>parse_markdown</code> function. </p>
 <h2>3. Publishing</h2>
-<p>Publishing the site / blog is done via another command line script: <code>./tools/site-dump-and-publish</code>.</p>
-<p>This command does four main things: </p>
+<p>The final step is publishing the website online. For this I'm using <a href="https://www.gnu.org/software/wget/">Wget</a> to generate a static version of the site, and <a href="https://pages.github.com/">GitHub pages</a> to make it available online at no cost. </p>
+<p>This is done via another command line script: <code>./tools/site-dump-and-publish</code>. The command does four main things: </p>
 <ol>
 <li>Backup the previous version of the site.</li>
 <li>Use <code>wget</code> on the Django app running in local to pull all the site pages as a static website (note: hyperlinks must be 'mirrored').</li>
