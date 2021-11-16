@@ -27,7 +27,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Impromptu: access the Wiki docs from the editor &amp;gt;&amp;gt;&amp;gt; When you&#39;re Impromptu-ing but don&#39;t know the meaning or syntax of a function, the usual thing to do is calling (help function-name) to get ...">
+  <meta name="description" content="Impromptu: access the Wiki docs from the editor When you&#39;re Impromptu-ing but don&#39;t know the meaning or syntax of a function, the usual thing to do is calling (help function-name) to get some ...">
 
 
 
@@ -549,86 +549,98 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p><a href="http://magicrebirth.webfactional.com/blog/wp-content/uploads/2010/02/picture-13.png"><img alt="" src="http://magicrebirth.webfactional.com/blog/wp-content/uploads/2010/02/picture-13.png?w=300" title="Picture 1" /></a> &gt;&gt;&gt; When you're <a href="http://impromptu.moso.com.au/index.html">Impromptu</a>-ing but <strong>don't know the meaning or syntax of a function</strong>, the usual thing to do is calling <code>(help function-name)</code> to get some help about that function, or <code>(help function-name #t)</code> if you want to see also the examples associated with it. The help text gets displayed in the log view, so that you can then copy/paste what you need from there. Quite useful, but nonetheless I always find myself <strong>fighting with the log window</strong>: too small, hidden away by other canvases, or not readable anymore cause after calling the help function I've evaluated other stuff that has moved up the much needed help-text.</p>
+            <p>When you're <a href="http://impromptu.moso.com.au/index.html">Impromptu</a>-ing but <strong>don't know the meaning or syntax of a function</strong>, the usual thing to do is calling <code>(help function-name)</code> to get some help about that function, or <code>(help function-name #t)</code> if you want to see also the examples associated with it. The help text gets displayed in the log view, so that you can then copy/paste what you need from there. Quite useful, but nonetheless I always find myself <strong>fighting with the log window</strong>: too small, hidden away by other canvases, or not readable anymore cause after calling the help function I've evaluated other stuff that has moved up the much needed help-text.</p>
 <p>Since a couple of months ago <a href="http://moso.com.au/wiki/index.php?title=Main_Page">Impromptu has a wiki too</a> - so I thought, it'd be nice to see a function's help in a browser window, and possibly contribute to its explanation too..</p>
 <p>So, that's the rationale for this little script. <strong>By calling 'wiki' you can open up a web browser at the relevant Impromptu-wiki page</strong>.. as simple as that. <a href="http://magicrebirth.webfactional.com/blog/wp-content/uploads/2010/02/picture-21.png"><img alt="" src="http://magicrebirth.webfactional.com/blog/wp-content/uploads/2010/02/picture-21.png?w=300" title="Picture 2" /></a> &gt;&gt;&gt;</p>
 <p>First off, we need a couple of utility functions that are not included in Impromptu by default, for better manipulating strings, lists and webpages (UPDATE 9-Nov2010: some of this symbols have been included in Improptu 2.5, so I prefixed the one below with the <em>utils:</em> namespace):</p>
-<p>;;;;;;;
-;; utilities
-;;;;;;;</p>
-<p>;; (utils:list-flatten '(9 9 (9 9 9 ))))  = (9 9 9 9 9)
-(<strong>define</strong> utils:list-flatten
-   (<strong>lambda</strong> (l)
-      (<strong>cond</strong> ((null? l)
-             '())
-            ((atom? l)
-             (list l))
-            (#t (append (utils:list-flatten  (car l)) (utils:list-flatten  (cdr l)))))))</p>
-<p>;; returns a char from a string of length 1, or a list of chars from a longer string
-(<strong>define</strong> utils:char
-   (<strong>lambda</strong> (string_char)
-      (<strong>if</strong> (string? string_char)
-          (<strong>if</strong> (> (string-length string_char) 0)
-              (<strong>if</strong> (> (string-length string_char) 1)
-                  (string-&gt;list string_char)
-                  (car (string-&gt;list string_char))))
-          (print 'please 'enter 'a 'string))))</p>
-<p>;; matches a single character in a string, and replaces it
-(<strong>define</strong> utils:string-replace
-   (<strong>lambda</strong> (s match replacement)
-      (<strong>let</strong> ((ll (string-&gt;list s))
-            (match1 (utils:char match))
-            (replacement1 (utils:char replacement)))
-         (<strong>if</strong> (\= (string-length match) 1)
-             (<strong>let</strong> ((z (map (<strong>lambda</strong> (x)
-                              (<strong>if</strong> (equal? x match1)
-                                  replacement1
-                                  x))
-                           ll)))
-                (list-&gt;string (utils:list-flatten z)))
-                ;z)
-             (print "i can match only single characters for now")))))</p>
-<p>;; makes a string upper case
-(<strong>define</strong> utils:string-capitalize
-   (<strong>lambda</strong> (s)
-      (string-append (string (char-upcase (string-ref s 0))) (substring s 1 (string-length s)))))</p>
-<p>;; open-url: calls the default mac browser with a url argument 
-;; disclaimer: I'm not an objc programmer... found an example at 
-;; <a href="http://macosx.com/forums/software-programming-web-scripting/18422-how-do-i-launch-url-using-cocoa-objective-c.html">http://macosx.com/forums/software-programming-web-scripting/18422-how-do-i-launch-url-using-cocoa-objective-c.html</a>
-(<strong>define</strong> utils:open-url
-   (<strong>lambda</strong> (urlstring)
-      (<strong>let</strong> ((urlobj (objc:call "NSURL" "URLWithString:" urlstring))
-            (workspace (objc:call "NSWorkspace" "sharedWorkspace")))
-         (objc:call workspace "openURL:" urlobj))))</p>
-<p>>&gt;&gt; Finally, the functions for opening the wiki page:</p>
-<p>;;;;;;;;;;
-;; wiki url caller
-;; e.g. (wiki objc:from-address) =&gt; goes to http://moso.com.au/wiki/index.php?title=Objc:from-address
-;;;;;;;;;;</p>
-<p>;; wiki-escape: composes the url so that it matches the ones of the online wiki 
-(<strong>define</strong> wikiescape
-   (<strong>lambda</strong> (funname)
-      (for-each (<strong>lambda</strong> (x)
-                   (<strong>set!</strong> funname (utils:string-replace funname (car x) (cadr x))))
-                '(("+" "%2B")
-                  ("=" "%3D")
-                  ("&lt;" "lessthan")
-                  ("&gt;" "greaterthan")
-                  ("*" "%2A")
-                  ("?" "%3F")
-                  ("!" "%21")
-                  ))
-      (utils:string-capitalize funname)))</p>
-<p>(<strong>define</strong> wiki-inner
-   (<strong>lambda</strong> (funname)
-      (<strong>let*</strong> ((urlbase "<a href="http://moso.com.au/wiki/index.php?title=">http://moso.com.au/wiki/index.php?title=</a>")
-             (newname (wikiescape funname))
-             (url (string-append urlbase newname)))
-         (utils:open-url url))))</p>
-<p>;; macro wrapper and main function that gets called 
-(define-macro (wiki name)
-   `(wiki-inner (sexpr-&gt;string (quote ,name))))</p>
-<p>>&gt;&gt; That's it: load all of this code (or put it in a single file and load it at startup time) and you've got the <strong>wiki</strong> procedure available!</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">;;;;;;;</span>
+<span class="c1">;; utilities</span>
+<span class="c1">;;;;;;;</span>
+
+<span class="c1">;; (utils:list-flatten &#39;(9 9 (9 9 9 ))))  = (9 9 9 9 9)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">utils:list-flatten</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">l</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">cond </span><span class="p">((</span><span class="nb">null? </span><span class="nv">l</span><span class="p">)</span>
+             <span class="o">&#39;</span><span class="p">())</span>
+            <span class="p">((</span><span class="nf">atom?</span> <span class="nv">l</span><span class="p">)</span>
+             <span class="p">(</span><span class="nb">list </span><span class="nv">l</span><span class="p">))</span>
+            <span class="p">(</span><span class="no">#t</span> <span class="p">(</span><span class="nb">append </span><span class="p">(</span><span class="nf">utils:list-flatten</span>  <span class="p">(</span><span class="nb">car </span><span class="nv">l</span><span class="p">))</span> <span class="p">(</span><span class="nf">utils:list-flatten</span>  <span class="p">(</span><span class="nb">cdr </span><span class="nv">l</span><span class="p">)))))))</span>
+
+<span class="c1">;; returns a char from a string of length 1, or a list of chars from a longer string</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">utils:char</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">string_char</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">string? </span><span class="nv">string_char</span><span class="p">)</span>
+          <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nb">string-length </span><span class="nv">string_char</span><span class="p">)</span> <span class="mi">0</span><span class="p">)</span>
+              <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="p">(</span><span class="nb">string-length </span><span class="nv">string_char</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nb">string-&gt;list </span><span class="nv">string_char</span><span class="p">)</span>
+                  <span class="p">(</span><span class="nb">car </span><span class="p">(</span><span class="nb">string-&gt;list </span><span class="nv">string_char</span><span class="p">))))</span>
+          <span class="p">(</span><span class="nf">print</span> <span class="ss">&#39;please</span> <span class="ss">&#39;enter</span> <span class="ss">&#39;a</span> <span class="ss">&#39;string</span><span class="p">))))</span>
+
+<span class="c1">;; matches a single character in a string, and replaces it</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">utils:string-replace</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">s</span> <span class="nv">match</span> <span class="nv">replacement</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">ll</span> <span class="p">(</span><span class="nb">string-&gt;list </span><span class="nv">s</span><span class="p">))</span>
+            <span class="p">(</span><span class="nf">match1</span> <span class="p">(</span><span class="nf">utils:char</span> <span class="nv">match</span><span class="p">))</span>
+            <span class="p">(</span><span class="nf">replacement1</span> <span class="p">(</span><span class="nf">utils:char</span> <span class="nv">replacement</span><span class="p">)))</span>
+         <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">= </span><span class="p">(</span><span class="nb">string-length </span><span class="nv">match</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+             <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">z</span> <span class="p">(</span><span class="nb">map </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span><span class="p">)</span>
+                              <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">equal? </span><span class="nv">x</span> <span class="nv">match1</span><span class="p">)</span>
+                                  <span class="nv">replacement1</span>
+                                  <span class="nv">x</span><span class="p">))</span>
+                           <span class="nv">ll</span><span class="p">)))</span>
+                <span class="p">(</span><span class="nb">list-&gt;string </span><span class="p">(</span><span class="nf">utils:list-flatten</span> <span class="nv">z</span><span class="p">)))</span>
+                <span class="c1">;z)</span>
+             <span class="p">(</span><span class="nf">print</span> <span class="s">&quot;i can match only single characters for now&quot;</span><span class="p">)))))</span>
+
+<span class="c1">;; makes a string upper case</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">utils:string-capitalize</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">s</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">string-append </span><span class="p">(</span><span class="nb">string </span><span class="p">(</span><span class="nb">char-upcase </span><span class="p">(</span><span class="nb">string-ref </span><span class="nv">s</span> <span class="mi">0</span><span class="p">)))</span> <span class="p">(</span><span class="nb">substring </span><span class="nv">s</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">string-length </span><span class="nv">s</span><span class="p">)))))</span>
+
+<span class="c1">;; open-url: calls the default mac browser with a url argument </span>
+<span class="c1">;; disclaimer: I&#39;m not an objc programmer... found an example at </span>
+<span class="c1">;; [http://macosx.com/forums/software-programming-web-scripting/18422-how-do-i-launch-url-using-cocoa-objective-c.html](http://macosx.com/forums/software-programming-web-scripting/18422-how-do-i-launch-url-using-cocoa-objective-c.html)</span>
+<span class="p">(</span><span class="k">define </span><span class="nv">utils:open-url</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">urlstring</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">urlobj</span> <span class="p">(</span><span class="nf">objc:call</span> <span class="s">&quot;NSURL&quot;</span> <span class="s">&quot;URLWithString:&quot;</span> <span class="nv">urlstring</span><span class="p">))</span>
+            <span class="p">(</span><span class="nf">workspace</span> <span class="p">(</span><span class="nf">objc:call</span> <span class="s">&quot;NSWorkspace&quot;</span> <span class="s">&quot;sharedWorkspace&quot;</span><span class="p">)))</span>
+         <span class="p">(</span><span class="nf">objc:call</span> <span class="nv">workspace</span> <span class="s">&quot;openURL:&quot;</span> <span class="nv">urlobj</span><span class="p">))))</span>
+</code></pre></div>
+
+<p>Finally, the functions for opening the wiki page:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1">;;;;;;;;;;</span>
+<span class="c1">;; wiki url caller</span>
+<span class="c1">;; e.g. (wiki objc:from-address) =&gt; goes to http://moso.com.au/wiki/index.php?title=Objc:from-address</span>
+<span class="c1">;;;;;;;;;;</span>
+
+<span class="c1">;; wiki-escape: composes the url so that it matches the ones of the online wiki </span>
+<span class="p">(</span><span class="k">define </span><span class="nv">wikiescape</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">funname</span><span class="p">)</span>
+      <span class="p">(</span><span class="nb">for-each </span><span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">x</span><span class="p">)</span>
+                   <span class="p">(</span><span class="k">set! </span><span class="nv">funname</span> <span class="p">(</span><span class="nf">utils:string-replace</span> <span class="nv">funname</span> <span class="p">(</span><span class="nb">car </span><span class="nv">x</span><span class="p">)</span> <span class="p">(</span><span class="nb">cadr </span><span class="nv">x</span><span class="p">))))</span>
+                <span class="o">&#39;</span><span class="p">((</span><span class="s">&quot;+&quot;</span> <span class="s">&quot;%2B&quot;</span><span class="p">)</span>
+                  <span class="p">(</span><span class="s">&quot;=&quot;</span> <span class="s">&quot;%3D&quot;</span><span class="p">)</span>
+                  <span class="p">(</span><span class="s">&quot;&lt;&quot;</span> <span class="s">&quot;lessthan&quot;</span><span class="p">)</span>
+                  <span class="p">(</span><span class="s">&quot;&gt;&quot;</span> <span class="s">&quot;greaterthan&quot;</span><span class="p">)</span>
+                  <span class="p">(</span><span class="s">&quot;*&quot;</span> <span class="s">&quot;%2A&quot;</span><span class="p">)</span>
+                  <span class="p">(</span><span class="s">&quot;?&quot;</span> <span class="s">&quot;%3F&quot;</span><span class="p">)</span>
+                  <span class="p">(</span><span class="s">&quot;!&quot;</span> <span class="s">&quot;%21&quot;</span><span class="p">)</span>
+                  <span class="p">))</span>
+      <span class="p">(</span><span class="nf">utils:string-capitalize</span> <span class="nv">funname</span><span class="p">)))</span>
+
+<span class="p">(</span><span class="k">define </span><span class="nv">wiki-inner</span>
+   <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">funname</span><span class="p">)</span>
+      <span class="p">(</span><span class="k">let* </span><span class="p">((</span><span class="nf">urlbase</span> <span class="s">&quot;[http://moso.com.au/wiki/index.php?title=](http://moso.com.au/wiki/index.php?title=)&quot;</span><span class="p">)</span>
+             <span class="p">(</span><span class="nf">newname</span> <span class="p">(</span><span class="nf">wikiescape</span> <span class="nv">funname</span><span class="p">))</span>
+             <span class="p">(</span><span class="nf">url</span> <span class="p">(</span><span class="nb">string-append </span><span class="nv">urlbase</span> <span class="nv">newname</span><span class="p">)))</span>
+         <span class="p">(</span><span class="nf">utils:open-url</span> <span class="nv">url</span><span class="p">))))</span>
+
+<span class="c1">;; macro wrapper and main function that gets called </span>
+<span class="p">(</span><span class="nf">define-macro</span> <span class="p">(</span><span class="nf">wiki</span> <span class="nv">name</span><span class="p">)</span>
+   <span class="o">`</span><span class="p">(</span><span class="nf">wiki-inner</span> <span class="p">(</span><span class="nf">sexpr-&gt;string</span> <span class="p">(</span><span class="k">quote </span><span class="o">,</span><span class="nv">name</span><span class="p">))))</span>
+</code></pre></div>
+
+<p>That's it: load all of this code (or put it in a single file and load it at startup time) and you've got the wiki procedure available!</p>
 
             </div>
 
