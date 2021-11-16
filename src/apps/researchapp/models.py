@@ -519,7 +519,7 @@ class Project(mymodels.EnhancedModel):
     description = models.TextField(
         null=True,
         blank=True,
-        verbose_name="description (html welcome!)", 
+        verbose_name="description (markdown/html welcome!)", 
         help_text="Feel free to use https://html-online.com/editor",
     )
     myrole = models.TextField(

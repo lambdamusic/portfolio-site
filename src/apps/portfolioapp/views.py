@@ -177,9 +177,13 @@ def projects(request, namedetail=""):
 		else:
 			admin_change_url = None
 
+
+		html_description = markdown.markdown(return_item.description, extensions=['fenced_code', 'codehilite'])
+
 		context = {
 			'admin_change_url': admin_change_url,
 			'return_item': return_item,
+			'return_item_desc': html_description,
 			'project_images_names': sorted(project_images_names),
 			'ALL_PROJECTS': Project.objects.all().order_by("-datefrom")
 		}
