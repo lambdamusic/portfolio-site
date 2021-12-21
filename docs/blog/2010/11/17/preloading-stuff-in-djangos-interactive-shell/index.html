@@ -627,26 +627,26 @@ from optparse import make_option  </p>
 <p>Essentially, this is what's going on here:</p>
 <p>a. A <strong>subclass of NoArgsCommand is created</strong> following the standard approach stated in Django's <a href="http://docs.djangoproject.com/en/dev/howto/custom-management-commands/">docs for creating custom management commands</a> .</p>
 <p>b. All the <strong>applications</strong> in your django project and the related <strong>models</strong> get <strong>loaded</strong>, and their references are added to the <strong>imported_objects</strong> dictionary, eg when the code reads:</p>
-<div class="codehilite"><pre><span></span><code>imported_objects = {&#39;settings&#39;: settings}
-</code></pre></div>
+<pre class="codehilite"><code>imported_objects = {'settings': settings}
+</code></pre>
 
 <p>c. The code tries to <strong>load the best python shell</strong> available: iPython if present, otherwise the normal python shell with the necessary libraries are called.</p>
 <p>...</p>
 <p>That's all. The key line to look at is therefore the last one, that is:</p>
-<div class="codehilite"><pre><span></span><code># .......
+<pre class="codehilite"><code># .......
 code.interact(local=imported_objects)
-</code></pre></div>
+</code></pre>
 
 <p>That's what launches the interpreter and initializes it with the <em><strong>imported_objects</strong></em> dictionary; this dictionary contains all the (extra) symbols that we want to make available through the new python interpreter instance. So in order to have more stuff there all we have to do is add more elements to that dictionary, eg:</p>
-<div class="codehilite"><pre><span></span><code># .......
+<pre class="codehilite"><code># .......
 alist = range(1000)
-imported_objects[&#39;alist&#39;] = alist
+imported_objects['alist'] = alist
 code.interact(local=imported_objects)
-</code></pre></div>
+</code></pre>
 
 <p>Insert these two lines right before the last line of the script above, save it using a new name (eg. <em>my_fancyshell.py</em> )in the <em>/management/commands/</em> directory of one of your applications (it needs to be there so that django interprets it as a custom command), and the game is done. Now you can invoke</p>
-<div class="codehilite"><pre><span></span><code>bash-3.2$ python manage.py my_fancyshell.py
-</code></pre></div>
+<pre class="codehilite"><code>bash-3.2$ python manage.py my_fancyshell.py
+</code></pre>
 
 <p>from the unix command line, and the 'alist' symbol will be available. Obviously in a real world situation you might end up loading and adding to the <em>imported_objects</em> dictionary various many things too, but the principle will remain the same!</p>
 <p>...</p>

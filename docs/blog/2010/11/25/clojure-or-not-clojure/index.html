@@ -556,22 +556,22 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </blockquote>
 <p>I've been programming in Lisp for a while, then moved to Python in order to use something less dated and to be able to do more agile web development. But the strengths of Lisp, together with that kind of magic that comes with it (maybe coming from the <a href="http://en.wikipedia.org/wiki/Homoiconicity">code-as-data paradigm</a>) is something which I bet all Lisp programmers miss in other languages. So I decided to give Clojure a go..</p>
 <p>Installation is surprisingly super easy - and I mean it - especially if you are on mac osX. Clojure is a java library, so all you have to do is <a href="http://clojure.org/getting_started">download the package and run it from the command line using your java compiler</a>. That gives you the basic interactive environment:</p>
-<div class="codehilite"><pre><span></span><code>java -cp clojure.jar clojure.main
-</code></pre></div>
+<pre class="codehilite"><code>java -cp clojure.jar clojure.main
+</code></pre>
 
 <p>The interpreter is good for testing, but not for building large programs. So the next step is getting an IDE. Looks like there are <a href="http://www.bestinclass.dk/index.clj/2010/03/clojure-ides-the-grand-tour-getting-started.html">many choices available</a>, so just pick one of your liking. I personally love <a href="http://macromates.com/">TextMate</a> a lot, so I was happy to find out that there is a <a href="https://github.com/swannodette/textmate-clojure">clojure bundle</a> that contains all that you need to get started (yes, the clojure environment too, so you can even skip the step above). Easy beasy to install, but first you need to install <a href="https://github.com/ninjudd/cake">Cake</a>, a build tool that you can get via ruby's gem command (usually preinstalled on OSx). So:</p>
-<div class="codehilite"><pre><span></span><code>sudo gem install cake
-</code></pre></div>
+<pre class="codehilite"><code>sudo gem install cake
+</code></pre>
 
 <p>Then install Textmate's bundle for clojure like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">$</span> <span class="n">cd</span> <span class="o">~/</span><span class="n">Library</span><span class="o">/</span><span class="n">Application</span> <span class="n">Support</span><span class="o">/</span><span class="n">TextMate</span><span class="o">/</span><span class="n">Bundles</span>
-<span class="o">$</span> <span class="n">git</span> <span class="n">clone</span> <span class="n">git</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">swannodette</span><span class="o">/</span><span class="n">textmate</span><span class="o">-</span><span class="n">clojure</span><span class="o">.</span><span class="n">git</span> <span class="n">Clojure</span><span class="o">.</span><span class="n">tmbundle</span>
-<span class="o">$</span> <span class="n">osascript</span> <span class="o">-</span><span class="n">e</span> <span class="s1">&#39;tell app &quot;TextMate&quot; to reload bundles&#39;</span>
-</code></pre></div>
+<pre class="codehilite"><code>$ cd ~/Library/Application Support/TextMate/Bundles
+$ git clone git://github.com/swannodette/textmate-clojure.git Clojure.tmbundle
+$ osascript -e 'tell app &quot;TextMate&quot; to reload bundles'
+</code></pre>
 
 <p>I don't use Ruby, so the final step for me was adding to the system path the location of ruby's gems (so that Cake can be run from Textmate). Open up you ~/.bash_profile and add this line:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">export</span> <span class="n">PATH</span><span class="o">=</span><span class="s2">&quot;/Users/mike/.gem/ruby/1.8/bin:$PATH&quot;</span>
-</code></pre></div>
+<pre class="codehilite"><code>export PATH=&quot;/Users/mike/.gem/ruby/1.8/bin:$PATH&quot;
+</code></pre>
 
 <p>That's it! A nice fellow created a really good video tutorial about how to use Textmate with the Clojure bundle, so I was able to run my first application quite quickly:</p>
 <p>Once you've familiarized with the environment, copy and paste the code below - it's an implementation of the Tetris game in clojure (which I found <a href="https://github.com/yogthos/Clojure-Tetris/blob/master/src/tetris.clj">here</a>). Very useful as a learning resource!</p>
@@ -631,13 +631,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
                             (fn [[tx ty] [x y]]
                               [(<strong>+</strong> tx x), (<strong>+</strong> ty y)]))
                           (<strong>map</strong> #(int (<strong>/</strong> % 4))))</p>
-<div class="codehilite"><pre><span></span><code>      <span class="nv">rotated</span> <span class="ss">(</span><span class="o">**</span><span class="nv">map</span><span class="o">**</span> <span class="ss">(</span><span class="nv">fn</span> \[\[<span class="nv">x</span> <span class="nv">y</span>\]\]
-                     \[<span class="ss">(</span><span class="nv">int</span> <span class="ss">(</span><span class="o">**+**</span> <span class="nv">avg</span><span class="o">-</span><span class="nv">x</span> <span class="ss">(</span><span class="o">**</span>\<span class="o">-**</span> <span class="nv">y</span> <span class="nv">avg</span><span class="o">-</span><span class="nv">y</span><span class="ss">)))</span>
-                      <span class="ss">(</span><span class="nv">int</span> <span class="ss">(</span><span class="o">**</span>\<span class="o">-**</span> <span class="nv">avg</span><span class="o">-</span><span class="nv">y</span> <span class="ss">(</span><span class="o">**</span>\<span class="o">-**</span> <span class="nv">x</span> <span class="nv">avg</span><span class="o">-</span><span class="nv">x</span><span class="ss">)))</span>\]<span class="ss">)</span>
-                <span class="nv">shape</span><span class="ss">)</span>\]
-  <span class="ss">(</span><span class="o">**</span><span class="k">if</span><span class="o">**</span> <span class="ss">(</span><span class="nv">collides</span>? <span class="nv">board</span> <span class="nv">rotated</span><span class="ss">)</span>
-    <span class="nv">shape</span> <span class="nv">rotated</span><span class="ss">))))</span>
-</code></pre></div>
+<pre class="codehilite"><code>      rotated (**map** (fn \[\[x y\]\]
+                     \[(int (**+** avg-x (**\-** y avg-y)))
+                      (int (**\-** avg-y (**\-** x avg-x)))\])
+                shape)\]
+  (**if** (collides? board rotated)
+    shape rotated))))
+</code></pre>
 
 <p>(defn shift [board shape]
   (<strong>let</strong> [shifted (<strong>map</strong>
@@ -696,11 +696,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         g       (.getDrawGraphics buffer)]
     (try
       (draw-fn g)</p>
-<div class="codehilite"><pre><span></span><code>  <span class="ss">(</span><span class="nv">finally</span> <span class="ss">(</span>.<span class="nv">dispose</span> <span class="nv">g</span><span class="ss">)))</span>
-<span class="ss">(</span><span class="o">**</span><span class="k">if</span><span class="o">**</span> <span class="ss">(</span><span class="o">**</span><span class="nv">not</span><span class="o">**</span> <span class="ss">(</span>.<span class="nv">contentsLost</span> <span class="nv">buffer</span><span class="ss">))</span>
-  <span class="ss">(</span>. <span class="nv">buffer</span> <span class="k">show</span><span class="ss">))</span>
-<span class="ss">(</span>.. <span class="nv">Toolkit</span> <span class="ss">(</span><span class="nv">getDefaultToolkit</span><span class="ss">)</span> <span class="ss">(</span><span class="nv">sync</span><span class="ss">))))</span>
-</code></pre></div>
+<pre class="codehilite"><code>  (finally (.dispose g)))
+(**if** (**not** (.contentsLost buffer))
+  (. buffer show))
+(.. Toolkit (getDefaultToolkit) (sync))))
+</code></pre>
 
 <p>(defn draw-square [x y #^Graphics g]
   (<strong>let</strong> [width  (<strong>/</strong> <strong>*width*</strong> <strong>*cols*</strong>)
@@ -722,14 +722,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     (doto g
       (.setColor Color/BLACK)
       (.fillRect 0 0 <strong>*width*</strong> <strong>*height*</strong>))</p>
-<div class="codehilite"><pre><span></span><code>(doseq \[square (range (**count** board))\]
+<pre class="codehilite"><code>(doseq \[square (range (**count** board))\]
   (**when** (**not** (**get** board square))
    (**let** \[\[x y\] (pos-to-xy square)\]
      (draw-square x y g))))
 
 (doseq \[\[x y\] shape\]
   (draw-square x y g))))
-</code></pre></div>
+</code></pre>
 
 <p>(defn -main [&amp; args]
   (<strong>let</strong> [frame  (JFrame. "Tetris")
@@ -740,13 +740,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
       (.setResizable false)
       (.add canvas)
       (.setVisible true))</p>
-<div class="codehilite"><pre><span></span><code>(doto canvas
+<pre class="codehilite"><code>(doto canvas
   (.createBufferStrategy 2)
   (.addKeyListener (input-listener))
   (.setVisible true)
 (.requestFocus))
 
-<span class="c">;;game loop</span>
+;;game loop
 (**loop** \[board    (get-board)
        shape    (get-shape)
        old-time (System/currentTimeMillis)\]
@@ -776,7 +776,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         (transform board shape drop?)
         new-time)
       )))))
-</code></pre></div>
+</code></pre>
 
 <p>(-main)</p>
 <p>Quite amazing isn'it? However, the very next question for me was, why investing time and money into this new language? It's definitely interesting, but does it compare to python and django (for example) when it comes to build social web apps? Can't really answer to these questions at the moment, but I found really useful the conclusions of an article I found online (on <a href="http://java.ociweb.com/mark/clojure/article.html">Java News Brief</a>):</p>

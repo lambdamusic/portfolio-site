@@ -552,31 +552,31 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <p>A little Bash script to show information about world time zones. Because I love my colleagues abroad, but I constantly struggle to remember how many hours ahead (or behind?) they are.</p>
 <p>I am using the script on a Mac, but it should work on other systems too with little or no changes. Basically, it scans the <code>zoneinfo</code> database (<a href="https://en.wikipedia.org/wiki/Tz_database">more info</a>) that most likely already exists on your computer, in order to return the rows matching an input string.</p>
 <p>For example - what's the time in Australia right now?</p>
-<div class="codehilite"><pre><span></span><code>$ wdate australia
-/Australia/Melbourne               Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
-/Australia/Queensland              Tue <span class="m">2021</span>-10-12 <span class="m">19</span>:47:48
-/Australia/North                   Tue <span class="m">2021</span>-10-12 <span class="m">19</span>:17:48
-/Australia/Lord_Howe               Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
-/Australia/Adelaide                Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:17:48
-/Australia/Yancowinna              Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:17:48
-/Australia/Victoria                Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
-/Australia/Canberra                Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
-/Australia/Sydney                  Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
-/Australia/ACT                     Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
-/Australia/Eucla                   Tue <span class="m">2021</span>-10-12 <span class="m">18</span>:32:48
-/Australia/Brisbane                Tue <span class="m">2021</span>-10-12 <span class="m">19</span>:47:48
-/Australia/Tasmania                Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
-/Australia/Hobart                  Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
-/Australia/Perth                   Tue <span class="m">2021</span>-10-12 <span class="m">17</span>:47:48
-/Australia/South                   Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:17:48
-/Australia/Lindeman                Tue <span class="m">2021</span>-10-12 <span class="m">19</span>:47:48
-/Australia/Darwin                  Tue <span class="m">2021</span>-10-12 <span class="m">19</span>:17:48
-/Australia/West                    Tue <span class="m">2021</span>-10-12 <span class="m">17</span>:47:48
-/Australia/LHI                     Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
-/Australia/NSW                     Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
-/Australia/Broken_Hill             Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:17:48
-/Australia/Currie                  Tue <span class="m">2021</span>-10-12 <span class="m">20</span>:47:48
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ wdate australia
+/Australia/Melbourne               Tue 2021-10-12 20:47:48
+/Australia/Queensland              Tue 2021-10-12 19:47:48
+/Australia/North                   Tue 2021-10-12 19:17:48
+/Australia/Lord_Howe               Tue 2021-10-12 20:47:48
+/Australia/Adelaide                Tue 2021-10-12 20:17:48
+/Australia/Yancowinna              Tue 2021-10-12 20:17:48
+/Australia/Victoria                Tue 2021-10-12 20:47:48
+/Australia/Canberra                Tue 2021-10-12 20:47:48
+/Australia/Sydney                  Tue 2021-10-12 20:47:48
+/Australia/ACT                     Tue 2021-10-12 20:47:48
+/Australia/Eucla                   Tue 2021-10-12 18:32:48
+/Australia/Brisbane                Tue 2021-10-12 19:47:48
+/Australia/Tasmania                Tue 2021-10-12 20:47:48
+/Australia/Hobart                  Tue 2021-10-12 20:47:48
+/Australia/Perth                   Tue 2021-10-12 17:47:48
+/Australia/South                   Tue 2021-10-12 20:17:48
+/Australia/Lindeman                Tue 2021-10-12 19:47:48
+/Australia/Darwin                  Tue 2021-10-12 19:17:48
+/Australia/West                    Tue 2021-10-12 17:47:48
+/Australia/LHI                     Tue 2021-10-12 20:47:48
+/Australia/NSW                     Tue 2021-10-12 20:47:48
+/Australia/Broken_Hill             Tue 2021-10-12 20:17:48
+/Australia/Currie                  Tue 2021-10-12 20:47:48
+</code></pre>
 
 <h2>Set up</h2>
 <p>NOTE On my Mac I found the <code>zoneinfo</code> database in this location:</p>
@@ -585,13 +585,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <script src="https://gist.github.com/lambdamusic/4a5b852c8f9051b1f29033619cd38e36.js"></script>
 
 <p>Save the file above eg as <code>wdate</code> and then make it executable</p>
-<div class="codehilite"><pre><span></span><code>chmod +x wdate
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">chmod +x wdate
+</code></pre>
 
 <h2>Troubleshoot</h2>
 <p>If you don't know where to find <code>zoneinfo</code> data on your computer, just search for it. Eg on a Mac: </p>
-<div class="codehilite"><pre><span></span><code>mdfind -name zoneinfo
-</code></pre></div>
+<pre class="codehilite"><code>mdfind -name zoneinfo
+</code></pre>
 
 <p>That'll give you a list of possible candidates. </p>
 <h2>See also</h2>

@@ -587,86 +587,86 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <h2>2. Rendering / Reviewing</h2>
 <p>The Django web app is where things come together. The idea is that you run the Django app as usual and see the results on <code>localhost</code>.</p>
-<div class="codehilite"><pre><span></span><code>$ python manage.py runserver
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ python manage.py runserver
+</code></pre>
 
 <p>The interesting bit has to do with how the Markdown / static text pages get integrated into the website. There are two parts: markdown <em>indexing</em> and markdown <em>rendering</em>. </p>
 <h4>Markdown indexing</h4>
 <p>A <strong>command line script</strong> creates an index of all the Markdown files (in the blog posts folder). This index is basically a <strong>collection of metadata</strong> about these files (e.g. <em>title</em>, <em>publication date</em>, <em>tags</em>, file <em>location</em> on the computer), which get stored in the Django back-end database. </p>
 <p>As a result, this metadata can be used by the Django web app in order to retrieve / search / filter the Markdown files, via the usual <em>model-view-controller</em> machinery Django provides.</p>
 <p>Here is a sample run of the interactive script, called <code>blogs-reindex</code>:</p>
-<div class="codehilite"><pre><span></span><code>$ ./tools/blogs-reindex
+<pre class="codehilite"><code class="language-bash">$ ./tools/blogs-reindex
 +++++++++++++++++
 REFRESHING BLOGS INDEX...
 +++++++++++++++++
-Environment: <span class="nb">local</span>
+Environment: local
 DEBUG:True
 +++++++++++++++++
 Reading... &lt;/Users/michele.pasin/markdonw/Blog/&gt;
-<span class="o">=</span>&gt; Found new markdown file: <span class="m">2021</span>-10-29-django-wget-static-site.md.
-Add to database? <span class="o">[</span>y/N<span class="o">]</span>: <span class="nv">y</span>
-    <span class="o">=</span>&gt; Created new obj: <span class="o">{</span>pub<span class="o">}</span>
+=&gt; Found new markdown file: 2021-10-29-django-wget-static-site.md.
+Add to database? [y/N]: y
+    =&gt; Created new obj: {pub}
 
-<span class="c1"># Files read: 340</span>
-<span class="c1"># Records added: 1</span>
-<span class="c1"># Records modified: 0</span>
+# Files read: 340
+# Records added: 1
+# Records modified: 0
 
 Cleaning db...
 
-<span class="c1"># Records in db : 340</span>
-<span class="c1"># Markdown files: 340</span>
+# Records in db : 340
+# Markdown files: 340
 
 ----------
 Done
-</code></pre></div>
+</code></pre>
 
 <p>See the <a href="https://github.com/lambdamusic/portfolio-site/blob/master/src/apps/researchapp/management/commands/do_blogs_reindex.py">full source code</a> on Github. </p>
 <h4>Markdown rendering</h4>
 <p>The second part of this architecture simply consists of the Python functions that transform Markdown into HTML. Of course, that follows the usual Django pattern, i.e. a <code>url</code> controller and related <code>view</code> functions that know how to handle the Markdown format: </p>
-<div class="codehilite"><pre><span></span><code><span class="c1">#</span>
-<span class="c1"># in settings.py</span>
-<span class="c1">#</span>
+<pre class="codehilite"><code class="language-python">#
+# in settings.py
+#
 
-<span class="n">BLOGS_ROOT</span> <span class="o">=</span> <span class="s2">&quot;/path/to/my/markdown/blog/&quot;</span>
+BLOGS_ROOT = &quot;/path/to/my/markdown/blog/&quot;
 
-<span class="c1">#</span>
-<span class="c1"># in views.py</span>
-<span class="c1">#</span>
+#
+# in views.py
+#
 
-<span class="k">def</span> <span class="nf">blog_detail</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">year</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">month</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">day</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">namedetail</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Generate the blog entry page from markdown files</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">context</span> <span class="o">=</span> <span class="p">{}</span>
+def blog_detail(request, year=&quot;&quot;, month=&quot;&quot;, day=&quot;&quot;, namedetail=&quot;&quot;):
+    &quot;&quot;&quot;
+    Generate the blog entry page from markdown files
+    &quot;&quot;&quot;
+    context = {}
 
-    <span class="n">permalink</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;&quot;&quot;</span><span class="si">{</span><span class="n">year</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">month</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">day</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">namedetail</span><span class="si">}</span><span class="s2">&quot;&quot;&quot;</span>
+    permalink = f&quot;&quot;&quot;{year}/{month}/{day}/{namedetail}&quot;&quot;&quot;
 
-    <span class="n">return_item</span> <span class="o">=</span> <span class="n">get_object_or_404</span><span class="p">(</span><span class="n">Publication</span><span class="p">,</span> <span class="n">permalink</span><span class="o">=</span><span class="n">permalink</span><span class="p">)</span>
+    return_item = get_object_or_404(Publication, permalink=permalink)
 
-    <span class="c1"># get the contents from the source MD files </span>
-    <span class="c1"># NOTE the filepath is stored in the `md_file` field</span>
-    <span class="n">TITLE</span><span class="p">,</span> <span class="n">DATE</span><span class="p">,</span> <span class="n">REVIEW</span><span class="p">,</span> <span class="n">PURE_MARKDOWN</span><span class="o">=</span> <span class="n">parse_markdown</span><span class="p">(</span><span class="n">BLOGS_ROOT</span> <span class="o">+</span>
-                                                    <span class="n">return_item</span><span class="o">.</span><span class="n">md_file</span><span class="p">)</span>
+    # get the contents from the source MD files 
+    # NOTE the filepath is stored in the `md_file` field
+    TITLE, DATE, REVIEW, PURE_MARKDOWN= parse_markdown(BLOGS_ROOT +
+                                                    return_item.md_file)
 
-    <span class="n">html_blog_entry</span> <span class="o">=</span> <span class="n">markdown</span><span class="o">.</span><span class="n">markdown</span><span class="p">(</span><span class="n">PURE_MARKDOWN</span><span class="p">,</span> 
-                            <span class="n">extensions</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;fenced_code&#39;</span><span class="p">,</span> <span class="s1">&#39;codehilite&#39;</span><span class="p">])</span>
+    html_blog_entry = markdown.markdown(PURE_MARKDOWN, 
+                            extensions=['fenced_code', 'codehilite'])
 
-    <span class="n">context</span> <span class="o">=</span> <span class="p">{</span>
-        <span class="s1">&#39;return_item&#39;</span> <span class="p">:</span> <span class="n">return_item</span><span class="p">,</span>
-        <span class="s1">&#39;admin_change_url&#39;</span> <span class="p">:</span> <span class="n">admin_change_url</span><span class="p">,</span>
-        <span class="s1">&#39;blog_entry&#39;</span><span class="p">:</span> <span class="n">html_blog_entry</span><span class="p">,</span>
-    <span class="p">}</span>
+    context = {
+        'return_item' : return_item,
+        'admin_change_url' : admin_change_url,
+        'blog_entry': html_blog_entry,
+    }
 
-    <span class="n">templatee</span> <span class="o">=</span> <span class="s2">&quot;detail-blogs.html&quot;</span>
+    templatee = &quot;detail-blogs.html&quot;
 
-    <span class="k">return</span> <span class="n">render</span><span class="p">(</span><span class="n">request</span><span class="p">,</span> <span class="n">APP</span> <span class="o">+</span> <span class="s1">&#39;/pages/&#39;</span> <span class="o">+</span> <span class="n">templatee</span><span class="p">,</span> <span class="n">context</span><span class="p">)</span>
+    return render(request, APP + '/pages/' + templatee, context)
 
-<span class="c1">#</span>
-<span class="c1"># in urls.py</span>
-<span class="c1">#</span>
+#
+# in urls.py
+#
 
-<span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^blog/(?P&lt;year&gt;[\w-]+)/(?P&lt;month&gt;[\w-]+)/(?P&lt;day&gt;[\w-]+)/(?P&lt;namedetail&gt;[\w-]+)/$&#39;</span><span class="p">,</span> <span class="n">views_pubs</span><span class="o">.</span><span class="n">blog_detail</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;blogs-detail&#39;</span><span class="p">),</span>
-</code></pre></div>
+url(r'^blog/(?P&lt;year&gt;[\w-]+)/(?P&lt;month&gt;[\w-]+)/(?P&lt;day&gt;[\w-]+)/(?P&lt;namedetail&gt;[\w-]+)/$', views_pubs.blog_detail, name='blogs-detail'),
+</code></pre>
 
 <p>The code above uses the <a href="https://python-markdown.github.io/">python-markdown</a> library in order to transform Markdown text to HTML. For more details, see the <a href="https://github.com/lambdamusic/portfolio-site/blob/master/src/apps/researchapp/management/commands/do_blogs_reindex.py#L133">source code</a> of the  <code>parse_markdown</code> function. </p>
 <h2>3. Publishing</h2>
@@ -680,34 +680,34 @@ Done
 </ol>
 <p>See the full command <a href="https://github.com/lambdamusic/portfolio-site/blob/master/tools/site-dump">source code</a>. </p>
 <p>Here is a sample run: </p>
-<div class="codehilite"><pre><span></span><code>$ ./tools/site-dump-and-publish
-<span class="o">=================</span>
+<pre class="codehilite"><code class="language-bash">$ ./tools/site-dump-and-publish
+=================
 PREREQUISITE
-Ensure site is running on <span class="m">127</span>.0.0.1:8000...
-<span class="o">=================</span>
+Ensure site is running on 127.0.0.1:8000...
+=================
 &gt;&gt;&gt;&gt;&gt;&gt;&gt; DJANGO is RUNNING!
-<span class="o">=================</span>
-<span class="o">=================</span>
+=================
+=================
 Dumping site..
-<span class="o">=================</span>
+=================
 
-CREATE BACKUP DIRS <span class="k">in</span>: backups/2021_10_28__05_31_49_pm/
+CREATE BACKUP DIRS in: backups/2021_10_28__05_31_49_pm/
 +++++++++++++++++
 
 BACKING UP SITE....RSYNC /DOCS TO /backups/2021_10_28__05_31_49_pm/docs
 +++++++++++++++++
-building file list ... <span class="k">done</span>
+building file list ... done
 
 ...
-... <span class="o">[</span>OMITTED<span class="o">]</span>
+... [OMITTED]
 ...
 
-sent <span class="m">101359148</span> bytes  received <span class="m">25982</span> bytes  <span class="m">40554052</span>.00 bytes/sec
-total size is <span class="m">101243272</span>  speedup is <span class="m">1</span>.00
+sent 101359148 bytes  received 25982 bytes  40554052.00 bytes/sec
+total size is 101243272  speedup is 1.00
 
 BACKING UP DB DATA ....src/manage.py dumpdata TO /backups/2021_10_28__05_31_49_pm/data
 +++++++++++++++++
-Environment: <span class="nb">local</span>
+Environment: local
 DEBUG:True
 +++++++++++++++++
 
@@ -727,43 +727,43 @@ WGET SITE INTO TEMP BUILD DIRECTORY..
 +++++++++++++++++
 
 ...
-... <span class="o">[</span>OMITTED<span class="o">]</span>
+... [OMITTED]
 ...
 
 
-FINISHED --2021-10-28 <span class="m">17</span>:34:37--
+FINISHED --2021-10-28 17:34:37--
 Total wall clock time: 2m 44s
-Downloaded: <span class="m">878</span> files, 96M <span class="k">in</span> <span class="m">0</span>.8s <span class="o">(</span><span class="m">120</span> MB/s<span class="o">)</span>
+Downloaded: 878 files, 96M in 0.8s (120 MB/s)
 
 RSYNC TEMP BUILD DIRECTORY INTO FINAL LOCATION:  /docs
 +++++++++++++++++
 
 
 ...
-... <span class="o">[</span>OMITTED<span class="o">]</span>
+... [OMITTED]
 ...
 
-sent <span class="m">19574621</span> bytes  received <span class="m">17352</span> bytes  <span class="m">13061315</span>.33 bytes/sec
-total size is <span class="m">101243252</span>  speedup is <span class="m">5</span>.17
-<span class="o">=================</span>
+sent 19574621 bytes  received 17352 bytes  13061315.33 bytes/sec
+total size is 101243252  speedup is 5.17
+=================
 
-Commit and <span class="nv">push</span>
-<span class="o">=================</span>
-<span class="o">[</span>master dd479c70<span class="o">]</span> live site auto update
- <span class="m">32</span> files changed, <span class="m">1363</span> insertions<span class="o">(</span>+<span class="o">)</span>, <span class="m">49</span> deletions<span class="o">(</span>-<span class="o">)</span>
- delete mode <span class="m">100755</span> tools/data-dump
-Enumerating objects: <span class="m">220</span>, <span class="k">done</span>.
-Counting objects: <span class="m">100</span>% <span class="o">(</span><span class="m">220</span>/220<span class="o">)</span>, <span class="k">done</span>.
-Delta compression using up to <span class="m">8</span> threads
-Compressing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">85</span>/85<span class="o">)</span>, <span class="k">done</span>.
-Writing objects: <span class="m">100</span>% <span class="o">(</span><span class="m">116</span>/116<span class="o">)</span>, <span class="m">20</span>.55 KiB <span class="p">|</span> <span class="m">1</span>.37 MiB/s, <span class="k">done</span>.
-Total <span class="m">116</span> <span class="o">(</span>delta <span class="m">63</span><span class="o">)</span>, reused <span class="m">0</span> <span class="o">(</span>delta <span class="m">0</span><span class="o">)</span>, pack-reused <span class="m">0</span>
-remote: Resolving deltas: <span class="m">100</span>% <span class="o">(</span><span class="m">63</span>/63<span class="o">)</span>, completed with <span class="m">51</span> <span class="nb">local</span> objects.
+Commit and push
+=================
+[master dd479c70] live site auto update
+ 32 files changed, 1363 insertions(+), 49 deletions(-)
+ delete mode 100755 tools/data-dump
+Enumerating objects: 220, done.
+Counting objects: 100% (220/220), done.
+Delta compression using up to 8 threads
+Compressing objects: 100% (85/85), done.
+Writing objects: 100% (116/116), 20.55 KiB | 1.37 MiB/s, done.
+Total 116 (delta 63), reused 0 (delta 0), pack-reused 0
+remote: Resolving deltas: 100% (63/63), completed with 51 local objects.
 To https://github.com/lambdamusic/portfolio-site.git
    8556da94..dd479c70  master -&gt; master
-<span class="nv">Done</span>
-<span class="o">=================</span>
-</code></pre></div>
+Done
+=================
+</code></pre>
 
 <h3>About <code>wget</code></h3>
 <p><a href="https://www.gnu.org/software/wget/">GNU Wget</a> is your friend. It's as old as the web (nearly, 1996) and still one of the most powerful tools for extracting web pages. </p>
@@ -788,6 +788,12 @@ To https://github.com/lambdamusic/portfolio-site.git
 <h2>Wrapping up</h2>
 <p>In this post I've shown how to turn a Django site into a static website, so that it can be published online without the hassle (and costs) of deploying a web app. </p>
 <p>Most likely, this method will resonate with <a href="https://www.djangoproject.com/">Django</a> developers primarily, but even if you're not, I'm hoping that some of these ideas can be easily transposed to other Python web frameworks.</p>
+<h3>Other options</h3>
+<p>I found a couple of other options online that allow turning a Django site into a static website. None of them worked for me, but they may for you, so worth having alook:</p>
+<ul>
+<li>https://github.com/fabiocaccamo/django-freeze looks interesting, but is hasn't been updated for a while and doesn't work with Django &gt;1.10 (I have 2.1.3)</li>
+<li>https://github.com/meeb/django-distill has lots of features but it's way too complex for my needs cause you have to define special URL controllers for the static pages you want to generate, which I didn't want to do/maintain. </li>
+</ul>
 <p>Feedbacks/comments are welcome, here or on <a href="https://github.com/lambdamusic/portfolio-site/issues">Github</a> as usual :-)</p>
 
             </div>

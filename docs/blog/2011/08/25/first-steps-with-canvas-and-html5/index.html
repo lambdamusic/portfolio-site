@@ -554,29 +554,29 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h3>1. Setting up a canvas and drawing some lines on it.</h3>
 <p>This is easily done using the <em>moveTo</em> and <em>lineTo</em> functions. So let's create a simple symmetrical geometrical shape..</p>
 <p>Your browser does not support the canvas element.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">var</span> <span class="n">c</span><span class="o">=</span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;myCanvas1&quot;</span><span class="p">);</span> <span class="k">var</span> <span class="n">cxt</span><span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span> <span class="k">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<pre class="codehilite"><code>var c=document.getElementById(&quot;myCanvas1&quot;); var cxt=c.getContext(&quot;2d&quot;); var i=0;
 
-<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">30</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="p">}</span>
+for (i=1;i&lt;=5;i++) { cxt.moveTo(0, 400); cxt.lineTo(100, i \* 40); cxt.lineTo(300, i \* 60); cxt.lineTo(400, i \* 30); cxt.lineTo(500, i \* 60); cxt.lineTo(700, i \* 40); cxt.lineTo(800, 400); }
 
-<span class="n">cxt</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
-</code></pre></div>
+cxt.stroke();
+</code></pre>
 
 <p>Here's the source code:</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">&lt;!DOCTYPE HTML&gt;</span>
-<span class="p">&lt;</span><span class="nt">html</span><span class="err">\</span><span class="p">&gt;</span>
-<span class="p">&lt;</span><span class="nt">body</span><span class="err">\</span><span class="p">&gt;</span>
+<pre class="codehilite"><code>&lt;!DOCTYPE HTML&gt;
+&lt;html\&gt;
+&lt;body\&gt;
 
-<span class="p">&lt;</span><span class="nt">canvas</span> <span class="na">id</span><span class="err">\=&quot;</span><span class="na">myCanvas1</span><span class="err">&quot;</span> <span class="na">width</span><span class="err">\=&quot;</span><span class="na">800</span><span class="err">&quot;</span> <span class="na">height</span><span class="err">\=&quot;</span><span class="na">400</span><span class="err">&quot;</span> <span class="na">style</span><span class="err">\=&quot;</span><span class="na">border:1px</span> <span class="na">dashed</span> <span class="err">#</span><span class="na">c3c3c3</span><span class="err">;&quot;\</span><span class="p">&gt;</span>
+&lt;canvas id\=&quot;myCanvas1&quot; width\=&quot;800&quot; height\=&quot;400&quot; style\=&quot;border:1px dashed #c3c3c3;&quot;\&gt;
 Your browser does not support the canvas element.
-<span class="err">&lt;</span>/canvas\&gt;
+&lt;/canvas\&gt;
 
-<span class="p">&lt;</span><span class="nt">script</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/javascript&quot;</span><span class="err">\</span><span class="p">&gt;</span>
+&lt;script type=&quot;text/javascript&quot;\&gt;
 
 var c\=document.getElementById(&quot;myCanvas1&quot;);
 var cxt\=c.getContext(&quot;2d&quot;);
 var i\=0;
 
-for (i\=1;i<span class="err">&lt;</span>=5;i++)
+for (i\=1;i&lt;=5;i++)
 {
 cxt.moveTo(0, 400);
 cxt.lineTo(100, i \* 40);
@@ -589,101 +589,101 @@ cxt.lineTo(800, 400);
 
 cxt.stroke();
 
-<span class="err">&lt;</span>/script\&gt;
+&lt;/script\&gt;
 
-<span class="err">&lt;</span>/body\&gt;
-<span class="err">&lt;</span>/html\&gt;
-</code></pre></div>
+&lt;/body\&gt;
+&lt;/html\&gt;
+</code></pre>
 
 <h3>2. Creating a mirroring effect</h3>
 <p>Now we can increase the size of the canvas to 800 and replicate these lines at the bottom of the canvas so to achieve a 'mirroring' effect.. since we know the max Y value of the canvas (800), let's just add another loop that draws the same lines but <em>inverts</em> the Y position. This is easily achieved by subtracting the constant-dependent parameter from the max value of Y.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">var</span> <span class="n">c</span><span class="o">=</span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;myCanvas2&quot;</span><span class="p">);</span> <span class="k">var</span> <span class="n">cxt</span><span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span> <span class="k">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<pre class="codehilite"><code>var c=document.getElementById(&quot;myCanvas2&quot;); var cxt=c.getContext(&quot;2d&quot;); var i=0;
 
-<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">30</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="p">}</span>
+for (i=1;i&lt;=5;i++) { cxt.moveTo(0, 400); cxt.lineTo(100, i \* 40); cxt.lineTo(300, i \* 60); cxt.lineTo(400, i \* 30); cxt.lineTo(500, i \* 60); cxt.lineTo(700, i \* 40); cxt.lineTo(800, 400); }
 
-<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span> <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">30</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="p">}</span>
+for (i=5;i&gt;=1;i--) { cxt.moveTo(0, 400); cxt.lineTo(100, 800 - (i \* 40)); cxt.lineTo(300, 800 - (i \* 60)); cxt.lineTo(400, 800 - (i \* 30)); cxt.lineTo(500, 800 - (i \* 60)); cxt.lineTo(700, 800 - (i \* 40)); cxt.lineTo(800, 400); }
 
-<span class="n">cxt</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
-</code></pre></div>
+cxt.stroke();
+</code></pre>
 
 <p>This is how the new source code looks like:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">var</span> <span class="n">c</span>\<span class="o">=</span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;myCanvas2&quot;</span><span class="p">);</span>
-<span class="k">var</span> <span class="n">cxt</span>\<span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
-<span class="k">var</span> <span class="n">i</span>\<span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<pre class="codehilite"><code>var c\=document.getElementById(&quot;myCanvas2&quot;);
+var cxt\=c.getContext(&quot;2d&quot;);
+var i\=0;
 
-<span class="k">for</span> <span class="p">(</span><span class="n">i</span>\<span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">);</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">);</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">30</span><span class="p">);</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">);</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">);</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
-<span class="p">}</span>
+for (i\=1;i&lt;=5;i++)
+{
+cxt.moveTo(0, 400);
+cxt.lineTo(100, i \* 40);
+cxt.lineTo(300, i \* 60);
+cxt.lineTo(400, i \* 30);
+cxt.lineTo(500, i \* 60);
+cxt.lineTo(700, i \* 40);
+cxt.lineTo(800, 400);
+}
 
-<span class="k">for</span> <span class="p">(</span><span class="n">i</span>\<span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span>\<span class="o">&gt;=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span>\<span class="o">--</span><span class="p">)</span>
-<span class="p">{</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">));</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">));</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">30</span><span class="p">));</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">60</span><span class="p">));</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="mi">40</span><span class="p">));</span>
-<span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
-<span class="p">}</span>
+for (i\=5;i\&gt;=1;i\--)
+{
+cxt.moveTo(0, 400);
+cxt.lineTo(100, 800 \- (i \* 40));
+cxt.lineTo(300, 800 \- (i \* 60));
+cxt.lineTo(400, 800 \- (i \* 30));
+cxt.lineTo(500, 800 \- (i \* 60));
+cxt.lineTo(700, 800 \- (i \* 40));
+cxt.lineTo(800, 400);
+}
 
-<span class="n">cxt</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
-</code></pre></div>
+cxt.stroke();
+</code></pre>
 
 <h3>3. Adding more graphical interest</h3>
 <p>Finally, let's parametrize a bit more the construction of this geometrical pattern by including everything into another loop, and using this new counter to increment the points ordinate position. We'll add a new variable y and use it to run the external loop 20 times. Here's the result:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">var</span> <span class="n">c</span><span class="o">=</span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;myCanvas3&quot;</span><span class="p">);</span> <span class="k">var</span> <span class="n">cxt</span><span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span> <span class="k">var</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="k">var</span> <span class="n">y</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<pre class="codehilite"><code>var c=document.getElementById(&quot;myCanvas3&quot;); var cxt=c.getContext(&quot;2d&quot;); var i=0; var y=0;
 
-<span class="k">for</span> <span class="p">(</span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">y</span><span class="o">&lt;=</span><span class="mi">20</span><span class="p">;</span><span class="n">y</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span> <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">y</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">30</span><span class="o">+</span><span class="n">y</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">y</span><span class="p">);</span> <span class="p">}</span>
+for (y=1;y&lt;=20;y++) { for (i=1;i&lt;=5;i++) { cxt.moveTo(0, 400+y); cxt.lineTo(100, i \* (40+y)); cxt.lineTo(300, i \* (60+y)); cxt.lineTo(400, i \* (30+y)); cxt.lineTo(500, i \* (60+y)); cxt.lineTo(700, i \* (40+y)); cxt.lineTo(800, 400+y); }
 
-<span class="k">for</span> <span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">&gt;=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">--</span><span class="p">)</span> <span class="p">{</span> <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">30</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">800</span> <span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span> <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">y</span><span class="p">);</span> <span class="p">}</span>
+for (i=5;i&gt;=1;i--) { cxt.moveTo(0, 400); cxt.lineTo(100, 800 - (i \* (40+y))); cxt.lineTo(300, 800 - (i \* (60+y))); cxt.lineTo(400, 800 - (i \* (30+y))); cxt.lineTo(500, 800 - (i \* (60+y))); cxt.lineTo(700, 800 - (i \* (40+y))); cxt.lineTo(800, 400+y); }
 
-<span class="p">}</span>
+}
 
-<span class="n">cxt</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
-</code></pre></div>
+cxt.stroke();
+</code></pre>
 
 <p>Not too bad uh? This last modification to the code looks like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">var</span> <span class="n">c</span>\<span class="o">=</span><span class="n">document</span><span class="o">.</span><span class="n">getElementById</span><span class="p">(</span><span class="s2">&quot;myCanvas3&quot;</span><span class="p">);</span>
-<span class="k">var</span> <span class="n">cxt</span>\<span class="o">=</span><span class="n">c</span><span class="o">.</span><span class="n">getContext</span><span class="p">(</span><span class="s2">&quot;2d&quot;</span><span class="p">);</span>
-<span class="k">var</span> <span class="n">i</span>\<span class="o">=</span><span class="mi">0</span><span class="p">;</span>
-<span class="k">var</span> <span class="n">y</span>\<span class="o">=</span><span class="mi">0</span><span class="p">;</span>
+<pre class="codehilite"><code>var c\=document.getElementById(&quot;myCanvas3&quot;);
+var cxt\=c.getContext(&quot;2d&quot;);
+var i\=0;
+var y\=0;
 
-<span class="k">for</span> <span class="p">(</span><span class="n">y</span>\<span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">y</span><span class="o">&lt;=</span><span class="mi">20</span><span class="p">;</span><span class="n">y</span><span class="o">++</span><span class="p">)</span>
-<span class="p">{</span>
+for (y\=1;y&lt;=20;y++)
+{
 
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span>\<span class="o">=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span><span class="o">++</span><span class="p">)</span>
-    <span class="p">{</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">y</span><span class="p">);</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">));</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">));</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">30</span><span class="o">+</span><span class="n">y</span><span class="p">));</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">));</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">));</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">y</span><span class="p">);</span>
-    <span class="p">}</span>
+    for (i\=1;i&lt;=5;i++)
+    {
+    cxt.moveTo(0, 400+y);
+    cxt.lineTo(100, i \* (40+y));
+    cxt.lineTo(300, i \* (60+y));
+    cxt.lineTo(400, i \* (30+y));
+    cxt.lineTo(500, i \* (60+y));
+    cxt.lineTo(700, i \* (40+y));
+    cxt.lineTo(800, 400+y);
+    }
 
-    <span class="k">for</span> <span class="p">(</span><span class="n">i</span>\<span class="o">=</span><span class="mi">5</span><span class="p">;</span><span class="n">i</span>\<span class="o">&gt;=</span><span class="mi">1</span><span class="p">;</span><span class="n">i</span>\<span class="o">--</span><span class="p">)</span>
-    <span class="p">{</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">moveTo</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">400</span><span class="p">);</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">300</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">400</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">30</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">500</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">700</span><span class="p">,</span> <span class="mi">800</span> \<span class="o">-</span> <span class="p">(</span><span class="n">i</span> \<span class="o">*</span> <span class="p">(</span><span class="mi">40</span><span class="o">+</span><span class="n">y</span><span class="p">)));</span>
-    <span class="n">cxt</span><span class="o">.</span><span class="n">lineTo</span><span class="p">(</span><span class="mi">800</span><span class="p">,</span> <span class="mi">400</span><span class="o">+</span><span class="n">y</span><span class="p">);</span>
-    <span class="p">}</span>
+    for (i\=5;i\&gt;=1;i\--)
+    {
+    cxt.moveTo(0, 400);
+    cxt.lineTo(100, 800 \- (i \* (40+y)));
+    cxt.lineTo(300, 800 \- (i \* (60+y)));
+    cxt.lineTo(400, 800 \- (i \* (30+y)));
+    cxt.lineTo(500, 800 \- (i \* (60+y)));
+    cxt.lineTo(700, 800 \- (i \* (40+y)));
+    cxt.lineTo(800, 400+y);
+    }
 
-<span class="p">}</span>
+}
 
-<span class="n">cxt</span><span class="o">.</span><span class="n">stroke</span><span class="p">();</span>
-</code></pre></div>
+cxt.stroke();
+</code></pre>
 
 <h3>Cool! I'd like to know more..</h3>
 <p>Yes, I agree. This opens up a new world for web-based graphics.. and I just scratched the surface of it! In particular I'd like to see how this type of graphical components can be used to compose visualizations in the digital humanities - provided more interactivity is added to them.</p>

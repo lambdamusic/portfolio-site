@@ -559,37 +559,37 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>Pick a scale. You play it using a variable time-interval between its notes, which is determined by a cosine function (<a href="https://extempore.michelepasin.org/1030.html"><code>cosr</code></a>). The variable interval gives the final result a touch of suspense and makes it less computer-like. </p>
 <p>After each note, more notes are played programmatically, after brief (random) intervals of half a beat, or 3/2 of a beat. Fifths, octaves, minor sevenths... as you please.</p>
 <p>This whole thing repeating itself, at each iteration of the loop though the sound volume gets quieter by a fixed amount. Eventually, when the volume goes to 0, the repetition stops. </p>
-<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="k">define </span><span class="nv">xsc</span>
-  <span class="p">(</span><span class="k">lambda </span><span class="p">(</span><span class="nf">beat</span> <span class="nv">vel</span> <span class="nv">scale</span><span class="p">)</span>
-    <span class="p">(</span><span class="k">let </span><span class="p">((</span><span class="nf">dur</span> <span class="p">(</span><span class="nf">cosratio</span> <span class="mi">4</span> <span class="mi">2</span> <span class="mi">1</span><span class="nv">/128</span><span class="p">)))</span>
+<pre class="codehilite"><code class="language-scheme">(define xsc
+  (lambda (beat vel scale)
+    (let ((dur (cosratio 4 2 1/128)))
 
-      <span class="c1">;; piano</span>
-      <span class="p">(</span><span class="nf">play</span> <span class="p">(</span><span class="nb">car </span><span class="nv">scale</span><span class="p">)</span> <span class="nv">vel</span> <span class="nv">dur</span> <span class="mi">1</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">play</span> <span class="mi">5</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">12</span> <span class="p">(</span><span class="nb">car </span><span class="nv">scale</span><span class="p">))</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">* </span><span class="nv">dur</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">play</span> <span class="p">(</span><span class="nf">oneof</span> <span class="mi">3</span><span class="nv">/2</span> <span class="mi">2</span><span class="p">)</span> <span class="p">(</span><span class="nb">+ </span><span class="mi">24</span> <span class="p">(</span><span class="nb">car </span><span class="nv">scale</span><span class="p">))</span> <span class="mi">1</span> <span class="p">(</span><span class="nb">* </span><span class="nv">dur</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">1</span><span class="p">)</span>
+      ;; piano
+      (play (car scale) vel dur 1)
+      (play 5 (+ 12 (car scale)) 1 (* dur 2) 1)
+      (play (oneof 3/2 2) (+ 24 (car scale)) 1 (* dur 2) 1)
 
-      <span class="c1">;; bass</span>
-      <span class="p">(</span><span class="nf">play</span> <span class="mi">5</span> <span class="p">(</span><span class="nb">car </span><span class="nv">scale</span><span class="p">)</span> <span class="mi">90</span> <span class="p">(</span><span class="nb">* </span><span class="nv">dur</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span>
-      <span class="p">(</span><span class="nf">:chance</span> <span class="o">.</span><span class="mi">8</span> <span class="p">(</span><span class="nf">play</span> <span class="mi">6</span> <span class="p">(</span><span class="nb">+ </span><span class="p">(</span><span class="nb">car </span><span class="nv">scale</span><span class="p">)</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">90</span> <span class="p">(</span><span class="nb">* </span><span class="nv">dur</span> <span class="mi">2</span><span class="p">)</span> <span class="mi">2</span><span class="p">))</span>
+      ;; bass
+      (play 5 (car scale) 90 (* dur 2) 2)
+      (:chance .8 (play 6 (+ (car scale) 2) 90 (* dur 2) 2))
 
-      <span class="c1">;; repeat</span>
-      <span class="p">(</span><span class="k">set! </span><span class="nv">scale</span> <span class="p">(</span><span class="nf">rotate</span> <span class="nv">scale</span> <span class="mi">-1</span><span class="p">))</span>
-      <span class="p">(</span><span class="k">set! </span><span class="nv">vel</span> <span class="p">(</span><span class="nb">- </span><span class="nv">vel</span> <span class="mi">1</span><span class="p">))</span>
+      ;; repeat
+      (set! scale (rotate scale -1))
+      (set! vel (- vel 1))
 
-      <span class="p">(</span><span class="k">if </span><span class="p">(</span><span class="nb">&gt; </span><span class="nv">vel</span> <span class="mi">0</span><span class="p">)</span>
-        <span class="p">(</span><span class="nf">callback</span> <span class="p">(</span><span class="nf">*metro*</span> <span class="p">(</span><span class="nb">+ </span><span class="nv">beat</span> <span class="p">(</span><span class="nb">* </span><span class="mi">1</span><span class="nv">/2</span> <span class="nv">dur</span><span class="p">)))</span> <span class="ss">&#39;xsc</span> 
-          <span class="p">(</span><span class="nb">+ </span><span class="nv">beat</span> <span class="nv">dur</span><span class="p">)</span>
-          <span class="nv">vel</span>
-          <span class="nv">scale</span><span class="p">)))))</span>
+      (if (&gt; vel 0)
+        (callback (*metro* (+ beat (* 1/2 dur))) 'xsc 
+          (+ beat dur)
+          vel
+          scale)))))
 
 
-<span class="c1">;; set scale to play so that scales overlap with each other</span>
+;; set scale to play so that scales overlap with each other
 
-<span class="p">(</span><span class="nf">xsc</span> <span class="p">(</span><span class="nf">*metro*</span> <span class="ss">&#39;get-beat</span> <span class="mi">1</span><span class="p">)</span> 
-  <span class="mi">50</span> <span class="c1">; vol </span>
-  <span class="p">(</span><span class="nf">:mkscale</span> <span class="nv">c1</span> <span class="ss">&#39;pentatonic</span> <span class="mi">2</span><span class="p">))</span> 
-  <span class="c1">;; run again with &#39;ionian, &#39;aeolian etc.. for interesting harmonic effects</span>
-</code></pre></div>
+(xsc (*metro* 'get-beat 1) 
+  50 ; vol 
+  (:mkscale c1 'pentatonic 2)) 
+  ;; run again with 'ionian, 'aeolian etc.. for interesting harmonic effects
+</code></pre>
 
 <p>The full source code on <a href="https://github.com/lambdamusic/The-Musical-Code/blob/main/works/2020-11-piano-scales.xtm">GitHub</a>.</p>
 <h3>About Extempore</h3>

@@ -553,36 +553,36 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>That's the gist of it. I finally took a look at django.contrib.staticfiles last week, so here's a brief report on how to get it to work (p.s. a couple of related threads on stack overflow can be found <a href="http://stackoverflow.com/questions/7620307/how-do-i-serve-css-to-django-in-development">here</a> and <a href="http://stackoverflow.com/questions/4565935/django-staticfiles-app-help">here</a>).</p>
 <h3>1. Set up the static and media paths settings</h3>
 <p>My previous settings looked like this:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># the site root is one level up from where settings.py is</span>
-<span class="n">SITE_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>\<span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-<span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SITE_ROOT</span><span class="p">,</span> <span class="s1">&#39;static&#39;</span><span class="p">)</span>
-<span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;/static/&#39;</span>
-<span class="n">ADMIN_MEDIA_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;/static/adminmedia1.3/&#39;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python"># the site root is one level up from where settings.py is
+SITE_ROOT = os.path.dirname(os.path.realpath(__file__)).rsplit('/', 1)\[0]
+MEDIA_ROOT = os.path.join(SITE_ROOT, 'static')
+MEDIA_URL = '/static/'
+ADMIN_MEDIA_PREFIX = '/static/adminmedia1.3/'
+</code></pre>
 
 <p>The media root contained all of my static files, some of which I had to copy in there manually, each time I added a new django app to my project. On the production server, the <code>MEDIA_URL</code> is mapped to a local path (in the apache conf settings) that is essentially a duplicate of the /static directory we have in the development server. The only difference, the static stuff is delivered directly by Apache, bypassing django (=so to make it faster).</p>
 <p>The <strong>new way</strong> of declaring these variables is this instead:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;/media/uploads/&#39;</span>
-<span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;/media/static/&#39;</span>
-<span class="n">ADMIN_MEDIA_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;/media/static/admin/&#39;</span>
+<pre class="codehilite"><code class="language-python">MEDIA_URL = '/media/uploads/'
+STATIC_URL = '/media/static/'
+ADMIN_MEDIA_PREFIX = '/media/static/admin/'
 
-<span class="c1"># Absolute path to the directory that holds media uploaded</span>
-<span class="c1"># I keep the uploads folder at the project-root level server</span>
-<span class="n">MEDIA_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SITE_ROOT</span><span class="p">,</span> <span class="s1">&#39;uploads&#39;</span><span class="p">)</span> 
+# Absolute path to the directory that holds media uploaded
+# I keep the uploads folder at the project-root level server
+MEDIA_ROOT = os.path.join(SITE_ROOT, 'uploads') 
 
-<span class="c1"># physical location of extra static files in development server</span>
-<span class="n">STATICFILES_DIRS</span> <span class="o">=</span> <span class="p">(</span>
-    <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SITE_ROOT</span><span class="p">,</span> <span class="s1">&#39;myproject/static&#39;</span><span class="p">),</span>
-<span class="p">)</span>
-<span class="c1"># path used with &quot;python manage.py collectstatic&quot;</span>
-<span class="c1"># I normally put this at the project-root level that contains also the wsgi files for apache</span>
-<span class="n">STATIC_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">SITE_ROOT</span><span class="p">,</span> <span class="s1">&#39;apache/static&#39;</span><span class="p">)</span>
-</code></pre></div>
+# physical location of extra static files in development server
+STATICFILES_DIRS = (
+    os.path.join(SITE_ROOT, 'myproject/static'),
+)
+# path used with &quot;python manage.py collectstatic&quot;
+# I normally put this at the project-root level that contains also the wsgi files for apache
+STATIC_ROOT = os.path.join(SITE_ROOT, 'apache/static')
+</code></pre>
 
 <p>Obviously on a production server, you will have to set up the required aliases in the <a href="https://docs.djangoproject.com/en/dev/howto/deployment/wsgi/modwsgi/#serving-files">apache conf</a> file, so that <code>MEDIA_URL</code> and <code>STATIC_URL</code> are pointing at the right physical locations:</p>
-<div class="codehilite"><pre><span></span><code>Alias /media/uploads/ /path/to/mysite.com/uploads/
+<pre class="codehilite"><code class="language-bash">Alias /media/uploads/ /path/to/mysite.com/uploads/
 Alias /media/static/ /path/to/mysite.com/apache/static/
-</code></pre></div>
+</code></pre>
 
 <p>The <a href="https://docs.djangoproject.com/en/dev/howto/static-files/">django docs</a> explain the new approach with these words:</p>
 <blockquote>
@@ -593,53 +593,53 @@ Alias /media/static/ /path/to/mysite.com/apache/static/
 </blockquote>
 <h3>2. Add context processors and the app</h3>
 <p>Add the required context processor in setting.py:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">TEMPLATE_CONTEXT_PROCESSORS</span> <span class="o">+=</span> <span class="s1">&#39;django.core.context_processors.static&#39;</span>
+<pre class="codehilite"><code class="language-python">TEMPLATE_CONTEXT_PROCESSORS += 'django.core.context_processors.static'
 
-<span class="c1"># Add also the new static app to your installed apps:</span>
+# Add also the new static app to your installed apps:
 
-<span class="n">INSTALLED_APPS</span> <span class="o">=</span> <span class="p">(</span>
-<span class="o">....</span>    
-    <span class="s1">&#39;django.contrib.staticfiles&#39;</span><span class="p">,</span>    
-<span class="o">.....</span>
-<span class="p">)</span>
-</code></pre></div>
+INSTALLED_APPS = (
+....    
+    'django.contrib.staticfiles',    
+.....
+)
+</code></pre>
 
 <blockquote>
 <p>Keep in mind that it's very likely that in your templates you will have to manually change all references to <code>MEDIA_URL</code> into <code>STATIC_URL</code>!</p>
 </blockquote>
 <h3>3. Url configuration</h3>
 <p>On your <strong>development</strong> server, this is what you would do:</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.contrib.staticfiles.urls</span> <span class="kn">import</span> <span class="n">staticfiles_urlpatterns</span>
-<span class="c1"># ... the rest of your URLconf goes here ...</span>
-<span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">staticfiles_urlpatterns</span><span class="p">()</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python">from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+# ... the rest of your URLconf goes here ...
+urlpatterns += staticfiles_urlpatterns()
+</code></pre>
 
 <p>This will inspect your <code>STATIC_URL</code> setting and wire up the view to serve static files accordingly. Don't forget to set the <code>STATICFILES_DIRS</code> setting appropriately to let django.contrib.staticfiles know where to look for files additionally to files in app directories.</p>
 <blockquote>
 <p>WARNING: the staticfiles_urlpatterns helper function will only work if DEBUG is True and your STATIC_URL setting is neither empty nor a full URL such as http://static.example.com/ (more info <a href="https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-development-view">here</a>).</p>
 </blockquote>
 <p>Finally, mind that in this new approach you will need to arrange for serving of files in <code>MEDIA_ROOT</code> yourself; <strong>staticfiles does not deal with user-uploaded files at all</strong>. You can, however, use django.views.static.serve() view for serving <code>MEDIA_ROOT</code> in development (for more info see <a href="https://docs.djangoproject.com/en/dev/howto/static-files/#serving-other-directories">Serving other directories</a>).</p>
-<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">LOCAL_SERVER</span><span class="p">:</span>     <span class="c1"># ===&gt; static files on local machine    </span>
-    <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">patterns</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> 
-        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^media/uploads/(?P&lt;path&gt;.\*)$&#39;</span><span class="p">,</span> <span class="s1">&#39;django.views.static.serve&#39;</span><span class="p">,</span> 
-            <span class="p">{</span><span class="s1">&#39;document_root&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">,</span> <span class="s1">&#39;show_indexes&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}),</span>
-        <span class="p">)</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python">if settings.LOCAL_SERVER:     # ===&gt; static files on local machine    
+    urlpatterns += patterns('', 
+        (r'^media/uploads/(?P&lt;path&gt;.\*)$', 'django.views.static.serve', 
+            {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+        )
+</code></pre>
 
 <p>In the end, I conflated the two things into this code (ps I've added a variable called <code>LOCAL_SERVER</code> to quickly see which platform I'm on):</p>
-<div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">LOCAL_SERVER</span><span class="p">:</span>     <span class="c1"># ===&gt; static files on local machine</span>
-    <span class="kn">from</span> <span class="nn">django.contrib.staticfiles.urls</span> <span class="kn">import</span> <span class="n">staticfiles_urlpatterns</span>
-    <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">staticfiles_urlpatterns</span><span class="p">()</span>    
-    <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">patterns</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">,</span> 
-        <span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^media/uploads/(?P&lt;path&gt;.\*)$&#39;</span><span class="p">,</span> <span class="s1">&#39;django.views.static.serve&#39;</span><span class="p">,</span> 
-            <span class="p">{</span><span class="s1">&#39;document_root&#39;</span><span class="p">:</span> <span class="n">settings</span><span class="o">.</span><span class="n">MEDIA_ROOT</span><span class="p">,</span> <span class="s1">&#39;show_indexes&#39;</span><span class="p">:</span> <span class="kc">True</span><span class="p">}),</span>
-        <span class="p">)</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python">if settings.LOCAL_SERVER:     # ===&gt; static files on local machine
+    from django.contrib.staticfiles.urls import staticfiles_urlpatterns
+    urlpatterns += staticfiles_urlpatterns()    
+    urlpatterns += patterns('', 
+        (r'^media/uploads/(?P&lt;path&gt;.\*)$', 'django.views.static.serve', 
+            {'document_root': settings.MEDIA_ROOT, 'show_indexes': True}),
+        )
+</code></pre>
 
 <h3>4. On your production server</h3>
 <p>Easy: in your urlconf there's no need to do anything, as static urls are usually handled by Apache directly. However for that to happen what you have to do is collect all static files into the directory that apache is looking into, that is, the one specified with the STATIC_ROOT setting. This is how you do it:</p>
-<div class="codehilite"><pre><span></span><code>$ <span class="sb">`</span>python manage.py collectstatic<span class="sb">`</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">$ `python manage.py collectstatic`
+</code></pre>
 
 <p>This shell command will a) look in the <code>/static/</code> directory of each of the apps of yours <code>INSTALLED_APPS</code> setting. b) look in directories you specify in the <code>STATICFILES_DIRS</code> setting.</p>
 <p>…and copy whatever it finds into the <code>STATIC_ROOT</code> directory, as defined in your settings (ps: it'll preserve the original directory structure).</p>

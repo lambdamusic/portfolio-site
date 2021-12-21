@@ -556,107 +556,107 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>Django doc: <a href="http://www.djangoproject.com/documentation/models/or_lookups/">OR lookups</a> More in-depth examples</li>
 </ul>
 <p>Now... let's get started by resurrecting the simple model used in the <a href="http://docs.djangoproject.com/en/dev/intro/tutorial01/">django Tutorial</a>, <strong>Polls</strong>, and adding a few <strong>instances</strong> to play with:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># ==&gt; in models.py</span>
-<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
-<span class="kn">import</span> <span class="nn">datetime</span>
+<pre class="codehilite"><code class="language-python"># ==&gt; in models.py
+from django.db import models
+import datetime
 
-<span class="k">class</span> <span class="nc">Poll</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
-        <span class="n">question</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
-        <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="s1">&#39;date published&#39;</span><span class="p">)</span>
+class Poll(models.Model):
+        question = models.CharField(max_length=200)
+        pub_date = models.DateTimeField('date published')
 
-<span class="c1"># ==&gt; add some instances from the shell</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">Poll</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="s1">&#39;what shall I make for dinner&#39;</span><span class="p">,</span> <span class="n">pub_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">Poll</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="s1">&#39;what is your favourite meal?&#39;</span><span class="p">,</span> <span class="n">pub_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">datetime</span><span class="p">(</span><span class="mi">2009</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">19</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span> <span class="c1">#one year ago</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span> <span class="o">=</span> <span class="n">Poll</span><span class="p">(</span><span class="n">question</span><span class="o">=</span><span class="s1">&#39;how do you make omelettes?&#39;</span><span class="p">,</span> <span class="n">pub_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">())</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
-</code></pre></div>
+# ==&gt; add some instances from the shell
+&gt;&gt;&gt; p = Poll(question='what shall I make for dinner', pub_date=datetime.date.today())
+&gt;&gt;&gt; p.save()
+&gt;&gt;&gt; p = Poll(question='what is your favourite meal?', pub_date=datetime.datetime(2009, 7, 19, 0, 0)) #one year ago
+&gt;&gt;&gt; p.save()
+&gt;&gt;&gt; p = Poll(question='how do you make omelettes?', pub_date=datetime.date.today())
+&gt;&gt;&gt; p.save()
+</code></pre>
 
 <h2>What are Q Objects Handy for?</h2>
 <p>In a nutshell, the main reason why you might want to use them is because you need to do <strong>complex queries</strong>, for example involving OR and AND statements a the same time.</p>
 <p>Imagine that you want to retrieve all polls whose question <strong>contains the word 'dinner' OR 'meal'</strong>. The usual 'filter' option lets you do the following:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;meal&#39;</span><span class="p">)</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python">Poll.objects.filter(question__contains='dinner').filter(question__contains='meal')
+</code></pre>
 
 <p>But this is <strong>not really what we want</strong>, is it? We just got a <strong>concatenation of AND</strong> statements (= all constraints need to be satisfied), while <strong>we wanted an OR</strong> (=at least one of the constraints needs to be satisfied). This is where Q objects become useful:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span>
-<span class="c1"># a simple query</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">))</span>
-<span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="n">shall</span> <span class="n">I</span> <span class="n">make</span> <span class="o">**</span><span class="k">for</span><span class="o">**</span> <span class="n">dinner</span><span class="o">&gt;</span><span class="p">]</span>
-<span class="c1"># two constraints linked by AND</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;meal&#39;</span><span class="p">))</span>
-<span class="p">[]</span>
-<span class="c1"># two constraints linked by OR - that&#39;s it!</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;meal&#39;</span><span class="p">))</span>
-<span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="n">shall</span> <span class="n">I</span> <span class="n">make</span> <span class="o">**</span><span class="k">for</span><span class="o">**</span> <span class="n">dinner</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="o">**</span><span class="ow">is</span><span class="o">**</span> <span class="n">your</span> <span class="n">favourite</span> <span class="n">meal</span><span class="err">?</span><span class="o">&gt;</span><span class="p">]</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python">&gt;&gt;&gt; from django.db.models import Q
+# a simple query
+&gt;&gt;&gt; Poll.objects.filter(Q(question__contains='dinner'))
+[&lt;Poll: what shall I make **for** dinner&gt;]
+# two constraints linked by AND
+&gt;&gt;&gt; Poll.objects.filter(Q(question__contains='dinner') &amp; Q(question__contains='meal'))
+[]
+# two constraints linked by OR - that's it!
+&gt;&gt;&gt; Poll.objects.filter(Q(question__contains='dinner') | Q(question__contains='meal'))
+[&lt;Poll: what shall I make **for** dinner&gt;, &lt;Poll: what **is** your favourite meal?&gt;]
+</code></pre>
 
 <p>Note that if you don't specify any logical connector the Q sequence is implicitly interpreted as AND:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># no logical connector is interpreted as AND</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">),</span> <span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;meal&#39;</span><span class="p">))</span>
-<span class="p">[]</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python"># no logical connector is interpreted as AND
+&gt;&gt;&gt; Poll.objects.filter(Q(question__contains='dinner'), Q(question__contains='meal'))
+[]
+</code></pre>
 
 <p>Things start getting more interesting when creating complex queries:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># eg (A OR B) AND C:</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">((</span><span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;meal&#39;</span><span class="p">))</span> <span class="o">&amp;</span> <span class="n">Q</span><span class="p">(</span><span class="n">pub_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()))</span>
-<span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="n">shall</span> <span class="n">I</span> <span class="n">make</span> <span class="o">**</span><span class="k">for</span><span class="o">**</span> <span class="n">dinner</span><span class="o">&gt;</span><span class="p">]</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python"># eg (A OR B) AND C:
+&gt;&gt;&gt; Poll.objects.filter((Q(question__contains='dinner') | Q(question__contains='meal')) &amp; Q(pub_date=datetime.date.today()))
+[&lt;Poll: what shall I make **for** dinner&gt;]
+</code></pre>
 
 <h2>Dynamic Query Building</h2>
 <p>Now, it is likely that you want to build up queries like the ones above dynamically. This is another place where Q objects can save lots of time....for example, when constructing <strong>search engines</strong> or <strong>faceted browsers</strong> where the interface lets a user <strong>accumulate search filters</strong> in an incremental manner.</p>
 <p>One way to handle this situation is by creating <strong>lists of Q objects</strong>, and then <strong>combining them together</strong> using python's <a href="http://docs.python.org/library/operator.html#operator.and_">operator</a> and <a href="http://docs.python.org/library/functions.html#reduce">reduce</a> methods:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">operator</span>
-<span class="c1"># create a list of Q objects</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">mylist</span> <span class="o">=</span> <span class="p">[</span><span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">),</span> <span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;meal&#39;</span><span class="p">)]</span>
-<span class="c1"># OR</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">or_</span><span class="p">,</span> <span class="n">mylist</span><span class="p">))</span>
-<span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="n">shall</span> <span class="n">I</span> <span class="n">make</span> <span class="o">**</span><span class="k">for</span><span class="o">**</span> <span class="n">dinner</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="o">**</span><span class="ow">is</span><span class="o">**</span> <span class="n">your</span> <span class="n">favourite</span> <span class="n">meal</span><span class="err">?</span><span class="o">&gt;</span><span class="p">]</span>
-<span class="c1"># AND</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">and_</span><span class="p">,</span> <span class="n">mylist</span><span class="p">))</span>
-<span class="p">[]</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python">&gt;&gt;&gt; import operator
+# create a list of Q objects
+&gt;&gt;&gt; mylist = [Q(question__contains='dinner'), Q(question__contains='meal')]
+# OR
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.or_, mylist))
+[&lt;Poll: what shall I make **for** dinner&gt;, &lt;Poll: what **is** your favourite meal?&gt;]
+# AND
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.and_, mylist))
+[]
+</code></pre>
 
 <p>Now, if you're building the query dynamically you probably won't know in advance which are the filters you have to use. It is likely instead that you find yourself having to <strong>generate a list of Q objects programatically</strong> from a list of strings representing queries to your models:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># string representation of our queries</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">predicates</span> <span class="o">=</span> <span class="p">[(</span><span class="s1">&#39;question__contains&#39;</span><span class="p">,</span> <span class="s1">&#39;dinner&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;question__contains&#39;</span><span class="p">,</span> <span class="s1">&#39;meal&#39;</span><span class="p">)]</span>
-<span class="c1"># create the list of Q objects and run the queries as above..</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">q_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">Q</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">**</span><span class="k">for</span><span class="o">**</span> <span class="n">x</span> <span class="o">**</span><span class="ow">in</span><span class="o">**</span> <span class="n">predicates</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">or_</span><span class="p">,</span> <span class="n">q_list</span><span class="p">))</span>
-<span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="n">shall</span> <span class="n">I</span> <span class="n">make</span> <span class="o">**</span><span class="k">for</span><span class="o">**</span> <span class="n">dinner</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="o">**</span><span class="ow">is</span><span class="o">**</span> <span class="n">your</span> <span class="n">favourite</span> <span class="n">meal</span><span class="err">?</span><span class="o">&gt;</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">and_</span><span class="p">,</span> <span class="n">q_list</span><span class="p">))</span>
-<span class="p">[]</span>
+<pre class="codehilite"><code class="language-python"># string representation of our queries
+&gt;&gt;&gt; predicates = [('question__contains', 'dinner'), ('question__contains', 'meal')]
+# create the list of Q objects and run the queries as above..
+&gt;&gt;&gt; q_list = [Q(x) **for** x **in** predicates]
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.or_, q_list))
+[&lt;Poll: what shall I make **for** dinner&gt;, &lt;Poll: what **is** your favourite meal?&gt;]
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.and_, q_list))
+[]
 
-<span class="c1"># now let&#39;s append another filter to the query-strings..</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">predicates</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="s1">&#39;pub_date&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()))</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">predicates</span>
-<span class="p">[(</span><span class="s1">&#39;question__contains&#39;</span><span class="p">,</span> <span class="s1">&#39;dinner&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;question__contains&#39;</span><span class="p">,</span> <span class="s1">&#39;meal&#39;</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;pub_date&#39;</span><span class="p">,</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="p">(</span><span class="mi">2010</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="mi">19</span><span class="p">))]</span>
-<span class="c1"># .. and the results will change too</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">q_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">Q</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="o">**</span><span class="k">for</span><span class="o">**</span> <span class="n">x</span> <span class="o">**</span><span class="ow">in</span><span class="o">**</span> <span class="n">predicates</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">or_</span><span class="p">,</span> <span class="n">q_list</span><span class="p">))</span>
-<span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="n">shall</span> <span class="n">I</span> <span class="n">make</span> <span class="o">**</span><span class="k">for</span><span class="o">**</span> <span class="n">dinner</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="o">**</span><span class="ow">is</span><span class="o">**</span> <span class="n">your</span> <span class="n">favourite</span> <span class="n">meal</span><span class="err">?</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">how</span> <span class="n">do</span> <span class="n">you</span> <span class="n">make</span> <span class="n">omelettes</span><span class="err">?</span><span class="o">&gt;</span><span class="p">]</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">and_</span><span class="p">,</span> <span class="n">q_list</span><span class="p">))</span>
-<span class="p">[]</span>
-</code></pre></div>
+# now let's append another filter to the query-strings..
+&gt;&gt;&gt; predicates.append(('pub_date', datetime.date.today()))
+&gt;&gt;&gt; predicates
+[('question__contains', 'dinner'), ('question__contains', 'meal'), ('pub_date', datetime.date(2010, 7, 19))]
+# .. and the results will change too
+&gt;&gt;&gt; q_list = [Q(x) **for** x **in** predicates]
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.or_, q_list))
+[&lt;Poll: what shall I make **for** dinner&gt;, &lt;Poll: what **is** your favourite meal?&gt;, &lt;Poll: how do you make omelettes?&gt;]
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.and_, q_list))
+[]
+</code></pre>
 
 <h2>Query Expansion and Q Objects</h2>
 <p>Using query expansion syntax you could normally do things <strong>like this</strong>:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">mydict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;question__contains&#39;</span><span class="p">:</span> <span class="s1">&#39;omelette&#39;</span><span class="p">,</span> <span class="s1">&#39;pub_date&#39;</span> <span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()}</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">**</span><span class="n">mydict</span><span class="p">)</span>
-<span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">how</span> <span class="n">do</span> <span class="n">you</span> <span class="n">make</span> <span class="n">omelettes</span><span class="err">?</span><span class="o">&gt;</span><span class="p">]</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python">&gt;&gt;&gt; mydict = {'question__contains': 'omelette', 'pub_date' : datetime.date.today()}
+&gt;&gt;&gt; Poll.objects.filter(**mydict)
+[&lt;Poll: how do you make omelettes?&gt;]
+</code></pre>
 
 <p>Here you are basically <strong>sequencing AND statements which are built dynamically</strong> from some string values.</p>
 <p>A really cool feature of django ORM is that you can <strong>keep doing this</strong> even <strong>while using Q objects</strong>. In other words, you can delegate all the 'normal' stuff to the query expansion mechanism, while instead resorting to Q objects whenever you need more complex queries, such an OR statement.</p>
 <p>For example (remember to put the dictionary always in second position):****</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># OR plus query expansion</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">or_</span><span class="p">,</span> <span class="n">q_list</span><span class="p">),</span> <span class="o">**</span><span class="n">mydict</span><span class="p">)</span>
-<span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">how</span> <span class="n">do</span> <span class="n">you</span> <span class="n">make</span> <span class="n">omelettes</span><span class="err">?</span><span class="o">&gt;</span><span class="p">]</span>
-<span class="c1"># AND plus query expansion</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">reduce</span><span class="p">(</span><span class="n">operator</span><span class="o">.</span><span class="n">and_</span><span class="p">,</span> <span class="n">q_list</span><span class="p">),</span> <span class="o">**</span><span class="n">mydict</span><span class="p">)</span>
-<span class="p">[]</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python"># OR plus query expansion
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.or_, q_list), **mydict)
+[&lt;Poll: how do you make omelettes?&gt;]
+# AND plus query expansion
+&gt;&gt;&gt; Poll.objects.filter(reduce(operator.and_, q_list), **mydict)
+[]
+</code></pre>
 
 <p>In the <strong>first</strong> case, we have one result only because, although the OR constraint on <em>q_list</em> is would match more stuff by itself, _<strong>mydict_ is exploded as a series of constraints connected by AND, thus making <em>[Poll: how do you make omelettes?]</em> the only matchable object. In the </strong>second** case instead there are no results at all simply because we are asking for a Poll instance that satisfies simultaneously all the constraints (which doesn't exist)!</p>
 <h2>Other Resources</h2>

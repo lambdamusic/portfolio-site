@@ -555,27 +555,27 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </blockquote>
 <p><a href="https://www.springernature.com/gp/researchers/scigraph"><img alt="scigraph" src="../../../../../media/static/blog_img/scigraph.png" /></a></p>
 <p>Here's an example of how the library can be used from the command line:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># check if an object is on SciGraph via its URI</span>
+<pre class="codehilite"><code class="language-bash"># check if an object is on SciGraph via its URI
 $ pyscigraph --uri http://www.grid.ac/institutes/grid.443610.4
-Parsing <span class="m">12</span> triples..
+Parsing 12 triples..
 URI:  http://www.grid.ac/institutes/grid.443610.4
 DOI:  N/A
 Label:  Hakodate University
 Title:  N/A
 Types:  foaf:Organization grid:Education
 
-<span class="c1"># check if a publication is on SciGraph via its DOI</span>
-$ pyscigraph --doi <span class="m">10</span>.1038/171737a0
-Parsing <span class="m">251</span> triples..
+# check if a publication is on SciGraph via its DOI
+$ pyscigraph --doi 10.1038/171737a0
+Parsing 251 triples..
 URI:  http://scigraph.springernature.com/things/articles/f5ac1e9c7a520ca2a34cb13af4809bdd
-DOI:  <span class="m">10</span>.1038/171737a0
-Label:  Article: Molecular Structure of Nucleic Acids: A Structure <span class="k">for</span> Deoxyribose Nucleic Acid
-Title:  Molecular Structure of Nucleic Acids: A Structure <span class="k">for</span> Deoxyribose Nucleic Acid
+DOI:  10.1038/171737a0
+Label:  Article: Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid
+Title:  Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid
 Types:  sg:Article
 
-<span class="c1"># retrieve all metadata via an RDF serialization</span>
-$ pyscigraph --doi <span class="m">10</span>.1038/171737a0 --rdf n3
-Parsing <span class="m">251</span> triples..
+# retrieve all metadata via an RDF serialization
+$ pyscigraph --doi 10.1038/171737a0 --rdf n3
+Parsing 251 triples..
 @prefix dc: &lt;http://purl.org/dc/elements/1.1/&gt; .
 @prefix foaf: &lt;http://xmlns.com/foaf/0.1/&gt; .
 @prefix grid: &lt;http://www.grid.ac/ontology/&gt; .
@@ -591,37 +591,37 @@ Parsing <span class="m">251</span> triples..
 @prefix xml: &lt;http://www.w3.org/XML/1998/namespace&gt; .
 @prefix xsd: &lt;http://www.w3.org/2001/XMLSchema#&gt; .
 
-&lt;http://scigraph.springernature.com/things/articles/f5ac1e9c7a520ca2a34cb13af4809bdd&gt; a sg:Article <span class="p">;</span>
-    rdfs:label <span class="s2">&quot;Article: Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid&quot;</span> <span class="p">;</span>
-    sg:coverDate <span class="s2">&quot;1953-04-25&quot;</span>^^xsd:date <span class="p">;</span>
-    sg:coverYear <span class="s2">&quot;1953-01-01&quot;</span>^^xsd:gYear <span class="p">;</span>
-    sg:coverYearMonth <span class="s2">&quot;1953-04-01&quot;</span>^^xsd:gYearMonth <span class="p">;</span>
-    sg:ddsIdJournalBrand <span class="s2">&quot;41586&quot;</span> <span class="p">;</span>
-    sg:doi <span class="s2">&quot;10.1038/171737a0&quot;</span> <span class="p">;</span>
-    sg:doiLink &lt;http://dx.doi.org/10.1038/171737a0&gt; <span class="p">;</span>
-    sg:hasArticleType &lt;http://scigraph.springernature.com/things/article-types/af&gt; <span class="p">;</span>
-    sg:hasContributingOrganization &lt;http://www.grid.ac/institutes/grid.5335.0&gt; <span class="p">;</span>
+&lt;http://scigraph.springernature.com/things/articles/f5ac1e9c7a520ca2a34cb13af4809bdd&gt; a sg:Article ;
+    rdfs:label &quot;Article: Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid&quot; ;
+    sg:coverDate &quot;1953-04-25&quot;^^xsd:date ;
+    sg:coverYear &quot;1953-01-01&quot;^^xsd:gYear ;
+    sg:coverYearMonth &quot;1953-04-01&quot;^^xsd:gYearMonth ;
+    sg:ddsIdJournalBrand &quot;41586&quot; ;
+    sg:doi &quot;10.1038/171737a0&quot; ;
+    sg:doiLink &lt;http://dx.doi.org/10.1038/171737a0&gt; ;
+    sg:hasArticleType &lt;http://scigraph.springernature.com/things/article-types/af&gt; ;
+    sg:hasContributingOrganization &lt;http://www.grid.ac/institutes/grid.5335.0&gt; ;
     sg:hasContribution &lt;http://scigraph.springernature.com/things/contributions/7325bd1cadf3a1cc253c611682bc62fd&gt;,
-        &lt;http://scigraph.springernature.com/things/contributions/989a6a2607c882ffd99341144836d1fc&gt; <span class="p">;</span>
+        &lt;http://scigraph.springernature.com/things/contributions/989a6a2607c882ffd99341144836d1fc&gt; ;
     sg:hasFieldOfResearchCode &lt;http://purl.org/au-research/vocabulary/anzsrc-for/2008/03&gt;,
-        &lt;http://purl.org/au-research/vocabulary/anzsrc-for/2008/0306&gt; <span class="p">;</span>
+        &lt;http://purl.org/au-research/vocabulary/anzsrc-for/2008/0306&gt; ;
     sg:hasJournal &lt;http://scigraph.springernature.com/things/journals/5ea8996a5bb089dd0562d3bfe24eaad9&gt;,
-        &lt;http://scigraph.springernature.com/things/journals/723ba46cf7980ad6089b3da0ba4b0b47&gt; <span class="p">;</span>
-    sg:hasJournalBrand &lt;http://scigraph.springernature.com/things/journal-brands/012496b06989edb434c6b8e1d0b0a7db&gt; <span class="p">;</span>
-    sg:issnElectronic <span class="s2">&quot;1476-4687&quot;</span> <span class="p">;</span>
-    sg:issnPrint <span class="s2">&quot;0028-0836&quot;</span> <span class="p">;</span>
-    sg:issue <span class="s2">&quot;4356&quot;</span> <span class="p">;</span>
-    sg:license &lt;http://scigraph.springernature.com/explorer/license/&gt; <span class="p">;</span>
-    sg:npgId <span class="s2">&quot;171737a0&quot;</span> <span class="p">;</span>
-    sg:pageEnd <span class="s2">&quot;738&quot;</span> <span class="p">;</span>
-    sg:pageStart <span class="s2">&quot;737&quot;</span> <span class="p">;</span>
-    sg:publicationDate <span class="s2">&quot;1953-04-25&quot;</span>^^xsd:date <span class="p">;</span>
-    sg:publicationYear <span class="s2">&quot;1953-01-01&quot;</span>^^xsd:gYear <span class="p">;</span>
-    sg:publicationYearMonth <span class="s2">&quot;1953-04-01&quot;</span>^^xsd:gYearMonth <span class="p">;</span>
-    sg:scigraphId <span class="s2">&quot;f5ac1e9c7a520ca2a34cb13af4809bdd&quot;</span> <span class="p">;</span>
-    sg:title <span class="s2">&quot;Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid&quot;</span> <span class="p">;</span>
-    sg:volume <span class="s2">&quot;171&quot;</span> .
-</code></pre></div>
+        &lt;http://scigraph.springernature.com/things/journals/723ba46cf7980ad6089b3da0ba4b0b47&gt; ;
+    sg:hasJournalBrand &lt;http://scigraph.springernature.com/things/journal-brands/012496b06989edb434c6b8e1d0b0a7db&gt; ;
+    sg:issnElectronic &quot;1476-4687&quot; ;
+    sg:issnPrint &quot;0028-0836&quot; ;
+    sg:issue &quot;4356&quot; ;
+    sg:license &lt;http://scigraph.springernature.com/explorer/license/&gt; ;
+    sg:npgId &quot;171737a0&quot; ;
+    sg:pageEnd &quot;738&quot; ;
+    sg:pageStart &quot;737&quot; ;
+    sg:publicationDate &quot;1953-04-25&quot;^^xsd:date ;
+    sg:publicationYear &quot;1953-01-01&quot;^^xsd:gYear ;
+    sg:publicationYearMonth &quot;1953-04-01&quot;^^xsd:gYearMonth ;
+    sg:scigraphId &quot;f5ac1e9c7a520ca2a34cb13af4809bdd&quot; ;
+    sg:title &quot;Molecular Structure of Nucleic Acids: A Structure for Deoxyribose Nucleic Acid&quot; ;
+    sg:volume &quot;171&quot; .
+</code></pre>
 
 <p>The current release (0.4) just offers basic functionalities but I'm planning to do more work on this over the next months.</p>
 <p>Any ideas? Comments? Please <a href="https://github.com/lambdamusic/pyscigraph/issues">open an issue on Github!</a></p>

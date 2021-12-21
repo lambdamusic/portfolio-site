@@ -553,15 +553,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2009/12/picture-1.png"><img alt="" src="http://www.michelepasin.org/blog/wp-content/uploads/2009/12/picture-1.png?w=300" title="Picture 1" /></a></p>
 <p>The application is pretty <strong>simple</strong> and <strong>well</strong> <strong>designed</strong>. Useful for doing large user-studies, for example. The download page lets you have it packaged as a django project, but transforming it into a reusable app is not too difficult (I've done that but I'm not posting it here because of several other little hacks I had to do so to accommodate the project I'm using the questionnaire for).</p>
 <p><strong>Tip</strong>: if you're using <strong>django 1.1</strong> one little thing that might help you get going quickly is changing these lines of <em>templates/admin/admin_index.html</em>:</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">{%</span> <span class="k">block</span> <span class="nv">stylesheet</span> <span class="cp">%}{%</span> <span class="k">load</span> <span class="nv">adminmedia</span> <span class="cp">%}{%</span> <span class="k">admin_media_prefix</span> <span class="cp">%}</span><span class="x">css/dashboard.css</span><span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
-</code></pre></div>
+<pre class="codehilite"><code>{% block stylesheet %}{% load adminmedia %}{% admin_media_prefix %}css/dashboard.css{% endblock %}
+</code></pre>
 
 <p>..with this:</p>
-<div class="codehilite"><pre><span></span><code><span class="cp">{%</span> <span class="k">block</span> <span class="nv">extrastyle</span> <span class="cp">%}{{</span> <span class="nb">block</span><span class="nv">.super</span> <span class="cp">}}</span><span class="x"></span>
-<span class="x">&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;</span><span class="cp">{%</span> <span class="k">load</span> <span class="nv">adminmedia</span> <span class="cp">%}</span><span class="x"></span>
-<span class="cp">{%</span> <span class="k">admin_media_prefix</span> <span class="cp">%}</span><span class="x">css/dashboard.css&quot; /&gt;</span>
-<span class="cp">{%</span> <span class="k">endblock</span> <span class="cp">%}</span><span class="x"></span>
-</code></pre></div>
+<pre class="codehilite"><code>{% block extrastyle %}{{ block.super }}
+&lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;{% load adminmedia %}
+{% admin_media_prefix %}css/dashboard.css&quot; /&gt;
+{% endblock %}
+</code></pre>
 
 <p>By the way, if you don't feel like setting up the questionnaire yourself you can easily create one on <a href="http://www.pervidet.com/">Pervidet.com</a>, which is (I assume) managed by the guys at <a href="http://www.aperte-it.com/">Aperte</a>.</p>
 

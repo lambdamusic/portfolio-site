@@ -27,7 +27,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Python&#39;s phenotype Phenotype: any observable characteristic or trait of an organism: such as its morphology, development, biochemical or physiological properties, or behavior. &amp;gt;&amp;gt;&amp;gt; type(&amp;#39;aaa&amp;#39;) &amp;lt;type &amp;#39;str&amp;#39;&amp;gt; &amp;gt;&amp;gt;&amp;gt; ...">
+  <meta name="description" content="Python&#39;s phenotype Phenotype: any observable characteristic or trait of an organism: such as its morphology, development, biochemical or physiological properties, or behavior. &amp;gt;&amp;gt;&amp;gt; type(&#39;aaa&#39;) &amp;lt;type &#39;str&#39;&amp;gt; &amp;gt;&amp;gt;&amp;gt; ...">
 
 
 
@@ -550,19 +550,19 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
             <p>Phenotype: <em>any observable characteristic or trait of an organism: such as its morphology, development, biochemical or physiological properties, or behavior</em>.</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span> 
-<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;str&#39;</span><span class="o">&gt;</span> 
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)</span> 
-<span class="kc">True</span> 
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))</span> 
-<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;bool&#39;</span><span class="o">&gt;</span> 
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)))</span> 
-<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;type&#39;</span><span class="o">&gt;</span> 
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">))))</span> 
-<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;type&#39;</span><span class="o">&gt;</span> 
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="s1">&#39;aaa&#39;</span><span class="p">)</span> <span class="o">==</span> <span class="nb">type</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">)))))</span> 
-<span class="o">&lt;</span><span class="nb">type</span> <span class="s1">&#39;type&#39;</span><span class="o">&gt;</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python">&gt;&gt;&gt; type('aaa') 
+&lt;type 'str'&gt; 
+&gt;&gt;&gt; type('aaa') == type('a') 
+True 
+&gt;&gt;&gt; type(type('aaa') == type('a')) 
+&lt;type 'bool'&gt; 
+&gt;&gt;&gt; type(type(type('aaa') == type('a'))) 
+&lt;type 'type'&gt; 
+&gt;&gt;&gt; type(type(type(type('aaa') == type('a')))) 
+&lt;type 'type'&gt; 
+&gt;&gt;&gt; type(type(type(type(type('aaa') == type('a'))))) 
+&lt;type 'type'&gt;
+</code></pre>
 
 <p>If you don’t know what’s going on, I’ve just been fooling around with python's <a href="http://www.cafepy.com/article/python_types_and_objects/python_types_and_objects.html">type system</a> and <a href="https://docs.python.org/3/library/idle.html">IDLE</a></p>
 

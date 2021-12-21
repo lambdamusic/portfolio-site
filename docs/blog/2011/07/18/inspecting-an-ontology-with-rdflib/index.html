@@ -555,41 +555,41 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>In other words, this idea suggests that (for now) it's enough to make your application spit out structured data using a standard data model (RDF, that is), and possibly connect your RDF dataset to other datasets in the '<a href="http://richard.cyganiak.de/2007/10/lod/">cloud</a>' by creating <a href="http://linkeddatabook.com/editions/1.0/#htoc18">rdf-links</a>. Once you've done that, you can take it easy and stop worrying about the data integration problems your RDF might generate, or the 'big picture'. Others will figure out how to use your data; <strong>it's an incremental approach</strong>, there will be some sort of snowball effect at some stage, semantic web enthusiasts seem to suggest. This and other arguments are a bit make-believe, I have to say; but at the same time they also do make some sense: unless we have some real stuff to play with out there on the data-web, not much will <em>ever</em> happen!</p>
 <h3>Hullo, RDFlib</h3>
 <p>After quickly ascertaining that it's not a total waste of time to work with RDF, it's now time to get practical and experiment a bit with RDFlib. This is a great python library for it lets you process RDF data <em>very very easily</em>. Example:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># open a graph </span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">rdflib</span> 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>  
+<pre class="codehilite"><code class="language-python"># open a graph 
+&gt;&gt;&gt; import rdflib 
+&gt;&gt;&gt; graph = rdflib.Graph()  
 
-<span class="c1"># load some data </span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">graph</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_Web&#39;</span><span class="p">)</span> 
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">graph</span><span class="p">)</span> 
-<span class="o">&gt;&gt;&gt;</span> <span class="mi">98</span>  
+# load some data 
+&gt;&gt;&gt; graph.parse('http://dbpedia.org/resource/Semantic_Web') 
+&gt;&gt;&gt; len(graph) 
+&gt;&gt;&gt; 98  
 
-<span class="c1"># query the data </span>
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">list</span><span class="p">(</span><span class="n">graph</span><span class="p">)[:</span><span class="mi">10</span><span class="p">]</span> 
-<span class="p">[(</span><span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/SUPER&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/property/keywords&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_Web&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_internet&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/ontology/wikiPageRedirects&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_Web&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/SW&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/ontology/wikiPageDisambiguates&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_Web&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_integrity&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/ontology/wikiPageRedirects&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_Web&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Ontotext&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/ontology/industry&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_Web&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://mpii.de/yago/resource/Semantic_Web&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2002/07/owl#sameAs&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_Web&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Deborah_McGuinness&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/ontology/knownFor&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_Web&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/The_semantic_web&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/ontology/wikiPageRedirects&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_Web&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Access-eGov&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/property/keywords&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_Web&#39;</span><span class="p">)),</span> <span class="p">(</span><span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/SOA4All&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/property/keywords&#39;</span><span class="p">),</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">term</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://dbpedia.org/resource/Semantic_Web&#39;</span><span class="p">))]</span>  
+# query the data 
+&gt;&gt;&gt; list(graph)[:10] 
+[(rdflib.term.URIRef('http://dbpedia.org/resource/SUPER'), rdflib.term.URIRef('http://dbpedia.org/property/keywords'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_internet'), rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageRedirects'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/SW'), rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageDisambiguates'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_integrity'), rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageRedirects'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Ontotext'), rdflib.term.URIRef('http://dbpedia.org/ontology/industry'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://mpii.de/yago/resource/Semantic_Web'), rdflib.term.URIRef('http://www.w3.org/2002/07/owl#sameAs'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Deborah_McGuinness'), rdflib.term.URIRef('http://dbpedia.org/ontology/knownFor'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/The_semantic_web'), rdflib.term.URIRef('http://dbpedia.org/ontology/wikiPageRedirects'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/Access-eGov'), rdflib.term.URIRef('http://dbpedia.org/property/keywords'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web')), (rdflib.term.URIRef('http://dbpedia.org/resource/SOA4All'), rdflib.term.URIRef('http://dbpedia.org/property/keywords'), rdflib.term.URIRef('http://dbpedia.org/resource/Semantic_Web'))]  
 
-<span class="c1"># print out some triples </span>
-<span class="o">&gt;&gt;&gt;</span> <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">graph</span><span class="p">:</span> 
-<span class="o">...</span>     <span class="nb">print</span> <span class="n">s</span><span class="p">,</span> <span class="s2">&quot;n--- &quot;</span><span class="p">,</span> <span class="n">p</span><span class="p">,</span> <span class="s2">&quot;n------ &quot;</span><span class="p">,</span> <span class="n">o</span> 
-<span class="o">...</span>  
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">SUPER</span> 
-<span class="o">---</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="nb">property</span><span class="o">/</span><span class="n">keywords</span>  
-<span class="o">------</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">Semantic_Web</span> 
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">Semantic_internet</span> 
-<span class="o">---</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ontology</span><span class="o">/</span><span class="n">wikiPageRedirects</span>  
-<span class="o">------</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">Semantic_Web</span> 
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">SW</span> 
-<span class="o">---</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ontology</span><span class="o">/</span><span class="n">wikiPageDisambiguates</span>  
-<span class="o">------</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">Semantic_Web</span> 
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">Semantic_integrity</span> 
-<span class="o">---</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ontology</span><span class="o">/</span><span class="n">wikiPageRedirects</span>  
-<span class="o">------</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">Semantic_Web</span> 
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">Semantic_Web</span>  
-<span class="o">---</span> <span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">ontology</span><span class="o">/</span><span class="n">abstract</span>  
-<span class="o">------</span> <span class="n">Con</span> <span class="n">il</span> <span class="n">termine</span> <span class="n">web</span> <span class="n">semantico</span><span class="p">,</span> <span class="n">termine</span> <span class="n">coniato</span> <span class="n">dal</span> <span class="n">suo</span> <span class="n">ideatore</span><span class="p">,</span> <span class="n">Tim</span> <span class="n">Berners</span><span class="o">-</span><span class="n">Lee</span><span class="p">,</span> <span class="n">si</span> <span class="n">intende</span> <span class="n">la</span> <span class="n">trasformazione</span> <span class="k">del</span> <span class="n">World</span> <span class="n">Wide</span> <span class="n">Web</span> <span class="ow">in</span> <span class="n">un</span> <span class="n">ambiente</span> <span class="n">dove</span> <span class="n">i</span> <span class="n">documenti</span> <span class="n">pubblicati</span> <span class="p">(</span><span class="n">pagine</span> <span class="n">HTML</span><span class="p">,</span> <span class="n">file</span><span class="p">,</span> <span class="n">immagini</span><span class="p">,</span> <span class="n">e</span> <span class="n">così</span> <span class="n">via</span><span class="p">)</span> <span class="n">siano</span> <span class="n">associati</span> <span class="n">ad</span> <span class="n">informazioni</span> <span class="n">e</span> <span class="n">dati</span> <span class="n">che</span> <span class="n">ne</span> <span class="n">specifichino</span> <span class="n">il</span> <span class="n">contesto</span> <span class="n">semantico</span> <span class="ow">in</span> <span class="n">un</span> <span class="n">formato</span> <span class="n">adatto</span> <span class="nb">all</span><span class="s1">&#39;interrogazione, all&#39;</span><span class="n">interpretazione</span> <span class="n">e</span><span class="p">,</span> <span class="n">più</span> <span class="ow">in</span> <span class="n">generale</span><span class="p">,</span> <span class="nb">all</span><span class="s1">&#39;elaborazione automatica. Con l&#39;</span><span class="n">interpretazione</span> <span class="k">del</span> <span class="n">contenuto</span> <span class="n">dei</span> <span class="n">documenti</span> <span class="n">che</span> <span class="n">il</span> <span class="n">Web</span> <span class="n">Semantico</span> <span class="n">propugna</span><span class="p">,</span> <span class="n">saranno</span> <span class="n">possibili</span> <span class="n">ricerche</span> <span class="n">molto</span> <span class="n">più</span> <span class="n">evolute</span> <span class="n">delle</span> <span class="n">attuali</span><span class="p">,</span> <span class="n">basate</span> <span class="n">sulla</span> <span class="n">presenza</span> <span class="n">nel</span> <span class="n">documento</span> <span class="n">di</span> <span class="n">parole</span> <span class="n">chiave</span><span class="p">,</span> <span class="n">ed</span> <span class="n">altre</span> <span class="n">operazioni</span> <span class="n">specialistiche</span> <span class="n">come</span> <span class="n">la</span> <span class="n">costruzione</span> <span class="n">di</span> <span class="n">reti</span> <span class="n">di</span> <span class="n">relazioni</span> <span class="n">e</span> <span class="n">connessioni</span> <span class="n">tra</span> <span class="n">documenti</span> <span class="n">secondo</span> <span class="n">logiche</span> <span class="n">più</span> <span class="n">elaborate</span> <span class="k">del</span> <span class="n">semplice</span> <span class="n">link</span> <span class="n">ipertestuale</span><span class="o">.</span> 
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">dbpedia</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="n">resource</span><span class="o">/</span><span class="n">Semantic_Web</span>  
-<span class="o">---</span> <span class="n">etc</span><span class="o">.</span> <span class="n">etc</span> <span class="n">etc</span><span class="o">................</span><span class="err">`</span>
-</code></pre></div>
+# print out some triples 
+&gt;&gt;&gt; for s, p, o in graph: 
+...     print s, &quot;n--- &quot;, p, &quot;n------ &quot;, o 
+...  
+http://dbpedia.org/resource/SUPER 
+--- http://dbpedia.org/property/keywords  
+------ http://dbpedia.org/resource/Semantic_Web 
+http://dbpedia.org/resource/Semantic_internet 
+--- http://dbpedia.org/ontology/wikiPageRedirects  
+------ http://dbpedia.org/resource/Semantic_Web 
+http://dbpedia.org/resource/SW 
+--- http://dbpedia.org/ontology/wikiPageDisambiguates  
+------ http://dbpedia.org/resource/Semantic_Web 
+http://dbpedia.org/resource/Semantic_integrity 
+--- http://dbpedia.org/ontology/wikiPageRedirects  
+------ http://dbpedia.org/resource/Semantic_Web 
+http://dbpedia.org/resource/Semantic_Web  
+--- http://dbpedia.org/ontology/abstract  
+------ Con il termine web semantico, termine coniato dal suo ideatore, Tim Berners-Lee, si intende la trasformazione del World Wide Web in un ambiente dove i documenti pubblicati (pagine HTML, file, immagini, e così via) siano associati ad informazioni e dati che ne specifichino il contesto semantico in un formato adatto all'interrogazione, all'interpretazione e, più in generale, all'elaborazione automatica. Con l'interpretazione del contenuto dei documenti che il Web Semantico propugna, saranno possibili ricerche molto più evolute delle attuali, basate sulla presenza nel documento di parole chiave, ed altre operazioni specialistiche come la costruzione di reti di relazioni e connessioni tra documenti secondo logiche più elaborate del semplice link ipertestuale. 
+http://dbpedia.org/resource/Semantic_Web  
+--- etc. etc etc................`
+</code></pre>
 
 <p>Pretty straightforward uh? In a nutshell, what we've just done is:<br />
 <strong>a)</strong> loading the RDF description of the 'Semantic Web' page on <a href="http://dbpedia.org/About">DBPedia</a> (http://dbpedia.org/resource/Semantic_Web); <strong>b)</strong> showing the first 10 triples in that RDF graph; <strong>c)</strong> iterating through all the triples in the graph and printing them out in a format that reflects the subject-predicate-object structure of RDF.</p>
@@ -599,79 +599,79 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h3>Inspecting an ontology using RDFLib</h3>
 <p>I created a small class called '<strong>OntoInspector</strong>' that you can instantiate with an RDFS/OWL ontology and then query to find out basic information about that ontology. I know - all of this could have been done using one of the many (and constantly increasing) ontology editing tools - but hey this is all about learning isn't it? You can find all the source code on BitBucket <a href="https://github.com/lambdamusic/ontosPy">GitHub</a>. Feel free to get it and modify as needed. Also, I integrated this python toolkit within a <strong>django application</strong> that let you browse ontologies online (beware - it's just a hack really). This is called (surprise) <strong>OntoView</strong>, and it's <a href="http://www.michelepasin.org/hacks/ontoview/">accessible here</a>.</p>
 <p>The first thing to do in our class definition is (obviously) loading up the RDFLib library. I've developed this using RDFlib 2.4, but recently tested it with 3.0 (the latest release available) and it all still works fine. By loading up the RDF and RDFS modules we'll have access to all the constants needed to query for classes and subclasses. Note that I added an OWL module as that is not part of RDFLib. You can find it in the source code, it's just a list of all predicates in the <a href="http://www.w3.org/TR/owl-guide/">OWL vocabulary</a>.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">ConjunctiveGraph</span><span class="p">,</span> <span class="n">Namespace</span><span class="p">,</span> <span class="n">exceptions</span>  
-<span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">URIRef</span><span class="p">,</span> <span class="n">RDFS</span><span class="p">,</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">BNode</span>  
-<span class="kn">import</span> <span class="nn">OWL</span>
-</code></pre></div>
+<pre class="codehilite"><code>from rdflib import ConjunctiveGraph, Namespace, exceptions  
+from rdflib import URIRef, RDFS, RDF, BNode  
+import OWL
+</code></pre>
 
 <p>Now let's set up the basic structure of the OntoInspector class. In principle, an OntoInspector object should contain all the information necessary to query an ontology. An ontology is referred to using its URI, so that's all is needed for creating an instance of OntoInspector too:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">OntoInspector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<pre class="codehilite"><code class="language-python">class OntoInspector(object):
 
-    <span class="sd">&quot;&quot;&quot;Class that includes methods for querying an RDFS/OWL ontology&quot;&quot;&quot;</span>        
+    &quot;&quot;&quot;Class that includes methods for querying an RDFS/OWL ontology&quot;&quot;&quot;        
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">OntoInspector</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+    def __init__(self, uri, language=&quot;&quot;):
+        super(OntoInspector, self).__init__()
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">rdfGraph</span> <span class="o">=</span> <span class="n">ConjunctiveGraph</span><span class="p">()</span>
-        <span class="k">try</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">rdfGraph</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;xml&quot;</span><span class="p">)</span>
-        <span class="k">except</span><span class="p">:</span>
-            <span class="k">try</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">rdfGraph</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">uri</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s2">&quot;n3&quot;</span><span class="p">)</span>
-            <span class="k">except</span><span class="p">:</span>
-                <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">Error</span><span class="p">(</span><span class="s2">&quot;Could not parse the file! Is it a valid RDF/OWL ontology?&quot;</span><span class="p">)</span>
+        self.rdfGraph = ConjunctiveGraph()
+        try:
+            self.rdfGraph.parse(uri, format=&quot;xml&quot;)
+        except:
+            try:
+                self.rdfGraph.parse(uri, format=&quot;n3&quot;)
+            except:
+                raise exceptions.Error(&quot;Could not parse the file! Is it a valid RDF/OWL ontology?&quot;)
 
-        <span class="k">finally</span><span class="p">:</span>
-            <span class="c1"># let&#39;s cache some useful info for faster access</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">baseURI</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_OntologyURI</span><span class="p">()</span> <span class="ow">or</span> <span class="n">uri</span>            
-            <span class="bp">self</span><span class="o">.</span><span class="n">allclasses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__getAllClasses</span><span class="p">(</span><span class="n">classPredicate</span><span class="p">)</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">toplayer</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__getTopclasses</span><span class="p">()</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__getTree</span><span class="p">()</span>
-
-
-    <span class="k">def</span> <span class="nf">get_OntologyURI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">....</span><span class="p">):</span>
-        <span class="c1"># todo</span>
-        <span class="k">pass</span>
-
-    <span class="k">def</span> <span class="nf">__getAllClasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">....</span><span class="p">):</span>
-        <span class="c1"># todo</span>
-        <span class="k">pass</span>
+        finally:
+            # let's cache some useful info for faster access
+            self.baseURI = self.get_OntologyURI() or uri            
+            self.allclasses = self.__getAllClasses(classPredicate)
+            self.toplayer = self.__getTopclasses()
+            self.tree = self.__getTree()
 
 
-    <span class="k">def</span> <span class="nf">__getTopclasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">....</span><span class="p">):</span>
-        <span class="k">pass</span>
+    def get_OntologyURI(self, ....):
+        # todo
+        pass
+
+    def __getAllClasses(self, ....):
+        # todo
+        pass
 
 
-    <span class="k">def</span> <span class="nf">__getTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">....</span><span class="p">):</span>
-        <span class="c1"># todo</span>
-        <span class="k">pass</span>
-</code></pre></div>
+    def __getTopclasses(self, ....):
+        pass
+
+
+    def __getTree(self, ....):
+        # todo
+        pass
+</code></pre>
 
 <p>As you can see the <code>__init__</code> method tries to load the ontology file (which can be expressed in either rdf/xml or n3 format) and then sets up 4 class attributes. These attributes will contain some key information about the ontology: its <strong>URI</strong>, a list of <strong>all the classes</strong> available, the classes in the <strong>top layer</strong> and the main <strong>taxonomical tree</strong> of the ontology. We're now going to implement the methods needed to fill out these 4 attributes.</p>
 <h3>Getting the ontology URI</h3>
 <p>If we're dealing with an OWL ontology, it may be the case that the URI we have just used to retrieve the ontology file is not the 'official' URI of the ontology. In fact OWL provides a construct that can be used to 'state' which is the base URI of an ontology (essentially, this is equivalent to stating that an RDF resource has rdf:type http://www.w3.org/2002/07/owl#Ontology). So in the following method first we check if an URI of rdf:type OWL:Ontology exists, and return that if available (when we return None, the URI value defaults to the URI originally provided when creating the OntoInspector object - see the constructor code above):</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_OntologyURI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">return_as_string</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot; </span>
-<span class="sd">    In [15]: [x for x in o.rdfGraph.triples((None, RDF.type, OWL.Ontology))]</span>
-<span class="sd">    Out[15]: </span>
-<span class="sd">    [(rdflib.URIRef(&#39;http://purl.com/net/sails&#39;),</span>
-<span class="sd">      rdflib.URIRef(&#39;http://www.w3.org/1999/02/22-rdf-syntax-ns#type&#39;),</span>
-<span class="sd">      rdflib.URIRef(&#39;http://www.w3.org/2002/07/owl#Ontology&#39;))]</span>
+<pre class="codehilite"><code class="language-python">def get_OntologyURI(self, return_as_string=True):
+    &quot;&quot;&quot; 
+    In [15]: [x for x in o.rdfGraph.triples((None, RDF.type, OWL.Ontology))]
+    Out[15]: 
+    [(rdflib.URIRef('http://purl.com/net/sails'),
+      rdflib.URIRef('http://www.w3.org/1999/02/22-rdf-syntax-ns#type'),
+      rdflib.URIRef('http://www.w3.org/2002/07/owl#Ontology'))]
 
-<span class="sd">    Mind that this will work only for OWL ontologies.</span>
-<span class="sd">    In other cases we just return None, and use the URI passed at loading time</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    Mind that this will work only for OWL ontologies.
+    In other cases we just return None, and use the URI passed at loading time
+    &quot;&quot;&quot;
 
-    <span class="n">test</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">z</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span><span class="p">,</span> <span class="n">OWL</span><span class="o">.</span><span class="n">Ontology</span><span class="p">))]</span>
+    test = [x for x, y, z in self.rdfGraph.triples((None, RDF.type, OWL.Ontology))]
 
-    <span class="k">if</span> <span class="n">test</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">return_as_string</span><span class="p">:</span>
-            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="n">test</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">None</span>
-</code></pre></div>
+    if test:
+        if return_as_string:
+            return str(test[0])
+        else:
+            return test[0]
+    else:
+        return None
+</code></pre>
 
 <h3>Extracting all the classes</h3>
 <p>Essentially, there are only <strong>two ways to define a class</strong>: you can either specify that an entity has a property RDF:type with value rdfs:Class, or that it has a property RDF:type with value owl:Class. Note that the owl:Class predicate is defined as a <em>subclass</em> of rdfs:Class. The rationale for having a separate OWL class construct lies in the restrictions on OWL DL (and thus also on OWL Lite), which imply that not all RDFS classes are legal OWL DL classes. In OWL Full these restrictions do not exist and therefore owl:Class and rdfs:Class are equivalent in OWL Full (more info here: <a href="http://www.w3.org/TR/owl-ref/">http://www.w3.org/TR/owl-ref/</a>, section 3.1).</p>
@@ -679,228 +679,228 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>someURI - rdf:type - rdf:Class OR owl:Class .</p>
 <p>This approach will work in the majority of cases. However, things are complicated by the fact that people are sometimes sloppy when they define ontologies, or because they use different tools that automatically generate different styles of RDF code. For example, often an entity is defined as being an rdfs:subclassOf another entity, without explicitly declaring that both of them are (rdfs, or owl) classes; another common case is that one of classes mentioned in the domain/range values of properties (via the rdfs.domain and rdfs.range properties) but not declared explicitly.</p>
 <p>Since we want to be as comprehensive as possible when looking for *all* the classes present in an ontology, I added a couple of methods that deal with these borderline cases. If you don't want to include all of this stuff, you can still bypass these extra checks by using the <em>classPredicate</em> argument.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">__getAllClasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classPredicate</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">removeBlankNodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;  </span>
-<span class="sd">    Extracts all the classes from a model</span>
-<span class="sd">    We use the RDFS and OWL predicate by default; also, we extract non explicitly declared classes</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+<pre class="codehilite"><code class="language-python">def __getAllClasses(self, classPredicate = &quot;&quot;, removeBlankNodes = True):
+    &quot;&quot;&quot;  
+    Extracts all the classes from a model
+    We use the RDFS and OWL predicate by default; also, we extract non explicitly declared classes
+    &quot;&quot;&quot;
 
-    <span class="n">rdfGraph</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">rdfGraph</span>
-    <span class="n">exit</span> <span class="o">=</span> <span class="p">[]</span>       
+    rdfGraph = self.rdfGraph
+    exit = []       
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">classPredicate</span><span class="p">:</span>          
-        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span> <span class="p">,</span> <span class="n">OWL</span><span class="o">.</span><span class="n">Class</span><span class="p">)):</span> 
-            <span class="n">exit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span> <span class="p">,</span> <span class="n">RDFS</span><span class="o">.</span><span class="n">Class</span><span class="p">)):</span>
-            <span class="n">exit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+    if not classPredicate:          
+        for s, v, o in rdfGraph.triples((None, RDF.type , OWL.Class)): 
+            exit.append(s)
+        for s, v, o in rdfGraph.triples((None, RDF.type , RDFS.Class)):
+            exit.append(s)
 
-        <span class="c1"># this extra routine makes sure we include classes not declared explicitly</span>
-        <span class="c1"># eg when importing another onto and subclassing one of its classes...</span>
-        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="n">RDFS</span><span class="o">.</span><span class="n">subClassOf</span> <span class="p">,</span> <span class="kc">None</span><span class="p">)):</span>
-            <span class="k">if</span> <span class="n">s</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exit</span><span class="p">:</span>
-                <span class="n">exit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">o</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exit</span><span class="p">:</span>
-                <span class="n">exit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+        # this extra routine makes sure we include classes not declared explicitly
+        # eg when importing another onto and subclassing one of its classes...
+        for s, v, o in rdfGraph.triples((None, RDFS.subClassOf , None)):
+            if s not in exit:
+                exit.append(s)
+            if o not in exit:
+                exit.append(o)
 
-        <span class="c1"># this extra routine includes classes found only in rdfs:domain and rdfs:range definitions</span>
-        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="n">RDFS</span><span class="o">.</span><span class="n">domain</span> <span class="p">,</span> <span class="kc">None</span><span class="p">)):</span>
-            <span class="k">if</span> <span class="n">o</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exit</span><span class="p">:</span>
-                <span class="n">exit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
-        <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="n">RDFS</span><span class="o">.</span><span class="n">range</span> <span class="p">,</span> <span class="kc">None</span><span class="p">)):</span>
-            <span class="k">if</span> <span class="n">o</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">exit</span><span class="p">:</span>
-                <span class="n">exit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+        # this extra routine includes classes found only in rdfs:domain and rdfs:range definitions
+        for s, v, o in rdfGraph.triples((None, RDFS.domain , None)):
+            if o not in exit:
+                exit.append(o)
+        for s, v, o in rdfGraph.triples((None, RDFS.range , None)):
+            if o not in exit:
+                exit.append(o)
 
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">classPredicate</span> <span class="o">==</span> <span class="s2">&quot;rdfs&quot;</span> <span class="ow">or</span> <span class="n">classPredicate</span> <span class="o">==</span> <span class="s2">&quot;rdf&quot;</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span> <span class="p">,</span> <span class="n">RDFS</span><span class="o">.</span><span class="n">Class</span><span class="p">)):</span>
-                <span class="n">exit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">classPredicate</span> <span class="o">==</span> <span class="s2">&quot;owl&quot;</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="n">RDF</span><span class="o">.</span><span class="n">type</span> <span class="p">,</span> <span class="n">OWL</span><span class="o">.</span><span class="n">Class</span><span class="p">)):</span> 
-                <span class="n">exit</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="k">raise</span> <span class="n">exceptions</span><span class="o">.</span><span class="n">Error</span><span class="p">(</span><span class="s2">&quot;ClassPredicate must be either rdf, rdfs or owl&quot;</span><span class="p">)</span>
+    else:
+        if classPredicate == &quot;rdfs&quot; or classPredicate == &quot;rdf&quot;:
+            for s, v, o in rdfGraph.triples((None, RDF.type , RDFS.Class)):
+                exit.append(s)
+        elif classPredicate == &quot;owl&quot;:
+            for s, v, o in rdfGraph.triples((None, RDF.type , OWL.Class)): 
+                exit.append(s)
+        else:
+            raise exceptions.Error(&quot;ClassPredicate must be either rdf, rdfs or owl&quot;)
 
-    <span class="n">exit</span> <span class="o">=</span> <span class="n">remove_duplicates</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
+    exit = remove_duplicates(exit)
 
-    <span class="k">if</span> <span class="n">removeBlankNodes</span><span class="p">:</span>
-        <span class="n">exit</span> <span class="o">=</span> <span class="p">[</span><span class="n">x</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="n">exit</span> <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isBlankNode</span><span class="p">(</span><span class="n">x</span><span class="p">)]</span>
+    if removeBlankNodes:
+        exit = [x for x in exit if not self.__isBlankNode(x)]
 
-    <span class="k">return</span> <span class="n">sort_uri_list_by_name</span><span class="p">(</span><span class="n">exit</span><span class="p">)</span>
-</code></pre></div>
+    return sort_uri_list_by_name(exit)
+</code></pre>
 
 <p>You probably noticed that there are a couple of other methods mentioned in the snippet above: they are used for checking if a URI is a BlankNode (which we're normally not interested in, when dealing with ontologies) and for other utility functions, such as sorting and removing duplicates from our list of classes. You'll find all the details about this stuff in the source code obviously..</p>
 <p>Next, we want to be able to <strong>move around the ontology hierarchy</strong>. So we need methods to get <em>super</em> and <em>sub</em> classes from a given class. This is easily done by querying the graph for triples containing the rdfs.subClassOf predicate:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># methods for getting ancestors and descendants of classes: by default, we do not include blank nodes</span>
+<pre class="codehilite"><code class="language-python"># methods for getting ancestors and descendants of classes: by default, we do not include blank nodes
 
-<span class="k">def</span> <span class="nf">get_classDirectSupers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-    <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="n">aClass</span><span class="p">,</span> <span class="n">RDFS</span><span class="o">.</span><span class="n">subClassOf</span> <span class="p">,</span> <span class="kc">None</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">excludeBnodes</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isBlankNode</span><span class="p">(</span><span class="n">o</span><span class="p">):</span>
-                <span class="n">returnlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">returnlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">o</span><span class="p">)</span>
+def get_classDirectSupers(self, aClass, excludeBnodes = True):
+    returnlist = []
+    for s, v, o in self.rdfGraph.triples((aClass, RDFS.subClassOf , None)):
+        if excludeBnodes:
+            if not self.__isBlankNode(o):
+                returnlist.append(o)
+        else:
+            returnlist.append(o)
 
-    <span class="k">return</span> <span class="n">sort_uri_list_by_name</span><span class="p">(</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">returnlist</span><span class="p">))</span> 
-
-
-<span class="k">def</span> <span class="nf">get_classDirectSubs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-    <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="n">RDFS</span><span class="o">.</span><span class="n">subClassOf</span> <span class="p">,</span> <span class="n">aClass</span><span class="p">)):</span>
-        <span class="k">if</span> <span class="n">excludeBnodes</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">__isBlankNode</span><span class="p">(</span><span class="n">s</span><span class="p">):</span>
-                <span class="n">returnlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">returnlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
-
-    <span class="k">return</span> <span class="n">sort_uri_list_by_name</span><span class="p">(</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">returnlist</span><span class="p">))</span>
+    return sort_uri_list_by_name(remove_duplicates(returnlist)) 
 
 
-<span class="k">def</span> <span class="nf">get_classAllSubs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-    <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_classDirectSubs</span><span class="p">(</span><span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span><span class="p">):</span>
-        <span class="n">returnlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">get_classAllSubs</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="n">returnlist</span><span class="p">,</span> <span class="n">excludeBnodes</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">sort_uri_list_by_name</span><span class="p">(</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">returnlist</span><span class="p">))</span>
+def get_classDirectSubs(self, aClass, excludeBnodes = True):
+    returnlist = []
+    for s, v, o in self.rdfGraph.triples((None, RDFS.subClassOf , aClass)):
+        if excludeBnodes:
+            if not self.__isBlankNode(s):
+                returnlist.append(s)
+
+        else:
+            returnlist.append(s)
+
+    return sort_uri_list_by_name(remove_duplicates(returnlist))
 
 
-
-<span class="k">def</span> <span class="nf">get_classAllSupers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">):</span>
-    <span class="k">for</span> <span class="n">ssuper</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_classDirectSupers</span><span class="p">(</span><span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span><span class="p">):</span>
-        <span class="n">returnlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ssuper</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">get_classAllSupers</span><span class="p">(</span><span class="n">ssuper</span><span class="p">,</span> <span class="n">returnlist</span><span class="p">,</span> <span class="n">excludeBnodes</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">sort_uri_list_by_name</span><span class="p">(</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">returnlist</span><span class="p">))</span>
+def get_classAllSubs(self, aClass, returnlist = [], excludeBnodes = True):
+    for sub in self.get_classDirectSubs(aClass, excludeBnodes):
+        returnlist.append(sub)
+        self.get_classAllSubs(sub, returnlist, excludeBnodes)
+    return sort_uri_list_by_name(remove_duplicates(returnlist))
 
 
 
-<span class="k">def</span> <span class="nf">get_classSiblings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
-    <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">father</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_classDirectSupers</span><span class="p">(</span><span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span><span class="p">):</span>
-        <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_classDirectSubs</span><span class="p">(</span><span class="n">father</span><span class="p">,</span> <span class="n">excludeBnodes</span><span class="p">):</span>
-            <span class="k">if</span> <span class="n">child</span> <span class="o">!=</span> <span class="n">aClass</span><span class="p">:</span>
-                <span class="n">returnlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">child</span><span class="p">)</span>
+def get_classAllSupers(self, aClass, returnlist = [], excludeBnodes = True ):
+    for ssuper in self.get_classDirectSupers(aClass, excludeBnodes):
+        returnlist.append(ssuper)
+        self.get_classAllSupers(ssuper, returnlist, excludeBnodes)
+    return sort_uri_list_by_name(remove_duplicates(returnlist))
 
-    <span class="k">return</span> <span class="n">sort_uri_list_by_name</span><span class="p">(</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">returnlist</span><span class="p">))</span>
-</code></pre></div>
+
+
+def get_classSiblings(self, aClass, excludeBnodes = True):
+    returnlist = []
+    for father in self.get_classDirectSupers(aClass, excludeBnodes):
+        for child in self.get_classDirectSubs(father, excludeBnodes):
+            if child != aClass:
+                returnlist.append(child)
+
+    return sort_uri_list_by_name(remove_duplicates(returnlist))
+</code></pre>
 
 <h3>Getting the top layer</h3>
 <p>We're now all set for retrieving the classes at the top of the taxonomic hierarchy of our ontology, that is, its 'top-layer'. This can be done by reusing the get_classDirectSupers method previously defined, so to search for all classes that have no superclasses:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">__getTopclasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classPredicate</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+<pre class="codehilite"><code class="language-python">def __getTopclasses(self, classPredicate = ''):
 
-    <span class="sd">&quot;&quot;&quot; Finds the topclass in an ontology (works also when we have more than on superclass)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+    &quot;&quot;&quot; Finds the topclass in an ontology (works also when we have more than on superclass)
+    &quot;&quot;&quot;
 
-    <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[]</span>
+    returnlist = []
 
-    <span class="c1"># gets all the classes</span>
-    <span class="k">for</span> <span class="n">eachclass</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">__getAllClasses</span><span class="p">(</span><span class="n">classPredicate</span><span class="p">):</span>
-        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_classDirectSupers</span><span class="p">(</span><span class="n">eachclass</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">x</span><span class="p">:</span>
-            <span class="n">returnlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">eachclass</span><span class="p">)</span>
+    # gets all the classes
+    for eachclass in self.__getAllClasses(classPredicate):
+        x = self.get_classDirectSupers(eachclass)
+        if not x:
+            returnlist.append(eachclass)
 
-    <span class="k">return</span> <span class="n">sort_uri_list_by_name</span><span class="p">(</span><span class="n">returnlist</span><span class="p">)</span>
-</code></pre></div>
+    return sort_uri_list_by_name(returnlist)
+</code></pre>
 
 <h3>Reconstructing the ontology tree</h3>
 <p>Now that we know which are the top classes in our taxonomy, we can parse the tree recursively using the get_classDirectSubs method defined above, and reconstruct the whole taxonomical structure of the ontology.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">__getTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">father</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<pre class="codehilite"><code class="language-python">def __getTree(self, father=None, out=None):
 
-    <span class="sd">&quot;&quot;&quot; Reconstructs the taxonomical tree of an ontology, from the &#39;topClasses&#39; (= classes with no supers, see below)</span>
-<span class="sd">        Returns a dictionary in which each class is a key, and its direct subs are the values.</span>
-<span class="sd">        The top classes have key = 0</span>
+    &quot;&quot;&quot; Reconstructs the taxonomical tree of an ontology, from the 'topClasses' (= classes with no supers, see below)
+        Returns a dictionary in which each class is a key, and its direct subs are the values.
+        The top classes have key = 0
 
-<span class="sd">        Eg.</span>
-<span class="sd">        {&#39;0&#39; : [class1, class2], class1: [class1-2, class1-3], class2: [class2-1, class2-2]}</span>
-<span class="sd">    &quot;&quot;&quot;</span>
+        Eg.
+        {'0' : [class1, class2], class1: [class1-2, class1-3], class2: [class2-1, class2-2]}
+    &quot;&quot;&quot;
 
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">father</span><span class="p">:</span>
-        <span class="n">out</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="n">topclasses</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">toplayer</span>
-        <span class="n">out</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="n">topclasses</span>
+    if not father:
+        out = {}
+        topclasses = self.toplayer
+        out[0] = topclasses
 
-        <span class="k">for</span> <span class="n">top</span> <span class="ow">in</span> <span class="n">topclasses</span><span class="p">:</span>
-            <span class="n">children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_classDirectSubs</span><span class="p">(</span><span class="n">top</span><span class="p">)</span>
-            <span class="n">out</span><span class="p">[</span><span class="n">top</span><span class="p">]</span> <span class="o">=</span> <span class="n">children</span>
-            <span class="k">for</span> <span class="n">potentialfather</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">__getTree</span><span class="p">(</span><span class="n">potentialfather</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
+        for top in topclasses:
+            children = self.get_classDirectSubs(top)
+            out[top] = children
+            for potentialfather in children:
+                self.__getTree(potentialfather, out)
 
-        <span class="k">return</span> <span class="n">out</span>
+        return out
 
-    <span class="k">else</span><span class="p">:</span>
-        <span class="n">children</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_classDirectSubs</span><span class="p">(</span><span class="n">father</span><span class="p">)</span>
-        <span class="n">out</span><span class="p">[</span><span class="n">father</span><span class="p">]</span> <span class="o">=</span> <span class="n">children</span>
-        <span class="k">for</span> <span class="n">ch</span> <span class="ow">in</span> <span class="n">children</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">__getTree</span><span class="p">(</span><span class="n">ch</span><span class="p">,</span> <span class="n">out</span><span class="p">)</span>
-</code></pre></div>
+    else:
+        children = self.get_classDirectSubs(father)
+        out[father] = children
+        for ch in children:
+            self.__getTree(ch, out)
+</code></pre>
 
 <p>That's it really. Given this abstract tree representation, it can be printed out differently depending on the context (html, command line) but the core will remain intact.</p>
 <h3>Wrapping up</h3>
 <p>The <a href="https://github.com/lambdamusic/ontosPy">source code on GitHub</a> contains also other utilities I added, eg for handling class comments, namespaces, for nice-printing of classes' names, and for outputting the ontology tree as an image, using the <a href="http://www.graphviz.org/">Graphviz</a> library (which needs to be installed separately).</p>
 <p>Here's an example of how OntoInspector can be used in the python interactive shell for inspecting the <a href="http://xmlns.com/foaf/spec/">Friend Of A Friend</a> lightweight ontology:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">onto_inspector</span> <span class="kn">import</span> <span class="o">*</span>
+<pre class="codehilite"><code class="language-python">In [1]: from onto_inspector import *
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">onto</span> <span class="o">=</span> <span class="n">OntoInspector</span><span class="p">(</span><span class="s2">&quot;http://xmlns.com/foaf/spec/20100809.rdf&quot;</span><span class="p">)</span>         
+In [2]: onto = OntoInspector(&quot;http://xmlns.com/foaf/spec/20100809.rdf&quot;)         
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">3</span><span class="p">]:</span> <span class="n">onto</span><span class="o">.</span><span class="n">toplayer</span>
+In [3]: onto.toplayer
 
-<span class="n">Out</span><span class="p">[</span><span class="mi">3</span><span class="p">]:</span> 
-<span class="p">[</span><span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/Agent&#39;</span><span class="p">),</span>
- <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2000/01/rdf-schema#Class&#39;</span><span class="p">),</span>
- <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2004/02/skos/core#Concept&#39;</span><span class="p">),</span>
- <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/Document&#39;</span><span class="p">),</span>
- <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/LabelProperty&#39;</span><span class="p">),</span>
- <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2000/01/rdf-schema#Literal&#39;</span><span class="p">),</span>
- <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2000/10/swap/pim/contact#Person&#39;</span><span class="p">),</span>
- <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/Project&#39;</span><span class="p">),</span>
- <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing&#39;</span><span class="p">),</span>
- <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://www.w3.org/2002/07/owl#Thing&#39;</span><span class="p">)]</span>
+Out[3]: 
+[rdflib.URIRef('http://xmlns.com/foaf/0.1/Agent'),
+ rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#Class'),
+ rdflib.URIRef('http://www.w3.org/2004/02/skos/core#Concept'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/Document'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/LabelProperty'),
+ rdflib.URIRef('http://www.w3.org/2000/01/rdf-schema#Literal'),
+ rdflib.URIRef('http://www.w3.org/2000/10/swap/pim/contact#Person'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/Project'),
+ rdflib.URIRef('http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing'),
+ rdflib.URIRef('http://www.w3.org/2002/07/owl#Thing')]
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">4</span><span class="p">]:</span> <span class="n">onto</span><span class="o">.</span><span class="n">printTree</span><span class="p">()</span>
-<span class="n">foaf</span><span class="p">:</span><span class="n">Agent</span>
-<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Group</span>
-<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Organization</span>
-<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Person</span>
-<span class="n">rdfs</span><span class="p">:</span><span class="n">Class</span>
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2004</span><span class="o">/</span><span class="mi">02</span><span class="o">/</span><span class="n">skos</span><span class="o">/</span><span class="n">core</span><span class="c1">#Concept</span>
-<span class="n">foaf</span><span class="p">:</span><span class="n">Document</span>
-<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Image</span>
-<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">PersonalProfileDocument</span>
-<span class="n">foaf</span><span class="p">:</span><span class="n">LabelProperty</span>
-<span class="n">rdfs</span><span class="p">:</span><span class="n">Literal</span>
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2000</span><span class="o">/</span><span class="mi">10</span><span class="o">/</span><span class="n">swap</span><span class="o">/</span><span class="n">pim</span><span class="o">/</span><span class="n">contact</span><span class="c1">#Person</span>
-<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Person</span>
-<span class="n">foaf</span><span class="p">:</span><span class="n">Project</span>
-<span class="n">http</span><span class="p">:</span><span class="o">//</span><span class="n">www</span><span class="o">.</span><span class="n">w3</span><span class="o">.</span><span class="n">org</span><span class="o">/</span><span class="mi">2003</span><span class="o">/</span><span class="mi">01</span><span class="o">/</span><span class="n">geo</span><span class="o">/</span><span class="n">wgs84_pos</span><span class="c1">#SpatialThing</span>
-<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Person</span>
-<span class="n">owl</span><span class="p">:</span><span class="n">Thing</span>
-<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">OnlineAccount</span>
-<span class="o">--------</span><span class="n">foaf</span><span class="p">:</span><span class="n">OnlineChatAccount</span>
-<span class="o">--------</span><span class="n">foaf</span><span class="p">:</span><span class="n">OnlineEcommerceAccount</span>
-<span class="o">--------</span><span class="n">foaf</span><span class="p">:</span><span class="n">OnlineGamingAccount</span>
+In [4]: onto.printTree()
+foaf:Agent
+----foaf:Group
+----foaf:Organization
+----foaf:Person
+rdfs:Class
+http://www.w3.org/2004/02/skos/core#Concept
+foaf:Document
+----foaf:Image
+----foaf:PersonalProfileDocument
+foaf:LabelProperty
+rdfs:Literal
+http://www.w3.org/2000/10/swap/pim/contact#Person
+----foaf:Person
+foaf:Project
+http://www.w3.org/2003/01/geo/wgs84_pos#SpatialThing
+----foaf:Person
+owl:Thing
+----foaf:OnlineAccount
+--------foaf:OnlineChatAccount
+--------foaf:OnlineEcommerceAccount
+--------foaf:OnlineGamingAccount
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">5</span><span class="p">]:</span> <span class="n">document</span> <span class="o">=</span> <span class="n">onto</span><span class="o">.</span><span class="n">find_class_byname</span><span class="p">(</span><span class="s2">&quot;document&quot;</span><span class="p">)</span>
+In [5]: document = onto.find_class_byname(&quot;document&quot;)
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">6</span><span class="p">]:</span> <span class="n">document</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">6</span><span class="p">]:</span> 
-<span class="p">[</span><span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/Document&#39;</span><span class="p">),</span>
- <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/PersonalProfileDocument&#39;</span><span class="p">)]</span>
+In [6]: document
+Out[6]: 
+[rdflib.URIRef('http://xmlns.com/foaf/0.1/Document'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/PersonalProfileDocument')]
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">7</span><span class="p">]:</span> <span class="n">document</span> <span class="o">=</span> <span class="n">document</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+In [7]: document = document[0]
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">document</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">8</span><span class="p">]:</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/Document&#39;</span><span class="p">)</span>
+In [8]: document
+Out[8]: rdflib.URIRef('http://xmlns.com/foaf/0.1/Document')
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">9</span><span class="p">]:</span> <span class="n">onto</span><span class="o">.</span><span class="n">get_classAllSubs</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">9</span><span class="p">]:</span> 
-<span class="p">[</span><span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/Image&#39;</span><span class="p">),</span>
- <span class="n">rdflib</span><span class="o">.</span><span class="n">URIRef</span><span class="p">(</span><span class="s1">&#39;http://xmlns.com/foaf/0.1/PersonalProfileDocument&#39;</span><span class="p">)]</span>
+In [9]: onto.get_classAllSubs(document)
+Out[9]: 
+[rdflib.URIRef('http://xmlns.com/foaf/0.1/Image'),
+ rdflib.URIRef('http://xmlns.com/foaf/0.1/PersonalProfileDocument')]
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="n">onto</span><span class="o">.</span><span class="n">get_classAllSupers</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">10</span><span class="p">]:</span> <span class="p">[]</span>
+In [10]: onto.get_classAllSupers(document)
+Out[10]: []
 
-<span class="n">In</span> <span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">onto</span><span class="o">.</span><span class="n">get_classComment</span><span class="p">(</span><span class="n">document</span><span class="p">)</span>
-<span class="n">Out</span><span class="p">[</span><span class="mi">11</span><span class="p">]:</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">Literal</span><span class="p">(</span><span class="s1">&#39;A document.&#39;</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">datatype</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
-</code></pre></div>
+In [11]: onto.get_classComment(document)
+Out[11]: rdflib.Literal('A document.', language=None, datatype=None)
+</code></pre>
 
 <p>Any comments? As I said I'm still learning/improving this... so any feedback is welcome!</p>
 

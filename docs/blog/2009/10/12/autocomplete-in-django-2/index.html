@@ -569,7 +569,7 @@ class Admin (FkAutocompleteAdmin):
 <p>class Document(someUpperClass):
     """a usual model """
     authors \= models.ManyToManyField(Person, through\='AssocDocPerson',)</p>
-<div class="codehilite"><pre><span></span><code>\# \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
+<pre class="codehilite"><code>\# \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
 \# if you want the related inline autocomplete to work, the following admin must be one of
 \# ForeignKeyAutocompleteAdmin or AutocompleteModelAdmin or NoLookupsForeignKeyAutocompleteAdmin
 \# \*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*\*
@@ -578,25 +578,25 @@ class Admin (AutocompleteModelAdmin):
     inlines \= (AssocPersonDocInline, )
 
     fieldsets \= \[
-        (&#39;Administration&#39;,
-            {&#39;fields&#39;:
-                \[&#39;editedrecord&#39;, &#39;review&#39;, &#39;internal\_notes&#39;, (&#39;created\_at&#39;, &#39;created\_by&#39;),
-                  (&#39;updated\_at&#39;, &#39;updated\_by&#39;)
+        ('Administration',
+            {'fields':
+                \['editedrecord', 'review', 'internal\_notes', ('created\_at', 'created\_by'),
+                  ('updated\_at', 'updated\_by')
                  \],
-            &#39;classes&#39;: \[&#39;collapse&#39;\]
+            'classes': \['collapse'\]
             }),
     \# etc. etc.
-</code></pre></div>
+</code></pre>
 
 <p>class AssocPersonDocument(someUpperClass):
     document \= models.ForeignKey('Document')
     person \= models.ForeignKey('Person')
     # etc. etc.</p>
 <p>class AssocPersonDocInline(InlineAutocompleteAdmin):</p>
-<div class="codehilite"><pre><span></span><code>model \= AssocPersonDocument
+<pre class="codehilite"><code>model \= AssocPersonDocument
 extra \= 4
-related\_search\_fields \= {  &#39;person&#39;: (&#39;persondisplayname&#39;,), }
-</code></pre></div>
+related\_search\_fields \= {  'person': ('persondisplayname',), }
+</code></pre>
 
             </div>
 

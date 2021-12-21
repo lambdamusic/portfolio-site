@@ -552,22 +552,22 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <p><a href="http://vimeo.com/6640136">Django Debug Toolbar 0.8</a> from <a href="http://vimeo.com/idangazit">Idan Gazit</a> on <a href="http://vimeo.com">Vimeo</a>.</p>
 <p>This is just an amazingly useful application you might want to add to your django development tools.</p>
 <p>Installation is a breeze:</p>
-<div class="codehilite"><pre><span></span><code>$ easy_install django-debug-toolbar
-</code></pre></div>
+<pre class="codehilite"><code>$ easy_install django-debug-toolbar
+</code></pre>
 
 <p>...</p>
 <p>Then you need to add some parameters to your <em>settings.py</em>, as explained <a href="http://github.com/robhudson/django-debug-toolbar/blob/master/README.rst">here</a>. It's likely that you don't want the debug-toolbar to show on your production site as well, but only where you're doing development. So a more portable alternative to the usual way to add the debug-toolbar parameters is the following:</p>
-<div class="codehilite"><pre><span></span><code><span class="c1"># set to True if you&#39;re on the production server</span>
-<span class="n">LIVESERVER</span> <span class="o">=</span> <span class="n">False</span>
+<pre class="codehilite"><code># set to True if you're on the production server
+LIVESERVER = False
 
-<span class="c1"># ..... other settings....</span>
+# ..... other settings....
 
-<span class="k">if</span> <span class="ow">not</span> <span class="n">LIVESERVER</span><span class="p">:</span>
-    <span class="c1"># stuff for the debug toolbar</span>
-    <span class="n">INSTALLED_APPS</span> <span class="o">+=</span>   <span class="p">(</span><span class="s1">&#39;debug_toolbar&#39;</span><span class="p">,)</span>
-    <span class="n">INTERNAL_IPS</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,)</span>
-    <span class="n">MIDDLEWARE_CLASSES</span> <span class="o">+=</span> <span class="p">(</span> <span class="s1">&#39;debug_toolbar.middleware.DebugToolbarMiddleware&#39;</span><span class="p">,</span> <span class="p">)</span>
-</code></pre></div>
+if not LIVESERVER:
+    # stuff for the debug toolbar
+    INSTALLED_APPS +=   ('debug_toolbar',)
+    INTERNAL_IPS = ('127.0.0.1',)
+    MIDDLEWARE_CLASSES += ( 'debug_toolbar.middleware.DebugToolbarMiddleware', )
+</code></pre>
 
 <p>...</p>
 <p>The <em>LIVESERVER</em> variable is the only thing you've got to manually change when copying your code to the production server...</p>

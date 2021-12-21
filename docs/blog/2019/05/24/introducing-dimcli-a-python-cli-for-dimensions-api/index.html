@@ -565,27 +565,27 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>It allows to <strong>export results to CSV, JSON and pandas dataframes</strong>, hence making it easier to integrate with other data analysis tools.</li>
 <li>It is <strong>compatible with Jupyter</strong>, e.g. it includes various magic commands that make it super simple to interrogate Dimensions (<a href="https://github.com/digital-science/dimensions-api/tree/master/1.Getting%20Started">various examples here</a>).</li>
 </ul>
-<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">dimcli</span>
+<pre class="codehilite"><code class="language-python">&gt;&gt;&gt; import dimcli
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">dimcli</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;mary.poppins&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;chimneysweeper&quot;</span><span class="p">)</span>
+&gt;&gt;&gt; dimcli.login(username=&quot;mary.poppins&quot;, password=&quot;chimneysweeper&quot;)
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">dsl</span> <span class="o">=</span> <span class="n">dimcli</span><span class="o">.</span><span class="n">Dsl</span><span class="p">()</span>
+&gt;&gt;&gt; dsl = dimcli.Dsl()
 
-<span class="o">&gt;&gt;&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="n">dsl</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;search grants for &quot;malaria&quot; return researchers&quot;&quot;&quot;</span><span class="p">)</span>
+&gt;&gt;&gt; res = dsl.query(&quot;&quot;&quot;search grants for &quot;malaria&quot; return researchers&quot;&quot;&quot;)
 
-<span class="o">&gt;&gt;&gt;</span> <span class="nb">print</span><span class="p">(</span><span class="n">res</span><span class="o">.</span><span class="n">json</span><span class="p">)</span>
-<span class="p">{</span><span class="s1">&#39;researchers&#39;</span><span class="p">:</span> <span class="p">[{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;ur.01332073522.49&#39;</span><span class="p">,</span>
-   <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="mi">75</span><span class="p">,</span>
-   <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="s1">&#39;White&#39;</span><span class="p">,</span>
-   <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Nicholas J&#39;</span><span class="p">},</span>
-  <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;ur.01343654360.43&#39;</span><span class="p">,</span>
-   <span class="s1">&#39;count&#39;</span><span class="p">:</span> <span class="mi">59</span><span class="p">,</span>
-   <span class="s1">&#39;last_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Marsh&#39;</span><span class="p">,</span>
-   <span class="s1">&#39;first_name&#39;</span><span class="p">:</span> <span class="s1">&#39;Kevin&#39;</span><span class="p">},</span>
-  <span class="o">.............</span>
-  <span class="p">],</span>
- <span class="s1">&#39;_stats&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;total_count&#39;</span><span class="p">:</span> <span class="mi">8735</span><span class="p">}}</span>
-</code></pre></div>
+&gt;&gt;&gt; print(res.json)
+{'researchers': [{'id': 'ur.01332073522.49',
+   'count': 75,
+   'last_name': 'White',
+   'first_name': 'Nicholas J'},
+  {'id': 'ur.01343654360.43',
+   'count': 59,
+   'last_name': 'Marsh',
+   'first_name': 'Kevin'},
+  .............
+  ],
+ '_stats': {'total_count': 8735}}
+</code></pre>
 
 <h3>Feedback</h3>
 <p>DimCli lives on <a href="https://github.com/lambdamusic/dimcli">Github</a>, so for any feedback or bug reports, feel free to open an issue there.</p>

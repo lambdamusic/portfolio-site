@@ -551,36 +551,36 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
             <p>Mercurial is a free, distributed source control management tool. It efficiently handles projects of any size and offers an easy and intuitive. That's what you read on <a href="http://mercurial.selenic.com/">its website</a>, at least. I decided to give it a go mainly because I was looking forward to use a <a href="http://en.wikipedia.org/wiki/Distributed_revision_control">decentralized version control system</a> for a couple of side projects I'm working on; moreover, because a friend pointed out that <a href="http://bitbucket.org/">BitBucket</a> (an online free code-hosting service based on Mercurial) has a <a href="https://bitbucket.org/account/signup/?plan=5_users">free plan</a> that doesn't force you to make your projects public by default - like most other competitor services do. Free + private = time to test it!</p>
 <p>Installation started by <a href="http://mercurial.selenic.com/downloads">downloading</a> and running the default installer. The <a href="http://confluence.atlassian.com/display/BITBUCKET/Bitbucket+101">instructions online</a> are very detailed, so I tried to follow them. However, after installing, I tried to run the <em>hg</em> command (which is how you invoke mercurial) but the following error kept coming up:</p>
-<div class="codehilite"><pre><span></span><code>abort: couldn<span class="err">&#39;</span>t find mercurial libraries <span class="k">in</span> <span class="o">[</span>/usr/platlib/Library/Python/2.6/site-packages /usr/local/bin /Library/Python/2.5/site-packages/ipython-0.9.1-py2.5.egg /Library/Python/2.5/site-packages/readline-2.5.1-py2.5-macosx-10.5-i386.egg /Library/Python/2.5/site-packages/antlr_python_runtime-3.1.1-py2.5.egg /Library/Python/2.5/site-packages/feedparser-4.1-py2.5.egg /Library/Python/2.5/site-packages/pydelicious-0.5.0-py2.5.egg /Library/Python/2.5/site-packages/virtualenv-1.3.3-py2.5.egg /Library/Python/2.5/site-packages/python_ldap-2.3.9-py2.5-macosx-10.5-i386.egg /Library/Python/2.5/site-packages/setuptools-0.6c11-py2.5.egg /Library/Python/2.5/site-packages/py2app-0.4.3-py2.5.egg /Library/Python/2.5/site-packages/macholib-1.2.1-py2.5.egg /Library/Python/2.5/site-packages/modulegraph-0.7.3-py2.5.egg /Library/Python/2.5/site-packages/yolk-0.4.1-py2.5.egg /Library/Python/2.5/site-packages/django_profiles-0.2-py2.5.egg /Library/Python/2.5/site-packages/pyglet-1.1.3-py2.5.egg /Library/Python/2.5/site-packages/PdbTextMateSupport-0.3-py2.5.egg /Library/Python/2.5/site-packages/PyXML-0.8.4-py2.5-macosx-10.5-i386.egg /Library/Python/2.5/site-packages/rdflib-3.0.0-py2.5.egg /Users/mac/Code/python/utils /Users/mac /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python25.zip /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/plat-darwin /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/plat-mac /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/plat-mac/lib-scriptpackages /System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/lib-tk /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/lib-dynload /Library/Python/2.5/site-packages /Library/Python/2.5/site-packages/PIL /System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python/PyObjC /System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python/wx-2.8-mac-unicode<span class="o">]</span>
-<span class="o">(</span>check your install and PYTHONPATH<span class="o">)</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">abort: couldn't find mercurial libraries in [/usr/platlib/Library/Python/2.6/site-packages /usr/local/bin /Library/Python/2.5/site-packages/ipython-0.9.1-py2.5.egg /Library/Python/2.5/site-packages/readline-2.5.1-py2.5-macosx-10.5-i386.egg /Library/Python/2.5/site-packages/antlr_python_runtime-3.1.1-py2.5.egg /Library/Python/2.5/site-packages/feedparser-4.1-py2.5.egg /Library/Python/2.5/site-packages/pydelicious-0.5.0-py2.5.egg /Library/Python/2.5/site-packages/virtualenv-1.3.3-py2.5.egg /Library/Python/2.5/site-packages/python_ldap-2.3.9-py2.5-macosx-10.5-i386.egg /Library/Python/2.5/site-packages/setuptools-0.6c11-py2.5.egg /Library/Python/2.5/site-packages/py2app-0.4.3-py2.5.egg /Library/Python/2.5/site-packages/macholib-1.2.1-py2.5.egg /Library/Python/2.5/site-packages/modulegraph-0.7.3-py2.5.egg /Library/Python/2.5/site-packages/yolk-0.4.1-py2.5.egg /Library/Python/2.5/site-packages/django_profiles-0.2-py2.5.egg /Library/Python/2.5/site-packages/pyglet-1.1.3-py2.5.egg /Library/Python/2.5/site-packages/PdbTextMateSupport-0.3-py2.5.egg /Library/Python/2.5/site-packages/PyXML-0.8.4-py2.5-macosx-10.5-i386.egg /Library/Python/2.5/site-packages/rdflib-3.0.0-py2.5.egg /Users/mac/Code/python/utils /Users/mac /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python25.zip /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5 /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/plat-darwin /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/plat-mac /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/plat-mac/lib-scriptpackages /System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/lib-tk /System/Library/Frameworks/Python.framework/Versions/2.5/lib/python2.5/lib-dynload /Library/Python/2.5/site-packages /Library/Python/2.5/site-packages/PIL /System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python/PyObjC /System/Library/Frameworks/Python.framework/Versions/2.5/Extras/lib/python/wx-2.8-mac-unicode]
+(check your install and PYTHONPATH)
+</code></pre>
 
 <h3>Fixing the errors</h3>
 <p>Mercurial couldn't find the python libraries it needs to run; after a bit of googling I <a href="http://stackoverflow.com/questions/1461374/installing-mercurial-on-mac-os-x-10-6-snow-leopard">found out</a> that installing Mercurial from the Mac Disk Image will cause its files to end up here:</p>
-<div class="codehilite"><pre><span></span><code>/Library/Python/2.6/site-packages/
-</code></pre></div>
+<pre class="codehilite"><code>/Library/Python/2.6/site-packages/
+</code></pre>
 
 <p>Apparently the default python installation that comes with 10.6.5 puts all the python packages somewhere else, that is, in the Frameworks directory:</p>
-<div class="codehilite"><pre><span></span><code>/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
-</code></pre></div>
+<pre class="codehilite"><code>/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
+</code></pre>
 
 <p>That's why Mercurial couldn't find them - by default OSx expects python libraries to be somewhere else. Adding the missing library location to the pythonpath in ~/.bash_profile fixed that:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">export</span> <span class="n">PYTHONPATH</span><span class="o">=</span><span class="s2">&quot;/Library/Python/2.6/site-packages:$PYTHONPATH&quot;</span>
-</code></pre></div>
+<pre class="codehilite"><code>export PYTHONPATH=&quot;/Library/Python/2.6/site-packages:$PYTHONPATH&quot;
+</code></pre>
 
 <p>Next step, adding the Mercurial config file at ~/.hgrc :</p>
-<div class="codehilite"><pre><span></span><code><span class="o">[</span>mac<span class="o">]</span>@yourname:~&gt;touch .hgrc
-<span class="o">[</span>mac<span class="o">]</span>@yourname:~&gt;pico .hgrc
- <span class="c1"># in the file add these lines:</span>
-<span class="o">[</span>ui<span class="o">]</span>
-<span class="p">;</span> editor used to enter commit logs, etc.  Most text editors will work.
-<span class="nv">editor</span> <span class="o">=</span> mate
-<span class="nv">username</span> <span class="o">=</span> MY_FIRST_NAME MY_LAST_NAME 
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">[mac]@yourname:~&gt;touch .hgrc
+[mac]@yourname:~&gt;pico .hgrc
+ # in the file add these lines:
+[ui]
+; editor used to enter commit logs, etc.  Most text editors will work.
+editor = mate
+username = MY_FIRST_NAME MY_LAST_NAME 
+</code></pre>
 
 <h3>Getting started with BitBucket</h3>
 <p>Time to get started with setting up the BiBucket repository now. First set up an account on the site, then clone your repository with these commands:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">[</span>mac<span class="o">]</span>@yourname:~/Some/location&gt;hg clone https://yourname@bitbucket.org/name/repository_name
+<pre class="codehilite"><code class="language-bash">[mac]@yourname:~/Some/location&gt;hg clone https://yourname@bitbucket.org/name/repository_name
 http authorization required
 realm: Bitbucket.org HTTP
 user: yourname
@@ -588,11 +588,11 @@ password: ******
 destination directory: your_dir
 no changes found
 updating to branch default
-<span class="m">0</span> files updated, <span class="m">0</span> files merged, <span class="m">0</span> files removed, <span class="m">0</span> files unresolved
-</code></pre></div>
+0 files updated, 0 files merged, 0 files removed, 0 files unresolved
+</code></pre>
 
 <p>Almost there... next thing, add some files to the repository/directory, '<strong>add</strong>' them and '<strong>commit</strong>' them. You're up and running..</p>
-<div class="codehilite"><pre><span></span><code><span class="o">[</span>mac<span class="o">]</span>@yourname:~/Some/location&gt; hg add
+<pre class="codehilite"><code class="language-bash">[mac]@yourname:~/Some/location&gt; hg add
 adding -ideas/.DS_Store
 adding -ideas/15June2010/untitled.scm
 adding -ideas/15June2010/zeb1.patch
@@ -608,20 +608,20 @@ adding -ideas/ccx-simple_progression.scm
 adding -ideas/chords_with_drums.scm
 ..... etcetera....
 
-<span class="o">[</span>mac<span class="o">]</span>@ yourname:~/Some/location&gt;hg commit -m <span class="s2">&quot;Initial commit of all files to the repository.&quot;</span>
-<span class="o">[</span>mac<span class="o">]</span>@ yourname:~/Some/location&gt;hg push <span class="c1"># to push changes to this repo</span>
+[mac]@ yourname:~/Some/location&gt;hg commit -m &quot;Initial commit of all files to the repository.&quot;
+[mac]@ yourname:~/Some/location&gt;hg push # to push changes to this repo
 http authorization required
 realm: Bitbucket.org HTTP
 user: yourname
 password: ****
 pushing to https://yourname@bitbucket.org/name/repository_name
-searching <span class="k">for</span> changes
+searching for changes
 remote: adding changesets
 remote: adding manifests
 remote: adding file changes
-remote: added <span class="m">1</span> changesets with <span class="m">455</span> changes to <span class="m">455</span> files
+remote: added 1 changesets with 455 changes to 455 files
 remote: bb/acl: yourname is allowed. accepted payload.
-</code></pre></div>
+</code></pre>
 
 <h3>GUIs</h3>
 <p>I also tried a couple of Graphical User Interfaces for Mercurial; the one that seemed best to me (on OSx obviously) is Murky, which is <a href="http://bitbucket.org/snej/murky/wiki/Home">freely available here</a>. Can't ask for more can I?</p>

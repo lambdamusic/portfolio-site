@@ -560,18 +560,18 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p><a href="../../../../../media/static/blog_img/mendeley-1.png"><img alt="Image mendeley-1.png" src="../../../../../media/static/blog_img/mendeley-1.png" /></a></p>
 <h3>2. Add Mendeley database to DropBox on mac-1</h3>
 <p>Close Mendeley Desktop on mac-1. Now open up the terminal and <a href="http://en.wikipedia.org/wiki/Symbolic_link">symlink</a> the <code>~/Library/Application Support/Mendeley Desktop</code> folder to the db folder just created in Dropbox. This way the DB and preferences can be shared across computers.</p>
-<div class="codehilite"><pre><span></span><code><span class="o">[</span>mac<span class="o">]</span>@mac1:~/Library/Application Support&gt;cp -r Mendeley<span class="se">\ </span>Desktop/ ~/Dropbox/Mendeley/db/
-<span class="o">[</span>mac<span class="se">\]</span>@mac1:~/Library/Application Support&gt;mv Mendeley<span class="se">\ </span>Desktop/ _backup_Mendeley_Desktop/
-<span class="o">[</span>mac<span class="o">]</span>@mac1:~/Library/Application Support&gt;ln -s ~/Dropbox/Mendeley/db/Mendeley<span class="se">\ </span>Desktop .
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">[mac]@mac1:~/Library/Application Support&gt;cp -r Mendeley\ Desktop/ ~/Dropbox/Mendeley/db/
+[mac\]@mac1:~/Library/Application Support&gt;mv Mendeley\ Desktop/ _backup_Mendeley_Desktop/
+[mac]@mac1:~/Library/Application Support&gt;ln -s ~/Dropbox/Mendeley/db/Mendeley\ Desktop .
+</code></pre>
 
 <p>Dropbox will start cloud-syncing the new folder we added. In the meantime, you can try launching Mendeley and checking that everything works at it should.</p>
 <h3>3. Set things up on mac-2</h3>
 <p>Put to sleep mac-1 and wake up mac-2. If you're online, Dropbox on mac-2 will immediately start downloading all the new stuff you previously added to it (via mac-1). In the meantime, quickly open up Mendely and update the preferences as we did in step 1 above. Then close it down.</p>
 <p>Once the Dropbox download is finished, we can set up the symlink to the Mendeley database as we did in step 2 (no need to copy the db folder this time, because we're using the folder already present in <code>Dropbox/Mendeley/db</code>):</p>
-<div class="codehilite"><pre><span></span><code><span class="o">[</span>mac<span class="o">]</span>@mac2:~/Library/Application Support&gt;mv Mendeley<span class="se">\ </span>Desktop/ _backup<span class="se">\_</span>Mendeley<span class="se">\_</span>Desktop/
-<span class="o">[</span>mac<span class="o">]</span>@mac2:~/Library/Application Support&gt;ln -s ~/Dropbox/Mendeley/db/Mendeley<span class="se">\ </span>Desktop .
-</code></pre></div>
+<pre class="codehilite"><code class="language-bash">[mac]@mac2:~/Library/Application Support&gt;mv Mendeley\ Desktop/ _backup\_Mendeley\_Desktop/
+[mac]@mac2:~/Library/Application Support&gt;ln -s ~/Dropbox/Mendeley/db/Mendeley\ Desktop .
+</code></pre>
 
 <p><strong>That's it</strong>. You now should be able to open up Mendeley and have your entire library synchronised across the two computers (effectively, you're working on a <em>single</em> library since your database is shared too).</p>
 <p>Obviously you can still use the <strong>web-sync</strong> service, which is handy for example if you use also some mobile device. There you'll still have the 1gig limitation for the pdf files, but at least for me that's hardly a problem cause I don't need to have my entire library on the go all the time (I just have a folder called <code>syncedStuff</code> in Mendeley Desktop and synchronise only the files attached to that).</p>
@@ -582,9 +582,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </blockquote>
 <p>This is pretty easy actually. Mendeley stores the <strong>full file paths</strong> to your files in its database. In particular, the database file can be found in <code>/Application Support/Mendeley Desktop</code>, and it is named like this: <code>youremail@www.mendeley.com.sqlite</code>.</p>
 <p>All you have to do is this: close down Mendeley (if it's running), make a backup copy of the database file for safety purposes, then open it up using a SQLite GUI (e.g. on mac you can use <a href="http://sourceforge.net/projects/sqlitebrowser/">SQLite Browser</a> which is free). You'll see that the <strong>Files table</strong> contains all the (wrong) paths to your pdf files; now you can update these paths by launching a simple 'execute' command, e.g.:</p>
-<div class="codehilite"><pre><span></span><code>update Files set 
-  localurl = replace(localurl, &#39;/Users/me/Dropbox/Mendeley/old/path/&#39;, &#39;/Users/me/Dropbox/Mendeley/new/path/&#39;);
-</code></pre></div>
+<pre class="codehilite"><code>update Files set 
+  localurl = replace(localurl, '/Users/me/Dropbox/Mendeley/old/path/', '/Users/me/Dropbox/Mendeley/new/path/');
+</code></pre>
 
 <p>Make sure the command did its job by checking the Files table contents; if that's the case, the next time you launch Mendeley it won't have no broken links anymore!</p>
 

@@ -556,25 +556,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>The <a href="https://networkx.github.io/documentation/stable/reference/introduction.html">networkx</a> and <a href="https://pyvis.readthedocs.io/en/latest/tutorial.html">pyvis</a> libraries are used for <em>generating</em> and <em>visualizing</em> network data, respectively.</p>
 <p><strong>Pyvis</strong> is fundamentally a python wrapper around the popular <a href="https://visjs.github.io/vis-network/examples/">Javascript visJS library.</a> 
 <strong>Networkx</strong>, instead, of is a pretty sophisticated package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pyvis.network</span> <span class="kn">import</span> <span class="n">Network</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
-<span class="c1"># generate generic network graph instance</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nx_graph</span> <span class="o">=</span> <span class="n">nx</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>
-<span class="c1"># add some nodes and edges</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nx_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;Number 1&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nx_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nx_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">&#39;title&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="s1">&#39;I belong to a different group!&#39;</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nx_graph</span><span class="o">.</span><span class="n">nodes</span><span class="p">[</span><span class="mi">3</span><span class="p">][</span><span class="s1">&#39;group&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">10</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nx_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;couple&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nx_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;couple&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nx_graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nx_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;lonely&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;lonely node&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="c1"># instantiatet pyvis network</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nt</span> <span class="o">=</span> <span class="n">Network</span><span class="p">(</span><span class="s2">&quot;500px&quot;</span><span class="p">,</span> <span class="s2">&quot;500px&quot;</span><span class="p">)</span>
-<span class="c1"># populates pyvis network from networkx instance</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nt</span><span class="o">.</span><span class="n">from_nx</span><span class="p">(</span><span class="n">nx_graph</span><span class="p">)</span>
-<span class="o">&gt;&gt;&gt;</span> <span class="n">nt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">&quot;nx.html&quot;</span><span class="p">)</span>
-</code></pre></div>
+<pre class="codehilite"><code class="language-python">&gt;&gt;&gt; from pyvis.network import Network
+&gt;&gt;&gt; import networkx as nx
+# generate generic network graph instance
+&gt;&gt;&gt; nx_graph = nx.Graph()
+# add some nodes and edges
+&gt;&gt;&gt; nx_graph.nodes[1]['title'] = 'Number 1'
+&gt;&gt;&gt; nx_graph.nodes[1]['group'] = 1
+&gt;&gt;&gt; nx_graph.nodes[3]['title'] = 'I belong to a different group!'
+&gt;&gt;&gt; nx_graph.nodes[3]['group'] = 10
+&gt;&gt;&gt; nx_graph.add_node(20, size=20, title='couple', group=2)
+&gt;&gt;&gt; nx_graph.add_node(21, size=15, title='couple', group=2)
+&gt;&gt;&gt; nx_graph.add_edge(20, 21, weight=5)
+&gt;&gt;&gt; nx_graph.add_node(25, size=25, label='lonely', title='lonely node', group=3)
+# instantiatet pyvis network
+&gt;&gt;&gt; nt = Network(&quot;500px&quot;, &quot;500px&quot;)
+# populates pyvis network from networkx instance
+&gt;&gt;&gt; nt.from_nx(nx_graph)
+&gt;&gt;&gt; nt.show(&quot;nx.html&quot;)
+</code></pre>
 
 <p>It took me a little to familiarise with the libraries' concepts and to generate some basic graphs. Once I got the hang of it though, the fun part began. What are the best data variables to represent in the graph? What color coding strategy is making it easier to explore the data? How many nodes/edges to display? Can we add some interactivity to the visualizations? Check out the resulting visualizations below for more ideas.</p>
 <h3>Building a concepts co-occurence network</h3>

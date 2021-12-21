@@ -552,26 +552,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <p>I recently ran into the Textmate <a href="https://github.com/peta/turtle.tmbundle">bundle for Turtle</a>, an extension for the <a href="https://github.com/textmate/textmate">Textmate</a> osx editor aimed at facilitating working with RDF and SPARQL. If you happen to be using these technologies, well I'd suggest you take a look at the following post.</p>
 <p>The Resource Description Framework is a <em>general-purpose language for representing information</em> which is widely used on the web in order to encode metadata in a machine-interoperable format.</p>
 <p>Turtle, the <a href="http://www.w3.org/TeamSubmission/turtle/">terse RDF Triple Language</a>, is a textual syntax for RDF which aims at human readability and compactness (among other things). This is what it looks like:</p>
-<div class="codehilite"><pre><span></span><code><span class="err">@prefix</span> <span class="nn">rdf</span><span class="p">:</span> 
-<span class="err">@prefix</span> <span class="nn">rdfs</span><span class="p">:</span> 
-<span class="err">@prefix</span> <span class="nn">xsd</span><span class="p">:</span> <span class="p">.</span>
-<span class="err">@base</span> 
+<pre class="codehilite"><code>@prefix rdf: 
+@prefix rdfs: 
+@prefix xsd: .
+@base 
 
-<span class="p">:</span><span class="nt">MotorVehicle</span> <span class="kt">a</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">Class</span><span class="p">.</span>
+:MotorVehicle a rdfs:Class.
 
-<span class="p">:</span><span class="nt">PassengerVehicle</span> <span class="kt">a</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">Class</span><span class="p">;</span>
-   <span class="nn">rdfs</span><span class="p">:</span><span class="nt">subClassOf</span> <span class="p">:</span><span class="nt">MotorVehicle</span><span class="p">.</span>
+:PassengerVehicle a rdfs:Class;
+   rdfs:subClassOf :MotorVehicle.
 
-<span class="p">:</span><span class="nt">Person</span> <span class="kt">a</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">Class</span><span class="p">.</span>
+:Person a rdfs:Class.
 
-<span class="nn">xsd</span><span class="p">:</span><span class="nt">integer</span> <span class="kt">a</span> <span class="nn">rdfs</span><span class="p">:</span><span class="nt">Datatype</span><span class="p">.</span>
+xsd:integer a rdfs:Datatype.
 
-<span class="p">:</span><span class="nt">registeredTo</span> <span class="kt">a</span> <span class="nn">rdf</span><span class="p">:</span><span class="nt">Property</span><span class="p">;</span>
-   <span class="nn">rdfs</span><span class="p">:</span><span class="nt">domain</span> <span class="p">:</span><span class="nt">MotorVehicle</span><span class="p">;</span>
-   <span class="nn">rdfs</span><span class="p">:</span><span class="nt">range</span>  <span class="p">:</span><span class="nt">Person</span><span class="p">.</span>
+:registeredTo a rdf:Property;
+   rdfs:domain :MotorVehicle;
+   rdfs:range  :Person.
 
-<span class="p">:</span><span class="nt">myLittleCar</span> <span class="kt">a</span> <span class="err">PassengerVehicle</span>
-</code></pre></div>
+:myLittleCar a PassengerVehicle
+</code></pre>
 
 <p>The termite library in question, in a nutshell, provides a bunch of snippets and query mechanisms that make it easier to work with Turtle RDF and related technologies. More precisely, here's the official features breakdown:</p>
 <blockquote>
@@ -588,15 +588,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </blockquote>
 <h3>Example</h3>
 <p>In order to query a SPARQL endpoint (eg DBPedia) just type this in and run it (apple-R):</p>
-<div class="codehilite"><pre><span></span><code>#QUERY &lt;http://dbpedia.org/sparql&gt;                    
+<pre class="codehilite"><code>#QUERY &lt;http://dbpedia.org/sparql&gt;                    
 SELECT DISTINCT ?s ?label                             
 WHERE {                                               
     ?s &lt;http://dbpedia.org/property/season&gt; ?o .      
 }  
-</code></pre></div>
+</code></pre>
 
 <p>Obviously you can query any endpoint, e.g. <a href="http://data.nature.com/query">data.nature.com</a>:</p>
-<div class="codehilite"><pre><span></span><code>#QUERY &lt;http://data.nature.com/sparql&gt;
+<pre class="codehilite"><code>#QUERY &lt;http://data.nature.com/sparql&gt;
 
 PREFIX bibo:&lt;http://purl.org/ontology/bibo/&gt;
 PREFIX dc:&lt;http://purl.org/dc/elements/1.1/&gt;
@@ -622,7 +622,7 @@ WHERE {
     ?doi prism:publicationDate ?date
 } 
 limit 100 
-</code></pre></div>
+</code></pre>
 
 <p>And this is just the tip of the iceberg. Autocompletion, visualisations etc… it may be the Textmate-Semantic Web swiss army knife you've been looking for.</p>
 <p><img alt="" src="../../../../../media/static/blog_img/screenshot-editor.png" /></p>
