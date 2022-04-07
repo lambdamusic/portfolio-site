@@ -591,12 +591,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><strong>Project versioning.</strong> Colab includes a built-in <a href="https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb">revision history</a> tool, and it can integrate with <a href="https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipynb">Github</a> too.  Yet, I often end up creating multiple copies/versions of a notebook, instead of relying on the revisions system. I wish there was a better way to do this..</li>
 <li><strong>The Google ecosystem (AGAIN).</strong> As much as this can be a massive plus for some people (see above), it can also be a massive problem for others. Some customers I work with don't have access to G-Suite, full stop. That's not so uncommon, especially with large enterprises that are concerned about data privacy.</li>
 </ol>
-<h3>Conclusion: Colab and JupyterLab need to co-exist</h3>
+<h3>Jupyter and G. Colab can coexist?</h3>
 <p><strong>Google Colab is simply great for small/medium data projects</strong>. Hands down to the developers who built it. Some features are totally neat, and especially when I intend to share whatever I'm doing with more than one person, I hit right away my <a href="https://colab.research.google.com/notebook#create=true&amp;language=python3">New Colab Document</a> shortcut.</p>
 <p>Nonetheless, <strong>I still use <a href="https://jupyterlab.readthedocs.io/en/stable/">JupyterLab</a> a lot</strong>, for a variety of projects. E.g. for quick personal data investigations. Or for projects that I know will be shared only with other data scientists (who need no guidance in order to run them). Or in projects with long-running processes and memory consumption.</p>
 <p>So the two things <strong>need to coexist</strong>. </p>
-<h3>Not so easy though..</h3>
-<p>Which opens up a new problem: <em>how to seamlessly move from one environment to the other</em>? That's still an open question for me, but you'll find what I learned so far in what follows.</p>
+<h4>My working solution</h4>
+<p>The main challenge I'm facing now is: <em>how to seamlessly move from one environment to the other</em>? Here's what I learned so far.</p>
 <ol>
 <li>I try to put all of my notebooks in Google Drive, so that they are accessible by Colab.</li>
 <li>I sync my Google Drive to my laptop, so I've got everything locally as well (ps: I sync Drive to <em>one computer only</em> so to avoid double/out-of-sync issues).</li>
@@ -604,7 +604,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>This setup means that <strong>I can either work on Colab (thanks to Drive) or local Jupyter (via the local sync) depending on my needs</strong>. I can even start working on something locally and then complete it on Colab. The .ipynb files are 100% compatible (almost - see above the exception about rendered visualizations)</li>
 <li>Any Colab-specific code does not break Jupyter. There is some redundancy on occasions (eg <em>pip installing</em> libraries on Colab which I already have on my laptop) but that's fine. It's also possible to use expressions like this `<em>if not 'google.colab' in sys.modules</em>` to run code selectively based on the platform (eg see <a href="https://digital-science.github.io/dimensions-api-lab/cookbooks/8-organizations/2-Industry-Collaboration.html#Load-libraries-and-log-in">here</a>).</li>
 </ol>
-<p>Makes sense? If you know of a better way to do this I'd love to know. </p>
+<p>Makes sense? If you know of a better way to do this, I'd love to know. </p>
 
             </div>
 
@@ -1154,34 +1154,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2013/09/15/building-a-master-volumes-ui-in-impromptu/index.html" class="bluelink " >Building a master volumes UI with impromptu</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
               <a href="../../../../2013/07/25/creating-useful-classifications-with-taxonomies-part-1/index.html" class="bluelink " >Creating useful classifications with taxonomies (part 1)</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
@@ -1472,91 +1444,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2011/06/26/bjork-redefines-the-musicians-product-with-biophilia-albumapp/index.html" class="bluelink " >Bjork redefines the musician&#39;s product with &#39;Biophilia&#39; album/app</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
               <a href="../../../../2011/04/14/allegro-cl-graph/index.html" class="bluelink " >RDF programming with AllegroCL and AllegroGraph</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2011/04/09/a-space-odyssey-live-with-philharmonia-orchestra/index.html" class="bluelink " >A Space Odyssey Live with Philharmonia Orchestra</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2011/03/29/an-alternative-to-the-play-macro-iplay-and-with-instrument/index.html" class="bluelink " >An alternative to the &#39;play&#39; macro: &#39;iplay&#39; and &#39;with-instrument&#39;</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1711,34 +1599,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
               <a href="../../../../2009/12/03/creating-questionnaires-with-django/index.html" class="bluelink " >Creating Questionnaires with Django</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2009/11/23/new-song-with-impromptu-kali/index.html" class="bluelink " >New song with Impromptu: KALI</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
