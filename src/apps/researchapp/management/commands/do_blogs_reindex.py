@@ -164,7 +164,11 @@ def parse_markdown(full_file_path, verbose=False):
 				if "true" in l:
 					REVIEW = True
 			elif l.startswith("date: "):
-				DATE = l.replace("date: ", "")[1:-2] # remove quotes and newline char
+				DATE = l.replace("date: ", "") 
+				if DATE[0] == "\"":
+					DATE = DATE[1:-2] # remove quotes and newline char
+				else:
+					DATE = DATE[:-1] # remove newline char
 				DATE = datetime.datetime.strptime(DATE, "%Y-%m-%d")
 				DATE = DATE.replace(tzinfo=datetime.timezone.utc).date()
 

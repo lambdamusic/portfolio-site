@@ -16,6 +16,7 @@ import markdown
 from render_block import render_block_to_string
 
 from settings import STATICFILES_DIRS, BLOGS_ROOT
+from myutils.myutils import printDebug
 
 from researchapp.models import *
 from researchapp.topics import *
@@ -182,16 +183,20 @@ def get_pubs(query, ttype):
 	query: the ordering parameter eg date or pubtype
 	ttype: the (simplified) type filter  // September 3, 2021
 
+	pubType 12 = "Invited Talk"
+	pubType 13 = "Blog"
+	See http://127.0.0.1:8000/admin/researchapp/pubtype/
+
 	"""
 
-	talks = PubType.objects.get(
-		pk=12)  # used to exclude 'INVITED TALKS' from articles list
+	type_talks = PubType.objects.get(pk=12)  # used to exclude 'INVITED TALKS' from articles list
+	type_blogs = PubType.objects.get(pk=13) 
 
 	QSET = Publication.objects.exclude(review=True)
 
-	# SORT BY PUBTYPE
+	# SORT BY PUBTYPE eg Book, Article, Invited Talk etc..
 	if query == 'type':
-		# exclude talks and blog
+		# exclude talks and blog 'types'
 		pubtypegroups_list = PubType.objects.exclude(pk=12).exclude(pk=13).values_list(
 			'groupfk__name').order_by('groupfk__order').distinct()
 		# eg [(u'Books',), (u'Journal Articles & Book Chapters',), (u'Articles in Peer-Reviewed Conference or Proceedings',), (u'White papers, Reports, etc.',)]
@@ -199,7 +204,7 @@ def get_pubs(query, ttype):
 		return_items = []
 		for x in pubtypegroups_list:
 			return_items.append(
-				(x[0], QSET.exclude(pubtype=talks).filter(
+				(x[0], QSET.exclude(pubtype=type_talks).filter(
 					pubtype__groupfk__name=x[0])))
 		return return_items
 
@@ -208,19 +213,19 @@ def get_pubs(query, ttype):
 		valid_projects = list(
 			set([
 				x[0] for x in QSET.exclude(
-					pubtype=talks).values_list('project__title') if x[0]
+					pubtype=type_talks).values_list('project__title') if x[0]
 			]))
 		return_items = []
 		for x in valid_projects:
 			return_items.append((x, QSET.exclude(
-				pubtype=talks).filter(project__title=x)))
+				pubtype=type_talks).filter(project__title=x)))
 		return_items.sort()  # sort by alpha
 		return_items.append(('Misc',
 							 QSET.filter(project=None)))
 		return return_items
 
 
-	# SORT BY DATE
+	# SORT BY DATE, with an optional filter for type
 	else:
 		# ==>  query == 'date':  
 		# ==>  always fallback here
@@ -228,24 +233,26 @@ def get_pubs(query, ttype):
 		# For the following options, ensure names are same as in http://127.0.0.1:8000/admin/researchapp/pubtypegroup/
 
 		if ttype == "blogs":
-
+			printDebug("ttype == blogs")
+			printDebug(str(QSET.count()))
 			ddset = QSET.filter(pubtype__groupfk__pk=6)
+			printDebug(str(ddset.count()))
 
 		elif ttype == "papers":
 
-			ddset = QSET.exclude(pubtype=talks).exclude(pubtype__groupfk__pk=6).exclude(pubtype__groupfk__pk=3)
+			ddset = QSET.exclude(pubtype=type_talks).exclude(pubtype__groupfk__pk=6).exclude(pubtype__groupfk__pk=3)
 
 		elif ttype == "misc":
 
 			ddset = QSET.filter(pubtype__groupfk__pk=3)
 
-		if ttype == "review":
+		elif ttype == "review":
 			# SHOW ANYTHING IN REVIEW
 			ddset = Publication.objects.filter(review=True)
 
 		else:
 
-			ddset = QSET.exclude(pubtype=talks)
+			ddset = QSET.exclude(pubtype=type_talks)
 
 		valid_years = list(
 			set([
