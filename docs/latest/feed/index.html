@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The news feed of www.michelepasin.org</title><link>http://www.michelepasin.org/words/</link><description>Latest articles, blogs posts and news</description><atom:link href="http://127.0.0.1:8000/latest/feed/" rel="self"></atom:link><language>en-us</language><lastBuildDate>Fri, 05 Nov 2021 00:00:00 +0000</lastBuildDate><item><title>A static site generator using Django, Wget and Github Pages</title><link>https://www.michelepasin.org/blog/2021/10/29/django-wget-static-site/</link><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The news feed of www.michelepasin.org</title><link>http://www.michelepasin.org/words/</link><description>Latest articles, blogs posts and news</description><atom:link href="http://127.0.0.1:8000/latest/feed/" rel="self"></atom:link><language>en-us</language><lastBuildDate>Thu, 07 Apr 2022 00:00:00 +0000</lastBuildDate><item><title>Composition: 'Study for Cello and Double-bass'</title><link>https://www.michelepasin.org/blog/2022/04/07/cellos-livecoding/</link><description>
+
+A new livecoding composition using [Extempore](https://extemporelang.github.io/) and Ableton Live: 'Study for Cello and Double-bass'. 
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/VR6lMsECEQc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+## Creating chords using a cosine function
+
+The main technique used in this piece is to generate chord/harmonic variations using a cosine functions. 
+
+```scheme
+(at 8 0 
+  (set! *melody* 
+    (:mkchord (:mkint 48 (cosrfloor 7 7 1/30) 'M)   
+    'M (cosrfloor 7 3 1/5))
+  )
+```
+
+Every 8 beats the root chord (used by all instruments in order to generate musical patterns) gets updated. Two cosine functions are used to simultaneously: 
+
+1. Determine the *amplitude* of the interval (major or minor, starting from C3) that generates the root note of the chord.
+2. Determine the number of notes in the chord. 
+
+The  ...</description><pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2022/04/07/cellos-livecoding/</guid></item><item><title>A static site generator using Django, Wget and Github Pages</title><link>https://www.michelepasin.org/blog/2021/10/29/django-wget-static-site/</link><description>
 If you're a Django developer and want to publish a website without the hassle (and costs) of deploying a web app, then this post may give you some useful tips. 
 
 I found myself in this situation several times, so have created a time-saving workflow/set of tools for extracting a dynamic [Django](https://www.djangoproject.com/) website into a [static](https://en.wikipedia.org/wiki/Static_web_page) website (= a website that does not require a web application, just plain simple HTML pages). 
@@ -24,7 +47,108 @@ $ wdate australia
 /Australia/Adelaide                Tue 2021-10-12 20:17:48
 /Australia/Yancowinna              Tue 2021-10-12 20:17:48
 /Australia/Victoria                Tue 2021-10-12 20:47:48
-/Australia/Canb ...</description><pubDate>Tue, 07 Sep 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/10/12/world-date-terminal/</guid></item><item><title>More Jupyter notebooks: pyvis and networkx</title><link>https://www.michelepasin.org/blog/2020/08/06/more-jupyter-notebooks-pyvis-and-networkx/</link><description>
+/Australia/Canb ...</description><pubDate>Tue, 07 Sep 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/10/12/world-date-terminal/</guid></item><item><title>Recipe: Making a livecoding screencast with QuickTime and RecordIt</title><link>https://www.michelepasin.org/blog/2021/08/30/recordit-plugin/</link><description>
+This post shows how to make a livecoding screencast free OSX technologies. 
+
+Capturing system audio and screen-recording your live coding performance can be done in multiple ways. Here's a method based on Apple's [Quicktime](https://en.wikipedia.org/wiki/QuickTime) and an audio plugin that is part of a third-party software, [Record It](https://www.buildtoconnect.com/en/products/recordit).
+
+&gt; Note: both of these software components are free.  The [Record It Audio Device](https://www.buildtoconnect.com/downloads/RecordItAudioDevice.pkg) which is a free extension that enables you to capture system sounds on your Mac. It acts as a virtual audio input device and sends the sound from music, videos, and system alerts that you would normally hear through your speakers to the input cha
+
+
+## Recording a screencast: steps 
+
+1.  Get the [Record It audio plugin](https://www.buildtoconnect.com/help/how-to-record-system-audio) PS this is a free audio extension, even if it is part of a paid-for softw ...</description><pubDate>Mon, 30 Aug 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/08/30/recordit-plugin/</guid></item><item><title>Composition: 'Rhythmic Cycles' with Extempore</title><link>https://www.michelepasin.org/blog/2021/04/10/livecoding-rhythmic-cycles/</link><description>
+A new livecoding composition using [Extempore](https://extemporelang.github.io/) and Ableton Live: 'Rhythmic Cycles'. 
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/m3v8gRzROkU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+## Using 'map' to trigger repeated notes
+
+The gist of this experiment rotates around the `map` function. 
+
+A seed list of notes, and one of offsets , is used to generate musical `play` sequences:
+
+```scheme
+(map (lambda (x y z)
+	  (onbeat x 0 (play y z (* dur .9) 1))
+		)
+	times
+	notes
+	volumes
+	)
+```
+
+This technique generates a texture of sounds with a touch of randomness. 
+
+If the pattern above gets repeated, changing the input parameters periodically leads to the generation of very interesting musical patterns. 
+
+For example:
+
+- times can be shifted up or down by 1/4 beat or so
+- notes can be transposed using different  ...</description><pubDate>Sat, 10 Apr 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/04/10/livecoding-rhythmic-cycles/</guid></item><item><title>xtempore functions explorer updated to latest release (v0.8.9</title><link>https://www.michelepasin.org/blog/2021/02/01/extempore-functions-explorer-updated-to-latest-release-v0-8-7/</link><description>
+
+The [Extempore functions explorer](https://extempore.michelepasin.org/) has been updated with the latest version of the Extempore programming language: [v0.8.9](https://github.com/digego/extempore/tree/v0.8.9)
+
+## About the explorer
+
+The Extempore functions explorer is a little Django webapp I built [a while ago](http://www.michelepasin.org/projects/impromptudocs/) in order to make it easier to browse (and learn about) the Extempore programming language. 
+
+&gt; Try it out at: [https://extempore.michelepasin.org/](https://extempore.michelepasin.org/)
+
+The [source code](https://github.com/lambdamusic/xtm-docs) is available on Github.
+
+[![demo](/media/static/blog_img/xtm-explorer.gif)](/media/static/blog_img/xtm-explorer.gif)
+
+ ...</description><pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/02/01/extempore-functions-explorer-updated-to-latest-release-v0-8-7/</guid></item><item><title>'The Kryos Noise' is available on Spotify</title><link>https://www.michelepasin.org/blog/2021/01/22/the-kryos-noise-is-available-on-spotify/</link><description>
+
+The [prog rock](https://en.wikipedia.org/wiki/Progressive_rock) album I've worked on [years ago](http://www.michelepasin.org/sounds/?k=kryos) with the band Kryos Project is now available also on [Spotify](https://open.spotify.com/album/1uCLwvX24IFPp9g9SVoHqh) (and [Amazon](https://www.amazon.com/gp/product/B08SKXH1BW/?tag=distrokid06-20) too).
+
+Why? Well it just feels good to be able to open up Spotify and _listen to your own music._ This is stuff we've made almost 20 years ago (!) but it still feels kinda relevant. Fresh. Well.. you know what I mean.
+
+&gt; Check out [The Kryos' Noise on Spotify](https://open.spotify.com/album/1uCLwvX24IFPp9g9SVoHqh).
+
+[![](/media/static/blog_img/Kryos-Noise-Cover.jpg)](https://distrokid.com/hyperfollow/kryosproject/the-kryos-noise)
+
+
+### Cool. How do I get my band too on Spotify? 
+
+It was surprisingly easy actually, if you don't mind spending a little money (around 20 dollars per year).
+
+I used [Distrokid](https://distrokid.com/) to handle the distribu ...</description><pubDate>Fri, 22 Jan 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/01/22/the-kryos-noise-is-available-on-spotify/</guid></item><item><title>'The Musical Code' on GitHub</title><link>https://www.michelepasin.org/blog/2020/11/23/a-new-livecoding-project-the-musical-code/</link><description>
+I've started a new *livecoding* project on Github called [The Musical Code](https://github.com/lambdamusic/The-Musical-Code). Plan is to add experimental musical code/algorithms created via the amazing [Extempore](https://extemporelang.github.io/) programming language (as well as it precursor [Impromptu](http://impromptu.moso.com.au/)).
+
+## Motivation
+
+I have accumulated *so much* musical-code ideas over the years... so I've finally resolved to clean it up, reorganise it and publish it somewhere. 
+
+[Github](https://github.com/lambdamusic/The-Musical-Code) seemed the best option, these days.
+
+[![](/media/static/blog_img/TheMusicalCodeGithub-1024x757.jpg)](https://github.com/lambdamusic/The-Musical-Code)
+
+## Code + Video 
+
+I soon realised that just **the code by itself won't do it**. Especially considering that the environments I used to 'run it' (and to make it go 'beep') could rapidly disappear: become obsolete, or get out of fashion!
+
+Hence there's a [YouTube channel](https://www.you ...</description><pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2020/11/23/a-new-livecoding-project-the-musical-code/</guid></item><item><title>Livecoding composition: 'Piano Scales' (Extempore + Ableton Live)</title><link>https://www.michelepasin.org/blog/2020/11/02/livecoding-piano-scales/</link><description>
+
+In general, [algorithmic compositions](https://en.wikipedia.org/wiki/Algorithmic_composition) using piano instruments always strike me for their captivating simplicity. So here's a new little experiment, titled ['Piano Scales](https://www.youtube.com/watch?v=Qix3tbpb9V4)'.
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/Qix3tbpb9V4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+
+## Repeated scales with a touch of randomness
+
+The gist of this musical algorithm is amazingly simple. 
+
+Pick a scale. You play it using a variable time-interval between its notes, which is determined by a cosine function ([`cosr`](https://extempore.michelepasin.org/1030.html)). The variable interval gives the final result a touch of suspense and makes it less computer-like. 
+
+```scheme
+(define xsc 
+	(lambda (beat vel scale) 
+		(let ((dur (cosratio 4 2 1/128)))
+```
+
+A ...</description><pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2020/11/02/livecoding-piano-scales/</guid></item><item><title>More Jupyter notebooks: pyvis and networkx</title><link>https://www.michelepasin.org/blog/2020/08/06/more-jupyter-notebooks-pyvis-and-networkx/</link><description>
 &gt; Lately I've been spending more time creating Jupyter notebooks that demonstrate how to use the [Dimensions API for research analytics.](https://api-lab.dimensions.ai/) In this post I'll talk a little bit about two cool Python libraries I've recenlty discovered for working with **graph** data: **pyvis** and **networkx**.
 
 ### pyvis and networkx
@@ -55,45 +179,4 @@ Ever felt like softwares like [Mendeley](https://www.mendeley.com/homepage-2-1?i
 
 Yes - that's right - [command line](https://en.wikipedia.org/wiki/Terminal_(macOS)). So not for everyone. Also: this is bare bones and pre-alpha. So don't expect wonders. It basically provides a simple interface for searching a folder full of PDFs. That's all for now!
 
-&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/o74Ct1EwZwI?controls=0" title="YouTube ...</description><pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2019/06/30/pypapers-a-bare-bones-command-line-pdf-manager/</guid></item><item><title>Modeling publications in SN SciGraph 2012-2019</title><link>https://www.michelepasin.org/papers/2019/06/03/modeling-publications-in-sn-scigraph-20122019/</link><description></description><pubDate>Mon, 03 Jun 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/papers/2019/06/03/modeling-publications-in-sn-scigraph-20122019/</guid></item><item><title>Introducing DimCli: a Python CLI for the Dimensions API</title><link>https://www.michelepasin.org/blog/2019/05/24/introducing-dimcli-a-python-cli-for-dimensions-api/</link><description>
-For the last couple of months I've been working on a new open source Python project. This is called **DimCli**  and it's a command-line library aimed at making it simpler to work with the Dimensions Analytics API.
-
-The project is [available on Github](https://github.com/lambdamusic/dimcli). In a nutshell, DimCli helps people becoming productive with the powerful scholarly analytics API from Dimensions. See the video below for a quick taster of the functionalities available.
-
-&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/HbZPxJ7G_00?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
-
-### Background
-
-I recenlty joined the [Dimensions](https://www.dimensions.ai/) team, so needed a way to get to grips with their feature-rich API ([official docs](https://docs.dimensions.ai/dsl)). So, building DimCli has been a fun way for me to dig into the  ...</description><pubDate>Fri, 24 May 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2019/05/24/introducing-dimcli-a-python-cli-for-dimensions-api/</guid></item><item><title>Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</title><link>https://www.michelepasin.org/papers/2019/05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/</link><description>In recent years we have seen a proliferation of Linked Open Data (LOD) compliant datasets becoming available on the web, leading to an increased number of opportunities for data consumers to build smarter applications which integrate data coming from disparate sources. However, often the integration is not easily achievable since it requires discovering and expressing associations across heterogeneous data sets. The goal of this work is to increase the discoverability and reusability of the scholarly data by integrating them to highly interlinked datasets in the LOD cloud. In order to do so we applied techniques that a) improve the identity resolution across these two sources using Link Discovery for the structured data (i.e. by annotating Springer Nature (SN) SciGraph entities with links to DBpedia entities), and b) enriching SN SciGraph unstructured text content (document abstracts) with links to DBpedia entities using Named Entity Recognition (NER). We published the results of this work using standard vocabularies and provided an interactive exploration tool which presents the discovered links w.r.t. the breadth and depth of the DBpedia classes.</description><pubDate>Wed, 22 May 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/papers/2019/05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/</guid></item><item><title>Running interactive Jupyter demos with  mybinder.org</title><link>https://www.michelepasin.org/blog/2019/05/03/running-jupyter-demos-via-mybinder-org/</link><description>
-The online tool [mybinder.org](https://mybinder.org/) allows to turn a Git repo into a collection of interactive notebooks with one click.
-
-I played with it a little today and was pretty impressed! A very useful tool e.g. if you have a repository of Jupyter notebooks and want to showcase them to someone with no access to a Jupyter environment.
-
-[![](/media/static/blog_img/Screenshot-2019-05-03-binder.png)](Screenshot-2019-05-03-binder.png)
-
-I was able to run many of the [Dimensions API notebooks](https://github.com/digital-science/dimensions-api) I've been working on in the last months, with little or no changes (follow [this link to try them](https://hub.mybinder.org/user/digital-science-dimensions-api-y3409gua/tree) yourself). Dependencies can be loaded on the fly, and new files (eg local settings) create just as if you are working within a normal Jupyter notebook.
-
-[![](/media/static/blog_img/Screenshot-2019-05-03-binder2.png)](Screenshot-2019-05-03-binder2.png)
-
-&gt; See the official ...</description><pubDate>Fri, 03 May 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2019/05/03/running-jupyter-demos-via-mybinder-org/</guid></item><item><title>Hands on with the Dimensions API: An introduction to Data Science</title><link>https://www.michelepasin.org/papers/2019/03/28/hands-on-with-the-dimensions-api-an-introduction-to-data-science/</link><description></description><pubDate>Thu, 28 Mar 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/papers/2019/03/28/hands-on-with-the-dimensions-api-an-introduction-to-data-science/</guid></item><item><title>SN SciGraph Latest Release: Patents, Clinical Trials and many new features</title><link>https://www.michelepasin.org/blog/2019/03/22/sn-scigraph-latest-release-patents-clinical-trials-and-many-new-features/</link><description>
-We are pleased to announce the **third release** of [Springer Nature Scigraph Linked Open Data](https://scigraph.springernature.com). SN SciGraph is a Linked Data platform that collates information from across the research landscape, i.e. the things, documents, people, places and relations of importance to the science and scholarly domain.
-
-This release includes a complete **refactoring of the SN SciGraph data model**. Following up on users feedback, we have simplified it using [Schema.org](https://schema.org/) and [JSON-LD](https://en.wikipedia.org/wiki/JSON-LD), so to make it easier to understand and consume the data also for non-linked data specialists.  
-
-Also, this release includes **two brand new datasets** - Patents and Clinical Trials linked to Springer Nature publications - which have been made available by our partner [Digital Science](https://www.digital-science.com/), and in particular the [Dimensions](http://dimensions.ai) team.
-
-## What's new
-
-- **New Datasets.** Data ab ...</description><pubDate>Fri, 22 Mar 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2019/03/22/sn-scigraph-latest-release-patents-clinical-trials-and-many-new-features/</guid></item><item><title>Zero Hunger Hack Day: surfacing research about the Sustainable Development Goals program</title><link>https://www.michelepasin.org/blog/2019/02/11/zero-hunger-hack-day/</link><description>
-This post is about a little dashboard idea that aims at helping policy makers discover research relevant to the '[zero hunger](https://en.wikipedia.org/wiki/Sustainable_Development_Goals#Goal_2:_Zero_hunger)' topic, one of the themes of the [Sustainable Development Goals](https://sustainabledevelopment.un.org/sdgs) program.
-
-&gt; [The 2030 Agenda for Sustainable Development,](https://sustainabledevelopment.un.org/post2015/transformingourworld) adopted by all United Nations Member States in 2015, provides a shared blueprint for peace and prosperity for people and the planet, now and into the future. At its heart are the 17 Sustainable Development Goals (SDGs), which are an urgent call for action by all countries - developed and developing - in a global partnership. They recognize that ending poverty and other deprivations must go hand-in-hand with strategies that improve health and education, reduce inequality, and spur economic growth – all while tackling climate change and working to pr ...</description><pubDate>Mon, 11 Feb 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2019/02/11/zero-hunger-hack-day/</guid></item><item><title>Ontospy 1.9.8 released</title><link>https://www.michelepasin.org/blog/2019/01/03/ontospy-1-9-8-released/</link><description>
-Ontospy version 1.9.8 has been just released and it contains tons of improvements and new features. [Ontospy](http://lambdamusic.github.io/Ontospy/) is a lightweight open-source Python library and command line tool for working with vocabularies encoded in the [RDF](https://en.wikipedia.org/wiki/Resource_Description_Framework) family of languages.
-
-Over the past month I've been working on a new version of Ontospy, which is now available for download on [Pypi](https://pypi.org/project/ontospy/). It's been quite some time in the making, so pretty glad it's finally out now.
-
-&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/MkKrtVHi_Ks?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
-
-### What's new in this version
-
-- The library module used to generate **ontology documentation** (as html or markdown) is now included within the main Ontospy d ...</description><pubDate>Thu, 03 Jan 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2019/01/03/ontospy-1-9-8-released/</guid></item></channel></rss>
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/o74Ct1EwZwI?controls=0" title="YouTube ...</description><pubDate>Sun, 30 Jun 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2019/06/30/pypapers-a-bare-bones-command-line-pdf-manager/</guid></item><item><title>Modeling publications in SN SciGraph 2012-2019</title><link>https://www.michelepasin.org/papers/2019/06/03/modeling-publications-in-sn-scigraph-20122019/</link><description></description><pubDate>Mon, 03 Jun 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/papers/2019/06/03/modeling-publications-in-sn-scigraph-20122019/</guid></item></channel></rss>
