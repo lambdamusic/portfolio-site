@@ -87,7 +87,9 @@ class GenericType(mymodels.EnhancedAuthorityList):
 
 
 class Tag(mymodels.EnhancedAuthorityList):
-    """Generic 'types' that I use to organize the 'Item' instances....
+    """TAGS
+
+    NOTE: these are used both for Projects and Publications.
 	"""
 
     class Meta:
@@ -96,6 +98,24 @@ class Tag(mymodels.EnhancedAuthorityList):
 
     def __str__(self):
         return self.name
+
+
+class BlogCategory(mymodels.EnhancedAuthorityList):
+    """Blog Categories
+
+    NOTE: derived from MD files. The DB is used to normalise and make search more efficient.
+	"""
+
+    class Meta:
+        verbose_name_plural = "Blog-Categories"
+        ordering = ['name']
+
+    def __str__(self):
+        return self.name
+
+
+
+
 
 
 #########################
@@ -335,6 +355,21 @@ class Publication(mymodels.EnhancedModel):
         verbose_name="embedcode1 (eg video, pictures..)",
     )
 
+    tags = models.ManyToManyField(
+        'Tag',
+        blank=True,
+        related_name='publications',
+        verbose_name="tags (shared with projects)",
+    )
+
+    # used with Blog entries
+    categories = models.ManyToManyField(
+        'BlogCategory',
+        blank=True,
+        related_name='publications',
+        verbose_name="Blog categories",
+    )
+
     def get_admin_url(self):
         return reverse('admin:researchapp_publication_change', args=(self.id,))
 
@@ -369,6 +404,26 @@ class Publication(mymodels.EnhancedModel):
                 self.permalink = self.pubdate.strftime("%Y/%m/%d/") + nice_url_name(self.title[:200])
         # print(self.permalink)
         super(Publication, self).save(*args, **kwargs)
+
+
+    @classmethod
+    def all_used_tags(self):
+        _s = Publication.objects.exclude(tags=None).values_list(
+            'tags__name', flat=True).distinct()
+        if _s:
+            return sorted(list(set(_s)))
+        else:
+            return _s
+
+
+    @classmethod
+    def all_used_categories(self):
+        _s = Publication.objects.exclude(categories=None).values_list(
+            'categories__name', flat=True).distinct()
+        if _s:
+            return sorted(list(set(_s)))
+        else:
+            return _s
 
 
     # method that gives all the urls in one go!
@@ -444,6 +499,7 @@ class Publication(mymodels.EnhancedModel):
         list_display_links = ('title', )
         search_fields = ['title', 'id']
         inlines = (AuthorshipInline, )
+        filter_horizontal = ('tags', 'categories')
         fieldsets = [
             ('Administration', {
                 'fields': [
@@ -475,6 +531,12 @@ class Publication(mymodels.EnhancedModel):
                     ('url2', 'url2name'),
                     ('url3', 'url3name'),
                     'embedcode1',
+                ]
+            }),
+            ('Categories (blogs)', {
+                'fields': [
+                    'tags',
+                    'categories',
                 ]
             }),
         ]

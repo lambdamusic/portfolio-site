@@ -45,6 +45,26 @@
 					</span>
           </p>
 
+
+          
+          {% if return_item.categories.all %}
+
+              {% for cat in return_item.categories.all %}
+                <a class="text-muted" href="?query=cat&type={{ttype}}&tag={{cat.slug}}">{{cat.name}}</a><br />
+              {% endfor %}
+            
+              <hr>
+          {% endif %}
+            
+
+          {% if return_item.tags.all %}
+
+            {% for tag in return_item.tags.all %}
+              <a class="text-muted" href="?query=tag&type={{ttype}}&tag={{tag.slug}}">#{{tag.name}}</a><br />
+            {% endfor %}
+        
+          {% endif %}
+
         </div>
         
 

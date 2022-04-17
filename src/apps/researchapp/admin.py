@@ -43,6 +43,10 @@ class TagAdmin(admin.ModelAdmin):
     ]
 
 
+
+
+
+
 #  admin definitions for PubType and SoftType
 
 
@@ -140,6 +144,7 @@ admin.site.register(PubTypeGroup, AuthListStandardAdmin)
 admin.site.register(GenericType, AuthListStandardAdmin)
 
 admin.site.register(Tag, TagAdmin)
+admin.site.register(BlogCategory, TagAdmin)
 
 # # ++++++++++++++++++++++++++++++
 # # admin definition for main DOMAIN models

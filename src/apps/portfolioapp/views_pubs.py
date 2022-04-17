@@ -145,7 +145,7 @@ def blog_detail(request, year="", month="", day="", namedetail=""):
 	#
 	# get the contents from the source MD files 
 	# NOTE local file name is stored in `md_file`
-	TITLE, DATE, REVIEW, PURE_MARKDOWN= parse_markdown(BLOGS_ROOT + return_item.md_file)
+	TITLE, DATE, REVIEW, CATS, TAGS, PURE_MARKDOWN = parse_markdown(BLOGS_ROOT + return_item.md_file)
 
 	html_blog_entry = markdown.markdown(PURE_MARKDOWN, extensions=['fenced_code', 'codehilite'])
 

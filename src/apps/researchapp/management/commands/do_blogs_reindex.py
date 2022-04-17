@@ -37,6 +37,8 @@ BLOGS_SOURCE_DIR = BLOGS_ROOT
 from myutils.myutils import printDebug
 
 
+# TIP: set to True to print out extra info about tags and categories
+DEBUG_TAGS = False
 
 
 class Command(BaseCommand):
@@ -94,7 +96,7 @@ def do_parse_md_folder(verbose=False, force=False):
 	Filenames need to be like this `2021-09-07-template-post.md`
 
 	"""
-	printDebug(f"Reading... <{BLOGS_SOURCE_DIR}>")
+	printDebug(f"Reading files from... <{BLOGS_SOURCE_DIR}>")
 	counter1, counter2, counter3 = 0, 0, 0
 
 	filenames_list = []
@@ -105,12 +107,14 @@ def do_parse_md_folder(verbose=False, force=False):
 
 			filenames_list += [filename]
 			counter1 +=1
-			TITLE, DATE, REVIEW, PURE_MARKDOWN = parse_markdown(BLOGS_SOURCE_DIR+"/"+filename, verbose)
+			TITLE, DATE, REVIEW, CATS, TAGS, PURE_MARKDOWN = parse_markdown(BLOGS_SOURCE_DIR+"/"+filename, verbose)
 			# print(TITLE, PURE_MARKDOWN)
 
 			result = try_write_record(filename, 
 										TITLE, 
 										DATE, 
+										CATS, 
+										TAGS, 
 										REVIEW,
 										PURE_MARKDOWN, 
 										verbose,
@@ -157,21 +161,38 @@ def parse_markdown(full_file_path, verbose=False):
 	if verbose: printDebug("Parsing..: " + full_file_path)
 	with open(full_file_path) as f:
 		lines = f.readlines()
-		text_begins_flag = 0
+		text_begins_flag = cat_flag = tag_flag = 0
 		PURE_MARKDOWN = ""
 		REVIEW = False
 		DATE = None
+		CATS = []
+		TAGS = []
 		for l in lines:
+			# printDebug(l)
 			if text_begins_flag == 2:
 				PURE_MARKDOWN += l
 			elif l == "---\n":
-				text_begins_flag += 1 
+				cat_flag = tag_flag = 0
+				text_begins_flag += 1  # after second one, the header is over
+			elif (cat_flag or tag_flag) and l.strip().startswith("-"):
+				# inner categories / tags
+				if cat_flag:
+					thiscat = l.replace('- ', "").strip()[1:-1] # remove quotes and newline char
+					if DEBUG_TAGS: printDebug(f"Cat: {thiscat}")
+					CATS += [thiscat.lower()]
+				elif tag_flag:
+					thistag = l.replace('- ', "").strip()[1:-1] # remove quotes and newline char
+					if DEBUG_TAGS: printDebug(f"Tag: {thistag}")
+					TAGS += [thistag.lower()]
 			elif l.startswith("title: "):
+				cat_flag = tag_flag = 0
 				TITLE = l.replace("title: ", "")[1:-2] # remove quotes and newline char
 			elif l.startswith("review: "):
+				cat_flag = tag_flag = 0
 				if "true" in l:
 					REVIEW = True
 			elif l.startswith("date: "):
+				cat_flag = tag_flag = 0
 				DATE = l.replace("date: ", "") 
 				if DATE[0] == "\"":
 					DATE = DATE[1:-2] # remove quotes and newline char
@@ -179,10 +200,15 @@ def parse_markdown(full_file_path, verbose=False):
 					DATE = DATE[:-1] # remove newline char
 				DATE = datetime.datetime.strptime(DATE, "%Y-%m-%d")
 				DATE = DATE.replace(tzinfo=datetime.timezone.utc).date()
+			elif l.startswith("categories: "):
+				cat_flag, tag_flag = 1, 0
+			elif l.startswith("tags: "):
+				cat_flag, tag_flag = 0, 1
+
 
 		if not DATE:
 			raise ValueError(f'No DATE found in post: {full_file_path}')		
-		return TITLE, DATE, REVIEW, PURE_MARKDOWN
+		return TITLE, DATE, REVIEW, CATS, TAGS, PURE_MARKDOWN
 		
 
 
@@ -220,8 +246,16 @@ def do_cleanup_db(filenames_list, verbose=False, force=False):
 				if force or click.confirm("Delete DB record?"):
 					p.delete()
 
+	# cleanup unused tags
+	for tag in Tag.objects.filter(publications=None):
+		if not tag.projects.count():
+			printDebug(f"Unused tag: {tag}", "red")
+			if force or click.confirm("Delete tag?"):
+				tag.delete()
 
-def try_write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN, verbose=False, force=False):
+
+
+def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN, verbose=False, force=False):
 	"""Write a record to DB, if it is new or modified. 
 	Existing records that have same metadata are not touched, so to improve performance.
 
@@ -255,6 +289,25 @@ def try_write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN, verbose=Fal
 			printDebug(f"=> REVIEW has changed for: {FILENAMEID}", "red")
 			if force or click.confirm(f"Update record in database?"):
 				flag = "MODIFIED"
+
+		test_cats = sorted([c.name for c in pub.categories.all()])
+		if test_cats != sorted(CATS): 
+			printDebug(f"=> CATS has changed for: {FILENAMEID}", "red")
+			if DEBUG_TAGS: 
+				printDebug(f"\tDB=> {test_cats}", "red")
+				printDebug(f"\tMD=> {CATS}", "red")
+			if force or click.confirm(f"Update record in database?"):
+				flag = "MODIFIED"
+
+		test_tags = sorted([t.name for t in pub.tags.all()])
+		if test_tags != sorted(TAGS): 
+			printDebug(f"=> TAGS has changed for: {FILENAMEID}", "red")
+			if DEBUG_TAGS:
+				printDebug(f"\tDB=> {test_tags}", "red")
+				printDebug(f"\tMD=> {TAGS}", "red")
+			if force or click.confirm(f"Update record in database?"):
+				flag = "MODIFIED"
+
 	except:
 		# create new object if not existing
 
@@ -278,7 +331,7 @@ def try_write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN, verbose=Fal
 
 	if flag != "SKIP":
 
-		# update record from markdown file
+		# update record from markdown file data
 
 		pub.title = TITLE
 		pub.journal = "Blog entry on www.michelepasin.org ."
@@ -289,7 +342,6 @@ def try_write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN, verbose=Fal
 
 		#
 		pub.save()
-		if verbose: printDebug("\t=> Object updated from Markdown file metadata", "bold")
 		#
 
 		# add author info
@@ -301,5 +353,25 @@ def try_write_record(FILENAMEID, TITLE, DATE, REVIEW, PURE_MARKDOWN, verbose=Fal
 		except:
 			auth = Authorship(person=authorMe, publication=pub)
 			auth.save()
-	
+
+		# refresh categories
+		pub.categories.clear()
+		if DEBUG_TAGS: printDebug(f"=> Categories for {FILENAMEID}: {CATS}", "red")
+		for cat_name in CATS:
+			obj, created = BlogCategory.objects.get_or_create(
+    			name=cat_name)
+			printDebug(f"\tCAT=> {obj}", "green")
+			pub.categories.add(obj)
+
+		# refresh tags
+		pub.tags.clear()
+		if DEBUG_TAGS: printDebug(f"=> Tags for {FILENAMEID}: {TAGS}", "red")
+		for tag_name in TAGS:
+			obj, created = Tag.objects.get_or_create(
+				name=tag_name)
+			printDebug(f"\tTAG=> {obj}", "green")
+			pub.tags.add(obj)
+
+		if verbose: printDebug("\t=> Object updated from Markdown file metadata", "bold")
+
 	return flag
