@@ -1,0 +1,234 @@
+{% extends "portfolioapp/components/base.html" %}
+{% load extrafilters %}
+{% load static %}
+
+
+{% block pagetitle %}
+  <title>Words | Michele Pasin</title>
+{% endblock pagetitle %}
+
+{% block navbar %}
+
+    {% with thispage="words" %}
+
+    {% include "portfolioapp/components/default-navbar.html" %}
+
+    {% endwith %}
+
+{% endblock navbar %}
+
+
+  {% block bodycontent %}
+
+  <div class="page-header">
+    Words
+  </div>
+
+  <div class="container">
+
+	<div class="row">
+			<div class="text-muted -text-right col-md-4">{# Publications #}
+				View:
+				
+				<a class="h1links {% if ttype == 'all' %}project-active{% endif %}" href="?query=date&type=all"> all</a>&nbsp;|
+				
+				<a class="h1links {% if ttype == 'papers' %}project-active{% endif %}" href="?query=date&type=papers"> research papers</a>&nbsp;|
+				
+				<a class="h1links {% if ttype == 'blogs' %}project-active{% endif %}" href="?query=date&type=blogs"> blogs</a>&nbsp;
+
+				{% if admin_change_url %}
+				<a class="h1links {% if ttype == 'review' %}project-active{% endif %}" href="?query=date&type=review" style="background: yellow;"> review (admin only)</a>&nbsp;
+				{% endif %}
+				
+				{% comment %}
+				<a class="h1links -text-muted" href="?query=date&type=misc"> misc</a>&nbsp;
+				{% endcomment %}
+				
+			</div>
+				
+
+			<div class="text-muted -text-right col-md-5">				
+				
+				Order by:
+				<a class="h1links {% if query == 'date' %}project-active{% endif %}" href="?query=date"> date</a>&nbsp;|
+				
+				<a class="h1links {% if query == 'type' %}project-active{% endif %}" href="?query=type"> type</a>&nbsp;|
+				
+				<a class="h1links {% if query == 'project' %}project-active{% endif %}" href="?query=project&type=papers"> project</a>
+
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				Format: <a class="h1links -text-muted" href="?format=txt">txt</a> |
+				<a class="h1links -text-muted" href="?format=bibtex&query=type">bib</a>
+
+				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+			</div>
+
+
+			<div class="text-muted -text-right col-md-4">
+				{# <form action="" class="search-form" style="display: inline-block;">#}
+					<div class="form-group has-feedback" style="display: inline-block; margin-top: -10px;">
+						<label for="search" class="sr-only">Filter</label>
+						<input type="text" class="form-control" name="search" id="search-input" placeholder="enter a keyword" >
+							<span class="glyphicon glyphicon-search form-control-feedback"></span>
+					</div>
+				{# </form>#}
+
+			</div>
+
+			<div class="text-muted -text-right col-md-4">
+				
+				<a href="{% url 'portfolioapp:words-feed' %}">
+					<img height=20 src="{% static 'rss.png' %}" alt="Main image"/ >
+				</a>	
+			</div>
+
+
+	</div>
+
+
+
+			 {% for group_and_pubs in return_items %}
+
+			 <div class="row row_pubitem">
+
+				 <hr>
+
+ 			 	<div class="col-sm-2 col-md-3">
+				  
+					<p style="color: #e8e5e5; {% if query == 'date' %}font-size: 600%;{% else %}font-size: 300%;{% endif %} ">
+					  {{group_and_pubs.0}}
+					</p>
+
+ 			 	</div>
+
+
+			 	<div class="col-sm-7 col-md-9">
+
+
+					{% for pub in group_and_pubs.1 %}
+
+
+						<div class='pubitem'>
+
+							
+							
+							{% if pub.pubtype.name == "Blog" %}
+								
+
+							<p class='lead' style="-font-size: 13px;">
+								<span class='label label-info'> blog</span>&nbsp;
+								<!-- <a href="https://www.michelepasin.org{{pub.url1}}" class="bluelink">{{pub.title|capfirst}}</a>. -->
+								<a href="{{pub.get_absolute_url}}" class="bluelink">{{pub.title|capfirst}}</a>.
+							</p>
+
+							<p class="pubinfo text-muted" style="margin-top: -15px;">
+
+								<b class="text-muted">{{pub.pubdate|date:"M Y"}}</b>
+								<!-- {{pub.journal}} -->
+
+							</p>
+
+							{% else %}
+							
+
+							<p class='lead' style="-font-size: 13px;">
+								<span class='label label-warning'>paper</span>&nbsp;
+								<a href="{{pub.get_absolute_url}}" class="bluelink">{{pub.title|capfirst}}</a>.
+								<!-- <br /> -->
+								<!-- <span class="">{{pub|printmanyauthors}}</span> -->
+							</p>
+
+							<p class="pubinfo text-muted" style="margin-top: -15px;">
+
+								<b class="text-muted">{{pub.pubdate|date:"M Y"}}</b>
+
+								{% if  pub.journal %}
+									<span class='journal'> {{pub.journal}},</span>
+								{% endif %}
+								{% if  pub.conference %}
+									<span class='conference'> {{pub.conference}},</span>
+								{% endif %}
+								{% if  pub.pubplace %}
+									<span class='pubplace'> {{pub.pubplace}},</span>
+								{% endif %}
+								{% if pub.isforthcoming %}
+									<span class='text-warning'> (forthcoming). </span>
+								{% else %}
+									<span class='pubdate'> {{pub.pubdate|date:"M Y"}}.</span>
+								{% endif %}
+								{% if  pub.extrainfo %}
+									<span class='extrainfo'> {{pub.extrainfo|safe}}</span>
+								{% endif %}
+								{# {% for u in pub.all_urls %} #}
+								{# 	<a class='url' href="{{u.0}}" style="color: #666;"> [{{u.1}}]</a> #}
+								{# {% endfor %} #}
+
+							</p>
+
+							{% endif %}
+
+							{% if not forloop.last %}
+								<hr>
+							{% endif %}
+
+
+						</div>
+
+					{% endfor %}
+
+
+			 	</div>
+
+
+
+			 </div>
+
+			 {% endfor %}
+
+
+
+
+
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    {% comment %} second row ends {% endcomment %}
+
+
+
+  </div> <!-- /container -->
+
+
+{% endblock bodycontent %}
+
+
+
+
+{% block extra_js %}
+
+
+	<script type="text/javascript">
+
+	$('#search-input').keyup(function() {
+
+	  var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
+	  // var $rows = $(this).next(".entities-list").find("div");
+
+	  var $rows = $(this).parent().parent().parent().parent().find("div.pubitem");
+
+		console.log(val);
+		console.log($(this).parent().parent().parent().parent());
+
+	  $rows.show().filter(function() {
+	      var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
+	      return !~text.indexOf(val);
+	  }).hide();
+	});
+
+	</script>
+
+
+{% endblock %}

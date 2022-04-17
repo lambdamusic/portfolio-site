@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 from django.utils.encoding import python_2_unicode_compatible
 from django.db import models
+from django.db.models import Count
 from django.contrib import admin
 from django.urls import reverse
 #  NOTE: pre Django 1.10+ this is "from django.core.urlresolvers import reverse"
@@ -98,6 +99,7 @@ class Tag(mymodels.EnhancedAuthorityList):
 
     def __str__(self):
         return self.name
+
 
 
 class BlogCategory(mymodels.EnhancedAuthorityList):

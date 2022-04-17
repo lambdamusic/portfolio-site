@@ -36,6 +36,7 @@ def words(request):
 
 	query = request.GET.get('query', 'date')
 	ttype = request.GET.get('type', 'all')
+	tag = request.GET.get('tag', None)
 	format = request.GET.get('format', 'html')
 	
 	if request.user.is_superuser:
@@ -54,7 +55,9 @@ def words(request):
 	else:
 		templatee = "words.html"
 
-	return_items = get_pubs(query, ttype)
+	return_items = get_pubs(query, ttype, tag)
+	
+	tags = get_tags()
 	
 	context = {
 		'return_items': return_items,
@@ -62,6 +65,7 @@ def words(request):
 		'query': query,
 		'ttype': ttype,
 		'admin_change_url': admin_change_url,
+		'tags': tags,
 	}
 	
 	return render(request, APP + '/pages/' + templatee, context)
@@ -177,11 +181,12 @@ def blog_detail(request, year="", month="", day="", namedetail=""):
 # ===========
 
 
-def get_pubs(query, ttype):
+def get_pubs(query, ttype, tag):
 	""" retrieves pubs info 
 	
 	query: the ordering parameter eg date or pubtype
 	ttype: the (simplified) type filter  // September 3, 2021
+	tag: a blog tag, default: 'all'
 
 	pubType 12 = "Invited Talk"
 	pubType 13 = "Blog"
@@ -250,6 +255,11 @@ def get_pubs(query, ttype):
 			# SHOW ANYTHING IN REVIEW
 			ddset = Publication.objects.filter(review=True)
 
+		elif tag:
+			# SHOW ANYTHING IN REVIEW
+			ddset = Publication.objects.filter(tags__name=tag)
+
+
 		else:
 
 			ddset = QSET.exclude(pubtype=type_talks)
@@ -300,3 +310,9 @@ def get_related_pubs(a_pub):
 
 
 
+def get_tags():
+	""" retrieves tags info for the cloud viz"""
+
+	tagcloud_pubs = Tag.objects.values_list('name').distinct().annotate(cc=Count('publications'))
+
+	return tagcloud_pubs
