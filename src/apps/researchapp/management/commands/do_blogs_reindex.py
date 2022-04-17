@@ -137,12 +137,20 @@ def parse_markdown(full_file_path, verbose=False):
 	EG 
 	```
 	---
-	title: "A test post that will not be made visible"
-	date: "2021-09-07"
+	template: blog.html
+	author: Michele Pasin
+	title: "Composition: 'Study for Cello and Double-bass'"
+	description: "A new livecoding piece using Extempore and Ableton Live."
+	date: 2022-04-07
+	categories: 
+	- "computermusic"
+	tags: 
+	- "algorithmiccomposition"
+	- "extempore"
 	review: true
 	---
 
-	Markdown contents here....
+	This is where the markdown content starts..
 	```
 
 	"""
