@@ -31,17 +31,36 @@
 
   <div class="container">
 
+
+
 	<div class="row">
 
+<!-- 
 		<div class="col-sm-2 col-md-3">
-			<div class="text-muted">
+
+			<p style="color: #e8e5e5; font-size: 300%; ">
+				Filters
+			  </p>
+
+
+		</div>
+ -->
+
+
+		
+		<div class="col-sm-7 col-md-12 text-left">
+
+			
+			<div class="row">
+
+			<div class="text-muted col-md-3">
 				View:
 				
 				<a class="h1links {% if ttype == 'all' %}project-active{% endif %}" href="?query=date&type=all"> all</a>&nbsp;|
 				
 				<a class="h1links {% if ttype == 'papers' %}project-active{% endif %}" href="?query=date&type=papers"> research papers</a>&nbsp;|
 				
-				<a class="h1links {% if ttype == 'blogs' %}project-active{% endif %}" href="?query=date&type=blogs"> blogs</a>&nbsp;
+				<!-- <a class="h1links {% if ttype == 'blogs' %}project-active{% endif %}" href="?query=date&type=blogs"> blogs</a>&nbsp; -->
 
 				{% if admin_change_url %}
 				<a class="h1links {% if ttype == 'review' %}project-active{% endif %}" href="?query=date&type=review" style="background: yellow;"> review</a>&nbsp;
@@ -54,7 +73,7 @@
 			</div>
 				
 
-			<div class="text-muted">				
+			<div class="text-muted col-md-3">			
 				
 				Order by:
 				<a class="h1links {% if query == 'date' %}project-active{% endif %}" href="?query=date"> date</a>&nbsp;|
@@ -64,7 +83,7 @@
 				<a class="h1links {% if query == 'project' %}project-active{% endif %}" href="?query=project&type=papers"> project</a>
 			</div>
 
-			<div class="text-muted">
+			<div class="text-muted col-md-2">
 
 				Format: <a class="h1links -text-muted" href="?format=txt">txt</a> |
 				<a class="h1links -text-muted" href="?format=bibtex&query=type">bib</a>
@@ -73,18 +92,42 @@
 			</div>
 
 
-			<div class="text-muted" style="display: none;">
-				{# <form action="" class="search-form" style="display: inline-block;">#}
-					<div class="form-group has-feedback" style="display: inline-block; margin-top: -10px;">
-						<label for="search" class="sr-only">Filter</label>
-						<input type="text" class="form-control" name="search" id="search-input" placeholder="enter a keyword" >
-							<span class="glyphicon glyphicon-search form-control-feedback"></span>
-					</div>
-				{# </form>#}
-
+			<div class="text-muted col-md-4 text-right">
+				
+				<a href="{% url 'portfolioapp:words-feed' %}">
+					<img height=20 src="{% static 'rss.png' %}" alt="Main image"/ >
+				</a>	
 			</div>
 
-			<div class="text-muted">
+
+
+			</div>
+			<!-- end of inner row -->
+
+			<hr>
+
+		</div>
+
+	</div>  
+	
+	<!-- end of row -->
+
+
+
+
+
+
+	<div class="row margin20Top">
+
+			
+
+		<div class="col-sm-2 col-md-3">
+
+			<p style="color: #e8e5e5; font-size: 600%; ">
+				Tags
+			  </p>
+
+			<div class="text-muted" style="display: none;">
 				
 				<a href="{% url 'portfolioapp:words-feed' %}">
 					<img height=20 src="{% static 'rss.png' %}" alt="Main image"/ >
@@ -120,6 +163,10 @@
 	<!-- end of row -->
 
 
+
+
+
+	
 
 
 	{% for group_and_pubs in return_items %}

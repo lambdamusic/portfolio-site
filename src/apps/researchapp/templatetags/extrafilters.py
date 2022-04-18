@@ -191,12 +191,12 @@ def tagsize(num):
 		Here we return a bigger size, with max 24
 		Line-height is 150 - we go up to 180 max. 
 	 """
-	size = 8+num*2
+	size = 6+num*2
 	# if size > 25:
 	# 	size = 25
-	lheight = 150+(num*2)
+	lheight = 50+num*2
 	if lheight > 190:
 		lheight = 190
-	return "font-size: %spx; -line-height: %s%%;" % (size, lheight)
+	return "font-size: %spx; line-height: %s%%;" % (size, lheight)
 
 
