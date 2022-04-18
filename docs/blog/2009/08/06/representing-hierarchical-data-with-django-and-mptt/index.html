@@ -161,8 +161,9 @@
     }
 
     a.project-active {
-      background: indianred;
-      color: white;
+      background: #d9230f;
+      color: wheat;
+      padding: 2px;
     }
 
     .keyword {
@@ -173,8 +174,8 @@
     }
 
     a.paper-active {
-      background: indianred;
-      color: white;
+      background: #d9230f;
+      color: wheat;
     }
 
     a.ext_link {
@@ -186,8 +187,8 @@
     }
 
     a.sounds-active {
-      background: indianred;
-      color: white;
+      background: #d9230f;
+      color: wheat;
     }
 
     img.project-screenshots {
@@ -528,6 +529,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 					</span>
           </p>
 
+
+          
+          
+            
+
+          
+
+            
+              <a class="text-muted" href="../../../../../words/index.html%3Ftag=django.html">#django</a><br />
+            
+              <a class="text-muted" href="../../../../../words/index.html%3Ftag=mptt.html">#mptt</a><br />
+            
+              <a class="text-muted" href="../../../../../words/index.html%3Ftag=tree.html">#tree</a><br />
+            
+        
+          
+
         </div>
         
 
@@ -549,21 +567,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p><a href="http://www.qompr.com/charts/63;django-hierarchical-tree-data/"><img alt="Picture 3" src="../../../../../media/static/blog_img/picture-31.png" title="Picture 3" /></a></p>
-<p>Apparently, you've got two options for managing <strong>hierarchical data in django</strong> - <a href="http://code.google.com/p/django-mptt/">django-mptt</a> and <a href="http://code.google.com/p/django-treebeard/">django-treebeard</a>. I didn't have any time to test both of them carefully, so I just played a bit with the first one (and with great results!). [p.s. the comparison table above is not mine, but I found it quite useful. Click on the image to find out how it was created... ]</p>
+            <p>Apparently, you've got two options for managing <strong>hierarchical data in django</strong> - <a href="http://code.google.com/p/django-mptt/">django-mptt</a> and <a href="http://code.google.com/p/django-treebeard/">django-treebeard</a>.</p>
+<p><a href="http://www.qompr.com/charts/63;django-hierarchical-tree-data/"><img alt="Picture 3" src="../../../../../media/static/blog_img/picture-31.png" title="Picture 3" /></a></p>
+<p>I didn't have any time to test both of them carefully, so I just played a bit with the first one (and with great results!). [p.s. the comparison table above is not mine, but I found it quite useful. Click on the image to find out how it was created... ]</p>
 <p>I guess that the key feature I was looking for is the <strong>admin-integration</strong>. Trees must be <strong>displayed</strong> and <strong>edited</strong> properly in the admin... unfortunately both projects don't provide that feature by default, but luckily for there are attempts (<a href="http://code.google.com/p/django-mptt/issues/detail?id=33">#1</a> and <a href="http://code.google.com/p/django-treebeard/issues/detail?id=2&amp;colspec=ID%20Type%20Status%20Priority%20Milestone%20Owner%20Summary%20Stars%20Opened%20Modified%20Reporter%20Component">#2</a>) to fix this issue.</p>
 <p>In order to use MPTT with your models you just have to download it, add it to your 'installed application' settings and register the models you intend to use:</p>
-<p># A mimimal example usage of ``mptt.register`` is given below, where the
-#  model being set up for MPTT is suitable for use with the default
-# arguments which specify fields and the tree manager attribute::</p>
-<p>from django.db import models</p>
-<p>import mptt</p>
-<p>class Genre(models.Model):
-       name \= models.CharField(max_length\=50, unique\=True)
-       parent \= models.ForeignKey('self', null\=True, blank\=True, related_name\='children')</p>
-<p>mptt.register(Genre, order_insertion_by\=['name'])</p>
+<p>A mimimal example usage of <code>mptt.register</code> is given below, where the
+model being set up for MPTT is suitable for use with the default
+arguments which specify fields and the tree manager attribute::</p>
+<pre class="codehilite"><code class="language-python">from django.db import models
+
+import mptt
+
+class Genre(models.Model):
+    name \= models.CharField(max\_length\=50, unique\=True)
+    parent \= models.ForeignKey('self', null\=True, blank\=True, related\_name\='children')
+
+mptt.register(Genre, order\_insertion\_by\=\['name'\])
+</code></pre>
+
 <p>Then, after installing the patches, create a tree-friendly admin by subclassing <em>MpttModelAdmin</em> (check out the <a href="http://django-mptt.googlecode.com/svn/trunk/docs/models.txt">docs</a> for more info).</p>
-<p><img alt="Picture 4" src="../../../../../media/static/blog_img/picture-41.png" title="Picture 4" /></p>
 <p><strong>Here's the result</strong> - not bad at all! I just had to install <strong>django-mptt</strong> and the <a href="http://code.google.com/p/django-mptt/issues/detail?id=33#c1">patches</a> needed for using the <a href="http://code.google.com/p/nestedsortables/">jquery nested-sortable library</a> with the admin. I'll be working more on this during the next days so probably I'll be posting more stuff....</p>
 
             </div>

@@ -21,11 +21,7 @@
   {% block bodycontent %}
 
   <div class="page-header">
-    Words
-	
-		<!-- <a style="margin-left: 20px;" href="{% url 'portfolioapp:words-feed' %}">
-			<img height=20 src="{% static 'rss.png' %}" alt="Main image"/ >
-		</a>	 -->
+    Words {% if tag %} - by keyword | <a href="?query=date&type=all" class="">View all</a>{% endif %}
 
   </div>
 
@@ -33,19 +29,19 @@
 
 
 
+
 	<div class="row">
 
-<!-- 
-		<div class="col-sm-2 col-md-3">
+					
+		{% if tag %}
 
-			<p style="color: #e8e5e5; font-size: 300%; ">
-				Filters
-			  </p>
-
-
+		<div class="col-sm-7 col-md-12 text-left">
+			<p style="color: #e8e5e5; font-size: 800%; ">
+			#{{tag}}
+		  	</p>
 		</div>
- -->
-
+			
+		{% else %}
 
 		
 		<div class="col-sm-7 col-md-12 text-left">
@@ -78,7 +74,7 @@
 				Order by:
 				<a class="h1links {% if query == 'date' %}project-active{% endif %}" href="?query=date"> date</a>&nbsp;|
 				
-				<a class="h1links {% if query == 'type' %}project-active{% endif %}" href="?query=type"> type</a>&nbsp;|
+				<a class="h1links {% if query == 'type' %}project-active{% endif %}" href="?query=type&type=papers"> type</a>&nbsp;|
 				
 				<a class="h1links {% if query == 'project' %}project-active{% endif %}" href="?query=project&type=papers"> project</a>
 			</div>
@@ -104,9 +100,14 @@
 			</div>
 			<!-- end of inner row -->
 
-			<hr>
-
 		</div>
+		<!-- end of col-sm-7 -->
+
+
+		{% endif %}
+		<!-- end of if-tag -->
+			
+
 
 	</div>  
 	
@@ -115,50 +116,49 @@
 
 
 
+	
+	{% if query == "date" and ttype == "all" and not tag %}
+		
+	<div class="row margin20Top margin50Bottom ">
 
-
-	<div class="row margin20Top">
-
-			
+		<hr class=" margin50Bottom  ">	
 
 		<div class="col-sm-2 col-md-3">
+
+
 
 			<p style="color: #e8e5e5; font-size: 600%; ">
 				Tags
 			  </p>
 
-			<div class="text-muted" style="display: none;">
-				
-				<a href="{% url 'portfolioapp:words-feed' %}">
-					<img height=20 src="{% static 'rss.png' %}" alt="Main image"/ >
-				</a>	
-			</div>
+
 
 
 		</div>
 
 
-
 		
 		<div class="col-sm-7 col-md-9 text-left">
 
-
-				
-				{% for tag in tags  %}
+		
+			{% for tag in tags  %}
 
 					
-					{% if tag.1 > 1 %}
-					<a href="?tag={{tag.0}}" style="{{tag.1|tagsize}}">{{tag.0}}</a>&nbsp;
-					{% endif %}
-											
-				{% endfor %}
-					
+			{% if tag.1 > 1 %}
+				<a href="?tag={{tag.0}}" style="{{tag.1|tagsize}}">{{tag.0}}</a>&nbsp;
+			{% endif %}
+									
+			{% endfor %}
+			
+
 
 
 
 		</div>
 
 	</div>  
+
+	{% endif %}
 	
 	<!-- end of row -->
 

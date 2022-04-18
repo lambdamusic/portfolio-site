@@ -64,6 +64,7 @@ def words(request):
 		'urlname': "papers",
 		'query': query,
 		'ttype': ttype,
+		'tag': tag,
 		'admin_change_url': admin_change_url,
 		'tags': tags,
 	}
@@ -225,8 +226,8 @@ def get_pubs(query, ttype, tag):
 			return_items.append((x, QSET.exclude(
 				pubtype=type_talks).filter(project__title=x)))
 		return_items.sort()  # sort by alpha
-		return_items.append(('Misc',
-							 QSET.filter(project=None)))
+		# return_items.append(('Misc',
+		# 					 QSET.filter(project=None)))
 		return return_items
 
 
@@ -311,7 +312,11 @@ def get_related_pubs(a_pub):
 
 
 def get_tags():
-	""" retrieves tags info for the cloud viz"""
+	""" retrieves tags info for the cloud viz
+	
+	The filtering is done in the template
+	IE {% if tag.1 > 1 %}
+	"""
 
 	tagcloud_pubs = Tag.objects.values_list('name').distinct().annotate(cc=Count('publications'))
 
