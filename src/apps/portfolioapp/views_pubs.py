@@ -258,7 +258,8 @@ def get_pubs(query, ttype, tag):
 
 		elif tag:
 			# SHOW ANYTHING IN REVIEW
-			ddset = Publication.objects.filter(tags__name=tag)
+			ddset = Publication.objects.exclude(
+				review=True).filter(tags__name=tag)
 
 
 		else:
