@@ -27,7 +27,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Using jquery&#39;s autocomplete in Django&#39;s admin: what about &#39;inlines&#39;? I still haven&#39;t solved this problem entirely, and I&#39;ll tell you why. The issue has been discussed by many people, but probably the first and ...">
+  <meta name="description" content="Three things I do *not* like about Looker Following up on my previous 3 things I like about Looker , here are instead the top three things that I really wish were different ...">
 
 
 
@@ -522,10 +522,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
           <p style="color: #e8e5e5; margin-top: 10px;">
           <span style="font-size: 500%;">
-					  Sep
+					  May
 					</span>
           <span style="font-size: 700%;">
-					  2009
+					  2022
 					</span>
           </p>
 
@@ -537,11 +537,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
           
 
             
-              <a class="text-muted" href="../../../../../words/index.html%3Ftag=admin.html">#admin</a><br />
+              <a class="text-muted" href="../../../../../words/index.html%3Ftag=analytics.html">#analytics</a><br />
             
-              <a class="text-muted" href="../../../../../words/index.html%3Ftag=autocomplete.html">#autocomplete</a><br />
+              <a class="text-muted" href="../../../../../words/index.html%3Ftag=looker.html">#looker</a><br />
             
-              <a class="text-muted" href="../../../../../words/index.html%3Ftag=django.html">#django</a><br />
+              <a class="text-muted" href="../../../../../words/index.html%3Ftag=visualization.html">#visualization</a><br />
             
         
           
@@ -554,11 +554,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <div class="col-xs-12 col-md-7 col-md-pull-3">
 
           <div>
-            <h2 class="blogtitle"><b>Using jquery&#39;s autocomplete in Django&#39;s admin: what about &#39;inlines&#39;?</b></h2>
+            <h2 class="blogtitle"><b>Three things I do *not* like about Looker</b></h2>
           </div>
           
 
-          <!-- <p>Sept. 30, 2009</p> -->
+          <!-- <p>May 27, 2022</p> -->
 
           
 
@@ -567,29 +567,39 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>I still haven't solved this problem entirely, and I'll tell you why. The issue has been discussed by many people, but probably the first and most influential solution is still Jannis Leidel's <a href="http://jannisleidel.com/2008/11/autocomplete-form-widget-foreignkey-model-fields/">'An autocomplete form widget for ForeignKey model fields'</a>.</p>
-<p>Leidel says:</p>
+            <p>Following up on my previous <a href="../../../03/02/Three-things-i-like-about-looker/index.html">3 things I like about Looker</a> , here are instead the top three things that I really wish were different about this piece of software. </p>
 <blockquote>
-<p>[..] my question is, if this could be done on a more abstract level for enhancing relations. when having a foreignkey, you get the browse-icon (lens) right near the input-field. it´d be awesome to search the relations just by typing something into the field … the autocomplete-functionality should then search the related entries on the basis of the defined search-fields.</p>
+<p><a href="https://www.looker.com/">Looker</a> is a business intelligence software and big data analytics platform that helps you explore, analyze and share real-time business analytics easily. Looker is part of the Google Cloud platform.</p>
 </blockquote>
-<p>Here's a nice <strong>screencast</strong> of the the result [UPDATE: unfortunately the screencast is not available anymore - instead an unsettling image of mad nazi soldiers]:</p>
-<p><a href="../../../../../media/static/blog_img/picture-11.png"><img alt="Picture 1" src="../../../../../media/static/blog_img/picture-11.png" title="Picture 1" /></a></p>
-<p><strong>Leidel's solution is not a <em>copy-paste</em> type of thing</strong>, but it's very useful to study his code so to understand what's going on there, and then replicate it in your specific user-scenario. That's exactly what several people have done.</p>
-<p>Nonetheless, <strong>reusing is more agile that doing things from scratch</strong>, isn't it? So, after a bit of research I reached the conclusion that the most interesting and reusable (meaning, plug-and-play) django implementations of jquery's autocomplete are the following two.</p>
-<h3>1. The <a href="http://code.google.com/p/django-command-extensions/wiki/AdminExtensions"><em>admin extensions</em> section of the django-extensions project</a> on google code</h3>
-<ul>
-<li><strong>PROs</strong>: it extends django's raw_input widget, so while you can make use of the autocomplete you can still click on the lens and select the object you want from a new objects-list window (see screencast below). Also, you can enter the id of the object and the autocomplete will fill in straightaway the human-readable form of it (not sure how useful it is, but I like it) </li>
-<li><strong>CONs</strong>: supports only one-2-many relationships, that is, it doesn't work with many2many or inlines5. </li>
-</ul>
-<h3>2. Another project on google code called - surprise - <a href="http://code.google.com/p/django-autocomplete/">django-autocomplete</a> !</h3>
-<ul>
-<li><strong>PROs</strong>: very compact (just one file, no new apps to include). Works with one2many AND many2many </li>
-<li><strong>CONs</strong>: again, no support for inlines...</li>
-</ul>
-<p>After having a go with both of them I decided to use the first one [the admin extensions section of the <a href="http://code.google.com/p/django-command-extensions/wiki/AdminExtensions">django-extensions project</a>], cause I don't need many2many support and I really liked the fact that the standard 'raw-id' behaviour is still available. </p>
-<p>Here's a nice screencast (by the way I just realized that this one has been made by Jannis Leidel too, so I guess it's sort of an evolution of the previous one) [UPDATE #2: also this screencast is not available anymore! what's going on with mr Leidel?]:</p>
-<p><a href="http://www.flickr.com/photos/jannis/3246408003/"><img alt="Picture 3" src="../../../../../media/static/blog_img/picture-31.png" title="Picture 3" /></a></p>
-<p>Conclusion: there's only one BIG problem - <strong>it doesn't work with <a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects">inlines</a></strong> out-of-the-box ! I'm looking at extending it now... will keep you posted!</p>
+<h2>1. Can't make public dashboards</h2>
+<p>I totally wish I was able to create a dashboard and make it available on the web without the need for users to log in. Instead:</p>
+<blockquote>
+<p>To view the dashboard, anyone with the link must have access to the Looker instance on which the dashboard is saved, as well as access to the <a href="https://docs.looker.com/sharing-and-publishing/organizing-spaces#viewing_and_managing_access_for_a_folder">dashboard</a> and <a href="https://docs.looker.com/admin-options/settings/roles#model_sets">models</a> that the tiles are based on.</p>
+</blockquote>
+<p>Dashboard sharing was <a href="https://support.google.com/datastudio/answer/6287179?hl=en#zippy=%2Cin-this-article">so easy with Data Studio</a> that I suppose I got spoiled by that. I'd be happy enough if Looker could provide a 'public sharing' option for dashboards with reduced features or something like that, e.g. inferior data refresh rate, max number of tiles allowed, or limited query complexity. </p>
+<p>In all fairness, Looker permits to <a href="https://docs.looker.com/sharing-and-publishing/publishing-looks-with-public-urls">share publicly a single visualization</a> (aka a 'look'). Not the same thing, but still, that can be handy e.g. in order to include little information snippets on a blog or site. </p>
+<p><img alt="looker-share-look.png" src="../../../../../media/static/blog_img/looker-share-look.png" /></p>
+<h2>2. Built-in visualizations can be sloppy</h2>
+<p>Even taking into account that visualizations are clearly not Looker's main selling point (VS the powerful modeling layer, for example), some of the built-in visualizations can be rather low-quality. Which I found rather surprising, considering the overall sophistication of the overall UI/UX of Looker. </p>
+<p>Example: the built-in <strong>scatter plot</strong> works fine, as long as you plot two dimensions (e.g. article type VS article country), or a dimension and a measure (article country VS article citations). However, what if you want to plot two measures against each other (article count VS article citations)? </p>
+<p><img alt="datastudio-scatter-plot-issue.png" src="../../../../../media/static/blog_img/datastudio-scatter-plot-issue.png" /></p>
+<p>In Data Studio (see above) I was able to do that easily, the result being a handy visualization  displaying the single records that lie at the intersection of such measures. But <a href="https://community.looker.com/dashboards-looks-7/measure-vs-measure-scatterplots-3-28-1296">that's not possible in Looker</a>. </p>
+<p>Another example: the <strong>map visualization</strong>. It generally works ok but if you happen to be plotting a single point (eg a city), the zoom is automatically set at such a high resolution that the map view becomes unusable. </p>
+<p>Why isn't there there's no way to <a href="https://community.looker.com/lookml-5/map-with-a-single-datapoint-not-supported-29731">specify the default zoom level</a> ?  Such an obvious feature, it makes you wonder how they could have forgotten about it.</p>
+<p><img alt="looker-map-focus.png" src="../../../../../media/static/blog_img/looker-map-focus.png" /></p>
+<h2>3. Cross-filtering dashboards is limited</h2>
+<p>You can set  <a href="https://docs.looker.com/dashboards/dashboard-beta-filters#understanding_dashboard_filters">standard dashboard filters</a>  and specify exactly which tiles should be effected by these filters. That's pretty cool. </p>
+<p>The problem arises when cross-filtering is turned on. </p>
+<blockquote>
+<p>With <a href="https://docs.looker.com/dashboards/cross-filtering">cross-filtering</a>, users can click a data point in one dashboard tile to have all dashboard tiles automatically filter on that value. </p>
+</blockquote>
+<p>With cross-filtering, it's an all-or-nothing matter: you <a href="https://community.looker.com/dashboards-looks-7/cross-filtering-some-tiles-not-all-of-them-27772">either filter all the tiles or none</a>. Which I found out to be a game stopper as soon as you have a handful of data-hungry tiles on your page. These tiles will slow everything down and there is no way to selectively disactivate cross-filtering on them. So you end up removing cross-filtering altogether.</p>
+<p>Similarly, if your dashboard uses data from multiple explores (i.e. data sources), then cross-filtering is a no-go by default.</p>
+<p><img alt="looker-filters-2.png" src="../../../../../media/static/blog_img/looker-filters-2.png" /></p>
+<p>This is another little thing that was easy to master in Data Studio, but impossible to do in Looker:  in Data Studio <a href="https://support.google.com/datastudio/answer/9173401?hl=en#zippy=%2Cin-this-article">you can group charts</a> so that cross-filters will trigger only those within the same group. </p>
+<h3>Find out more about Looker</h3>
+<p>Start by checking out the <a href="https://connect.looker.com/">Looker user guide</a>.</p>
+<p><a href="https://www.youtube.com/results?search_query=looker">YouTube</a> has many videos that show Looker in action.</p>
 
             </div>
 
@@ -600,7 +610,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
               <div class="well well-big" >
-                Michele Pasin. <a href="index.html" class="bluelink">Using jquery&#39;s autocomplete in Django&#39;s admin: what about &#39;inlines&#39;?</a>. Blog post on www.michelepasin.org. Published on Sept. 30, 2009.
+                Michele Pasin. <a href="index.html" class="bluelink">Three things I do *not* like about Looker</a>. Blog post on www.michelepasin.org. Published on May 27, 2022.
               </div>
             </div>
 <!-- 
@@ -685,7 +695,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2022/04/20/Three-things-i-do-not-like-about-looker/index.html" class="bluelink " >Three things I do *not* like about Looker</a>
+              <a  class="bluelink paper-active" title="The article on this page">Three things I do *not* like about Looker</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -713,56 +723,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2022/03/02/Three-things-i-like-about-looker/index.html" class="bluelink " >Three things I like about Looker</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-
-
-          </div>
-
-        
-
-
-        </div>
-
-
-
-      </div>
-
-      
-
-      <div class="row row_pubitem">
-
-        <hr>
-
-        <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2021</p>
-        </div>
-
-
-        <div class="col-sm-7 col-md-9">
-
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2021/10/29/django-wget-static-site/index.html" class="bluelink " >A static site generator using Django, Wget and Github Pages</a>
+              <a href="../../../03/02/Three-things-i-like-about-looker/index.html" class="bluelink " >Three things I like about Looker</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -809,358 +770,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
             
-
-
-           
-            <!-- <small class="text-muted">May 2019</small> -->
-
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-warning'>paper</span>&nbsp;
-              <a href="../../../../../papers/2019/05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/index.html" class="bluelink " >Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</a>
-              <!-- <br />
-              <span class="">Beyza Yaman, Michele Pasin, Markus Freudenberg</span> -->
-            </p>
-
-
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-              
-              
-                <span class='conference'> Second biennial conference on Language, Data and Knowledge (LDK 2019),</span>
-              
-              
-                <span class='pubplace'> Leipzig, Germany,</span>
-              
-              
-                <span class='pubdate'> May 2019.</span>
-              
-              
-              
-              
-              
-
-            </p>
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
               <a href="../../../../2019/02/11/zero-hunger-hack-day/index.html" class="bluelink " >Zero Hunger Hack Day: surfacing research about the Sustainable Development Goals program</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-
-
-          </div>
-
-        
-
-
-        </div>
-
-
-
-      </div>
-
-      
-
-      <div class="row row_pubitem">
-
-        <hr>
-
-        <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2018</p>
-        </div>
-
-
-        <div class="col-sm-7 col-md-9">
-
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2018/11/23/exploring-scholarly-publications-via-dbpedia/index.html" class="bluelink " >Exploring scholarly publications using DBPedia concepts: an experiment</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-
-
-          </div>
-
-        
-
-
-        </div>
-
-
-
-      </div>
-
-      
-
-      <div class="row row_pubitem">
-
-        <hr>
-
-        <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2017</p>
-        </div>
-
-
-        <div class="col-sm-7 col-md-9">
-
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-
-
-           
-            <!-- <small class="text-muted">Oct 2017</small> -->
-
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-warning'>paper</span>&nbsp;
-              <a href="../../../../../papers/2017/10/11/using-linked-open-data-to-bootstrap-a-knowledge-base-of-classical-texts/index.html" class="bluelink " >Using Linked Open Data to Bootstrap a Knowledge Base of Classical Texts</a>
-              <!-- <br />
-              <span class="">Matteo Romanello, Michele Pasin</span> -->
-            </p>
-
-
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-              
-              
-                <span class='conference'> WHiSe 2017 - 2nd Workshop on Humanities in the Semantic web (colocated with ISWC17),</span>
-              
-              
-                <span class='pubplace'> Vienna, Austria,</span>
-              
-              
-                <span class='pubdate'> Oct 2017.</span>
-              
-              
-              
-              
-              
-
-            </p>
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/index.html" class="bluelink " >Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-
-
-          </div>
-
-        
-
-
-        </div>
-
-
-
-      </div>
-
-      
-
-      <div class="row row_pubitem">
-
-        <hr>
-
-        <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2014</p>
-        </div>
-
-
-        <div class="col-sm-7 col-md-9">
-
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2014/12/03/dereference-a-doi-using-python/index.html" class="bluelink " >Dereference a DOI using python</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-
-
-          </div>
-
-        
-
-
-        </div>
-
-
-
-      </div>
-
-      
-
-      <div class="row row_pubitem">
-
-        <hr>
-
-        <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2013</p>
-        </div>
-
-
-        <div class="col-sm-7 col-md-9">
-
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2013/04/27/annual-bliss-classification-association-lecture-using-faceted-browsers-in-the-dh/index.html" class="bluelink " >Annual Bliss Classification Association Lecture: using faceted browsers in the DH</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-
-
-          </div>
-
-        
-
-
-        </div>
-
-
-
-      </div>
-
-      
-
-      <div class="row row_pubitem">
-
-        <hr>
-
-        <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2012</p>
-        </div>
-
-
-        <div class="col-sm-7 col-md-9">
-
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/index.html" class="bluelink " >Using Mendeley and Dropbox to sync your pdf library across computers</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1209,35 +821,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2011/12/21/using-impromptu-to-visualize-rss-feeds/index.html" class="bluelink " >Using Impromptu to visualize RSS feeds</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2011/02/07/what-is-the-reaper-time-in-impromptu/index.html" class="bluelink " >What is the reaper time in Impromptu?</a>
+              <a href="../../../../2011/06/29/livecoding-is-like-gardening/index.html" class="bluelink " >Livecoding is like gardening</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1286,63 +870,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2010/11/17/preloading-stuff-in-djangos-interactive-shell/index.html" class="bluelink " >Preloading stuff in django&#39;s interactive shell</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
               <a href="../../../../2010/08/10/learning-resources-about-scheme/index.html" class="bluelink " >Learning resources about Scheme</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2010/07/20/the-power-of-djangos-q-objects/index.html" class="bluelink " >The power of django&#39;s Q objects</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1391,119 +919,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../10/12/autocomplete-in-django-2/index.html" class="bluelink " >Autocomplete in Django #2</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a  class="bluelink paper-active" title="The article on this page">Using jquery&#39;s autocomplete in Django&#39;s admin: what about &#39;inlines&#39;?</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../15/using-django-mptt-lessons-learned/index.html" class="bluelink " >Using Django-MPTT: lessons learned...</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../05/07/soundmanager-2-makes-it-easier-to-play-sounds-using-javascript/index.html" class="bluelink " >SoundManager 2 makes it easier to play sounds using Javascript</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../02/24/using-the-os-x-terminal-application/index.html" class="bluelink " >Using the OS X Terminal Application</a>
+              <a href="../../../../2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/index.html" class="bluelink " >Using jquery&#39;s autocomplete in Django&#39;s admin: what about &#39;inlines&#39;?</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1583,62 +999,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               
 
             </p>
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2007/06/25/what-can-the-analytical-engine-do-ask-charles-babbage/index.html" class="bluelink " >What can the analytical engine do? Ask Charles Babbage..</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2007/04/24/what-lisp-to-choose-really/index.html" class="bluelink " >What Lisp to choose, really?</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
             
 
 
