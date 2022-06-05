@@ -35,14 +35,6 @@ def home(request):
 	"""
 	return redirect('/projects')
 
-	# context = {
-	# 	'top_topics' :	top_topics,
-	# 	'topics_links' :	topics_links,
-	# 	'topics_unique' :	topics_unique,
-	# }
-
-	# return render(request, APP + '/pages/about.html', context)
-
 
 
 def about(request):
@@ -54,12 +46,12 @@ def about(request):
 
 
 
-def bio(request):
+def contact(request):
 	"""
 	bio page
 	"""
 	context = {}
-	return render(request, APP + '/pages/about-bio.html', context)
+	return render(request, APP + '/pages/about-contact.html', context)
 
 
 
