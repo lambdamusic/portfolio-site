@@ -51,7 +51,6 @@ mkdir $DIR_DOCS_BACKUP
 mkdir $DIR_MD_BACKUP
 mkdir $DIR_DB_BACKUP
 
-
 echo -e "\nBACKING UP SITE....RSYNC /DOCS TO /$DIR_DOCS_BACKUP"
 echo "+++++++++++++++++"
 # the legacy /blog static files don't need to be refreshed
@@ -110,7 +109,7 @@ cd ..
 
 echo -e "\nRSYNC TEMP BUILD DIRECTORY INTO FINAL LOCATION:  /$DIR_DOCS"
 echo "+++++++++++++++++"
-rsync -av --delete --exclude '.nojekyll' --exclude 'CNAME' --exclude archived --exclude assets $DIR_BUILD/ $DIR_DOCS/
+rsync -av --delete --checksum --exclude '.nojekyll' --exclude 'CNAME' --exclude archived --exclude assets $DIR_BUILD/ $DIR_DOCS/
 
 
 
@@ -126,3 +125,8 @@ rsync -av --delete --exclude '.nojekyll' --exclude 'CNAME' --exclude archived --
 # -  `--no-host-directories` – Disable generation of host-prefixed directories. By default, invoking Wget with ‘-r http://fly.srk.fer.hr/’ will create a structure of directories beginning with fly.srk.fer.hr/. This option disables such behavior.
 # -  `--wait` – Waiting time between calls. Set reasonable or random waiting times between two downloads to avoid the Connection closed by peer error.
 
+
+
+# RSYNC HOWTO
+# https://download.samba.org/pub/rsync/rsync.html
+# https://devhints.io/rsync
