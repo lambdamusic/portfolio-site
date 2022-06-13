@@ -200,3 +200,31 @@ def tagsize(num):
 	return "font-size: %spx; line-height: %s%%;" % (size, lheight)
 
 
+
+@register.filter(name='tagsize_quotes')
+def tagsize_quotes(num):
+	""" The base size is 14 px (for past events)
+		Here we return a bigger size, with max 24
+		Line-height is 150 - we go up to 180 max. 
+	 """
+	size = 6+num*1
+	# if size > 25:
+	# 	size = 25
+	lheight = 50+num*1
+	if lheight > 190:
+		lheight = 190
+	return "font-size: %spx; line-height: %s%%;" % (size, lheight)
+
+
+from urllib.parse import urlparse
+
+@register.filter(name='url_domain')
+def url_domain(uri):
+	""" July 11, 2014: From a url returns only the domain part """
+	domain = urlparse(uri).netloc
+	return domain
+
+
+
+
+

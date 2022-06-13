@@ -1,0 +1,145 @@
+{% extends "portfolioapp/components/base.html" %}
+{% load extrafilters %}
+{% load static %}
+
+
+
+{% block metadescription %}
+  <meta name="description" content="{{itemtitle}} {{blog_entry|striptags|truncatewords:25}}">
+{% endblock %}
+
+
+{% block pagetitle %}
+  <title>Quotes | Michele Pasin</title>
+{% endblock pagetitle %}
+
+{% block navbar %}
+
+    {% with thispage="quotes" %}
+
+    {% include "portfolioapp/components/default-navbar.html" %}
+
+    {% endwith %}
+
+{% endblock navbar %}
+
+
+
+
+
+{% block bodycontent %}
+
+
+
+
+<div class="page-header">
+  Quote > {{title}}
+
+</div>
+
+
+  <div class="container">
+
+
+      <div class="row " style="margin-bottom:50px; margin-top:30px;">
+
+
+        <div class="col-xs-12 col-md-4 -col-md-offset-1 -col-md-push-7">
+
+
+          <div class="well">
+
+            <h1 class="quote-title">&laquo;{{title}}&raquo;</h1>
+            <hr />
+  
+            <small><b>Saved:</b> 
+                <br /><span class="text-muted" style="font-size: 150%; ">{{created}}</span></small>
+
+            {% if source_url %}
+              <br />
+              <small><b>From:</b> 
+                  <br /><span style="font-size: 150%;"><a class="text-muted" href="{{source_url}}">{{source_url|url_domain}}</a></span></small>
+            {% endif %}
+
+
+
+            {% if tags %}
+
+                <hr>
+
+                {% for tag in tags %}
+                  <a class="text-muted" href="{% url 'portfolioapp:quotes' %}?tag={{tag}}">#{{tag}}</a><br />
+                {% endfor %}
+          
+            {% endif %}
+
+            
+          </div>
+
+
+        </div>
+        
+
+
+
+        <div class="col-xs-12 col-md-8 -col-md-pull-3">
+
+
+          <blockquote class="quote-block">
+
+            <p>{{quote_text|safe}}</p>	
+      
+            {% if source %}
+            <br />
+            <footer class="blockquote-footer">Words taken from <cite title="{{source}}"><a href="{{source_url}}" class="-underline -text-muted" target="_blank">{{source}}</a></cite></footer>
+      
+            {% endif %}
+      
+            </blockquote>
+          
+
+
+        </div>  {% comment %} end of left col {% endcomment %}
+        
+      
+
+
+
+
+
+      </div>
+
+
+
+
+      {% comment %} SECTION WITH SIMILAR PAPERS LIST {% endcomment %}
+
+      <!-- {% include "portfolioapp/components/similar-papers.html" %} -->
+
+
+
+
+
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    {% comment %} second row ends {% endcomment %}
+
+
+
+  </div> <!-- /container -->
+
+
+{% endblock bodycontent %}
+
+
+
+{% block extra_js %}
+
+
+
+
+
+{% endblock extra_js %}

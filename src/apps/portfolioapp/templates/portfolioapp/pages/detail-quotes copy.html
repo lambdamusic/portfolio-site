@@ -1,0 +1,143 @@
+{% extends "portfolioapp/components/base.html" %}
+{% load extrafilters %}
+{% load static %}
+
+
+
+{% block metadescription %}
+  <meta name="description" content="{{itemtitle}} {{blog_entry|striptags|truncatewords:25}}">
+{% endblock %}
+
+
+{% block pagetitle %}
+  <title>Quotes | Michele Pasin</title>
+{% endblock pagetitle %}
+
+{% block navbar %}
+
+    {% with thispage="quotes" %}
+
+    {% include "portfolioapp/components/default-navbar.html" %}
+
+    {% endwith %}
+
+{% endblock navbar %}
+
+
+  {% block bodycontent %}
+
+
+  <div class="container">
+
+
+      <div class="row " style="margin-bottom:50px;">
+
+        
+
+        <div class="col-xs-12 col-md-2 col-md-offset-1 col-md-push-7">
+
+          <p style="color: #e8e5e5; margin-top: 10px;">
+          <span style="font-size: 500%;">
+					  {{created|date:"M"}}
+					</span>
+          <span style="font-size: 700%;">
+					  {{created|date:"Y"}}
+					</span>
+          </p>
+
+
+        
+
+          {% if tags %}
+
+            {% for tag in tags %}
+              <a class="text-muted" href="{% url 'portfolioapp:quotes' %}?tag={{tag}}">#{{tag}}</a><br />
+            {% endfor %}
+        
+          {% endif %}
+
+        </div>
+        
+
+
+
+        <div class="col-xs-12 col-md-7 col-md-pull-3">
+
+          <div>
+            <h2 class="blogtitle"><b>{{title}}</b></h2>
+          </div>
+          {% if admin_change_url %}
+          &nbsp;<a href="{{admin_change_url}}" target="_blank" class="editbtn btn-xs btn-info">edit</a>
+          {% endif %}
+
+          <!-- <p>{{itempubdate}}</p> -->
+
+          
+
+            <div class="-blogentry"> 
+
+              <hr>
+
+              <blockquote>
+
+               {{blog_entry|safe}}
+
+              </blockquote>
+
+              <p>From {{source}} <a href="{{source_url}}" target="_blank">{{source_url}}</a></p>
+
+            </div>
+
+
+
+        </div>  {% comment %} end of left col {% endcomment %}
+        
+      
+
+
+
+
+
+      </div>
+
+
+
+
+      {% comment %} SECTION WITH SIMILAR PAPERS LIST {% endcomment %}
+
+      <!-- {% include "portfolioapp/components/similar-papers.html" %} -->
+
+
+
+
+
+
+
+    <div class="row" style="margin-top: 60px;">
+    &nbsp;
+    </div> 
+    {% comment %} second row ends {% endcomment %}
+
+
+
+  </div> <!-- /container -->
+
+
+{% endblock bodycontent %}
+
+
+
+{% block extra_js %}
+
+
+<script>
+
+  $( document ).ready(function() {
+    $("div.blogentry p:first").addClass( "first-paragraph" );
+});
+
+
+</script>
+
+
+{% endblock extra_js %}
