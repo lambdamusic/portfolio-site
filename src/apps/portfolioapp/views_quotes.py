@@ -38,6 +38,8 @@ def quotes_all(request):
 	query = request.GET.get('query', 'date')
 	tag = request.GET.get('tag', None)
 	format = request.GET.get('format', 'html')
+
+	nodes, links, tags = [], [], []
 	
 	if request.user.is_superuser:
 		admin_change_url = True
@@ -46,12 +48,18 @@ def quotes_all(request):
 
 	templatee = "quotes.html"
 
-	# return_items = get_quotes(query, tag)
-	files_data = read_all_files_data(tag)
+	# get all MD contents from local directory
+	files_data = read_all_files_data()
 	
-	tags = count_tags(files_data)
-	print(f"\nTags total: {len(tags)}")
-	tags = sorted(tags.items()) # turn into a list
+	if tag:
+		# create local graph
+		nodes, links = generate_graph_for_topic(tag, files_data)
+		files_data = [f for f in files_data if tag in f['tags']] #override
+	else:
+		# full word cloud
+		tags = count_tags(files_data)
+		print(f"\nTags total: {len(tags)}")
+		tags = sorted(tags.items()) # turn into a list
 
 	context = {
 		'return_items': files_data,
@@ -60,6 +68,8 @@ def quotes_all(request):
 		'query': query,
 		'tag': tag,
 		'tags': tags,
+		'nodes': nodes,
+		'links': links,
 	}
 	
 	return render(request, APP + '/pages/' + templatee, context)
@@ -106,9 +116,69 @@ def quote_detail(request, slug):
 ##################################
 
 
-def read_all_files_data(tag=""):
+
+def generate_graph_for_topic(seed, files_data):
+	"""gen graph data
+	
+	TODO
+	Desc data structure 
+	
+	"""
+	# return (None, None)
+	
+	first_level = calc_cooccurrent_topics(seed, files_data)
+	
+	#  create data for dataviz
+	SIZE0, SIZE1, SIZE2 = 70, 50, 5
+	green, lightgreen, yellow, lightorange, orange, red = 0, 0.4, 0.5, 0.6, 0.7, 0.8
+	LVL0, LVL1, LVL2 = yellow, green, lightgreen  # templates uses this to determine color
+	# LVL0, LVL1, LVL2 = orange, red, lightorange
+
+	rels = calc_cooccurrent_topics(seed, files_data)
+	# LINKS = [(x.subject1, x.subject2) for x in rels]
+	LINKS = rels
+	SEED = [(seed, SIZE0, LVL0)]
+	NODES = [(x[1], SIZE1, LVL1)
+				for x in rels]  # change with x.score
+	NODES_AND_SEED = NODES + SEED  # add home entity by default, PS score drives color
+
+	# second level
+	for node in NODES:
+		for x in calc_cooccurrent_topics(node[0], files_data)[:3]:
+		# for x in node[0].is_subject_in_relations.all()[:5]:
+			if x[1] not in [n[0] for n in NODES_AND_SEED]:
+				NODES_AND_SEED += [(x[1], SIZE2, LVL2)]
+			LINKS += [(x[0], x[1])]
+	if False:
+		for node in NODES:
+			for x in node[0].is_subject_in_relations.all()[:5]:
+				if x.subject2.id not in [n[0].id for n in NODES_AND_SEED]:
+					NODES_AND_SEED += [(x.subject2, SIZE2, LVL2)]
+				LINKS += [(x.subject1, x.subject2)]
+
+	return (NODES_AND_SEED, LINKS)
+	
+
+def calc_cooccurrent_topics(tag, files_data):
+	"""get all topics that co-occur with a given topic"""
+	rels = []
+	for f in files_data:
+		if tag in f['tags']:
+			for coocctag in f['tags']:
+				if tag != coocctag and (tag, coocctag) not in rels:
+					rels += [(tag, coocctag)]
+	print(rels)
+	return rels
+
+
+
+
+def read_all_files_data():
 	"""
 	Reads MD files
+
+	If tag is provided, return only matching files.
+
 	Returns a list of dicts with the following keys:
 		title
 		filename
@@ -132,14 +202,18 @@ def read_all_files_data(tag=""):
 			quote['tags'] = TAGS
 			quote['review'] = REVIEW
 
-			if tag and tag in TAGS:
-				counter3 +=1
-				files_data += [quote]
-			elif not tag:
-				counter3 +=1
-				files_data += [quote]
-			else:
-				pass
+			counter3 +=1
+			files_data += [quote]
+
+
+			# if tag and tag in TAGS:
+			# 	counter3 +=1
+			# 	files_data += [quote]
+			# elif not tag:
+			# 	counter3 +=1
+			# 	files_data += [quote]
+			# else:
+			# 	pass
 
 	# finally
 

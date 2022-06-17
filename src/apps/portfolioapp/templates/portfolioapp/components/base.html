@@ -10,7 +10,14 @@
     {% include 'portfolioapp/components/ga.html' %}
 
 
+    
+    {% comment %}
+    2022-06-15: try to use a local version TODO verify
     <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
+    {% endcomment %}
+
+    <script src="{% static 'libs/d3-v3/d3.v3.min.js' %}"></script>
+
 
 
     <meta charset="utf-8">
@@ -301,7 +308,7 @@
 
     .quote-block {
       font-family: sans-serif, Helvetica;
-      font-size: 30px;
+      font-size: 25px;
       border-left: 5px solid rgb(189, 30, 175);
       background: #f9f9f9;
       margin: 0px 30px 40px 10px;
@@ -310,7 +317,7 @@
 
     
     .quote-block p::first-letter {
-      font-size: 200%;
+      font-size: 150%;
       color: rgb(189, 30, 175);
     }
 
