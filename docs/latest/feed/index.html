@@ -1,0 +1,242 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The news feed of www.michelepasin.org</title><link>http://www.michelepasin.org/words/</link><description>Latest articles, blogs posts and news</description><atom:link href="http://127.0.0.1:8000/latest/feed/" rel="self"></atom:link><language>en-us</language><lastBuildDate>Sun, 29 May 2022 00:00:00 +0000</lastBuildDate><item><title>Exploring Bento noise box</title><link>https://www.michelepasin.org/blog/2022/05/29/bento-noise-box/</link><description>
+ Improvised acid loops using [Extempore](https://extemporelang.github.io/) + [Bentō](https://www.giorgiosancristoforo.net/).
+
+&gt; Bentō is a standalone noise box with tape recorder, inspired by the japanoise scene. Thanks to its unstable and very unique oscillators, Bentō can create an enormous number of sounds and impredictable noises that are not possible with traditional subctractive synthesizers.
+
+See the [PDF user manual](https://www.giorgiosancristoforo.net/downloads/Bento_User_Manual.pdf)
+
+![bento-screenshot.jpg](/media/static/blog_img/bento-screenshot.jpg)
+
+## Take 1
+
+Just trying to control it using MIDI-CC from Extempore. 
+
+I previously manually created MIDI mappings and save them to a file I can reload each time.
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/P6Av_eLy_xw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+## Take 2
+
+After  ...</description><pubDate>Sun, 29 May 2022 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2022/05/29/bento-noise-box/</guid></item><item><title>Three things I do *not* like about Looker</title><link>https://www.michelepasin.org/blog/2022/04/20/Three-things-i-do-not-like-about-looker/</link><description>
+
+Following up on my previous [3 things I like about Looker](/blog/2022/03/02/Three-things-i-like-about-looker/) , here are instead the top three things that I really wish were different about this piece of software. 
+
+&gt; [Looker](https://www.looker.com/) is a business intelligence software and big data analytics platform that helps you explore, analyze and share real-time business analytics easily. Looker is part of the Google Cloud platform.
+
+
+## 1. Can't make public dashboards 
+
+I totally wish I was able to create a dashboard and make it available on the web without the need for users to log in. Instead:
+
+&gt; To view the dashboard, anyone with the link must have access to the Looker instance on which the dashboard is saved, as well as access to the [dashboard](https://docs.looker.com/sharing-and-publishing/organizing-spaces#viewing_and_managing_access_for_a_folder) and [models](https://docs.looker.com/admin-options/settings/roles#model_sets) that the tiles are based on.
+
+Dashboard shar ...</description><pubDate>Wed, 20 Apr 2022 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2022/04/20/Three-things-i-do-not-like-about-looker/</guid></item><item><title>Composition: 'Study for Cello and Double-bass'</title><link>https://www.michelepasin.org/blog/2022/04/07/cellos-livecoding/</link><description>
+
+A new livecoding composition using [Extempore](https://extemporelang.github.io/) and Ableton Live: 'Study for Cello and Double-bass'. 
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/VR6lMsECEQc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+## Creating chords using a cosine function
+
+The main technique used in this piece is to generate chord/harmonic variations using a cosine functions. 
+
+```scheme
+(at 8 0 
+  (set! *melody* 
+    (:mkchord (:mkint 48 (cosrfloor 7 7 1/30) 'M)   
+    'M (cosrfloor 7 3 1/5))
+  )
+```
+
+Every 8 beats the root chord (used by all instruments in order to generate musical patterns) gets updated. Two cosine functions are used to simultaneously: 
+
+1. Determine the *amplitude* of the interval (major or minor, starting from C3) that generates the root note of the chord.
+2. Determine the number of notes in the chord. 
+
+The  ...</description><pubDate>Thu, 07 Apr 2022 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2022/04/07/cellos-livecoding/</guid></item><item><title>Three things I like about Looker</title><link>https://www.michelepasin.org/blog/2022/03/02/Three-things-i-like-about-looker/</link><description>
+
+After nearly 6 months of using Looker for building dashboards and visual analytics, here are the top 3 things I like about this platform. 
+
+&gt; [Looker](https://www.looker.com/) is a business intelligence software and big data analytics platform that helps you explore, analyze and share real-time business analytics easily. Looker is part of the Google Cloud platform.
+
+
+## 1. LookML 
+
+&gt; [LookML](https://docs.looker.com/data-modeling/learning-lookml) is a language for describing dimensions, aggregates, calculations, and data relationships in a SQL database. Looker uses a model written in LookML to construct SQL queries against a particular database.
+
+LookML provides a dedicated modeling layer for your dashboard applications.  Think of LookML objects as building blocks, which can be extended and combined together in different ways without repeating code.
+
+Compared to simply writing SQL queries (for example) this will seem an extra burder at first, but pretty soon it'll become obvious that ...</description><pubDate>Wed, 02 Mar 2022 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2022/03/02/Three-things-i-like-about-looker/</guid></item><item><title>A static site generator using Django, Wget and Github Pages</title><link>https://www.michelepasin.org/blog/2021/10/29/django-wget-static-site/</link><description>
+If you're a Django developer and want to publish a website without the hassle (and costs) of deploying a web app, then this post may give you some useful tips. 
+
+I found myself in this situation several times, so have created a time-saving workflow/set of tools for extracting a dynamic [Django](https://www.djangoproject.com/) website into a [static](https://en.wikipedia.org/wiki/Static_web_page) website (= a website that does not require a web application, just plain simple HTML pages). 
+
+&gt; Disclaimer: this method is not suited for all types of websites. EG if your Django application is updated frequently (e.g. more than once a day), or if it has keyword search (or faceted search) pages that inherently rely on dynamical queries to the Django back-end based on user input, then a static site won't cut it for you, most likely. 
+
+In a nutshell - this is how it works:
+
+1. On my computer, I create / edit the website contents using [Markdown](https://en.wikipedia.org/wiki/Markdown) as much a ...</description><pubDate>Fri, 05 Nov 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/10/29/django-wget-static-site/</guid></item><item><title>Terminal script: getting the time in different world time zones</title><link>https://www.michelepasin.org/blog/2021/10/12/world-date-terminal/</link><description>
+A little Bash script to show information about world time zones. Because I love my colleagues abroad, but I constantly struggle to remember how many hours ahead (or behind?) they are.
+
+I am using the script on a Mac, but it should work on other systems too with little or no changes. Basically, it scans the `zoneinfo` database ([more info](https://en.wikipedia.org/wiki/Tz_database)) that most likely already exists on your computer, in order to return the rows matching an input string.
+
+For example - what's the time in Australia right now?
+
+```bash
+$ wdate australia
+/Australia/Melbourne               Tue 2021-10-12 20:47:48
+/Australia/Queensland              Tue 2021-10-12 19:47:48
+/Australia/North                   Tue 2021-10-12 19:17:48
+/Australia/Lord_Howe               Tue 2021-10-12 20:47:48
+/Australia/Adelaide                Tue 2021-10-12 20:17:48
+/Australia/Yancowinna              Tue 2021-10-12 20:17:48
+/Australia/Victoria                Tue 2021-10-12 20:47:48
+/Australia/Canb ...</description><pubDate>Tue, 07 Sep 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/10/12/world-date-terminal/</guid></item><item><title>Recipe: Making a livecoding screencast with QuickTime and RecordIt</title><link>https://www.michelepasin.org/blog/2021/08/30/recordit-plugin/</link><description>
+This post shows how to make a livecoding screencast free OSX technologies. 
+
+Capturing system audio and screen-recording your live coding performance can be done in multiple ways. Here's a method based on Apple's [Quicktime](https://en.wikipedia.org/wiki/QuickTime) and an audio plugin that is part of a third-party software, [Record It](https://www.buildtoconnect.com/en/products/recordit).
+
+&gt; Note: both of these software components are free.  The [Record It Audio Device](https://www.buildtoconnect.com/downloads/RecordItAudioDevice.pkg) which is a free extension that enables you to capture system sounds on your Mac. It acts as a virtual audio input device and sends the sound from music, videos, and system alerts that you would normally hear through your speakers to the input cha
+
+
+## Recording a screencast: steps 
+
+1.  Get the [Record It audio plugin](https://www.buildtoconnect.com/help/how-to-record-system-audio) PS this is a free audio extension, even if it is part of a paid-for softw ...</description><pubDate>Mon, 30 Aug 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/08/30/recordit-plugin/</guid></item><item><title>Composition: 'Rhythmic Cycles' with Extempore</title><link>https://www.michelepasin.org/blog/2021/04/10/livecoding-rhythmic-cycles/</link><description>
+A new livecoding composition using [Extempore](https://extemporelang.github.io/) and Ableton Live: 'Rhythmic Cycles'. 
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/m3v8gRzROkU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+## Using 'map' to trigger repeated notes
+
+The gist of this experiment rotates around the `map` function. 
+
+A seed list of notes, and one of offsets , is used to generate musical `play` sequences:
+
+```scheme
+(map (lambda (x y z)
+	  (onbeat x 0 (play y z (* dur .9) 1))
+		)
+	times
+	notes
+	volumes
+	)
+```
+
+This technique generates a texture of sounds with a touch of randomness. 
+
+If the pattern above gets repeated, changing the input parameters periodically leads to the generation of very interesting musical patterns. 
+
+For example:
+
+- times can be shifted up or down by 1/4 beat or so
+- notes can be transposed using different  ...</description><pubDate>Sat, 10 Apr 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/04/10/livecoding-rhythmic-cycles/</guid></item><item><title>Livecoding visual patterns with Hydra</title><link>https://www.michelepasin.org/blog/2021/04/02/Hydra/</link><description>
+Had quite a lot of fun livecoding visual patterns with [Hydra](https://hydra.ojack.xyz/?sketch_id=eerie_ear_0)
+
+&gt; Hydra is live code-able video synth and coding environment that runs directly in the browser. It is free and open-source and made for beginners and experts alike.
+
+![hydra-shot.png](/media/static/blog_img/hydra-shot.png)
+
+
+## Reusable snippets 
+
+One of the coolest aspects of Hydra is that is is self-contained and browser based. 
+
+A program can be easily shared, either as code or via a URL. Eg try [this link](https://hydra.ojack.xyz/?sketch_id=uX3CNPimomz79Tib) - which renders the following snippet:
+
+```
+// ee_5 . FUGITIVE GEOMETRY VHS . audioreactive shapes and gradients
+// e_e // @eerie_ear
+// 
+s = () =&gt; shape(7.284).scrollX([-0.5, -0.2, 0.3, -0.1, -0.062].smooth(0.139).fast(0.049)).scrollY([0.25, -0.2, 0.3, -0.095, 0.2].smooth(0.453).fast(0.15));
+// 
+solid().add(gradient(3, 0.05).rotate(0.05, -0.2).posterize(0.56).contrast(0.016), [1, 0.541, 1, 0.5, 0.181, 0.6].smooth(0. ...</description><pubDate>Fri, 02 Apr 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/04/02/Hydra/</guid></item><item><title>xtempore functions explorer updated to latest release (v0.8.9</title><link>https://www.michelepasin.org/blog/2021/02/01/extempore-functions-explorer-updated-to-latest-release-v0-8-7/</link><description>
+
+The [Extempore functions explorer](https://extempore.michelepasin.org/) has been updated with the latest version of the Extempore programming language: [v0.8.9](https://github.com/digego/extempore/tree/v0.8.9)
+
+## About the explorer
+
+The Extempore functions explorer is a little Django webapp I built [a while ago](http://www.michelepasin.org/projects/impromptudocs/) in order to make it easier to browse (and learn about) the Extempore programming language. 
+
+&gt; Try it out at: [https://extempore.michelepasin.org/](https://extempore.michelepasin.org/)
+
+The [source code](https://github.com/lambdamusic/xtm-docs) is available on Github.
+
+[![demo](/media/static/blog_img/xtm-explorer.gif)](/media/static/blog_img/xtm-explorer.gif)
+
+ ...</description><pubDate>Mon, 01 Feb 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/02/01/extempore-functions-explorer-updated-to-latest-release-v0-8-7/</guid></item><item><title>'The Kryos Noise' is available on Spotify</title><link>https://www.michelepasin.org/blog/2021/01/22/the-kryos-noise-is-available-on-spotify/</link><description>
+
+The [prog rock](https://en.wikipedia.org/wiki/Progressive_rock) album I've worked on [years ago](http://www.michelepasin.org/sounds/?k=kryos) with the band Kryos Project is now available also on [Spotify](https://open.spotify.com/album/1uCLwvX24IFPp9g9SVoHqh) (and [Amazon](https://www.amazon.com/gp/product/B08SKXH1BW/?tag=distrokid06-20) too).
+
+Why? Well it just feels good to be able to open up Spotify and _listen to your own music._ This is stuff we've made almost 20 years ago (!) but it still feels kinda relevant. Fresh. Well.. you know what I mean.
+
+&gt; Check out [The Kryos' Noise on Spotify](https://open.spotify.com/album/1uCLwvX24IFPp9g9SVoHqh).
+
+[![](/media/static/blog_img/Kryos-Noise-Cover.jpg)](https://distrokid.com/hyperfollow/kryosproject/the-kryos-noise)
+
+
+### Cool. How do I get my band too on Spotify? 
+
+It was surprisingly easy actually, if you don't mind spending a little money (around 20 dollars per year).
+
+I used [Distrokid](https://distrokid.com/) to handle the distribu ...</description><pubDate>Fri, 22 Jan 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/01/22/the-kryos-noise-is-available-on-spotify/</guid></item><item><title>'The Musical Code' on GitHub</title><link>https://www.michelepasin.org/blog/2020/11/23/a-new-livecoding-project-the-musical-code/</link><description>
+I've started a new *livecoding* project on Github called [The Musical Code](https://github.com/lambdamusic/The-Musical-Code). Plan is to add experimental musical code/algorithms created via the amazing [Extempore](https://extemporelang.github.io/) programming language (as well as it precursor [Impromptu](http://impromptu.moso.com.au/)).
+
+## Motivation
+
+I have accumulated *so much* musical-code ideas over the years... so I've finally resolved to clean it up, reorganise it and publish it somewhere. 
+
+[Github](https://github.com/lambdamusic/The-Musical-Code) seemed the best option, these days.
+
+[![](/media/static/blog_img/TheMusicalCodeGithub-1024x757.jpg)](https://github.com/lambdamusic/The-Musical-Code)
+
+## Code + Video 
+
+I soon realised that just **the code by itself won't do it**. Especially considering that the environments I used to 'run it' (and to make it go 'beep') could rapidly disappear: become obsolete, or get out of fashion!
+
+Hence there's a [YouTube channel](https://www.you ...</description><pubDate>Mon, 23 Nov 2020 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2020/11/23/a-new-livecoding-project-the-musical-code/</guid></item><item><title>Livecoding composition: 'Piano Scales' (Extempore + Ableton Live)</title><link>https://www.michelepasin.org/blog/2020/11/02/livecoding-piano-scales/</link><description>
+
+In general, [algorithmic compositions](https://en.wikipedia.org/wiki/Algorithmic_composition) using piano instruments always strike me for their captivating simplicity. So here's a new little experiment, titled ['Piano Scales](https://www.youtube.com/watch?v=Qix3tbpb9V4)'.
+
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/Qix3tbpb9V4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
+
+
+## Repeated scales with a touch of randomness
+
+The gist of this musical algorithm is amazingly simple. 
+
+Pick a scale. You play it using a variable time-interval between its notes, which is determined by a cosine function ([`cosr`](https://extempore.michelepasin.org/1030.html)). The variable interval gives the final result a touch of suspense and makes it less computer-like. 
+
+```scheme
+(define xsc 
+	(lambda (beat vel scale) 
+		(let ((dur (cosratio 4 2 1/128)))
+```
+
+A ...</description><pubDate>Mon, 02 Nov 2020 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2020/11/02/livecoding-piano-scales/</guid></item><item><title>More Jupyter notebooks: pyvis and networkx</title><link>https://www.michelepasin.org/blog/2020/08/06/more-jupyter-notebooks-pyvis-and-networkx/</link><description>
+&gt; Lately I've been spending more time creating Jupyter notebooks that demonstrate how to use the [Dimensions API for research analytics.](https://api-lab.dimensions.ai/) In this post I'll talk a little bit about two cool Python libraries I've recenlty discovered for working with **graph** data: **pyvis** and **networkx**.
+
+### pyvis and networkx
+
+The [networkx](https://networkx.github.io/documentation/stable/reference/introduction.html) and [pyvis](https://pyvis.readthedocs.io/en/latest/tutorial.html) libraries are used for _generating_ and _visualizing_ network data, respectively.
+
+**Pyvis** is fundamentally a python wrapper around the popular [Javascript visJS library.](https://visjs.github.io/vis-network/examples/) 
+**Networkx**, instead, of is a pretty sophisticated package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.
+
+
+```python
+&gt;&gt;&gt; from pyvis.network import Network
+&gt;&gt;&gt; import networkx as nx
+# generate generic network gr ...</description><pubDate>Thu, 06 Aug 2020 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2020/08/06/more-jupyter-notebooks-pyvis-and-networkx/</guid></item><item><title>Getting to grips with Google Colab</title><link>https://www.michelepasin.org/blog/2020/01/30/getting-to-grips-with-google-colab/</link><description>
+I've been using Google Colab on a regular basis during the last few months, as I was curious to see whether I could make the switch to it (from a more traditional Jupyter/Jupyterlab environment). As it turns out, Colab is pretty amazing in many respects but there are still situations where a local Jupyter notebook is my first choice. Keep reading to discover why!
+
+### Google Colab VS Jupyter
+
+[Google Colaboratory](https://colab.research.google.com/) (also known as Colab, see the [faqs](https://research.google.com/colaboratory/faq.html)) is a free [Jupyter](https://en.wikipedia.org/wiki/Project_Jupyter) notebook environment that runs in the cloud and stores its notebooks on Google Drive.
+
+Colab has become extremely popular with data scientists and in particular people doing some kind of **machine learning tasks**. Party, I guess, that's because Colab has deep integration with Google's ML tools (eg [Tensorflow](https://en.wikipedia.org/wiki/TensorFlow)) and in fact Colab actually permit ...</description><pubDate>Thu, 30 Jan 2020 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2020/01/30/getting-to-grips-with-google-colab/</guid></item><item><title>Calculating Industry Collaborations via GRID</title><link>https://www.michelepasin.org/blog/2020/01/08/calculating-industry-collaborations-via-grid/</link><description>
+A new [tutorial](https://api-lab.dimensions.ai/cookbooks/8-organizations/2-Industry-Collaboration.html) demostrating how to extract and visualize data about _industry collaborations_, by combining the Dimensions data with GRID.
+
+Dimensions uses [GRID](https://grid.ac/) (the Global Research Identifiers Database) to unambiguously identify research organizations. GRID includes a wealth of data, for example whether an organization has type 'Education' or 'Industry'. So it's pretty easy to take advantage of these metadata in order to highlight collaboration patterns between a selected university and other organizations from the industry sector.
+
+The [Identifying the Industry Collaborators of an Academic Institution](https://api-lab.dimensions.ai/cookbooks/8-organizations/2-Industry-Collaboration.html) notebook can be adapted so to focus on any research organization: many of us are linked to some university, hence it's quite interesting to explore what are the non-academic organizations rel ...</description><pubDate>Wed, 08 Jan 2020 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2020/01/08/calculating-industry-collaborations-via-grid/</guid></item><item><title>Analysing Grants and Patents using the Dimensions API: a Hands On Workshop</title><link>https://www.michelepasin.org/papers/2019/11/15/niaid-analysing-grants-and-patents-using-the-dimensions-api-a-hands-on-workshop/</link><description></description><pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/papers/2019/11/15/niaid-analysing-grants-and-patents-using-the-dimensions-api-a-hands-on-workshop/</guid></item><item><title>Analysing Grants and Patents using the Dimensions API: a Hands On Workshop</title><link>https://www.michelepasin.org/papers/2019/11/15/onr-analysing-grants-and-patents-using-the-dimensions-api-a-hands-on-workshop/</link><description></description><pubDate>Fri, 15 Nov 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/papers/2019/11/15/onr-analysing-grants-and-patents-using-the-dimensions-api-a-hands-on-workshop/</guid></item><item><title>Analysing Grants and Patents using the Dimensions API: a Hands On Workshop</title><link>https://www.michelepasin.org/papers/2019/11/14/nsf-analysing-grants-and-patents-using-the-dimensions-api-a-hands-on-workshop/</link><description></description><pubDate>Thu, 14 Nov 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/papers/2019/11/14/nsf-analysing-grants-and-patents-using-the-dimensions-api-a-hands-on-workshop/</guid></item><item><title>The Dimensions Analytics API: extracting journal researchers metrics</title><link>https://www.michelepasin.org/papers/2019/10/04/the-dimensions-analytics-api-extracting-journal-researchers-metrics/</link><description></description><pubDate>Fri, 04 Oct 2019 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/papers/2019/10/04/the-dimensions-analytics-api-extracting-journal-researchers-metrics/</guid></item></channel></rss>

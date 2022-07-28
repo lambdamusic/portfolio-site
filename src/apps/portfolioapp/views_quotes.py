@@ -25,7 +25,7 @@ from researchapp.topics import *
 
 APP = "portfolioapp"
 
-QUOTES_SOURCE_DIR = "/Users/michele.pasin/Dropbox/Apps/NVALT/003/"
+QUOTES_SOURCE_DIR = "/Users/michele.pasin/Dropbox/Apps/NVALT/003-quotes/"
 # QUOTES_SOURCE_DIR = "/Users/michele.pasin/Desktop/003/"
 
 import itertools
@@ -170,7 +170,7 @@ def calc_cooccurrent_topics(tag, files_data):
 			for coocctag in f['tags']:
 				if tag != coocctag and (tag, coocctag) not in rels:
 					rels += [(tag, coocctag)]
-	print(rels)
+	# print(rels)
 	return rels
 
 

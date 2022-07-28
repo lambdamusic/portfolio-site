@@ -21,7 +21,7 @@ class LatestPubsFeed(Feed):
 
 	def item_description(self, item):
 		if "blog" in item.pubtype.name.lower():
-			TITLE, DATE, REVIEW, PURE_MARKDOWN = parse_markdown(BLOGS_ROOT + item.md_file)
+			TITLE, DATE, REVIEW, CATS, TAGS, PURE_MARKDOWN = parse_markdown(BLOGS_ROOT + item.md_file)
 			return str(PURE_MARKDOWN)[:1000] + " ..."
 		else:
 			return str(item.abstract)
