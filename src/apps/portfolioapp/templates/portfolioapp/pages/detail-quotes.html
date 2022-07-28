@@ -59,9 +59,10 @@
           
           <p style="color: #cbcbcb; margin-top: 40px;">
             
-            {% if source %}<br />
-            A quote from <cite title="{{source}}"><a href="{{source_url}}" class="-underline -text-muted" target="_blank">{{source}}</a></cite>
-            {% endif %}
+            <br />
+            A quote from <cite title="{{source}}">
+              {% if source_url %}<a href="{{source_url}}" class="-underline -text-muted" target="_blank">
+                {% else %}<a class="-underline -text-muted">{% endif %}{{source}}</a></cite>
 
             <br />Saved on {{created}}.
           </p>
@@ -91,12 +92,12 @@
           <blockquote class="quote-block">
 
             <p>{{quote_text|safe}}</p>	
-      
-            {% if source %}
+
             <br />
-            <footer class="blockquote-footer">Words taken from <cite title="{{source}}"><a href="{{source_url}}" class="-underline -text-muted" target="_blank">{{source}}</a></cite></footer>
+            <footer class="blockquote-footer">Words taken from <cite title="{{source}}">
+              {% if source_url %}<a href="{{source_url}}" class="-underline -text-muted" target="_blank">
+                {% else %}<a class="-underline -text-muted">{% endif %}{{source}}</a></cite></footer>
       
-            {% endif %}
       
             </blockquote>
           
