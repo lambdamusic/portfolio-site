@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-
+SECONDS=0
 
 echo "================="
 echo "PREREQUISITE"
@@ -36,3 +36,9 @@ git push
 
 echo -e "\rDone"
 echo "================="
+
+
+# https://stackoverflow.com/questions/8903239/how-to-calculate-time-elapsed-in-bash-script
+echo "+++++++++++++++++ DUMP AND PUSH COMPLETED"
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."

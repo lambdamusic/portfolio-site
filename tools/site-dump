@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+
+SECONDS=0
+
 echo "================="
 echo "PREREQUISITE"
 echo "Ensure site is running on 127.0.0.1:8000..."
@@ -93,14 +96,16 @@ echo -e "\nCLEAN UP TEMP BUILD DIR.."
 echo "+++++++++++++++++"
 rm -rf $DIR_BUILD/*
 
-# WGET OPTIONS:
-# opt: --mirror: Makes (among other things) the download recursive.
-# opt: --convert-links: convert all the links (also to stuff like CSS stylesheets) to relative, so it will be suitable for offline viewing.
-# opt: --adjust-extension: Adds suitable extensions to filenames (`html` or `css`) depending on their content-type.
-# opt: --page-requisites: Download things like CSS style-sheets and images required to properly display the page offline.
-# opt: --no-parent: When recursing do not ascend to the parent directory. It useful for restricting the download to only a portion of the site.
-# opt: --no-host-directories Disable generation of host-prefixed directories. By default, invoking Wget with ‘-r http://fly.srk.fer.hr/’ will create a structure of directories beginning with fly.srk.fer.hr/. This option disables such behavior.
-# opt: --wait: Waiting time between calls. Set reasonable or random waiting times between two downloads to avoid the Connection closed by peer error.
+#
+# WGET
+# https://www.gnu.org/software/wget/manual/wget.html
+# opt: -m, --mirror: Makes (among other things) the download recursive.
+# opt: -k, --convert-links: convert all the links (also to stuff like CSS stylesheets) to relative, so it will be suitable for offline viewing.
+# opt: -E, --adjust-extension: Adds suitable extensions to filenames (`html` or `css`) depending on their content-type.
+# opt: -p, --page-requisites: Download things like CSS style-sheets and images required to properly display the page offline.
+# opt: -np, --no-parent: When recursing do not ascend to the parent directory. It useful for restricting the download to only a portion of the site.
+# opt: -nH, --no-host-directories Disable generation of host-prefixed directories. By default, invoking Wget with ‘-r http://fly.srk.fer.hr/’ will create a structure of directories beginning with fly.srk.fer.hr/. This option disables such behavior.
+# opt: -w, --wait: Waiting time between calls. Set reasonable or random waiting times between two downloads to avoid the Connection closed by peer error.
 #
 echo -e "\nWGET SITE INTO TEMP BUILD DIRECTORY.." 
 echo "+++++++++++++++++"
@@ -114,6 +119,8 @@ cd ..
 
 #
 # RSync HTML site to docs folder
+# https://download.samba.org/pub/rsync/rsync.html
+# https://devhints.io/rsync
 # opt: -av: recursive and verbose
 # opt: --delete: delete files in destination that are not in source
 # opt: --checksum: checksum files to see if they have changed (instead of comparing file sizes / modification times)
@@ -126,10 +133,8 @@ rsync -av --delete --checksum --exclude '.nojekyll' --exclude 'CNAME' --exclude 
 
 
 
-# WGET HOWTO
-# https://www.gnu.org/software/wget/manual/wget.html
 
-
-# RSYNC HOWTO
-# https://download.samba.org/pub/rsync/rsync.html
-# https://devhints.io/rsync
+# https://stackoverflow.com/questions/8903239/how-to-calculate-time-elapsed-in-bash-script
+echo "+++++++++++++++++ SITE DUMP COMPLETED"
+duration=$SECONDS
+echo "$(($duration / 60)) minutes and $(($duration % 60)) seconds elapsed."
