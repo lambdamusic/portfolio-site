@@ -129,22 +129,25 @@ def generate_graph_for_topic(seed, files_data):
 	first_level = calc_cooccurrent_topics(seed, files_data)
 	
 	#  create data for dataviz
-	SIZE0, SIZE1, SIZE2 = 70, 50, 5
+	SIZE0, SIZE1, SIZE2 = 140, 70, 5
 	green, lightgreen, yellow, lightorange, orange, red = 0, 0.4, 0.5, 0.6, 0.7, 0.8
 	LVL0, LVL1, LVL2 = yellow, green, lightgreen  # templates uses this to determine color
 	# LVL0, LVL1, LVL2 = orange, red, lightorange
 
 	rels = calc_cooccurrent_topics(seed, files_data)
 	# LINKS = [(x.subject1, x.subject2) for x in rels]
-	LINKS = rels
+
+	LINKS_THRESHOLD_FIRST_LEVEL = 5
+	LINKS_THRESHOLD_SECOND_LEVEL = 4
+
+	LINKS = rels[:LINKS_THRESHOLD_FIRST_LEVEL]
 	SEED = [(seed, SIZE0, LVL0)]
-	NODES = [(x[1], SIZE1, LVL1)
-				for x in rels]  # change with x.score
+	NODES = [(x[1], SIZE1, LVL1) for x in LINKS]  # change with x.score
 	NODES_AND_SEED = NODES + SEED  # add home entity by default, PS score drives color
 
 	# second level
 	for node in NODES:
-		for x in calc_cooccurrent_topics(node[0], files_data)[:3]:
+		for x in calc_cooccurrent_topics(node[0], files_data)[:LINKS_THRESHOLD_SECOND_LEVEL]:
 		# for x in node[0].is_subject_in_relations.all()[:5]:
 			if x[1] not in [n[0] for n in NODES_AND_SEED]:
 				NODES_AND_SEED += [(x[1], SIZE2, LVL2)]
@@ -200,10 +203,12 @@ def read_all_files_data():
 			quote['filename'] = filename
 			quote['title'] = TITLE
 			quote['tags'] = TAGS
+			quote['source'] = SOURCE
 			quote['review'] = REVIEW
 
-			counter3 +=1
-			files_data += [quote]
+			if SOURCE:
+				counter3 +=1
+				files_data += [quote]
 
 
 			# if tag and tag in TAGS:

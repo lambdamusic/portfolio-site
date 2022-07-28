@@ -18,7 +18,7 @@
 {% endblock navbar %}
 
 
-  {% block bodycontent %}
+{% block bodycontent %}
 
   <div class="page-header">
     Quotes {% if tag %} - by keyword | <a href="?query=date&type=all" class="">View all</a>{% endif %}
@@ -29,117 +29,67 @@
 
 
 
+	
+	{% if tag %}
 
-	<div class="row">
+		<div class="row">
 
-					
-		{% if tag %}
+			<div class="col-sm-7 col-md-12 text-left">
+				<p style="color: #e8e5e5; font-size: 800%; ">
+				#{{tag}}
+				</p>
+			</div>
 
-		<div class="col-sm-7 col-md-12 text-left">
-			<p style="color: #e8e5e5; font-size: 800%; ">
-			#{{tag}}
-		  	</p>
 		</div>
 
-		{% comment %} **** D3 CHART ***** {% endcomment %}
+		<div class="row" style="margin-top: 30px;">
 
-		{% if 1 %}
-	  
-		  <div class="col-md-12" style="margin-bottom: 30px;">
-	  
-			<span class="text-muted">Top related subjects:</span>
-			
-			<div id="graph_div" class="-col-md-12" style="min-height: 500px; border: lightgray 0.1px solid; overflow: hidden;">       
-	  
-			</div>
-		  
-		  </div>
-		{% endif %}
+			<div class="col-md-6" >
 
-			
-		{% else %}
-
+				{% for obj in return_items %}
 		
-		<div class="col-sm-7 col-md-12 text-left">
+					<li style="margin-bottom: 10px;">
+						<a style="font-size: 120%;" href="{{obj.filename}}/">{{obj.title}}</a>
+						<br />
+						<small style="color: #cbcbcb;">{{obj.source}}
 
+						<br />
+						{% for tag in obj.tags %}
+						<a class="text-muted" href="{% url 'portfolioapp:quotes' %}?tag={{tag}}">#{{tag}}</a>&nbsp;
+							{% endfor %}
+							</small>
+		
+					
+					</li>
+		
+				{% endfor %}
+			</div>
+
+
+			{% comment %} **** D3 CHART ***** {% endcomment %}
+
+			<div class="col-md-6" style="margin-bottom: 30px;">
+		
+				<span class="text-muted" style="color: #cbcbcb;">Top related keywords:</span>
+				
+				<div id="graph_div" class="-col-md-12" style="min-height: 500px; border: lightgray 0.1px solid; overflow: hidden;">       
+		
+				</div>
 			
-			<div class="row">
-
-			<div class="text-muted col-md-3">
-				View:
-				
-				<a class="h1links {% if ttype == 'all' %}project-active{% endif %}" href="?query=date&type=all"> all</a>&nbsp;|
-				
-				<a class="h1links {% if ttype == 'papers' %}project-active{% endif %}" href="?query=date&type=papers"> research papers</a>&nbsp;|
-				
-				<!-- <a class="h1links {% if ttype == 'blogs' %}project-active{% endif %}" href="?query=date&type=blogs"> blogs</a>&nbsp; -->
-
-				{% if admin_change_url %}
-				<a class="h1links {% if ttype == 'review' %}project-active{% endif %}" href="?query=date&type=review" style="background: yellow;"> review</a>&nbsp;
-				{% endif %}
-				
-				{% comment %}
-				<a class="h1links -text-muted" href="?query=date&type=misc"> misc</a>&nbsp;
-				{% endcomment %}
-				
 			</div>
-				
-
-			<div class="text-muted col-md-3">			
-				
-				Order by:
-				<a class="h1links {% if query == 'date' %}project-active{% endif %}" href="?query=date"> date</a>&nbsp;|
-				
-				<a class="h1links {% if query == 'type' %}project-active{% endif %}" href="?query=type&type=papers"> type</a>&nbsp;|
-				
-				<a class="h1links {% if query == 'project' %}project-active{% endif %}" href="?query=project&type=papers"> project</a>
-			</div>
-
-			<div class="text-muted col-md-2">
-
-				Format: <a class="h1links -text-muted" href="?format=txt">txt</a> |
-				<a class="h1links -text-muted" href="?format=bibtex&query=type">bib</a>
-
-				
-			</div>
-
-
-			<div class="text-muted col-md-4 text-right">
-
-				&nbsp;
-
-			</div>
-
-
-
-			</div>
-			<!-- end of inner row -->
 
 		</div>
-		<!-- end of col-sm-7 -->
 
 
-		{% endif %}
-		<!-- end of if-tag -->
-			
+	<!-- IF NOT TAG.. -->
+	{% else %}
 
-
-	</div>  
-	
-	<!-- end of row -->
-
-
-
-
-	
-	{% if not tag %}
 		
 	<div class="row margin20Top margin50Bottom ">
 
-		<hr class=" margin50Bottom  ">	
+		<!-- <hr class=" margin50Bottom  ">	 -->
 
 		<div class="col-sm-3 col-md-3">
-
 
 
 			<p style="color: #e8e5e5; font-size: 600%; ">
@@ -147,28 +97,20 @@
 			  </p>
 
 
-
-
 		</div>
-
 
 		
 		<div class="col-sm-9 col-md-9 text-right">
 
-
 					
 			{% for tag in tags  %}
-
 					
-			{% if tag.1 > 1 %}
-				<a href="?tag={{tag.0}}" title="{{tag.1}} quotes" style="{{tag.1|tagsize_quotes}}">{{tag.0}}</a>&nbsp;
-			{% endif %}
+				{% if tag.1 > 1 %}
+					<a href="?tag={{tag.0}}" title="{{tag.1}} quotes" style="{{tag.1|tagsize_quotes}}">{{tag.0}}</a>&nbsp;
+				{% endif %}
 									
 			{% endfor %}
 			
-
-
-
 
 		</div>
 
@@ -177,22 +119,6 @@
 	{% endif %}
 	
 	<!-- end of row -->
-
-
-
-
-
-	
-	<div class="row row_pubitem">
-
-		{% for obj in return_items %}
-
-			<p> <a href="{{obj.filename}}/">{{obj.title}}</a>
-				<small>{{obj.tags}}</small>
-			</p>
-
-		{% endfor %}
-	</div>
 
 
 
@@ -216,14 +142,10 @@
 {% block extra_js %}
 
 
-{% if 1 %}
-
   {% comment %} JS for D3 Graph {% endcomment %}
 
    {% include 'portfolioapp/components/snippet_graph.html' %}
 
-{% endif %}
-  
   
 
 {% endblock %}
