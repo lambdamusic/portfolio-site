@@ -609,10 +609,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h2>2. Built-in visualizations can be sloppy</h2>
 <p>Even taking into account that visualizations are clearly not Looker's main selling point (VS the powerful modeling layer, for example), some of the built-in visualizations can be rather low-quality. Which I found rather surprising, considering the overall sophistication of the overall UI/UX of Looker. </p>
 <p>Example: the built-in <strong>scatter plot</strong> works fine, as long as you plot two dimensions (e.g. article type VS article country), or a dimension and a measure (article country VS article citations). However, what if you want to plot two measures against each other (article count VS article citations)? </p>
+<p>This is handy because by having two measures on the chart axes, the dots could be mapped to a dimension of choice (eg country, or organization). As a result, one can quickly compare how that dimension performs against the two measures. That is, how different organizations compare with each other, in terms of articles counts and articles citations.  </p>
 <p><img alt="datastudio-scatter-plot-issue.png" src="../../../../../media/static/blog_img/datastudio-scatter-plot-issue.png" /></p>
-<p>In Data Studio (see above) I was able to do that easily, the result being a handy visualization  displaying the single records that lie at the intersection of such measures. But <a href="https://community.looker.com/dashboards-looks-7/measure-vs-measure-scatterplots-3-28-1296">that's not possible in Looker</a>. </p>
+<p>In Data Studio I was able to do that easily (see above). The result being a handy visualization  displaying the single records that lie at the intersection of such measures. But <a href="https://community.looker.com/dashboards-looks-7/measure-vs-measure-scatterplots-3-28-1296">in Looker two measures can be plotted only by 'hiding' the dimension</a>. So the dots in the chart are not representing the dimension, simply the correlation between two numerical measures.</p>
 <p>Another example: the <strong>map visualization</strong>. It generally works ok but if you happen to be plotting a single point (eg a city), the zoom is automatically set at such a high resolution that the map view becomes unusable. </p>
-<p>Why isn't there there's no way to <a href="https://community.looker.com/lookml-5/map-with-a-single-datapoint-not-supported-29731">specify the default zoom level</a> ?  Such an obvious feature, it makes you wonder how they could have forgotten about it.</p>
+<p>Why isn't there there's no way to <a href="https://community.looker.com/lookml-5/map-with-a-single-datapoint-not-supported-29731">specify the default zoom level</a> with a single point?  Such an obvious feature, it makes you wonder how they could have forgotten about it.</p>
+<p>NOTE: there is a <em>Map Visualisation options - Map - Map Position (Custom) - Zoom Level</em>  option, but that requires static lat/long coordinates to be added to the settings, rather than being retrieved dynamically from the data being plotted.</p>
 <p><img alt="looker-map-focus.png" src="../../../../../media/static/blog_img/looker-map-focus.png" /></p>
 <h2>3. Cross-filtering dashboards is limited</h2>
 <p>You can set  <a href="https://docs.looker.com/dashboards/dashboard-beta-filters#understanding_dashboard_filters">standard dashboard filters</a>  and specify exactly which tiles should be effected by these filters. That's pretty cool. </p>
@@ -627,6 +629,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h3>Find out more about Looker</h3>
 <p>Start by checking out the <a href="https://connect.looker.com/">Looker user guide</a>.</p>
 <p><a href="https://www.youtube.com/results?search_query=looker">YouTube</a> has many videos that show Looker in action.</p>
+<h4>Updates</h4>
+<ul>
+<li>2022-07-29: updated the scatter plot and map issues description based on <a href="https://www.reddit.com/r/Looker/comments/uz39h9/top_three_things_i_do_not_like_about_looker/">feedback</a>.</li>
+</ul>
 
             </div>
 
