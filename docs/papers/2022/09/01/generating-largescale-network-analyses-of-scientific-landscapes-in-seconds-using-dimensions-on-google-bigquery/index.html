@@ -31,14 +31,14 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Is wikipedia a valid source of scientific knowledge? Is wikipedia a valid source of scientific knowledge? Many would say yes. Others are still quite skeptical, or maybe just cautious about it. What seems ...">
+  <meta name="description" content="Generating large-scale network analyses of scientific landscapes in seconds using Dimensions on Google BigQuery The growth of large, programatically accessible bibliometrics databases presents new opportunities for complex analyses of publication metadata. In addition to providing a wealth of information ...">
 
 
 
     <link rel="icon" href="../../../../../media/static/favicon.ico">
 
 	
-  <title>Blogs | Michele Pasin</title>
+  <title>Papers | Michele Pasin</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -537,148 +537,84 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 	
 
+  <div class="page-header">
+      
+      Words > <a href="../../../../../words/index.html%3Fquery=date&amp;type=papers.html">Papers</a> > 2022 > <i>Generating large-scale network analyses of scientific landscapes in seconds using Dimensions on Google BigQuery</i>
+  </div>
 
   <div class="container">
 
 
-      <div class="row " style="margin-bottom:50px;">
-
-        
-
-        <div class="col-xs-12 col-md-2 col-md-offset-1 col-md-push-7">
-
-          <p style="color: #e8e5e5; margin-top: 10px;">
-          <span style="font-size: 500%;">
-					  Sep
-					</span>
-          <span style="font-size: 700%;">
-					  2015
-					</span>
-          </p>
-
-
+      <div class="row" style="margin-bottom:50px;">
           
-          
+        <div class="col-md-8">
+
+
+          <p class="text-muted">Title:</p>
+
+          <div class="lead -well">
+            <h3><b>Generating large-scale network analyses of scientific landscapes in seconds using Dimensions on Google BigQuery</b></h3>
             
-
-          
-
-            
-              <a class="text-muted" href="../../../../../words/index.html%3Ftag=citation.html">#citation</a><br />
-            
-              <a class="text-muted" href="../../../../../words/index.html%3Ftag=d3.html">#d3</a><br />
-            
-              <a class="text-muted" href="../../../../../words/index.html%3Ftag=nature.html">#nature</a><br />
-            
-              <a class="text-muted" href="../../../../../words/index.html%3Ftag=wikipedia.html">#wikipedia</a><br />
-            
-        
-          
-
-        </div>
-        
-
-
-
-        <div class="col-xs-12 col-md-7 col-md-pull-3">
-
-          <div>
-            <h2 class="blogtitle"><b>Is wikipedia a valid source of scientific knowledge?</b></h2>
           </div>
-          
-
-          <!-- <p>Sept. 2, 2015</p> -->
-
-          
-
-            <div class="blogentry"> 
-
-              <hr>
 
 
-            <p>Is wikipedia a valid source of scientific knowledge? Many would say <a href="http://www.nature.com/news/2008/081216/full/news.2008.1312.html">yes</a>. Others are still quite skeptical, or maybe just <a href="http://www.quora.com/How-reliable-is-Wikipedia-as-a-source-of-information-and-why">cautious</a> about it. What seems to be the case though - and this is what this post is about - is that wikipedians are increasingly including references to scientific literature, and when they do it they do it right.</p>
-<p>Based on data we've recently <a href="http://www.nature.com/ontologies/linksets/articles/">extracted</a> from Wikipedia, it looks like that the vast majority of <strong>citations to nature.com</strong> content have been done according to the established scientific practice (i.e. using <a href="https://en.wikipedia.org/wiki/Digital_object_identifier">DOIs</a>). Which makes you think that whoever added those citations is either a scientist or has some familiarity with science.</p>
-<p>In the context of the <a href="http://www.nature.com/ontologies/">nature.com ontologies portal</a> we've done some work aimed at surfacing links between our articles and other datasets. Wikipedia and <a href="http://wiki.dbpedia.org/">DBpedia</a> (an RDF database version of wikipedia) have come to our attention quite soon: <em>how much do wikipedia articles cite scientific content published on nature.com</em>? Also, <em>how well</em> do they cite it?</p>
-<p>So here's an <a href="http://www.nature.com/developers/hacks/wikilinks/">interactive visualization</a> that lets you see all incoming references from Wikipedia to the nature.com archive. The actual dataset is encoded in RDF and can be downloaded <a href="http://data.nature.com/downloads/latest/linksets/nq/">here</a> (look for the <em>npg-articles-dbpedia-linkset.2015-08-24.nq.tar.gz</em> file).</p>
-<p><a href="http://www.nature.com/developers/hacks/wikilinks/"><img alt="NewImage" src="../../../../../media/static/blog_img/NewImage.png" title="NewImage.png" /></a></p>
-<h2>About the data</h2>
-<p>In a nutshell, what we've done was simply extracting all mentions of either NPG DOIs or nature.com links using the wikipedia APIs (for example, see <a href="https://en.wikipedia.org/w/index.php?title=Special%3ASearch&amp;profile=default&amp;search=%2210.1038%2Fng1285%22&amp;fulltext=Search">all references to the DOI "10.1038/ng1285"</a>).</p>
-<p>These links have then been validated against the nature.com articles database and encoded in RDF in two ways: a <a href="http://www.essepuntato.it/lode/http://purl.org/spar/cito">cito:isCitedBy</a> relationship links the article URI to the citing Wikipedia page, and a <a href="http://xmlns.com/foaf/spec/">foaf:topic</a> relationship links the same article URI to the corresponding DBpedia page.</p>
-<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2015/09/Screen-Shot-2015-09-03-at-12.37.33-PM.png"><img alt="Screen Shot 2015 09 03 at 12 37 33 PM" src="../../../../../media/static/blog_img/Screen-Shot-2015-09-03-at-12.37.33-PM.png" title="Screen Shot 2015-09-03 at 12.37.33 PM.png" /></a> In total there are <strong>51309 links over 145 years</strong>.</p>
-<p>Quite interestingly, the vast majority of these links are explicit DOI references (only ~900 were links to nature.com without a DOI). So, it seems that people do recognize the importance of DOIs even within a loosely controlled context like wikipedia.</p>
-<h2>Using the dataset</h2>
-<p>Considering that for many wikipedia is become the <em>de facto</em> largest and most cited encyclopedia out there (see the articles below), this may be an interesting dataset to <strong>analyze</strong> e.g. to highlight citation patters of influential articles. Also, this could become quite useful as a data source for <strong>content enrichment</strong>: the wikipedia links could be used to drive subject tagging, or they could even be presented to readers on article pages e.g. as contextual information.</p>
-<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2015/09/toparticles.png"><img alt="Toparticles" src="../../../../../media/static/blog_img/toparticles.png" title="toparticles.png" /></a></p>
-<p>We haven't really had time to explore any follow up on this work, but hopefully we'll do that soon.</p>
-<p>All of this data is open source and freely available on <a href="http://www.nature.com/ontologies/">nature.com/ontologies</a>. So if you're reading this and have more ideas about potential uses or just want to collaborate, please do <a href="http://www.michelepasin.org/contact/">get in touch</a>!</p>
-<h2>Caveats</h2>
-<p>This dataset is obviously just a <strong>snaphot</strong> of wikipedia links at a specific moment in time.</p>
-<p>If one were to use these data within a real-world application he'd probably want to come up with some strategy to keep it up to date (e.g. monitoring the <a href="https://meta.wikimedia.org/wiki/IRC/Channels#Recent_changes">Wikipedia IRC recent changes channel</a>). Good news is, work is already happening in this space:</p>
-<ul>
-<li><strong>CrossRef</strong> is looking at collecting citation events from Wikipedia in real time and release these data freely as part of their service e.g. see <a href="http://crosstech.crossref.org/2015/05/coming-to-you-live-from-wikipedia.html">this CrossRef blog</a></li>
-<li><strong>Altmetric</strong> scans wikipedia for references too e.g. see <a href="http://nature.altmetric.com/details/961190/wikipedia">a sample article page on Altmetric</a> and <a href="http://www.altmetric.com/blog/new-source-alert-wikipedia/">this blog post</a>, however the source data is not freely available.</li>
-</ul>
-<h2>Readings</h2>
-<p>Finally, here are a couple of interesting background readings I've found in the nature.com archive:</p>
-<ul>
-<li><em>Wikipedia rival calls in the experts</em> (2006) <a href="http://www.nature.com/nature/journal/v443/n7111/full/443493a.html">http://www.nature.com/nature/journal/v443/n7111/full/443493a.html</a></li>
-<li><em>Publish in Wikipedia or perish</em> (2008) <a href="http://www.nature.com/news/2008/081216/full/news.2008.1312.html">http://www.nature.com/news/2008/081216/full/news.2008.1312.html</a></li>
-<li><em>Time to underpin Wikipedia wisdom</em> (2010) <a href="http://www.nature.com/nature/journal/v468/n7325/full/468765c.html">http://www.nature.com/nature/journal/v468/n7325/full/468765c.html</a></li>
-</ul>
-<p><em>Enjoy</em>!</p>
+          <p class="text-muted">Year:</p>
 
-            </div>
+          <div class="lead -well">
+            <h3>2022</h3>
+          </div>
 
 
-         
-            <div style="margin-bottom: 80px;"> 
-              <p class="text-muted">Cite this blog post:</p>
-              <hr>
-
-              <div class="well well-big" >
-                Michele Pasin. <a href="index.html" class="bluelink">Is wikipedia a valid source of scientific knowledge?</a>. Blog post on www.michelepasin.org. Published on Sept. 2, 2015.
-              </div>
-            </div>
-<!-- 
 
             
-         -->
 
-         <div style="margin-bottom: 80px;"> 
-              <p class="text-muted">Comments:</p>
-              <hr>
-            <div id="disqus_thread" ></div>
-              <script>
-                  /**
-                  *  RECOMMENDED CONFIGURATION VARIABLES: EDIT AND UNCOMMENT THE SECTION BELOW TO INSERT DYNAMIC VALUES FROM YOUR PLATFORM OR CMS.
-                  *  LEARN WHY DEFINING THESE VARIABLES IS IMPORTANT: https://disqus.com/admin/universalcode/#configuration-variables    */
-                  /*
-                  var disqus_config = function () {
-                  this.page.url = PAGE_URL;  // Replace PAGE_URL with your page's canonical URL variable
-                  this.page.identifier = PAGE_IDENTIFIER; // Replace PAGE_IDENTIFIER with your page's unique identifier variable
-                  };
-                  */
-                  (function() { // DON'T EDIT BELOW THIS LINE
-                  var d = document, s = d.createElement('script');
-                  s.src = 'https://pundp.disqus.com/embed.js';
-                  s.setAttribute('data-timestamp', +new Date());
-                  (d.head || d.body).appendChild(s);
-                  })();
-              </script>
-              <noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+              <p class="text-muted">Abstract:</p>
 
- 
-          </div> 
+              <blockquote class="lead">The growth of large, programatically accessible bibliometrics databases presents new opportunities for complex analyses of publication metadata. In addition to providing a wealth of information about authors and institutions, databases such as those provided by Dimensions also provide conceptual information and links to entities such as grants, funders and patents. However, data is not the only challenge in evaluating patterns in scholarly work: These large datasets can be challenging to integrate, particularly for those unfamiliar with the complex schemas necessary for accommodating such heterogeneous information, and those most comfortable with data mining may not be as experienced in data visualisation. Here, we present an open-source Python library that streamlines the process accessing and diagramming subsets of the Dimensions on Google BigQuery database and demonstrate its use on the freely available Dimensions COVID-19 dataset. We are optimistic that this tool will expand access to this valuable information by streamlining what would otherwise be multiple complex technical tasks, enabling more researchers to examine patterns in research focus and collaboration over time.</blockquote>
+
+              <br />
+            
 
 
-        </div>  
+
+            <p class="text-muted">Full reference:</p>
+
+            <div class="well well-big lead">
+              Michele Pasin, Richard Abdill. Generating large-scale network analyses of scientific landscapes in seconds using Dimensions on Google BigQuery - International Conference on Science, Technology and Innovation Indicators (STI 2022) Granada September 2022 . 
+              <a href="https://lambdamusic.github.io/support.michelepasin.org/public_articles/2022-Pasin-Abdill-STI.pdf" title="Article: Generating large-scale network analyses of scientific landscapes in seconds using Dimensions on Google BigQuery">PDF</a>  
+            </div>
+            <br />
+
+            
+            
+
+
+
+              
+            <iframe src="https://lambdamusic.github.io/support.michelepasin.org/public_articles/2022-Pasin-Abdill-STI.pdf" title="Article: Generating large-scale network analyses of scientific landscapes in seconds using Dimensions on Google BigQuery" 
+                width=100% height=800 allowfullscreen=true>
+
+            </iframe>
+            
+
+
+
+
+          <br /><br />
+
+
+        </div> 
         
       
 
+        <div class="col-md-1 col-md-offset-1">
 
 
+            
 
 
+        </div>
+        
       </div>
 
 
@@ -726,7 +662,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
             <p class='lead' style="font-size: 13px;">
               <span class='label label-warning'>paper</span>&nbsp;
-              <a href="../../../../../papers/2022/09/01/generating-largescale-network-analyses-of-scientific-landscapes-in-seconds-using-dimensions-on-google-bigquery/index.html" class="bluelink " >Generating large-scale network analyses of scientific landscapes in seconds using Dimensions on Google BigQuery</a>
+              <a  class="bluelink paper-active" title="The article on this page">Generating large-scale network analyses of scientific landscapes in seconds using Dimensions on Google BigQuery</a>
               <!-- <br />
               <span class="">Michele Pasin, Richard Abdill</span> -->
             </p>
@@ -777,6 +713,383 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <hr>
 
         <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2021</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2021/10/29/django-wget-static-site/index.html" class="bluelink " >A static site generator using Django, Wget and Github Pages</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2020</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2020/08/06/more-jupyter-notebooks-pyvis-and-networkx/index.html" class="bluelink " >More Jupyter notebooks: pyvis and networkx</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2020/01/30/getting-to-grips-with-google-colab/index.html" class="bluelink " >Getting to grips with Google Colab</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2019</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2019/05/24/introducing-dimcli-a-python-cli-for-dimensions-api/index.html" class="bluelink " >Introducing DimCli: a Python CLI for the Dimensions API</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+
+
+           
+            <!-- <small class="text-muted">May 2019</small> -->
+
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2019/05/22/interlinking-scigraph-and-dbpedia-datasets-using-link-discovery-and-named-entity-recognition-techniques/index.html" class="bluelink " >Interlinking SciGraph and DBpedia datasets using Link Discovery and Named Entity Recognition Techniques</a>
+              <!-- <br />
+              <span class="">Beyza Yaman, Michele Pasin, Markus Freudenberg</span> -->
+            </p>
+
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> Second biennial conference on Language, Data and Knowledge (LDK 2019),</span>
+              
+              
+                <span class='pubplace'> Leipzig, Germany,</span>
+              
+              
+                <span class='pubdate'> May 2019.</span>
+              
+              
+              
+              
+              
+
+            </p>
+            
+
+
+
+
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2018</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2018/11/23/exploring-scholarly-publications-via-dbpedia/index.html" class="bluelink " >Exploring scholarly publications using DBPedia concepts: an experiment</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2017</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+
+
+           
+            <!-- <small class="text-muted">Oct 2017</small> -->
+
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../2017/10/11/using-linked-open-data-to-bootstrap-a-knowledge-base-of-classical-texts/index.html" class="bluelink " >Using Linked Open Data to Bootstrap a Knowledge Base of Classical Texts</a>
+              <!-- <br />
+              <span class="">Matteo Romanello, Michele Pasin</span> -->
+            </p>
+
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+              
+                <span class='conference'> WHiSe 2017 - 2nd Workshop on Humanities in the Semantic web (colocated with ISWC17),</span>
+              
+              
+                <span class='pubplace'> Vienna, Austria,</span>
+              
+              
+                <span class='pubdate'> Oct 2017.</span>
+              
+              
+              
+              
+              
+
+            </p>
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/index.html" class="bluelink " >Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
           <p style="color: lightgrey; font-size: 300%; ">2015</p>
         </div>
 
@@ -794,7 +1107,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a  class="bluelink paper-active" title="The article on this page">Is wikipedia a valid source of scientific knowledge?</a>
+              <a href="../../../../../blog/2015/09/02/is-wikipedia-a-valid-source-of-scientific-knowledge/index.html" class="bluelink " >Is wikipedia a valid source of scientific knowledge?</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -841,6 +1154,34 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
             
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2014/12/03/dereference-a-doi-using-python/index.html" class="bluelink " >Dereference a DOI using python</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
 
 
            
@@ -848,7 +1189,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
             <p class='lead' style="font-size: 13px;">
               <span class='label label-warning'>paper</span>&nbsp;
-              <a href="../../../../../papers/2014/10/22/linked-data-experience-at-macmillan-building-discovery-services-for-scientific-and-scholarly-content-on-top-of-a-semantic-data-model/index.html" class="bluelink " >Linked data experience at Macmillan: Building discovery services for scientific and scholarly content on top of a semantic data model</a>
+              <a href="../../../../2014/10/22/linked-data-experience-at-macmillan-building-discovery-services-for-scientific-and-scholarly-content-on-top-of-a-semantic-data-model/index.html" class="bluelink " >Linked data experience at Macmillan: Building discovery services for scientific and scholarly content on top of a semantic data model</a>
               <!-- <br />
               <span class="">Tony Hammond, Michele Pasin</span> -->
             </p>
@@ -899,6 +1240,55 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <hr>
 
         <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2013</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2013/04/27/annual-bliss-classification-association-lecture-using-faceted-browsers-in-the-dh/index.html" class="bluelink " >Annual Bliss Classification Association Lecture: using faceted browsers in the DH</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
           <p style="color: lightgrey; font-size: 300%; ">2012</p>
         </div>
 
@@ -914,37 +1304,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
             
-
-
-           
-            <!-- <small class="text-muted">Jul 2012</small> -->
-
             <p class='lead' style="font-size: 13px;">
-              <span class='label label-warning'>paper</span>&nbsp;
-              <a href="../../../../../papers/2012/07/26/exploring-prosopographical-resources-through-novel-tools-and-visualizations-a-preliminary-investigation/index.html" class="bluelink " >Exploring Prosopographical Resources Through Novel Tools and Visualizations: a Preliminary Investigation</a>
-              <!-- <br />
-              <span class="">Michele Pasin</span> -->
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2012/08/07/using-mendeley-and-dropbox-to-sync-your-pdf-library-across-computers/index.html" class="bluelink " >Using Mendeley and Dropbox to sync your pdf library across computers</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-              
-              
-                <span class='conference'> Digital Humanities 2012,</span>
-              
-              
-                <span class='pubplace'> Hamburg, Germany,</span>
-              
-              
-                <span class='pubdate'> Jul 2012.</span>
-              
-              
-              
-              
-              
-
-            </p>
             
 
 
@@ -989,134 +1355,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2011/04/03/sound-reasoning-an-open-educational-resource/index.html" class="bluelink " >Sound Reasoning: an open educational resource</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2011/03/17/a-few-useful-linked-data-resources/index.html" class="bluelink " >A few useful Linked Data resources</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-
-
-           
-            <!-- <small class="text-muted">Jan 2011</small> -->
-
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-warning'>paper</span>&nbsp;
-              <a href="../../../../../papers/2011/01/01/ontological-requirements-for-annotation-and-navigation-of-philosophical-resources/index.html" class="bluelink " >Ontological Requirements for Annotation and Navigation of Philosophical Resources</a>
-              <!-- <br />
-              <span class="">Michele Pasin, Enrico Motta</span> -->
-            </p>
-
-
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-              
-                <span class='journal'> Synthese, Volume 182, Number 2, Springer,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Jan 2011.</span>
-              
-              
-              
-              
-              
-
-            </p>
-            
-
-
-
-
-
-            
-
-
-          </div>
-
-        
-
-
-        </div>
-
-
-
-      </div>
-
-      
-
-      <div class="row row_pubitem">
-
-        <hr>
-
-        <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2010</p>
-        </div>
-
-
-        <div class="col-sm-7 col-md-9">
-
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2010/08/10/learning-resources-about-scheme/index.html" class="bluelink " >Learning resources about Scheme</a>
+              <a href="../../../../../blog/2011/12/21/using-impromptu-to-visualize-rss-feeds/index.html" class="bluelink " >Using Impromptu to visualize RSS feeds</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
@@ -1163,37 +1402,181 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
             
-
-
-           
-            <!-- <small class="text-muted">Jul 2009</small> -->
-
             <p class='lead' style="font-size: 13px;">
-              <span class='label label-warning'>paper</span>&nbsp;
-              <a href="../../../../../papers/2009/07/30/ontological-requirement-for-supporting-smart-navigation-of-philosophical-resources/index.html" class="bluelink " >Ontological Requirement for Supporting Smart Navigation of Philosophical Resources</a>
-              <!-- <br />
-              <span class="">Michele Pasin, Enrico Motta, Zdenek Zdrahal</span> -->
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/index.html" class="bluelink " >Using jquery&#39;s autocomplete in Django&#39;s admin: what about &#39;inlines&#39;?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
 
+            
 
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
 
-              
-              
-                <span class='conference'> PhD Thesis,</span>
-              
-              
-                <span class='pubplace'> Milton Keynes, UK, The Open University,</span>
-              
-              
-                <span class='pubdate'> Jul 2009.</span>
-              
-              
-              
-              
-              
 
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2009/09/15/using-django-mptt-lessons-learned/index.html" class="bluelink " >Using Django-MPTT: lessons learned...</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
             </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2009/07/21/roman-port-networks-project/index.html" class="bluelink " >Roman Port Networks project</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2009/06/18/understanding-googles-bigtable/index.html" class="bluelink " >Understanding Google&#39;s BigTable</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2009/05/07/soundmanager-2-makes-it-easier-to-play-sounds-using-javascript/index.html" class="bluelink " >SoundManager 2 makes it easier to play sounds using Javascript</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2009/02/24/using-the-os-x-terminal-application/index.html" class="bluelink " >Using the OS X Terminal Application</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../../blog/2009/01/31/google-flags-whole-internet-as-malware/index.html" class="bluelink " >Google Flags Whole Internet As Malware</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
             
 
 
@@ -1221,7 +1604,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <hr>
 
         <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2006</p>
+          <p style="color: lightgrey; font-size: 300%; ">2007</p>
         </div>
 
 
@@ -1238,91 +1621,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2006/11/02/free-learning-resources-from-the-ou/index.html" class="bluelink " >Free learning resources from the OU</a>
+              <a href="../../../../../blog/2007/01/24/google-map-goes-down-to-the-humans/index.html" class="bluelink " >Google-map goes down to the humans..</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2006/10/23/semantic-wikipedia-some-issues/index.html" class="bluelink " >Semantic Wikipedia: some issues</a>
-              <!-- <br /> -->
-              <!-- <span class="">Michele Pasin</span> -->
-            </p>
-
-            
-
-
-
-
-
-            
-              <hr>
-            
-
-
-          </div>
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-
-
-           
-            <!-- <small class="text-muted">Jun 2006</small> -->
-
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-warning'>paper</span>&nbsp;
-              <a href="../../../../../papers/2006/06/30/an-ontology-for-the-description-and-navigation-through-philosophical-resources/index.html" class="bluelink " >An ontology for the description and navigation through philosophical resources</a>
-              <!-- <br />
-              <span class="">Michele Pasin, Enrico Motta</span> -->
-            </p>
-
-
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-              
-              
-                <span class='conference'> European Conference on Philosophy and Computing (ECAP-06),</span>
-              
-              
-                <span class='pubplace'> Trondheim, Norway,</span>
-              
-              
-                <span class='pubdate'> Jun 2006.</span>
-              
-              
-              
-              
-              
-
-            </p>
             
 
 
@@ -1415,17 +1718,6 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <script async src="https://cse.google.com/cse.js?cx=c23e79d025688b327"></script>
 
     
-
-
-<script>
-
-  $( document ).ready(function() {
-    $("div.blogentry p:first").addClass( "first-paragraph" );
-});
-
-
-</script>
-
 
 
 
