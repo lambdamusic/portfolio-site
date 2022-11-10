@@ -55,9 +55,13 @@ def words(request):
 	else:
 		templatee = "words.html"
 
-	return_items = get_pubs(query, ttype, tag)
+	if ttype == 'tags':
+		return_items = None
+		tags = get_tags()
+	else:
+		return_items = get_pubs(query, ttype, tag)
+		tags = None
 	
-	tags = get_tags()
 	
 	context = {
 		'return_items': return_items,

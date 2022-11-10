@@ -55,6 +55,8 @@
 				<a class="h1links {% if ttype == 'all' %}project-active{% endif %}" href="?query=date&type=all"> all</a>&nbsp;|
 				
 				<a class="h1links {% if ttype == 'papers' %}project-active{% endif %}" href="?query=date&type=papers"> research papers</a>&nbsp;|
+
+				<a class="h1links {% if ttype == 'tags' %}project-active{% endif %}" href="?query=date&type=tags"> tags</a>&nbsp;|
 				
 				<!-- <a class="h1links {% if ttype == 'blogs' %}project-active{% endif %}" href="?query=date&type=blogs"> blogs</a>&nbsp; -->
 
@@ -117,9 +119,9 @@
 
 
 	
-	{% if query == "date" and ttype == "all" and not tag %}
+	{% if tags %}
 		
-	<div class="row margin20Top margin50Bottom ">
+	<div class="row -margin20Top margin50Bottom ">
 
 		<hr class=" margin50Bottom  ">	
 
@@ -143,10 +145,9 @@
 		
 			{% for tag in tags  %}
 
-					
-			{% if tag.1 > 1 %}
-				<a href="?tag={{tag.0}}" style="{{tag.1|tagsize}}">{{tag.0}}</a>&nbsp;
-			{% endif %}
+				{% if tag.1 > 0 %}
+					<a href="?tag={{tag.0}}" style="{{tag.1|tagsize}}">{{tag.0}}</a>&nbsp;
+				{% endif %}
 									
 			{% endfor %}
 			
@@ -197,7 +198,7 @@
 				   {% if pub.pubtype.name == "Blog" %}
 					   
 
-				   <p class='lead' style="-font-size: 13px;">
+				   <p class='lead' style="font-size: 13px;">
 					   <span class='label label-info'> blog</span>&nbsp;
 					   <!-- <a href="https://www.michelepasin.org{{pub.url1}}" class="bluelink">{{pub.title|capfirst}}</a>. -->
 					   <a href="{{pub.get_absolute_url}}" class="bluelink">{{pub.title|capfirst}}</a>.
