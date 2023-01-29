@@ -35,7 +35,7 @@ def words(request):
 	context = {}
 
 	query = request.GET.get('query', 'date')
-	ttype = request.GET.get('type', 'all')
+	ttype = request.GET.get('type', 'latest')
 	tag = request.GET.get('tag', None)
 	format = request.GET.get('format', 'html')
 	
@@ -58,6 +58,9 @@ def words(request):
 	if ttype == 'tags':
 		return_items = None
 		tags = get_tags()
+	elif ttype == 'latest':
+		return_items = get_pubs(query, ttype, tag)
+		tags = get_tags(2)
 	else:
 		return_items = get_pubs(query, ttype, tag)
 		tags = None
@@ -233,6 +236,13 @@ def get_pubs(query, ttype, tag):
 		# 					 QSET.filter(project=None)))
 		return return_items
 
+	# TYPE = latest
+	elif ttype == 'latest':
+		ddset = Publication.objects.exclude(review=True)[:10]
+		return_items = [("Latest", ddset)]
+		return return_items
+
+
 
 	# SORT BY DATE, with an optional filter for type
 	else:
@@ -260,7 +270,7 @@ def get_pubs(query, ttype, tag):
 			ddset = Publication.objects.filter(review=True)
 
 		elif tag:
-			# SHOW ANYTHING IN REVIEW
+			# SHOW EVERYTHING EXCEPT REVIEW
 			ddset = Publication.objects.exclude(
 				review=True).filter(tags__name=tag)
 
@@ -315,7 +325,7 @@ def get_related_pubs(a_pub):
 
 
 
-def get_tags():
+def get_tags(minvalue=0):
 	""" retrieves tags info for the cloud viz
 	
 	The filtering is done in the template
@@ -324,4 +334,5 @@ def get_tags():
 
 	tagcloud_pubs = Tag.objects.values_list('name').distinct().annotate(cc=Count('publications'))
 
-	return tagcloud_pubs
+	return [t for t in tagcloud_pubs if t[1] > minvalue]
+

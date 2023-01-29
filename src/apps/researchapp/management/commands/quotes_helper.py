@@ -81,6 +81,7 @@ class Command(BaseCommand):
 
 			# MANUALLY define tags to remove	
 			badtags = ["#ChE", "#DA", "#IL", "#LE", "#LA" "#PO", "#c", "#ty", "#Chi", "#Non", "#GLI", "#di", "#Quella", "#SIA", "#La", "#Ma", "#PI", "#PO", "#PUR", "#VOI", "#way"]
+			badtags = ["#exchange", "#origin", "#ROM", "#qui", "#sono", "#ECCO", "#mammae", "#tutti", "#SUA", "#Noi", "#Se", "#more-trouble", "#support", "#part"]
 
 			# update all files
 			for f in os.listdir(QUOTES_PATH):

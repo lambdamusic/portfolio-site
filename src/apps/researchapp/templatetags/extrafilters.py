@@ -227,4 +227,17 @@ def url_domain(uri):
 
 
 
+import markdown
+
+@register.filter(name='markdown')
+def render_markdown(md):
+	""" Render markdown in the template """
+	try:
+		return markdown.markdown(md, extensions=['fenced_code', 'codehilite'])
+	except:
+		return md
+
+
+
+
 

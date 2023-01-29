@@ -271,6 +271,15 @@ def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN,
 
 	flag = "SKIP"
 
+	# try to infer the abstract
+	try:
+		ABSTRACT = next(s for s in PURE_MARKDOWN.splitlines() if s)
+	except:
+		print(f"PURE_MARKDOWN=\n{PURE_MARKDOWN}\nend")
+		if click.confirm(f"Abstract Error for: {FILENAMEID}! Set to blank and continue?"):
+			ABSTRACT = ""
+		return
+
 	try:
 		# if there's an object with same name, we keep that one!
 
@@ -289,6 +298,12 @@ def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN,
 			printDebug(f"=> REVIEW has changed for: {FILENAMEID}", "red")
 			if force or click.confirm(f"Update record in database?"):
 				flag = "MODIFIED"
+
+		if pub.abstract != ABSTRACT: 
+			printDebug(f"=> ABSTRACT has changed for: {FILENAMEID}", "red")
+			if force or click.confirm(f"Update record in database?"):
+				flag = "MODIFIED"
+				# print(ABSTRACT)
 
 		test_cats = sorted([c.name for c in pub.categories.all()])
 		if test_cats != sorted(CATS): 
@@ -336,6 +351,7 @@ def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN,
 		pub.title = TITLE
 		pub.journal = "Blog entry on www.michelepasin.org ."
 		pub.pubdate = DATE
+		pub.abstract = ABSTRACT
 		blogType = PubType.objects.get(pk=13)
 		pub.pubtype = blogType
 		pub.review = REVIEW

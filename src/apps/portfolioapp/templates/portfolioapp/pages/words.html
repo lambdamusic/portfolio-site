@@ -21,7 +21,7 @@
   {% block bodycontent %}
 
   <div class="page-header">
-    Words {% if tag %} - by keyword | <a href="?query=date&type=all" class="">View all</a>{% endif %}
+    Words {% if tag %} - by keyword | <a href="?query=date&type=tags" class="">View all</a>{% endif %}
 
   </div>
 
@@ -35,11 +35,13 @@
 					
 		{% if tag %}
 
-		<div class="col-sm-7 col-md-12 text-left">
-			<p style="color: #e8e5e5; font-size: 800%; ">
-			#{{tag}}
-		  	</p>
-		</div>
+			<!-- Single-tag page -->
+
+			<div class="col-sm-7 col-md-12 text-left">
+				<p style="color: #e8e5e5; font-size: 800%; ">
+				#{{tag}}
+				</p>
+			</div>
 			
 		{% else %}
 
@@ -49,19 +51,20 @@
 			
 			<div class="row">
 
-			<div class="text-muted col-md-3">
+			<div class="text-muted col-md-4">
 				View:
 				
-				<a class="h1links {% if ttype == 'all' %}project-active{% endif %}" href="?query=date&type=all"> all</a>&nbsp;|
+				<a class="h1links {% if ttype == 'latest' %}project-active{% endif %}" href="?query=date&type=latest"> latest</a>&nbsp;|
 				
 				<a class="h1links {% if ttype == 'papers' %}project-active{% endif %}" href="?query=date&type=papers"> papers</a>&nbsp;|
 
-				<a class="h1links {% if ttype == 'tags' %}project-active{% endif %}" href="?query=date&type=tags"> tags</a>&nbsp;
+				<a class="h1links {% if ttype == 'tags' %}project-active{% endif %}" href="?query=date&type=tags"> tags</a>&nbsp;|
 				
+				<a class="h1links {% if ttype == 'all' %}project-active{% endif %}" href="?query=date&type=all"> all</a>&nbsp;
 				<!-- <a class="h1links {% if ttype == 'blogs' %}project-active{% endif %}" href="?query=date&type=blogs"> blogs</a>&nbsp; -->
 
 				{% if admin_change_url %}
-				<a class="h1links {% if ttype == 'review' %}project-active{% endif %}" href="?query=date&type=review" style="background: yellow;">| review</a>&nbsp;
+				|&nbsp;<a class="h1links {% if ttype == 'review' %}project-active{% endif %}" href="?query=date&type=review" style="background: yellow;">review</a>&nbsp;
 				{% endif %}
 				
 				{% comment %}
@@ -90,7 +93,7 @@
 			</div>
 
 
-			<div class="text-muted col-md-4 text-right">
+			<div class="text-muted col-md-3 text-right">
 				
 				<a href="{% url 'portfolioapp:words-feed' %}">
 					<img height=20 src="{% static 'rss.png' %}" alt="Main image"/ >
@@ -118,56 +121,6 @@
 
 
 
-	
-	{% if tags %}
-		
-	<div class="row -margin20Top margin50Bottom ">
-
-		<hr class=" margin50Bottom  ">	
-
-		<div class="col-sm-3 col-md-3">
-
-
-
-			<p style="color: #e8e5e5; font-size: 600%; ">
-				Tags
-			  </p>
-
-
-
-
-		</div>
-
-
-		
-		<div class="col-sm-9 col-md-9 text-right">
-
-		
-			{% for tag in tags  %}
-
-				{% if tag.1 > 0 %}
-					<a href="?tag={{tag.0}}" style="{{tag.1|tagsize}}">{{tag.0}}</a>&nbsp;
-				{% endif %}
-									
-			{% endfor %}
-			
-
-
-
-
-		</div>
-
-	</div>  
-
-	{% endif %}
-	
-	<!-- end of row -->
-
-
-
-
-
-	
 
 
 	{% for group_and_pubs in return_items %}
@@ -246,9 +199,15 @@
 					   {# 	<a class='url' href="{{u.0}}" style="color: #666;"> [{{u.1}}]</a> #}
 					   {# {% endfor %} #}
 
-				   </p>
+				   </p> 
 
 				   {% endif %}
+
+				   
+				   {% if ttype == 'latest' or tag %} 
+					   <p><blockquote>{{pub.abstract|markdown|striptags}}</blockquote></p>				
+				   {% endif %}
+					
 
 				   {% if not forloop.last %}
 					   <hr>
@@ -267,6 +226,57 @@
 	</div>
 
 	{% endfor %}
+
+
+
+
+
+
+	
+	{% if tags %}
+		
+	<div class="row -margin20Top margin50Bottom ">
+
+		<hr class=" margin50Bottom  ">	
+
+		<div class="col-sm-3 col-md-3">
+
+
+
+			<p style="color: #e8e5e5; font-size: 600%; ">
+				Tags
+			  </p>
+
+
+
+
+		</div>
+
+
+		
+		<div class="col-sm-9 col-md-9 text-right">
+
+		
+			{% for tag in tags  %}
+
+				{% if tag.1 > 0 %}
+					<a href="?tag={{tag.0}}&type=all" style="{{tag.1|tagsize}}">{{tag.0}}</a>&nbsp;
+				{% endif %}
+									
+			{% endfor %}
+			
+
+
+
+
+		</div>
+
+	</div>  
+
+	{% endif %}
+	
+	<!-- end of row -->
+
 
 
 
