@@ -10,8 +10,7 @@ from django.db.models import Q
 import os
 from time import strftime
 import markdown
-# import time
-# import random
+import random
 
 from render_block import render_block_to_string
 
@@ -85,11 +84,21 @@ def quote_detail(request, slug):
 
 	templatee = "detail-quotes.html"
 
+	if request.user.is_superuser:
+		admin_change_url = True
+	else:
+		admin_change_url = False
+
 	quote_source_file = QUOTES_SOURCE_DIR+slug+".md"
 	TITLE, SOURCE, SOURCE_URL, DATE, MODIFIED, REVIEW, TAGS, PURE_MARKDOWN = parse_markdown(quote_source_file)
 	html_quote_text = markdown.markdown(PURE_MARKDOWN, extensions=['fenced_code', 'codehilite'])
 
 	print(f"Showing: \n\t=> {quote_source_file}\n")
+
+	# get all MD contents from local directory for Tags Network
+	files_data = read_all_files_data()
+	random_tag = random.choice(TAGS)
+	nodes, links = generate_graph_for_topic(random_tag, files_data)
 
 	context = {
 		'quote_text': html_quote_text,
@@ -100,6 +109,9 @@ def quote_detail(request, slug):
 		'source_url': SOURCE_URL,
 		'created': DATE,
 		'modified': MODIFIED,
+		'admin_change_url': admin_change_url,
+		'nodes': nodes,
+		'links': links,
 	}
 
 	
@@ -120,6 +132,10 @@ def quote_detail(request, slug):
 def generate_graph_for_topic(seed, files_data):
 	"""gen graph data
 	
+	seed
+		a tag
+	files_data
+		the full markdown files collection
 	TODO
 	Desc data structure 
 	

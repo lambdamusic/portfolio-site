@@ -34,7 +34,11 @@
 
 <div class="page-header">
   Quote 
-  <!-- > {{title}} -->
+  > <em>{{title}}</em>
+
+  {% if admin_change_url %}
+  &nbsp;<a href="vscode://file/{{quote_source_file}}" style="background: yellow; font-style: 20%;">Edit in VSCode</a>&nbsp;
+  {% endif %}
 
 </div>
 
@@ -45,44 +49,6 @@
       <div class="row " style="margin-bottom:50px; margin-top:30px;" >
 
 
-        <div class="col-xs-12 col-md-5 -col-md-offset-1 -col-md-push-7" >
-
-          <p style="color: #e8e5e5; margin-top: -30px;">
-
-            <span style="font-size: 550%; line-height: 1;"><br />
-              {{title}}
-            </span>
-
-          </p>
-
-
-          
-          <p style="color: #cbcbcb; margin-top: 40px;">
-            
-            <br />
-            A quote from <cite title="{{source}}">
-              {% if source_url %}<a href="{{source_url}}" class="-underline -text-muted" target="_blank">
-                {% else %}<a class="-underline -text-muted">{% endif %}{{source}}</a></cite>
-
-            <br />Saved on {{created}}.
-          </p>
-
-        
-          
-          <p style="margin-top: 10px;">
-            {% if tags %}
-
-            {% for tag in tags %}
-              <a class="text-muted" href="{% url 'portfolioapp:quotes' %}?tag={{tag}}">#{{tag}}</a><br />
-            {% endfor %}
-
-            {% endif %}
-          </p>      
-          
-
-
-        </div>
-        
 
 
 
@@ -107,6 +73,57 @@
         
       
 
+
+
+        <div class="col-xs-12 col-md-5 -col-md-offset-1 -col-md-push-7" >
+
+          
+          <p style="color: #e8e5e5; margin-top: -30px;">
+
+            <span style="font-size: 350%; line-height: 1;"><br />
+              &#171; {{title}} &#187;
+            </span>
+            <hr>
+          </p>
+          
+          <p style="color: #cbcbcb; margin-top: 10px;">
+            
+            <br />
+            A quote from <cite title="{{source}}">
+              {% if source_url %}<a href="{{source_url}}" class="-underline -text-muted" target="_blank">
+                {% else %}<a class="-underline -text-muted">{% endif %}{{source}}</a></cite>
+
+            <br />Saved on {{created}}.
+          </p>
+
+        
+          
+          <p style="margin-top: 10px;">
+            {% if tags %}
+
+            {% for tag in tags %}
+              <a class="text-muted" href="{% url 'portfolioapp:quotes' %}?tag={{tag}}">#{{tag}}</a><br />
+            {% endfor %}
+
+            {% endif %}
+          </p>      
+          
+
+
+          {% comment %} **** D3 CHART ***** {% endcomment %}
+
+          <p class="-col-md-6" style="margin-bottom: 50px; margin-top: 50px;">
+            <hr>
+            <p class="text-muted" style="color: #cbcbcb;">Top related keywords:</p>
+            
+            <div id="graph_div" class="-col-md-12" style="min-height: 500px; border: lightgray 0.1px solid; overflow: hidden;">       
+        
+            </div>
+          
+          </p>
+
+        </div>
+        
 
 
 
@@ -145,7 +162,9 @@
 
 {% block extra_js %}
 
+  {% comment %} JS for D3 Graph {% endcomment %}
 
+  {% include 'portfolioapp/components/snippet_graph.html' %}
 
 
 
