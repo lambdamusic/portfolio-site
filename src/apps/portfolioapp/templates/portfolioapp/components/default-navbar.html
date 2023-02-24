@@ -22,8 +22,8 @@
         <li {% if thispage == "words" or thispage == "papers" %}class="active"{% endif %}>
             <a href="{% url 'portfolioapp:words' %}">Words</a></li>
 
-        <!-- <li {% if thispage == "quotes" %}class="active"{% endif %}>
-          <a href="{% url 'portfolioapp:quotes' %}">Quotes</a></li> -->
+        <li style="display: none;"{% if thispage == "quotes" %}class="active"{% endif %}>
+          <a href="{% url 'portfolioapp:quotes' %}">Quotes</a></li>
 
        <li {% if thispage == "music" %}class="active"{% endif %}>
             <a href="{% url 'portfolioapp:music' %}">Sounds</a></li>
@@ -38,13 +38,13 @@
           {% endcomment %}
 
         <li 
-        {% if thispage == "about" %}class="active"{% endif %}
-          ><a href="{% url 'portfolioapp:about' %}">About</a></li>
-
-        <li 
           {% if thispage == "contact" %}class="active"{% endif %}
             ><a href="{% url 'portfolioapp:contact' %}">Contact</a></li>
-  
+
+        <li 
+        {% if thispage == "about" %}class="active"{% endif %}
+          ><a href="{% url 'portfolioapp:about' %}">About</a></li>
+          
         <li>
           <a href="#modalSearch" data-toggle="modal" data-target="#modalSearch">
             <span id="searchGlyph" class="glyphicon glyphicon-search"></span> <span class="hidden-sm hidden-md hidden-lg">Search</span>
