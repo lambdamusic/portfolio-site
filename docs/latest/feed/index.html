@@ -73,13 +73,9 @@ See the [PDF user manual](https://www.giorgiosancristoforo.net/downloads/Bento_U
 
 Just trying to control it using MIDI-CC from Extempore. 
 
-I previously manually created MIDI mappings and save them to a file I can reload each time.
+Note: I previously created some MIDI mappings and saved them to a [file](https://github.com/lambdamusic/extempore-extensions/blob/main/init/init_bento.xtm) I can reload each time.
 
-&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/P6Av_eLy_xw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
-
-## Take 2
-
-After  ...</description><pubDate>Sun, 29 May 2022 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2022/05/29/bento-noise-box/</guid></item><item><title>Three things I do *not* like about Looker</title><link>https://www.michelepasin.org/blog/2022/04/20/Three-things-i-do-not-like-about-looker/</link><description>
+&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/P6Av_eLy_xw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encr ...</description><pubDate>Sun, 29 May 2022 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2022/05/29/bento-noise-box/</guid></item><item><title>Three things I do *not* like about Looker</title><link>https://www.michelepasin.org/blog/2022/04/20/Three-things-i-do-not-like-about-looker/</link><description>
 
 Following up on my previous [3 things I like about Looker](/blog/2022/03/02/Three-things-i-like-about-looker/) , here are instead the top three things that I really wish were different about this piece of software. 
 
@@ -168,11 +164,11 @@ A new livecoding composition using [Extempore](https://extemporelang.github.io/)
 
 &lt;iframe width="560" height="315" src="https://www.youtube.com/embed/m3v8gRzROkU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
 
-## Using 'map' to trigger repeated notes
+## Using 'map' to generate musical textures
 
-The gist of this experiment rotates around the `map` function. 
+The gist of this experiment relies on the `map` function. 
 
-A seed list of notes, and one of offsets , is used to generate musical `play` sequences:
+Using `map` and lists of notes and offsets, it is possible to schedule repeated calls to the `play` note function:
 
 ``` scheme
 (map (lambda (x y z)
@@ -184,14 +180,12 @@ A seed list of notes, and one of offsets , is used to generate musical `play` se
 	)
 ```
 
-This technique generates a texture of sounds with a touch of randomness. 
+When the `map`  pattern above gets repeated via a loop, changing the input parameters generates a texture of sounds with a touch of randomness. 
 
-If the pattern above gets repeated, changing the input parameters periodically leads to the generation of very interesting musical patterns. 
-
-For example:
+For example, some parameters to experiment with:
 
 - times can be shifted up or down by 1/4 beat or so
-- notes can be transposed using different ...</description><pubDate>Sat, 10 Apr 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/04/10/livecoding-rhythmic-cycles/</guid></item><item><title>Livecoding visual patterns with Hydra</title><link>https://www.michelepasin.org/blog/2021/04/02/Hydra/</link><description>
+- notes can be transposed using different chord struc ...</description><pubDate>Sat, 10 Apr 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/04/10/livecoding-rhythmic-cycles/</guid></item><item><title>Livecoding visual patterns with Hydra</title><link>https://www.michelepasin.org/blog/2021/04/02/Hydra/</link><description>
 Had quite a lot of fun livecoding visual patterns with [Hydra](https://hydra.ojack.xyz/?sketch_id=eerie_ear_0)
 
 &gt; Hydra is live code-able video synth and coding environment that runs directly in the browser. It is free and open-source and made for beginners and experts alike.
