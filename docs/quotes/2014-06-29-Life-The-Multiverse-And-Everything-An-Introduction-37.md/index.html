@@ -756,15 +756,15 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "components", "target": "structure" },
+          { "source": "drift", "target": "structure" },
       
-          { "source": "components", "target": "drift" },
+          { "source": "drift", "target": "components" },
       
-          { "source": "components", "target": "organization" },
+          { "source": "drift", "target": "direction" },
       
-          { "source": "components", "target": "system" },
+          { "source": "drift", "target": "engine" },
       
-          { "source": "components", "target": "means" },
+          { "source": "drift", "target": "system" },
       
           { "source": "structure", "target": "drift" },
       
@@ -774,21 +774,27 @@ var data_local_dynamic = {
       
           { "source": "structure", "target": "resources" },
       
-          { "source": "drift", "target": "structure" },
+          { "source": "components", "target": "structure" },
       
-          { "source": "drift", "target": "components" },
+          { "source": "components", "target": "drift" },
       
-          { "source": "drift", "target": "direction" },
+          { "source": "components", "target": "organization" },
       
-          { "source": "drift", "target": "engine" },
+          { "source": "components", "target": "system" },
       
-          { "source": "organization", "target": "living" },
+          { "source": "direction", "target": "drift" },
       
-          { "source": "organization", "target": "types" },
+          { "source": "direction", "target": "engine" },
       
-          { "source": "organization", "target": "production" },
+          { "source": "direction", "target": "system" },
       
-          { "source": "organization", "target": "particular-type" },
+          { "source": "engine", "target": "drift" },
+      
+          { "source": "engine", "target": "direction" },
+      
+          { "source": "engine", "target": "system" },
+      
+          { "source": "engine", "target": "metadata" },
       
           { "source": "system", "target": "structure" },
       
@@ -797,14 +803,6 @@ var data_local_dynamic = {
           { "source": "system", "target": "science" },
       
           { "source": "system", "target": "place" },
-      
-          { "source": "means", "target": "formal-means" },
-      
-          { "source": "means", "target": "components" },
-      
-          { "source": "means", "target": "organization" },
-      
-          { "source": "means", "target": "system" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -815,11 +813,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "drift", "size": 70, "score": 0 , "title": "drift", "type": "circle"},
+        {"id": "components", "size": 70, "score": 0 , "title": "components", "type": "circle"},
 
       
 
-        {"id": "organization", "size": 70, "score": 0 , "title": "organization", "type": "circle"},
+        {"id": "direction", "size": 70, "score": 0 , "title": "direction", "type": "circle"},
+
+      
+
+        {"id": "engine", "size": 70, "score": 0 , "title": "engine", "type": "circle"},
 
       
 
@@ -827,11 +829,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "means", "size": 70, "score": 0 , "title": "means", "type": "circle"},
-
-      
-
-        {"id": "components", "size": 140, "score": 0.5 , "title": "components", "type": "circle"},
+        {"id": "drift", "size": 140, "score": 0.5 , "title": "drift", "type": "circle"},
 
       
 
@@ -843,27 +841,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "direction", "size": 5, "score": 0.4 , "title": "direction", "type": "circle"},
+        {"id": "organization", "size": 5, "score": 0.4 , "title": "organization", "type": "circle"},
 
       
 
-        {"id": "engine", "size": 5, "score": 0.4 , "title": "engine", "type": "circle"},
-
-      
-
-        {"id": "living", "size": 5, "score": 0.4 , "title": "living", "type": "circle"},
-
-      
-
-        {"id": "types", "size": 5, "score": 0.4 , "title": "types", "type": "circle"},
-
-      
-
-        {"id": "production", "size": 5, "score": 0.4 , "title": "production", "type": "circle"},
-
-      
-
-        {"id": "particular-type", "size": 5, "score": 0.4 , "title": "particular-type", "type": "circle"},
+        {"id": "metadata", "size": 5, "score": 0.4 , "title": "metadata", "type": "circle"},
 
       
 
@@ -876,10 +858,6 @@ var data_local_dynamic = {
       
 
         {"id": "place", "size": 5, "score": 0.4 , "title": "place", "type": "circle"},
-
-      
-
-        {"id": "formal-means", "size": 5, "score": 0.4 , "title": "formal-means", "type": "circle"},
 
        
 
