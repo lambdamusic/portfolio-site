@@ -1,4 +1,12 @@
 
+
+# <br />
+# Copy/paste the contents of this file and save with extension .bib in order to use elsewhere <br />
+# Generated on: {% now "jS F Y H:i" %} on https://www.michelepasin.org<br />
+# Clean up: https://flamingtempura.github.io/bibtex-tidy/index.html<br />
+# <br />
+<br /><br />
+
 {% load extrafilters %}
 
  {% for group_and_pubs in return_items %}
@@ -20,7 +28,7 @@
 			  <br />&nbsp;&nbsp;&nbsp;
 			  	year = "{{pub.pubdate|date:"Y"}}",
 			  <br />&nbsp;&nbsp;&nbsp;
-			  	abstract = "{{pub.abstract|default:""}}",
+			  	abstract = "{{pub.abstract|escapejs|default:""}}",
 
 			<br />{% templatetag closebrace %}
 
@@ -50,7 +58,7 @@
 			  <br />&nbsp;&nbsp;&nbsp;
 			  	year = "{{pub.pubdate|date:"Y"}}",
   			  <br />&nbsp;&nbsp;&nbsp;
-  			  	abstract = "{{pub.abstract|default:""}}",
+  			  	abstract = "{{pub.abstract|escapejs|default:""}}",
 
 			<br />{% templatetag closebrace %}
 
@@ -80,7 +88,7 @@
 			  <br />&nbsp;&nbsp;&nbsp;
 			  	year = "{{pub.pubdate|date:"Y"}}",
   			  <br />&nbsp;&nbsp;&nbsp;
-  			  	abstract = "{{pub.abstract|default:""}}",
+  			  	abstract = "{{pub.abstract|escapejs|default:""}}",
 				
 
 			<br />{% templatetag closebrace %}
