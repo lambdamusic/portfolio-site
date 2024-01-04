@@ -176,6 +176,12 @@
       text-decoration: none;
       font-size: 12px;
     }
+    .keyword-sm {
+      font-style: italic;
+      color: grey;
+      text-decoration: none;
+      font-size: 11px;
+    }
 
     a.paper-active {
       background: #d9230f;
@@ -762,15 +768,47 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "communication", "target": "scholarly-communication" },
+          { "source": "scientific-articles", "target": "claims" },
       
-          { "source": "communication", "target": "cost" },
+          { "source": "scientific-articles", "target": "article" },
       
-          { "source": "communication", "target": "users" },
+          { "source": "scientific-articles", "target": "argument" },
       
-          { "source": "communication", "target": "designers" },
+          { "source": "scientific-articles", "target": "paper" },
       
-          { "source": "communication", "target": "messages" },
+          { "source": "scientific-articles", "target": "scholarly-communication" },
+      
+          { "source": "claims", "target": "scientific-articles" },
+      
+          { "source": "claims", "target": "article" },
+      
+          { "source": "claims", "target": "religious-experience" },
+      
+          { "source": "claims", "target": "argument" },
+      
+          { "source": "article", "target": "claims" },
+      
+          { "source": "article", "target": "scientific-articles" },
+      
+          { "source": "article", "target": "hierarchy" },
+      
+          { "source": "article", "target": "social-sciences" },
+      
+          { "source": "argument", "target": "claims" },
+      
+          { "source": "argument", "target": "evidence" },
+      
+          { "source": "argument", "target": "framework" },
+      
+          { "source": "argument", "target": "article" },
+      
+          { "source": "paper", "target": "argument" },
+      
+          { "source": "paper", "target": "article" },
+      
+          { "source": "paper", "target": "scientific-articles" },
+      
+          { "source": "paper", "target": "method" },
       
           { "source": "scholarly-communication", "target": "communication" },
       
@@ -779,101 +817,69 @@ var data_local_dynamic = {
           { "source": "scholarly-communication", "target": "article" },
       
           { "source": "scholarly-communication", "target": "journals" },
-      
-          { "source": "cost", "target": "scholarly-communication" },
-      
-          { "source": "cost", "target": "communication" },
-      
-          { "source": "cost", "target": "jet-aircraft" },
-      
-          { "source": "cost", "target": "aircraft" },
-      
-          { "source": "users", "target": "address" },
-      
-          { "source": "users", "target": "information-architects" },
-      
-          { "source": "users", "target": "-designers" },
-      
-          { "source": "users", "target": "designers" },
-      
-          { "source": "designers", "target": "information-architects" },
-      
-          { "source": "designers", "target": "users" },
-      
-          { "source": "designers", "target": "-designers" },
-      
-          { "source": "designers", "target": "workflow" },
-      
-          { "source": "messages", "target": "users" },
-      
-          { "source": "messages", "target": "communication" },
-      
-          { "source": "messages", "target": "designers" },
-      
-          { "source": "messages", "target": "decision-support-system" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
+        {"id": "claims", "size": 70, "score": 0 , "title": "claims", "type": "circle"},
+
+      
+
+        {"id": "article", "size": 70, "score": 0 , "title": "article", "type": "circle"},
+
+      
+
+        {"id": "argument", "size": 70, "score": 0 , "title": "argument", "type": "circle"},
+
+      
+
+        {"id": "paper", "size": 70, "score": 0 , "title": "paper", "type": "circle"},
+
+      
+
         {"id": "scholarly-communication", "size": 70, "score": 0 , "title": "scholarly-communication", "type": "circle"},
 
       
 
-        {"id": "cost", "size": 70, "score": 0 , "title": "cost", "type": "circle"},
+        {"id": "scientific-articles", "size": 140, "score": 0.5 , "title": "scientific-articles", "type": "circle"},
 
       
 
-        {"id": "users", "size": 70, "score": 0 , "title": "users", "type": "circle"},
+        {"id": "religious-experience", "size": 5, "score": 0.4 , "title": "religious-experience", "type": "circle"},
 
       
 
-        {"id": "designers", "size": 70, "score": 0 , "title": "designers", "type": "circle"},
+        {"id": "hierarchy", "size": 5, "score": 0.4 , "title": "hierarchy", "type": "circle"},
 
       
 
-        {"id": "messages", "size": 70, "score": 0 , "title": "messages", "type": "circle"},
+        {"id": "social-sciences", "size": 5, "score": 0.4 , "title": "social-sciences", "type": "circle"},
 
       
 
-        {"id": "communication", "size": 140, "score": 0.5 , "title": "communication", "type": "circle"},
+        {"id": "evidence", "size": 5, "score": 0.4 , "title": "evidence", "type": "circle"},
 
       
 
-        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
+        {"id": "framework", "size": 5, "score": 0.4 , "title": "framework", "type": "circle"},
+
+      
+
+        {"id": "method", "size": 5, "score": 0.4 , "title": "method", "type": "circle"},
+
+      
+
+        {"id": "communication", "size": 5, "score": 0.4 , "title": "communication", "type": "circle"},
+
+      
+
+        {"id": "cost", "size": 5, "score": 0.4 , "title": "cost", "type": "circle"},
 
       
 
         {"id": "journals", "size": 5, "score": 0.4 , "title": "journals", "type": "circle"},
-
-      
-
-        {"id": "jet-aircraft", "size": 5, "score": 0.4 , "title": "jet-aircraft", "type": "circle"},
-
-      
-
-        {"id": "aircraft", "size": 5, "score": 0.4 , "title": "aircraft", "type": "circle"},
-
-      
-
-        {"id": "address", "size": 5, "score": 0.4 , "title": "address", "type": "circle"},
-
-      
-
-        {"id": "information-architects", "size": 5, "score": 0.4 , "title": "information-architects", "type": "circle"},
-
-      
-
-        {"id": "-designers", "size": 5, "score": 0.4 , "title": "-designers", "type": "circle"},
-
-      
-
-        {"id": "workflow", "size": 5, "score": 0.4 , "title": "workflow", "type": "circle"},
-
-      
-
-        {"id": "decision-support-system", "size": 5, "score": 0.4 , "title": "decision-support-system", "type": "circle"},
 
        
 

@@ -30,7 +30,7 @@
 
 	&nbsp;&nbsp;&nbsp;
 	{% for t in return_item.tags.all  %}
-		<a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="">#{{t.name|capfirst}}</a>{% if not forloop.last %}&nbsp;&nbsp;{% endif %}
+		<a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="">#{{t.name}}</a>{% if not forloop.last %}&nbsp;&nbsp;{% endif %}
 	{% endfor %}
 			
   </div>
@@ -145,7 +145,7 @@
 				<p class="text-center thumb-title"><a class="project-title {% if p.id == return_item.id %}project-active{% endif %}" href="{{p.get_absolute_url}}">{{p.title}}</a>
 					<br />
 					{% for t in p.tags.all  %}
-						<a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="keyword">{{t.name|capfirst}}</a>{% if not forloop.last %},&nbsp;{% endif %}
+						<a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="keyword-sm">{{t.name}}</a>{% if not forloop.last %},&nbsp;{% endif %}
 							
 					{% endfor %}
 				</p>

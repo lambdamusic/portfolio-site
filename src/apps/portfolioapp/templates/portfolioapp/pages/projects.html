@@ -46,7 +46,7 @@
           <p class="text-center thumb-title"><a class="project-title" href="{{p.get_absolute_url}}">{{p.title}}</a>
             <br />
               {% for t in p.tags.all  %}
-                <a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="keyword">{{t.name|capfirst}}</a>{% if not forloop.last %},&nbsp;{% endif %}
+                <a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="keyword">{{t.name}}</a>{% if not forloop.last %},&nbsp;{% endif %}
                     
               {% endfor %}
           </p>

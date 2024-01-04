@@ -176,6 +176,12 @@
       text-decoration: none;
       font-size: 12px;
     }
+    .keyword-sm {
+      font-style: italic;
+      color: grey;
+      text-decoration: none;
+      font-size: 11px;
+    }
 
     a.paper-active {
       background: #d9230f;
@@ -766,22 +772,6 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "clients", "target": "investment" },
-      
-          { "source": "clients", "target": "goal" },
-      
-          { "source": "clients", "target": "information-resources" },
-      
-          { "source": "clients", "target": "URI" },
-      
-          { "source": "clients", "target": "server" },
-      
-          { "source": "investment", "target": "clients" },
-      
-          { "source": "investment", "target": "goal" },
-      
-          { "source": "investment", "target": "money" },
-      
           { "source": "goal", "target": "clients" },
       
           { "source": "goal", "target": "investment" },
@@ -790,56 +780,80 @@ var data_local_dynamic = {
       
           { "source": "goal", "target": "link" },
       
-          { "source": "information-resources", "target": "URI" },
+          { "source": "goal", "target": "owners" },
       
-          { "source": "information-resources", "target": "server" },
+          { "source": "clients", "target": "investment" },
       
-          { "source": "information-resources", "target": "clients" },
+          { "source": "clients", "target": "goal" },
       
-          { "source": "information-resources", "target": "resources" },
+          { "source": "clients", "target": "information-resources" },
       
-          { "source": "URI", "target": "browser" },
+          { "source": "clients", "target": "URI" },
       
-          { "source": "URI", "target": "RDF" },
+          { "source": "investment", "target": "clients" },
       
-          { "source": "URI", "target": "things" },
+          { "source": "investment", "target": "goal" },
       
-          { "source": "URI", "target": "Web" },
+          { "source": "investment", "target": "money" },
       
-          { "source": "server", "target": "publishing" },
+          { "source": "team", "target": "sprint" },
       
-          { "source": "server", "target": "article" },
+          { "source": "team", "target": "features" },
       
-          { "source": "server", "target": "web-server" },
+          { "source": "team", "target": "list" },
       
-          { "source": "server", "target": "academic-publishing" },
+          { "source": "team", "target": "number" },
+      
+          { "source": "link", "target": "associative-relationships" },
+      
+          { "source": "link", "target": "relationship" },
+      
+          { "source": "link", "target": "parent-child-relationship" },
+      
+          { "source": "link", "target": "kinds-of-links" },
+      
+          { "source": "owners", "target": "product-owners" },
+      
+          { "source": "owners", "target": "project" },
+      
+          { "source": "owners", "target": "business" },
+      
+          { "source": "owners", "target": "product-backlog" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
+        {"id": "clients", "size": 70, "score": 0 , "title": "clients", "type": "circle"},
+
+      
+
         {"id": "investment", "size": 70, "score": 0 , "title": "investment", "type": "circle"},
 
       
 
-        {"id": "goal", "size": 70, "score": 0 , "title": "goal", "type": "circle"},
+        {"id": "team", "size": 70, "score": 0 , "title": "team", "type": "circle"},
 
       
 
-        {"id": "information-resources", "size": 70, "score": 0 , "title": "information-resources", "type": "circle"},
+        {"id": "link", "size": 70, "score": 0 , "title": "link", "type": "circle"},
 
       
 
-        {"id": "URI", "size": 70, "score": 0 , "title": "URI", "type": "circle"},
+        {"id": "owners", "size": 70, "score": 0 , "title": "owners", "type": "circle"},
 
       
 
-        {"id": "server", "size": 70, "score": 0 , "title": "server", "type": "circle"},
+        {"id": "goal", "size": 140, "score": 0.5 , "title": "goal", "type": "circle"},
 
       
 
-        {"id": "clients", "size": 140, "score": 0.5 , "title": "clients", "type": "circle"},
+        {"id": "information-resources", "size": 5, "score": 0.4 , "title": "information-resources", "type": "circle"},
+
+      
+
+        {"id": "URI", "size": 5, "score": 0.4 , "title": "URI", "type": "circle"},
 
       
 
@@ -847,47 +861,51 @@ var data_local_dynamic = {
 
       
 
-        {"id": "team", "size": 5, "score": 0.4 , "title": "team", "type": "circle"},
+        {"id": "sprint", "size": 5, "score": 0.4 , "title": "sprint", "type": "circle"},
 
       
 
-        {"id": "link", "size": 5, "score": 0.4 , "title": "link", "type": "circle"},
+        {"id": "features", "size": 5, "score": 0.4 , "title": "features", "type": "circle"},
 
       
 
-        {"id": "resources", "size": 5, "score": 0.4 , "title": "resources", "type": "circle"},
+        {"id": "list", "size": 5, "score": 0.4 , "title": "list", "type": "circle"},
 
       
 
-        {"id": "browser", "size": 5, "score": 0.4 , "title": "browser", "type": "circle"},
+        {"id": "number", "size": 5, "score": 0.4 , "title": "number", "type": "circle"},
 
       
 
-        {"id": "RDF", "size": 5, "score": 0.4 , "title": "RDF", "type": "circle"},
+        {"id": "associative-relationships", "size": 5, "score": 0.4 , "title": "associative-relationships", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "relationship", "size": 5, "score": 0.4 , "title": "relationship", "type": "circle"},
 
       
 
-        {"id": "Web", "size": 5, "score": 0.4 , "title": "Web", "type": "circle"},
+        {"id": "parent-child-relationship", "size": 5, "score": 0.4 , "title": "parent-child-relationship", "type": "circle"},
 
       
 
-        {"id": "publishing", "size": 5, "score": 0.4 , "title": "publishing", "type": "circle"},
+        {"id": "kinds-of-links", "size": 5, "score": 0.4 , "title": "kinds-of-links", "type": "circle"},
 
       
 
-        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
+        {"id": "product-owners", "size": 5, "score": 0.4 , "title": "product-owners", "type": "circle"},
 
       
 
-        {"id": "web-server", "size": 5, "score": 0.4 , "title": "web-server", "type": "circle"},
+        {"id": "project", "size": 5, "score": 0.4 , "title": "project", "type": "circle"},
 
       
 
-        {"id": "academic-publishing", "size": 5, "score": 0.4 , "title": "academic-publishing", "type": "circle"},
+        {"id": "business", "size": 5, "score": 0.4 , "title": "business", "type": "circle"},
+
+      
+
+        {"id": "product-backlog", "size": 5, "score": 0.4 , "title": "product-backlog", "type": "circle"},
 
        
 
