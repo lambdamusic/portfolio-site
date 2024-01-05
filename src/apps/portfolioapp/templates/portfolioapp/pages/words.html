@@ -42,7 +42,8 @@
 				#{{tag}}
 				</p>
 			</div>
-			
+
+
 		{% else %}
 
 		
@@ -235,28 +236,22 @@
 	
 	{% if tags %}
 		
-	<div class="row -margin20Top margin50Bottom ">
+	<div class="row {% if tag %}margin50Top{% endif %} margin50Bottom ">
 
 		<hr class=" margin50Bottom  ">	
 
 		<div class="col-sm-3 col-md-3">
 
-
-
 			<p style="color: #e8e5e5; font-size: 600%; ">
-				Tags
+				{% if tag %}Related {% endif %}Tags
 			  </p>
-
-
-
 
 		</div>
 
 
 		
-		<div class="col-sm-9 col-md-9 text-right">
+		<div class="col-sm-9 col-md-9 text-right {% if tag %}margin50Top{% endif %}">
 
-		
 			{% for tag in tags  %}
 
 				{% if tag.1 > 0 %}
@@ -265,9 +260,6 @@
 									
 			{% endfor %}
 			
-
-
-
 
 		</div>
 

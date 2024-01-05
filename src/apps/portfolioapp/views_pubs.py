@@ -63,7 +63,8 @@ def words(request):
 		tags = get_tags(2)
 	else:
 		return_items = get_pubs(query, ttype, tag)
-		tags = None
+		cooccurring_tags = get_corelated_tags(return_items)
+		tags = get_tags(subset=cooccurring_tags)
 	
 	
 	context = {
@@ -79,6 +80,16 @@ def words(request):
 	return render(request, APP + '/pages/' + templatee, context)
 
 
+
+def get_corelated_tags(return_items):
+	"Extract the tags from a subset of papers"
+	tags = []
+	for group in return_items:
+		for item in group[1]:
+			for tag in item.tags.all():
+				if tag not in tags:
+					tags.append(tag)
+	return tags
 
 
 
@@ -325,14 +336,20 @@ def get_related_pubs(a_pub):
 
 
 
-def get_tags(minvalue=0):
+def get_tags(minvalue=0, subset=None):
 	""" retrieves tags info for the cloud viz
 	
 	The filtering is done in the template
 	IE {% if tag.1 > 1 %}
+
+	subset is a list of Tag objects
 	"""
 
 	tagcloud_pubs = Tag.objects.values_list('name').distinct().annotate(cc=Count('publications'))
 
-	return [t for t in tagcloud_pubs if t[1] > minvalue]
+	if not subset:
+		return [t for t in tagcloud_pubs if t[1] > minvalue]
+	else:
+		names = [t.name for t in subset]
+		return [t for t in tagcloud_pubs if t[1] > minvalue and t[0] in names]
 
