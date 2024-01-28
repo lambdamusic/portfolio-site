@@ -762,11 +762,13 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "nucleus", "target": "electrons" },
+          { "source": "atoms", "target": "electrons" },
       
-          { "source": "nucleus", "target": "atoms" },
+          { "source": "atoms", "target": "charge" },
       
-          { "source": "nucleus", "target": "charge" },
+          { "source": "atoms", "target": "nucleus" },
+      
+          { "source": "atoms", "target": "bonding" },
       
           { "source": "electrons", "target": "atoms" },
       
@@ -776,14 +778,6 @@ var data_local_dynamic = {
       
           { "source": "electrons", "target": "quantum-theory" },
       
-          { "source": "atoms", "target": "electrons" },
-      
-          { "source": "atoms", "target": "charge" },
-      
-          { "source": "atoms", "target": "nucleus" },
-      
-          { "source": "atoms", "target": "bonding" },
-      
           { "source": "charge", "target": "electrons" },
       
           { "source": "charge", "target": "atoms" },
@@ -791,6 +785,18 @@ var data_local_dynamic = {
           { "source": "charge", "target": "nucleus" },
       
           { "source": "charge", "target": "bonding" },
+      
+          { "source": "nucleus", "target": "electrons" },
+      
+          { "source": "nucleus", "target": "atoms" },
+      
+          { "source": "nucleus", "target": "charge" },
+      
+          { "source": "bonding", "target": "atoms" },
+      
+          { "source": "bonding", "target": "charge" },
+      
+          { "source": "bonding", "target": "-bonding" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -801,15 +807,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "atoms", "size": 70, "score": 0 , "title": "atoms", "type": "circle"},
-
-      
-
         {"id": "charge", "size": 70, "score": 0 , "title": "charge", "type": "circle"},
 
       
 
-        {"id": "nucleus", "size": 140, "score": 0.5 , "title": "nucleus", "type": "circle"},
+        {"id": "nucleus", "size": 70, "score": 0 , "title": "nucleus", "type": "circle"},
+
+      
+
+        {"id": "bonding", "size": 70, "score": 0 , "title": "bonding", "type": "circle"},
+
+      
+
+        {"id": "atoms", "size": 140, "score": 0.5 , "title": "atoms", "type": "circle"},
 
       
 
@@ -817,7 +827,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "bonding", "size": 5, "score": 0.4 , "title": "bonding", "type": "circle"},
+        {"id": "-bonding", "size": 5, "score": 0.4 , "title": "-bonding", "type": "circle"},
 
        
 

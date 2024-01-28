@@ -766,15 +766,23 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "highest-contribution", "target": "bridge" },
+          { "source": "contribution", "target": "field" },
       
-          { "source": "highest-contribution", "target": "contribution" },
+          { "source": "contribution", "target": "bridge" },
       
-          { "source": "highest-contribution", "target": "publications" },
+          { "source": "contribution", "target": "highest-contribution" },
       
-          { "source": "highest-contribution", "target": "people" },
+          { "source": "contribution", "target": "publications" },
       
-          { "source": "highest-contribution", "target": "area" },
+          { "source": "contribution", "target": "people" },
+      
+          { "source": "field", "target": "structure" },
+      
+          { "source": "field", "target": "physics" },
+      
+          { "source": "field", "target": "contribution" },
+      
+          { "source": "field", "target": "Internet" },
       
           { "source": "bridge", "target": "politicians" },
       
@@ -784,13 +792,13 @@ var data_local_dynamic = {
       
           { "source": "bridge", "target": "publications" },
       
-          { "source": "contribution", "target": "field" },
+          { "source": "highest-contribution", "target": "bridge" },
       
-          { "source": "contribution", "target": "bridge" },
+          { "source": "highest-contribution", "target": "contribution" },
       
-          { "source": "contribution", "target": "highest-contribution" },
+          { "source": "highest-contribution", "target": "publications" },
       
-          { "source": "contribution", "target": "publications" },
+          { "source": "highest-contribution", "target": "people" },
       
           { "source": "publications", "target": "database" },
       
@@ -807,25 +815,21 @@ var data_local_dynamic = {
           { "source": "people", "target": "game" },
       
           { "source": "people", "target": "unselfishness" },
-      
-          { "source": "area", "target": "publications" },
-      
-          { "source": "area", "target": "contribution" },
-      
-          { "source": "area", "target": "highest-contribution" },
-      
-          { "source": "area", "target": "science" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
+        {"id": "field", "size": 70, "score": 0 , "title": "field", "type": "circle"},
+
+      
+
         {"id": "bridge", "size": 70, "score": 0 , "title": "bridge", "type": "circle"},
 
       
 
-        {"id": "contribution", "size": 70, "score": 0 , "title": "contribution", "type": "circle"},
+        {"id": "highest-contribution", "size": 70, "score": 0 , "title": "highest-contribution", "type": "circle"},
 
       
 
@@ -837,19 +841,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "area", "size": 70, "score": 0 , "title": "area", "type": "circle"},
+        {"id": "contribution", "size": 140, "score": 0.5 , "title": "contribution", "type": "circle"},
 
       
 
-        {"id": "highest-contribution", "size": 140, "score": 0.5 , "title": "highest-contribution", "type": "circle"},
+        {"id": "structure", "size": 5, "score": 0.4 , "title": "structure", "type": "circle"},
+
+      
+
+        {"id": "physics", "size": 5, "score": 0.4 , "title": "physics", "type": "circle"},
+
+      
+
+        {"id": "Internet", "size": 5, "score": 0.4 , "title": "Internet", "type": "circle"},
 
       
 
         {"id": "politicians", "size": 5, "score": 0.4 , "title": "politicians", "type": "circle"},
-
-      
-
-        {"id": "field", "size": 5, "score": 0.4 , "title": "field", "type": "circle"},
 
       
 
@@ -882,10 +890,6 @@ var data_local_dynamic = {
       
 
         {"id": "unselfishness", "size": 5, "score": 0.4 , "title": "unselfishness", "type": "circle"},
-
-      
-
-        {"id": "science", "size": 5, "score": 0.4 , "title": "science", "type": "circle"},
 
        
 

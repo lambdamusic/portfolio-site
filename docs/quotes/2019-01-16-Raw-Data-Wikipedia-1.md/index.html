@@ -764,6 +764,24 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "processing", "target": "raw-data" },
+      
+          { "source": "processing", "target": "information" },
+      
+          { "source": "processing", "target": "customers" },
+      
+          { "source": "processing", "target": "semantics" },
+      
+          { "source": "processing", "target": "human-processing" },
+      
+          { "source": "raw-data", "target": "processing" },
+      
+          { "source": "raw-data", "target": "information" },
+      
+          { "source": "raw-data", "target": "customers" },
+      
+          { "source": "raw-data", "target": "digital-libraries" },
+      
           { "source": "information", "target": "documents" },
       
           { "source": "information", "target": "corpus" },
@@ -772,100 +790,104 @@ var data_local_dynamic = {
       
           { "source": "information", "target": "RDF-Schema" },
       
-          { "source": "information", "target": "schema" },
+          { "source": "customers", "target": "services" },
       
-          { "source": "documents", "target": "corpus" },
+          { "source": "customers", "target": "raw-data" },
       
-          { "source": "documents", "target": "information" },
+          { "source": "customers", "target": "processing" },
       
-          { "source": "documents", "target": "tool" },
+          { "source": "customers", "target": "information" },
       
-          { "source": "documents", "target": "URI" },
+          { "source": "semantics", "target": "web-services" },
       
-          { "source": "corpus", "target": "documents" },
+          { "source": "semantics", "target": "XML-schema" },
       
-          { "source": "corpus", "target": "information" },
+          { "source": "semantics", "target": "data-elements" },
       
-          { "source": "corpus", "target": "tool" },
+          { "source": "semantics", "target": "schema" },
       
-          { "source": "tool", "target": "documents" },
+          { "source": "human-processing", "target": "semantics" },
       
-          { "source": "tool", "target": "corpus" },
+          { "source": "human-processing", "target": "explicit-semantics" },
       
-          { "source": "tool", "target": "information" },
+          { "source": "human-processing", "target": "formal-specification" },
       
-          { "source": "tool", "target": "theory" },
-      
-          { "source": "RDF-Schema", "target": "schema" },
-      
-          { "source": "RDF-Schema", "target": "information" },
-      
-          { "source": "RDF-Schema", "target": "applications" },
-      
-          { "source": "RDF-Schema", "target": "book" },
-      
-          { "source": "schema", "target": "scheme" },
-      
-          { "source": "schema", "target": "format" },
-      
-          { "source": "schema", "target": "archives" },
-      
-          { "source": "schema", "target": "RDF-Schema" },
+          { "source": "human-processing", "target": "processing" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "documents", "size": 70, "score": 0 , "title": "documents", "type": "circle"},
+        {"id": "raw-data", "size": 70, "score": 0 , "title": "raw-data", "type": "circle"},
 
       
 
-        {"id": "corpus", "size": 70, "score": 0 , "title": "corpus", "type": "circle"},
+        {"id": "information", "size": 70, "score": 0 , "title": "information", "type": "circle"},
 
       
 
-        {"id": "tool", "size": 70, "score": 0 , "title": "tool", "type": "circle"},
+        {"id": "customers", "size": 70, "score": 0 , "title": "customers", "type": "circle"},
 
       
 
-        {"id": "RDF-Schema", "size": 70, "score": 0 , "title": "RDF-Schema", "type": "circle"},
+        {"id": "semantics", "size": 70, "score": 0 , "title": "semantics", "type": "circle"},
 
       
 
-        {"id": "schema", "size": 70, "score": 0 , "title": "schema", "type": "circle"},
+        {"id": "human-processing", "size": 70, "score": 0 , "title": "human-processing", "type": "circle"},
 
       
 
-        {"id": "information", "size": 140, "score": 0.5 , "title": "information", "type": "circle"},
+        {"id": "processing", "size": 140, "score": 0.5 , "title": "processing", "type": "circle"},
 
       
 
-        {"id": "URI", "size": 5, "score": 0.4 , "title": "URI", "type": "circle"},
+        {"id": "digital-libraries", "size": 5, "score": 0.4 , "title": "digital-libraries", "type": "circle"},
 
       
 
-        {"id": "theory", "size": 5, "score": 0.4 , "title": "theory", "type": "circle"},
+        {"id": "documents", "size": 5, "score": 0.4 , "title": "documents", "type": "circle"},
 
       
 
-        {"id": "applications", "size": 5, "score": 0.4 , "title": "applications", "type": "circle"},
+        {"id": "corpus", "size": 5, "score": 0.4 , "title": "corpus", "type": "circle"},
 
       
 
-        {"id": "book", "size": 5, "score": 0.4 , "title": "book", "type": "circle"},
+        {"id": "tool", "size": 5, "score": 0.4 , "title": "tool", "type": "circle"},
 
       
 
-        {"id": "scheme", "size": 5, "score": 0.4 , "title": "scheme", "type": "circle"},
+        {"id": "RDF-Schema", "size": 5, "score": 0.4 , "title": "RDF-Schema", "type": "circle"},
 
       
 
-        {"id": "format", "size": 5, "score": 0.4 , "title": "format", "type": "circle"},
+        {"id": "services", "size": 5, "score": 0.4 , "title": "services", "type": "circle"},
 
       
 
-        {"id": "archives", "size": 5, "score": 0.4 , "title": "archives", "type": "circle"},
+        {"id": "web-services", "size": 5, "score": 0.4 , "title": "web-services", "type": "circle"},
+
+      
+
+        {"id": "XML-schema", "size": 5, "score": 0.4 , "title": "XML-schema", "type": "circle"},
+
+      
+
+        {"id": "data-elements", "size": 5, "score": 0.4 , "title": "data-elements", "type": "circle"},
+
+      
+
+        {"id": "schema", "size": 5, "score": 0.4 , "title": "schema", "type": "circle"},
+
+      
+
+        {"id": "explicit-semantics", "size": 5, "score": 0.4 , "title": "explicit-semantics", "type": "circle"},
+
+      
+
+        {"id": "formal-specification", "size": 5, "score": 0.4 , "title": "formal-specification", "type": "circle"},
 
        
 
