@@ -762,6 +762,28 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "creation", "target": "digital-environment" },
+      
+          { "source": "creation", "target": "properties" },
+      
+          { "source": "creation", "target": "software-systems" },
+      
+          { "source": "creation", "target": "software-products" },
+      
+          { "source": "digital-environment", "target": "humanities-research" },
+      
+          { "source": "digital-environment", "target": "properties" },
+      
+          { "source": "digital-environment", "target": "creation" },
+      
+          { "source": "properties", "target": "network" },
+      
+          { "source": "properties", "target": "instances" },
+      
+          { "source": "properties", "target": "range" },
+      
+          { "source": "properties", "target": "class" },
+      
           { "source": "software-systems", "target": "environment" },
       
           { "source": "software-systems", "target": "interface" },
@@ -770,24 +792,6 @@ var data_local_dynamic = {
       
           { "source": "software-systems", "target": "creation" },
       
-          { "source": "software-systems", "target": "digital-humanities" },
-      
-          { "source": "environment", "target": "interface" },
-      
-          { "source": "environment", "target": "software-systems" },
-      
-          { "source": "environment", "target": "software-products" },
-      
-          { "source": "environment", "target": "machine" },
-      
-          { "source": "interface", "target": "environment" },
-      
-          { "source": "interface", "target": "software-systems" },
-      
-          { "source": "interface", "target": "software-products" },
-      
-          { "source": "interface", "target": "machine" },
-      
           { "source": "software-products", "target": "products" },
       
           { "source": "software-products", "target": "relationship" },
@@ -795,33 +799,21 @@ var data_local_dynamic = {
           { "source": "software-products", "target": "environment" },
       
           { "source": "software-products", "target": "interface" },
-      
-          { "source": "creation", "target": "software-systems" },
-      
-          { "source": "creation", "target": "software-products" },
-      
-          { "source": "creation", "target": "digital-environment" },
-      
-          { "source": "creation", "target": "properties" },
-      
-          { "source": "digital-humanities", "target": "humanists" },
-      
-          { "source": "digital-humanities", "target": "humanity" },
-      
-          { "source": "digital-humanities", "target": "skills" },
-      
-          { "source": "digital-humanities", "target": "intellectual-endeavor" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "environment", "size": 70, "score": 0 , "title": "environment", "type": "circle"},
+        {"id": "digital-environment", "size": 70, "score": 0 , "title": "digital-environment", "type": "circle"},
 
       
 
-        {"id": "interface", "size": 70, "score": 0 , "title": "interface", "type": "circle"},
+        {"id": "properties", "size": 70, "score": 0 , "title": "properties", "type": "circle"},
+
+      
+
+        {"id": "software-systems", "size": 70, "score": 0 , "title": "software-systems", "type": "circle"},
 
       
 
@@ -829,19 +821,35 @@ var data_local_dynamic = {
 
       
 
-        {"id": "creation", "size": 70, "score": 0 , "title": "creation", "type": "circle"},
+        {"id": "creation", "size": 140, "score": 0.5 , "title": "creation", "type": "circle"},
 
       
 
-        {"id": "digital-humanities", "size": 70, "score": 0 , "title": "digital-humanities", "type": "circle"},
+        {"id": "humanities-research", "size": 5, "score": 0.4 , "title": "humanities-research", "type": "circle"},
 
       
 
-        {"id": "software-systems", "size": 140, "score": 0.5 , "title": "software-systems", "type": "circle"},
+        {"id": "network", "size": 5, "score": 0.4 , "title": "network", "type": "circle"},
 
       
 
-        {"id": "machine", "size": 5, "score": 0.4 , "title": "machine", "type": "circle"},
+        {"id": "instances", "size": 5, "score": 0.4 , "title": "instances", "type": "circle"},
+
+      
+
+        {"id": "range", "size": 5, "score": 0.4 , "title": "range", "type": "circle"},
+
+      
+
+        {"id": "class", "size": 5, "score": 0.4 , "title": "class", "type": "circle"},
+
+      
+
+        {"id": "environment", "size": 5, "score": 0.4 , "title": "environment", "type": "circle"},
+
+      
+
+        {"id": "interface", "size": 5, "score": 0.4 , "title": "interface", "type": "circle"},
 
       
 
@@ -850,30 +858,6 @@ var data_local_dynamic = {
       
 
         {"id": "relationship", "size": 5, "score": 0.4 , "title": "relationship", "type": "circle"},
-
-      
-
-        {"id": "digital-environment", "size": 5, "score": 0.4 , "title": "digital-environment", "type": "circle"},
-
-      
-
-        {"id": "properties", "size": 5, "score": 0.4 , "title": "properties", "type": "circle"},
-
-      
-
-        {"id": "humanists", "size": 5, "score": 0.4 , "title": "humanists", "type": "circle"},
-
-      
-
-        {"id": "humanity", "size": 5, "score": 0.4 , "title": "humanity", "type": "circle"},
-
-      
-
-        {"id": "skills", "size": 5, "score": 0.4 , "title": "skills", "type": "circle"},
-
-      
-
-        {"id": "intellectual-endeavor", "size": 5, "score": 0.4 , "title": "intellectual-endeavor", "type": "circle"},
 
        
 
@@ -1003,10 +987,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

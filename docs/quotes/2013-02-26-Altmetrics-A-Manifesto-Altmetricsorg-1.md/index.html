@@ -762,8 +762,6 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "measures", "target": "link" },
-      
           { "source": "measures", "target": "citations" },
       
           { "source": "measures", "target": "evaluation" },
@@ -772,13 +770,7 @@ var data_local_dynamic = {
       
           { "source": "measures", "target": "attention" },
       
-          { "source": "link", "target": "associative-relationships" },
-      
-          { "source": "link", "target": "relationship" },
-      
-          { "source": "link", "target": "parent-child-relationship" },
-      
-          { "source": "link", "target": "kinds-of-links" },
+          { "source": "measures", "target": "impact" },
       
           { "source": "citations", "target": "attributes" },
       
@@ -786,7 +778,7 @@ var data_local_dynamic = {
       
           { "source": "citations", "target": "impact" },
       
-          { "source": "citations", "target": "expectations" },
+          { "source": "citations", "target": "evaluation" },
       
           { "source": "evaluation", "target": "citations" },
       
@@ -811,14 +803,18 @@ var data_local_dynamic = {
           { "source": "attention", "target": "measures" },
       
           { "source": "attention", "target": "analysis" },
+      
+          { "source": "impact", "target": "use" },
+      
+          { "source": "impact", "target": "assumption" },
+      
+          { "source": "impact", "target": "citations" },
+      
+          { "source": "impact", "target": "attributes" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
-      
-
-        {"id": "link", "size": 70, "score": 0 , "title": "link", "type": "circle"},
-
       
 
         {"id": "citations", "size": 70, "score": 0 , "title": "citations", "type": "circle"},
@@ -837,23 +833,11 @@ var data_local_dynamic = {
 
       
 
+        {"id": "impact", "size": 70, "score": 0 , "title": "impact", "type": "circle"},
+
+      
+
         {"id": "measures", "size": 140, "score": 0.5 , "title": "measures", "type": "circle"},
-
-      
-
-        {"id": "associative-relationships", "size": 5, "score": 0.4 , "title": "associative-relationships", "type": "circle"},
-
-      
-
-        {"id": "relationship", "size": 5, "score": 0.4 , "title": "relationship", "type": "circle"},
-
-      
-
-        {"id": "parent-child-relationship", "size": 5, "score": 0.4 , "title": "parent-child-relationship", "type": "circle"},
-
-      
-
-        {"id": "kinds-of-links", "size": 5, "score": 0.4 , "title": "kinds-of-links", "type": "circle"},
 
       
 
@@ -865,11 +849,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "impact", "size": 5, "score": 0.4 , "title": "impact", "type": "circle"},
+        {"id": "use", "size": 5, "score": 0.4 , "title": "use", "type": "circle"},
 
       
 
-        {"id": "expectations", "size": 5, "score": 0.4 , "title": "expectations", "type": "circle"},
+        {"id": "assumption", "size": 5, "score": 0.4 , "title": "assumption", "type": "circle"},
 
        
 
@@ -999,10 +983,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

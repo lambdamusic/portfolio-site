@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.guardian.co.uk/technology/2011/feb/06/tech-startup-internet-entrepreneurs" class="text-muted" target="_blank">The Tech Startup Stars | Technology | The Observer</a>
+									
+							</small>
+							<!-- Words taken from <cite title="The Tech Startup Stars | Technology | The Observer">
+								<a href="http://www.guardian.co.uk/technology/2011/feb/06/tech-startup-internet-entrepreneurs" class="-underline -text-muted" target="_blank">
+								  The Tech Startup Stars | Technology | The Observer</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-The-Tech-Startup-Stars-Technology-The-Observer-1.md/index.html">&#39;Silicon Roundabout&#39; was what Matt...</a>
-						<br />
-						<small style="color: #cbcbcb;">The Tech Startup Stars | Technology | The Observer
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=industry.html">#industry</a>&nbsp;
@@ -588,14 +601,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.vice.com/en_uk/read/henry-wismayer-boring-travellers-015" class="text-muted" target="_blank">Tourism Is Just Another Form Of Narcissism | Vice United Kingdom</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Tourism Is Just Another Form Of Narcissism | Vice United Kingdom">
+								<a href="http://www.vice.com/en_uk/read/henry-wismayer-boring-travellers-015" class="-underline -text-muted" target="_blank">
+								  Tourism Is Just Another Form Of Narcissism | Vice United Kingdom</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-10-10-Tourism-Is-Just-Another-Form-Of-Narcissism-1.md/index.html">Traveling</a>
-						<br />
-						<small style="color: #cbcbcb;">Tourism Is Just Another Form Of Narcissism | Vice United Kingdom
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=head.html">#head</a>&nbsp;
@@ -608,6 +635,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -734,21 +762,21 @@ var data_local_dynamic = {
       
           { "source": "industry", "target": "generation" },
       
+          { "source": "head", "target": "months" },
+      
           { "source": "head", "target": "men" },
       
           { "source": "head", "target": "smile" },
       
           { "source": "head", "target": "eyes" },
       
-          { "source": "head", "target": "heart" },
+          { "source": "experience", "target": "time" },
       
-          { "source": "experience", "target": "eyes" },
+          { "source": "experience", "target": "weeks" },
       
-          { "source": "experience", "target": "ear" },
+          { "source": "experience", "target": "days" },
       
-          { "source": "experience", "target": "young-men" },
-      
-          { "source": "experience", "target": "men" },
+          { "source": "experience", "target": "lack" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -779,6 +807,10 @@ var data_local_dynamic = {
 
       
 
+        {"id": "months", "size": 5, "score": 0.4 , "title": "months", "type": "circle"},
+
+      
+
         {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
 
       
@@ -791,15 +823,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "heart", "size": 5, "score": 0.4 , "title": "heart", "type": "circle"},
+        {"id": "time", "size": 5, "score": 0.4 , "title": "time", "type": "circle"},
 
       
 
-        {"id": "ear", "size": 5, "score": 0.4 , "title": "ear", "type": "circle"},
+        {"id": "weeks", "size": 5, "score": 0.4 , "title": "weeks", "type": "circle"},
 
       
 
-        {"id": "young-men", "size": 5, "score": 0.4 , "title": "young-men", "type": "circle"},
+        {"id": "days", "size": 5, "score": 0.4 , "title": "days", "type": "circle"},
+
+      
+
+        {"id": "lack", "size": 5, "score": 0.4 , "title": "lack", "type": "circle"},
 
        
 
@@ -929,10 +965,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

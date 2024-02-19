@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://research.microsoft.com/en-us/projects/mylifebits/" class="text-muted" target="_blank">Mylifebits - Microsoft Research</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Mylifebits - Microsoft Research">
+								<a href="http://research.microsoft.com/en-us/projects/mylifebits/" class="-underline -text-muted" target="_blank">
+								  Mylifebits - Microsoft Research</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Mylifebits-Microsoft-Research-1.md/index.html">MylifeBits is a lifetime store...</a>
-						<br />
-						<small style="color: #cbcbcb;">Mylifebits - Microsoft Research
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=annotation.html">#annotation</a>&nbsp;
@@ -588,14 +601,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.ontopia.net/topicmaps/materials/tao.html" class="text-muted" target="_blank">The Tao Of Topic Maps</a>
+									
+							</small>
+							<!-- Words taken from <cite title="The Tao Of Topic Maps">
+								<a href="http://www.ontopia.net/topicmaps/materials/tao.html" class="-underline -text-muted" target="_blank">
+								  The Tao Of Topic Maps</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-11-22-The-Tao-Of-Topic-Maps-20.md/index.html">Topic associations vs normal cross references</a>
-						<br />
-						<small style="color: #cbcbcb;">The Tao Of Topic Maps
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=Topic-Maps.html">#Topic-Maps</a>&nbsp;
@@ -614,6 +641,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -740,9 +768,9 @@ var data_local_dynamic = {
       
           { "source": "annotation", "target": "web-applications" },
       
-          { "source": "annotation", "target": "hyperlinks" },
-      
           { "source": "annotation", "target": "services" },
+      
+          { "source": "annotation", "target": "hyperlinks" },
       
           { "source": "annotation", "target": "human-genome" },
       
@@ -977,10 +1005,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

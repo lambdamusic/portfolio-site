@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.giovanni-lanza.de/apertura.htm" class="text-muted" target="_blank">Apertura</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Apertura">
+								<a href="http://www.giovanni-lanza.de/apertura.htm" class="-underline -text-muted" target="_blank">
+								  Apertura</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-04-18-Apertura-1.md/index.html">Opera aperta</a>
-						<br />
-						<small style="color: #cbcbcb;">Apertura
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=aperta.html">#aperta</a>&nbsp;
@@ -590,14 +603,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.filosofico.net/Antologia_file/AntologiaP/POPPER_%20CHI%20E%20FILOSOFO.htm" class="text-muted" target="_blank">Popper, Chi È Filosofo</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Popper, Chi È Filosofo">
+								<a href="http://www.filosofico.net/Antologia_file/AntologiaP/POPPER_%20CHI%20E%20FILOSOFO.htm" class="-underline -text-muted" target="_blank">
+								  Popper, Chi È Filosofo</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="http://127.0.0.1:8000/quotes/2013-02-26-Popper-Chi-E%CC%80-Filosofo-1.md/">The role of a philosopher</a>
-						<br />
-						<small style="color: #cbcbcb;">Popper, Chi È Filosofo
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=males.html">#males</a>&nbsp;
@@ -608,6 +635,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -728,13 +756,13 @@ var data_local_dynamic = {
       
           { "source": "aperta", "target": "males" },
       
-          { "source": "ED", "target": "DIO" },
-      
-          { "source": "ED", "target": "Parola" },
-      
           { "source": "ED", "target": "aperta" },
       
           { "source": "ED", "target": "significa" },
+      
+          { "source": "ED", "target": "DIO" },
+      
+          { "source": "ED", "target": "Parola" },
       
           { "source": "significa", "target": "termine" },
       
@@ -744,13 +772,13 @@ var data_local_dynamic = {
       
           { "source": "significa", "target": "ED" },
       
+          { "source": "males", "target": "aperta" },
+      
           { "source": "males", "target": "Basso" },
       
           { "source": "males", "target": "del" },
       
           { "source": "males", "target": "sex" },
-      
-          { "source": "males", "target": "name" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -798,10 +826,6 @@ var data_local_dynamic = {
       
 
         {"id": "sex", "size": 5, "score": 0.4 , "title": "sex", "type": "circle"},
-
-      
-
-        {"id": "name", "size": 5, "score": 0.4 , "title": "name", "type": "circle"},
 
        
 
@@ -931,10 +955,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

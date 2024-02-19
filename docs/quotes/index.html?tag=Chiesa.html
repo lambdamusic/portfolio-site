@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://milano.corriere.it/notizie/cronaca/16_novembre_23/carlo-genio-computersara-primo-beato-20-dd621f1c-b0f5-11e6-b55d-c69c2623ee72.shtml" class="text-muted" target="_blank">Carlo, Genio Del Computer Morto A 15 Anni: Sarà Il Primo Beato 2.0 - Corriere.it</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Carlo, Genio Del Computer Morto A 15 Anni: Sarà Il Primo Beato 2.0 - Corriere.it">
+								<a href="http://milano.corriere.it/notizie/cronaca/16_novembre_23/carlo-genio-computersara-primo-beato-20-dd621f1c-b0f5-11e6-b55d-c69c2623ee72.shtml" class="-underline -text-muted" target="_blank">
+								  Carlo, Genio Del Computer Morto A 15 Anni: Sarà Il Primo Beato 2.0 - Corriere.it</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2016-11-23-Carlo-Genio-Del-Computer-Morto-A-15-1.md/index.html">Essere veri</a>
-						<br />
-						<small style="color: #cbcbcb;">Carlo, Genio Del Computer Morto A 15 Anni: Sarà Il Primo Beato 2.0 - Corriere.it
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=Chiesa.html">#Chiesa</a>&nbsp;
@@ -586,14 +599,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.ilfattoquotidiano.it/2012/03/12/lessenza-della-vita/196674/" class="text-muted" target="_blank">L’essenza Della Vita | Franco Battiato | Il Fatto Quotidiano</a>
+									
+							</small>
+							<!-- Words taken from <cite title="L’essenza Della Vita | Franco Battiato | Il Fatto Quotidiano">
+								<a href="http://www.ilfattoquotidiano.it/2012/03/12/lessenza-della-vita/196674/" class="-underline -text-muted" target="_blank">
+								  L’essenza Della Vita | Franco Battiato | Il Fatto Quotidiano</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Lessenza-Della-Vita-Franco-Battiato-Il-Fatto-1.md/index.html">“Lo scetticismo da parte della...</a>
-						<br />
-						<small style="color: #cbcbcb;">L’essenza Della Vita | Franco Battiato | Il Fatto Quotidiano
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=vitae.html">#vitae</a>&nbsp;
@@ -604,6 +631,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -724,9 +752,9 @@ var data_local_dynamic = {
       
           { "source": "vitae", "target": "Chiesa" },
       
-          { "source": "vitae", "target": "Matteo" },
+          { "source": "vitae", "target": "Volta" },
       
-          { "source": "vitae", "target": "proprio" },
+          { "source": "vitae", "target": "Matteo" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -745,11 +773,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Matteo", "size": 5, "score": 0.4 , "title": "Matteo", "type": "circle"},
+        {"id": "Volta", "size": 5, "score": 0.4 , "title": "Volta", "type": "circle"},
 
       
 
-        {"id": "proprio", "size": 5, "score": 0.4 , "title": "proprio", "type": "circle"},
+        {"id": "Matteo", "size": 5, "score": 0.4 , "title": "Matteo", "type": "circle"},
 
        
 
@@ -879,10 +907,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -760,6 +760,8 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "al", "target": "sociales" },
+      
           { "source": "al", "target": "Gruppo" },
       
           { "source": "al", "target": "pan" },
@@ -768,7 +770,11 @@ var data_local_dynamic = {
       
           { "source": "al", "target": "solo" },
       
-          { "source": "al", "target": "sociales" },
+          { "source": "sociales", "target": "cis" },
+      
+          { "source": "sociales", "target": "solo" },
+      
+          { "source": "sociales", "target": "al" },
       
           { "source": "Gruppo", "target": "anni" },
       
@@ -782,13 +788,13 @@ var data_local_dynamic = {
       
           { "source": "pan", "target": "COSA" },
       
-          { "source": "COSA", "target": "filosofia" },
-      
           { "source": "COSA", "target": "pan" },
       
           { "source": "COSA", "target": "al" },
       
           { "source": "COSA", "target": "solo" },
+      
+          { "source": "COSA", "target": "Fuoco" },
       
           { "source": "solo", "target": "cis" },
       
@@ -796,17 +802,15 @@ var data_local_dynamic = {
       
           { "source": "solo", "target": "Spirito" },
       
-          { "source": "solo", "target": "anni" },
-      
-          { "source": "sociales", "target": "cis" },
-      
-          { "source": "sociales", "target": "solo" },
-      
-          { "source": "sociales", "target": "al" },
+          { "source": "solo", "target": "passiones" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "sociales", "size": 70, "score": 0 , "title": "sociales", "type": "circle"},
+
       
 
         {"id": "Gruppo", "size": 70, "score": 0 , "title": "Gruppo", "type": "circle"},
@@ -825,11 +829,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "sociales", "size": 70, "score": 0 , "title": "sociales", "type": "circle"},
+        {"id": "al", "size": 140, "score": 0.5 , "title": "al", "type": "circle"},
 
       
 
-        {"id": "al", "size": 140, "score": 0.5 , "title": "al", "type": "circle"},
+        {"id": "cis", "size": 5, "score": 0.4 , "title": "cis", "type": "circle"},
 
       
 
@@ -845,15 +849,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "filosofia", "size": 5, "score": 0.4 , "title": "filosofia", "type": "circle"},
-
-      
-
-        {"id": "cis", "size": 5, "score": 0.4 , "title": "cis", "type": "circle"},
+        {"id": "Fuoco", "size": 5, "score": 0.4 , "title": "Fuoco", "type": "circle"},
 
       
 
         {"id": "Spirito", "size": 5, "score": 0.4 , "title": "Spirito", "type": "circle"},
+
+      
+
+        {"id": "passiones", "size": 5, "score": 0.4 , "title": "passiones", "type": "circle"},
 
        
 
@@ -983,10 +987,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -778,21 +778,21 @@ var data_local_dynamic = {
       
           { "source": "medium", "target": "anni" },
       
-          { "source": "meaning", "target": "semiotic-analysis" },
+          { "source": "meaning", "target": "concept" },
       
-          { "source": "meaning", "target": "signification" },
+          { "source": "meaning", "target": "knowledge-representation" },
       
-          { "source": "meaning", "target": "vocal-expressions" },
+          { "source": "meaning", "target": "representation" },
       
-          { "source": "meaning", "target": "imposition" },
+          { "source": "meaning", "target": "terms" },
       
-          { "source": "tradition", "target": "medium" },
+          { "source": "tradition", "target": "citations" },
       
-          { "source": "tradition", "target": "meaning" },
-      
-          { "source": "tradition", "target": "humanism" },
+          { "source": "tradition", "target": "work" },
       
           { "source": "tradition", "target": "Calvinism" },
+      
+          { "source": "tradition", "target": "medium" },
       
           { "source": "humanism", "target": "medium" },
       
@@ -802,21 +802,21 @@ var data_local_dynamic = {
       
           { "source": "humanism", "target": "human-beings" },
       
-          { "source": "cons", "target": "Veneto" },
+          { "source": "cons", "target": "Italiano" },
       
-          { "source": "cons", "target": "Emilia-Romagna" },
+          { "source": "cons", "target": "Presto" },
       
-          { "source": "cons", "target": "Friuli-Venezia-Giulia" },
+          { "source": "cons", "target": "nausea" },
       
-          { "source": "cons", "target": "Lombardia" },
+          { "source": "cons", "target": "STA" },
       
-          { "source": "anni", "target": "nulla" },
+          { "source": "anni", "target": "Gruppo" },
       
           { "source": "anni", "target": "Quattro" },
       
           { "source": "anni", "target": "totale" },
       
-          { "source": "anni", "target": "Gruppo" },
+          { "source": "anni", "target": "base" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -847,19 +847,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "semiotic-analysis", "size": 5, "score": 0.4 , "title": "semiotic-analysis", "type": "circle"},
+        {"id": "concept", "size": 5, "score": 0.4 , "title": "concept", "type": "circle"},
 
       
 
-        {"id": "signification", "size": 5, "score": 0.4 , "title": "signification", "type": "circle"},
+        {"id": "knowledge-representation", "size": 5, "score": 0.4 , "title": "knowledge-representation", "type": "circle"},
 
       
 
-        {"id": "vocal-expressions", "size": 5, "score": 0.4 , "title": "vocal-expressions", "type": "circle"},
+        {"id": "representation", "size": 5, "score": 0.4 , "title": "representation", "type": "circle"},
 
       
 
-        {"id": "imposition", "size": 5, "score": 0.4 , "title": "imposition", "type": "circle"},
+        {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
+
+      
+
+        {"id": "citations", "size": 5, "score": 0.4 , "title": "citations", "type": "circle"},
+
+      
+
+        {"id": "work", "size": 5, "score": 0.4 , "title": "work", "type": "circle"},
 
       
 
@@ -871,23 +879,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Veneto", "size": 5, "score": 0.4 , "title": "Veneto", "type": "circle"},
+        {"id": "Italiano", "size": 5, "score": 0.4 , "title": "Italiano", "type": "circle"},
 
       
 
-        {"id": "Emilia-Romagna", "size": 5, "score": 0.4 , "title": "Emilia-Romagna", "type": "circle"},
+        {"id": "Presto", "size": 5, "score": 0.4 , "title": "Presto", "type": "circle"},
 
       
 
-        {"id": "Friuli-Venezia-Giulia", "size": 5, "score": 0.4 , "title": "Friuli-Venezia-Giulia", "type": "circle"},
+        {"id": "nausea", "size": 5, "score": 0.4 , "title": "nausea", "type": "circle"},
 
       
 
-        {"id": "Lombardia", "size": 5, "score": 0.4 , "title": "Lombardia", "type": "circle"},
+        {"id": "STA", "size": 5, "score": 0.4 , "title": "STA", "type": "circle"},
 
       
 
-        {"id": "nulla", "size": 5, "score": 0.4 , "title": "nulla", "type": "circle"},
+        {"id": "Gruppo", "size": 5, "score": 0.4 , "title": "Gruppo", "type": "circle"},
 
       
 
@@ -899,7 +907,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Gruppo", "size": 5, "score": 0.4 , "title": "Gruppo", "type": "circle"},
+        {"id": "base", "size": 5, "score": 0.4 , "title": "base", "type": "circle"},
 
        
 
@@ -1029,10 +1037,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

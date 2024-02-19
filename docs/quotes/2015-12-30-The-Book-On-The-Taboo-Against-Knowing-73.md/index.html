@@ -766,21 +766,21 @@ var data_local_dynamic = {
       
           { "source": "imagination", "target": "pages" },
       
-          { "source": "book", "target": "linguistics" },
-      
-          { "source": "book", "target": "imagination" },
-      
           { "source": "book", "target": "news" },
       
           { "source": "book", "target": "journals" },
       
-          { "source": "idea", "target": "God" },
+          { "source": "book", "target": "nature" },
       
-          { "source": "idea", "target": "universe" },
+          { "source": "book", "target": "text" },
       
-          { "source": "idea", "target": "things" },
+          { "source": "idea", "target": "language" },
       
-          { "source": "idea", "target": "terms" },
+          { "source": "idea", "target": "Sapir-Whorf-hypothesis" },
+      
+          { "source": "idea", "target": "different-languages" },
+      
+          { "source": "idea", "target": "linguistics" },
       
           { "source": "pages", "target": "Web-sites" },
       
@@ -788,7 +788,7 @@ var data_local_dynamic = {
       
           { "source": "pages", "target": "search-engines" },
       
-          { "source": "pages", "target": "repository" },
+          { "source": "pages", "target": "web-documents" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -811,10 +811,6 @@ var data_local_dynamic = {
 
       
 
-        {"id": "linguistics", "size": 5, "score": 0.4 , "title": "linguistics", "type": "circle"},
-
-      
-
         {"id": "news", "size": 5, "score": 0.4 , "title": "news", "type": "circle"},
 
       
@@ -823,19 +819,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "God", "size": 5, "score": 0.4 , "title": "God", "type": "circle"},
+        {"id": "nature", "size": 5, "score": 0.4 , "title": "nature", "type": "circle"},
 
       
 
-        {"id": "universe", "size": 5, "score": 0.4 , "title": "universe", "type": "circle"},
+        {"id": "text", "size": 5, "score": 0.4 , "title": "text", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "language", "size": 5, "score": 0.4 , "title": "language", "type": "circle"},
 
       
 
-        {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
+        {"id": "Sapir-Whorf-hypothesis", "size": 5, "score": 0.4 , "title": "Sapir-Whorf-hypothesis", "type": "circle"},
+
+      
+
+        {"id": "different-languages", "size": 5, "score": 0.4 , "title": "different-languages", "type": "circle"},
+
+      
+
+        {"id": "linguistics", "size": 5, "score": 0.4 , "title": "linguistics", "type": "circle"},
 
       
 
@@ -851,7 +855,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "repository", "size": 5, "score": 0.4 , "title": "repository", "type": "circle"},
+        {"id": "web-documents", "size": 5, "score": 0.4 , "title": "web-documents", "type": "circle"},
 
        
 
@@ -981,10 +985,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

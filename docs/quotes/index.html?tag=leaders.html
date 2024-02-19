@@ -572,12 +572,55 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.guardian.co.uk/world/2013/mar/02/beppe-grillo-dario-fo-italy" class="text-muted" target="_blank">We Need A Surreal Fantasist Like Beppe Grillo To Rescue Italy, Says Nobel-winning Playwright Dario Fo | World News | The Observer</a>
+									
+							</small>
+							<!-- Words taken from <cite title="We Need A Surreal Fantasist Like Beppe Grillo To Rescue Italy, Says Nobel-winning Playwright Dario Fo | World News | The Observer">
+								<a href="http://www.guardian.co.uk/world/2013/mar/02/beppe-grillo-dario-fo-italy" class="-underline -text-muted" target="_blank">
+								  We Need A Surreal Fantasist Like Beppe Grillo To Rescue Italy, Says Nobel-winning Playwright Dario Fo | World News | The Observer</a></cite> -->
+						</h4>
+						
+					
+						
+		
+					<li style="margin-bottom: 10px;">
+						<a style="font-size: 120%;" href="2013-03-03-We-Need-A-Surreal-Fantasist-Like-Beppe-1.md/index.html">Beguild</a>
+						<br />
+						
+						<a class="text-muted" href="index.html%3Ftag=leaders.html">#leaders</a>&nbsp;
+							
+							</small>
+		
+					
+					</li>
+
+		
+				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.counterpunch.org/2015/01/30/the-muslim-response-to-paris/" class="text-muted" target="_blank">Why Was Catholicism Never Blamed For Ira Offensives? The Muslim Response To Paris</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Why Was Catholicism Never Blamed For Ira Offensives? The Muslim Response To Paris">
+								<a href="http://www.counterpunch.org/2015/01/30/the-muslim-response-to-paris/" class="-underline -text-muted" target="_blank">
+								  Why Was Catholicism Never Blamed For Ira Offensives? The Muslim Response To Paris</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-04-05-Why-Was-Catholicism-Never-Blamed-For-Ira-1.md/index.html">Charlie Hebdo assault: the result of years of american foreign policy</a>
-						<br />
-						<small style="color: #cbcbcb;">Why Was Catholicism Never Blamed For Ira Offensives? The Muslim Response To Paris
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=leaders.html">#leaders</a>&nbsp;
@@ -590,22 +633,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
-		
-				
-		
-					<li style="margin-bottom: 10px;">
-						<a style="font-size: 120%;" href="2013-03-03-We-Need-A-Surreal-Fantasist-Like-Beppe-1.md/index.html">Beguild</a>
-						<br />
-						<small style="color: #cbcbcb;">We Need A Surreal Fantasist Like Beppe Grillo To Rescue Italy, Says Nobel-winning Playwright Dario Fo | World News | The Observer
 
-						<br />
-						
-						<a class="text-muted" href="index.html%3Ftag=leaders.html">#leaders</a>&nbsp;
-							
-							</small>
-		
-					
-					</li>
 		
 				
 			</div>
@@ -724,21 +752,21 @@ var data_local_dynamic = {
       
           { "source": "leaders", "target": "West" },
       
-          { "source": "acts", "target": "leaders" },
-      
-          { "source": "acts", "target": "West" },
-      
           { "source": "acts", "target": "tone" },
       
           { "source": "acts", "target": "impression" },
       
-          { "source": "West", "target": "leaders" },
+          { "source": "acts", "target": "voice" },
       
-          { "source": "West", "target": "acts" },
+          { "source": "acts", "target": "course" },
       
           { "source": "West", "target": "nations" },
       
           { "source": "West", "target": "culture" },
+      
+          { "source": "West", "target": "reading" },
+      
+          { "source": "West", "target": "leaders" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -765,11 +793,23 @@ var data_local_dynamic = {
 
       
 
+        {"id": "voice", "size": 5, "score": 0.4 , "title": "voice", "type": "circle"},
+
+      
+
+        {"id": "course", "size": 5, "score": 0.4 , "title": "course", "type": "circle"},
+
+      
+
         {"id": "nations", "size": 5, "score": 0.4 , "title": "nations", "type": "circle"},
 
       
 
         {"id": "culture", "size": 5, "score": 0.4 , "title": "culture", "type": "circle"},
+
+      
+
+        {"id": "reading", "size": 5, "score": 0.4 , "title": "reading", "type": "circle"},
 
        
 
@@ -899,10 +939,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

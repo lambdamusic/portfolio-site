@@ -758,46 +758,64 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "mirror", "target": "energy" },
-      
-          { "source": "mirror", "target": "procedure" },
-      
-          { "source": "energy", "target": "mirror" },
-      
-          { "source": "energy", "target": "industrial-revolution" },
-      
-          { "source": "procedure", "target": "mirror" },
-      
           { "source": "procedure", "target": "Napoli" },
       
           { "source": "procedure", "target": "Morte" },
+      
+          { "source": "procedure", "target": "mirror" },
+      
+          { "source": "Napoli", "target": "procedure" },
+      
+          { "source": "Napoli", "target": "Morte" },
+      
+          { "source": "Napoli", "target": "Italia" },
+      
+          { "source": "Morte", "target": "procedure" },
+      
+          { "source": "Morte", "target": "Napoli" },
+      
+          { "source": "Morte", "target": "vicine" },
+      
+          { "source": "Morte", "target": "Bambino" },
+      
+          { "source": "mirror", "target": "procedure" },
+      
+          { "source": "mirror", "target": "energy" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "energy", "size": 70, "score": 0 , "title": "energy", "type": "circle"},
+        {"id": "Napoli", "size": 70, "score": 0 , "title": "Napoli", "type": "circle"},
 
       
 
-        {"id": "procedure", "size": 70, "score": 0 , "title": "procedure", "type": "circle"},
+        {"id": "Morte", "size": 70, "score": 0 , "title": "Morte", "type": "circle"},
 
       
 
-        {"id": "mirror", "size": 140, "score": 0.5 , "title": "mirror", "type": "circle"},
+        {"id": "mirror", "size": 70, "score": 0 , "title": "mirror", "type": "circle"},
 
       
 
-        {"id": "industrial-revolution", "size": 5, "score": 0.4 , "title": "industrial-revolution", "type": "circle"},
+        {"id": "procedure", "size": 140, "score": 0.5 , "title": "procedure", "type": "circle"},
 
       
 
-        {"id": "Napoli", "size": 5, "score": 0.4 , "title": "Napoli", "type": "circle"},
+        {"id": "Italia", "size": 5, "score": 0.4 , "title": "Italia", "type": "circle"},
 
       
 
-        {"id": "Morte", "size": 5, "score": 0.4 , "title": "Morte", "type": "circle"},
+        {"id": "vicine", "size": 5, "score": 0.4 , "title": "vicine", "type": "circle"},
+
+      
+
+        {"id": "Bambino", "size": 5, "score": 0.4 , "title": "Bambino", "type": "circle"},
+
+      
+
+        {"id": "energy", "size": 5, "score": 0.4 , "title": "energy", "type": "circle"},
 
        
 
@@ -927,10 +945,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

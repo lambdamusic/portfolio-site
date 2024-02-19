@@ -764,82 +764,90 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "team", "target": "sprint" },
+          { "source": "team", "target": "goal" },
       
-          { "source": "team", "target": "features" },
+          { "source": "team", "target": "link" },
       
-          { "source": "team", "target": "list" },
+          { "source": "team", "target": "owners" },
       
-          { "source": "team", "target": "number" },
+          { "source": "team", "target": "product-owners" },
       
-          { "source": "team", "target": "lines" },
+          { "source": "team", "target": "business" },
       
-          { "source": "sprint", "target": "team" },
+          { "source": "goal", "target": "team" },
       
-          { "source": "sprint", "target": "features" },
+          { "source": "goal", "target": "link" },
       
-          { "source": "sprint", "target": "list" },
+          { "source": "goal", "target": "owners" },
       
-          { "source": "sprint", "target": "number" },
+          { "source": "goal", "target": "product-owners" },
       
-          { "source": "features", "target": "sprint" },
+          { "source": "link", "target": "team" },
       
-          { "source": "features", "target": "team" },
+          { "source": "link", "target": "goal" },
       
-          { "source": "features", "target": "list" },
+          { "source": "link", "target": "owners" },
       
-          { "source": "features", "target": "number" },
+          { "source": "link", "target": "product-owners" },
       
-          { "source": "list", "target": "sprint" },
+          { "source": "owners", "target": "product-owners" },
       
-          { "source": "list", "target": "team" },
+          { "source": "owners", "target": "project" },
       
-          { "source": "list", "target": "features" },
+          { "source": "owners", "target": "business" },
       
-          { "source": "list", "target": "number" },
+          { "source": "owners", "target": "product-backlog" },
       
-          { "source": "number", "target": "sprint" },
+          { "source": "product-owners", "target": "owners" },
       
-          { "source": "number", "target": "team" },
+          { "source": "product-owners", "target": "project" },
       
-          { "source": "number", "target": "features" },
+          { "source": "product-owners", "target": "business" },
       
-          { "source": "number", "target": "list" },
+          { "source": "product-owners", "target": "product-backlog" },
       
-          { "source": "lines", "target": "sprint" },
+          { "source": "business", "target": "product-owners" },
       
-          { "source": "lines", "target": "team" },
+          { "source": "business", "target": "owners" },
       
-          { "source": "lines", "target": "features" },
+          { "source": "business", "target": "project" },
       
-          { "source": "lines", "target": "list" },
+          { "source": "business", "target": "product-backlog" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "sprint", "size": 70, "score": 0 , "title": "sprint", "type": "circle"},
+        {"id": "goal", "size": 70, "score": 0 , "title": "goal", "type": "circle"},
 
       
 
-        {"id": "features", "size": 70, "score": 0 , "title": "features", "type": "circle"},
+        {"id": "link", "size": 70, "score": 0 , "title": "link", "type": "circle"},
 
       
 
-        {"id": "list", "size": 70, "score": 0 , "title": "list", "type": "circle"},
+        {"id": "owners", "size": 70, "score": 0 , "title": "owners", "type": "circle"},
 
       
 
-        {"id": "number", "size": 70, "score": 0 , "title": "number", "type": "circle"},
+        {"id": "product-owners", "size": 70, "score": 0 , "title": "product-owners", "type": "circle"},
 
       
 
-        {"id": "lines", "size": 70, "score": 0 , "title": "lines", "type": "circle"},
+        {"id": "business", "size": 70, "score": 0 , "title": "business", "type": "circle"},
 
       
 
         {"id": "team", "size": 140, "score": 0.5 , "title": "team", "type": "circle"},
+
+      
+
+        {"id": "project", "size": 5, "score": 0.4 , "title": "project", "type": "circle"},
+
+      
+
+        {"id": "product-backlog", "size": 5, "score": 0.4 , "title": "product-backlog", "type": "circle"},
 
        
 
@@ -969,10 +977,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

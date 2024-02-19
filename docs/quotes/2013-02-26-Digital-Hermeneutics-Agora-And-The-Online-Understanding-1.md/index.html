@@ -762,6 +762,16 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "web-applications", "target": "cultural-heritage-institutions" },
+      
+          { "source": "web-applications", "target": "Web" },
+      
+          { "source": "web-applications", "target": "digital-hermeneutics" },
+      
+          { "source": "web-applications", "target": "hermeneutics" },
+      
+          { "source": "web-applications", "target": "Web-technologies" },
+      
           { "source": "cultural-heritage-institutions", "target": "Web" },
       
           { "source": "cultural-heritage-institutions", "target": "web-applications" },
@@ -770,23 +780,13 @@ var data_local_dynamic = {
       
           { "source": "cultural-heritage-institutions", "target": "hermeneutics" },
       
-          { "source": "cultural-heritage-institutions", "target": "Web-technologies" },
+          { "source": "Web", "target": "web-documents" },
       
-          { "source": "Web", "target": "ontology" },
+          { "source": "Web", "target": "URI" },
       
-          { "source": "Web", "target": "RDF-data" },
+          { "source": "Web", "target": "documents" },
       
-          { "source": "Web", "target": "World-Wide-Web" },
-      
-          { "source": "Web", "target": "Uniform-Resource-Identifiers" },
-      
-          { "source": "web-applications", "target": "annotation" },
-      
-          { "source": "web-applications", "target": "cultural-heritage-institutions" },
-      
-          { "source": "web-applications", "target": "Web" },
-      
-          { "source": "web-applications", "target": "web-content" },
+          { "source": "Web", "target": "files" },
       
           { "source": "digital-hermeneutics", "target": "objects" },
       
@@ -804,24 +804,24 @@ var data_local_dynamic = {
       
           { "source": "hermeneutics", "target": "Web-technologies" },
       
-          { "source": "Web-technologies", "target": "data-elements" },
+          { "source": "Web-technologies", "target": "digital-hermeneutics" },
       
-          { "source": "Web-technologies", "target": "Semantic-Web-technologies" },
+          { "source": "Web-technologies", "target": "hermeneutics" },
       
-          { "source": "Web-technologies", "target": "web-services" },
+          { "source": "Web-technologies", "target": "web-applications" },
       
-          { "source": "Web-technologies", "target": "business-rules" },
+          { "source": "Web-technologies", "target": "cultural-heritage-institutions" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "Web", "size": 70, "score": 0 , "title": "Web", "type": "circle"},
+        {"id": "cultural-heritage-institutions", "size": 70, "score": 0 , "title": "cultural-heritage-institutions", "type": "circle"},
 
       
 
-        {"id": "web-applications", "size": 70, "score": 0 , "title": "web-applications", "type": "circle"},
+        {"id": "Web", "size": 70, "score": 0 , "title": "Web", "type": "circle"},
 
       
 
@@ -837,31 +837,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "cultural-heritage-institutions", "size": 140, "score": 0.5 , "title": "cultural-heritage-institutions", "type": "circle"},
+        {"id": "web-applications", "size": 140, "score": 0.5 , "title": "web-applications", "type": "circle"},
 
       
 
-        {"id": "ontology", "size": 5, "score": 0.4 , "title": "ontology", "type": "circle"},
+        {"id": "web-documents", "size": 5, "score": 0.4 , "title": "web-documents", "type": "circle"},
 
       
 
-        {"id": "RDF-data", "size": 5, "score": 0.4 , "title": "RDF-data", "type": "circle"},
+        {"id": "URI", "size": 5, "score": 0.4 , "title": "URI", "type": "circle"},
 
       
 
-        {"id": "World-Wide-Web", "size": 5, "score": 0.4 , "title": "World-Wide-Web", "type": "circle"},
+        {"id": "documents", "size": 5, "score": 0.4 , "title": "documents", "type": "circle"},
 
       
 
-        {"id": "Uniform-Resource-Identifiers", "size": 5, "score": 0.4 , "title": "Uniform-Resource-Identifiers", "type": "circle"},
-
-      
-
-        {"id": "annotation", "size": 5, "score": 0.4 , "title": "annotation", "type": "circle"},
-
-      
-
-        {"id": "web-content", "size": 5, "score": 0.4 , "title": "web-content", "type": "circle"},
+        {"id": "files", "size": 5, "score": 0.4 , "title": "files", "type": "circle"},
 
       
 
@@ -870,22 +862,6 @@ var data_local_dynamic = {
       
 
         {"id": "events", "size": 5, "score": 0.4 , "title": "events", "type": "circle"},
-
-      
-
-        {"id": "data-elements", "size": 5, "score": 0.4 , "title": "data-elements", "type": "circle"},
-
-      
-
-        {"id": "Semantic-Web-technologies", "size": 5, "score": 0.4 , "title": "Semantic-Web-technologies", "type": "circle"},
-
-      
-
-        {"id": "web-services", "size": 5, "score": 0.4 , "title": "web-services", "type": "circle"},
-
-      
-
-        {"id": "business-rules", "size": 5, "score": 0.4 , "title": "business-rules", "type": "circle"},
 
        
 
@@ -1015,10 +991,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

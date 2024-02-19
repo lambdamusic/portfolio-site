@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://plato.stanford.edu/entries/nishida-kitaro/" class="text-muted" target="_blank">Nishida Kitarō (stanford Encyclopedia Of Philosophy)</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Nishida Kitarō (stanford Encyclopedia Of Philosophy)">
+								<a href="http://plato.stanford.edu/entries/nishida-kitaro/" class="-underline -text-muted" target="_blank">
+								  Nishida Kitarō (stanford Encyclopedia Of Philosophy)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="http://127.0.0.1:8000/quotes/2013-12-01-Nishida-Kitaro%CC%84-stanford-Encyclopedia-Of-Philosophy-18.md/">In his first book, An...</a>
-						<br />
-						<small style="color: #cbcbcb;">Nishida Kitarō (stanford Encyclopedia Of Philosophy)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=motivation.html">#motivation</a>&nbsp;
@@ -590,14 +603,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.goodreads.com/book/show/60551.The_Book_on_the_Taboo_Against_Knowing_Who_You_Are" class="text-muted" target="_blank">The Book: On The Taboo Against Knowing Who You Are</a>
+									
+							</small>
+							<!-- Words taken from <cite title="The Book: On The Taboo Against Knowing Who You Are">
+								<a href="http://www.goodreads.com/book/show/60551.The_Book_on_the_Taboo_Against_Knowing_Who_You_Are" class="-underline -text-muted" target="_blank">
+								  The Book: On The Taboo Against Knowing Who You Are</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-12-30-The-Book-On-The-Taboo-Against-Knowing-15.md/index.html">Removing the illusion of oneself as a separate ego does not mean being “unselfish”</a>
-						<br />
-						<small style="color: #cbcbcb;">The Book: On The Taboo Against Knowing Who You Are
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=ego.html">#ego</a>&nbsp;
@@ -614,6 +641,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -770,13 +798,13 @@ var data_local_dynamic = {
       
           { "source": "unselfishness", "target": "people" },
       
-          { "source": "illusion", "target": "task" },
-      
-          { "source": "illusion", "target": "attention" },
-      
-          { "source": "illusion", "target": "people" },
-      
           { "source": "illusion", "target": "observer" },
+      
+          { "source": "illusion", "target": "objects" },
+      
+          { "source": "illusion", "target": "perception" },
+      
+          { "source": "illusion", "target": "reality" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -839,15 +867,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "task", "size": 5, "score": 0.4 , "title": "task", "type": "circle"},
-
-      
-
-        {"id": "attention", "size": 5, "score": 0.4 , "title": "attention", "type": "circle"},
-
-      
-
         {"id": "observer", "size": 5, "score": 0.4 , "title": "observer", "type": "circle"},
+
+      
+
+        {"id": "objects", "size": 5, "score": 0.4 , "title": "objects", "type": "circle"},
+
+      
+
+        {"id": "perception", "size": 5, "score": 0.4 , "title": "perception", "type": "circle"},
+
+      
+
+        {"id": "reality", "size": 5, "score": 0.4 , "title": "reality", "type": "circle"},
 
        
 
@@ -977,10 +1009,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

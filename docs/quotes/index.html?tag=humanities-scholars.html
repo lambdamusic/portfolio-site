@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.nytimes.com/2010/11/17/arts/17digital.html" class="text-muted" target="_blank">Humanities Scholars Embrace Digital Technology - Nytimes.com</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Humanities Scholars Embrace Digital Technology - Nytimes.com">
+								<a href="http://www.nytimes.com/2010/11/17/arts/17digital.html" class="-underline -text-muted" target="_blank">
+								  Humanities Scholars Embrace Digital Technology - Nytimes.com</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Humanities-Scholars-Embrace-Digital-Technology-Nytimescom-1.md/index.html">Members of a new generation...</a>
-						<br />
-						<small style="color: #cbcbcb;">Humanities Scholars Embrace Digital Technology - Nytimes.com
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=humanities-scholars.html">#humanities-scholars</a>&nbsp;
@@ -586,14 +599,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Understanding Digital Humanities (david M. Berry)</span>
+							</small>
+							<!-- Words taken from <cite title="Understanding Digital Humanities (david M. Berry)">
+								<a class="-underline -text-muted">Understanding Digital Humanities (david M. Berry)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-05-25-Understanding-Digital-Humanities-david-M-Berry-16.md/index.html">Should humanities scholars be also fluent in code?</a>
-						<br />
-						<small style="color: #cbcbcb;">Understanding Digital Humanities (david M. Berry)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=scholars.html">#scholars</a>&nbsp;
@@ -606,6 +631,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -724,21 +750,21 @@ var data_local_dynamic = {
       
           { "source": "humanities-scholars", "target": "digital-humanities" },
       
-          { "source": "scholars", "target": "digital-humanities" },
+          { "source": "scholars", "target": "disciplines" },
       
-          { "source": "scholars", "target": "humanities-scholars" },
+          { "source": "scholars", "target": "Encyclopedia" },
+      
+          { "source": "scholars", "target": "digital-humanities" },
       
           { "source": "scholars", "target": "humanity" },
       
-          { "source": "scholars", "target": "writing" },
-      
-          { "source": "digital-humanities", "target": "humanists" },
+          { "source": "digital-humanities", "target": "place" },
       
           { "source": "digital-humanities", "target": "humanity" },
       
-          { "source": "digital-humanities", "target": "skills" },
+          { "source": "digital-humanities", "target": "writing" },
       
-          { "source": "digital-humanities", "target": "intellectual-endeavor" },
+          { "source": "digital-humanities", "target": "reading" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -757,7 +783,19 @@ var data_local_dynamic = {
 
       
 
+        {"id": "disciplines", "size": 5, "score": 0.4 , "title": "disciplines", "type": "circle"},
+
+      
+
+        {"id": "Encyclopedia", "size": 5, "score": 0.4 , "title": "Encyclopedia", "type": "circle"},
+
+      
+
         {"id": "humanity", "size": 5, "score": 0.4 , "title": "humanity", "type": "circle"},
+
+      
+
+        {"id": "place", "size": 5, "score": 0.4 , "title": "place", "type": "circle"},
 
       
 
@@ -765,15 +803,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "humanists", "size": 5, "score": 0.4 , "title": "humanists", "type": "circle"},
-
-      
-
-        {"id": "skills", "size": 5, "score": 0.4 , "title": "skills", "type": "circle"},
-
-      
-
-        {"id": "intellectual-endeavor", "size": 5, "score": 0.4 , "title": "intellectual-endeavor", "type": "circle"},
+        {"id": "reading", "size": 5, "score": 0.4 , "title": "reading", "type": "circle"},
 
        
 
@@ -903,10 +933,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

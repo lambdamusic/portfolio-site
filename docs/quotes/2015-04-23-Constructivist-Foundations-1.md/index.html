@@ -790,13 +790,13 @@ var data_local_dynamic = {
       
           { "source": "psychological-state", "target": "human-mind" },
       
-          { "source": "theory", "target": "communication" },
+          { "source": "theory", "target": "cognitive-processes" },
       
-          { "source": "theory", "target": "organization" },
+          { "source": "theory", "target": "intuition" },
       
-          { "source": "theory", "target": "Nietzsche" },
+          { "source": "theory", "target": "psychological-state" },
       
-          { "source": "theory", "target": "things" },
+          { "source": "theory", "target": "physics" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -827,19 +827,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "communication", "size": 5, "score": 0.4 , "title": "communication", "type": "circle"},
-
-      
-
-        {"id": "organization", "size": 5, "score": 0.4 , "title": "organization", "type": "circle"},
-
-      
-
-        {"id": "Nietzsche", "size": 5, "score": 0.4 , "title": "Nietzsche", "type": "circle"},
-
-      
-
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "physics", "size": 5, "score": 0.4 , "title": "physics", "type": "circle"},
 
        
 
@@ -969,10 +957,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -775,15 +775,15 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "pages", "target": "Web-sites" },
+          { "source": "search-engines", "target": "Web-sites" },
       
-          { "source": "pages", "target": "browser" },
+          { "source": "search-engines", "target": "browser" },
       
-          { "source": "pages", "target": "search-engines" },
+          { "source": "search-engines", "target": "pages" },
       
-          { "source": "pages", "target": "repository" },
+          { "source": "search-engines", "target": "real-world-objects" },
       
-          { "source": "pages", "target": "triple-stores" },
+          { "source": "search-engines", "target": "URI" },
       
           { "source": "Web-sites", "target": "browser" },
       
@@ -791,7 +791,7 @@ var data_local_dynamic = {
       
           { "source": "Web-sites", "target": "pages" },
       
-          { "source": "Web-sites", "target": "semantics" },
+          { "source": "Web-sites", "target": "web-pages" },
       
           { "source": "browser", "target": "Web-sites" },
       
@@ -801,29 +801,29 @@ var data_local_dynamic = {
       
           { "source": "browser", "target": "RDF" },
       
-          { "source": "search-engines", "target": "Web-sites" },
+          { "source": "pages", "target": "Web-sites" },
       
-          { "source": "search-engines", "target": "browser" },
+          { "source": "pages", "target": "browser" },
       
-          { "source": "search-engines", "target": "pages" },
+          { "source": "pages", "target": "search-engines" },
       
-          { "source": "search-engines", "target": "queries" },
+          { "source": "pages", "target": "web-documents" },
       
-          { "source": "repository", "target": "information" },
+          { "source": "real-world-objects", "target": "URI" },
       
-          { "source": "repository", "target": "pages" },
+          { "source": "real-world-objects", "target": "web-documents" },
       
-          { "source": "repository", "target": "triple-stores" },
+          { "source": "real-world-objects", "target": "search-engines" },
       
-          { "source": "repository", "target": "classification" },
+          { "source": "real-world-objects", "target": "Web" },
       
-          { "source": "triple-stores", "target": "repository" },
+          { "source": "URI", "target": "web-documents" },
       
-          { "source": "triple-stores", "target": "pages" },
+          { "source": "URI", "target": "documents" },
       
-          { "source": "triple-stores", "target": "stores" },
+          { "source": "URI", "target": "files" },
       
-          { "source": "triple-stores", "target": "technology" },
+          { "source": "URI", "target": "Web" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -838,23 +838,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "search-engines", "size": 70, "score": 0 , "title": "search-engines", "type": "circle"},
+        {"id": "pages", "size": 70, "score": 0 , "title": "pages", "type": "circle"},
 
       
 
-        {"id": "repository", "size": 70, "score": 0 , "title": "repository", "type": "circle"},
+        {"id": "real-world-objects", "size": 70, "score": 0 , "title": "real-world-objects", "type": "circle"},
 
       
 
-        {"id": "triple-stores", "size": 70, "score": 0 , "title": "triple-stores", "type": "circle"},
+        {"id": "URI", "size": 70, "score": 0 , "title": "URI", "type": "circle"},
 
       
 
-        {"id": "pages", "size": 140, "score": 0.5 , "title": "pages", "type": "circle"},
+        {"id": "search-engines", "size": 140, "score": 0.5 , "title": "search-engines", "type": "circle"},
 
       
 
-        {"id": "semantics", "size": 5, "score": 0.4 , "title": "semantics", "type": "circle"},
+        {"id": "web-pages", "size": 5, "score": 0.4 , "title": "web-pages", "type": "circle"},
 
       
 
@@ -862,23 +862,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "queries", "size": 5, "score": 0.4 , "title": "queries", "type": "circle"},
+        {"id": "web-documents", "size": 5, "score": 0.4 , "title": "web-documents", "type": "circle"},
 
       
 
-        {"id": "information", "size": 5, "score": 0.4 , "title": "information", "type": "circle"},
+        {"id": "Web", "size": 5, "score": 0.4 , "title": "Web", "type": "circle"},
 
       
 
-        {"id": "classification", "size": 5, "score": 0.4 , "title": "classification", "type": "circle"},
+        {"id": "documents", "size": 5, "score": 0.4 , "title": "documents", "type": "circle"},
 
       
 
-        {"id": "stores", "size": 5, "score": 0.4 , "title": "stores", "type": "circle"},
-
-      
-
-        {"id": "technology", "size": 5, "score": 0.4 , "title": "technology", "type": "circle"},
+        {"id": "files", "size": 5, "score": 0.4 , "title": "files", "type": "circle"},
 
        
 
@@ -1008,10 +1004,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

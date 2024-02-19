@@ -773,21 +773,21 @@ var data_local_dynamic = {
       
           { "source": "work-time", "target": "vision" },
       
-          { "source": "weeks", "target": "months" },
+          { "source": "weeks", "target": "calories" },
       
-          { "source": "weeks", "target": "eyes" },
+          { "source": "weeks", "target": "hours" },
+      
+          { "source": "weeks", "target": "days" },
       
           { "source": "weeks", "target": "time" },
       
-          { "source": "weeks", "target": "slums" },
+          { "source": "time", "target": "weeks" },
       
-          { "source": "time", "target": "episodes" },
+          { "source": "time", "target": "experience" },
       
-          { "source": "time", "target": "orphans" },
+          { "source": "time", "target": "days" },
       
-          { "source": "time", "target": "series" },
-      
-          { "source": "time", "target": "years" },
+          { "source": "time", "target": "lack" },
       
           { "source": "Keynes", "target": "work-hours" },
       
@@ -803,15 +803,15 @@ var data_local_dynamic = {
       
           { "source": "hours", "target": "weeks" },
       
-          { "source": "hours", "target": "work-time" },
-      
-          { "source": "vision", "target": "skills" },
-      
-          { "source": "vision", "target": "action" },
+          { "source": "hours", "target": "men" },
       
           { "source": "vision", "target": "information-architects" },
       
           { "source": "vision", "target": "architects" },
+      
+          { "source": "vision", "target": "project" },
+      
+          { "source": "vision", "target": "skills" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -842,31 +842,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "months", "size": 5, "score": 0.4 , "title": "months", "type": "circle"},
+        {"id": "calories", "size": 5, "score": 0.4 , "title": "calories", "type": "circle"},
 
       
 
-        {"id": "eyes", "size": 5, "score": 0.4 , "title": "eyes", "type": "circle"},
+        {"id": "days", "size": 5, "score": 0.4 , "title": "days", "type": "circle"},
 
       
 
-        {"id": "slums", "size": 5, "score": 0.4 , "title": "slums", "type": "circle"},
+        {"id": "experience", "size": 5, "score": 0.4 , "title": "experience", "type": "circle"},
 
       
 
-        {"id": "episodes", "size": 5, "score": 0.4 , "title": "episodes", "type": "circle"},
-
-      
-
-        {"id": "orphans", "size": 5, "score": 0.4 , "title": "orphans", "type": "circle"},
-
-      
-
-        {"id": "series", "size": 5, "score": 0.4 , "title": "series", "type": "circle"},
-
-      
-
-        {"id": "years", "size": 5, "score": 0.4 , "title": "years", "type": "circle"},
+        {"id": "lack", "size": 5, "score": 0.4 , "title": "lack", "type": "circle"},
 
       
 
@@ -882,19 +870,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "calories", "size": 5, "score": 0.4 , "title": "calories", "type": "circle"},
-
-      
-
-        {"id": "days", "size": 5, "score": 0.4 , "title": "days", "type": "circle"},
-
-      
-
-        {"id": "skills", "size": 5, "score": 0.4 , "title": "skills", "type": "circle"},
-
-      
-
-        {"id": "action", "size": 5, "score": 0.4 , "title": "action", "type": "circle"},
+        {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
 
       
 
@@ -903,6 +879,14 @@ var data_local_dynamic = {
       
 
         {"id": "architects", "size": 5, "score": 0.4 , "title": "architects", "type": "circle"},
+
+      
+
+        {"id": "project", "size": 5, "score": 0.4 , "title": "project", "type": "circle"},
+
+      
+
+        {"id": "skills", "size": 5, "score": 0.4 , "title": "skills", "type": "circle"},
 
        
 
@@ -1032,10 +1016,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

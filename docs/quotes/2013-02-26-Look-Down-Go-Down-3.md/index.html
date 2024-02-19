@@ -760,39 +760,43 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "mathematics", "target": "problem" },
+      
           { "source": "mathematics", "target": "field" },
       
           { "source": "mathematics", "target": "front" },
       
-          { "source": "mathematics", "target": "problem" },
+          { "source": "problem", "target": "information" },
       
-          { "source": "field", "target": "structure" },
+          { "source": "problem", "target": "goods" },
       
-          { "source": "field", "target": "physics" },
+          { "source": "problem", "target": "things" },
+      
+          { "source": "problem", "target": "attributes" },
       
           { "source": "field", "target": "contribution" },
       
           { "source": "field", "target": "Internet" },
       
-          { "source": "front", "target": "strength" },
+          { "source": "field", "target": "world" },
+      
+          { "source": "field", "target": "structure" },
       
           { "source": "front", "target": "reference" },
       
           { "source": "front", "target": "existence" },
       
+          { "source": "front", "target": "strength" },
+      
           { "source": "front", "target": "field" },
-      
-          { "source": "problem", "target": "use" },
-      
-          { "source": "problem", "target": "people" },
-      
-          { "source": "problem", "target": "reasons" },
-      
-          { "source": "problem", "target": "terms" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "problem", "size": 70, "score": 0 , "title": "problem", "type": "circle"},
+
       
 
         {"id": "field", "size": 70, "score": 0 , "title": "field", "type": "circle"},
@@ -803,19 +807,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "problem", "size": 70, "score": 0 , "title": "problem", "type": "circle"},
-
-      
-
         {"id": "mathematics", "size": 140, "score": 0.5 , "title": "mathematics", "type": "circle"},
 
       
 
-        {"id": "structure", "size": 5, "score": 0.4 , "title": "structure", "type": "circle"},
+        {"id": "information", "size": 5, "score": 0.4 , "title": "information", "type": "circle"},
 
       
 
-        {"id": "physics", "size": 5, "score": 0.4 , "title": "physics", "type": "circle"},
+        {"id": "goods", "size": 5, "score": 0.4 , "title": "goods", "type": "circle"},
+
+      
+
+        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+
+      
+
+        {"id": "attributes", "size": 5, "score": 0.4 , "title": "attributes", "type": "circle"},
 
       
 
@@ -827,7 +835,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "strength", "size": 5, "score": 0.4 , "title": "strength", "type": "circle"},
+        {"id": "world", "size": 5, "score": 0.4 , "title": "world", "type": "circle"},
+
+      
+
+        {"id": "structure", "size": 5, "score": 0.4 , "title": "structure", "type": "circle"},
 
       
 
@@ -839,19 +851,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "use", "size": 5, "score": 0.4 , "title": "use", "type": "circle"},
-
-      
-
-        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
-
-      
-
-        {"id": "reasons", "size": 5, "score": 0.4 , "title": "reasons", "type": "circle"},
-
-      
-
-        {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
+        {"id": "strength", "size": 5, "score": 0.4 , "title": "strength", "type": "circle"},
 
        
 
@@ -981,10 +981,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

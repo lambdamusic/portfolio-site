@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://en.wikipedia.org/wiki/Data_quality#Data_quality_control" class="text-muted" target="_blank">Data Quality - Wikipedia, The Free Encyclopedia</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Data Quality - Wikipedia, The Free Encyclopedia">
+								<a href="http://en.wikipedia.org/wiki/Data_quality#Data_quality_control" class="-underline -text-muted" target="_blank">
+								  Data Quality - Wikipedia, The Free Encyclopedia</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-01-19-Data-Quality-Wikipedia-The-Free-Encyclopedia-1.md/index.html">Data are of high quality...</a>
-						<br />
-						<small style="color: #cbcbcb;">Data Quality - Wikipedia, The Free Encyclopedia
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=data.html">#data</a>&nbsp;
@@ -588,14 +601,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://datakind.org/" class="text-muted" target="_blank">Datakind</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Datakind">
+								<a href="http://datakind.org/" class="-underline -text-muted" target="_blank">
+								  Datakind</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Datakind-1.md/index.html">DataKind™ (formerly known as Data...</a>
-						<br />
-						<small style="color: #cbcbcb;">Datakind
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=data-scientists.html">#data-scientists</a>&nbsp;
@@ -606,6 +633,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -724,21 +752,21 @@ var data_local_dynamic = {
       
           { "source": "decision-making", "target": "data-scientists" },
       
-          { "source": "data", "target": "big-data" },
+          { "source": "data", "target": "information" },
       
-          { "source": "data", "target": "database-systems" },
+          { "source": "data", "target": "information-systems" },
       
-          { "source": "data", "target": "ontology" },
+          { "source": "data", "target": "communication" },
       
-          { "source": "data", "target": "project" },
+          { "source": "data", "target": "number" },
       
-          { "source": "data-scientists", "target": "technique" },
-      
-          { "source": "data-scientists", "target": "scientists" },
+          { "source": "data-scientists", "target": "decision-making" },
       
           { "source": "data-scientists", "target": "programmers" },
       
           { "source": "data-scientists", "target": "machine-learning" },
+      
+          { "source": "data-scientists", "target": "learning" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -757,27 +785,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "big-data", "size": 5, "score": 0.4 , "title": "big-data", "type": "circle"},
+        {"id": "information", "size": 5, "score": 0.4 , "title": "information", "type": "circle"},
 
       
 
-        {"id": "database-systems", "size": 5, "score": 0.4 , "title": "database-systems", "type": "circle"},
+        {"id": "information-systems", "size": 5, "score": 0.4 , "title": "information-systems", "type": "circle"},
 
       
 
-        {"id": "ontology", "size": 5, "score": 0.4 , "title": "ontology", "type": "circle"},
+        {"id": "communication", "size": 5, "score": 0.4 , "title": "communication", "type": "circle"},
 
       
 
-        {"id": "project", "size": 5, "score": 0.4 , "title": "project", "type": "circle"},
-
-      
-
-        {"id": "technique", "size": 5, "score": 0.4 , "title": "technique", "type": "circle"},
-
-      
-
-        {"id": "scientists", "size": 5, "score": 0.4 , "title": "scientists", "type": "circle"},
+        {"id": "number", "size": 5, "score": 0.4 , "title": "number", "type": "circle"},
 
       
 
@@ -786,6 +806,10 @@ var data_local_dynamic = {
       
 
         {"id": "machine-learning", "size": 5, "score": 0.4 , "title": "machine-learning", "type": "circle"},
+
+      
+
+        {"id": "learning", "size": 5, "score": 0.4 , "title": "learning", "type": "circle"},
 
        
 
@@ -915,10 +939,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

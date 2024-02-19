@@ -766,13 +766,13 @@ var data_local_dynamic = {
       
           { "source": "Minuto", "target": "Mondo" },
       
-          { "source": "SU", "target": "Disse" },
-      
-          { "source": "SU", "target": "credo" },
-      
           { "source": "SU", "target": "minutes" },
       
           { "source": "SU", "target": "Suo" },
+      
+          { "source": "SU", "target": "Io" },
+      
+          { "source": "SU", "target": "vistas" },
       
           { "source": "Nascita", "target": "Vero" },
       
@@ -782,21 +782,21 @@ var data_local_dynamic = {
       
           { "source": "Nascita", "target": "anni" },
       
+          { "source": "Unico", "target": "Italy" },
+      
+          { "source": "Unico", "target": "Italiana" },
+      
+          { "source": "Unico", "target": "oggi" },
+      
           { "source": "Unico", "target": "SU" },
       
-          { "source": "Unico", "target": "Nascita" },
+          { "source": "Mondo", "target": "FA" },
       
-          { "source": "Unico", "target": "Minuto" },
-      
-          { "source": "Unico", "target": "Mondo" },
+          { "source": "Mondo", "target": "DELLA" },
       
           { "source": "Mondo", "target": "SU" },
       
           { "source": "Mondo", "target": "Nascita" },
-      
-          { "source": "Mondo", "target": "Unico" },
-      
-          { "source": "Mondo", "target": "Minuto" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -823,19 +823,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Disse", "size": 5, "score": 0.4 , "title": "Disse", "type": "circle"},
-
-      
-
-        {"id": "credo", "size": 5, "score": 0.4 , "title": "credo", "type": "circle"},
-
-      
-
         {"id": "minutes", "size": 5, "score": 0.4 , "title": "minutes", "type": "circle"},
 
       
 
         {"id": "Suo", "size": 5, "score": 0.4 , "title": "Suo", "type": "circle"},
+
+      
+
+        {"id": "Io", "size": 5, "score": 0.4 , "title": "Io", "type": "circle"},
+
+      
+
+        {"id": "vistas", "size": 5, "score": 0.4 , "title": "vistas", "type": "circle"},
 
       
 
@@ -852,6 +852,26 @@ var data_local_dynamic = {
       
 
         {"id": "anni", "size": 5, "score": 0.4 , "title": "anni", "type": "circle"},
+
+      
+
+        {"id": "Italy", "size": 5, "score": 0.4 , "title": "Italy", "type": "circle"},
+
+      
+
+        {"id": "Italiana", "size": 5, "score": 0.4 , "title": "Italiana", "type": "circle"},
+
+      
+
+        {"id": "oggi", "size": 5, "score": 0.4 , "title": "oggi", "type": "circle"},
+
+      
+
+        {"id": "FA", "size": 5, "score": 0.4 , "title": "FA", "type": "circle"},
+
+      
+
+        {"id": "DELLA", "size": 5, "score": 0.4 , "title": "DELLA", "type": "circle"},
 
        
 
@@ -981,10 +1001,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

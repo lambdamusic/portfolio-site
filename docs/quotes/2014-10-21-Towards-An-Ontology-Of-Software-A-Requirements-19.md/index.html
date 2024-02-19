@@ -764,31 +764,15 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "ED", "target": "DIO" },
-      
-          { "source": "ED", "target": "Parola" },
-      
           { "source": "ED", "target": "aperta" },
       
           { "source": "ED", "target": "significa" },
       
-          { "source": "ED", "target": "entities" },
+          { "source": "ED", "target": "DIO" },
       
-          { "source": "DIO", "target": "ED" },
+          { "source": "ED", "target": "Parola" },
       
-          { "source": "DIO", "target": "Parola" },
-      
-          { "source": "DIO", "target": "vivo" },
-      
-          { "source": "DIO", "target": "Hanno" },
-      
-          { "source": "Parola", "target": "DIO" },
-      
-          { "source": "Parola", "target": "ED" },
-      
-          { "source": "Parola", "target": "POCO" },
-      
-          { "source": "Parola", "target": "TV" },
+          { "source": "ED", "target": "Nascita" },
       
           { "source": "aperta", "target": "ED" },
       
@@ -804,25 +788,33 @@ var data_local_dynamic = {
       
           { "source": "significa", "target": "ED" },
       
-          { "source": "entities", "target": "types" },
+          { "source": "DIO", "target": "tempo" },
       
-          { "source": "entities", "target": "unity" },
+          { "source": "DIO", "target": "momento" },
       
-          { "source": "entities", "target": "domain" },
+          { "source": "DIO", "target": "ED" },
       
-          { "source": "entities", "target": "terms" },
+          { "source": "DIO", "target": "Parola" },
+      
+          { "source": "Parola", "target": "DIO" },
+      
+          { "source": "Parola", "target": "ED" },
+      
+          { "source": "Parola", "target": "POCO" },
+      
+          { "source": "Parola", "target": "TV" },
+      
+          { "source": "Nascita", "target": "Vero" },
+      
+          { "source": "Nascita", "target": "Gesù" },
+      
+          { "source": "Nascita", "target": "del" },
+      
+          { "source": "Nascita", "target": "anni" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
-      
-
-        {"id": "DIO", "size": 70, "score": 0 , "title": "DIO", "type": "circle"},
-
-      
-
-        {"id": "Parola", "size": 70, "score": 0 , "title": "Parola", "type": "circle"},
-
       
 
         {"id": "aperta", "size": 70, "score": 0 , "title": "aperta", "type": "circle"},
@@ -833,27 +825,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "entities", "size": 70, "score": 0 , "title": "entities", "type": "circle"},
+        {"id": "DIO", "size": 70, "score": 0 , "title": "DIO", "type": "circle"},
+
+      
+
+        {"id": "Parola", "size": 70, "score": 0 , "title": "Parola", "type": "circle"},
+
+      
+
+        {"id": "Nascita", "size": 70, "score": 0 , "title": "Nascita", "type": "circle"},
 
       
 
         {"id": "ED", "size": 140, "score": 0.5 , "title": "ED", "type": "circle"},
-
-      
-
-        {"id": "vivo", "size": 5, "score": 0.4 , "title": "vivo", "type": "circle"},
-
-      
-
-        {"id": "Hanno", "size": 5, "score": 0.4 , "title": "Hanno", "type": "circle"},
-
-      
-
-        {"id": "POCO", "size": 5, "score": 0.4 , "title": "POCO", "type": "circle"},
-
-      
-
-        {"id": "TV", "size": 5, "score": 0.4 , "title": "TV", "type": "circle"},
 
       
 
@@ -869,19 +853,35 @@ var data_local_dynamic = {
 
       
 
-        {"id": "types", "size": 5, "score": 0.4 , "title": "types", "type": "circle"},
+        {"id": "tempo", "size": 5, "score": 0.4 , "title": "tempo", "type": "circle"},
 
       
 
-        {"id": "unity", "size": 5, "score": 0.4 , "title": "unity", "type": "circle"},
+        {"id": "momento", "size": 5, "score": 0.4 , "title": "momento", "type": "circle"},
 
       
 
-        {"id": "domain", "size": 5, "score": 0.4 , "title": "domain", "type": "circle"},
+        {"id": "POCO", "size": 5, "score": 0.4 , "title": "POCO", "type": "circle"},
 
       
 
-        {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
+        {"id": "TV", "size": 5, "score": 0.4 , "title": "TV", "type": "circle"},
+
+      
+
+        {"id": "Vero", "size": 5, "score": 0.4 , "title": "Vero", "type": "circle"},
+
+      
+
+        {"id": "Gesù", "size": 5, "score": 0.4 , "title": "Gesù", "type": "circle"},
+
+      
+
+        {"id": "del", "size": 5, "score": 0.4 , "title": "del", "type": "circle"},
+
+      
+
+        {"id": "anni", "size": 5, "score": 0.4 , "title": "anni", "type": "circle"},
 
        
 
@@ -1011,10 +1011,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

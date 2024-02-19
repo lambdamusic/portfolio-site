@@ -760,8 +760,6 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "variables", "target": "program" },
-      
           { "source": "program", "target": "episodes" },
       
           { "source": "program", "target": "events" },
@@ -769,33 +767,103 @@ var data_local_dynamic = {
           { "source": "program", "target": "duration" },
       
           { "source": "program", "target": "same-episode" },
+      
+          { "source": "program", "target": "series" },
+      
+          { "source": "episodes", "target": "orphans" },
+      
+          { "source": "episodes", "target": "series" },
+      
+          { "source": "episodes", "target": "years" },
+      
+          { "source": "episodes", "target": "time" },
+      
+          { "source": "events", "target": "cases" },
+      
+          { "source": "events", "target": "occurrence" },
+      
+          { "source": "events", "target": "instances" },
+      
+          { "source": "events", "target": "class" },
+      
+          { "source": "duration", "target": "episodes" },
+      
+          { "source": "duration", "target": "program" },
+      
+          { "source": "duration", "target": "events" },
+      
+          { "source": "duration", "target": "same-episode" },
+      
+          { "source": "same-episode", "target": "episodes" },
+      
+          { "source": "same-episode", "target": "program" },
+      
+          { "source": "same-episode", "target": "events" },
+      
+          { "source": "same-episode", "target": "duration" },
+      
+          { "source": "series", "target": "episodes" },
+      
+          { "source": "series", "target": "orphans" },
+      
+          { "source": "series", "target": "years" },
+      
+          { "source": "series", "target": "time" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "program", "size": 70, "score": 0 , "title": "program", "type": "circle"},
+        {"id": "episodes", "size": 70, "score": 0 , "title": "episodes", "type": "circle"},
 
       
 
-        {"id": "variables", "size": 140, "score": 0.5 , "title": "variables", "type": "circle"},
+        {"id": "events", "size": 70, "score": 0 , "title": "events", "type": "circle"},
 
       
 
-        {"id": "episodes", "size": 5, "score": 0.4 , "title": "episodes", "type": "circle"},
+        {"id": "duration", "size": 70, "score": 0 , "title": "duration", "type": "circle"},
 
       
 
-        {"id": "events", "size": 5, "score": 0.4 , "title": "events", "type": "circle"},
+        {"id": "same-episode", "size": 70, "score": 0 , "title": "same-episode", "type": "circle"},
 
       
 
-        {"id": "duration", "size": 5, "score": 0.4 , "title": "duration", "type": "circle"},
+        {"id": "series", "size": 70, "score": 0 , "title": "series", "type": "circle"},
 
       
 
-        {"id": "same-episode", "size": 5, "score": 0.4 , "title": "same-episode", "type": "circle"},
+        {"id": "program", "size": 140, "score": 0.5 , "title": "program", "type": "circle"},
+
+      
+
+        {"id": "orphans", "size": 5, "score": 0.4 , "title": "orphans", "type": "circle"},
+
+      
+
+        {"id": "years", "size": 5, "score": 0.4 , "title": "years", "type": "circle"},
+
+      
+
+        {"id": "time", "size": 5, "score": 0.4 , "title": "time", "type": "circle"},
+
+      
+
+        {"id": "cases", "size": 5, "score": 0.4 , "title": "cases", "type": "circle"},
+
+      
+
+        {"id": "occurrence", "size": 5, "score": 0.4 , "title": "occurrence", "type": "circle"},
+
+      
+
+        {"id": "instances", "size": 5, "score": 0.4 , "title": "instances", "type": "circle"},
+
+      
+
+        {"id": "class", "size": 5, "score": 0.4 , "title": "class", "type": "circle"},
 
        
 
@@ -925,10 +993,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

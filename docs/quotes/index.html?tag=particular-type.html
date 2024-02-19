@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.oikos.org/vinclife.htm" class="text-muted" target="_blank">Life, The Multiverse And Everything: An Introduction To The Ideas Of Humberto Maturana Interpreting Maturana</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Life, The Multiverse And Everything: An Introduction To The Ideas Of Humberto Maturana Interpreting Maturana">
+								<a href="http://www.oikos.org/vinclife.htm" class="-underline -text-muted" target="_blank">
+								  Life, The Multiverse And Everything: An Introduction To The Ideas Of Humberto Maturana Interpreting Maturana</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-06-29-Life-The-Multiverse-And-Everything-An-Introduction-46.md/index.html">Autopoiesis</a>
-						<br />
-						<small style="color: #cbcbcb;">Life, The Multiverse And Everything: An Introduction To The Ideas Of Humberto Maturana Interpreting Maturana
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=living.html">#living</a>&nbsp;
@@ -594,14 +607,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-06-29-Life-The-Multiverse-And-Everything-An-Introduction-35.md/index.html">Composite unities have organization and structure; organization; identity</a>
-						<br />
-						<small style="color: #cbcbcb;">Life, The Multiverse And Everything: An Introduction To The Ideas Of Humberto Maturana Interpreting Maturana
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=unity.html">#unity</a>&nbsp;
@@ -620,6 +635,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -744,21 +760,21 @@ var data_local_dynamic = {
       
           { "source": "particular-type", "target": "unity" },
       
-          { "source": "living", "target": "types" },
+          { "source": "living", "target": "men" },
       
-          { "source": "living", "target": "production" },
+          { "source": "living", "target": "years" },
       
-          { "source": "living", "target": "particular-type" },
+          { "source": "living", "target": "body" },
       
-          { "source": "living", "target": "organization" },
+          { "source": "living", "target": "hypothesis" },
       
-          { "source": "types", "target": "unity" },
+          { "source": "types", "target": "class" },
       
-          { "source": "types", "target": "entities" },
+          { "source": "types", "target": "objects" },
       
-          { "source": "types", "target": "domain" },
+          { "source": "types", "target": "real-world" },
       
-          { "source": "types", "target": "terms" },
+          { "source": "types", "target": "instances" },
       
           { "source": "production", "target": "living" },
       
@@ -776,13 +792,13 @@ var data_local_dynamic = {
       
           { "source": "organization", "target": "particular-type" },
       
-          { "source": "unity", "target": "period" },
-      
           { "source": "unity", "target": "types" },
       
           { "source": "unity", "target": "entities" },
       
           { "source": "unity", "target": "domain" },
+      
+          { "source": "unity", "target": "terms" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -813,6 +829,38 @@ var data_local_dynamic = {
 
       
 
+        {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
+
+      
+
+        {"id": "years", "size": 5, "score": 0.4 , "title": "years", "type": "circle"},
+
+      
+
+        {"id": "body", "size": 5, "score": 0.4 , "title": "body", "type": "circle"},
+
+      
+
+        {"id": "hypothesis", "size": 5, "score": 0.4 , "title": "hypothesis", "type": "circle"},
+
+      
+
+        {"id": "class", "size": 5, "score": 0.4 , "title": "class", "type": "circle"},
+
+      
+
+        {"id": "objects", "size": 5, "score": 0.4 , "title": "objects", "type": "circle"},
+
+      
+
+        {"id": "real-world", "size": 5, "score": 0.4 , "title": "real-world", "type": "circle"},
+
+      
+
+        {"id": "instances", "size": 5, "score": 0.4 , "title": "instances", "type": "circle"},
+
+      
+
         {"id": "entities", "size": 5, "score": 0.4 , "title": "entities", "type": "circle"},
 
       
@@ -822,10 +870,6 @@ var data_local_dynamic = {
       
 
         {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
-
-      
-
-        {"id": "period", "size": 5, "score": 0.4 , "title": "period", "type": "circle"},
 
        
 
@@ -955,10 +999,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

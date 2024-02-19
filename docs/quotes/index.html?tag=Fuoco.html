@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.ilgiardinodeipensieri.eu/testi/pascal-1.htm" class="text-muted" target="_blank">Discorso Sulle Passioni Dell&#39;amore</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Discorso Sulle Passioni Dell&#39;amore">
+								<a href="http://www.ilgiardinodeipensieri.eu/testi/pascal-1.htm" class="-underline -text-muted" target="_blank">
+								  Discorso Sulle Passioni Dell&#39;amore</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-03-03-Discorso-Sulle-Passioni-Dellamore-7.md/index.html">Amore e vita d&#39;azione</a>
-						<br />
-						<small style="color: #cbcbcb;">Discorso Sulle Passioni Dell&#39;amore
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=Hanno.html">#Hanno</a>&nbsp;
@@ -590,14 +603,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Utopia Andata E Ritorno (philip K. Dick)</span>
+							</small>
+							<!-- Words taken from <cite title="Utopia Andata E Ritorno (philip K. Dick)">
+								<a class="-underline -text-muted">Utopia Andata E Ritorno (philip K. Dick)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-11-17-Utopia-Andata-E-Ritorno-philip-K-Dick-11.md/index.html">Uno spettacolo affascinante</a>
-						<br />
-						<small style="color: #cbcbcb;">Utopia Andata E Ritorno (philip K. Dick)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=COSA.html">#COSA</a>&nbsp;
@@ -608,6 +633,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -744,13 +770,13 @@ var data_local_dynamic = {
       
           { "source": "quando", "target": "tempo" },
       
-          { "source": "COSA", "target": "filosofia" },
-      
           { "source": "COSA", "target": "pan" },
       
           { "source": "COSA", "target": "al" },
       
           { "source": "COSA", "target": "solo" },
+      
+          { "source": "COSA", "target": "Fuoco" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -786,10 +812,6 @@ var data_local_dynamic = {
       
 
         {"id": "tempo", "size": 5, "score": 0.4 , "title": "tempo", "type": "circle"},
-
-      
-
-        {"id": "filosofia", "size": 5, "score": 0.4 , "title": "filosofia", "type": "circle"},
 
       
 
@@ -931,10 +953,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

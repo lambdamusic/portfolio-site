@@ -772,82 +772,116 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "Internet", "target": "technology" },
+          { "source": "ideology", "target": "book" },
       
-          { "source": "Internet", "target": "virtual-world" },
+          { "source": "ideology", "target": "Internet" },
       
-          { "source": "Internet", "target": "printing-press" },
+          { "source": "ideology", "target": "function" },
       
-          { "source": "Internet", "target": "sharing" },
+          { "source": "ideology", "target": "light" },
       
-          { "source": "Internet", "target": "machine" },
+          { "source": "book", "target": "news" },
       
-          { "source": "technology", "target": "virtual-world" },
+          { "source": "book", "target": "journals" },
       
-          { "source": "technology", "target": "Internet" },
+          { "source": "book", "target": "nature" },
       
-          { "source": "technology", "target": "printing-press" },
+          { "source": "book", "target": "text" },
       
-          { "source": "technology", "target": "sharing" },
+          { "source": "Internet", "target": "book" },
       
-          { "source": "virtual-world", "target": "technology" },
+          { "source": "Internet", "target": "ideology" },
       
-          { "source": "virtual-world", "target": "Internet" },
+          { "source": "Internet", "target": "Uniform-Resource-Identifiers" },
       
-          { "source": "virtual-world", "target": "printing-press" },
+          { "source": "Internet", "target": "Resource-Identifiers" },
       
-          { "source": "virtual-world", "target": "sharing" },
+          { "source": "function", "target": "structure" },
       
-          { "source": "printing-press", "target": "technology" },
+          { "source": "function", "target": "data-structure" },
       
-          { "source": "printing-press", "target": "virtual-world" },
+          { "source": "function", "target": "process" },
       
-          { "source": "printing-press", "target": "Internet" },
+          { "source": "function", "target": "language" },
       
-          { "source": "printing-press", "target": "sharing" },
+          { "source": "light", "target": "function" },
       
-          { "source": "sharing", "target": "technology" },
+          { "source": "light", "target": "ideology" },
       
-          { "source": "sharing", "target": "virtual-world" },
+          { "source": "light", "target": "strength" },
       
-          { "source": "sharing", "target": "Internet" },
-      
-          { "source": "sharing", "target": "printing-press" },
-      
-          { "source": "machine", "target": "technology" },
-      
-          { "source": "machine", "target": "virtual-world" },
-      
-          { "source": "machine", "target": "Internet" },
-      
-          { "source": "machine", "target": "printing-press" },
+          { "source": "light", "target": "shadow" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "technology", "size": 70, "score": 0 , "title": "technology", "type": "circle"},
+        {"id": "book", "size": 70, "score": 0 , "title": "book", "type": "circle"},
 
       
 
-        {"id": "virtual-world", "size": 70, "score": 0 , "title": "virtual-world", "type": "circle"},
+        {"id": "Internet", "size": 70, "score": 0 , "title": "Internet", "type": "circle"},
 
       
 
-        {"id": "printing-press", "size": 70, "score": 0 , "title": "printing-press", "type": "circle"},
+        {"id": "function", "size": 70, "score": 0 , "title": "function", "type": "circle"},
 
       
 
-        {"id": "sharing", "size": 70, "score": 0 , "title": "sharing", "type": "circle"},
+        {"id": "light", "size": 70, "score": 0 , "title": "light", "type": "circle"},
 
       
 
-        {"id": "machine", "size": 70, "score": 0 , "title": "machine", "type": "circle"},
+        {"id": "ideology", "size": 140, "score": 0.5 , "title": "ideology", "type": "circle"},
 
       
 
-        {"id": "Internet", "size": 140, "score": 0.5 , "title": "Internet", "type": "circle"},
+        {"id": "news", "size": 5, "score": 0.4 , "title": "news", "type": "circle"},
+
+      
+
+        {"id": "journals", "size": 5, "score": 0.4 , "title": "journals", "type": "circle"},
+
+      
+
+        {"id": "nature", "size": 5, "score": 0.4 , "title": "nature", "type": "circle"},
+
+      
+
+        {"id": "text", "size": 5, "score": 0.4 , "title": "text", "type": "circle"},
+
+      
+
+        {"id": "Uniform-Resource-Identifiers", "size": 5, "score": 0.4 , "title": "Uniform-Resource-Identifiers", "type": "circle"},
+
+      
+
+        {"id": "Resource-Identifiers", "size": 5, "score": 0.4 , "title": "Resource-Identifiers", "type": "circle"},
+
+      
+
+        {"id": "structure", "size": 5, "score": 0.4 , "title": "structure", "type": "circle"},
+
+      
+
+        {"id": "data-structure", "size": 5, "score": 0.4 , "title": "data-structure", "type": "circle"},
+
+      
+
+        {"id": "process", "size": 5, "score": 0.4 , "title": "process", "type": "circle"},
+
+      
+
+        {"id": "language", "size": 5, "score": 0.4 , "title": "language", "type": "circle"},
+
+      
+
+        {"id": "strength", "size": 5, "score": 0.4 , "title": "strength", "type": "circle"},
+
+      
+
+        {"id": "shadow", "size": 5, "score": 0.4 , "title": "shadow", "type": "circle"},
 
        
 
@@ -977,10 +1011,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

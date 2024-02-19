@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.amazon.com/Lonely-Planet-Iran-Travel-Guide/dp/1741791529" class="text-muted" target="_blank">Lonely Planet Iran (travel Guide)</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Lonely Planet Iran (travel Guide)">
+								<a href="http://www.amazon.com/Lonely-Planet-Iran-Travel-Guide/dp/1741791529" class="-underline -text-muted" target="_blank">
+								  Lonely Planet Iran (travel Guide)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-06-29-Lonely-Planet-Iran-travel-Guide-4.md/index.html">Remember that Iranians are proud...</a>
-						<br />
-						<small style="color: #cbcbcb;">Lonely Planet Iran (travel Guide)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=Iranians.html">#Iranians</a>&nbsp;
@@ -592,14 +605,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-06-29-Lonely-Planet-Iran-travel-Guide-9.md/index.html">Arabs make up about 3%...</a>
-						<br />
-						<small style="color: #cbcbcb;">Lonely Planet Iran (travel Guide)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=Arabs.html">#Arabs</a>&nbsp;
@@ -612,6 +627,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -750,21 +766,21 @@ var data_local_dynamic = {
       
           { "source": "Asia", "target": "Africa" },
       
-          { "source": "people", "target": "pride" },
+          { "source": "people", "target": "stage" },
       
-          { "source": "people", "target": "ego" },
+          { "source": "people", "target": "words" },
       
-          { "source": "people", "target": "game" },
+          { "source": "people", "target": "God" },
       
-          { "source": "people", "target": "unselfishness" },
-      
-          { "source": "faith", "target": "morality" },
-      
-          { "source": "faith", "target": "religion" },
-      
-          { "source": "faith", "target": "God" },
+          { "source": "people", "target": "knowledge" },
       
           { "source": "faith", "target": "truth" },
+      
+          { "source": "faith", "target": "scientific-method" },
+      
+          { "source": "faith", "target": "thought" },
+      
+          { "source": "faith", "target": "feelings" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -811,27 +827,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "pride", "size": 5, "score": 0.4 , "title": "pride", "type": "circle"},
+        {"id": "stage", "size": 5, "score": 0.4 , "title": "stage", "type": "circle"},
 
       
 
-        {"id": "ego", "size": 5, "score": 0.4 , "title": "ego", "type": "circle"},
-
-      
-
-        {"id": "game", "size": 5, "score": 0.4 , "title": "game", "type": "circle"},
-
-      
-
-        {"id": "unselfishness", "size": 5, "score": 0.4 , "title": "unselfishness", "type": "circle"},
-
-      
-
-        {"id": "morality", "size": 5, "score": 0.4 , "title": "morality", "type": "circle"},
-
-      
-
-        {"id": "religion", "size": 5, "score": 0.4 , "title": "religion", "type": "circle"},
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
 
       
 
@@ -839,7 +839,23 @@ var data_local_dynamic = {
 
       
 
+        {"id": "knowledge", "size": 5, "score": 0.4 , "title": "knowledge", "type": "circle"},
+
+      
+
         {"id": "truth", "size": 5, "score": 0.4 , "title": "truth", "type": "circle"},
+
+      
+
+        {"id": "scientific-method", "size": 5, "score": 0.4 , "title": "scientific-method", "type": "circle"},
+
+      
+
+        {"id": "thought", "size": 5, "score": 0.4 , "title": "thought", "type": "circle"},
+
+      
+
+        {"id": "feelings", "size": 5, "score": 0.4 , "title": "feelings", "type": "circle"},
 
        
 
@@ -969,10 +985,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

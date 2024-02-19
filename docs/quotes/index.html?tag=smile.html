@@ -572,12 +572,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Shantaram (gregory David Roberts)</span>
+							</small>
+							<!-- Words taken from <cite title="Shantaram (gregory David Roberts)">
+								<a class="-underline -text-muted">Shantaram (gregory David Roberts)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-11-05-Shantaram-gregory-David-Roberts-13.md/index.html">The famous indian head wiggle</a>
-						<br />
-						<small style="color: #cbcbcb;">Shantaram (gregory David Roberts)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=men.html">#men</a>&nbsp;
@@ -594,14 +605,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-11-05-Shantaram-gregory-David-Roberts-34.md/index.html">‘this social work seems to...</a>
-						<br />
-						<small style="color: #cbcbcb;">Shantaram (gregory David Roberts)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=men.html">#men</a>&nbsp;
@@ -616,6 +629,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -744,9 +758,11 @@ var data_local_dynamic = {
       
           { "source": "men", "target": "sleep" },
       
-          { "source": "men", "target": "foot" },
+          { "source": "men", "target": "living" },
       
-          { "source": "men", "target": "toe" },
+          { "source": "men", "target": "years" },
+      
+          { "source": "head", "target": "months" },
       
           { "source": "head", "target": "men" },
       
@@ -754,23 +770,21 @@ var data_local_dynamic = {
       
           { "source": "head", "target": "eyes" },
       
-          { "source": "head", "target": "heart" },
+          { "source": "eyes", "target": "babies" },
       
-          { "source": "eyes", "target": "men" },
+          { "source": "eyes", "target": "drugs" },
       
-          { "source": "eyes", "target": "head" },
+          { "source": "eyes", "target": "control" },
       
-          { "source": "eyes", "target": "smile" },
+          { "source": "eyes", "target": "pain" },
       
-          { "source": "eyes", "target": "heart" },
+          { "source": "heart", "target": "Christianity" },
+      
+          { "source": "heart", "target": "order" },
       
           { "source": "heart", "target": "men" },
       
           { "source": "heart", "target": "head" },
-      
-          { "source": "heart", "target": "smile" },
-      
-          { "source": "heart", "target": "eyes" },
       
           { "source": "benefits", "target": "team" },
       
@@ -817,11 +831,39 @@ var data_local_dynamic = {
 
       
 
-        {"id": "foot", "size": 5, "score": 0.4 , "title": "foot", "type": "circle"},
+        {"id": "living", "size": 5, "score": 0.4 , "title": "living", "type": "circle"},
 
       
 
-        {"id": "toe", "size": 5, "score": 0.4 , "title": "toe", "type": "circle"},
+        {"id": "years", "size": 5, "score": 0.4 , "title": "years", "type": "circle"},
+
+      
+
+        {"id": "months", "size": 5, "score": 0.4 , "title": "months", "type": "circle"},
+
+      
+
+        {"id": "babies", "size": 5, "score": 0.4 , "title": "babies", "type": "circle"},
+
+      
+
+        {"id": "drugs", "size": 5, "score": 0.4 , "title": "drugs", "type": "circle"},
+
+      
+
+        {"id": "control", "size": 5, "score": 0.4 , "title": "control", "type": "circle"},
+
+      
+
+        {"id": "pain", "size": 5, "score": 0.4 , "title": "pain", "type": "circle"},
+
+      
+
+        {"id": "Christianity", "size": 5, "score": 0.4 , "title": "Christianity", "type": "circle"},
+
+      
+
+        {"id": "order", "size": 5, "score": 0.4 , "title": "order", "type": "circle"},
 
       
 
@@ -963,10 +1005,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

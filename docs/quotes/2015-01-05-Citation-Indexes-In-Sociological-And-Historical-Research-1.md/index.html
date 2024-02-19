@@ -770,25 +770,25 @@ var data_local_dynamic = {
       
           { "source": "development", "target": "coding" },
       
-          { "source": "development", "target": "subjects" },
+          { "source": "development", "target": "historical-research" },
       
-          { "source": "development", "target": "people" },
+          { "source": "development", "target": "research" },
       
-          { "source": "research", "target": "items" },
+          { "source": "research", "target": "historical-research" },
       
-          { "source": "research", "target": "note" },
+          { "source": "research", "target": "development" },
       
-          { "source": "research", "target": "evidence" },
+          { "source": "research", "target": "role" },
       
-          { "source": "research", "target": "citations" },
+          { "source": "research", "target": "justice" },
+      
+          { "source": "role", "target": "team" },
+      
+          { "source": "role", "target": "persons" },
+      
+          { "source": "role", "target": "benefits" },
       
           { "source": "role", "target": "historical-research" },
-      
-          { "source": "role", "target": "development" },
-      
-          { "source": "role", "target": "research" },
-      
-          { "source": "role", "target": "evaluation" },
       
           { "source": "Garfield", "target": "concept" },
       
@@ -831,31 +831,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "subjects", "size": 5, "score": 0.4 , "title": "subjects", "type": "circle"},
+        {"id": "justice", "size": 5, "score": 0.4 , "title": "justice", "type": "circle"},
 
       
 
-        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
+        {"id": "team", "size": 5, "score": 0.4 , "title": "team", "type": "circle"},
 
       
 
-        {"id": "items", "size": 5, "score": 0.4 , "title": "items", "type": "circle"},
+        {"id": "persons", "size": 5, "score": 0.4 , "title": "persons", "type": "circle"},
 
       
 
-        {"id": "note", "size": 5, "score": 0.4 , "title": "note", "type": "circle"},
-
-      
-
-        {"id": "evidence", "size": 5, "score": 0.4 , "title": "evidence", "type": "circle"},
-
-      
-
-        {"id": "citations", "size": 5, "score": 0.4 , "title": "citations", "type": "circle"},
-
-      
-
-        {"id": "evaluation", "size": 5, "score": 0.4 , "title": "evaluation", "type": "circle"},
+        {"id": "benefits", "size": 5, "score": 0.4 , "title": "benefits", "type": "circle"},
 
       
 
@@ -997,10 +985,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

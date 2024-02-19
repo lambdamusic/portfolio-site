@@ -762,14 +762,6 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "atoms", "target": "electrons" },
-      
-          { "source": "atoms", "target": "charge" },
-      
-          { "source": "atoms", "target": "nucleus" },
-      
-          { "source": "atoms", "target": "bonding" },
-      
           { "source": "electrons", "target": "atoms" },
       
           { "source": "electrons", "target": "charge" },
@@ -777,6 +769,16 @@ var data_local_dynamic = {
           { "source": "electrons", "target": "nucleus" },
       
           { "source": "electrons", "target": "quantum-theory" },
+      
+          { "source": "electrons", "target": "properties" },
+      
+          { "source": "atoms", "target": "electrons" },
+      
+          { "source": "atoms", "target": "charge" },
+      
+          { "source": "atoms", "target": "nucleus" },
+      
+          { "source": "atoms", "target": "bonding" },
       
           { "source": "charge", "target": "electrons" },
       
@@ -792,18 +794,26 @@ var data_local_dynamic = {
       
           { "source": "nucleus", "target": "charge" },
       
-          { "source": "bonding", "target": "atoms" },
+          { "source": "quantum-theory", "target": "electrons" },
       
-          { "source": "bonding", "target": "charge" },
+          { "source": "quantum-theory", "target": "properties" },
       
-          { "source": "bonding", "target": "-bonding" },
+          { "source": "quantum-theory", "target": "objects" },
+      
+          { "source": "properties", "target": "network" },
+      
+          { "source": "properties", "target": "instances" },
+      
+          { "source": "properties", "target": "range" },
+      
+          { "source": "properties", "target": "class" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "electrons", "size": 70, "score": 0 , "title": "electrons", "type": "circle"},
+        {"id": "atoms", "size": 70, "score": 0 , "title": "atoms", "type": "circle"},
 
       
 
@@ -815,19 +825,39 @@ var data_local_dynamic = {
 
       
 
-        {"id": "bonding", "size": 70, "score": 0 , "title": "bonding", "type": "circle"},
+        {"id": "quantum-theory", "size": 70, "score": 0 , "title": "quantum-theory", "type": "circle"},
 
       
 
-        {"id": "atoms", "size": 140, "score": 0.5 , "title": "atoms", "type": "circle"},
+        {"id": "properties", "size": 70, "score": 0 , "title": "properties", "type": "circle"},
 
       
 
-        {"id": "quantum-theory", "size": 5, "score": 0.4 , "title": "quantum-theory", "type": "circle"},
+        {"id": "electrons", "size": 140, "score": 0.5 , "title": "electrons", "type": "circle"},
 
       
 
-        {"id": "-bonding", "size": 5, "score": 0.4 , "title": "-bonding", "type": "circle"},
+        {"id": "bonding", "size": 5, "score": 0.4 , "title": "bonding", "type": "circle"},
+
+      
+
+        {"id": "objects", "size": 5, "score": 0.4 , "title": "objects", "type": "circle"},
+
+      
+
+        {"id": "network", "size": 5, "score": 0.4 , "title": "network", "type": "circle"},
+
+      
+
+        {"id": "instances", "size": 5, "score": 0.4 , "title": "instances", "type": "circle"},
+
+      
+
+        {"id": "range", "size": 5, "score": 0.4 , "title": "range", "type": "circle"},
+
+      
+
+        {"id": "class", "size": 5, "score": 0.4 , "title": "class", "type": "circle"},
 
        
 
@@ -957,10 +987,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

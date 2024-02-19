@@ -47,12 +47,25 @@
 			<div class="col-md-6" >
 
 				{% for obj in return_items %}
+
+					
+					{% ifchanged obj.source %}
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								{% if obj.source_url %}<a href="{{obj.source_url}}" class="text-muted" target="_blank">{{obj.source}}</a>
+									{% else %}<span class="text-muted" >{{obj.source}}</span>{% endif %}
+							</small>
+							<!-- Words taken from <cite title="{{obj.source}}">
+								{% if obj.source_url %}<a href="{{obj.source_url}}" class="-underline -text-muted" target="_blank">
+								  {% else %}<a class="-underline -text-muted">{% endif %}{{obj.source}}</a></cite> -->
+						</h4>
+						
+					{% endifchanged %}
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="{{obj.filename}}/">{{obj.title}}</a>
-						<br />
-						<small style="color: #cbcbcb;">{{obj.source}}
-
 						<br />
 						{% for tag in obj.tags %}
 						<a class="text-muted" href="{% url 'portfolioapp:quotes' %}?tag={{tag}}">#{{tag}}</a>&nbsp;
@@ -61,6 +74,7 @@
 		
 					
 					</li>
+
 		
 				{% endfor %}
 			</div>

@@ -572,12 +572,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Shantaram (gregory David Roberts)</span>
+							</small>
+							<!-- Words taken from <cite title="Shantaram (gregory David Roberts)">
+								<a class="-underline -text-muted">Shantaram (gregory David Roberts)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-11-05-Shantaram-gregory-David-Roberts-17.md/index.html">A dream is the place where a wish and a fear meet</a>
-						<br />
-						<small style="color: #cbcbcb;">Shantaram (gregory David Roberts)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=sleep.html">#sleep</a>&nbsp;
@@ -594,14 +605,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-11-05-Shantaram-gregory-David-Roberts-43.md/index.html">‘but sometimes …’ i protested,...</a>
-						<br />
-						<small style="color: #cbcbcb;">Shantaram (gregory David Roberts)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=mothers.html">#mothers</a>&nbsp;
@@ -618,6 +631,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -742,21 +756,21 @@ var data_local_dynamic = {
       
           { "source": "room", "target": "mothers" },
       
-          { "source": "sleep", "target": "dreams" },
+          { "source": "sleep", "target": "memory" },
       
-          { "source": "sleep", "target": "room" },
+          { "source": "sleep", "target": "meaning" },
       
-          { "source": "sleep", "target": "slums" },
+          { "source": "sleep", "target": "men" },
       
-          { "source": "sleep", "target": "night" },
+          { "source": "sleep", "target": "phrases" },
+      
+          { "source": "dreams", "target": "book" },
+      
+          { "source": "dreams", "target": "text" },
+      
+          { "source": "dreams", "target": "Encyclopedia" },
       
           { "source": "dreams", "target": "sleep" },
-      
-          { "source": "dreams", "target": "room" },
-      
-          { "source": "dreams", "target": "slums" },
-      
-          { "source": "dreams", "target": "night" },
       
           { "source": "slums", "target": "sleep" },
       
@@ -766,13 +780,13 @@ var data_local_dynamic = {
       
           { "source": "slums", "target": "night" },
       
+          { "source": "night", "target": "days" },
+      
+          { "source": "night", "target": "dinner" },
+      
+          { "source": "night", "target": "schedule" },
+      
           { "source": "night", "target": "sleep" },
-      
-          { "source": "night", "target": "dreams" },
-      
-          { "source": "night", "target": "room" },
-      
-          { "source": "night", "target": "slums" },
       
           { "source": "mothers", "target": "men" },
       
@@ -811,7 +825,43 @@ var data_local_dynamic = {
 
       
 
+        {"id": "memory", "size": 5, "score": 0.4 , "title": "memory", "type": "circle"},
+
+      
+
+        {"id": "meaning", "size": 5, "score": 0.4 , "title": "meaning", "type": "circle"},
+
+      
+
         {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
+
+      
+
+        {"id": "phrases", "size": 5, "score": 0.4 , "title": "phrases", "type": "circle"},
+
+      
+
+        {"id": "book", "size": 5, "score": 0.4 , "title": "book", "type": "circle"},
+
+      
+
+        {"id": "text", "size": 5, "score": 0.4 , "title": "text", "type": "circle"},
+
+      
+
+        {"id": "Encyclopedia", "size": 5, "score": 0.4 , "title": "Encyclopedia", "type": "circle"},
+
+      
+
+        {"id": "days", "size": 5, "score": 0.4 , "title": "days", "type": "circle"},
+
+      
+
+        {"id": "dinner", "size": 5, "score": 0.4 , "title": "dinner", "type": "circle"},
+
+      
+
+        {"id": "schedule", "size": 5, "score": 0.4 , "title": "schedule", "type": "circle"},
 
       
 
@@ -949,10 +999,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

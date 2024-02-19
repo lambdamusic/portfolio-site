@@ -572,12 +572,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Utopia Andata E Ritorno (philip K. Dick)</span>
+							</small>
+							<!-- Words taken from <cite title="Utopia Andata E Ritorno (philip K. Dick)">
+								<a class="-underline -text-muted">Utopia Andata E Ritorno (philip K. Dick)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-11-17-Utopia-Andata-E-Ritorno-philip-K-Dick-16.md/index.html">Perspicace, la ragazza biondiccia, Sheila...</a>
-						<br />
-						<small style="color: #cbcbcb;">Utopia Andata E Ritorno (philip K. Dick)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=Disse.html">#Disse</a>&nbsp;
@@ -590,14 +601,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.ilfattoquotidiano.it/2014/03/09/zagrebelsky-renzismo-maquillage-della-casta-e-napolitano-favorisce-la-conservazione/907260/" class="text-muted" target="_blank">Zagrebelsky: &#39;renzismo? Maquillage Della Casta. E Il Colle Favorisce La Conservazione&#39; - Il Fatto Quotidiano</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Zagrebelsky: &#39;renzismo? Maquillage Della Casta. E Il Colle Favorisce La Conservazione&#39; - Il Fatto Quotidiano">
+								<a href="http://www.ilfattoquotidiano.it/2014/03/09/zagrebelsky-renzismo-maquillage-della-casta-e-napolitano-favorisce-la-conservazione/907260/" class="-underline -text-muted" target="_blank">
+								  Zagrebelsky: &#39;renzismo? Maquillage Della Casta. E Il Colle Favorisce La Conservazione&#39; - Il Fatto Quotidiano</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-03-10-Zagrebelsky-renzismo-Maquillage-Della-Casta-E-Il-6.md/index.html">L&#39;autonomia di un intellettuale</a>
-						<br />
-						<small style="color: #cbcbcb;">Zagrebelsky: &#39;renzismo? Maquillage Della Casta. E Il Colle Favorisce La Conservazione&#39; - Il Fatto Quotidiano
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=credo.html">#credo</a>&nbsp;
@@ -608,6 +633,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -736,13 +762,13 @@ var data_local_dynamic = {
       
           { "source": "Disse", "target": "drogas" },
       
-          { "source": "SU", "target": "Disse" },
-      
-          { "source": "SU", "target": "credo" },
-      
           { "source": "SU", "target": "minutes" },
       
           { "source": "SU", "target": "Suo" },
+      
+          { "source": "SU", "target": "Io" },
+      
+          { "source": "SU", "target": "vistas" },
       
           { "source": "Uno", "target": "Comportamento" },
       
@@ -782,6 +808,14 @@ var data_local_dynamic = {
       
 
         {"id": "Suo", "size": 5, "score": 0.4 , "title": "Suo", "type": "circle"},
+
+      
+
+        {"id": "Io", "size": 5, "score": 0.4 , "title": "Io", "type": "circle"},
+
+      
+
+        {"id": "vistas", "size": 5, "score": 0.4 , "title": "vistas", "type": "circle"},
 
       
 
@@ -915,10 +949,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

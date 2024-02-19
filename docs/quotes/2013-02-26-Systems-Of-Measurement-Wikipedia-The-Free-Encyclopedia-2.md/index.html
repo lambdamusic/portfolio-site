@@ -762,142 +762,62 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "countries", "target": "infrastructure" },
-      
-          { "source": "countries", "target": "workers" },
-      
-          { "source": "countries", "target": "Iranians" },
-      
-          { "source": "countries", "target": "outcomes" },
-      
-          { "source": "countries", "target": "people" },
-      
           { "source": "infrastructure", "target": "countries" },
       
           { "source": "infrastructure", "target": "beaches" },
       
-          { "source": "workers", "target": "work-hours" },
+          { "source": "countries", "target": "Americans" },
       
-          { "source": "workers", "target": "Keynes" },
+          { "source": "countries", "target": "Union" },
       
-          { "source": "workers", "target": "long-hours" },
+          { "source": "countries", "target": "Spain" },
       
-          { "source": "workers", "target": "Iranians" },
+          { "source": "countries", "target": "New-York" },
       
-          { "source": "Iranians", "target": "war" },
+          { "source": "beaches", "target": "power" },
       
-          { "source": "Iranians", "target": "century" },
+          { "source": "beaches", "target": "wood" },
       
-          { "source": "Iranians", "target": "Iraq" },
-      
-          { "source": "Iranians", "target": "Iran" },
-      
-          { "source": "outcomes", "target": "mothers" },
-      
-          { "source": "outcomes", "target": "men" },
-      
-          { "source": "outcomes", "target": "history" },
-      
-          { "source": "outcomes", "target": "room" },
-      
-          { "source": "people", "target": "pride" },
-      
-          { "source": "people", "target": "ego" },
-      
-          { "source": "people", "target": "game" },
-      
-          { "source": "people", "target": "unselfishness" },
+          { "source": "beaches", "target": "infrastructure" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "infrastructure", "size": 70, "score": 0 , "title": "infrastructure", "type": "circle"},
+        {"id": "countries", "size": 70, "score": 0 , "title": "countries", "type": "circle"},
 
       
 
-        {"id": "workers", "size": 70, "score": 0 , "title": "workers", "type": "circle"},
+        {"id": "beaches", "size": 70, "score": 0 , "title": "beaches", "type": "circle"},
 
       
 
-        {"id": "Iranians", "size": 70, "score": 0 , "title": "Iranians", "type": "circle"},
+        {"id": "infrastructure", "size": 140, "score": 0.5 , "title": "infrastructure", "type": "circle"},
 
       
 
-        {"id": "outcomes", "size": 70, "score": 0 , "title": "outcomes", "type": "circle"},
+        {"id": "Americans", "size": 5, "score": 0.4 , "title": "Americans", "type": "circle"},
 
       
 
-        {"id": "people", "size": 70, "score": 0 , "title": "people", "type": "circle"},
+        {"id": "Union", "size": 5, "score": 0.4 , "title": "Union", "type": "circle"},
 
       
 
-        {"id": "countries", "size": 140, "score": 0.5 , "title": "countries", "type": "circle"},
+        {"id": "Spain", "size": 5, "score": 0.4 , "title": "Spain", "type": "circle"},
 
       
 
-        {"id": "beaches", "size": 5, "score": 0.4 , "title": "beaches", "type": "circle"},
+        {"id": "New-York", "size": 5, "score": 0.4 , "title": "New-York", "type": "circle"},
 
       
 
-        {"id": "work-hours", "size": 5, "score": 0.4 , "title": "work-hours", "type": "circle"},
+        {"id": "power", "size": 5, "score": 0.4 , "title": "power", "type": "circle"},
 
       
 
-        {"id": "Keynes", "size": 5, "score": 0.4 , "title": "Keynes", "type": "circle"},
-
-      
-
-        {"id": "long-hours", "size": 5, "score": 0.4 , "title": "long-hours", "type": "circle"},
-
-      
-
-        {"id": "war", "size": 5, "score": 0.4 , "title": "war", "type": "circle"},
-
-      
-
-        {"id": "century", "size": 5, "score": 0.4 , "title": "century", "type": "circle"},
-
-      
-
-        {"id": "Iraq", "size": 5, "score": 0.4 , "title": "Iraq", "type": "circle"},
-
-      
-
-        {"id": "Iran", "size": 5, "score": 0.4 , "title": "Iran", "type": "circle"},
-
-      
-
-        {"id": "mothers", "size": 5, "score": 0.4 , "title": "mothers", "type": "circle"},
-
-      
-
-        {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
-
-      
-
-        {"id": "history", "size": 5, "score": 0.4 , "title": "history", "type": "circle"},
-
-      
-
-        {"id": "room", "size": 5, "score": 0.4 , "title": "room", "type": "circle"},
-
-      
-
-        {"id": "pride", "size": 5, "score": 0.4 , "title": "pride", "type": "circle"},
-
-      
-
-        {"id": "ego", "size": 5, "score": 0.4 , "title": "ego", "type": "circle"},
-
-      
-
-        {"id": "game", "size": 5, "score": 0.4 , "title": "game", "type": "circle"},
-
-      
-
-        {"id": "unselfishness", "size": 5, "score": 0.4 , "title": "unselfishness", "type": "circle"},
+        {"id": "wood", "size": 5, "score": 0.4 , "title": "wood", "type": "circle"},
 
        
 
@@ -1027,10 +947,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

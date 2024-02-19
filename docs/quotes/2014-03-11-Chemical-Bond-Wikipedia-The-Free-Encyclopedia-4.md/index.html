@@ -760,32 +760,56 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "-bonding", "target": "bonding" },
-      
           { "source": "bonding", "target": "atoms" },
       
           { "source": "bonding", "target": "charge" },
       
           { "source": "bonding", "target": "-bonding" },
+      
+          { "source": "atoms", "target": "electrons" },
+      
+          { "source": "atoms", "target": "charge" },
+      
+          { "source": "atoms", "target": "nucleus" },
+      
+          { "source": "atoms", "target": "bonding" },
+      
+          { "source": "charge", "target": "electrons" },
+      
+          { "source": "charge", "target": "atoms" },
+      
+          { "source": "charge", "target": "nucleus" },
+      
+          { "source": "charge", "target": "bonding" },
+      
+          { "source": "-bonding", "target": "bonding" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "bonding", "size": 70, "score": 0 , "title": "bonding", "type": "circle"},
+        {"id": "atoms", "size": 70, "score": 0 , "title": "atoms", "type": "circle"},
 
       
 
-        {"id": "-bonding", "size": 140, "score": 0.5 , "title": "-bonding", "type": "circle"},
+        {"id": "charge", "size": 70, "score": 0 , "title": "charge", "type": "circle"},
 
       
 
-        {"id": "atoms", "size": 5, "score": 0.4 , "title": "atoms", "type": "circle"},
+        {"id": "-bonding", "size": 70, "score": 0 , "title": "-bonding", "type": "circle"},
 
       
 
-        {"id": "charge", "size": 5, "score": 0.4 , "title": "charge", "type": "circle"},
+        {"id": "bonding", "size": 140, "score": 0.5 , "title": "bonding", "type": "circle"},
+
+      
+
+        {"id": "electrons", "size": 5, "score": 0.4 , "title": "electrons", "type": "circle"},
+
+      
+
+        {"id": "nucleus", "size": 5, "score": 0.4 , "title": "nucleus", "type": "circle"},
 
        
 
@@ -915,10 +939,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

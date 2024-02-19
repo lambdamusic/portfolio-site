@@ -761,31 +761,23 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "front", "target": "strength" },
-      
           { "source": "front", "target": "reference" },
       
           { "source": "front", "target": "existence" },
+      
+          { "source": "front", "target": "strength" },
       
           { "source": "front", "target": "field" },
       
           { "source": "front", "target": "mathematics" },
       
-          { "source": "strength", "target": "men" },
+          { "source": "reference", "target": "properties" },
       
-          { "source": "strength", "target": "meeting" },
+          { "source": "reference", "target": "class" },
       
-          { "source": "strength", "target": "front" },
+          { "source": "reference", "target": "slots" },
       
-          { "source": "strength", "target": "light" },
-      
-          { "source": "reference", "target": "mechanism" },
-      
-          { "source": "reference", "target": "character" },
-      
-          { "source": "reference", "target": "basis" },
-      
-          { "source": "reference", "target": "generality" },
+          { "source": "reference", "target": "range" },
       
           { "source": "existence", "target": "operation" },
       
@@ -795,27 +787,31 @@ var data_local_dynamic = {
       
           { "source": "existence", "target": "front" },
       
-          { "source": "field", "target": "structure" },
+          { "source": "strength", "target": "front" },
       
-          { "source": "field", "target": "physics" },
+          { "source": "strength", "target": "men" },
+      
+          { "source": "strength", "target": "meeting" },
+      
+          { "source": "strength", "target": "light" },
       
           { "source": "field", "target": "contribution" },
       
           { "source": "field", "target": "Internet" },
       
+          { "source": "field", "target": "world" },
+      
+          { "source": "field", "target": "structure" },
+      
+          { "source": "mathematics", "target": "problem" },
+      
           { "source": "mathematics", "target": "field" },
       
           { "source": "mathematics", "target": "front" },
-      
-          { "source": "mathematics", "target": "problem" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
-      
-
-        {"id": "strength", "size": 70, "score": 0 , "title": "strength", "type": "circle"},
-
       
 
         {"id": "reference", "size": 70, "score": 0 , "title": "reference", "type": "circle"},
@@ -823,6 +819,10 @@ var data_local_dynamic = {
       
 
         {"id": "existence", "size": 70, "score": 0 , "title": "existence", "type": "circle"},
+
+      
+
+        {"id": "strength", "size": 70, "score": 0 , "title": "strength", "type": "circle"},
 
       
 
@@ -838,31 +838,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
+        {"id": "properties", "size": 5, "score": 0.4 , "title": "properties", "type": "circle"},
 
       
 
-        {"id": "meeting", "size": 5, "score": 0.4 , "title": "meeting", "type": "circle"},
+        {"id": "class", "size": 5, "score": 0.4 , "title": "class", "type": "circle"},
 
       
 
-        {"id": "light", "size": 5, "score": 0.4 , "title": "light", "type": "circle"},
+        {"id": "slots", "size": 5, "score": 0.4 , "title": "slots", "type": "circle"},
 
       
 
-        {"id": "mechanism", "size": 5, "score": 0.4 , "title": "mechanism", "type": "circle"},
-
-      
-
-        {"id": "character", "size": 5, "score": 0.4 , "title": "character", "type": "circle"},
-
-      
-
-        {"id": "basis", "size": 5, "score": 0.4 , "title": "basis", "type": "circle"},
-
-      
-
-        {"id": "generality", "size": 5, "score": 0.4 , "title": "generality", "type": "circle"},
+        {"id": "range", "size": 5, "score": 0.4 , "title": "range", "type": "circle"},
 
       
 
@@ -878,11 +866,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "structure", "size": 5, "score": 0.4 , "title": "structure", "type": "circle"},
+        {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
 
       
 
-        {"id": "physics", "size": 5, "score": 0.4 , "title": "physics", "type": "circle"},
+        {"id": "meeting", "size": 5, "score": 0.4 , "title": "meeting", "type": "circle"},
+
+      
+
+        {"id": "light", "size": 5, "score": 0.4 , "title": "light", "type": "circle"},
 
       
 
@@ -891,6 +883,14 @@ var data_local_dynamic = {
       
 
         {"id": "Internet", "size": 5, "score": 0.4 , "title": "Internet", "type": "circle"},
+
+      
+
+        {"id": "world", "size": 5, "score": 0.4 , "title": "world", "type": "circle"},
+
+      
+
+        {"id": "structure", "size": 5, "score": 0.4 , "title": "structure", "type": "circle"},
 
       
 
@@ -1024,10 +1024,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

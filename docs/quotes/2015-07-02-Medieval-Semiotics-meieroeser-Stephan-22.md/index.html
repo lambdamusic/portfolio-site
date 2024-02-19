@@ -760,112 +760,92 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "concept-of-sign", "target": "semiotics" },
+          { "source": "philosophy", "target": "ontology" },
       
-          { "source": "concept-of-sign", "target": "text" },
+          { "source": "philosophy", "target": "ethics" },
       
-          { "source": "concept-of-sign", "target": "concept" },
+          { "source": "philosophy", "target": "schema" },
       
-          { "source": "concept-of-sign", "target": "theory" },
+          { "source": "philosophy", "target": "fact" },
       
-          { "source": "concept-of-sign", "target": "medieval-theories" },
+          { "source": "philosophy", "target": "cosmicism" },
       
-          { "source": "semiotics", "target": "text" },
+          { "source": "ontology", "target": "use-cases" },
       
-          { "source": "semiotics", "target": "concept" },
+          { "source": "ontology", "target": "data-model" },
       
-          { "source": "semiotics", "target": "concept-of-sign" },
+          { "source": "ontology", "target": "architecture" },
       
-          { "source": "semiotics", "target": "linguistic-signs" },
+          { "source": "ontology", "target": "requirements" },
       
-          { "source": "text", "target": "semiotics" },
+          { "source": "ethics", "target": "ontology" },
       
-          { "source": "text", "target": "concept" },
+          { "source": "ethics", "target": "philosophy" },
       
-          { "source": "text", "target": "concept-of-sign" },
+          { "source": "ethics", "target": "schema" },
       
-          { "source": "text", "target": "close-reading" },
+          { "source": "ethics", "target": "fact" },
       
-          { "source": "concept", "target": "semiotics" },
+          { "source": "schema", "target": "ontology" },
       
-          { "source": "concept", "target": "text" },
+          { "source": "schema", "target": "ethics" },
       
-          { "source": "concept", "target": "concept-of-sign" },
+          { "source": "schema", "target": "philosophy" },
       
-          { "source": "concept", "target": "computational-ontology" },
+          { "source": "schema", "target": "fact" },
       
-          { "source": "theory", "target": "communication" },
+          { "source": "fact", "target": "ontology" },
       
-          { "source": "theory", "target": "organization" },
+          { "source": "fact", "target": "ethics" },
       
-          { "source": "theory", "target": "Nietzsche" },
+          { "source": "fact", "target": "philosophy" },
       
-          { "source": "theory", "target": "things" },
+          { "source": "fact", "target": "schema" },
       
-          { "source": "medieval-theories", "target": "concept-of-sign" },
-      
-          { "source": "medieval-theories", "target": "theory" },
-      
-          { "source": "medieval-theories", "target": "doctrine" },
+          { "source": "cosmicism", "target": "philosophy" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "semiotics", "size": 70, "score": 0 , "title": "semiotics", "type": "circle"},
+        {"id": "ontology", "size": 70, "score": 0 , "title": "ontology", "type": "circle"},
 
       
 
-        {"id": "text", "size": 70, "score": 0 , "title": "text", "type": "circle"},
+        {"id": "ethics", "size": 70, "score": 0 , "title": "ethics", "type": "circle"},
 
       
 
-        {"id": "concept", "size": 70, "score": 0 , "title": "concept", "type": "circle"},
+        {"id": "schema", "size": 70, "score": 0 , "title": "schema", "type": "circle"},
 
       
 
-        {"id": "theory", "size": 70, "score": 0 , "title": "theory", "type": "circle"},
+        {"id": "fact", "size": 70, "score": 0 , "title": "fact", "type": "circle"},
 
       
 
-        {"id": "medieval-theories", "size": 70, "score": 0 , "title": "medieval-theories", "type": "circle"},
+        {"id": "cosmicism", "size": 70, "score": 0 , "title": "cosmicism", "type": "circle"},
 
       
 
-        {"id": "concept-of-sign", "size": 140, "score": 0.5 , "title": "concept-of-sign", "type": "circle"},
+        {"id": "philosophy", "size": 140, "score": 0.5 , "title": "philosophy", "type": "circle"},
 
       
 
-        {"id": "linguistic-signs", "size": 5, "score": 0.4 , "title": "linguistic-signs", "type": "circle"},
+        {"id": "use-cases", "size": 5, "score": 0.4 , "title": "use-cases", "type": "circle"},
 
       
 
-        {"id": "close-reading", "size": 5, "score": 0.4 , "title": "close-reading", "type": "circle"},
+        {"id": "data-model", "size": 5, "score": 0.4 , "title": "data-model", "type": "circle"},
 
       
 
-        {"id": "computational-ontology", "size": 5, "score": 0.4 , "title": "computational-ontology", "type": "circle"},
+        {"id": "architecture", "size": 5, "score": 0.4 , "title": "architecture", "type": "circle"},
 
       
 
-        {"id": "communication", "size": 5, "score": 0.4 , "title": "communication", "type": "circle"},
-
-      
-
-        {"id": "organization", "size": 5, "score": 0.4 , "title": "organization", "type": "circle"},
-
-      
-
-        {"id": "Nietzsche", "size": 5, "score": 0.4 , "title": "Nietzsche", "type": "circle"},
-
-      
-
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
-
-      
-
-        {"id": "doctrine", "size": 5, "score": 0.4 , "title": "doctrine", "type": "circle"},
+        {"id": "requirements", "size": 5, "score": 0.4 , "title": "requirements", "type": "circle"},
 
        
 
@@ -995,10 +975,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

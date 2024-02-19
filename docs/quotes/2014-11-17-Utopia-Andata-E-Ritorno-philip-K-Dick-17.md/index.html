@@ -760,16 +760,6 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "Pausa", "target": "LO" },
-      
-          { "source": "Pausa", "target": "Volta" },
-      
-          { "source": "Pausa", "target": "adultos" },
-      
-          { "source": "Pausa", "target": "Disse" },
-      
-          { "source": "Pausa", "target": "drogas" },
-      
           { "source": "LO", "target": "Pausa" },
       
           { "source": "LO", "target": "Volta" },
@@ -778,44 +768,54 @@ var data_local_dynamic = {
       
           { "source": "LO", "target": "Tu" },
       
-          { "source": "Volta", "target": "Pausa" },
+          { "source": "LO", "target": "sistema" },
       
-          { "source": "Volta", "target": "LO" },
+          { "source": "Pausa", "target": "LO" },
+      
+          { "source": "Pausa", "target": "Volta" },
+      
+          { "source": "Pausa", "target": "adultos" },
+      
+          { "source": "Pausa", "target": "Disse" },
       
           { "source": "Volta", "target": "Prima" },
       
           { "source": "Volta", "target": "vitae" },
       
-          { "source": "adultos", "target": "Presto" },
+          { "source": "Volta", "target": "Pausa" },
       
-          { "source": "adultos", "target": "bene" },
+          { "source": "Volta", "target": "LO" },
       
-          { "source": "adultos", "target": "Disse" },
+          { "source": "Leu", "target": "ancora" },
       
-          { "source": "adultos", "target": "drogas" },
+          { "source": "Leu", "target": "solo" },
       
-          { "source": "Disse", "target": "SU" },
+          { "source": "Leu", "target": "LO" },
       
-          { "source": "Disse", "target": "credo" },
+          { "source": "Leu", "target": "Tu" },
       
-          { "source": "Disse", "target": "adultos" },
+          { "source": "Tu", "target": "Leu" },
       
-          { "source": "Disse", "target": "drogas" },
+          { "source": "Tu", "target": "LO" },
       
-          { "source": "drogas", "target": "frase" },
+          { "source": "Tu", "target": "sistema" },
       
-          { "source": "drogas", "target": "adultos" },
+          { "source": "Tu", "target": "vivo" },
       
-          { "source": "drogas", "target": "Disse" },
+          { "source": "sistema", "target": "anni" },
       
-          { "source": "drogas", "target": "Pausa" },
+          { "source": "sistema", "target": "Luis" },
+      
+          { "source": "sistema", "target": "Leu" },
+      
+          { "source": "sistema", "target": "LO" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "LO", "size": 70, "score": 0 , "title": "LO", "type": "circle"},
+        {"id": "Pausa", "size": 70, "score": 0 , "title": "Pausa", "type": "circle"},
 
       
 
@@ -823,27 +823,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "adultos", "size": 70, "score": 0 , "title": "adultos", "type": "circle"},
+        {"id": "Leu", "size": 70, "score": 0 , "title": "Leu", "type": "circle"},
 
       
 
-        {"id": "Disse", "size": 70, "score": 0 , "title": "Disse", "type": "circle"},
+        {"id": "Tu", "size": 70, "score": 0 , "title": "Tu", "type": "circle"},
 
       
 
-        {"id": "drogas", "size": 70, "score": 0 , "title": "drogas", "type": "circle"},
+        {"id": "sistema", "size": 70, "score": 0 , "title": "sistema", "type": "circle"},
 
       
 
-        {"id": "Pausa", "size": 140, "score": 0.5 , "title": "Pausa", "type": "circle"},
+        {"id": "LO", "size": 140, "score": 0.5 , "title": "LO", "type": "circle"},
 
       
 
-        {"id": "Leu", "size": 5, "score": 0.4 , "title": "Leu", "type": "circle"},
+        {"id": "adultos", "size": 5, "score": 0.4 , "title": "adultos", "type": "circle"},
 
       
 
-        {"id": "Tu", "size": 5, "score": 0.4 , "title": "Tu", "type": "circle"},
+        {"id": "Disse", "size": 5, "score": 0.4 , "title": "Disse", "type": "circle"},
 
       
 
@@ -855,23 +855,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Presto", "size": 5, "score": 0.4 , "title": "Presto", "type": "circle"},
+        {"id": "ancora", "size": 5, "score": 0.4 , "title": "ancora", "type": "circle"},
 
       
 
-        {"id": "bene", "size": 5, "score": 0.4 , "title": "bene", "type": "circle"},
+        {"id": "solo", "size": 5, "score": 0.4 , "title": "solo", "type": "circle"},
 
       
 
-        {"id": "SU", "size": 5, "score": 0.4 , "title": "SU", "type": "circle"},
+        {"id": "vivo", "size": 5, "score": 0.4 , "title": "vivo", "type": "circle"},
 
       
 
-        {"id": "credo", "size": 5, "score": 0.4 , "title": "credo", "type": "circle"},
+        {"id": "anni", "size": 5, "score": 0.4 , "title": "anni", "type": "circle"},
 
       
 
-        {"id": "frase", "size": 5, "score": 0.4 , "title": "frase", "type": "circle"},
+        {"id": "Luis", "size": 5, "score": 0.4 , "title": "Luis", "type": "circle"},
 
        
 
@@ -1001,10 +1001,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

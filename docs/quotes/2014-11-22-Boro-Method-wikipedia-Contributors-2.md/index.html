@@ -766,23 +766,23 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "legacy-systems", "target": "ontology" },
+          { "source": "ontology-development", "target": "ontology" },
       
-          { "source": "legacy-systems", "target": "multiple-legacy-systems" },
+          { "source": "ontology-development", "target": "multiple-legacy-systems" },
       
-          { "source": "legacy-systems", "target": "ontology-development" },
+          { "source": "ontology-development", "target": "legacy-systems" },
       
-          { "source": "legacy-systems", "target": "formal-ontology" },
+          { "source": "ontology-development", "target": "formal-ontology" },
       
-          { "source": "legacy-systems", "target": "semantic-interoperability" },
+          { "source": "ontology-development", "target": "domain" },
       
-          { "source": "ontology", "target": "Web" },
+          { "source": "ontology", "target": "use-cases" },
       
-          { "source": "ontology", "target": "RDF-data" },
+          { "source": "ontology", "target": "data-model" },
       
-          { "source": "ontology", "target": "World-Wide-Web" },
+          { "source": "ontology", "target": "architecture" },
       
-          { "source": "ontology", "target": "Ontology-Language" },
+          { "source": "ontology", "target": "requirements" },
       
           { "source": "multiple-legacy-systems", "target": "ontology" },
       
@@ -792,13 +792,13 @@ var data_local_dynamic = {
       
           { "source": "multiple-legacy-systems", "target": "formal-ontology" },
       
-          { "source": "ontology-development", "target": "ontology" },
+          { "source": "legacy-systems", "target": "ontology" },
       
-          { "source": "ontology-development", "target": "multiple-legacy-systems" },
+          { "source": "legacy-systems", "target": "multiple-legacy-systems" },
       
-          { "source": "ontology-development", "target": "legacy-systems" },
+          { "source": "legacy-systems", "target": "ontology-development" },
       
-          { "source": "ontology-development", "target": "formal-ontology" },
+          { "source": "legacy-systems", "target": "formal-ontology" },
       
           { "source": "formal-ontology", "target": "ontology" },
       
@@ -808,13 +808,13 @@ var data_local_dynamic = {
       
           { "source": "formal-ontology", "target": "ontology-development" },
       
-          { "source": "semantic-interoperability", "target": "different-information-systems" },
+          { "source": "domain", "target": "changes" },
       
-          { "source": "semantic-interoperability", "target": "information-systems" },
+          { "source": "domain", "target": "high-impact" },
       
-          { "source": "semantic-interoperability", "target": "interoperability" },
+          { "source": "domain", "target": "results" },
       
-          { "source": "semantic-interoperability", "target": "identifiers" },
+          { "source": "domain", "target": "ontology-development" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -829,7 +829,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "ontology-development", "size": 70, "score": 0 , "title": "ontology-development", "type": "circle"},
+        {"id": "legacy-systems", "size": 70, "score": 0 , "title": "legacy-systems", "type": "circle"},
 
       
 
@@ -837,43 +837,39 @@ var data_local_dynamic = {
 
       
 
-        {"id": "semantic-interoperability", "size": 70, "score": 0 , "title": "semantic-interoperability", "type": "circle"},
+        {"id": "domain", "size": 70, "score": 0 , "title": "domain", "type": "circle"},
 
       
 
-        {"id": "legacy-systems", "size": 140, "score": 0.5 , "title": "legacy-systems", "type": "circle"},
+        {"id": "ontology-development", "size": 140, "score": 0.5 , "title": "ontology-development", "type": "circle"},
 
       
 
-        {"id": "Web", "size": 5, "score": 0.4 , "title": "Web", "type": "circle"},
+        {"id": "use-cases", "size": 5, "score": 0.4 , "title": "use-cases", "type": "circle"},
 
       
 
-        {"id": "RDF-data", "size": 5, "score": 0.4 , "title": "RDF-data", "type": "circle"},
+        {"id": "data-model", "size": 5, "score": 0.4 , "title": "data-model", "type": "circle"},
 
       
 
-        {"id": "World-Wide-Web", "size": 5, "score": 0.4 , "title": "World-Wide-Web", "type": "circle"},
+        {"id": "architecture", "size": 5, "score": 0.4 , "title": "architecture", "type": "circle"},
 
       
 
-        {"id": "Ontology-Language", "size": 5, "score": 0.4 , "title": "Ontology-Language", "type": "circle"},
+        {"id": "requirements", "size": 5, "score": 0.4 , "title": "requirements", "type": "circle"},
 
       
 
-        {"id": "different-information-systems", "size": 5, "score": 0.4 , "title": "different-information-systems", "type": "circle"},
+        {"id": "changes", "size": 5, "score": 0.4 , "title": "changes", "type": "circle"},
 
       
 
-        {"id": "information-systems", "size": 5, "score": 0.4 , "title": "information-systems", "type": "circle"},
+        {"id": "high-impact", "size": 5, "score": 0.4 , "title": "high-impact", "type": "circle"},
 
       
 
-        {"id": "interoperability", "size": 5, "score": 0.4 , "title": "interoperability", "type": "circle"},
-
-      
-
-        {"id": "identifiers", "size": 5, "score": 0.4 , "title": "identifiers", "type": "circle"},
+        {"id": "results", "size": 5, "score": 0.4 , "title": "results", "type": "circle"},
 
        
 
@@ -1003,10 +999,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

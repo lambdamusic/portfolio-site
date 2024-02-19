@@ -774,31 +774,31 @@ var data_local_dynamic = {
       
           { "source": "ancora", "target": "nulla" },
       
-          { "source": "ancora", "target": "Soldatos" },
-      
           { "source": "ancora", "target": "sole" },
       
-          { "source": "nulla", "target": "forma" },
+          { "source": "ancora", "target": "possibile" },
       
-          { "source": "nulla", "target": "ancora" },
+          { "source": "nulla", "target": "natura" },
+      
+          { "source": "nulla", "target": "InveCe" },
+      
+          { "source": "nulla", "target": "totale" },
       
           { "source": "nulla", "target": "FA" },
       
-          { "source": "nulla", "target": "proprio" },
-      
-          { "source": "anni", "target": "nulla" },
+          { "source": "anni", "target": "Gruppo" },
       
           { "source": "anni", "target": "Quattro" },
       
           { "source": "anni", "target": "totale" },
       
-          { "source": "anni", "target": "Gruppo" },
+          { "source": "anni", "target": "base" },
       
-          { "source": "Luis", "target": "Una" },
+          { "source": "Luis", "target": "sé" },
       
           { "source": "Luis", "target": "oggi" },
       
-          { "source": "Luis", "target": "sé" },
+          { "source": "Luis", "target": "Una" },
       
           { "source": "Luis", "target": "anni" },
       
@@ -847,15 +847,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "FA", "size": 5, "score": 0.4 , "title": "FA", "type": "circle"},
+        {"id": "possibile", "size": 5, "score": 0.4 , "title": "possibile", "type": "circle"},
 
       
 
-        {"id": "proprio", "size": 5, "score": 0.4 , "title": "proprio", "type": "circle"},
+        {"id": "natura", "size": 5, "score": 0.4 , "title": "natura", "type": "circle"},
 
       
 
-        {"id": "Quattro", "size": 5, "score": 0.4 , "title": "Quattro", "type": "circle"},
+        {"id": "InveCe", "size": 5, "score": 0.4 , "title": "InveCe", "type": "circle"},
 
       
 
@@ -863,11 +863,23 @@ var data_local_dynamic = {
 
       
 
+        {"id": "FA", "size": 5, "score": 0.4 , "title": "FA", "type": "circle"},
+
+      
+
         {"id": "Gruppo", "size": 5, "score": 0.4 , "title": "Gruppo", "type": "circle"},
 
       
 
-        {"id": "Una", "size": 5, "score": 0.4 , "title": "Una", "type": "circle"},
+        {"id": "Quattro", "size": 5, "score": 0.4 , "title": "Quattro", "type": "circle"},
+
+      
+
+        {"id": "base", "size": 5, "score": 0.4 , "title": "base", "type": "circle"},
+
+      
+
+        {"id": "sé", "size": 5, "score": 0.4 , "title": "sé", "type": "circle"},
 
       
 
@@ -875,7 +887,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "sé", "size": 5, "score": 0.4 , "title": "sé", "type": "circle"},
+        {"id": "Una", "size": 5, "score": 0.4 , "title": "Una", "type": "circle"},
 
       
 
@@ -1013,10 +1025,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

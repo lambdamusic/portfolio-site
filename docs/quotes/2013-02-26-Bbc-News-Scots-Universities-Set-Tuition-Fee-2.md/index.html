@@ -767,29 +767,29 @@ var data_local_dynamic = {
       
           { "source": "students", "target": "questions" },
       
-          { "source": "learning", "target": "machine-learning" },
+          { "source": "learning", "target": "students" },
       
-          { "source": "learning", "target": "artificial-intelligence" },
+          { "source": "learning", "target": "instruction" },
       
-          { "source": "learning", "target": "intelligence" },
+          { "source": "learning", "target": "questions" },
       
-          { "source": "learning", "target": "technology" },
+          { "source": "learning", "target": "programmers" },
       
-          { "source": "instruction", "target": "code" },
+          { "source": "instruction", "target": "students" },
       
-          { "source": "instruction", "target": "computer-code" },
+          { "source": "instruction", "target": "learning" },
+      
+          { "source": "instruction", "target": "questions" },
       
           { "source": "instruction", "target": "things" },
       
-          { "source": "instruction", "target": "signs" },
+          { "source": "questions", "target": "statements" },
       
-          { "source": "questions", "target": "philosophers" },
+          { "source": "questions", "target": "students" },
       
-          { "source": "questions", "target": "speech-acts" },
+          { "source": "questions", "target": "learning" },
       
-          { "source": "questions", "target": "reification" },
-      
-          { "source": "questions", "target": "topic" },
+          { "source": "questions", "target": "instruction" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -812,27 +812,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "machine-learning", "size": 5, "score": 0.4 , "title": "machine-learning", "type": "circle"},
-
-      
-
-        {"id": "artificial-intelligence", "size": 5, "score": 0.4 , "title": "artificial-intelligence", "type": "circle"},
-
-      
-
-        {"id": "intelligence", "size": 5, "score": 0.4 , "title": "intelligence", "type": "circle"},
-
-      
-
-        {"id": "technology", "size": 5, "score": 0.4 , "title": "technology", "type": "circle"},
-
-      
-
-        {"id": "code", "size": 5, "score": 0.4 , "title": "code", "type": "circle"},
-
-      
-
-        {"id": "computer-code", "size": 5, "score": 0.4 , "title": "computer-code", "type": "circle"},
+        {"id": "programmers", "size": 5, "score": 0.4 , "title": "programmers", "type": "circle"},
 
       
 
@@ -840,23 +820,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "signs", "size": 5, "score": 0.4 , "title": "signs", "type": "circle"},
-
-      
-
-        {"id": "philosophers", "size": 5, "score": 0.4 , "title": "philosophers", "type": "circle"},
-
-      
-
-        {"id": "speech-acts", "size": 5, "score": 0.4 , "title": "speech-acts", "type": "circle"},
-
-      
-
-        {"id": "reification", "size": 5, "score": 0.4 , "title": "reification", "type": "circle"},
-
-      
-
-        {"id": "topic", "size": 5, "score": 0.4 , "title": "topic", "type": "circle"},
+        {"id": "statements", "size": 5, "score": 0.4 , "title": "statements", "type": "circle"},
 
        
 
@@ -986,10 +950,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

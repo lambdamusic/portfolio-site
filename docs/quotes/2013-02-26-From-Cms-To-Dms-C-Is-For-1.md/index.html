@@ -768,15 +768,31 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "dataset", "target": "database" },
+      
+          { "source": "dataset", "target": "complexity" },
+      
           { "source": "dataset", "target": "LOD-cloud" },
       
           { "source": "dataset", "target": "ontology" },
       
           { "source": "dataset", "target": "cloud" },
       
-          { "source": "dataset", "target": "domain-specific-ontology" },
+          { "source": "database", "target": "RDF-databases" },
       
-          { "source": "dataset", "target": "interoperability" },
+          { "source": "database", "target": "metadata" },
+      
+          { "source": "database", "target": "platform" },
+      
+          { "source": "database", "target": "dataset" },
+      
+          { "source": "complexity", "target": "dataset" },
+      
+          { "source": "complexity", "target": "network" },
+      
+          { "source": "complexity", "target": "science" },
+      
+          { "source": "complexity", "target": "emergence" },
       
           { "source": "LOD-cloud", "target": "ontology" },
       
@@ -786,13 +802,13 @@ var data_local_dynamic = {
       
           { "source": "LOD-cloud", "target": "domain-specific-ontology" },
       
-          { "source": "ontology", "target": "Web" },
+          { "source": "ontology", "target": "use-cases" },
       
-          { "source": "ontology", "target": "RDF-data" },
+          { "source": "ontology", "target": "data-model" },
       
-          { "source": "ontology", "target": "World-Wide-Web" },
+          { "source": "ontology", "target": "architecture" },
       
-          { "source": "ontology", "target": "Ontology-Language" },
+          { "source": "ontology", "target": "requirements" },
       
           { "source": "cloud", "target": "LOD-cloud" },
       
@@ -801,26 +817,18 @@ var data_local_dynamic = {
           { "source": "cloud", "target": "dataset" },
       
           { "source": "cloud", "target": "domain-specific-ontology" },
-      
-          { "source": "domain-specific-ontology", "target": "LOD-cloud" },
-      
-          { "source": "domain-specific-ontology", "target": "ontology" },
-      
-          { "source": "domain-specific-ontology", "target": "dataset" },
-      
-          { "source": "domain-specific-ontology", "target": "cloud" },
-      
-          { "source": "interoperability", "target": "different-information-systems" },
-      
-          { "source": "interoperability", "target": "system" },
-      
-          { "source": "interoperability", "target": "information-systems" },
-      
-          { "source": "interoperability", "target": "capability" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "database", "size": 70, "score": 0 , "title": "database", "type": "circle"},
+
+      
+
+        {"id": "complexity", "size": 70, "score": 0 , "title": "complexity", "type": "circle"},
+
       
 
         {"id": "LOD-cloud", "size": 70, "score": 0 , "title": "LOD-cloud", "type": "circle"},
@@ -835,47 +843,51 @@ var data_local_dynamic = {
 
       
 
-        {"id": "domain-specific-ontology", "size": 70, "score": 0 , "title": "domain-specific-ontology", "type": "circle"},
-
-      
-
-        {"id": "interoperability", "size": 70, "score": 0 , "title": "interoperability", "type": "circle"},
-
-      
-
         {"id": "dataset", "size": 140, "score": 0.5 , "title": "dataset", "type": "circle"},
 
       
 
-        {"id": "Web", "size": 5, "score": 0.4 , "title": "Web", "type": "circle"},
+        {"id": "RDF-databases", "size": 5, "score": 0.4 , "title": "RDF-databases", "type": "circle"},
 
       
 
-        {"id": "RDF-data", "size": 5, "score": 0.4 , "title": "RDF-data", "type": "circle"},
+        {"id": "metadata", "size": 5, "score": 0.4 , "title": "metadata", "type": "circle"},
 
       
 
-        {"id": "World-Wide-Web", "size": 5, "score": 0.4 , "title": "World-Wide-Web", "type": "circle"},
+        {"id": "platform", "size": 5, "score": 0.4 , "title": "platform", "type": "circle"},
 
       
 
-        {"id": "Ontology-Language", "size": 5, "score": 0.4 , "title": "Ontology-Language", "type": "circle"},
+        {"id": "network", "size": 5, "score": 0.4 , "title": "network", "type": "circle"},
 
       
 
-        {"id": "different-information-systems", "size": 5, "score": 0.4 , "title": "different-information-systems", "type": "circle"},
+        {"id": "science", "size": 5, "score": 0.4 , "title": "science", "type": "circle"},
 
       
 
-        {"id": "system", "size": 5, "score": 0.4 , "title": "system", "type": "circle"},
+        {"id": "emergence", "size": 5, "score": 0.4 , "title": "emergence", "type": "circle"},
 
       
 
-        {"id": "information-systems", "size": 5, "score": 0.4 , "title": "information-systems", "type": "circle"},
+        {"id": "domain-specific-ontology", "size": 5, "score": 0.4 , "title": "domain-specific-ontology", "type": "circle"},
 
       
 
-        {"id": "capability", "size": 5, "score": 0.4 , "title": "capability", "type": "circle"},
+        {"id": "use-cases", "size": 5, "score": 0.4 , "title": "use-cases", "type": "circle"},
+
+      
+
+        {"id": "data-model", "size": 5, "score": 0.4 , "title": "data-model", "type": "circle"},
+
+      
+
+        {"id": "architecture", "size": 5, "score": 0.4 , "title": "architecture", "type": "circle"},
+
+      
+
+        {"id": "requirements", "size": 5, "score": 0.4 , "title": "requirements", "type": "circle"},
 
        
 
@@ -1005,10 +1017,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

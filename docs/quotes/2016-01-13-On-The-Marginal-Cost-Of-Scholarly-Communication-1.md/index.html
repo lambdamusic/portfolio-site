@@ -772,29 +772,29 @@ var data_local_dynamic = {
       
           { "source": "scholarly-communication", "target": "reading" },
       
-          { "source": "communication", "target": "scholarly-communication" },
+          { "source": "communication", "target": "culture" },
       
-          { "source": "communication", "target": "cost" },
+          { "source": "communication", "target": "digital-media" },
       
-          { "source": "communication", "target": "users" },
+          { "source": "communication", "target": "human-communication" },
       
-          { "source": "communication", "target": "designers" },
+          { "source": "communication", "target": "information" },
       
-          { "source": "cost", "target": "scholarly-communication" },
+          { "source": "cost", "target": "business" },
       
-          { "source": "cost", "target": "communication" },
+          { "source": "cost", "target": "open-access-publishing" },
       
-          { "source": "cost", "target": "jet-aircraft" },
+          { "source": "cost", "target": "values" },
       
-          { "source": "cost", "target": "aircraft" },
-      
-          { "source": "article", "target": "claims" },
-      
-          { "source": "article", "target": "scientific-articles" },
+          { "source": "cost", "target": "programmers" },
       
           { "source": "article", "target": "hierarchy" },
       
           { "source": "article", "target": "social-sciences" },
+      
+          { "source": "article", "target": "science" },
+      
+          { "source": "article", "target": "concept" },
       
           { "source": "journals", "target": "news" },
       
@@ -802,15 +802,15 @@ var data_local_dynamic = {
       
           { "source": "journals", "target": "nature" },
       
-          { "source": "journals", "target": "article" },
+          { "source": "journals", "target": "database" },
       
-          { "source": "reading", "target": "close-reading" },
+          { "source": "reading", "target": "fiction" },
       
-          { "source": "reading", "target": "poems" },
+          { "source": "reading", "target": "wives" },
       
-          { "source": "reading", "target": "text" },
+          { "source": "reading", "target": "digital-humanities" },
       
-          { "source": "reading", "target": "Moretti" },
+          { "source": "reading", "target": "humanity" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -841,27 +841,35 @@ var data_local_dynamic = {
 
       
 
-        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
+        {"id": "culture", "size": 5, "score": 0.4 , "title": "culture", "type": "circle"},
 
       
 
-        {"id": "designers", "size": 5, "score": 0.4 , "title": "designers", "type": "circle"},
+        {"id": "digital-media", "size": 5, "score": 0.4 , "title": "digital-media", "type": "circle"},
 
       
 
-        {"id": "jet-aircraft", "size": 5, "score": 0.4 , "title": "jet-aircraft", "type": "circle"},
+        {"id": "human-communication", "size": 5, "score": 0.4 , "title": "human-communication", "type": "circle"},
 
       
 
-        {"id": "aircraft", "size": 5, "score": 0.4 , "title": "aircraft", "type": "circle"},
+        {"id": "information", "size": 5, "score": 0.4 , "title": "information", "type": "circle"},
 
       
 
-        {"id": "claims", "size": 5, "score": 0.4 , "title": "claims", "type": "circle"},
+        {"id": "business", "size": 5, "score": 0.4 , "title": "business", "type": "circle"},
 
       
 
-        {"id": "scientific-articles", "size": 5, "score": 0.4 , "title": "scientific-articles", "type": "circle"},
+        {"id": "open-access-publishing", "size": 5, "score": 0.4 , "title": "open-access-publishing", "type": "circle"},
+
+      
+
+        {"id": "values", "size": 5, "score": 0.4 , "title": "values", "type": "circle"},
+
+      
+
+        {"id": "programmers", "size": 5, "score": 0.4 , "title": "programmers", "type": "circle"},
 
       
 
@@ -870,6 +878,14 @@ var data_local_dynamic = {
       
 
         {"id": "social-sciences", "size": 5, "score": 0.4 , "title": "social-sciences", "type": "circle"},
+
+      
+
+        {"id": "science", "size": 5, "score": 0.4 , "title": "science", "type": "circle"},
+
+      
+
+        {"id": "concept", "size": 5, "score": 0.4 , "title": "concept", "type": "circle"},
 
       
 
@@ -885,19 +901,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "close-reading", "size": 5, "score": 0.4 , "title": "close-reading", "type": "circle"},
+        {"id": "database", "size": 5, "score": 0.4 , "title": "database", "type": "circle"},
 
       
 
-        {"id": "poems", "size": 5, "score": 0.4 , "title": "poems", "type": "circle"},
+        {"id": "fiction", "size": 5, "score": 0.4 , "title": "fiction", "type": "circle"},
 
       
 
-        {"id": "text", "size": 5, "score": 0.4 , "title": "text", "type": "circle"},
+        {"id": "wives", "size": 5, "score": 0.4 , "title": "wives", "type": "circle"},
 
       
 
-        {"id": "Moretti", "size": 5, "score": 0.4 , "title": "Moretti", "type": "circle"},
+        {"id": "digital-humanities", "size": 5, "score": 0.4 , "title": "digital-humanities", "type": "circle"},
+
+      
+
+        {"id": "humanity", "size": 5, "score": 0.4 , "title": "humanity", "type": "circle"},
 
        
 
@@ -1027,10 +1047,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

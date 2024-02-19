@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.inf.ufes.br/~gguizzardi/FOIS-v3-3-3.pdf" class="text-muted" target="_blank">Towards An Ontology Of Software: A Requirements Engineering Perspective</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Towards An Ontology Of Software: A Requirements Engineering Perspective">
+								<a href="http://www.inf.ufes.br/~gguizzardi/FOIS-v3-3-3.pdf" class="-underline -text-muted" target="_blank">
+								  Towards An Ontology Of Software: A Requirements Engineering Perspective</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-10-21-Towards-An-Ontology-Of-Software-A-Requirements-15.md/index.html">A code implements an algorithm....</a>
-						<br />
-						<small style="color: #cbcbcb;">Towards An Ontology Of Software: A Requirements Engineering Perspective
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=algorithm.html">#algorithm</a>&nbsp;
@@ -592,14 +605,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-10-21-Towards-An-Ontology-Of-Software-A-Requirements-16.md/index.html">we agree with Irmak that...</a>
-						<br />
-						<small style="color: #cbcbcb;">Towards An Ontology Of Software: A Requirements Engineering Perspective
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=code.html">#code</a>&nbsp;
@@ -614,6 +629,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -736,29 +752,29 @@ var data_local_dynamic = {
       
           { "source": "same-algorithm", "target": "program" },
       
-          { "source": "algorithm", "target": "code" },
+          { "source": "algorithm", "target": "server" },
       
-          { "source": "algorithm", "target": "same-algorithm" },
+          { "source": "algorithm", "target": "metadata" },
       
-          { "source": "algorithm", "target": "execution" },
+          { "source": "algorithm", "target": "words" },
       
-          { "source": "algorithm", "target": "nodes" },
+          { "source": "algorithm", "target": "readers" },
+      
+          { "source": "code", "target": "developers" },
       
           { "source": "code", "target": "algorithm" },
       
-          { "source": "code", "target": "same-algorithm" },
+          { "source": "code", "target": "use-cases" },
       
-          { "source": "code", "target": "execution" },
-      
-          { "source": "code", "target": "objects" },
-      
-          { "source": "execution", "target": "algorithm" },
-      
-          { "source": "execution", "target": "code" },
-      
-          { "source": "execution", "target": "same-algorithm" },
+          { "source": "code", "target": "prototype" },
       
           { "source": "execution", "target": "machine" },
+      
+          { "source": "execution", "target": "MapReduce" },
+      
+          { "source": "execution", "target": "programmers" },
+      
+          { "source": "execution", "target": "algorithm" },
       
           { "source": "program", "target": "episodes" },
       
@@ -793,15 +809,43 @@ var data_local_dynamic = {
 
       
 
-        {"id": "nodes", "size": 5, "score": 0.4 , "title": "nodes", "type": "circle"},
+        {"id": "server", "size": 5, "score": 0.4 , "title": "server", "type": "circle"},
 
       
 
-        {"id": "objects", "size": 5, "score": 0.4 , "title": "objects", "type": "circle"},
+        {"id": "metadata", "size": 5, "score": 0.4 , "title": "metadata", "type": "circle"},
+
+      
+
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "readers", "size": 5, "score": 0.4 , "title": "readers", "type": "circle"},
+
+      
+
+        {"id": "developers", "size": 5, "score": 0.4 , "title": "developers", "type": "circle"},
+
+      
+
+        {"id": "use-cases", "size": 5, "score": 0.4 , "title": "use-cases", "type": "circle"},
+
+      
+
+        {"id": "prototype", "size": 5, "score": 0.4 , "title": "prototype", "type": "circle"},
 
       
 
         {"id": "machine", "size": 5, "score": 0.4 , "title": "machine", "type": "circle"},
+
+      
+
+        {"id": "MapReduce", "size": 5, "score": 0.4 , "title": "MapReduce", "type": "circle"},
+
+      
+
+        {"id": "programmers", "size": 5, "score": 0.4 , "title": "programmers", "type": "circle"},
 
       
 
@@ -947,10 +991,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

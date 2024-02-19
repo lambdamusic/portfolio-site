@@ -766,94 +766,94 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "users", "target": "address" },
+          { "source": "user-testing", "target": "users" },
       
-          { "source": "users", "target": "information-architects" },
+          { "source": "user-testing", "target": "Google" },
       
-          { "source": "users", "target": "-designers" },
+          { "source": "user-testing", "target": "search" },
       
-          { "source": "users", "target": "designers" },
+          { "source": "user-testing", "target": "version" },
       
-          { "source": "users", "target": "workflow" },
+          { "source": "user-testing", "target": "developers" },
       
-          { "source": "address", "target": "users" },
+          { "source": "users", "target": "user-testing" },
       
-          { "source": "address", "target": "identity" },
+          { "source": "users", "target": "Google" },
       
-          { "source": "address", "target": "resources" },
+          { "source": "users", "target": "search" },
       
-          { "source": "address", "target": "topic" },
+          { "source": "users", "target": "version" },
       
-          { "source": "information-architects", "target": "users" },
+          { "source": "Google", "target": "user-testing" },
       
-          { "source": "information-architects", "target": "-designers" },
+          { "source": "Google", "target": "users" },
       
-          { "source": "information-architects", "target": "designers" },
+          { "source": "Google", "target": "search" },
       
-          { "source": "information-architects", "target": "workflow" },
+          { "source": "Google", "target": "version" },
       
-          { "source": "-designers", "target": "information-architects" },
+          { "source": "search", "target": "user-testing" },
       
-          { "source": "-designers", "target": "users" },
+          { "source": "search", "target": "users" },
       
-          { "source": "-designers", "target": "designers" },
+          { "source": "search", "target": "Google" },
       
-          { "source": "-designers", "target": "workflow" },
+          { "source": "search", "target": "version" },
       
-          { "source": "designers", "target": "information-architects" },
+          { "source": "version", "target": "user-testing" },
       
-          { "source": "designers", "target": "users" },
+          { "source": "version", "target": "users" },
       
-          { "source": "designers", "target": "-designers" },
+          { "source": "version", "target": "Google" },
       
-          { "source": "designers", "target": "workflow" },
+          { "source": "version", "target": "search" },
       
-          { "source": "workflow", "target": "information-architects" },
+          { "source": "developers", "target": "algorithm" },
       
-          { "source": "workflow", "target": "users" },
+          { "source": "developers", "target": "code" },
       
-          { "source": "workflow", "target": "-designers" },
+          { "source": "developers", "target": "Scrum" },
       
-          { "source": "workflow", "target": "designers" },
+          { "source": "developers", "target": "user-testing" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "address", "size": 70, "score": 0 , "title": "address", "type": "circle"},
+        {"id": "users", "size": 70, "score": 0 , "title": "users", "type": "circle"},
 
       
 
-        {"id": "information-architects", "size": 70, "score": 0 , "title": "information-architects", "type": "circle"},
+        {"id": "Google", "size": 70, "score": 0 , "title": "Google", "type": "circle"},
 
       
 
-        {"id": "-designers", "size": 70, "score": 0 , "title": "-designers", "type": "circle"},
+        {"id": "search", "size": 70, "score": 0 , "title": "search", "type": "circle"},
 
       
 
-        {"id": "designers", "size": 70, "score": 0 , "title": "designers", "type": "circle"},
+        {"id": "version", "size": 70, "score": 0 , "title": "version", "type": "circle"},
 
       
 
-        {"id": "workflow", "size": 70, "score": 0 , "title": "workflow", "type": "circle"},
+        {"id": "developers", "size": 70, "score": 0 , "title": "developers", "type": "circle"},
 
       
 
-        {"id": "users", "size": 140, "score": 0.5 , "title": "users", "type": "circle"},
+        {"id": "user-testing", "size": 140, "score": 0.5 , "title": "user-testing", "type": "circle"},
 
       
 
-        {"id": "identity", "size": 5, "score": 0.4 , "title": "identity", "type": "circle"},
+        {"id": "algorithm", "size": 5, "score": 0.4 , "title": "algorithm", "type": "circle"},
 
       
 
-        {"id": "resources", "size": 5, "score": 0.4 , "title": "resources", "type": "circle"},
+        {"id": "code", "size": 5, "score": 0.4 , "title": "code", "type": "circle"},
 
       
 
-        {"id": "topic", "size": 5, "score": 0.4 , "title": "topic", "type": "circle"},
+        {"id": "Scrum", "size": 5, "score": 0.4 , "title": "Scrum", "type": "circle"},
 
        
 
@@ -983,10 +983,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

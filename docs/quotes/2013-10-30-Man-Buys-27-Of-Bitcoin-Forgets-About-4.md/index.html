@@ -763,16 +763,6 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "Bitcoin", "target": "transactions" },
-      
-          { "source": "Bitcoin", "target": "companies" },
-      
-          { "source": "Bitcoin", "target": "computer" },
-      
-          { "source": "Bitcoin", "target": "prices" },
-      
-          { "source": "Bitcoin", "target": "Internet" },
-      
           { "source": "transactions", "target": "Bitcoin" },
       
           { "source": "transactions", "target": "companies" },
@@ -780,6 +770,16 @@ var data_local_dynamic = {
           { "source": "transactions", "target": "prices" },
       
           { "source": "transactions", "target": "retrieval" },
+      
+          { "source": "transactions", "target": "formal-means" },
+      
+          { "source": "Bitcoin", "target": "transactions" },
+      
+          { "source": "Bitcoin", "target": "companies" },
+      
+          { "source": "Bitcoin", "target": "computer" },
+      
+          { "source": "Bitcoin", "target": "prices" },
       
           { "source": "companies", "target": "ontology" },
       
@@ -789,14 +789,6 @@ var data_local_dynamic = {
       
           { "source": "companies", "target": "taxonomy" },
       
-          { "source": "computer", "target": "sensors" },
-      
-          { "source": "computer", "target": "English" },
-      
-          { "source": "computer", "target": "collective-intelligence" },
-      
-          { "source": "computer", "target": "intelligence" },
-      
           { "source": "prices", "target": "Bitcoin" },
       
           { "source": "prices", "target": "transactions" },
@@ -805,20 +797,26 @@ var data_local_dynamic = {
       
           { "source": "prices", "target": "research" },
       
-          { "source": "Internet", "target": "technology" },
+          { "source": "retrieval", "target": "Semantic-Web" },
       
-          { "source": "Internet", "target": "virtual-world" },
+          { "source": "retrieval", "target": "information-retrieval" },
       
-          { "source": "Internet", "target": "printing-press" },
+          { "source": "retrieval", "target": "interactive-information-retrieval" },
       
-          { "source": "Internet", "target": "sharing" },
+          { "source": "retrieval", "target": "formal-means" },
+      
+          { "source": "formal-means", "target": "means" },
+      
+          { "source": "formal-means", "target": "retrieval" },
+      
+          { "source": "formal-means", "target": "transactions" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "transactions", "size": 70, "score": 0 , "title": "transactions", "type": "circle"},
+        {"id": "Bitcoin", "size": 70, "score": 0 , "title": "Bitcoin", "type": "circle"},
 
       
 
@@ -826,23 +824,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "computer", "size": 70, "score": 0 , "title": "computer", "type": "circle"},
-
-      
-
         {"id": "prices", "size": 70, "score": 0 , "title": "prices", "type": "circle"},
 
       
 
-        {"id": "Internet", "size": 70, "score": 0 , "title": "Internet", "type": "circle"},
+        {"id": "retrieval", "size": 70, "score": 0 , "title": "retrieval", "type": "circle"},
 
       
 
-        {"id": "Bitcoin", "size": 140, "score": 0.5 , "title": "Bitcoin", "type": "circle"},
+        {"id": "formal-means", "size": 70, "score": 0 , "title": "formal-means", "type": "circle"},
 
       
 
-        {"id": "retrieval", "size": 5, "score": 0.4 , "title": "retrieval", "type": "circle"},
+        {"id": "transactions", "size": 140, "score": 0.5 , "title": "transactions", "type": "circle"},
+
+      
+
+        {"id": "computer", "size": 5, "score": 0.4 , "title": "computer", "type": "circle"},
 
       
 
@@ -862,22 +860,6 @@ var data_local_dynamic = {
 
       
 
-        {"id": "sensors", "size": 5, "score": 0.4 , "title": "sensors", "type": "circle"},
-
-      
-
-        {"id": "English", "size": 5, "score": 0.4 , "title": "English", "type": "circle"},
-
-      
-
-        {"id": "collective-intelligence", "size": 5, "score": 0.4 , "title": "collective-intelligence", "type": "circle"},
-
-      
-
-        {"id": "intelligence", "size": 5, "score": 0.4 , "title": "intelligence", "type": "circle"},
-
-      
-
         {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
 
       
@@ -886,19 +868,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "technology", "size": 5, "score": 0.4 , "title": "technology", "type": "circle"},
+        {"id": "information-retrieval", "size": 5, "score": 0.4 , "title": "information-retrieval", "type": "circle"},
 
       
 
-        {"id": "virtual-world", "size": 5, "score": 0.4 , "title": "virtual-world", "type": "circle"},
+        {"id": "interactive-information-retrieval", "size": 5, "score": 0.4 , "title": "interactive-information-retrieval", "type": "circle"},
 
       
 
-        {"id": "printing-press", "size": 5, "score": 0.4 , "title": "printing-press", "type": "circle"},
-
-      
-
-        {"id": "sharing", "size": 5, "score": 0.4 , "title": "sharing", "type": "circle"},
+        {"id": "means", "size": 5, "score": 0.4 , "title": "means", "type": "circle"},
 
        
 
@@ -1028,10 +1006,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

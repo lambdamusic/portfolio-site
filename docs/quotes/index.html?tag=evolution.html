@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.bio-itworld.com/2014/1/13/100000-articles-data-scientists-mine-them.html" class="text-muted" target="_blank">100,000 Articles - And The Data Scientists Who Mine Them - Bio-it World</a>
+									
+							</small>
+							<!-- Words taken from <cite title="100,000 Articles - And The Data Scientists Who Mine Them - Bio-it World">
+								<a href="http://www.bio-itworld.com/2014/1/13/100000-articles-data-scientists-mine-them.html" class="-underline -text-muted" target="_blank">
+								  100,000 Articles - And The Data Scientists Who Mine Them - Bio-it World</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-03-25-100000-Articles-And-The-Data-Scientists-Who-3.md/index.html">Taxonomy evolution via text mining</a>
-						<br />
-						<small style="color: #cbcbcb;">100,000 Articles - And The Data Scientists Who Mine Them - Bio-it World
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=genes.html">#genes</a>&nbsp;
@@ -588,30 +601,58 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
-		
-				
-		
-					<li style="margin-bottom: 10px;">
-						<a style="font-size: 120%;" href="2014-11-14-Epigrams-On-Programming-10.md/index.html">Optimization</a>
-						<br />
-						<small style="color: #cbcbcb;">Epigrams On Programming
 
-						<br />
-						
-						<a class="text-muted" href="index.html%3Ftag=evolution.html">#evolution</a>&nbsp;
-							
-							</small>
-		
-					
-					</li>
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="https://www.aeaweb.org/articles?id=10.1257/jep.29.3.51" class="text-muted" target="_blank">American Economic Association</a>
+									
+							</small>
+							<!-- Words taken from <cite title="American Economic Association">
+								<a href="https://www.aeaweb.org/articles?id=10.1257/jep.29.3.51" class="-underline -text-muted" target="_blank">
+								  American Economic Association</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2016-04-29-American-Economic-Association-1.md/index.html">Cambrian explosion</a>
 						<br />
-						<small style="color: #cbcbcb;">American Economic Association
+						
+						<a class="text-muted" href="index.html%3Ftag=evolution.html">#evolution</a>&nbsp;
+							
+							</small>
+		
+					
+					</li>
 
+		
+				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.cs.yale.edu/homes/perlis-alan/quotes.html" class="text-muted" target="_blank">Epigrams On Programming</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Epigrams On Programming">
+								<a href="http://www.cs.yale.edu/homes/perlis-alan/quotes.html" class="-underline -text-muted" target="_blank">
+								  Epigrams On Programming</a></cite> -->
+						</h4>
+						
+					
+						
+		
+					<li style="margin-bottom: 10px;">
+						<a style="font-size: 120%;" href="2014-11-14-Epigrams-On-Programming-10.md/index.html">Optimization</a>
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=evolution.html">#evolution</a>&nbsp;
@@ -620,6 +661,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -736,13 +778,13 @@ var data_local_dynamic = {
       
           { "source": "evolution", "target": "genes" },
       
+          { "source": "genes", "target": "evolution" },
+      
+          { "source": "genes", "target": "genome" },
+      
           { "source": "genes", "target": "protein" },
       
           { "source": "genes", "target": "Abstract" },
-      
-          { "source": "genes", "target": "example" },
-      
-          { "source": "genes", "target": "collection" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -757,19 +799,15 @@ var data_local_dynamic = {
 
       
 
+        {"id": "genome", "size": 5, "score": 0.4 , "title": "genome", "type": "circle"},
+
+      
+
         {"id": "protein", "size": 5, "score": 0.4 , "title": "protein", "type": "circle"},
 
       
 
         {"id": "Abstract", "size": 5, "score": 0.4 , "title": "Abstract", "type": "circle"},
-
-      
-
-        {"id": "example", "size": 5, "score": 0.4 , "title": "example", "type": "circle"},
-
-      
-
-        {"id": "collection", "size": 5, "score": 0.4 , "title": "collection", "type": "circle"},
 
        
 
@@ -899,10 +937,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

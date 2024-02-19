@@ -760,35 +760,21 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "possibile", "target": "OS" },
-      
-          { "source": "possibile", "target": "Grandi" },
-      
           { "source": "possibile", "target": "mares" },
       
           { "source": "possibile", "target": "ancora" },
       
           { "source": "possibile", "target": "termine" },
       
-          { "source": "OS", "target": "possibile" },
+          { "source": "possibile", "target": "OS" },
       
-          { "source": "OS", "target": "Grandi" },
+          { "source": "possibile", "target": "Grandi" },
       
-          { "source": "OS", "target": "Suo" },
-      
-          { "source": "Grandi", "target": "OS" },
-      
-          { "source": "Grandi", "target": "possibile" },
-      
-          { "source": "Grandi", "target": "perché" },
-      
-          { "source": "Grandi", "target": "CoSe" },
-      
-          { "source": "mares", "target": "nausea" },
+          { "source": "mares", "target": "possibile" },
       
           { "source": "mares", "target": "sole" },
       
-          { "source": "mares", "target": "possibile" },
+          { "source": "mares", "target": "nausea" },
       
           { "source": "mares", "target": "SRH" },
       
@@ -796,9 +782,9 @@ var data_local_dynamic = {
       
           { "source": "ancora", "target": "nulla" },
       
-          { "source": "ancora", "target": "Soldatos" },
-      
           { "source": "ancora", "target": "sole" },
+      
+          { "source": "ancora", "target": "possibile" },
       
           { "source": "termine", "target": "significa" },
       
@@ -807,18 +793,24 @@ var data_local_dynamic = {
           { "source": "termine", "target": "possibile" },
       
           { "source": "termine", "target": "ancora" },
+      
+          { "source": "OS", "target": "Suo" },
+      
+          { "source": "OS", "target": "possibile" },
+      
+          { "source": "OS", "target": "Grandi" },
+      
+          { "source": "Grandi", "target": "perché" },
+      
+          { "source": "Grandi", "target": "CoSe" },
+      
+          { "source": "Grandi", "target": "mafia" },
+      
+          { "source": "Grandi", "target": "OS" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
-      
-
-        {"id": "OS", "size": 70, "score": 0 , "title": "OS", "type": "circle"},
-
-      
-
-        {"id": "Grandi", "size": 70, "score": 0 , "title": "Grandi", "type": "circle"},
-
       
 
         {"id": "mares", "size": 70, "score": 0 , "title": "mares", "type": "circle"},
@@ -833,27 +825,23 @@ var data_local_dynamic = {
 
       
 
+        {"id": "OS", "size": 70, "score": 0 , "title": "OS", "type": "circle"},
+
+      
+
+        {"id": "Grandi", "size": 70, "score": 0 , "title": "Grandi", "type": "circle"},
+
+      
+
         {"id": "possibile", "size": 140, "score": 0.5 , "title": "possibile", "type": "circle"},
 
       
 
-        {"id": "Suo", "size": 5, "score": 0.4 , "title": "Suo", "type": "circle"},
-
-      
-
-        {"id": "perché", "size": 5, "score": 0.4 , "title": "perché", "type": "circle"},
-
-      
-
-        {"id": "CoSe", "size": 5, "score": 0.4 , "title": "CoSe", "type": "circle"},
+        {"id": "sole", "size": 5, "score": 0.4 , "title": "sole", "type": "circle"},
 
       
 
         {"id": "nausea", "size": 5, "score": 0.4 , "title": "nausea", "type": "circle"},
-
-      
-
-        {"id": "sole", "size": 5, "score": 0.4 , "title": "sole", "type": "circle"},
 
       
 
@@ -869,11 +857,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Soldatos", "size": 5, "score": 0.4 , "title": "Soldatos", "type": "circle"},
+        {"id": "significa", "size": 5, "score": 0.4 , "title": "significa", "type": "circle"},
 
       
 
-        {"id": "significa", "size": 5, "score": 0.4 , "title": "significa", "type": "circle"},
+        {"id": "CoSe", "size": 5, "score": 0.4 , "title": "CoSe", "type": "circle"},
+
+      
+
+        {"id": "Suo", "size": 5, "score": 0.4 , "title": "Suo", "type": "circle"},
+
+      
+
+        {"id": "perché", "size": 5, "score": 0.4 , "title": "perché", "type": "circle"},
+
+      
+
+        {"id": "mafia", "size": 5, "score": 0.4 , "title": "mafia", "type": "circle"},
 
        
 
@@ -1003,10 +1003,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

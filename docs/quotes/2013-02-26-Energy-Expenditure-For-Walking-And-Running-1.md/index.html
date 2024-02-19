@@ -762,15 +762,7 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "calories", "target": "weight" },
-      
-          { "source": "calories", "target": "body" },
-      
-          { "source": "calories", "target": "energy-expenditure" },
-      
-          { "source": "calories", "target": "hours" },
-      
-          { "source": "calories", "target": "days" },
+          { "source": "weight", "target": "energy-expenditure" },
       
           { "source": "weight", "target": "calories" },
       
@@ -780,6 +772,20 @@ var data_local_dynamic = {
       
           { "source": "weight", "target": "original-statement" },
       
+          { "source": "energy-expenditure", "target": "calories" },
+      
+          { "source": "energy-expenditure", "target": "weight" },
+      
+          { "source": "energy-expenditure", "target": "hours" },
+      
+          { "source": "calories", "target": "hours" },
+      
+          { "source": "calories", "target": "days" },
+      
+          { "source": "calories", "target": "weeks" },
+      
+          { "source": "calories", "target": "energy-expenditure" },
+      
           { "source": "body", "target": "calories" },
       
           { "source": "body", "target": "weight" },
@@ -788,34 +794,32 @@ var data_local_dynamic = {
       
           { "source": "body", "target": "living" },
       
-          { "source": "energy-expenditure", "target": "calories" },
+          { "source": "statements", "target": "questions" },
       
-          { "source": "energy-expenditure", "target": "weight" },
+          { "source": "statements", "target": "validity" },
       
-          { "source": "energy-expenditure", "target": "hours" },
+          { "source": "statements", "target": "reference" },
       
-          { "source": "hours", "target": "calories" },
+          { "source": "statements", "target": "observer" },
       
-          { "source": "hours", "target": "days" },
+          { "source": "original-statement", "target": "weight" },
       
-          { "source": "hours", "target": "weeks" },
+          { "source": "original-statement", "target": "statements" },
       
-          { "source": "hours", "target": "work-time" },
+          { "source": "original-statement", "target": "John" },
       
-          { "source": "days", "target": "dinner" },
-      
-          { "source": "days", "target": "people" },
-      
-          { "source": "days", "target": "fruit" },
-      
-          { "source": "days", "target": "women" },
+          { "source": "original-statement", "target": "reification" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "weight", "size": 70, "score": 0 , "title": "weight", "type": "circle"},
+        {"id": "energy-expenditure", "size": 70, "score": 0 , "title": "energy-expenditure", "type": "circle"},
+
+      
+
+        {"id": "calories", "size": 70, "score": 0 , "title": "calories", "type": "circle"},
 
       
 
@@ -823,27 +827,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "energy-expenditure", "size": 70, "score": 0 , "title": "energy-expenditure", "type": "circle"},
+        {"id": "statements", "size": 70, "score": 0 , "title": "statements", "type": "circle"},
 
       
 
-        {"id": "hours", "size": 70, "score": 0 , "title": "hours", "type": "circle"},
+        {"id": "original-statement", "size": 70, "score": 0 , "title": "original-statement", "type": "circle"},
 
       
 
-        {"id": "days", "size": 70, "score": 0 , "title": "days", "type": "circle"},
+        {"id": "weight", "size": 140, "score": 0.5 , "title": "weight", "type": "circle"},
 
       
 
-        {"id": "calories", "size": 140, "score": 0.5 , "title": "calories", "type": "circle"},
+        {"id": "hours", "size": 5, "score": 0.4 , "title": "hours", "type": "circle"},
 
       
 
-        {"id": "statements", "size": 5, "score": 0.4 , "title": "statements", "type": "circle"},
+        {"id": "days", "size": 5, "score": 0.4 , "title": "days", "type": "circle"},
 
       
 
-        {"id": "original-statement", "size": 5, "score": 0.4 , "title": "original-statement", "type": "circle"},
+        {"id": "weeks", "size": 5, "score": 0.4 , "title": "weeks", "type": "circle"},
 
       
 
@@ -855,27 +859,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "weeks", "size": 5, "score": 0.4 , "title": "weeks", "type": "circle"},
+        {"id": "questions", "size": 5, "score": 0.4 , "title": "questions", "type": "circle"},
 
       
 
-        {"id": "work-time", "size": 5, "score": 0.4 , "title": "work-time", "type": "circle"},
+        {"id": "validity", "size": 5, "score": 0.4 , "title": "validity", "type": "circle"},
 
       
 
-        {"id": "dinner", "size": 5, "score": 0.4 , "title": "dinner", "type": "circle"},
+        {"id": "reference", "size": 5, "score": 0.4 , "title": "reference", "type": "circle"},
 
       
 
-        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
+        {"id": "observer", "size": 5, "score": 0.4 , "title": "observer", "type": "circle"},
 
       
 
-        {"id": "fruit", "size": 5, "score": 0.4 , "title": "fruit", "type": "circle"},
+        {"id": "John", "size": 5, "score": 0.4 , "title": "John", "type": "circle"},
 
       
 
-        {"id": "women", "size": 5, "score": 0.4 , "title": "women", "type": "circle"},
+        {"id": "reification", "size": 5, "score": 0.4 , "title": "reification", "type": "circle"},
 
        
 
@@ -1005,10 +1009,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

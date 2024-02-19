@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.treccani.it/enciclopedia/dignita/" class="text-muted" target="_blank">Dignita Nell’enciclopedia Treccani</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Dignita Nell’enciclopedia Treccani">
+								<a href="http://www.treccani.it/enciclopedia/dignita/" class="-underline -text-muted" target="_blank">
+								  Dignita Nell’enciclopedia Treccani</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-05-20-Dignita-Nellenciclopedia-Treccani-1.md/index.html">Dignita</a>
-						<br />
-						<small style="color: #cbcbcb;">Dignita Nell’enciclopedia Treccani
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=STA.html">#STA</a>&nbsp;
@@ -588,14 +601,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://lettura.corriere.it/ecco-il-%C2%ABnarraprogrammatore%C2%BB/" class="text-muted" target="_blank">Notizie Di Libri E Cultura Del Corriere Della Sera</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Notizie Di Libri E Cultura Del Corriere Della Sera">
+								<a href="http://lettura.corriere.it/ecco-il-%C2%ABnarraprogrammatore%C2%BB/" class="-underline -text-muted" target="_blank">
+								  Notizie Di Libri E Cultura Del Corriere Della Sera</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-09-12-Notizie-Di-Libri-E-Cultura-Del-Corriere-2.md/index.html">Contemplative computing</a>
-						<br />
-						<small style="color: #cbcbcb;">Notizie Di Libri E Cultura Del Corriere Della Sera
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=menti.html">#menti</a>&nbsp;
@@ -608,6 +635,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -736,19 +764,19 @@ var data_local_dynamic = {
       
           { "source": "STA", "target": "cons" },
       
+          { "source": "menti", "target": "NEL" },
+      
           { "source": "menti", "target": "addiction" },
       
           { "source": "menti", "target": "umana" },
       
-          { "source": "menti", "target": "NEL" },
-      
           { "source": "menti", "target": "del" },
-      
-          { "source": "addiction", "target": "drugs" },
       
           { "source": "addiction", "target": "menti" },
       
           { "source": "addiction", "target": "umana" },
+      
+          { "source": "addiction", "target": "drugs" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -921,10 +949,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

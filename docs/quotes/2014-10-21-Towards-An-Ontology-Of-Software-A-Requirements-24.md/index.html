@@ -766,82 +766,130 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "machine", "target": "technology" },
+          { "source": "machine", "target": "things" },
       
-          { "source": "machine", "target": "virtual-world" },
+          { "source": "machine", "target": "manufacturing" },
       
-          { "source": "machine", "target": "Internet" },
+          { "source": "machine", "target": "data-citation" },
       
-          { "source": "machine", "target": "printing-press" },
+          { "source": "machine", "target": "metadata" },
       
-          { "source": "machine", "target": "sharing" },
+          { "source": "machine", "target": "interoperability" },
       
-          { "source": "technology", "target": "virtual-world" },
+          { "source": "things", "target": "industrial-revolution" },
       
-          { "source": "technology", "target": "Internet" },
+          { "source": "things", "target": "bits" },
       
-          { "source": "technology", "target": "printing-press" },
+          { "source": "things", "target": "services" },
       
-          { "source": "technology", "target": "sharing" },
+          { "source": "things", "target": "machine" },
       
-          { "source": "virtual-world", "target": "technology" },
+          { "source": "manufacturing", "target": "machine" },
       
-          { "source": "virtual-world", "target": "Internet" },
+          { "source": "manufacturing", "target": "things" },
       
-          { "source": "virtual-world", "target": "printing-press" },
+          { "source": "manufacturing", "target": "process" },
       
-          { "source": "virtual-world", "target": "sharing" },
+          { "source": "manufacturing", "target": "elements" },
       
-          { "source": "Internet", "target": "technology" },
+          { "source": "data-citation", "target": "publishing" },
       
-          { "source": "Internet", "target": "virtual-world" },
+          { "source": "data-citation", "target": "data-discovery" },
       
-          { "source": "Internet", "target": "printing-press" },
+          { "source": "data-citation", "target": "metadata" },
       
-          { "source": "Internet", "target": "sharing" },
+          { "source": "data-citation", "target": "interoperability" },
       
-          { "source": "printing-press", "target": "technology" },
+          { "source": "metadata", "target": "RDF-databases" },
       
-          { "source": "printing-press", "target": "virtual-world" },
+          { "source": "metadata", "target": "platform" },
       
-          { "source": "printing-press", "target": "Internet" },
+          { "source": "metadata", "target": "database" },
       
-          { "source": "printing-press", "target": "sharing" },
+          { "source": "metadata", "target": "server" },
       
-          { "source": "sharing", "target": "technology" },
+          { "source": "interoperability", "target": "data-citation" },
       
-          { "source": "sharing", "target": "virtual-world" },
+          { "source": "interoperability", "target": "metadata" },
       
-          { "source": "sharing", "target": "Internet" },
+          { "source": "interoperability", "target": "machine" },
       
-          { "source": "sharing", "target": "printing-press" },
+          { "source": "interoperability", "target": "data-repository" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "technology", "size": 70, "score": 0 , "title": "technology", "type": "circle"},
+        {"id": "things", "size": 70, "score": 0 , "title": "things", "type": "circle"},
 
       
 
-        {"id": "virtual-world", "size": 70, "score": 0 , "title": "virtual-world", "type": "circle"},
+        {"id": "manufacturing", "size": 70, "score": 0 , "title": "manufacturing", "type": "circle"},
 
       
 
-        {"id": "Internet", "size": 70, "score": 0 , "title": "Internet", "type": "circle"},
+        {"id": "data-citation", "size": 70, "score": 0 , "title": "data-citation", "type": "circle"},
 
       
 
-        {"id": "printing-press", "size": 70, "score": 0 , "title": "printing-press", "type": "circle"},
+        {"id": "metadata", "size": 70, "score": 0 , "title": "metadata", "type": "circle"},
 
       
 
-        {"id": "sharing", "size": 70, "score": 0 , "title": "sharing", "type": "circle"},
+        {"id": "interoperability", "size": 70, "score": 0 , "title": "interoperability", "type": "circle"},
 
       
 
         {"id": "machine", "size": 140, "score": 0.5 , "title": "machine", "type": "circle"},
+
+      
+
+        {"id": "industrial-revolution", "size": 5, "score": 0.4 , "title": "industrial-revolution", "type": "circle"},
+
+      
+
+        {"id": "bits", "size": 5, "score": 0.4 , "title": "bits", "type": "circle"},
+
+      
+
+        {"id": "services", "size": 5, "score": 0.4 , "title": "services", "type": "circle"},
+
+      
+
+        {"id": "process", "size": 5, "score": 0.4 , "title": "process", "type": "circle"},
+
+      
+
+        {"id": "elements", "size": 5, "score": 0.4 , "title": "elements", "type": "circle"},
+
+      
+
+        {"id": "publishing", "size": 5, "score": 0.4 , "title": "publishing", "type": "circle"},
+
+      
+
+        {"id": "data-discovery", "size": 5, "score": 0.4 , "title": "data-discovery", "type": "circle"},
+
+      
+
+        {"id": "RDF-databases", "size": 5, "score": 0.4 , "title": "RDF-databases", "type": "circle"},
+
+      
+
+        {"id": "platform", "size": 5, "score": 0.4 , "title": "platform", "type": "circle"},
+
+      
+
+        {"id": "database", "size": 5, "score": 0.4 , "title": "database", "type": "circle"},
+
+      
+
+        {"id": "server", "size": 5, "score": 0.4 , "title": "server", "type": "circle"},
+
+      
+
+        {"id": "data-repository", "size": 5, "score": 0.4 , "title": "data-repository", "type": "circle"},
 
        
 
@@ -971,10 +1019,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -762,41 +762,15 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "God", "target": "universe" },
-      
-          { "source": "God", "target": "things" },
-      
-          { "source": "God", "target": "idea" },
-      
           { "source": "God", "target": "believers" },
       
           { "source": "God", "target": "sin" },
       
-          { "source": "universe", "target": "God" },
+          { "source": "God", "target": "Christians" },
       
-          { "source": "universe", "target": "things" },
+          { "source": "God", "target": "words" },
       
-          { "source": "universe", "target": "idea" },
-      
-          { "source": "universe", "target": "artifacts" },
-      
-          { "source": "things", "target": "nature" },
-      
-          { "source": "things", "target": "God" },
-      
-          { "source": "things", "target": "universe" },
-      
-          { "source": "things", "target": "idea" },
-      
-          { "source": "idea", "target": "God" },
-      
-          { "source": "idea", "target": "universe" },
-      
-          { "source": "idea", "target": "things" },
-      
-          { "source": "idea", "target": "terms" },
-      
-          { "source": "believers", "target": "religion" },
+          { "source": "God", "target": "people" },
       
           { "source": "believers", "target": "sin" },
       
@@ -804,29 +778,43 @@ var data_local_dynamic = {
       
           { "source": "believers", "target": "God" },
       
+          { "source": "believers", "target": "religion" },
+      
           { "source": "sin", "target": "believers" },
       
           { "source": "sin", "target": "Christians" },
       
           { "source": "sin", "target": "God" },
       
-          { "source": "sin", "target": "love" },
+          { "source": "sin", "target": "nature" },
+      
+          { "source": "Christians", "target": "believers" },
+      
+          { "source": "Christians", "target": "sin" },
+      
+          { "source": "Christians", "target": "God" },
+      
+          { "source": "Christians", "target": "Christianity" },
+      
+          { "source": "words", "target": "language" },
+      
+          { "source": "words", "target": "Sapir-Whorf-hypothesis" },
+      
+          { "source": "words", "target": "readers" },
+      
+          { "source": "words", "target": "algorithm" },
+      
+          { "source": "people", "target": "stage" },
+      
+          { "source": "people", "target": "words" },
+      
+          { "source": "people", "target": "God" },
+      
+          { "source": "people", "target": "knowledge" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
-      
-
-        {"id": "universe", "size": 70, "score": 0 , "title": "universe", "type": "circle"},
-
-      
-
-        {"id": "things", "size": 70, "score": 0 , "title": "things", "type": "circle"},
-
-      
-
-        {"id": "idea", "size": 70, "score": 0 , "title": "idea", "type": "circle"},
-
       
 
         {"id": "believers", "size": 70, "score": 0 , "title": "believers", "type": "circle"},
@@ -837,19 +825,19 @@ var data_local_dynamic = {
 
       
 
+        {"id": "Christians", "size": 70, "score": 0 , "title": "Christians", "type": "circle"},
+
+      
+
+        {"id": "words", "size": 70, "score": 0 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "people", "size": 70, "score": 0 , "title": "people", "type": "circle"},
+
+      
+
         {"id": "God", "size": 140, "score": 0.5 , "title": "God", "type": "circle"},
-
-      
-
-        {"id": "artifacts", "size": 5, "score": 0.4 , "title": "artifacts", "type": "circle"},
-
-      
-
-        {"id": "nature", "size": 5, "score": 0.4 , "title": "nature", "type": "circle"},
-
-      
-
-        {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
 
       
 
@@ -857,11 +845,35 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Christians", "size": 5, "score": 0.4 , "title": "Christians", "type": "circle"},
+        {"id": "nature", "size": 5, "score": 0.4 , "title": "nature", "type": "circle"},
 
       
 
-        {"id": "love", "size": 5, "score": 0.4 , "title": "love", "type": "circle"},
+        {"id": "Christianity", "size": 5, "score": 0.4 , "title": "Christianity", "type": "circle"},
+
+      
+
+        {"id": "language", "size": 5, "score": 0.4 , "title": "language", "type": "circle"},
+
+      
+
+        {"id": "Sapir-Whorf-hypothesis", "size": 5, "score": 0.4 , "title": "Sapir-Whorf-hypothesis", "type": "circle"},
+
+      
+
+        {"id": "readers", "size": 5, "score": 0.4 , "title": "readers", "type": "circle"},
+
+      
+
+        {"id": "algorithm", "size": 5, "score": 0.4 , "title": "algorithm", "type": "circle"},
+
+      
+
+        {"id": "stage", "size": 5, "score": 0.4 , "title": "stage", "type": "circle"},
+
+      
+
+        {"id": "knowledge", "size": 5, "score": 0.4 , "title": "knowledge", "type": "circle"},
 
        
 
@@ -991,10 +1003,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

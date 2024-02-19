@@ -764,7 +764,31 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "nausea", "target": "mares" },
+          { "source": "cons", "target": "Italiano" },
+      
+          { "source": "cons", "target": "Presto" },
+      
+          { "source": "cons", "target": "nausea" },
+      
+          { "source": "cons", "target": "STA" },
+      
+          { "source": "cons", "target": "Matteo" },
+      
+          { "source": "Italiano", "target": "caso" },
+      
+          { "source": "Italiano", "target": "Io" },
+      
+          { "source": "Italiano", "target": "cons" },
+      
+          { "source": "Italiano", "target": "Presto" },
+      
+          { "source": "Presto", "target": "Italiano" },
+      
+          { "source": "Presto", "target": "cons" },
+      
+          { "source": "Presto", "target": "adultos" },
+      
+          { "source": "Presto", "target": "bene" },
       
           { "source": "nausea", "target": "STA" },
       
@@ -772,13 +796,7 @@ var data_local_dynamic = {
       
           { "source": "nausea", "target": "cons" },
       
-          { "source": "mares", "target": "nausea" },
-      
-          { "source": "mares", "target": "sole" },
-      
-          { "source": "mares", "target": "possibile" },
-      
-          { "source": "mares", "target": "SRH" },
+          { "source": "nausea", "target": "mares" },
       
           { "source": "STA", "target": "umana" },
       
@@ -788,28 +806,28 @@ var data_local_dynamic = {
       
           { "source": "STA", "target": "cons" },
       
-          { "source": "Matteo", "target": "proprio" },
-      
-          { "source": "Matteo", "target": "vitae" },
-      
-          { "source": "Matteo", "target": "DELLA" },
-      
           { "source": "Matteo", "target": "nausea" },
       
-          { "source": "cons", "target": "Veneto" },
+          { "source": "Matteo", "target": "STA" },
       
-          { "source": "cons", "target": "Emilia-Romagna" },
+          { "source": "Matteo", "target": "cons" },
       
-          { "source": "cons", "target": "Friuli-Venezia-Giulia" },
-      
-          { "source": "cons", "target": "Lombardia" },
+          { "source": "Matteo", "target": "proprio" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "mares", "size": 70, "score": 0 , "title": "mares", "type": "circle"},
+        {"id": "Italiano", "size": 70, "score": 0 , "title": "Italiano", "type": "circle"},
+
+      
+
+        {"id": "Presto", "size": 70, "score": 0 , "title": "Presto", "type": "circle"},
+
+      
+
+        {"id": "nausea", "size": 70, "score": 0 , "title": "nausea", "type": "circle"},
 
       
 
@@ -821,23 +839,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "cons", "size": 70, "score": 0 , "title": "cons", "type": "circle"},
+        {"id": "cons", "size": 140, "score": 0.5 , "title": "cons", "type": "circle"},
 
       
 
-        {"id": "nausea", "size": 140, "score": 0.5 , "title": "nausea", "type": "circle"},
+        {"id": "caso", "size": 5, "score": 0.4 , "title": "caso", "type": "circle"},
 
       
 
-        {"id": "sole", "size": 5, "score": 0.4 , "title": "sole", "type": "circle"},
+        {"id": "Io", "size": 5, "score": 0.4 , "title": "Io", "type": "circle"},
 
       
 
-        {"id": "possibile", "size": 5, "score": 0.4 , "title": "possibile", "type": "circle"},
+        {"id": "adultos", "size": 5, "score": 0.4 , "title": "adultos", "type": "circle"},
 
       
 
-        {"id": "SRH", "size": 5, "score": 0.4 , "title": "SRH", "type": "circle"},
+        {"id": "bene", "size": 5, "score": 0.4 , "title": "bene", "type": "circle"},
+
+      
+
+        {"id": "mares", "size": 5, "score": 0.4 , "title": "mares", "type": "circle"},
 
       
 
@@ -846,30 +868,6 @@ var data_local_dynamic = {
       
 
         {"id": "proprio", "size": 5, "score": 0.4 , "title": "proprio", "type": "circle"},
-
-      
-
-        {"id": "vitae", "size": 5, "score": 0.4 , "title": "vitae", "type": "circle"},
-
-      
-
-        {"id": "DELLA", "size": 5, "score": 0.4 , "title": "DELLA", "type": "circle"},
-
-      
-
-        {"id": "Veneto", "size": 5, "score": 0.4 , "title": "Veneto", "type": "circle"},
-
-      
-
-        {"id": "Emilia-Romagna", "size": 5, "score": 0.4 , "title": "Emilia-Romagna", "type": "circle"},
-
-      
-
-        {"id": "Friuli-Venezia-Giulia", "size": 5, "score": 0.4 , "title": "Friuli-Venezia-Giulia", "type": "circle"},
-
-      
-
-        {"id": "Lombardia", "size": 5, "score": 0.4 , "title": "Lombardia", "type": "circle"},
 
        
 
@@ -999,10 +997,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

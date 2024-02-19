@@ -772,29 +772,29 @@ var data_local_dynamic = {
       
           { "source": "fire", "target": "restaurants" },
       
-          { "source": "animals", "target": "birds" },
-      
-          { "source": "animals", "target": "number" },
-      
           { "source": "animals", "target": "fire" },
       
           { "source": "animals", "target": "extent" },
       
-          { "source": "extent", "target": "animals" },
+          { "source": "animals", "target": "class" },
       
-          { "source": "extent", "target": "fire" },
+          { "source": "animals", "target": "birds" },
       
-          { "source": "extent", "target": "class" },
+          { "source": "extent", "target": "activity" },
       
-          { "source": "extent", "target": "doubt" },
+          { "source": "extent", "target": "number" },
       
-          { "source": "class", "target": "traits" },
+          { "source": "extent", "target": "understanding" },
       
-          { "source": "class", "target": "categories" },
+          { "source": "extent", "target": "mistakes" },
       
-          { "source": "class", "target": "items" },
+          { "source": "class", "target": "cases" },
       
-          { "source": "class", "target": "criteria" },
+          { "source": "class", "target": "occurrence" },
+      
+          { "source": "class", "target": "events" },
+      
+          { "source": "class", "target": "instances" },
       
           { "source": "restaurants", "target": "fire" },
       
@@ -831,27 +831,35 @@ var data_local_dynamic = {
 
       
 
+        {"id": "activity", "size": 5, "score": 0.4 , "title": "activity", "type": "circle"},
+
+      
+
         {"id": "number", "size": 5, "score": 0.4 , "title": "number", "type": "circle"},
 
       
 
-        {"id": "doubt", "size": 5, "score": 0.4 , "title": "doubt", "type": "circle"},
+        {"id": "understanding", "size": 5, "score": 0.4 , "title": "understanding", "type": "circle"},
 
       
 
-        {"id": "traits", "size": 5, "score": 0.4 , "title": "traits", "type": "circle"},
+        {"id": "mistakes", "size": 5, "score": 0.4 , "title": "mistakes", "type": "circle"},
 
       
 
-        {"id": "categories", "size": 5, "score": 0.4 , "title": "categories", "type": "circle"},
+        {"id": "cases", "size": 5, "score": 0.4 , "title": "cases", "type": "circle"},
 
       
 
-        {"id": "items", "size": 5, "score": 0.4 , "title": "items", "type": "circle"},
+        {"id": "occurrence", "size": 5, "score": 0.4 , "title": "occurrence", "type": "circle"},
 
       
 
-        {"id": "criteria", "size": 5, "score": 0.4 , "title": "criteria", "type": "circle"},
+        {"id": "events", "size": 5, "score": 0.4 , "title": "events", "type": "circle"},
+
+      
+
+        {"id": "instances", "size": 5, "score": 0.4 , "title": "instances", "type": "circle"},
 
       
 
@@ -989,10 +997,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

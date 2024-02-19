@@ -771,94 +771,100 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "sleep", "target": "dreams" },
+          { "source": "children", "target": "fun" },
       
-          { "source": "sleep", "target": "room" },
+          { "source": "children", "target": "disciplines" },
       
-          { "source": "sleep", "target": "slums" },
+          { "source": "children", "target": "thought" },
       
-          { "source": "sleep", "target": "night" },
+          { "source": "children", "target": "food" },
       
-          { "source": "sleep", "target": "men" },
+          { "source": "children", "target": "kids" },
       
-          { "source": "dreams", "target": "sleep" },
+          { "source": "fun", "target": "disciplines" },
       
-          { "source": "dreams", "target": "room" },
+          { "source": "fun", "target": "thought" },
       
-          { "source": "dreams", "target": "slums" },
+          { "source": "fun", "target": "children" },
       
-          { "source": "dreams", "target": "night" },
+          { "source": "fun", "target": "screen-time" },
       
-          { "source": "room", "target": "sleep" },
+          { "source": "disciplines", "target": "fun" },
       
-          { "source": "room", "target": "dreams" },
+          { "source": "disciplines", "target": "thought" },
       
-          { "source": "room", "target": "slums" },
+          { "source": "disciplines", "target": "children" },
       
-          { "source": "room", "target": "night" },
+          { "source": "disciplines", "target": "philosophers" },
       
-          { "source": "slums", "target": "sleep" },
+          { "source": "thought", "target": "fun" },
       
-          { "source": "slums", "target": "dreams" },
+          { "source": "thought", "target": "disciplines" },
       
-          { "source": "slums", "target": "room" },
+          { "source": "thought", "target": "children" },
       
-          { "source": "slums", "target": "night" },
+          { "source": "thought", "target": "book" },
       
-          { "source": "night", "target": "sleep" },
+          { "source": "food", "target": "group" },
       
-          { "source": "night", "target": "dreams" },
+          { "source": "food", "target": "kids" },
       
-          { "source": "night", "target": "room" },
+          { "source": "food", "target": "children" },
       
-          { "source": "night", "target": "slums" },
+          { "source": "food", "target": "eating" },
       
-          { "source": "men", "target": "phrases" },
+          { "source": "kids", "target": "food" },
       
-          { "source": "men", "target": "sleep" },
+          { "source": "kids", "target": "children" },
       
-          { "source": "men", "target": "foot" },
-      
-          { "source": "men", "target": "toe" },
+          { "source": "kids", "target": "eating" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "dreams", "size": 70, "score": 0 , "title": "dreams", "type": "circle"},
+        {"id": "fun", "size": 70, "score": 0 , "title": "fun", "type": "circle"},
 
       
 
-        {"id": "room", "size": 70, "score": 0 , "title": "room", "type": "circle"},
+        {"id": "disciplines", "size": 70, "score": 0 , "title": "disciplines", "type": "circle"},
 
       
 
-        {"id": "slums", "size": 70, "score": 0 , "title": "slums", "type": "circle"},
+        {"id": "thought", "size": 70, "score": 0 , "title": "thought", "type": "circle"},
 
       
 
-        {"id": "night", "size": 70, "score": 0 , "title": "night", "type": "circle"},
+        {"id": "food", "size": 70, "score": 0 , "title": "food", "type": "circle"},
 
       
 
-        {"id": "men", "size": 70, "score": 0 , "title": "men", "type": "circle"},
+        {"id": "kids", "size": 70, "score": 0 , "title": "kids", "type": "circle"},
 
       
 
-        {"id": "sleep", "size": 140, "score": 0.5 , "title": "sleep", "type": "circle"},
+        {"id": "children", "size": 140, "score": 0.5 , "title": "children", "type": "circle"},
 
       
 
-        {"id": "phrases", "size": 5, "score": 0.4 , "title": "phrases", "type": "circle"},
+        {"id": "screen-time", "size": 5, "score": 0.4 , "title": "screen-time", "type": "circle"},
 
       
 
-        {"id": "foot", "size": 5, "score": 0.4 , "title": "foot", "type": "circle"},
+        {"id": "philosophers", "size": 5, "score": 0.4 , "title": "philosophers", "type": "circle"},
 
       
 
-        {"id": "toe", "size": 5, "score": 0.4 , "title": "toe", "type": "circle"},
+        {"id": "book", "size": 5, "score": 0.4 , "title": "book", "type": "circle"},
+
+      
+
+        {"id": "group", "size": 5, "score": 0.4 , "title": "group", "type": "circle"},
+
+      
+
+        {"id": "eating", "size": 5, "score": 0.4 , "title": "eating", "type": "circle"},
 
        
 
@@ -988,10 +994,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

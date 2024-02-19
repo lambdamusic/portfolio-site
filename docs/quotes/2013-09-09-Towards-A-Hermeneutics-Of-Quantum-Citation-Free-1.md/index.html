@@ -760,82 +760,118 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "annotation", "target": "web-applications" },
+      
+          { "source": "annotation", "target": "services" },
+      
+          { "source": "annotation", "target": "hyperlinks" },
+      
+          { "source": "annotation", "target": "human-genome" },
+      
+          { "source": "web-applications", "target": "cultural-heritage-institutions" },
+      
+          { "source": "web-applications", "target": "Web" },
+      
+          { "source": "web-applications", "target": "digital-hermeneutics" },
+      
+          { "source": "web-applications", "target": "hermeneutics" },
+      
+          { "source": "services", "target": "things" },
+      
+          { "source": "services", "target": "industrial-revolution" },
+      
+          { "source": "services", "target": "bits" },
+      
+          { "source": "services", "target": "metadata-model" },
+      
+          { "source": "hyperlinks", "target": "annotation" },
+      
+          { "source": "hyperlinks", "target": "Topic-Maps" },
+      
+          { "source": "hyperlinks", "target": "topic-associations" },
+      
+          { "source": "hyperlinks", "target": "Rome" },
+      
           { "source": "human-genome", "target": "genome" },
       
           { "source": "human-genome", "target": "variants" },
       
           { "source": "human-genome", "target": "annotation" },
-      
-          { "source": "genome", "target": "variants" },
-      
-          { "source": "genome", "target": "human-genome" },
-      
-          { "source": "genome", "target": "genes" },
-      
-          { "source": "genome", "target": "protein" },
-      
-          { "source": "variants", "target": "genome" },
-      
-          { "source": "variants", "target": "human-genome" },
-      
-          { "source": "variants", "target": "name" },
-      
-          { "source": "variants", "target": "mechanism" },
-      
-          { "source": "annotation", "target": "web-applications" },
-      
-          { "source": "annotation", "target": "hyperlinks" },
-      
-          { "source": "annotation", "target": "services" },
-      
-          { "source": "annotation", "target": "human-genome" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "genome", "size": 70, "score": 0 , "title": "genome", "type": "circle"},
+        {"id": "web-applications", "size": 70, "score": 0 , "title": "web-applications", "type": "circle"},
 
       
 
-        {"id": "variants", "size": 70, "score": 0 , "title": "variants", "type": "circle"},
+        {"id": "services", "size": 70, "score": 0 , "title": "services", "type": "circle"},
 
       
 
-        {"id": "annotation", "size": 70, "score": 0 , "title": "annotation", "type": "circle"},
+        {"id": "hyperlinks", "size": 70, "score": 0 , "title": "hyperlinks", "type": "circle"},
 
       
 
-        {"id": "human-genome", "size": 140, "score": 0.5 , "title": "human-genome", "type": "circle"},
+        {"id": "human-genome", "size": 70, "score": 0 , "title": "human-genome", "type": "circle"},
 
       
 
-        {"id": "genes", "size": 5, "score": 0.4 , "title": "genes", "type": "circle"},
+        {"id": "annotation", "size": 140, "score": 0.5 , "title": "annotation", "type": "circle"},
 
       
 
-        {"id": "protein", "size": 5, "score": 0.4 , "title": "protein", "type": "circle"},
+        {"id": "cultural-heritage-institutions", "size": 5, "score": 0.4 , "title": "cultural-heritage-institutions", "type": "circle"},
 
       
 
-        {"id": "name", "size": 5, "score": 0.4 , "title": "name", "type": "circle"},
+        {"id": "Web", "size": 5, "score": 0.4 , "title": "Web", "type": "circle"},
 
       
 
-        {"id": "mechanism", "size": 5, "score": 0.4 , "title": "mechanism", "type": "circle"},
+        {"id": "digital-hermeneutics", "size": 5, "score": 0.4 , "title": "digital-hermeneutics", "type": "circle"},
 
       
 
-        {"id": "web-applications", "size": 5, "score": 0.4 , "title": "web-applications", "type": "circle"},
+        {"id": "hermeneutics", "size": 5, "score": 0.4 , "title": "hermeneutics", "type": "circle"},
 
       
 
-        {"id": "hyperlinks", "size": 5, "score": 0.4 , "title": "hyperlinks", "type": "circle"},
+        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
 
       
 
-        {"id": "services", "size": 5, "score": 0.4 , "title": "services", "type": "circle"},
+        {"id": "industrial-revolution", "size": 5, "score": 0.4 , "title": "industrial-revolution", "type": "circle"},
+
+      
+
+        {"id": "bits", "size": 5, "score": 0.4 , "title": "bits", "type": "circle"},
+
+      
+
+        {"id": "metadata-model", "size": 5, "score": 0.4 , "title": "metadata-model", "type": "circle"},
+
+      
+
+        {"id": "Topic-Maps", "size": 5, "score": 0.4 , "title": "Topic-Maps", "type": "circle"},
+
+      
+
+        {"id": "topic-associations", "size": 5, "score": 0.4 , "title": "topic-associations", "type": "circle"},
+
+      
+
+        {"id": "Rome", "size": 5, "score": 0.4 , "title": "Rome", "type": "circle"},
+
+      
+
+        {"id": "genome", "size": 5, "score": 0.4 , "title": "genome", "type": "circle"},
+
+      
+
+        {"id": "variants", "size": 5, "score": 0.4 , "title": "variants", "type": "circle"},
 
        
 
@@ -965,10 +1001,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

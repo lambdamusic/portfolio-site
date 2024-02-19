@@ -572,12 +572,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Shantaram (gregory David Roberts)</span>
+							</small>
+							<!-- Words taken from <cite title="Shantaram (gregory David Roberts)">
+								<a class="-underline -text-muted">Shantaram (gregory David Roberts)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-11-05-Shantaram-gregory-David-Roberts-22.md/index.html">‘there is no act of...</a>
-						<br />
-						<small style="color: #cbcbcb;">Shantaram (gregory David Roberts)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=tone.html">#tone</a>&nbsp;
@@ -592,14 +603,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.goodreads.com/book/show/60551.The_Book_on_the_Taboo_Against_Knowing_Who_You_Are" class="text-muted" target="_blank">The Book: On The Taboo Against Knowing Who You Are</a>
+									
+							</small>
+							<!-- Words taken from <cite title="The Book: On The Taboo Against Knowing Who You Are">
+								<a href="http://www.goodreads.com/book/show/60551.The_Book_on_the_Taboo_Against_Knowing_Who_You_Are" class="-underline -text-muted" target="_blank">
+								  The Book: On The Taboo Against Knowing Who You Are</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-12-30-The-Book-On-The-Taboo-Against-Knowing-61.md/index.html">When at last the whole...</a>
-						<br />
-						<small style="color: #cbcbcb;">The Book: On The Taboo Against Knowing Who You Are
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=impression.html">#impression</a>&nbsp;
@@ -614,6 +639,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -746,29 +772,29 @@ var data_local_dynamic = {
       
           { "source": "tone", "target": "music" },
       
-          { "source": "acts", "target": "leaders" },
-      
-          { "source": "acts", "target": "West" },
-      
           { "source": "acts", "target": "tone" },
       
           { "source": "acts", "target": "impression" },
       
-          { "source": "voice", "target": "tone" },
+          { "source": "acts", "target": "voice" },
       
-          { "source": "voice", "target": "impression" },
-      
-          { "source": "voice", "target": "acts" },
+          { "source": "acts", "target": "course" },
       
           { "source": "voice", "target": "language" },
       
-          { "source": "behavior", "target": "patterns" },
+          { "source": "voice", "target": "reification" },
       
-          { "source": "behavior", "target": "high-impact" },
+          { "source": "voice", "target": "nouns" },
       
-          { "source": "behavior", "target": "community" },
+          { "source": "voice", "target": "tone" },
       
-          { "source": "behavior", "target": "trends" },
+          { "source": "behavior", "target": "linguistic-behavior" },
+      
+          { "source": "behavior", "target": "Maturana" },
+      
+          { "source": "behavior", "target": "medium" },
+      
+          { "source": "behavior", "target": "example" },
       
           { "source": "attention", "target": "citations" },
       
@@ -811,11 +837,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "leaders", "size": 5, "score": 0.4 , "title": "leaders", "type": "circle"},
-
-      
-
-        {"id": "West", "size": 5, "score": 0.4 , "title": "West", "type": "circle"},
+        {"id": "course", "size": 5, "score": 0.4 , "title": "course", "type": "circle"},
 
       
 
@@ -823,19 +845,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "patterns", "size": 5, "score": 0.4 , "title": "patterns", "type": "circle"},
+        {"id": "reification", "size": 5, "score": 0.4 , "title": "reification", "type": "circle"},
 
       
 
-        {"id": "high-impact", "size": 5, "score": 0.4 , "title": "high-impact", "type": "circle"},
+        {"id": "nouns", "size": 5, "score": 0.4 , "title": "nouns", "type": "circle"},
 
       
 
-        {"id": "community", "size": 5, "score": 0.4 , "title": "community", "type": "circle"},
+        {"id": "linguistic-behavior", "size": 5, "score": 0.4 , "title": "linguistic-behavior", "type": "circle"},
 
       
 
-        {"id": "trends", "size": 5, "score": 0.4 , "title": "trends", "type": "circle"},
+        {"id": "Maturana", "size": 5, "score": 0.4 , "title": "Maturana", "type": "circle"},
+
+      
+
+        {"id": "medium", "size": 5, "score": 0.4 , "title": "medium", "type": "circle"},
+
+      
+
+        {"id": "example", "size": 5, "score": 0.4 , "title": "example", "type": "circle"},
 
       
 
@@ -981,10 +1011,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="https://www.uofmhealth.org/health-library/aba5605" class="text-muted" target="_blank">Healthy Eating: Helping Your Child Learn Healthy Eating Habits</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Healthy Eating: Helping Your Child Learn Healthy Eating Habits">
+								<a href="https://www.uofmhealth.org/health-library/aba5605" class="-underline -text-muted" target="_blank">
+								  Healthy Eating: Helping Your Child Learn Healthy Eating Habits</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2022-02-07-kids-eating-tips.md/index.html">Food eating tips for kids</a>
-						<br />
-						<small style="color: #cbcbcb;">Healthy Eating: Helping Your Child Learn Healthy Eating Habits
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=food.html">#food</a>&nbsp;
@@ -592,6 +605,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -712,29 +726,29 @@ var data_local_dynamic = {
       
           { "source": "kids", "target": "eating" },
       
-          { "source": "food", "target": "stomach" },
+          { "source": "food", "target": "group" },
       
-          { "source": "food", "target": "brain" },
+          { "source": "food", "target": "kids" },
       
-          { "source": "food", "target": "heart" },
+          { "source": "food", "target": "children" },
       
-          { "source": "food", "target": "nervous-system" },
+          { "source": "food", "target": "eating" },
       
-          { "source": "children", "target": "self" },
+          { "source": "children", "target": "fun" },
       
-          { "source": "children", "target": "being" },
+          { "source": "children", "target": "disciplines" },
       
-          { "source": "children", "target": "individuals" },
+          { "source": "children", "target": "thought" },
       
-          { "source": "children", "target": "persons" },
+          { "source": "children", "target": "food" },
       
           { "source": "eating", "target": "zuccheri" },
       
           { "source": "eating", "target": "health" },
       
-          { "source": "eating", "target": "saccarosio" },
-      
           { "source": "eating", "target": "fruttosio" },
+      
+          { "source": "eating", "target": "food" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -757,35 +771,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "stomach", "size": 5, "score": 0.4 , "title": "stomach", "type": "circle"},
+        {"id": "group", "size": 5, "score": 0.4 , "title": "group", "type": "circle"},
 
       
 
-        {"id": "brain", "size": 5, "score": 0.4 , "title": "brain", "type": "circle"},
+        {"id": "fun", "size": 5, "score": 0.4 , "title": "fun", "type": "circle"},
 
       
 
-        {"id": "heart", "size": 5, "score": 0.4 , "title": "heart", "type": "circle"},
+        {"id": "disciplines", "size": 5, "score": 0.4 , "title": "disciplines", "type": "circle"},
 
       
 
-        {"id": "nervous-system", "size": 5, "score": 0.4 , "title": "nervous-system", "type": "circle"},
-
-      
-
-        {"id": "self", "size": 5, "score": 0.4 , "title": "self", "type": "circle"},
-
-      
-
-        {"id": "being", "size": 5, "score": 0.4 , "title": "being", "type": "circle"},
-
-      
-
-        {"id": "individuals", "size": 5, "score": 0.4 , "title": "individuals", "type": "circle"},
-
-      
-
-        {"id": "persons", "size": 5, "score": 0.4 , "title": "persons", "type": "circle"},
+        {"id": "thought", "size": 5, "score": 0.4 , "title": "thought", "type": "circle"},
 
       
 
@@ -794,10 +792,6 @@ var data_local_dynamic = {
       
 
         {"id": "health", "size": 5, "score": 0.4 , "title": "health", "type": "circle"},
-
-      
-
-        {"id": "saccarosio", "size": 5, "score": 0.4 , "title": "saccarosio", "type": "circle"},
 
       
 
@@ -931,10 +925,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

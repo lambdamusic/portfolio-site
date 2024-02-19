@@ -764,118 +764,82 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "code", "target": "algorithm" },
+          { "source": "use-cases", "target": "ontology" },
       
-          { "source": "code", "target": "same-algorithm" },
+          { "source": "use-cases", "target": "data-model" },
       
-          { "source": "code", "target": "execution" },
+          { "source": "use-cases", "target": "architecture" },
       
-          { "source": "code", "target": "objects" },
+          { "source": "use-cases", "target": "requirements" },
       
-          { "source": "code", "target": "source-code" },
+          { "source": "use-cases", "target": "domain-specific-ontology" },
       
-          { "source": "algorithm", "target": "code" },
+          { "source": "ontology", "target": "use-cases" },
       
-          { "source": "algorithm", "target": "same-algorithm" },
+          { "source": "ontology", "target": "data-model" },
       
-          { "source": "algorithm", "target": "execution" },
+          { "source": "ontology", "target": "architecture" },
       
-          { "source": "algorithm", "target": "nodes" },
+          { "source": "ontology", "target": "requirements" },
       
-          { "source": "same-algorithm", "target": "algorithm" },
+          { "source": "data-model", "target": "ontology" },
       
-          { "source": "same-algorithm", "target": "code" },
+          { "source": "data-model", "target": "use-cases" },
       
-          { "source": "same-algorithm", "target": "execution" },
+          { "source": "data-model", "target": "architecture" },
       
-          { "source": "same-algorithm", "target": "program" },
+          { "source": "data-model", "target": "requirements" },
       
-          { "source": "execution", "target": "algorithm" },
+          { "source": "architecture", "target": "ontology" },
       
-          { "source": "execution", "target": "code" },
+          { "source": "architecture", "target": "use-cases" },
       
-          { "source": "execution", "target": "same-algorithm" },
+          { "source": "architecture", "target": "data-model" },
       
-          { "source": "execution", "target": "machine" },
+          { "source": "architecture", "target": "requirements" },
       
-          { "source": "objects", "target": "digital-hermeneutics" },
+          { "source": "requirements", "target": "ontology" },
       
-          { "source": "objects", "target": "events" },
+          { "source": "requirements", "target": "use-cases" },
       
-          { "source": "objects", "target": "hermeneutics" },
+          { "source": "requirements", "target": "data-model" },
       
-          { "source": "objects", "target": "CRM" },
+          { "source": "requirements", "target": "architecture" },
       
-          { "source": "source-code", "target": "code" },
+          { "source": "domain-specific-ontology", "target": "ontology" },
       
-          { "source": "source-code", "target": "objects" },
+          { "source": "domain-specific-ontology", "target": "use-cases" },
       
-          { "source": "source-code", "target": "live-coding" },
+          { "source": "domain-specific-ontology", "target": "data-model" },
       
-          { "source": "source-code", "target": "digital-technologies" },
+          { "source": "domain-specific-ontology", "target": "architecture" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "algorithm", "size": 70, "score": 0 , "title": "algorithm", "type": "circle"},
+        {"id": "ontology", "size": 70, "score": 0 , "title": "ontology", "type": "circle"},
 
       
 
-        {"id": "same-algorithm", "size": 70, "score": 0 , "title": "same-algorithm", "type": "circle"},
+        {"id": "data-model", "size": 70, "score": 0 , "title": "data-model", "type": "circle"},
 
       
 
-        {"id": "execution", "size": 70, "score": 0 , "title": "execution", "type": "circle"},
+        {"id": "architecture", "size": 70, "score": 0 , "title": "architecture", "type": "circle"},
 
       
 
-        {"id": "objects", "size": 70, "score": 0 , "title": "objects", "type": "circle"},
+        {"id": "requirements", "size": 70, "score": 0 , "title": "requirements", "type": "circle"},
 
       
 
-        {"id": "source-code", "size": 70, "score": 0 , "title": "source-code", "type": "circle"},
+        {"id": "domain-specific-ontology", "size": 70, "score": 0 , "title": "domain-specific-ontology", "type": "circle"},
 
       
 
-        {"id": "code", "size": 140, "score": 0.5 , "title": "code", "type": "circle"},
-
-      
-
-        {"id": "nodes", "size": 5, "score": 0.4 , "title": "nodes", "type": "circle"},
-
-      
-
-        {"id": "program", "size": 5, "score": 0.4 , "title": "program", "type": "circle"},
-
-      
-
-        {"id": "machine", "size": 5, "score": 0.4 , "title": "machine", "type": "circle"},
-
-      
-
-        {"id": "digital-hermeneutics", "size": 5, "score": 0.4 , "title": "digital-hermeneutics", "type": "circle"},
-
-      
-
-        {"id": "events", "size": 5, "score": 0.4 , "title": "events", "type": "circle"},
-
-      
-
-        {"id": "hermeneutics", "size": 5, "score": 0.4 , "title": "hermeneutics", "type": "circle"},
-
-      
-
-        {"id": "CRM", "size": 5, "score": 0.4 , "title": "CRM", "type": "circle"},
-
-      
-
-        {"id": "live-coding", "size": 5, "score": 0.4 , "title": "live-coding", "type": "circle"},
-
-      
-
-        {"id": "digital-technologies", "size": 5, "score": 0.4 , "title": "digital-technologies", "type": "circle"},
+        {"id": "use-cases", "size": 140, "score": 0.5 , "title": "use-cases", "type": "circle"},
 
        
 
@@ -1005,10 +969,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

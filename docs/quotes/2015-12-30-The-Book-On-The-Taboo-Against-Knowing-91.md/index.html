@@ -790,29 +790,29 @@ var data_local_dynamic = {
       
           { "source": "feelings", "target": "pain" },
       
+          { "source": "personality", "target": "human-personality" },
+      
           { "source": "personality", "target": "ego" },
       
           { "source": "personality", "target": "childhood" },
       
           { "source": "personality", "target": "feelings" },
       
-          { "source": "personality", "target": "human-personality" },
+          { "source": "children", "target": "fun" },
       
-          { "source": "children", "target": "self" },
+          { "source": "children", "target": "disciplines" },
       
-          { "source": "children", "target": "being" },
+          { "source": "children", "target": "thought" },
       
-          { "source": "children", "target": "individuals" },
+          { "source": "children", "target": "food" },
       
-          { "source": "children", "target": "persons" },
+          { "source": "parents", "target": "creativity" },
+      
+          { "source": "parents", "target": "marriage" },
+      
+          { "source": "parents", "target": "art" },
       
           { "source": "parents", "target": "fathers" },
-      
-          { "source": "parents", "target": "emotions" },
-      
-          { "source": "parents", "target": "image-of-God" },
-      
-          { "source": "parents", "target": "images" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -879,31 +879,35 @@ var data_local_dynamic = {
 
       
 
-        {"id": "self", "size": 5, "score": 0.4 , "title": "self", "type": "circle"},
+        {"id": "fun", "size": 5, "score": 0.4 , "title": "fun", "type": "circle"},
 
       
 
-        {"id": "being", "size": 5, "score": 0.4 , "title": "being", "type": "circle"},
+        {"id": "disciplines", "size": 5, "score": 0.4 , "title": "disciplines", "type": "circle"},
 
       
 
-        {"id": "individuals", "size": 5, "score": 0.4 , "title": "individuals", "type": "circle"},
+        {"id": "thought", "size": 5, "score": 0.4 , "title": "thought", "type": "circle"},
 
       
 
-        {"id": "persons", "size": 5, "score": 0.4 , "title": "persons", "type": "circle"},
+        {"id": "food", "size": 5, "score": 0.4 , "title": "food", "type": "circle"},
+
+      
+
+        {"id": "creativity", "size": 5, "score": 0.4 , "title": "creativity", "type": "circle"},
+
+      
+
+        {"id": "marriage", "size": 5, "score": 0.4 , "title": "marriage", "type": "circle"},
+
+      
+
+        {"id": "art", "size": 5, "score": 0.4 , "title": "art", "type": "circle"},
 
       
 
         {"id": "fathers", "size": 5, "score": 0.4 , "title": "fathers", "type": "circle"},
-
-      
-
-        {"id": "image-of-God", "size": 5, "score": 0.4 , "title": "image-of-God", "type": "circle"},
-
-      
-
-        {"id": "images", "size": 5, "score": 0.4 , "title": "images", "type": "circle"},
 
        
 
@@ -1033,10 +1037,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

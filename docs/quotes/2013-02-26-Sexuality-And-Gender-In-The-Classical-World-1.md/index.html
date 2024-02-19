@@ -764,31 +764,11 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "males", "target": "Basso" },
+          { "source": "present", "target": "sex" },
       
-          { "source": "males", "target": "del" },
+          { "source": "present", "target": "males" },
       
-          { "source": "males", "target": "sex" },
-      
-          { "source": "males", "target": "name" },
-      
-          { "source": "males", "target": "present" },
-      
-          { "source": "Basso", "target": "del" },
-      
-          { "source": "Basso", "target": "males" },
-      
-          { "source": "Basso", "target": "Quattro" },
-      
-          { "source": "Basso", "target": "Italiano" },
-      
-          { "source": "del", "target": "Basso" },
-      
-          { "source": "del", "target": "males" },
-      
-          { "source": "del", "target": "InveCe" },
-      
-          { "source": "del", "target": "forma" },
+          { "source": "present", "target": "name" },
       
           { "source": "sex", "target": "association" },
       
@@ -798,34 +778,32 @@ var data_local_dynamic = {
       
           { "source": "sex", "target": "males" },
       
-          { "source": "name", "target": "terminology" },
+          { "source": "males", "target": "aperta" },
       
-          { "source": "name", "target": "culture" },
+          { "source": "males", "target": "Basso" },
       
-          { "source": "name", "target": "researchers" },
+          { "source": "males", "target": "del" },
       
-          { "source": "name", "target": "cultural-period" },
+          { "source": "males", "target": "sex" },
       
-          { "source": "present", "target": "sex" },
+          { "source": "name", "target": "book" },
       
-          { "source": "present", "target": "males" },
+          { "source": "name", "target": "figures" },
       
-          { "source": "present", "target": "name" },
+          { "source": "name", "target": "cases" },
+      
+          { "source": "name", "target": "philosophy" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "Basso", "size": 70, "score": 0 , "title": "Basso", "type": "circle"},
-
-      
-
-        {"id": "del", "size": 70, "score": 0 , "title": "del", "type": "circle"},
-
-      
-
         {"id": "sex", "size": 70, "score": 0 , "title": "sex", "type": "circle"},
+
+      
+
+        {"id": "males", "size": 70, "score": 0 , "title": "males", "type": "circle"},
 
       
 
@@ -833,27 +811,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "present", "size": 70, "score": 0 , "title": "present", "type": "circle"},
-
-      
-
-        {"id": "males", "size": 140, "score": 0.5 , "title": "males", "type": "circle"},
-
-      
-
-        {"id": "Quattro", "size": 5, "score": 0.4 , "title": "Quattro", "type": "circle"},
-
-      
-
-        {"id": "Italiano", "size": 5, "score": 0.4 , "title": "Italiano", "type": "circle"},
-
-      
-
-        {"id": "InveCe", "size": 5, "score": 0.4 , "title": "InveCe", "type": "circle"},
-
-      
-
-        {"id": "forma", "size": 5, "score": 0.4 , "title": "forma", "type": "circle"},
+        {"id": "present", "size": 140, "score": 0.5 , "title": "present", "type": "circle"},
 
       
 
@@ -869,19 +827,31 @@ var data_local_dynamic = {
 
       
 
-        {"id": "terminology", "size": 5, "score": 0.4 , "title": "terminology", "type": "circle"},
+        {"id": "aperta", "size": 5, "score": 0.4 , "title": "aperta", "type": "circle"},
 
       
 
-        {"id": "culture", "size": 5, "score": 0.4 , "title": "culture", "type": "circle"},
+        {"id": "Basso", "size": 5, "score": 0.4 , "title": "Basso", "type": "circle"},
 
       
 
-        {"id": "researchers", "size": 5, "score": 0.4 , "title": "researchers", "type": "circle"},
+        {"id": "del", "size": 5, "score": 0.4 , "title": "del", "type": "circle"},
 
       
 
-        {"id": "cultural-period", "size": 5, "score": 0.4 , "title": "cultural-period", "type": "circle"},
+        {"id": "book", "size": 5, "score": 0.4 , "title": "book", "type": "circle"},
+
+      
+
+        {"id": "figures", "size": 5, "score": 0.4 , "title": "figures", "type": "circle"},
+
+      
+
+        {"id": "cases", "size": 5, "score": 0.4 , "title": "cases", "type": "circle"},
+
+      
+
+        {"id": "philosophy", "size": 5, "score": 0.4 , "title": "philosophy", "type": "circle"},
 
        
 
@@ -1011,10 +981,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

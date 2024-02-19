@@ -780,15 +780,15 @@ var data_local_dynamic = {
       
           { "source": "solo", "target": "Spirito" },
       
-          { "source": "solo", "target": "anni" },
+          { "source": "solo", "target": "passiones" },
       
-          { "source": "solo", "target": "species" },
+          { "source": "solo", "target": "Grado" },
+      
+          { "source": "cis", "target": "DIO" },
       
           { "source": "cis", "target": "solo" },
       
           { "source": "cis", "target": "sociales" },
-      
-          { "source": "cis", "target": "DIO" },
       
           { "source": "sociales", "target": "cis" },
       
@@ -796,29 +796,27 @@ var data_local_dynamic = {
       
           { "source": "sociales", "target": "al" },
       
-          { "source": "Spirito", "target": "solo" },
-      
           { "source": "Spirito", "target": "sole" },
       
           { "source": "Spirito", "target": "vicine" },
       
+          { "source": "Spirito", "target": "solo" },
+      
           { "source": "Spirito", "target": "passiones" },
       
-          { "source": "anni", "target": "nulla" },
+          { "source": "passiones", "target": "Prima" },
       
-          { "source": "anni", "target": "Quattro" },
+          { "source": "passiones", "target": "Spirito" },
       
-          { "source": "anni", "target": "totale" },
+          { "source": "passiones", "target": "solo" },
       
-          { "source": "anni", "target": "Gruppo" },
+          { "source": "Grado", "target": "solo" },
       
-          { "source": "species", "target": "food" },
+          { "source": "Grado", "target": "computer" },
       
-          { "source": "species", "target": "structure" },
+          { "source": "Grado", "target": "CoSe" },
       
-          { "source": "species", "target": "types" },
-      
-          { "source": "species", "target": "anni" },
+          { "source": "Grado", "target": "sé" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -837,11 +835,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "anni", "size": 70, "score": 0 , "title": "anni", "type": "circle"},
+        {"id": "passiones", "size": 70, "score": 0 , "title": "passiones", "type": "circle"},
 
       
 
-        {"id": "species", "size": 70, "score": 0 , "title": "species", "type": "circle"},
+        {"id": "Grado", "size": 70, "score": 0 , "title": "Grado", "type": "circle"},
 
       
 
@@ -865,35 +863,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "passiones", "size": 5, "score": 0.4 , "title": "passiones", "type": "circle"},
+        {"id": "Prima", "size": 5, "score": 0.4 , "title": "Prima", "type": "circle"},
 
       
 
-        {"id": "nulla", "size": 5, "score": 0.4 , "title": "nulla", "type": "circle"},
+        {"id": "computer", "size": 5, "score": 0.4 , "title": "computer", "type": "circle"},
 
       
 
-        {"id": "Quattro", "size": 5, "score": 0.4 , "title": "Quattro", "type": "circle"},
+        {"id": "CoSe", "size": 5, "score": 0.4 , "title": "CoSe", "type": "circle"},
 
       
 
-        {"id": "totale", "size": 5, "score": 0.4 , "title": "totale", "type": "circle"},
-
-      
-
-        {"id": "Gruppo", "size": 5, "score": 0.4 , "title": "Gruppo", "type": "circle"},
-
-      
-
-        {"id": "food", "size": 5, "score": 0.4 , "title": "food", "type": "circle"},
-
-      
-
-        {"id": "structure", "size": 5, "score": 0.4 , "title": "structure", "type": "circle"},
-
-      
-
-        {"id": "types", "size": 5, "score": 0.4 , "title": "types", "type": "circle"},
+        {"id": "sé", "size": 5, "score": 0.4 , "title": "sé", "type": "circle"},
 
        
 
@@ -1023,10 +1005,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

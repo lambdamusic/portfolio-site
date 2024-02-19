@@ -12,9 +12,10 @@ from time import strftime
 import markdown
 import random
 
-from render_block import render_block_to_string
-
 from settings import STATICFILES_DIRS, BLOGS_ROOT
+
+# from /src/libs
+from render_block import render_block_to_string
 from myutils.myutils import printDebug
 
 from researchapp.models import *
@@ -220,6 +221,7 @@ def read_all_files_data():
 			quote['title'] = TITLE
 			quote['tags'] = TAGS
 			quote['source'] = SOURCE
+			quote['source_url'] = SOURCE_URL
 			quote['review'] = REVIEW
 
 			if SOURCE:
@@ -237,7 +239,7 @@ def read_all_files_data():
 			# 	pass
 
 	# finally
-
+	files_data = sorted(files_data, key= lambda x: x['source'])
 	printDebug(f"""\n# Files read: {counter1}\n# Records parsed: {counter2}\n# Records selected: {counter3}\n""", "bold")
 	return(files_data)
 

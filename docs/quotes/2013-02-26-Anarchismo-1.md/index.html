@@ -762,24 +762,6 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "CoSe", "target": "vitae" },
-      
-          { "source": "CoSe", "target": "significa" },
-      
-          { "source": "CoSe", "target": "termine" },
-      
-          { "source": "CoSe", "target": "DARE" },
-      
-          { "source": "CoSe", "target": "tempo" },
-      
-          { "source": "vitae", "target": "CoSe" },
-      
-          { "source": "vitae", "target": "Chiesa" },
-      
-          { "source": "vitae", "target": "Matteo" },
-      
-          { "source": "vitae", "target": "proprio" },
-      
           { "source": "significa", "target": "termine" },
       
           { "source": "significa", "target": "CoSe" },
@@ -787,6 +769,8 @@ var data_local_dynamic = {
           { "source": "significa", "target": "aperta" },
       
           { "source": "significa", "target": "ED" },
+      
+          { "source": "significa", "target": "Bocca" },
       
           { "source": "termine", "target": "significa" },
       
@@ -796,68 +780,58 @@ var data_local_dynamic = {
       
           { "source": "termine", "target": "ancora" },
       
-          { "source": "DARE", "target": "forma" },
+          { "source": "CoSe", "target": "significa" },
       
-          { "source": "DARE", "target": "tempo" },
+          { "source": "CoSe", "target": "termine" },
       
-          { "source": "DARE", "target": "CoSe" },
+          { "source": "CoSe", "target": "perché" },
       
-          { "source": "DARE", "target": "quando" },
+          { "source": "CoSe", "target": "Grandi" },
       
-          { "source": "tempo", "target": "Fattori" },
+          { "source": "aperta", "target": "ED" },
       
-          { "source": "tempo", "target": "anni" },
+          { "source": "aperta", "target": "significa" },
       
-          { "source": "tempo", "target": "DARE" },
+          { "source": "aperta", "target": "males" },
       
-          { "source": "tempo", "target": "CoSe" },
+          { "source": "ED", "target": "aperta" },
+      
+          { "source": "ED", "target": "significa" },
+      
+          { "source": "ED", "target": "DIO" },
+      
+          { "source": "ED", "target": "Parola" },
+      
+          { "source": "Bocca", "target": "FREYA" },
+      
+          { "source": "Bocca", "target": "significa" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "vitae", "size": 70, "score": 0 , "title": "vitae", "type": "circle"},
-
-      
-
-        {"id": "significa", "size": 70, "score": 0 , "title": "significa", "type": "circle"},
-
-      
-
         {"id": "termine", "size": 70, "score": 0 , "title": "termine", "type": "circle"},
 
       
 
-        {"id": "DARE", "size": 70, "score": 0 , "title": "DARE", "type": "circle"},
+        {"id": "CoSe", "size": 70, "score": 0 , "title": "CoSe", "type": "circle"},
 
       
 
-        {"id": "tempo", "size": 70, "score": 0 , "title": "tempo", "type": "circle"},
+        {"id": "aperta", "size": 70, "score": 0 , "title": "aperta", "type": "circle"},
 
       
 
-        {"id": "CoSe", "size": 140, "score": 0.5 , "title": "CoSe", "type": "circle"},
+        {"id": "ED", "size": 70, "score": 0 , "title": "ED", "type": "circle"},
 
       
 
-        {"id": "Chiesa", "size": 5, "score": 0.4 , "title": "Chiesa", "type": "circle"},
+        {"id": "Bocca", "size": 70, "score": 0 , "title": "Bocca", "type": "circle"},
 
       
 
-        {"id": "Matteo", "size": 5, "score": 0.4 , "title": "Matteo", "type": "circle"},
-
-      
-
-        {"id": "proprio", "size": 5, "score": 0.4 , "title": "proprio", "type": "circle"},
-
-      
-
-        {"id": "aperta", "size": 5, "score": 0.4 , "title": "aperta", "type": "circle"},
-
-      
-
-        {"id": "ED", "size": 5, "score": 0.4 , "title": "ED", "type": "circle"},
+        {"id": "significa", "size": 140, "score": 0.5 , "title": "significa", "type": "circle"},
 
       
 
@@ -869,19 +843,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "forma", "size": 5, "score": 0.4 , "title": "forma", "type": "circle"},
+        {"id": "perché", "size": 5, "score": 0.4 , "title": "perché", "type": "circle"},
 
       
 
-        {"id": "quando", "size": 5, "score": 0.4 , "title": "quando", "type": "circle"},
+        {"id": "Grandi", "size": 5, "score": 0.4 , "title": "Grandi", "type": "circle"},
 
       
 
-        {"id": "Fattori", "size": 5, "score": 0.4 , "title": "Fattori", "type": "circle"},
+        {"id": "males", "size": 5, "score": 0.4 , "title": "males", "type": "circle"},
 
       
 
-        {"id": "anni", "size": 5, "score": 0.4 , "title": "anni", "type": "circle"},
+        {"id": "DIO", "size": 5, "score": 0.4 , "title": "DIO", "type": "circle"},
+
+      
+
+        {"id": "Parola", "size": 5, "score": 0.4 , "title": "Parola", "type": "circle"},
+
+      
+
+        {"id": "FREYA", "size": 5, "score": 0.4 , "title": "FREYA", "type": "circle"},
 
        
 
@@ -1011,10 +993,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

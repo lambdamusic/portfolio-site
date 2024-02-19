@@ -766,39 +766,15 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "Spain", "target": "years" },
-      
-          { "source": "Spain", "target": "England" },
-      
-          { "source": "Spain", "target": "Turkey" },
-      
           { "source": "Spain", "target": "Americans" },
       
           { "source": "Spain", "target": "Union" },
       
-          { "source": "years", "target": "UK" },
+          { "source": "Spain", "target": "countries" },
       
-          { "source": "years", "target": "Europe" },
+          { "source": "Spain", "target": "New-York" },
       
-          { "source": "years", "target": "episodes" },
-      
-          { "source": "years", "target": "orphans" },
-      
-          { "source": "England", "target": "years" },
-      
-          { "source": "England", "target": "Turkey" },
-      
-          { "source": "England", "target": "Spain" },
-      
-          { "source": "England", "target": "Court" },
-      
-          { "source": "Turkey", "target": "years" },
-      
-          { "source": "Turkey", "target": "England" },
-      
-          { "source": "Turkey", "target": "Spain" },
-      
-          { "source": "Turkey", "target": "Iran" },
+          { "source": "Spain", "target": "years" },
       
           { "source": "Americans", "target": "Union" },
       
@@ -808,29 +784,41 @@ var data_local_dynamic = {
       
           { "source": "Americans", "target": "New-York" },
       
-          { "source": "Union", "target": "topic" },
+          { "source": "Union", "target": "Americans" },
       
-          { "source": "Union", "target": "indicators" },
+          { "source": "Union", "target": "Spain" },
       
-          { "source": "Union", "target": "defeat" },
+          { "source": "Union", "target": "countries" },
       
-          { "source": "Union", "target": "Scotland" },
+          { "source": "Union", "target": "New-York" },
+      
+          { "source": "countries", "target": "Americans" },
+      
+          { "source": "countries", "target": "Union" },
+      
+          { "source": "countries", "target": "Spain" },
+      
+          { "source": "countries", "target": "New-York" },
+      
+          { "source": "New-York", "target": "Americans" },
+      
+          { "source": "New-York", "target": "Union" },
+      
+          { "source": "New-York", "target": "Spain" },
+      
+          { "source": "New-York", "target": "countries" },
+      
+          { "source": "years", "target": "factors" },
+      
+          { "source": "years", "target": "article" },
+      
+          { "source": "years", "target": "citations" },
+      
+          { "source": "years", "target": "episodes" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
-      
-
-        {"id": "years", "size": 70, "score": 0 , "title": "years", "type": "circle"},
-
-      
-
-        {"id": "England", "size": 70, "score": 0 , "title": "England", "type": "circle"},
-
-      
-
-        {"id": "Turkey", "size": 70, "score": 0 , "title": "Turkey", "type": "circle"},
-
       
 
         {"id": "Americans", "size": 70, "score": 0 , "title": "Americans", "type": "circle"},
@@ -841,55 +829,35 @@ var data_local_dynamic = {
 
       
 
+        {"id": "countries", "size": 70, "score": 0 , "title": "countries", "type": "circle"},
+
+      
+
+        {"id": "New-York", "size": 70, "score": 0 , "title": "New-York", "type": "circle"},
+
+      
+
+        {"id": "years", "size": 70, "score": 0 , "title": "years", "type": "circle"},
+
+      
+
         {"id": "Spain", "size": 140, "score": 0.5 , "title": "Spain", "type": "circle"},
 
       
 
-        {"id": "UK", "size": 5, "score": 0.4 , "title": "UK", "type": "circle"},
+        {"id": "factors", "size": 5, "score": 0.4 , "title": "factors", "type": "circle"},
 
       
 
-        {"id": "Europe", "size": 5, "score": 0.4 , "title": "Europe", "type": "circle"},
+        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
+
+      
+
+        {"id": "citations", "size": 5, "score": 0.4 , "title": "citations", "type": "circle"},
 
       
 
         {"id": "episodes", "size": 5, "score": 0.4 , "title": "episodes", "type": "circle"},
-
-      
-
-        {"id": "orphans", "size": 5, "score": 0.4 , "title": "orphans", "type": "circle"},
-
-      
-
-        {"id": "Court", "size": 5, "score": 0.4 , "title": "Court", "type": "circle"},
-
-      
-
-        {"id": "Iran", "size": 5, "score": 0.4 , "title": "Iran", "type": "circle"},
-
-      
-
-        {"id": "countries", "size": 5, "score": 0.4 , "title": "countries", "type": "circle"},
-
-      
-
-        {"id": "New-York", "size": 5, "score": 0.4 , "title": "New-York", "type": "circle"},
-
-      
-
-        {"id": "topic", "size": 5, "score": 0.4 , "title": "topic", "type": "circle"},
-
-      
-
-        {"id": "indicators", "size": 5, "score": 0.4 , "title": "indicators", "type": "circle"},
-
-      
-
-        {"id": "defeat", "size": 5, "score": 0.4 , "title": "defeat", "type": "circle"},
-
-      
-
-        {"id": "Scotland", "size": 5, "score": 0.4 , "title": "Scotland", "type": "circle"},
 
        
 
@@ -1019,10 +987,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

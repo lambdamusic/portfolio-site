@@ -767,49 +767,53 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "scientific-reasoning", "target": "things" },
+      
           { "source": "scientific-reasoning", "target": "argument" },
       
           { "source": "scientific-reasoning", "target": "reasoning" },
       
           { "source": "scientific-reasoning", "target": "claims" },
       
-          { "source": "scientific-reasoning", "target": "things" },
+          { "source": "things", "target": "industrial-revolution" },
+      
+          { "source": "things", "target": "bits" },
+      
+          { "source": "things", "target": "services" },
+      
+          { "source": "things", "target": "machine" },
+      
+          { "source": "argument", "target": "language" },
+      
+          { "source": "argument", "target": "Lisp" },
+      
+          { "source": "argument", "target": "function" },
       
           { "source": "argument", "target": "claims" },
       
-          { "source": "argument", "target": "evidence" },
+          { "source": "reasoning", "target": "knowledge-representation" },
       
-          { "source": "argument", "target": "framework" },
+          { "source": "reasoning", "target": "set" },
       
-          { "source": "argument", "target": "article" },
+          { "source": "reasoning", "target": "information-systems" },
       
-          { "source": "reasoning", "target": "brain" },
-      
-          { "source": "reasoning", "target": "mind" },
-      
-          { "source": "reasoning", "target": "disambiguation" },
-      
-          { "source": "reasoning", "target": "article" },
-      
-          { "source": "claims", "target": "scientific-articles" },
-      
-          { "source": "claims", "target": "article" },
+          { "source": "reasoning", "target": "argument" },
       
           { "source": "claims", "target": "religious-experience" },
       
-          { "source": "claims", "target": "argument" },
+          { "source": "claims", "target": "text" },
       
-          { "source": "things", "target": "nature" },
+          { "source": "claims", "target": "discourse" },
       
-          { "source": "things", "target": "God" },
-      
-          { "source": "things", "target": "universe" },
-      
-          { "source": "things", "target": "idea" },
+          { "source": "claims", "target": "readers" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "things", "size": 70, "score": 0 , "title": "things", "type": "circle"},
+
       
 
         {"id": "argument", "size": 70, "score": 0 , "title": "argument", "type": "circle"},
@@ -824,39 +828,47 @@ var data_local_dynamic = {
 
       
 
-        {"id": "things", "size": 70, "score": 0 , "title": "things", "type": "circle"},
-
-      
-
         {"id": "scientific-reasoning", "size": 140, "score": 0.5 , "title": "scientific-reasoning", "type": "circle"},
 
       
 
-        {"id": "evidence", "size": 5, "score": 0.4 , "title": "evidence", "type": "circle"},
+        {"id": "industrial-revolution", "size": 5, "score": 0.4 , "title": "industrial-revolution", "type": "circle"},
 
       
 
-        {"id": "framework", "size": 5, "score": 0.4 , "title": "framework", "type": "circle"},
+        {"id": "bits", "size": 5, "score": 0.4 , "title": "bits", "type": "circle"},
 
       
 
-        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
+        {"id": "services", "size": 5, "score": 0.4 , "title": "services", "type": "circle"},
 
       
 
-        {"id": "brain", "size": 5, "score": 0.4 , "title": "brain", "type": "circle"},
+        {"id": "machine", "size": 5, "score": 0.4 , "title": "machine", "type": "circle"},
 
       
 
-        {"id": "mind", "size": 5, "score": 0.4 , "title": "mind", "type": "circle"},
+        {"id": "language", "size": 5, "score": 0.4 , "title": "language", "type": "circle"},
 
       
 
-        {"id": "disambiguation", "size": 5, "score": 0.4 , "title": "disambiguation", "type": "circle"},
+        {"id": "Lisp", "size": 5, "score": 0.4 , "title": "Lisp", "type": "circle"},
 
       
 
-        {"id": "scientific-articles", "size": 5, "score": 0.4 , "title": "scientific-articles", "type": "circle"},
+        {"id": "function", "size": 5, "score": 0.4 , "title": "function", "type": "circle"},
+
+      
+
+        {"id": "knowledge-representation", "size": 5, "score": 0.4 , "title": "knowledge-representation", "type": "circle"},
+
+      
+
+        {"id": "set", "size": 5, "score": 0.4 , "title": "set", "type": "circle"},
+
+      
+
+        {"id": "information-systems", "size": 5, "score": 0.4 , "title": "information-systems", "type": "circle"},
 
       
 
@@ -864,19 +876,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "nature", "size": 5, "score": 0.4 , "title": "nature", "type": "circle"},
+        {"id": "text", "size": 5, "score": 0.4 , "title": "text", "type": "circle"},
 
       
 
-        {"id": "God", "size": 5, "score": 0.4 , "title": "God", "type": "circle"},
+        {"id": "discourse", "size": 5, "score": 0.4 , "title": "discourse", "type": "circle"},
 
       
 
-        {"id": "universe", "size": 5, "score": 0.4 , "title": "universe", "type": "circle"},
-
-      
-
-        {"id": "idea", "size": 5, "score": 0.4 , "title": "idea", "type": "circle"},
+        {"id": "readers", "size": 5, "score": 0.4 , "title": "readers", "type": "circle"},
 
        
 
@@ -1006,10 +1014,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

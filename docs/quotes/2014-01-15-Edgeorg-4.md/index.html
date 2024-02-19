@@ -762,31 +762,15 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "experiments", "target": "curiosity" },
-      
-          { "source": "experiments", "target": "things" },
-      
           { "source": "experiments", "target": "constructs" },
       
           { "source": "experiments", "target": "hypothesis" },
       
           { "source": "experiments", "target": "process" },
       
-          { "source": "curiosity", "target": "experiments" },
+          { "source": "experiments", "target": "thought-experiment" },
       
-          { "source": "curiosity", "target": "things" },
-      
-          { "source": "curiosity", "target": "book" },
-      
-          { "source": "curiosity", "target": "reading" },
-      
-          { "source": "things", "target": "nature" },
-      
-          { "source": "things", "target": "God" },
-      
-          { "source": "things", "target": "universe" },
-      
-          { "source": "things", "target": "idea" },
+          { "source": "experiments", "target": "phenomenon" },
       
           { "source": "constructs", "target": "experiments" },
       
@@ -796,13 +780,13 @@ var data_local_dynamic = {
       
           { "source": "constructs", "target": "association" },
       
-          { "source": "hypothesis", "target": "men" },
+          { "source": "hypothesis", "target": "experiments" },
       
-          { "source": "hypothesis", "target": "living" },
+          { "source": "hypothesis", "target": "constructs" },
       
-          { "source": "hypothesis", "target": "years" },
+          { "source": "hypothesis", "target": "process" },
       
-          { "source": "hypothesis", "target": "body" },
+          { "source": "hypothesis", "target": "publications" },
       
           { "source": "process", "target": "experiments" },
       
@@ -810,19 +794,27 @@ var data_local_dynamic = {
       
           { "source": "process", "target": "hypothesis" },
       
-          { "source": "process", "target": "function" },
+          { "source": "process", "target": "bridge" },
+      
+          { "source": "thought-experiment", "target": "experiments" },
+      
+          { "source": "thought-experiment", "target": "phenomenon" },
+      
+          { "source": "thought-experiment", "target": "philosophy" },
+      
+          { "source": "thought-experiment", "target": "epistemic-practices" },
+      
+          { "source": "phenomenon", "target": "thought-experiment" },
+      
+          { "source": "phenomenon", "target": "experiments" },
+      
+          { "source": "phenomenon", "target": "existence" },
+      
+          { "source": "phenomenon", "target": "operation" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
-      
-
-        {"id": "curiosity", "size": 70, "score": 0 , "title": "curiosity", "type": "circle"},
-
-      
-
-        {"id": "things", "size": 70, "score": 0 , "title": "things", "type": "circle"},
-
       
 
         {"id": "constructs", "size": 70, "score": 0 , "title": "constructs", "type": "circle"},
@@ -837,31 +829,15 @@ var data_local_dynamic = {
 
       
 
+        {"id": "thought-experiment", "size": 70, "score": 0 , "title": "thought-experiment", "type": "circle"},
+
+      
+
+        {"id": "phenomenon", "size": 70, "score": 0 , "title": "phenomenon", "type": "circle"},
+
+      
+
         {"id": "experiments", "size": 140, "score": 0.5 , "title": "experiments", "type": "circle"},
-
-      
-
-        {"id": "book", "size": 5, "score": 0.4 , "title": "book", "type": "circle"},
-
-      
-
-        {"id": "reading", "size": 5, "score": 0.4 , "title": "reading", "type": "circle"},
-
-      
-
-        {"id": "nature", "size": 5, "score": 0.4 , "title": "nature", "type": "circle"},
-
-      
-
-        {"id": "God", "size": 5, "score": 0.4 , "title": "God", "type": "circle"},
-
-      
-
-        {"id": "universe", "size": 5, "score": 0.4 , "title": "universe", "type": "circle"},
-
-      
-
-        {"id": "idea", "size": 5, "score": 0.4 , "title": "idea", "type": "circle"},
 
       
 
@@ -869,23 +845,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
+        {"id": "publications", "size": 5, "score": 0.4 , "title": "publications", "type": "circle"},
 
       
 
-        {"id": "living", "size": 5, "score": 0.4 , "title": "living", "type": "circle"},
+        {"id": "bridge", "size": 5, "score": 0.4 , "title": "bridge", "type": "circle"},
 
       
 
-        {"id": "years", "size": 5, "score": 0.4 , "title": "years", "type": "circle"},
+        {"id": "philosophy", "size": 5, "score": 0.4 , "title": "philosophy", "type": "circle"},
 
       
 
-        {"id": "body", "size": 5, "score": 0.4 , "title": "body", "type": "circle"},
+        {"id": "epistemic-practices", "size": 5, "score": 0.4 , "title": "epistemic-practices", "type": "circle"},
 
       
 
-        {"id": "function", "size": 5, "score": 0.4 , "title": "function", "type": "circle"},
+        {"id": "existence", "size": 5, "score": 0.4 , "title": "existence", "type": "circle"},
+
+      
+
+        {"id": "operation", "size": 5, "score": 0.4 , "title": "operation", "type": "circle"},
 
        
 
@@ -1015,10 +995,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

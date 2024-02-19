@@ -767,110 +767,90 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "cost", "target": "scholarly-communication" },
+          { "source": "business", "target": "product-owners" },
       
-          { "source": "cost", "target": "communication" },
+          { "source": "business", "target": "owners" },
       
-          { "source": "cost", "target": "jet-aircraft" },
+          { "source": "business", "target": "project" },
       
-          { "source": "cost", "target": "aircraft" },
+          { "source": "business", "target": "product-backlog" },
       
-          { "source": "cost", "target": "products" },
+          { "source": "business", "target": "team" },
       
-          { "source": "scholarly-communication", "target": "communication" },
+          { "source": "product-owners", "target": "owners" },
       
-          { "source": "scholarly-communication", "target": "cost" },
+          { "source": "product-owners", "target": "project" },
       
-          { "source": "scholarly-communication", "target": "article" },
+          { "source": "product-owners", "target": "business" },
       
-          { "source": "scholarly-communication", "target": "journals" },
+          { "source": "product-owners", "target": "product-backlog" },
       
-          { "source": "communication", "target": "scholarly-communication" },
+          { "source": "owners", "target": "product-owners" },
       
-          { "source": "communication", "target": "cost" },
+          { "source": "owners", "target": "project" },
       
-          { "source": "communication", "target": "users" },
+          { "source": "owners", "target": "business" },
       
-          { "source": "communication", "target": "designers" },
+          { "source": "owners", "target": "product-backlog" },
       
-          { "source": "jet-aircraft", "target": "cost" },
+          { "source": "project", "target": "product-owners" },
       
-          { "source": "jet-aircraft", "target": "aircraft" },
+          { "source": "project", "target": "owners" },
       
-          { "source": "jet-aircraft", "target": "products" },
+          { "source": "project", "target": "business" },
       
-          { "source": "jet-aircraft", "target": "problem" },
+          { "source": "project", "target": "product-backlog" },
       
-          { "source": "aircraft", "target": "jet-aircraft" },
+          { "source": "product-backlog", "target": "product-owners" },
       
-          { "source": "aircraft", "target": "cost" },
+          { "source": "product-backlog", "target": "owners" },
       
-          { "source": "aircraft", "target": "products" },
+          { "source": "product-backlog", "target": "project" },
       
-          { "source": "aircraft", "target": "problem" },
+          { "source": "product-backlog", "target": "business" },
       
-          { "source": "products", "target": "software-products" },
+          { "source": "team", "target": "goal" },
       
-          { "source": "products", "target": "relationship" },
+          { "source": "team", "target": "link" },
       
-          { "source": "products", "target": "jet-aircraft" },
+          { "source": "team", "target": "owners" },
       
-          { "source": "products", "target": "cost" },
+          { "source": "team", "target": "product-owners" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "scholarly-communication", "size": 70, "score": 0 , "title": "scholarly-communication", "type": "circle"},
+        {"id": "product-owners", "size": 70, "score": 0 , "title": "product-owners", "type": "circle"},
 
       
 
-        {"id": "communication", "size": 70, "score": 0 , "title": "communication", "type": "circle"},
+        {"id": "owners", "size": 70, "score": 0 , "title": "owners", "type": "circle"},
 
       
 
-        {"id": "jet-aircraft", "size": 70, "score": 0 , "title": "jet-aircraft", "type": "circle"},
+        {"id": "project", "size": 70, "score": 0 , "title": "project", "type": "circle"},
 
       
 
-        {"id": "aircraft", "size": 70, "score": 0 , "title": "aircraft", "type": "circle"},
+        {"id": "product-backlog", "size": 70, "score": 0 , "title": "product-backlog", "type": "circle"},
 
       
 
-        {"id": "products", "size": 70, "score": 0 , "title": "products", "type": "circle"},
+        {"id": "team", "size": 70, "score": 0 , "title": "team", "type": "circle"},
 
       
 
-        {"id": "cost", "size": 140, "score": 0.5 , "title": "cost", "type": "circle"},
+        {"id": "business", "size": 140, "score": 0.5 , "title": "business", "type": "circle"},
 
       
 
-        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
+        {"id": "goal", "size": 5, "score": 0.4 , "title": "goal", "type": "circle"},
 
       
 
-        {"id": "journals", "size": 5, "score": 0.4 , "title": "journals", "type": "circle"},
-
-      
-
-        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
-
-      
-
-        {"id": "designers", "size": 5, "score": 0.4 , "title": "designers", "type": "circle"},
-
-      
-
-        {"id": "problem", "size": 5, "score": 0.4 , "title": "problem", "type": "circle"},
-
-      
-
-        {"id": "software-products", "size": 5, "score": 0.4 , "title": "software-products", "type": "circle"},
-
-      
-
-        {"id": "relationship", "size": 5, "score": 0.4 , "title": "relationship", "type": "circle"},
+        {"id": "link", "size": 5, "score": 0.4 , "title": "link", "type": "circle"},
 
        
 
@@ -1000,10 +980,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

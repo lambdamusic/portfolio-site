@@ -778,37 +778,37 @@ var data_local_dynamic = {
       
           { "source": "umana", "target": "addiction" },
       
-          { "source": "nausea", "target": "mares" },
-      
           { "source": "nausea", "target": "STA" },
       
           { "source": "nausea", "target": "Matteo" },
       
           { "source": "nausea", "target": "cons" },
       
-          { "source": "Matteo", "target": "proprio" },
-      
-          { "source": "Matteo", "target": "vitae" },
-      
-          { "source": "Matteo", "target": "DELLA" },
+          { "source": "nausea", "target": "mares" },
       
           { "source": "Matteo", "target": "nausea" },
       
-          { "source": "cons", "target": "Veneto" },
+          { "source": "Matteo", "target": "STA" },
       
-          { "source": "cons", "target": "Emilia-Romagna" },
+          { "source": "Matteo", "target": "cons" },
       
-          { "source": "cons", "target": "Friuli-Venezia-Giulia" },
+          { "source": "Matteo", "target": "proprio" },
       
-          { "source": "cons", "target": "Lombardia" },
+          { "source": "cons", "target": "Italiano" },
+      
+          { "source": "cons", "target": "Presto" },
+      
+          { "source": "cons", "target": "nausea" },
+      
+          { "source": "cons", "target": "STA" },
+      
+          { "source": "DIO", "target": "tempo" },
+      
+          { "source": "DIO", "target": "momento" },
       
           { "source": "DIO", "target": "ED" },
       
           { "source": "DIO", "target": "Parola" },
-      
-          { "source": "DIO", "target": "vivo" },
-      
-          { "source": "DIO", "target": "Hanno" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -855,27 +855,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "vitae", "size": 5, "score": 0.4 , "title": "vitae", "type": "circle"},
+        {"id": "Italiano", "size": 5, "score": 0.4 , "title": "Italiano", "type": "circle"},
 
       
 
-        {"id": "DELLA", "size": 5, "score": 0.4 , "title": "DELLA", "type": "circle"},
+        {"id": "Presto", "size": 5, "score": 0.4 , "title": "Presto", "type": "circle"},
 
       
 
-        {"id": "Veneto", "size": 5, "score": 0.4 , "title": "Veneto", "type": "circle"},
+        {"id": "tempo", "size": 5, "score": 0.4 , "title": "tempo", "type": "circle"},
 
       
 
-        {"id": "Emilia-Romagna", "size": 5, "score": 0.4 , "title": "Emilia-Romagna", "type": "circle"},
-
-      
-
-        {"id": "Friuli-Venezia-Giulia", "size": 5, "score": 0.4 , "title": "Friuli-Venezia-Giulia", "type": "circle"},
-
-      
-
-        {"id": "Lombardia", "size": 5, "score": 0.4 , "title": "Lombardia", "type": "circle"},
+        {"id": "momento", "size": 5, "score": 0.4 , "title": "momento", "type": "circle"},
 
       
 
@@ -884,14 +876,6 @@ var data_local_dynamic = {
       
 
         {"id": "Parola", "size": 5, "score": 0.4 , "title": "Parola", "type": "circle"},
-
-      
-
-        {"id": "vivo", "size": 5, "score": 0.4 , "title": "vivo", "type": "circle"},
-
-      
-
-        {"id": "Hanno", "size": 5, "score": 0.4 , "title": "Hanno", "type": "circle"},
 
        
 
@@ -1021,10 +1005,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

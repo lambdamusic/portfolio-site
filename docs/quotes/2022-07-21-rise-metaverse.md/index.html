@@ -762,48 +762,130 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "metaverse", "target": "AI" },
+          { "source": "artificial-intelligence", "target": "years" },
       
-          { "source": "metaverse", "target": "artificial-intelligence" },
+          { "source": "artificial-intelligence", "target": "intelligence" },
       
-          { "source": "AI", "target": "metaverse" },
-      
-          { "source": "AI", "target": "artificial-intelligence" },
+          { "source": "artificial-intelligence", "target": "God" },
       
           { "source": "artificial-intelligence", "target": "philosophy" },
       
           { "source": "artificial-intelligence", "target": "connectionism" },
       
-          { "source": "artificial-intelligence", "target": "intelligence" },
+          { "source": "years", "target": "factors" },
       
-          { "source": "artificial-intelligence", "target": "name" },
+          { "source": "years", "target": "article" },
+      
+          { "source": "years", "target": "citations" },
+      
+          { "source": "years", "target": "episodes" },
+      
+          { "source": "intelligence", "target": "years" },
+      
+          { "source": "intelligence", "target": "artificial-intelligence" },
+      
+          { "source": "intelligence", "target": "God" },
+      
+          { "source": "intelligence", "target": "philosophy" },
+      
+          { "source": "God", "target": "believers" },
+      
+          { "source": "God", "target": "sin" },
+      
+          { "source": "God", "target": "Christians" },
+      
+          { "source": "God", "target": "words" },
+      
+          { "source": "philosophy", "target": "ontology" },
+      
+          { "source": "philosophy", "target": "ethics" },
+      
+          { "source": "philosophy", "target": "schema" },
+      
+          { "source": "philosophy", "target": "fact" },
+      
+          { "source": "connectionism", "target": "philosophy" },
+      
+          { "source": "connectionism", "target": "artificial-intelligence" },
+      
+          { "source": "connectionism", "target": "intelligence" },
+      
+          { "source": "connectionism", "target": "name" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "AI", "size": 70, "score": 0 , "title": "AI", "type": "circle"},
+        {"id": "years", "size": 70, "score": 0 , "title": "years", "type": "circle"},
 
       
 
-        {"id": "artificial-intelligence", "size": 70, "score": 0 , "title": "artificial-intelligence", "type": "circle"},
+        {"id": "intelligence", "size": 70, "score": 0 , "title": "intelligence", "type": "circle"},
 
       
 
-        {"id": "metaverse", "size": 140, "score": 0.5 , "title": "metaverse", "type": "circle"},
+        {"id": "God", "size": 70, "score": 0 , "title": "God", "type": "circle"},
 
       
 
-        {"id": "philosophy", "size": 5, "score": 0.4 , "title": "philosophy", "type": "circle"},
+        {"id": "philosophy", "size": 70, "score": 0 , "title": "philosophy", "type": "circle"},
 
       
 
-        {"id": "connectionism", "size": 5, "score": 0.4 , "title": "connectionism", "type": "circle"},
+        {"id": "connectionism", "size": 70, "score": 0 , "title": "connectionism", "type": "circle"},
 
       
 
-        {"id": "intelligence", "size": 5, "score": 0.4 , "title": "intelligence", "type": "circle"},
+        {"id": "artificial-intelligence", "size": 140, "score": 0.5 , "title": "artificial-intelligence", "type": "circle"},
+
+      
+
+        {"id": "factors", "size": 5, "score": 0.4 , "title": "factors", "type": "circle"},
+
+      
+
+        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
+
+      
+
+        {"id": "citations", "size": 5, "score": 0.4 , "title": "citations", "type": "circle"},
+
+      
+
+        {"id": "episodes", "size": 5, "score": 0.4 , "title": "episodes", "type": "circle"},
+
+      
+
+        {"id": "believers", "size": 5, "score": 0.4 , "title": "believers", "type": "circle"},
+
+      
+
+        {"id": "sin", "size": 5, "score": 0.4 , "title": "sin", "type": "circle"},
+
+      
+
+        {"id": "Christians", "size": 5, "score": 0.4 , "title": "Christians", "type": "circle"},
+
+      
+
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "ontology", "size": 5, "score": 0.4 , "title": "ontology", "type": "circle"},
+
+      
+
+        {"id": "ethics", "size": 5, "score": 0.4 , "title": "ethics", "type": "circle"},
+
+      
+
+        {"id": "schema", "size": 5, "score": 0.4 , "title": "schema", "type": "circle"},
+
+      
+
+        {"id": "fact", "size": 5, "score": 0.4 , "title": "fact", "type": "circle"},
 
       
 
@@ -937,10 +1019,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -764,43 +764,29 @@ var data_local_dynamic = {
       
           { "source": "movement", "target": "life" },
       
-          { "source": "movement", "target": "banks" },
-      
-          { "source": "movement", "target": "opinion" },
-      
           { "source": "movement", "target": "metaphysics" },
+      
+          { "source": "movement", "target": "gestures" },
+      
+          { "source": "movement", "target": "history" },
+      
+          { "source": "truth", "target": "movement" },
+      
+          { "source": "truth", "target": "life" },
       
           { "source": "truth", "target": "delusions" },
       
-          { "source": "truth", "target": "soul" },
+          { "source": "truth", "target": "scientific-method" },
       
-          { "source": "truth", "target": "things" },
+          { "source": "life", "target": "movement" },
       
-          { "source": "truth", "target": "astrology" },
+          { "source": "life", "target": "truth" },
       
           { "source": "life", "target": "religion" },
       
-          { "source": "life", "target": "death" },
-      
-          { "source": "life", "target": "end" },
-      
           { "source": "life", "target": "individuals" },
       
-          { "source": "banks", "target": "movement" },
-      
-          { "source": "banks", "target": "opinion" },
-      
-          { "source": "banks", "target": "nations" },
-      
-          { "source": "banks", "target": "community" },
-      
-          { "source": "opinion", "target": "movement" },
-      
-          { "source": "opinion", "target": "banks" },
-      
-          { "source": "opinion", "target": "rights" },
-      
-          { "source": "opinion", "target": "politicians" },
+          { "source": "metaphysics", "target": "movement" },
       
           { "source": "metaphysics", "target": "meaningful-statements" },
       
@@ -808,7 +794,21 @@ var data_local_dynamic = {
       
           { "source": "metaphysics", "target": "philosophy" },
       
-          { "source": "metaphysics", "target": "assumption" },
+          { "source": "gestures", "target": "history" },
+      
+          { "source": "gestures", "target": "movement" },
+      
+          { "source": "gestures", "target": "game" },
+      
+          { "source": "gestures", "target": "illusion" },
+      
+          { "source": "history", "target": "historians" },
+      
+          { "source": "history", "target": "Italy" },
+      
+          { "source": "history", "target": "politicians" },
+      
+          { "source": "history", "target": "book" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -823,15 +823,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "banks", "size": 70, "score": 0 , "title": "banks", "type": "circle"},
-
-      
-
-        {"id": "opinion", "size": 70, "score": 0 , "title": "opinion", "type": "circle"},
-
-      
-
         {"id": "metaphysics", "size": 70, "score": 0 , "title": "metaphysics", "type": "circle"},
+
+      
+
+        {"id": "gestures", "size": 70, "score": 0 , "title": "gestures", "type": "circle"},
+
+      
+
+        {"id": "history", "size": 70, "score": 0 , "title": "history", "type": "circle"},
 
       
 
@@ -843,15 +843,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "soul", "size": 5, "score": 0.4 , "title": "soul", "type": "circle"},
-
-      
-
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
-
-      
-
-        {"id": "astrology", "size": 5, "score": 0.4 , "title": "astrology", "type": "circle"},
+        {"id": "scientific-method", "size": 5, "score": 0.4 , "title": "scientific-method", "type": "circle"},
 
       
 
@@ -859,31 +851,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "death", "size": 5, "score": 0.4 , "title": "death", "type": "circle"},
-
-      
-
-        {"id": "end", "size": 5, "score": 0.4 , "title": "end", "type": "circle"},
-
-      
-
         {"id": "individuals", "size": 5, "score": 0.4 , "title": "individuals", "type": "circle"},
-
-      
-
-        {"id": "nations", "size": 5, "score": 0.4 , "title": "nations", "type": "circle"},
-
-      
-
-        {"id": "community", "size": 5, "score": 0.4 , "title": "community", "type": "circle"},
-
-      
-
-        {"id": "rights", "size": 5, "score": 0.4 , "title": "rights", "type": "circle"},
-
-      
-
-        {"id": "politicians", "size": 5, "score": 0.4 , "title": "politicians", "type": "circle"},
 
       
 
@@ -899,7 +867,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "assumption", "size": 5, "score": 0.4 , "title": "assumption", "type": "circle"},
+        {"id": "game", "size": 5, "score": 0.4 , "title": "game", "type": "circle"},
+
+      
+
+        {"id": "illusion", "size": 5, "score": 0.4 , "title": "illusion", "type": "circle"},
+
+      
+
+        {"id": "historians", "size": 5, "score": 0.4 , "title": "historians", "type": "circle"},
+
+      
+
+        {"id": "Italy", "size": 5, "score": 0.4 , "title": "Italy", "type": "circle"},
+
+      
+
+        {"id": "politicians", "size": 5, "score": 0.4 , "title": "politicians", "type": "circle"},
+
+      
+
+        {"id": "book", "size": 5, "score": 0.4 , "title": "book", "type": "circle"},
 
        
 
@@ -1029,10 +1017,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

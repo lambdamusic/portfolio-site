@@ -760,108 +760,42 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "information", "target": "documents" },
+          { "source": "computer-technology", "target": "information" },
       
-          { "source": "information", "target": "corpus" },
+          { "source": "information", "target": "nanopublications" },
       
-          { "source": "information", "target": "tool" },
+          { "source": "information", "target": "metadata" },
       
-          { "source": "information", "target": "RDF-Schema" },
+          { "source": "information", "target": "contextual-information" },
       
-          { "source": "information", "target": "schema" },
-      
-          { "source": "documents", "target": "corpus" },
-      
-          { "source": "documents", "target": "information" },
-      
-          { "source": "documents", "target": "tool" },
-      
-          { "source": "documents", "target": "URI" },
-      
-          { "source": "corpus", "target": "documents" },
-      
-          { "source": "corpus", "target": "information" },
-      
-          { "source": "corpus", "target": "tool" },
-      
-          { "source": "tool", "target": "documents" },
-      
-          { "source": "tool", "target": "corpus" },
-      
-          { "source": "tool", "target": "information" },
-      
-          { "source": "tool", "target": "theory" },
-      
-          { "source": "RDF-Schema", "target": "schema" },
-      
-          { "source": "RDF-Schema", "target": "information" },
-      
-          { "source": "RDF-Schema", "target": "applications" },
-      
-          { "source": "RDF-Schema", "target": "book" },
-      
-          { "source": "schema", "target": "scheme" },
-      
-          { "source": "schema", "target": "format" },
-      
-          { "source": "schema", "target": "archives" },
-      
-          { "source": "schema", "target": "RDF-Schema" },
+          { "source": "information", "target": "collection-objects" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "documents", "size": 70, "score": 0 , "title": "documents", "type": "circle"},
+        {"id": "information", "size": 70, "score": 0 , "title": "information", "type": "circle"},
 
       
 
-        {"id": "corpus", "size": 70, "score": 0 , "title": "corpus", "type": "circle"},
+        {"id": "computer-technology", "size": 140, "score": 0.5 , "title": "computer-technology", "type": "circle"},
 
       
 
-        {"id": "tool", "size": 70, "score": 0 , "title": "tool", "type": "circle"},
+        {"id": "nanopublications", "size": 5, "score": 0.4 , "title": "nanopublications", "type": "circle"},
 
       
 
-        {"id": "RDF-Schema", "size": 70, "score": 0 , "title": "RDF-Schema", "type": "circle"},
+        {"id": "metadata", "size": 5, "score": 0.4 , "title": "metadata", "type": "circle"},
 
       
 
-        {"id": "schema", "size": 70, "score": 0 , "title": "schema", "type": "circle"},
+        {"id": "contextual-information", "size": 5, "score": 0.4 , "title": "contextual-information", "type": "circle"},
 
       
 
-        {"id": "information", "size": 140, "score": 0.5 , "title": "information", "type": "circle"},
-
-      
-
-        {"id": "URI", "size": 5, "score": 0.4 , "title": "URI", "type": "circle"},
-
-      
-
-        {"id": "theory", "size": 5, "score": 0.4 , "title": "theory", "type": "circle"},
-
-      
-
-        {"id": "applications", "size": 5, "score": 0.4 , "title": "applications", "type": "circle"},
-
-      
-
-        {"id": "book", "size": 5, "score": 0.4 , "title": "book", "type": "circle"},
-
-      
-
-        {"id": "scheme", "size": 5, "score": 0.4 , "title": "scheme", "type": "circle"},
-
-      
-
-        {"id": "format", "size": 5, "score": 0.4 , "title": "format", "type": "circle"},
-
-      
-
-        {"id": "archives", "size": 5, "score": 0.4 , "title": "archives", "type": "circle"},
+        {"id": "collection-objects", "size": 5, "score": 0.4 , "title": "collection-objects", "type": "circle"},
 
        
 
@@ -991,10 +925,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

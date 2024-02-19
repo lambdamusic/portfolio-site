@@ -774,15 +774,15 @@ var data_local_dynamic = {
       
           { "source": "tool", "target": "theory" },
       
-          { "source": "tool", "target": "count" },
+          { "source": "tool", "target": "users" },
       
-          { "source": "documents", "target": "corpus" },
-      
-          { "source": "documents", "target": "information" },
-      
-          { "source": "documents", "target": "tool" },
+          { "source": "documents", "target": "web-documents" },
       
           { "source": "documents", "target": "URI" },
+      
+          { "source": "documents", "target": "files" },
+      
+          { "source": "documents", "target": "Web" },
       
           { "source": "corpus", "target": "documents" },
       
@@ -790,29 +790,29 @@ var data_local_dynamic = {
       
           { "source": "corpus", "target": "tool" },
       
-          { "source": "information", "target": "documents" },
+          { "source": "information", "target": "nanopublications" },
       
-          { "source": "information", "target": "corpus" },
+          { "source": "information", "target": "metadata" },
       
-          { "source": "information", "target": "tool" },
+          { "source": "information", "target": "contextual-information" },
       
-          { "source": "information", "target": "RDF-Schema" },
+          { "source": "information", "target": "collection-objects" },
       
-          { "source": "theory", "target": "communication" },
+          { "source": "theory", "target": "cognitive-processes" },
       
-          { "source": "theory", "target": "organization" },
+          { "source": "theory", "target": "intuition" },
       
-          { "source": "theory", "target": "Nietzsche" },
+          { "source": "theory", "target": "psychological-state" },
       
-          { "source": "theory", "target": "things" },
+          { "source": "theory", "target": "physics" },
       
-          { "source": "count", "target": "tool" },
+          { "source": "users", "target": "user-testing" },
       
-          { "source": "count", "target": "research" },
+          { "source": "users", "target": "Google" },
       
-          { "source": "count", "target": "work" },
+          { "source": "users", "target": "search" },
       
-          { "source": "count", "target": "terms" },
+          { "source": "users", "target": "version" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -835,7 +835,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "count", "size": 70, "score": 0 , "title": "count", "type": "circle"},
+        {"id": "users", "size": 70, "score": 0 , "title": "users", "type": "circle"},
 
       
 
@@ -843,39 +843,67 @@ var data_local_dynamic = {
 
       
 
+        {"id": "web-documents", "size": 5, "score": 0.4 , "title": "web-documents", "type": "circle"},
+
+      
+
         {"id": "URI", "size": 5, "score": 0.4 , "title": "URI", "type": "circle"},
 
       
 
-        {"id": "RDF-Schema", "size": 5, "score": 0.4 , "title": "RDF-Schema", "type": "circle"},
+        {"id": "files", "size": 5, "score": 0.4 , "title": "files", "type": "circle"},
 
       
 
-        {"id": "communication", "size": 5, "score": 0.4 , "title": "communication", "type": "circle"},
+        {"id": "Web", "size": 5, "score": 0.4 , "title": "Web", "type": "circle"},
 
       
 
-        {"id": "organization", "size": 5, "score": 0.4 , "title": "organization", "type": "circle"},
+        {"id": "nanopublications", "size": 5, "score": 0.4 , "title": "nanopublications", "type": "circle"},
 
       
 
-        {"id": "Nietzsche", "size": 5, "score": 0.4 , "title": "Nietzsche", "type": "circle"},
+        {"id": "metadata", "size": 5, "score": 0.4 , "title": "metadata", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "contextual-information", "size": 5, "score": 0.4 , "title": "contextual-information", "type": "circle"},
 
       
 
-        {"id": "research", "size": 5, "score": 0.4 , "title": "research", "type": "circle"},
+        {"id": "collection-objects", "size": 5, "score": 0.4 , "title": "collection-objects", "type": "circle"},
 
       
 
-        {"id": "work", "size": 5, "score": 0.4 , "title": "work", "type": "circle"},
+        {"id": "cognitive-processes", "size": 5, "score": 0.4 , "title": "cognitive-processes", "type": "circle"},
 
       
 
-        {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
+        {"id": "intuition", "size": 5, "score": 0.4 , "title": "intuition", "type": "circle"},
+
+      
+
+        {"id": "psychological-state", "size": 5, "score": 0.4 , "title": "psychological-state", "type": "circle"},
+
+      
+
+        {"id": "physics", "size": 5, "score": 0.4 , "title": "physics", "type": "circle"},
+
+      
+
+        {"id": "user-testing", "size": 5, "score": 0.4 , "title": "user-testing", "type": "circle"},
+
+      
+
+        {"id": "Google", "size": 5, "score": 0.4 , "title": "Google", "type": "circle"},
+
+      
+
+        {"id": "search", "size": 5, "score": 0.4 , "title": "search", "type": "circle"},
+
+      
+
+        {"id": "version", "size": 5, "score": 0.4 , "title": "version", "type": "circle"},
 
        
 
@@ -1005,10 +1033,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

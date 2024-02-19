@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="https://en.wikipedia.org/wiki/Cosmicism" class="text-muted" target="_blank">Cosmicism - Wikipedia</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Cosmicism - Wikipedia">
+								<a href="https://en.wikipedia.org/wiki/Cosmicism" class="-underline -text-muted" target="_blank">
+								  Cosmicism - Wikipedia</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2022-03-11-cosmicism.md/index.html">Cosmicism</a>
-						<br />
-						<small style="color: #cbcbcb;">Cosmicism - Wikipedia
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=philosophy.html">#philosophy</a>&nbsp;
@@ -588,6 +601,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -704,13 +718,13 @@ var data_local_dynamic = {
       
           { "source": "cosmicism", "target": "philosophy" },
       
-          { "source": "philosophy", "target": "society" },
+          { "source": "philosophy", "target": "ontology" },
       
-          { "source": "philosophy", "target": "metaphysics" },
+          { "source": "philosophy", "target": "ethics" },
       
-          { "source": "philosophy", "target": "meaningful-statements" },
+          { "source": "philosophy", "target": "schema" },
       
-          { "source": "philosophy", "target": "philosophers" },
+          { "source": "philosophy", "target": "fact" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -725,19 +739,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "society", "size": 5, "score": 0.4 , "title": "society", "type": "circle"},
+        {"id": "ontology", "size": 5, "score": 0.4 , "title": "ontology", "type": "circle"},
 
       
 
-        {"id": "metaphysics", "size": 5, "score": 0.4 , "title": "metaphysics", "type": "circle"},
+        {"id": "ethics", "size": 5, "score": 0.4 , "title": "ethics", "type": "circle"},
 
       
 
-        {"id": "meaningful-statements", "size": 5, "score": 0.4 , "title": "meaningful-statements", "type": "circle"},
+        {"id": "schema", "size": 5, "score": 0.4 , "title": "schema", "type": "circle"},
 
       
 
-        {"id": "philosophers", "size": 5, "score": 0.4 , "title": "philosophers", "type": "circle"},
+        {"id": "fact", "size": 5, "score": 0.4 , "title": "fact", "type": "circle"},
 
        
 
@@ -867,10 +881,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

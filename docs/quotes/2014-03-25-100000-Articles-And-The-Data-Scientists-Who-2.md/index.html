@@ -767,9 +767,15 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "article", "target": "claims" },
+          { "source": "hierarchy", "target": "article" },
       
-          { "source": "article", "target": "scientific-articles" },
+          { "source": "hierarchy", "target": "social-sciences" },
+      
+          { "source": "hierarchy", "target": "science" },
+      
+          { "source": "hierarchy", "target": "nodes" },
+      
+          { "source": "hierarchy", "target": "vocabulary" },
       
           { "source": "article", "target": "hierarchy" },
       
@@ -777,29 +783,7 @@ var data_local_dynamic = {
       
           { "source": "article", "target": "science" },
       
-          { "source": "claims", "target": "scientific-articles" },
-      
-          { "source": "claims", "target": "article" },
-      
-          { "source": "claims", "target": "religious-experience" },
-      
-          { "source": "claims", "target": "argument" },
-      
-          { "source": "scientific-articles", "target": "claims" },
-      
-          { "source": "scientific-articles", "target": "article" },
-      
-          { "source": "scientific-articles", "target": "argument" },
-      
-          { "source": "scientific-articles", "target": "paper" },
-      
-          { "source": "hierarchy", "target": "article" },
-      
-          { "source": "hierarchy", "target": "social-sciences" },
-      
-          { "source": "hierarchy", "target": "science" },
-      
-          { "source": "hierarchy", "target": "user-experience" },
+          { "source": "article", "target": "concept" },
       
           { "source": "social-sciences", "target": "article" },
       
@@ -809,28 +793,36 @@ var data_local_dynamic = {
       
           { "source": "social-sciences", "target": "journals" },
       
-          { "source": "science", "target": "complexity" },
+          { "source": "science", "target": "article" },
       
-          { "source": "science", "target": "network" },
+          { "source": "science", "target": "hierarchy" },
       
-          { "source": "science", "target": "soul" },
+          { "source": "science", "target": "social-sciences" },
       
-          { "source": "science", "target": "things" },
+          { "source": "science", "target": "publications" },
+      
+          { "source": "nodes", "target": "hierarchy" },
+      
+          { "source": "nodes", "target": "vocabulary" },
+      
+          { "source": "nodes", "target": "taxonomy" },
+      
+          { "source": "nodes", "target": "impact" },
+      
+          { "source": "vocabulary", "target": "authority-files" },
+      
+          { "source": "vocabulary", "target": "indexing" },
+      
+          { "source": "vocabulary", "target": "thesaurus" },
+      
+          { "source": "vocabulary", "target": "files" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "claims", "size": 70, "score": 0 , "title": "claims", "type": "circle"},
-
-      
-
-        {"id": "scientific-articles", "size": 70, "score": 0 , "title": "scientific-articles", "type": "circle"},
-
-      
-
-        {"id": "hierarchy", "size": 70, "score": 0 , "title": "hierarchy", "type": "circle"},
+        {"id": "article", "size": 70, "score": 0 , "title": "article", "type": "circle"},
 
       
 
@@ -842,23 +834,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "article", "size": 140, "score": 0.5 , "title": "article", "type": "circle"},
+        {"id": "nodes", "size": 70, "score": 0 , "title": "nodes", "type": "circle"},
 
       
 
-        {"id": "religious-experience", "size": 5, "score": 0.4 , "title": "religious-experience", "type": "circle"},
+        {"id": "vocabulary", "size": 70, "score": 0 , "title": "vocabulary", "type": "circle"},
 
       
 
-        {"id": "argument", "size": 5, "score": 0.4 , "title": "argument", "type": "circle"},
+        {"id": "hierarchy", "size": 140, "score": 0.5 , "title": "hierarchy", "type": "circle"},
 
       
 
-        {"id": "paper", "size": 5, "score": 0.4 , "title": "paper", "type": "circle"},
-
-      
-
-        {"id": "user-experience", "size": 5, "score": 0.4 , "title": "user-experience", "type": "circle"},
+        {"id": "concept", "size": 5, "score": 0.4 , "title": "concept", "type": "circle"},
 
       
 
@@ -866,19 +854,31 @@ var data_local_dynamic = {
 
       
 
-        {"id": "complexity", "size": 5, "score": 0.4 , "title": "complexity", "type": "circle"},
+        {"id": "publications", "size": 5, "score": 0.4 , "title": "publications", "type": "circle"},
 
       
 
-        {"id": "network", "size": 5, "score": 0.4 , "title": "network", "type": "circle"},
+        {"id": "taxonomy", "size": 5, "score": 0.4 , "title": "taxonomy", "type": "circle"},
 
       
 
-        {"id": "soul", "size": 5, "score": 0.4 , "title": "soul", "type": "circle"},
+        {"id": "impact", "size": 5, "score": 0.4 , "title": "impact", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "authority-files", "size": 5, "score": 0.4 , "title": "authority-files", "type": "circle"},
+
+      
+
+        {"id": "indexing", "size": 5, "score": 0.4 , "title": "indexing", "type": "circle"},
+
+      
+
+        {"id": "thesaurus", "size": 5, "score": 0.4 , "title": "thesaurus", "type": "circle"},
+
+      
+
+        {"id": "files", "size": 5, "score": 0.4 , "title": "files", "type": "circle"},
 
        
 
@@ -1008,10 +1008,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

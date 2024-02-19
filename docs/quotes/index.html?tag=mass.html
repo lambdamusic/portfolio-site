@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.guardian.co.uk/commentisfree/andrewbrown/2013/jan/03/catholic-church-gay-masses" class="text-muted" target="_blank">The Catholic Church Makes A Mess Of Gay Masses | Andrew Brown | Comment Is Free | Guardian.co.uk</a>
+									
+							</small>
+							<!-- Words taken from <cite title="The Catholic Church Makes A Mess Of Gay Masses | Andrew Brown | Comment Is Free | Guardian.co.uk">
+								<a href="http://www.guardian.co.uk/commentisfree/andrewbrown/2013/jan/03/catholic-church-gay-masses" class="-underline -text-muted" target="_blank">
+								  The Catholic Church Makes A Mess Of Gay Masses | Andrew Brown | Comment Is Free | Guardian.co.uk</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-The-Catholic-Church-Makes-A-Mess-Of-1.md/index.html">The church where the &#39;gay...</a>
-						<br />
-						<small style="color: #cbcbcb;">The Catholic Church Makes A Mess Of Gay Masses | Andrew Brown | Comment Is Free | Guardian.co.uk
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=cAMP.html">#cAMP</a>&nbsp;
@@ -590,14 +603,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.nature.com/news/the-hundred-year-quest-for-gravitational-waves-in-pictures-1.19340" class="text-muted" target="_blank">The Hundred-year Quest For Gravitational Waves —in Pictures : Nature News &amp; Comment</a>
+									
+							</small>
+							<!-- Words taken from <cite title="The Hundred-year Quest For Gravitational Waves —in Pictures : Nature News &amp; Comment">
+								<a href="http://www.nature.com/news/the-hundred-year-quest-for-gravitational-waves-in-pictures-1.19340" class="-underline -text-muted" target="_blank">
+								  The Hundred-year Quest For Gravitational Waves —in Pictures : Nature News &amp; Comment</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2016-03-09-The-Hundredyear-Quest-For-Gravitational-Waves-in-1.md/index.html">Gravity is a distorsion in space and time</a>
-						<br />
-						<small style="color: #cbcbcb;">The Hundred-year Quest For Gravitational Waves —in Pictures : Nature News &amp; Comment
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=speed-of-light.html">#speed-of-light</a>&nbsp;
@@ -610,6 +637,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -732,21 +760,21 @@ var data_local_dynamic = {
       
           { "source": "mass", "target": "gravitational-waves" },
       
-          { "source": "cAMP", "target": "mass" },
-      
-          { "source": "cAMP", "target": "Church" },
-      
           { "source": "cAMP", "target": "style" },
       
           { "source": "cAMP", "target": "movies" },
       
-          { "source": "Church", "target": "century" },
+          { "source": "cAMP", "target": "actors" },
       
-          { "source": "Church", "target": "cAMP" },
+          { "source": "cAMP", "target": "nouns" },
       
-          { "source": "Church", "target": "mass" },
+          { "source": "Church", "target": "religion" },
       
-          { "source": "Church", "target": "confession" },
+          { "source": "Church", "target": "world" },
+      
+          { "source": "Church", "target": "end" },
+      
+          { "source": "Church", "target": "number" },
       
           { "source": "speed-of-light", "target": "gravitational-waves" },
       
@@ -789,11 +817,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "century", "size": 5, "score": 0.4 , "title": "century", "type": "circle"},
+        {"id": "actors", "size": 5, "score": 0.4 , "title": "actors", "type": "circle"},
 
       
 
-        {"id": "confession", "size": 5, "score": 0.4 , "title": "confession", "type": "circle"},
+        {"id": "nouns", "size": 5, "score": 0.4 , "title": "nouns", "type": "circle"},
+
+      
+
+        {"id": "religion", "size": 5, "score": 0.4 , "title": "religion", "type": "circle"},
+
+      
+
+        {"id": "world", "size": 5, "score": 0.4 , "title": "world", "type": "circle"},
+
+      
+
+        {"id": "end", "size": 5, "score": 0.4 , "title": "end", "type": "circle"},
+
+      
+
+        {"id": "number", "size": 5, "score": 0.4 , "title": "number", "type": "circle"},
 
        
 
@@ -923,10 +967,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

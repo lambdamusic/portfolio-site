@@ -760,78 +760,134 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "fish", "target": "cent" },
-      
-          { "source": "fish", "target": "conditions" },
-      
-          { "source": "fish", "target": "organisms" },
-      
-          { "source": "cent", "target": "disorders" },
-      
-          { "source": "cent", "target": "view" },
-      
-          { "source": "cent", "target": "fish" },
-      
-          { "source": "cent", "target": "conditions" },
-      
-          { "source": "conditions", "target": "cent" },
-      
-          { "source": "conditions", "target": "fish" },
-      
-          { "source": "conditions", "target": "doubt" },
-      
-          { "source": "conditions", "target": "people" },
-      
           { "source": "organisms", "target": "fish" },
       
           { "source": "organisms", "target": "universe" },
       
           { "source": "organisms", "target": "different-ways" },
       
-          { "source": "organisms", "target": "disorders" },
+          { "source": "organisms", "target": "life" },
+      
+          { "source": "organisms", "target": "experience" },
+      
+          { "source": "fish", "target": "cent" },
+      
+          { "source": "fish", "target": "conditions" },
+      
+          { "source": "fish", "target": "organisms" },
+      
+          { "source": "universe", "target": "theory" },
+      
+          { "source": "universe", "target": "class" },
+      
+          { "source": "universe", "target": "extension" },
+      
+          { "source": "universe", "target": "properties" },
+      
+          { "source": "different-ways", "target": "universe" },
+      
+          { "source": "different-ways", "target": "organisms" },
+      
+          { "source": "different-ways", "target": "experience" },
+      
+          { "source": "life", "target": "movement" },
+      
+          { "source": "life", "target": "truth" },
+      
+          { "source": "life", "target": "religion" },
+      
+          { "source": "life", "target": "individuals" },
+      
+          { "source": "experience", "target": "time" },
+      
+          { "source": "experience", "target": "weeks" },
+      
+          { "source": "experience", "target": "days" },
+      
+          { "source": "experience", "target": "lack" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "cent", "size": 70, "score": 0 , "title": "cent", "type": "circle"},
+        {"id": "fish", "size": 70, "score": 0 , "title": "fish", "type": "circle"},
 
       
 
-        {"id": "conditions", "size": 70, "score": 0 , "title": "conditions", "type": "circle"},
+        {"id": "universe", "size": 70, "score": 0 , "title": "universe", "type": "circle"},
 
       
 
-        {"id": "organisms", "size": 70, "score": 0 , "title": "organisms", "type": "circle"},
+        {"id": "different-ways", "size": 70, "score": 0 , "title": "different-ways", "type": "circle"},
 
       
 
-        {"id": "fish", "size": 140, "score": 0.5 , "title": "fish", "type": "circle"},
+        {"id": "life", "size": 70, "score": 0 , "title": "life", "type": "circle"},
 
       
 
-        {"id": "disorders", "size": 5, "score": 0.4 , "title": "disorders", "type": "circle"},
+        {"id": "experience", "size": 70, "score": 0 , "title": "experience", "type": "circle"},
 
       
 
-        {"id": "view", "size": 5, "score": 0.4 , "title": "view", "type": "circle"},
+        {"id": "organisms", "size": 140, "score": 0.5 , "title": "organisms", "type": "circle"},
 
       
 
-        {"id": "doubt", "size": 5, "score": 0.4 , "title": "doubt", "type": "circle"},
+        {"id": "cent", "size": 5, "score": 0.4 , "title": "cent", "type": "circle"},
 
       
 
-        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
+        {"id": "conditions", "size": 5, "score": 0.4 , "title": "conditions", "type": "circle"},
 
       
 
-        {"id": "universe", "size": 5, "score": 0.4 , "title": "universe", "type": "circle"},
+        {"id": "theory", "size": 5, "score": 0.4 , "title": "theory", "type": "circle"},
 
       
 
-        {"id": "different-ways", "size": 5, "score": 0.4 , "title": "different-ways", "type": "circle"},
+        {"id": "class", "size": 5, "score": 0.4 , "title": "class", "type": "circle"},
+
+      
+
+        {"id": "extension", "size": 5, "score": 0.4 , "title": "extension", "type": "circle"},
+
+      
+
+        {"id": "properties", "size": 5, "score": 0.4 , "title": "properties", "type": "circle"},
+
+      
+
+        {"id": "movement", "size": 5, "score": 0.4 , "title": "movement", "type": "circle"},
+
+      
+
+        {"id": "truth", "size": 5, "score": 0.4 , "title": "truth", "type": "circle"},
+
+      
+
+        {"id": "religion", "size": 5, "score": 0.4 , "title": "religion", "type": "circle"},
+
+      
+
+        {"id": "individuals", "size": 5, "score": 0.4 , "title": "individuals", "type": "circle"},
+
+      
+
+        {"id": "time", "size": 5, "score": 0.4 , "title": "time", "type": "circle"},
+
+      
+
+        {"id": "weeks", "size": 5, "score": 0.4 , "title": "weeks", "type": "circle"},
+
+      
+
+        {"id": "days", "size": 5, "score": 0.4 , "title": "days", "type": "circle"},
+
+      
+
+        {"id": "lack", "size": 5, "score": 0.4 , "title": "lack", "type": "circle"},
 
        
 
@@ -961,10 +1017,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

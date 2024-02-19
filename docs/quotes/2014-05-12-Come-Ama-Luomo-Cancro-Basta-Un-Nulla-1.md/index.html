@@ -764,21 +764,13 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "Vero", "target": "Italiana" },
-      
           { "source": "Vero", "target": "Gesù" },
       
           { "source": "Vero", "target": "Nascita" },
       
           { "source": "Vero", "target": "Fede" },
       
-          { "source": "Italiana", "target": "Vero" },
-      
-          { "source": "Italiana", "target": "cons" },
-      
-          { "source": "Italiana", "target": "Italiano" },
-      
-          { "source": "Italiana", "target": "NEL" },
+          { "source": "Vero", "target": "Italiana" },
       
           { "source": "Gesù", "target": "Vero" },
       
@@ -801,14 +793,18 @@ var data_local_dynamic = {
           { "source": "Fede", "target": "Una" },
       
           { "source": "Fede", "target": "Vero" },
+      
+          { "source": "Italiana", "target": "Italy" },
+      
+          { "source": "Italiana", "target": "Unico" },
+      
+          { "source": "Italiana", "target": "oggi" },
+      
+          { "source": "Italiana", "target": "Vero" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
-      
-
-        {"id": "Italiana", "size": 70, "score": 0 , "title": "Italiana", "type": "circle"},
-
       
 
         {"id": "Gesù", "size": 70, "score": 0 , "title": "Gesù", "type": "circle"},
@@ -823,19 +819,11 @@ var data_local_dynamic = {
 
       
 
+        {"id": "Italiana", "size": 70, "score": 0 , "title": "Italiana", "type": "circle"},
+
+      
+
         {"id": "Vero", "size": 140, "score": 0.5 , "title": "Vero", "type": "circle"},
-
-      
-
-        {"id": "cons", "size": 5, "score": 0.4 , "title": "cons", "type": "circle"},
-
-      
-
-        {"id": "Italiano", "size": 5, "score": 0.4 , "title": "Italiano", "type": "circle"},
-
-      
-
-        {"id": "NEL", "size": 5, "score": 0.4 , "title": "NEL", "type": "circle"},
 
       
 
@@ -860,6 +848,18 @@ var data_local_dynamic = {
       
 
         {"id": "Una", "size": 5, "score": 0.4 , "title": "Una", "type": "circle"},
+
+      
+
+        {"id": "Italy", "size": 5, "score": 0.4 , "title": "Italy", "type": "circle"},
+
+      
+
+        {"id": "Unico", "size": 5, "score": 0.4 , "title": "Unico", "type": "circle"},
+
+      
+
+        {"id": "oggi", "size": 5, "score": 0.4 , "title": "oggi", "type": "circle"},
 
        
 
@@ -989,10 +989,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

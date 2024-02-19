@@ -760,68 +760,114 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "human-personality", "target": "personality" },
-      
-          { "source": "human-personality", "target": "mind" },
-      
-          { "source": "personality", "target": "ego" },
-      
-          { "source": "personality", "target": "childhood" },
-      
-          { "source": "personality", "target": "feelings" },
-      
-          { "source": "personality", "target": "human-personality" },
-      
           { "source": "mind", "target": "human-experience" },
       
           { "source": "mind", "target": "transpersonal-consciousness" },
       
           { "source": "mind", "target": "consciousness" },
       
-          { "source": "mind", "target": "brain" },
+          { "source": "mind", "target": "philosophers" },
+      
+          { "source": "mind", "target": "employees" },
+      
+          { "source": "human-experience", "target": "humanists" },
+      
+          { "source": "human-experience", "target": "mind" },
+      
+          { "source": "human-experience", "target": "transpersonal-consciousness" },
+      
+          { "source": "human-experience", "target": "consciousness" },
+      
+          { "source": "transpersonal-consciousness", "target": "human-experience" },
+      
+          { "source": "transpersonal-consciousness", "target": "mind" },
+      
+          { "source": "transpersonal-consciousness", "target": "consciousness" },
+      
+          { "source": "transpersonal-consciousness", "target": "world" },
+      
+          { "source": "consciousness", "target": "philosophers" },
+      
+          { "source": "consciousness", "target": "intuition" },
+      
+          { "source": "consciousness", "target": "people" },
+      
+          { "source": "consciousness", "target": "subjective-experience" },
+      
+          { "source": "philosophers", "target": "intuition" },
+      
+          { "source": "philosophers", "target": "consciousness" },
+      
+          { "source": "philosophers", "target": "people" },
+      
+          { "source": "philosophers", "target": "philosophical-problems" },
+      
+          { "source": "employees", "target": "language" },
+      
+          { "source": "employees", "target": "mind" },
+      
+          { "source": "employees", "target": "people" },
+      
+          { "source": "employees", "target": "jobs" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "personality", "size": 70, "score": 0 , "title": "personality", "type": "circle"},
+        {"id": "human-experience", "size": 70, "score": 0 , "title": "human-experience", "type": "circle"},
 
       
 
-        {"id": "mind", "size": 70, "score": 0 , "title": "mind", "type": "circle"},
+        {"id": "transpersonal-consciousness", "size": 70, "score": 0 , "title": "transpersonal-consciousness", "type": "circle"},
 
       
 
-        {"id": "human-personality", "size": 140, "score": 0.5 , "title": "human-personality", "type": "circle"},
+        {"id": "consciousness", "size": 70, "score": 0 , "title": "consciousness", "type": "circle"},
 
       
 
-        {"id": "ego", "size": 5, "score": 0.4 , "title": "ego", "type": "circle"},
+        {"id": "philosophers", "size": 70, "score": 0 , "title": "philosophers", "type": "circle"},
 
       
 
-        {"id": "childhood", "size": 5, "score": 0.4 , "title": "childhood", "type": "circle"},
+        {"id": "employees", "size": 70, "score": 0 , "title": "employees", "type": "circle"},
 
       
 
-        {"id": "feelings", "size": 5, "score": 0.4 , "title": "feelings", "type": "circle"},
+        {"id": "mind", "size": 140, "score": 0.5 , "title": "mind", "type": "circle"},
 
       
 
-        {"id": "human-experience", "size": 5, "score": 0.4 , "title": "human-experience", "type": "circle"},
+        {"id": "humanists", "size": 5, "score": 0.4 , "title": "humanists", "type": "circle"},
 
       
 
-        {"id": "transpersonal-consciousness", "size": 5, "score": 0.4 , "title": "transpersonal-consciousness", "type": "circle"},
+        {"id": "world", "size": 5, "score": 0.4 , "title": "world", "type": "circle"},
 
       
 
-        {"id": "consciousness", "size": 5, "score": 0.4 , "title": "consciousness", "type": "circle"},
+        {"id": "intuition", "size": 5, "score": 0.4 , "title": "intuition", "type": "circle"},
 
       
 
-        {"id": "brain", "size": 5, "score": 0.4 , "title": "brain", "type": "circle"},
+        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
+
+      
+
+        {"id": "subjective-experience", "size": 5, "score": 0.4 , "title": "subjective-experience", "type": "circle"},
+
+      
+
+        {"id": "philosophical-problems", "size": 5, "score": 0.4 , "title": "philosophical-problems", "type": "circle"},
+
+      
+
+        {"id": "language", "size": 5, "score": 0.4 , "title": "language", "type": "circle"},
+
+      
+
+        {"id": "jobs", "size": 5, "score": 0.4 , "title": "jobs", "type": "circle"},
 
        
 
@@ -951,10 +997,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

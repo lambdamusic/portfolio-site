@@ -772,13 +772,13 @@ var data_local_dynamic = {
       
           { "source": "ontology-population", "target": "search" },
       
-          { "source": "memory", "target": "feelings" },
-      
-          { "source": "memory", "target": "emotions" },
-      
-          { "source": "memory", "target": "words" },
+          { "source": "memory", "target": "co-occurrence-information" },
       
           { "source": "memory", "target": "sleep" },
+      
+          { "source": "memory", "target": "meaning" },
+      
+          { "source": "memory", "target": "feelings" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -805,19 +805,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "feelings", "size": 5, "score": 0.4 , "title": "feelings", "type": "circle"},
-
-      
-
-        {"id": "emotions", "size": 5, "score": 0.4 , "title": "emotions", "type": "circle"},
-
-      
-
-        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
-
-      
-
         {"id": "sleep", "size": 5, "score": 0.4 , "title": "sleep", "type": "circle"},
+
+      
+
+        {"id": "meaning", "size": 5, "score": 0.4 , "title": "meaning", "type": "circle"},
+
+      
+
+        {"id": "feelings", "size": 5, "score": 0.4 , "title": "feelings", "type": "circle"},
 
        
 
@@ -947,10 +943,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

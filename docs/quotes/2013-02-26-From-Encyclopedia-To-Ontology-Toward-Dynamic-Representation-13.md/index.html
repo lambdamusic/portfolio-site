@@ -762,114 +762,92 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "philosophers", "target": "questions" },
+          { "source": "philosophy", "target": "ontology" },
       
-          { "source": "philosophers", "target": "speech-acts" },
+          { "source": "philosophy", "target": "ethics" },
       
-          { "source": "philosophers", "target": "reification" },
+          { "source": "philosophy", "target": "schema" },
       
-          { "source": "philosophers", "target": "metaphysics" },
+          { "source": "philosophy", "target": "fact" },
       
-          { "source": "philosophers", "target": "meaningful-statements" },
+          { "source": "philosophy", "target": "cosmicism" },
       
-          { "source": "questions", "target": "philosophers" },
+          { "source": "ontology", "target": "use-cases" },
       
-          { "source": "questions", "target": "speech-acts" },
+          { "source": "ontology", "target": "data-model" },
       
-          { "source": "questions", "target": "reification" },
+          { "source": "ontology", "target": "architecture" },
       
-          { "source": "questions", "target": "topic" },
+          { "source": "ontology", "target": "requirements" },
       
-          { "source": "speech-acts", "target": "questions" },
+          { "source": "ethics", "target": "ontology" },
       
-          { "source": "speech-acts", "target": "philosophers" },
+          { "source": "ethics", "target": "philosophy" },
       
-          { "source": "speech-acts", "target": "reification" },
+          { "source": "ethics", "target": "schema" },
       
-          { "source": "speech-acts", "target": "communication" },
+          { "source": "ethics", "target": "fact" },
       
-          { "source": "reification", "target": "context" },
+          { "source": "schema", "target": "ontology" },
       
-          { "source": "reification", "target": "resources" },
+          { "source": "schema", "target": "ethics" },
       
-          { "source": "reification", "target": "statements" },
+          { "source": "schema", "target": "philosophy" },
       
-          { "source": "reification", "target": "original-statement" },
+          { "source": "schema", "target": "fact" },
       
-          { "source": "metaphysics", "target": "meaningful-statements" },
+          { "source": "fact", "target": "ontology" },
       
-          { "source": "metaphysics", "target": "philosophers" },
+          { "source": "fact", "target": "ethics" },
       
-          { "source": "metaphysics", "target": "philosophy" },
+          { "source": "fact", "target": "philosophy" },
       
-          { "source": "metaphysics", "target": "assumption" },
+          { "source": "fact", "target": "schema" },
       
-          { "source": "meaningful-statements", "target": "metaphysics" },
-      
-          { "source": "meaningful-statements", "target": "philosophers" },
-      
-          { "source": "meaningful-statements", "target": "philosophy" },
-      
-          { "source": "meaningful-statements", "target": "assumption" },
+          { "source": "cosmicism", "target": "philosophy" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "questions", "size": 70, "score": 0 , "title": "questions", "type": "circle"},
+        {"id": "ontology", "size": 70, "score": 0 , "title": "ontology", "type": "circle"},
 
       
 
-        {"id": "speech-acts", "size": 70, "score": 0 , "title": "speech-acts", "type": "circle"},
+        {"id": "ethics", "size": 70, "score": 0 , "title": "ethics", "type": "circle"},
 
       
 
-        {"id": "reification", "size": 70, "score": 0 , "title": "reification", "type": "circle"},
+        {"id": "schema", "size": 70, "score": 0 , "title": "schema", "type": "circle"},
 
       
 
-        {"id": "metaphysics", "size": 70, "score": 0 , "title": "metaphysics", "type": "circle"},
+        {"id": "fact", "size": 70, "score": 0 , "title": "fact", "type": "circle"},
 
       
 
-        {"id": "meaningful-statements", "size": 70, "score": 0 , "title": "meaningful-statements", "type": "circle"},
+        {"id": "cosmicism", "size": 70, "score": 0 , "title": "cosmicism", "type": "circle"},
 
       
 
-        {"id": "philosophers", "size": 140, "score": 0.5 , "title": "philosophers", "type": "circle"},
+        {"id": "philosophy", "size": 140, "score": 0.5 , "title": "philosophy", "type": "circle"},
 
       
 
-        {"id": "topic", "size": 5, "score": 0.4 , "title": "topic", "type": "circle"},
+        {"id": "use-cases", "size": 5, "score": 0.4 , "title": "use-cases", "type": "circle"},
 
       
 
-        {"id": "communication", "size": 5, "score": 0.4 , "title": "communication", "type": "circle"},
+        {"id": "data-model", "size": 5, "score": 0.4 , "title": "data-model", "type": "circle"},
 
       
 
-        {"id": "context", "size": 5, "score": 0.4 , "title": "context", "type": "circle"},
+        {"id": "architecture", "size": 5, "score": 0.4 , "title": "architecture", "type": "circle"},
 
       
 
-        {"id": "resources", "size": 5, "score": 0.4 , "title": "resources", "type": "circle"},
-
-      
-
-        {"id": "statements", "size": 5, "score": 0.4 , "title": "statements", "type": "circle"},
-
-      
-
-        {"id": "original-statement", "size": 5, "score": 0.4 , "title": "original-statement", "type": "circle"},
-
-      
-
-        {"id": "philosophy", "size": 5, "score": 0.4 , "title": "philosophy", "type": "circle"},
-
-      
-
-        {"id": "assumption", "size": 5, "score": 0.4 , "title": "assumption", "type": "circle"},
+        {"id": "requirements", "size": 5, "score": 0.4 , "title": "requirements", "type": "circle"},
 
        
 
@@ -999,10 +977,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

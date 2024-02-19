@@ -772,21 +772,21 @@ var data_local_dynamic = {
       
           { "source": "lexias", "target": "pages" },
       
-          { "source": "narratives", "target": "lexias" },
+          { "source": "narratives", "target": "historical-events" },
       
-          { "source": "narratives", "target": "myth" },
+          { "source": "narratives", "target": "historical-context" },
       
-          { "source": "narratives", "target": "God" },
+          { "source": "narratives", "target": "collection-objects" },
       
-          { "source": "narratives", "target": "antiquity" },
+          { "source": "narratives", "target": "meaning" },
       
-          { "source": "story", "target": "God" },
+          { "source": "story", "target": "text" },
       
-          { "source": "story", "target": "religion" },
+          { "source": "story", "target": "game" },
       
-          { "source": "story", "target": "philosophy" },
+          { "source": "story", "target": "character" },
       
-          { "source": "story", "target": "novel" },
+          { "source": "story", "target": "interactive-fiction" },
       
           { "source": "pages", "target": "Web-sites" },
       
@@ -794,7 +794,7 @@ var data_local_dynamic = {
       
           { "source": "pages", "target": "search-engines" },
       
-          { "source": "pages", "target": "repository" },
+          { "source": "pages", "target": "web-documents" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -817,27 +817,35 @@ var data_local_dynamic = {
 
       
 
-        {"id": "myth", "size": 5, "score": 0.4 , "title": "myth", "type": "circle"},
+        {"id": "historical-events", "size": 5, "score": 0.4 , "title": "historical-events", "type": "circle"},
 
       
 
-        {"id": "God", "size": 5, "score": 0.4 , "title": "God", "type": "circle"},
+        {"id": "historical-context", "size": 5, "score": 0.4 , "title": "historical-context", "type": "circle"},
 
       
 
-        {"id": "antiquity", "size": 5, "score": 0.4 , "title": "antiquity", "type": "circle"},
+        {"id": "collection-objects", "size": 5, "score": 0.4 , "title": "collection-objects", "type": "circle"},
 
       
 
-        {"id": "religion", "size": 5, "score": 0.4 , "title": "religion", "type": "circle"},
+        {"id": "meaning", "size": 5, "score": 0.4 , "title": "meaning", "type": "circle"},
 
       
 
-        {"id": "philosophy", "size": 5, "score": 0.4 , "title": "philosophy", "type": "circle"},
+        {"id": "text", "size": 5, "score": 0.4 , "title": "text", "type": "circle"},
 
       
 
-        {"id": "novel", "size": 5, "score": 0.4 , "title": "novel", "type": "circle"},
+        {"id": "game", "size": 5, "score": 0.4 , "title": "game", "type": "circle"},
+
+      
+
+        {"id": "character", "size": 5, "score": 0.4 , "title": "character", "type": "circle"},
+
+      
+
+        {"id": "interactive-fiction", "size": 5, "score": 0.4 , "title": "interactive-fiction", "type": "circle"},
 
       
 
@@ -853,7 +861,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "repository", "size": 5, "score": 0.4 , "title": "repository", "type": "circle"},
+        {"id": "web-documents", "size": 5, "score": 0.4 , "title": "web-documents", "type": "circle"},
 
        
 
@@ -983,10 +991,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

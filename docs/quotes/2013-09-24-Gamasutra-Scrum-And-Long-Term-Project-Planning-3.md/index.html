@@ -760,18 +760,6 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "Scrum", "target": "team-members" },
-      
-          { "source": "Scrum", "target": "developers" },
-      
-          { "source": "team-members", "target": "Scrum" },
-      
-          { "source": "team-members", "target": "task" },
-      
-          { "source": "team-members", "target": "development-teams" },
-      
-          { "source": "team-members", "target": "team" },
-      
           { "source": "developers", "target": "algorithm" },
       
           { "source": "developers", "target": "code" },
@@ -779,45 +767,123 @@ var data_local_dynamic = {
           { "source": "developers", "target": "Scrum" },
       
           { "source": "developers", "target": "user-testing" },
+      
+          { "source": "developers", "target": "method" },
+      
+          { "source": "algorithm", "target": "server" },
+      
+          { "source": "algorithm", "target": "metadata" },
+      
+          { "source": "algorithm", "target": "words" },
+      
+          { "source": "algorithm", "target": "readers" },
+      
+          { "source": "code", "target": "developers" },
+      
+          { "source": "code", "target": "algorithm" },
+      
+          { "source": "code", "target": "use-cases" },
+      
+          { "source": "code", "target": "prototype" },
+      
+          { "source": "Scrum", "target": "developers" },
+      
+          { "source": "Scrum", "target": "team-members" },
+      
+          { "source": "user-testing", "target": "users" },
+      
+          { "source": "user-testing", "target": "Google" },
+      
+          { "source": "user-testing", "target": "search" },
+      
+          { "source": "user-testing", "target": "version" },
+      
+          { "source": "method", "target": "action" },
+      
+          { "source": "method", "target": "clients" },
+      
+          { "source": "method", "target": "user-testing" },
+      
+          { "source": "method", "target": "developers" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "team-members", "size": 70, "score": 0 , "title": "team-members", "type": "circle"},
+        {"id": "algorithm", "size": 70, "score": 0 , "title": "algorithm", "type": "circle"},
 
       
 
-        {"id": "developers", "size": 70, "score": 0 , "title": "developers", "type": "circle"},
+        {"id": "code", "size": 70, "score": 0 , "title": "code", "type": "circle"},
 
       
 
-        {"id": "Scrum", "size": 140, "score": 0.5 , "title": "Scrum", "type": "circle"},
+        {"id": "Scrum", "size": 70, "score": 0 , "title": "Scrum", "type": "circle"},
 
       
 
-        {"id": "task", "size": 5, "score": 0.4 , "title": "task", "type": "circle"},
+        {"id": "user-testing", "size": 70, "score": 0 , "title": "user-testing", "type": "circle"},
 
       
 
-        {"id": "development-teams", "size": 5, "score": 0.4 , "title": "development-teams", "type": "circle"},
+        {"id": "method", "size": 70, "score": 0 , "title": "method", "type": "circle"},
 
       
 
-        {"id": "team", "size": 5, "score": 0.4 , "title": "team", "type": "circle"},
+        {"id": "developers", "size": 140, "score": 0.5 , "title": "developers", "type": "circle"},
 
       
 
-        {"id": "algorithm", "size": 5, "score": 0.4 , "title": "algorithm", "type": "circle"},
+        {"id": "server", "size": 5, "score": 0.4 , "title": "server", "type": "circle"},
 
       
 
-        {"id": "code", "size": 5, "score": 0.4 , "title": "code", "type": "circle"},
+        {"id": "metadata", "size": 5, "score": 0.4 , "title": "metadata", "type": "circle"},
 
       
 
-        {"id": "user-testing", "size": 5, "score": 0.4 , "title": "user-testing", "type": "circle"},
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "readers", "size": 5, "score": 0.4 , "title": "readers", "type": "circle"},
+
+      
+
+        {"id": "use-cases", "size": 5, "score": 0.4 , "title": "use-cases", "type": "circle"},
+
+      
+
+        {"id": "prototype", "size": 5, "score": 0.4 , "title": "prototype", "type": "circle"},
+
+      
+
+        {"id": "team-members", "size": 5, "score": 0.4 , "title": "team-members", "type": "circle"},
+
+      
+
+        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
+
+      
+
+        {"id": "Google", "size": 5, "score": 0.4 , "title": "Google", "type": "circle"},
+
+      
+
+        {"id": "search", "size": 5, "score": 0.4 , "title": "search", "type": "circle"},
+
+      
+
+        {"id": "version", "size": 5, "score": 0.4 , "title": "version", "type": "circle"},
+
+      
+
+        {"id": "action", "size": 5, "score": 0.4 , "title": "action", "type": "circle"},
+
+      
+
+        {"id": "clients", "size": 5, "score": 0.4 , "title": "clients", "type": "circle"},
 
        
 
@@ -947,10 +1013,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

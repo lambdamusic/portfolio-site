@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="https://www.thecut.com/2016/04/portrait-motherhood-creativity-c-v-r.html" class="text-muted" target="_blank">A Portrait of the Artist As a Young Mom</a>
+									
+							</small>
+							<!-- Words taken from <cite title="A Portrait of the Artist As a Young Mom">
+								<a href="https://www.thecut.com/2016/04/portrait-motherhood-creativity-c-v-r.html" class="-underline -text-muted" target="_blank">
+								  A Portrait of the Artist As a Young Mom</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2020-07-10-domestic-life.md/index.html">Is domestic life the enemy of creative work?</a>
-						<br />
-						<small style="color: #cbcbcb;">A Portrait of the Artist As a Young Mom
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=creativity.html">#creativity</a>&nbsp;
@@ -592,6 +605,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -712,13 +726,13 @@ var data_local_dynamic = {
       
           { "source": "creativity", "target": "art" },
       
+          { "source": "parents", "target": "creativity" },
+      
+          { "source": "parents", "target": "marriage" },
+      
+          { "source": "parents", "target": "art" },
+      
           { "source": "parents", "target": "fathers" },
-      
-          { "source": "parents", "target": "emotions" },
-      
-          { "source": "parents", "target": "image-of-God" },
-      
-          { "source": "parents", "target": "images" },
       
           { "source": "marriage", "target": "creativity" },
       
@@ -726,13 +740,13 @@ var data_local_dynamic = {
       
           { "source": "marriage", "target": "art" },
       
-          { "source": "art", "target": "century" },
+          { "source": "art", "target": "creativity" },
+      
+          { "source": "art", "target": "parents" },
+      
+          { "source": "art", "target": "marriage" },
       
           { "source": "art", "target": "name" },
-      
-          { "source": "art", "target": "historical-events" },
-      
-          { "source": "art", "target": "events" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -759,31 +773,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "emotions", "size": 5, "score": 0.4 , "title": "emotions", "type": "circle"},
-
-      
-
-        {"id": "image-of-God", "size": 5, "score": 0.4 , "title": "image-of-God", "type": "circle"},
-
-      
-
-        {"id": "images", "size": 5, "score": 0.4 , "title": "images", "type": "circle"},
-
-      
-
-        {"id": "century", "size": 5, "score": 0.4 , "title": "century", "type": "circle"},
-
-      
-
         {"id": "name", "size": 5, "score": 0.4 , "title": "name", "type": "circle"},
-
-      
-
-        {"id": "historical-events", "size": 5, "score": 0.4 , "title": "historical-events", "type": "circle"},
-
-      
-
-        {"id": "events", "size": 5, "score": 0.4 , "title": "events", "type": "circle"},
 
        
 
@@ -913,10 +903,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

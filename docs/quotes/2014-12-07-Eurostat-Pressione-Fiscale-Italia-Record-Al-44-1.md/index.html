@@ -767,15 +767,31 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "totale", "target": "nulla" },
+      
+          { "source": "totale", "target": "InveCe" },
+      
           { "source": "totale", "target": "Quattro" },
       
           { "source": "totale", "target": "anni" },
       
           { "source": "totale", "target": "Fattori" },
       
-          { "source": "totale", "target": "nulla" },
+          { "source": "nulla", "target": "natura" },
       
-          { "source": "totale", "target": "InveCe" },
+          { "source": "nulla", "target": "InveCe" },
+      
+          { "source": "nulla", "target": "totale" },
+      
+          { "source": "nulla", "target": "FA" },
+      
+          { "source": "InveCe", "target": "nulla" },
+      
+          { "source": "InveCe", "target": "totale" },
+      
+          { "source": "InveCe", "target": "Sanità" },
+      
+          { "source": "InveCe", "target": "anni" },
       
           { "source": "Quattro", "target": "totale" },
       
@@ -785,37 +801,29 @@ var data_local_dynamic = {
       
           { "source": "Quattro", "target": "Italiano" },
       
-          { "source": "anni", "target": "nulla" },
+          { "source": "anni", "target": "Gruppo" },
       
           { "source": "anni", "target": "Quattro" },
       
           { "source": "anni", "target": "totale" },
       
-          { "source": "anni", "target": "Gruppo" },
+          { "source": "anni", "target": "base" },
       
           { "source": "Fattori", "target": "totale" },
       
           { "source": "Fattori", "target": "tempo" },
-      
-          { "source": "nulla", "target": "forma" },
-      
-          { "source": "nulla", "target": "ancora" },
-      
-          { "source": "nulla", "target": "FA" },
-      
-          { "source": "nulla", "target": "proprio" },
-      
-          { "source": "InveCe", "target": "forma" },
-      
-          { "source": "InveCe", "target": "del" },
-      
-          { "source": "InveCe", "target": "nulla" },
-      
-          { "source": "InveCe", "target": "totale" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "nulla", "size": 70, "score": 0 , "title": "nulla", "type": "circle"},
+
+      
+
+        {"id": "InveCe", "size": 70, "score": 0 , "title": "InveCe", "type": "circle"},
+
       
 
         {"id": "Quattro", "size": 70, "score": 0 , "title": "Quattro", "type": "circle"},
@@ -830,15 +838,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "nulla", "size": 70, "score": 0 , "title": "nulla", "type": "circle"},
-
-      
-
-        {"id": "InveCe", "size": 70, "score": 0 , "title": "InveCe", "type": "circle"},
-
-      
-
         {"id": "totale", "size": 140, "score": 0.5 , "title": "totale", "type": "circle"},
+
+      
+
+        {"id": "natura", "size": 5, "score": 0.4 , "title": "natura", "type": "circle"},
+
+      
+
+        {"id": "FA", "size": 5, "score": 0.4 , "title": "FA", "type": "circle"},
+
+      
+
+        {"id": "Sanità", "size": 5, "score": 0.4 , "title": "Sanità", "type": "circle"},
 
       
 
@@ -854,27 +866,11 @@ var data_local_dynamic = {
 
       
 
+        {"id": "base", "size": 5, "score": 0.4 , "title": "base", "type": "circle"},
+
+      
+
         {"id": "tempo", "size": 5, "score": 0.4 , "title": "tempo", "type": "circle"},
-
-      
-
-        {"id": "forma", "size": 5, "score": 0.4 , "title": "forma", "type": "circle"},
-
-      
-
-        {"id": "ancora", "size": 5, "score": 0.4 , "title": "ancora", "type": "circle"},
-
-      
-
-        {"id": "FA", "size": 5, "score": 0.4 , "title": "FA", "type": "circle"},
-
-      
-
-        {"id": "proprio", "size": 5, "score": 0.4 , "title": "proprio", "type": "circle"},
-
-      
-
-        {"id": "del", "size": 5, "score": 0.4 , "title": "del", "type": "circle"},
 
        
 
@@ -1004,10 +1000,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

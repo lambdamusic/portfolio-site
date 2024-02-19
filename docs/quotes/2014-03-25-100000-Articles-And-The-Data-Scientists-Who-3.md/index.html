@@ -763,7 +763,9 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "evolution", "target": "genes" },
+          { "source": "genes", "target": "evolution" },
+      
+          { "source": "genes", "target": "genome" },
       
           { "source": "genes", "target": "protein" },
       
@@ -771,34 +773,102 @@ var data_local_dynamic = {
       
           { "source": "genes", "target": "example" },
       
-          { "source": "genes", "target": "collection" },
+          { "source": "evolution", "target": "genes" },
+      
+          { "source": "genome", "target": "genes" },
+      
+          { "source": "genome", "target": "protein" },
+      
+          { "source": "genome", "target": "variants" },
+      
+          { "source": "genome", "target": "human-genome" },
+      
+          { "source": "protein", "target": "genome" },
+      
+          { "source": "protein", "target": "genes" },
+      
+          { "source": "protein", "target": "Abstract" },
+      
+          { "source": "protein", "target": "example" },
+      
+          { "source": "Abstract", "target": "accidents" },
+      
+          { "source": "Abstract", "target": "existence" },
+      
+          { "source": "Abstract", "target": "particulars" },
+      
+          { "source": "Abstract", "target": "protein" },
+      
+          { "source": "example", "target": "linguistic-behavior" },
+      
+          { "source": "example", "target": "Maturana" },
+      
+          { "source": "example", "target": "medium" },
+      
+          { "source": "example", "target": "behavior" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "genes", "size": 70, "score": 0 , "title": "genes", "type": "circle"},
+        {"id": "evolution", "size": 70, "score": 0 , "title": "evolution", "type": "circle"},
 
       
 
-        {"id": "evolution", "size": 140, "score": 0.5 , "title": "evolution", "type": "circle"},
+        {"id": "genome", "size": 70, "score": 0 , "title": "genome", "type": "circle"},
 
       
 
-        {"id": "protein", "size": 5, "score": 0.4 , "title": "protein", "type": "circle"},
+        {"id": "protein", "size": 70, "score": 0 , "title": "protein", "type": "circle"},
 
       
 
-        {"id": "Abstract", "size": 5, "score": 0.4 , "title": "Abstract", "type": "circle"},
+        {"id": "Abstract", "size": 70, "score": 0 , "title": "Abstract", "type": "circle"},
 
       
 
-        {"id": "example", "size": 5, "score": 0.4 , "title": "example", "type": "circle"},
+        {"id": "example", "size": 70, "score": 0 , "title": "example", "type": "circle"},
 
       
 
-        {"id": "collection", "size": 5, "score": 0.4 , "title": "collection", "type": "circle"},
+        {"id": "genes", "size": 140, "score": 0.5 , "title": "genes", "type": "circle"},
+
+      
+
+        {"id": "variants", "size": 5, "score": 0.4 , "title": "variants", "type": "circle"},
+
+      
+
+        {"id": "human-genome", "size": 5, "score": 0.4 , "title": "human-genome", "type": "circle"},
+
+      
+
+        {"id": "accidents", "size": 5, "score": 0.4 , "title": "accidents", "type": "circle"},
+
+      
+
+        {"id": "existence", "size": 5, "score": 0.4 , "title": "existence", "type": "circle"},
+
+      
+
+        {"id": "particulars", "size": 5, "score": 0.4 , "title": "particulars", "type": "circle"},
+
+      
+
+        {"id": "linguistic-behavior", "size": 5, "score": 0.4 , "title": "linguistic-behavior", "type": "circle"},
+
+      
+
+        {"id": "Maturana", "size": 5, "score": 0.4 , "title": "Maturana", "type": "circle"},
+
+      
+
+        {"id": "medium", "size": 5, "score": 0.4 , "title": "medium", "type": "circle"},
+
+      
+
+        {"id": "behavior", "size": 5, "score": 0.4 , "title": "behavior", "type": "circle"},
 
        
 
@@ -928,10 +998,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

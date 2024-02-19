@@ -572,12 +572,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >History Of Scotland</span>
+							</small>
+							<!-- Words taken from <cite title="History Of Scotland">
+								<a class="-underline -text-muted">History Of Scotland</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-11-10-History-Of-Scotland-1.md/index.html">On contextualizing history</a>
-						<br />
-						<small style="color: #cbcbcb;">History Of Scotland
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=past.html">#past</a>&nbsp;
@@ -590,14 +601,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.aaai.org/ojs/index.php/aimagazine/article/view/1720" class="text-muted" target="_blank">The Cidoc Conceptual Reference Module: An Ontological Approach To Semantic Interoperability Of Metadata</a>
+									
+							</small>
+							<!-- Words taken from <cite title="The Cidoc Conceptual Reference Module: An Ontological Approach To Semantic Interoperability Of Metadata">
+								<a href="http://www.aaai.org/ojs/index.php/aimagazine/article/view/1720" class="-underline -text-muted" target="_blank">
+								  The Cidoc Conceptual Reference Module: An Ontological Approach To Semantic Interoperability Of Metadata</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-The-Cidoc-Conceptual-Reference-Module-An-Ontological-5.md/index.html">Historical data - it means...</a>
-						<br />
-						<small style="color: #cbcbcb;">The Cidoc Conceptual Reference Module: An Ontological Approach To Semantic Interoperability Of Metadata
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=past.html">#past</a>&nbsp;
@@ -608,6 +633,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -728,29 +754,29 @@ var data_local_dynamic = {
       
           { "source": "past", "target": "history" },
       
-          { "source": "figures", "target": "past" },
-      
-          { "source": "figures", "target": "power" },
-      
           { "source": "figures", "target": "book" },
       
           { "source": "figures", "target": "name" },
       
-          { "source": "power", "target": "point" },
+          { "source": "figures", "target": "past" },
       
-          { "source": "power", "target": "maps" },
+          { "source": "figures", "target": "power" },
       
-          { "source": "power", "target": "number" },
+          { "source": "power", "target": "wood" },
+      
+          { "source": "power", "target": "beaches" },
       
           { "source": "power", "target": "past" },
       
-          { "source": "history", "target": "mothers" },
+          { "source": "power", "target": "figures" },
       
-          { "source": "history", "target": "men" },
+          { "source": "history", "target": "historians" },
       
-          { "source": "history", "target": "room" },
+          { "source": "history", "target": "Italy" },
       
-          { "source": "history", "target": "outcomes" },
+          { "source": "history", "target": "politicians" },
+      
+          { "source": "history", "target": "book" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -781,31 +807,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "point", "size": 5, "score": 0.4 , "title": "point", "type": "circle"},
+        {"id": "wood", "size": 5, "score": 0.4 , "title": "wood", "type": "circle"},
 
       
 
-        {"id": "maps", "size": 5, "score": 0.4 , "title": "maps", "type": "circle"},
+        {"id": "beaches", "size": 5, "score": 0.4 , "title": "beaches", "type": "circle"},
 
       
 
-        {"id": "number", "size": 5, "score": 0.4 , "title": "number", "type": "circle"},
+        {"id": "historians", "size": 5, "score": 0.4 , "title": "historians", "type": "circle"},
 
       
 
-        {"id": "mothers", "size": 5, "score": 0.4 , "title": "mothers", "type": "circle"},
+        {"id": "Italy", "size": 5, "score": 0.4 , "title": "Italy", "type": "circle"},
 
       
 
-        {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
-
-      
-
-        {"id": "room", "size": 5, "score": 0.4 , "title": "room", "type": "circle"},
-
-      
-
-        {"id": "outcomes", "size": 5, "score": 0.4 , "title": "outcomes", "type": "circle"},
+        {"id": "politicians", "size": 5, "score": 0.4 , "title": "politicians", "type": "circle"},
 
        
 
@@ -935,10 +953,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

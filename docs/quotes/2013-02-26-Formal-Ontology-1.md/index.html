@@ -770,15 +770,15 @@ var data_local_dynamic = {
       
           { "source": "formal-ontology", "target": "ontology-development" },
       
-          { "source": "formal-ontology", "target": "being" },
+          { "source": "formal-ontology", "target": "formal-language" },
       
-          { "source": "ontology", "target": "Web" },
+          { "source": "ontology", "target": "use-cases" },
       
-          { "source": "ontology", "target": "RDF-data" },
+          { "source": "ontology", "target": "data-model" },
       
-          { "source": "ontology", "target": "World-Wide-Web" },
+          { "source": "ontology", "target": "architecture" },
       
-          { "source": "ontology", "target": "Ontology-Language" },
+          { "source": "ontology", "target": "requirements" },
       
           { "source": "multiple-legacy-systems", "target": "ontology" },
       
@@ -804,13 +804,13 @@ var data_local_dynamic = {
       
           { "source": "ontology-development", "target": "formal-ontology" },
       
-          { "source": "being", "target": "self" },
+          { "source": "formal-language", "target": "ontology" },
       
-          { "source": "being", "target": "children" },
+          { "source": "formal-language", "target": "formal-ontology" },
       
-          { "source": "being", "target": "human-beings" },
+          { "source": "formal-language", "target": "meaning" },
       
-          { "source": "being", "target": "words" },
+          { "source": "formal-language", "target": "semantics" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -833,7 +833,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "being", "size": 70, "score": 0 , "title": "being", "type": "circle"},
+        {"id": "formal-language", "size": 70, "score": 0 , "title": "formal-language", "type": "circle"},
 
       
 
@@ -841,35 +841,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Web", "size": 5, "score": 0.4 , "title": "Web", "type": "circle"},
+        {"id": "use-cases", "size": 5, "score": 0.4 , "title": "use-cases", "type": "circle"},
 
       
 
-        {"id": "RDF-data", "size": 5, "score": 0.4 , "title": "RDF-data", "type": "circle"},
+        {"id": "data-model", "size": 5, "score": 0.4 , "title": "data-model", "type": "circle"},
 
       
 
-        {"id": "World-Wide-Web", "size": 5, "score": 0.4 , "title": "World-Wide-Web", "type": "circle"},
+        {"id": "architecture", "size": 5, "score": 0.4 , "title": "architecture", "type": "circle"},
 
       
 
-        {"id": "Ontology-Language", "size": 5, "score": 0.4 , "title": "Ontology-Language", "type": "circle"},
+        {"id": "requirements", "size": 5, "score": 0.4 , "title": "requirements", "type": "circle"},
 
       
 
-        {"id": "self", "size": 5, "score": 0.4 , "title": "self", "type": "circle"},
+        {"id": "meaning", "size": 5, "score": 0.4 , "title": "meaning", "type": "circle"},
 
       
 
-        {"id": "children", "size": 5, "score": 0.4 , "title": "children", "type": "circle"},
-
-      
-
-        {"id": "human-beings", "size": 5, "score": 0.4 , "title": "human-beings", "type": "circle"},
-
-      
-
-        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+        {"id": "semantics", "size": 5, "score": 0.4 , "title": "semantics", "type": "circle"},
 
        
 
@@ -999,10 +991,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

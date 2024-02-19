@@ -763,110 +763,90 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "words", "target": "feelings" },
+          { "source": "Sapir-Whorf-hypothesis", "target": "words" },
       
-          { "source": "words", "target": "emotions" },
+          { "source": "Sapir-Whorf-hypothesis", "target": "language" },
       
-          { "source": "words", "target": "memory" },
+          { "source": "Sapir-Whorf-hypothesis", "target": "idea" },
       
-          { "source": "words", "target": "sense" },
+          { "source": "Sapir-Whorf-hypothesis", "target": "different-languages" },
       
-          { "source": "words", "target": "sound" },
+          { "source": "Sapir-Whorf-hypothesis", "target": "linguistics" },
       
-          { "source": "feelings", "target": "emotions" },
+          { "source": "words", "target": "language" },
       
-          { "source": "feelings", "target": "memory" },
+          { "source": "words", "target": "Sapir-Whorf-hypothesis" },
       
-          { "source": "feelings", "target": "words" },
+          { "source": "words", "target": "readers" },
       
-          { "source": "feelings", "target": "pain" },
+          { "source": "words", "target": "algorithm" },
       
-          { "source": "emotions", "target": "feelings" },
+          { "source": "language", "target": "words" },
       
-          { "source": "emotions", "target": "memory" },
+          { "source": "language", "target": "Sapir-Whorf-hypothesis" },
       
-          { "source": "emotions", "target": "words" },
+          { "source": "language", "target": "idea" },
       
-          { "source": "emotions", "target": "fathers" },
+          { "source": "language", "target": "different-languages" },
       
-          { "source": "memory", "target": "feelings" },
+          { "source": "idea", "target": "language" },
       
-          { "source": "memory", "target": "emotions" },
+          { "source": "idea", "target": "Sapir-Whorf-hypothesis" },
       
-          { "source": "memory", "target": "words" },
+          { "source": "idea", "target": "different-languages" },
       
-          { "source": "memory", "target": "sleep" },
+          { "source": "idea", "target": "linguistics" },
       
-          { "source": "sense", "target": "sound" },
+          { "source": "different-languages", "target": "language" },
       
-          { "source": "sense", "target": "words" },
+          { "source": "different-languages", "target": "Sapir-Whorf-hypothesis" },
       
-          { "source": "sense", "target": "desire" },
+          { "source": "different-languages", "target": "idea" },
       
-          { "source": "sense", "target": "world" },
+          { "source": "different-languages", "target": "linguistics" },
       
-          { "source": "sound", "target": "sense" },
+          { "source": "linguistics", "target": "language" },
       
-          { "source": "sound", "target": "words" },
+          { "source": "linguistics", "target": "Sapir-Whorf-hypothesis" },
       
-          { "source": "sound", "target": "drugs" },
+          { "source": "linguistics", "target": "idea" },
       
-          { "source": "sound", "target": "use" },
+          { "source": "linguistics", "target": "different-languages" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "feelings", "size": 70, "score": 0 , "title": "feelings", "type": "circle"},
+        {"id": "words", "size": 70, "score": 0 , "title": "words", "type": "circle"},
 
       
 
-        {"id": "emotions", "size": 70, "score": 0 , "title": "emotions", "type": "circle"},
+        {"id": "language", "size": 70, "score": 0 , "title": "language", "type": "circle"},
 
       
 
-        {"id": "memory", "size": 70, "score": 0 , "title": "memory", "type": "circle"},
+        {"id": "idea", "size": 70, "score": 0 , "title": "idea", "type": "circle"},
 
       
 
-        {"id": "sense", "size": 70, "score": 0 , "title": "sense", "type": "circle"},
+        {"id": "different-languages", "size": 70, "score": 0 , "title": "different-languages", "type": "circle"},
 
       
 
-        {"id": "sound", "size": 70, "score": 0 , "title": "sound", "type": "circle"},
+        {"id": "linguistics", "size": 70, "score": 0 , "title": "linguistics", "type": "circle"},
 
       
 
-        {"id": "words", "size": 140, "score": 0.5 , "title": "words", "type": "circle"},
+        {"id": "Sapir-Whorf-hypothesis", "size": 140, "score": 0.5 , "title": "Sapir-Whorf-hypothesis", "type": "circle"},
 
       
 
-        {"id": "pain", "size": 5, "score": 0.4 , "title": "pain", "type": "circle"},
+        {"id": "readers", "size": 5, "score": 0.4 , "title": "readers", "type": "circle"},
 
       
 
-        {"id": "fathers", "size": 5, "score": 0.4 , "title": "fathers", "type": "circle"},
-
-      
-
-        {"id": "sleep", "size": 5, "score": 0.4 , "title": "sleep", "type": "circle"},
-
-      
-
-        {"id": "desire", "size": 5, "score": 0.4 , "title": "desire", "type": "circle"},
-
-      
-
-        {"id": "world", "size": 5, "score": 0.4 , "title": "world", "type": "circle"},
-
-      
-
-        {"id": "drugs", "size": 5, "score": 0.4 , "title": "drugs", "type": "circle"},
-
-      
-
-        {"id": "use", "size": 5, "score": 0.4 , "title": "use", "type": "circle"},
+        {"id": "algorithm", "size": 5, "score": 0.4 , "title": "algorithm", "type": "circle"},
 
        
 
@@ -996,10 +976,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

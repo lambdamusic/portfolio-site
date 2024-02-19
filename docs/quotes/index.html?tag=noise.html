@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="https://www.scrumalliance.org/community/articles/2012/august/a-scrum-master-is-not-a-project-manager-by-another" class="text-muted" target="_blank">A Scrum Master Is Not A Project Manager By Another Name</a>
+									
+							</small>
+							<!-- Words taken from <cite title="A Scrum Master Is Not A Project Manager By Another Name">
+								<a href="https://www.scrumalliance.org/community/articles/2012/august/a-scrum-master-is-not-a-project-manager-by-another" class="-underline -text-muted" target="_blank">
+								  A Scrum Master Is Not A Project Manager By Another Name</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-09-25-A-Scrum-Master-Is-Not-A-Project-4.md/index.html">There is often a lot...</a>
-						<br />
-						<small style="color: #cbcbcb;">A Scrum Master Is Not A Project Manager By Another Name
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=product-owners.html">#product-owners</a>&nbsp;
@@ -596,14 +609,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.wired.com/science/discoveries/magazine/16-07/pb_theory" class="text-muted" target="_blank">He End Of Theory: The Data Deluge Makes The Scientific Method Obsolete</a>
+									
+							</small>
+							<!-- Words taken from <cite title="He End Of Theory: The Data Deluge Makes The Scientific Method Obsolete">
+								<a href="http://www.wired.com/science/discoveries/magazine/16-07/pb_theory" class="-underline -text-muted" target="_blank">
+								  He End Of Theory: The Data Deluge Makes The Scientific Method Obsolete</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-09-09-He-End-Of-Theory-The-Data-Deluge-1.md/index.html">Correlation and causation</a>
-						<br />
-						<small style="color: #cbcbcb;">He End Of Theory: The Data Deluge Makes The Scientific Method Obsolete
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=model.html">#model</a>&nbsp;
@@ -618,6 +645,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -766,21 +794,21 @@ var data_local_dynamic = {
       
           { "source": "business", "target": "product-backlog" },
       
-          { "source": "team", "target": "sprint" },
+          { "source": "team", "target": "goal" },
       
-          { "source": "team", "target": "features" },
+          { "source": "team", "target": "link" },
       
-          { "source": "team", "target": "list" },
+          { "source": "team", "target": "owners" },
       
-          { "source": "team", "target": "number" },
+          { "source": "team", "target": "product-owners" },
       
-          { "source": "changes", "target": "course" },
+          { "source": "changes", "target": "high-impact" },
+      
+          { "source": "changes", "target": "domain" },
+      
+          { "source": "changes", "target": "results" },
       
           { "source": "changes", "target": "product-owners" },
-      
-          { "source": "changes", "target": "owners" },
-      
-          { "source": "changes", "target": "business" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -819,23 +847,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "sprint", "size": 5, "score": 0.4 , "title": "sprint", "type": "circle"},
+        {"id": "goal", "size": 5, "score": 0.4 , "title": "goal", "type": "circle"},
 
       
 
-        {"id": "features", "size": 5, "score": 0.4 , "title": "features", "type": "circle"},
+        {"id": "link", "size": 5, "score": 0.4 , "title": "link", "type": "circle"},
 
       
 
-        {"id": "list", "size": 5, "score": 0.4 , "title": "list", "type": "circle"},
+        {"id": "high-impact", "size": 5, "score": 0.4 , "title": "high-impact", "type": "circle"},
 
       
 
-        {"id": "number", "size": 5, "score": 0.4 , "title": "number", "type": "circle"},
+        {"id": "domain", "size": 5, "score": 0.4 , "title": "domain", "type": "circle"},
 
       
 
-        {"id": "course", "size": 5, "score": 0.4 , "title": "course", "type": "circle"},
+        {"id": "results", "size": 5, "score": 0.4 , "title": "results", "type": "circle"},
 
        
 
@@ -965,10 +993,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

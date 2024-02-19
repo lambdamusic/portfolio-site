@@ -572,30 +572,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
-		
-					<li style="margin-bottom: 10px;">
-						<a style="font-size: 120%;" href="2015-04-18-Quantifying-The-Evolutionary-Dynamics-Of-Language-1.md/index.html">The rate of language regularization depends on the frequency of word usage</a>
-						<br />
-						<small style="color: #cbcbcb;">Quantifying The Evolutionary Dynamics Of Language
 
-						<br />
-						
-						<a class="text-muted" href="index.html%3Ftag=verbs.html">#verbs</a>&nbsp;
-							
-						<a class="text-muted" href="index.html%3Ftag=Middle-English.html">#Middle-English</a>&nbsp;
-							
-							</small>
-		
 					
-					</li>
-		
-				
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Osx Dictionary</span>
+							</small>
+							<!-- Words taken from <cite title="Osx Dictionary">
+								<a class="-underline -text-muted">Osx Dictionary</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Osx-Dictionary-9.md/index.html">Relish</a>
-						<br />
-						<small style="color: #cbcbcb;">Osx Dictionary
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=nouns.html">#nouns</a>&nbsp;
@@ -606,6 +599,39 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
+		
+				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.nature.com/nature/journal/v449/n7163/abs/nature06137.html" class="text-muted" target="_blank">Quantifying The Evolutionary Dynamics Of Language</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Quantifying The Evolutionary Dynamics Of Language">
+								<a href="http://www.nature.com/nature/journal/v449/n7163/abs/nature06137.html" class="-underline -text-muted" target="_blank">
+								  Quantifying The Evolutionary Dynamics Of Language</a></cite> -->
+						</h4>
+						
+					
+						
+		
+					<li style="margin-bottom: 10px;">
+						<a style="font-size: 120%;" href="2015-04-18-Quantifying-The-Evolutionary-Dynamics-Of-Language-1.md/index.html">The rate of language regularization depends on the frequency of word usage</a>
+						<br />
+						
+						<a class="text-muted" href="index.html%3Ftag=verbs.html">#verbs</a>&nbsp;
+							
+						<a class="text-muted" href="index.html%3Ftag=Middle-English.html">#Middle-English</a>&nbsp;
+							
+							</small>
+		
+					
+					</li>
+
 		
 				
 			</div>
@@ -720,17 +746,9 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "Middle-English", "target": "verbs" },
-      
           { "source": "Middle-English", "target": "nouns" },
       
-          { "source": "verbs", "target": "nouns" },
-      
-          { "source": "verbs", "target": "century" },
-      
-          { "source": "verbs", "target": "persons" },
-      
-          { "source": "verbs", "target": "career" },
+          { "source": "Middle-English", "target": "verbs" },
       
           { "source": "nouns", "target": "verbs" },
       
@@ -739,17 +757,25 @@ var data_local_dynamic = {
           { "source": "nouns", "target": "persons" },
       
           { "source": "nouns", "target": "career" },
+      
+          { "source": "verbs", "target": "attitudes" },
+      
+          { "source": "verbs", "target": "relationship" },
+      
+          { "source": "verbs", "target": "nouns" },
+      
+          { "source": "verbs", "target": "century" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "verbs", "size": 70, "score": 0 , "title": "verbs", "type": "circle"},
+        {"id": "nouns", "size": 70, "score": 0 , "title": "nouns", "type": "circle"},
 
       
 
-        {"id": "nouns", "size": 70, "score": 0 , "title": "nouns", "type": "circle"},
+        {"id": "verbs", "size": 70, "score": 0 , "title": "verbs", "type": "circle"},
 
       
 
@@ -766,6 +792,14 @@ var data_local_dynamic = {
       
 
         {"id": "career", "size": 5, "score": 0.4 , "title": "career", "type": "circle"},
+
+      
+
+        {"id": "attitudes", "size": 5, "score": 0.4 , "title": "attitudes", "type": "circle"},
+
+      
+
+        {"id": "relationship", "size": 5, "score": 0.4 , "title": "relationship", "type": "circle"},
 
        
 
@@ -895,10 +929,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

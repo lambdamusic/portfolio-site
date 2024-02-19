@@ -760,23 +760,39 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "changes", "target": "course" },
+          { "source": "changes", "target": "high-impact" },
+      
+          { "source": "changes", "target": "domain" },
+      
+          { "source": "changes", "target": "results" },
       
           { "source": "changes", "target": "product-owners" },
       
           { "source": "changes", "target": "owners" },
       
-          { "source": "changes", "target": "business" },
+          { "source": "high-impact", "target": "changes" },
       
-          { "source": "changes", "target": "team" },
+          { "source": "high-impact", "target": "domain" },
       
-          { "source": "course", "target": "changes" },
+          { "source": "high-impact", "target": "results" },
       
-          { "source": "course", "target": "shadow" },
+          { "source": "high-impact", "target": "patterns" },
       
-          { "source": "course", "target": "motif" },
+          { "source": "domain", "target": "changes" },
       
-          { "source": "course", "target": "acts" },
+          { "source": "domain", "target": "high-impact" },
+      
+          { "source": "domain", "target": "results" },
+      
+          { "source": "domain", "target": "ontology-development" },
+      
+          { "source": "results", "target": "changes" },
+      
+          { "source": "results", "target": "high-impact" },
+      
+          { "source": "results", "target": "domain" },
+      
+          { "source": "results", "target": "task" },
       
           { "source": "product-owners", "target": "owners" },
       
@@ -793,29 +809,21 @@ var data_local_dynamic = {
           { "source": "owners", "target": "business" },
       
           { "source": "owners", "target": "product-backlog" },
-      
-          { "source": "business", "target": "product-owners" },
-      
-          { "source": "business", "target": "owners" },
-      
-          { "source": "business", "target": "project" },
-      
-          { "source": "business", "target": "product-backlog" },
-      
-          { "source": "team", "target": "sprint" },
-      
-          { "source": "team", "target": "features" },
-      
-          { "source": "team", "target": "list" },
-      
-          { "source": "team", "target": "number" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "course", "size": 70, "score": 0 , "title": "course", "type": "circle"},
+        {"id": "high-impact", "size": 70, "score": 0 , "title": "high-impact", "type": "circle"},
+
+      
+
+        {"id": "domain", "size": 70, "score": 0 , "title": "domain", "type": "circle"},
+
+      
+
+        {"id": "results", "size": 70, "score": 0 , "title": "results", "type": "circle"},
 
       
 
@@ -827,27 +835,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "business", "size": 70, "score": 0 , "title": "business", "type": "circle"},
-
-      
-
-        {"id": "team", "size": 70, "score": 0 , "title": "team", "type": "circle"},
-
-      
-
         {"id": "changes", "size": 140, "score": 0.5 , "title": "changes", "type": "circle"},
 
       
 
-        {"id": "shadow", "size": 5, "score": 0.4 , "title": "shadow", "type": "circle"},
+        {"id": "patterns", "size": 5, "score": 0.4 , "title": "patterns", "type": "circle"},
 
       
 
-        {"id": "motif", "size": 5, "score": 0.4 , "title": "motif", "type": "circle"},
+        {"id": "ontology-development", "size": 5, "score": 0.4 , "title": "ontology-development", "type": "circle"},
 
       
 
-        {"id": "acts", "size": 5, "score": 0.4 , "title": "acts", "type": "circle"},
+        {"id": "task", "size": 5, "score": 0.4 , "title": "task", "type": "circle"},
 
       
 
@@ -855,23 +855,11 @@ var data_local_dynamic = {
 
       
 
+        {"id": "business", "size": 5, "score": 0.4 , "title": "business", "type": "circle"},
+
+      
+
         {"id": "product-backlog", "size": 5, "score": 0.4 , "title": "product-backlog", "type": "circle"},
-
-      
-
-        {"id": "sprint", "size": 5, "score": 0.4 , "title": "sprint", "type": "circle"},
-
-      
-
-        {"id": "features", "size": 5, "score": 0.4 , "title": "features", "type": "circle"},
-
-      
-
-        {"id": "list", "size": 5, "score": 0.4 , "title": "list", "type": "circle"},
-
-      
-
-        {"id": "number", "size": 5, "score": 0.4 , "title": "number", "type": "circle"},
 
        
 
@@ -1001,10 +989,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

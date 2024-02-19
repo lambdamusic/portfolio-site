@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.taxonomies-sig.org/about.htm" class="text-muted" target="_blank">About Taxonomies &amp; Controlled Vocabularies</a>
+									
+							</small>
+							<!-- Words taken from <cite title="About Taxonomies &amp; Controlled Vocabularies">
+								<a href="http://www.taxonomies-sig.org/about.htm" class="-underline -text-muted" target="_blank">
+								  About Taxonomies &amp; Controlled Vocabularies</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-02-05-About-Taxonomies-Controlled-Vocabularies-4.md/index.html">An ontology, like a thesaurus,...</a>
-						<br />
-						<small style="color: #cbcbcb;">About Taxonomies &amp; Controlled Vocabularies
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=ontology.html">#ontology</a>&nbsp;
@@ -594,14 +607,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-02-05-About-Taxonomies-Controlled-Vocabularies-1.md/index.html">A controlled vocabulary, also called...</a>
-						<br />
-						<small style="color: #cbcbcb;">About Taxonomies &amp; Controlled Vocabularies
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=authority-files.html">#authority-files</a>&nbsp;
@@ -620,14 +635,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-02-05-About-Taxonomies-Controlled-Vocabularies-2.md/index.html">A taxonomy is typically a...</a>
-						<br />
-						<small style="color: #cbcbcb;">About Taxonomies &amp; Controlled Vocabularies
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=nodes.html">#nodes</a>&nbsp;
@@ -642,6 +659,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -766,13 +784,13 @@ var data_local_dynamic = {
       
           { "source": "taxonomy", "target": "authority-files" },
       
-          { "source": "ontology", "target": "Web" },
+          { "source": "ontology", "target": "use-cases" },
       
-          { "source": "ontology", "target": "RDF-data" },
+          { "source": "ontology", "target": "data-model" },
       
-          { "source": "ontology", "target": "World-Wide-Web" },
+          { "source": "ontology", "target": "architecture" },
       
-          { "source": "ontology", "target": "Ontology-Language" },
+          { "source": "ontology", "target": "requirements" },
       
           { "source": "Semantic-Web", "target": "ontology" },
       
@@ -782,13 +800,13 @@ var data_local_dynamic = {
       
           { "source": "Semantic-Web", "target": "taxonomy" },
       
-          { "source": "information-systems", "target": "different-information-systems" },
+          { "source": "information-systems", "target": "ontology" },
       
-          { "source": "information-systems", "target": "system" },
+          { "source": "information-systems", "target": "Semantic-Web" },
       
-          { "source": "information-systems", "target": "interoperability" },
+          { "source": "information-systems", "target": "companies" },
       
-          { "source": "information-systems", "target": "capability" },
+          { "source": "information-systems", "target": "taxonomy" },
       
           { "source": "companies", "target": "ontology" },
       
@@ -835,35 +853,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Web", "size": 5, "score": 0.4 , "title": "Web", "type": "circle"},
+        {"id": "use-cases", "size": 5, "score": 0.4 , "title": "use-cases", "type": "circle"},
 
       
 
-        {"id": "RDF-data", "size": 5, "score": 0.4 , "title": "RDF-data", "type": "circle"},
+        {"id": "data-model", "size": 5, "score": 0.4 , "title": "data-model", "type": "circle"},
 
       
 
-        {"id": "World-Wide-Web", "size": 5, "score": 0.4 , "title": "World-Wide-Web", "type": "circle"},
+        {"id": "architecture", "size": 5, "score": 0.4 , "title": "architecture", "type": "circle"},
 
       
 
-        {"id": "Ontology-Language", "size": 5, "score": 0.4 , "title": "Ontology-Language", "type": "circle"},
-
-      
-
-        {"id": "different-information-systems", "size": 5, "score": 0.4 , "title": "different-information-systems", "type": "circle"},
-
-      
-
-        {"id": "system", "size": 5, "score": 0.4 , "title": "system", "type": "circle"},
-
-      
-
-        {"id": "interoperability", "size": 5, "score": 0.4 , "title": "interoperability", "type": "circle"},
-
-      
-
-        {"id": "capability", "size": 5, "score": 0.4 , "title": "capability", "type": "circle"},
+        {"id": "requirements", "size": 5, "score": 0.4 , "title": "requirements", "type": "circle"},
 
       
 
@@ -1009,10 +1011,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

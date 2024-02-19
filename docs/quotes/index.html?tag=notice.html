@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://smethur.st/posts/176135860" class="text-muted" target="_blank">Designing A Url Structure For Bbc Programmes | Smethurst</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Designing A Url Structure For Bbc Programmes | Smethurst">
+								<a href="http://smethur.st/posts/176135860" class="-underline -text-muted" target="_blank">
+								  Designing A Url Structure For Bbc Programmes | Smethurst</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-09-29-Designing-A-Url-Structure-For-Bbc-Programmes-7.md/index.html">Brand and series</a>
-						<br />
-						<small style="color: #cbcbcb;">Designing A Url Structure For Bbc Programmes | Smethurst
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=distinction.html">#distinction</a>&nbsp;
@@ -588,14 +601,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.nature.com/news/online-collaboration-scientists-and-the-social-network-1.15711#/reach" class="text-muted" target="_blank">Online Collaboration: Scientists And The Social Network : Nature News &amp; Comment</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Online Collaboration: Scientists And The Social Network : Nature News &amp; Comment">
+								<a href="http://www.nature.com/news/online-collaboration-scientists-and-the-social-network-1.15711#/reach" class="-underline -text-muted" target="_blank">
+								  Online Collaboration: Scientists And The Social Network : Nature News &amp; Comment</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-08-19-Online-Collaboration-Scientists-And-The-Social-Network-1.md/index.html">Publishers are worried that the...</a>
-						<br />
-						<small style="color: #cbcbcb;">Online Collaboration: Scientists And The Social Network : Nature News &amp; Comment
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=Publisher.html">#Publisher</a>&nbsp;
@@ -606,6 +633,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -724,17 +752,17 @@ var data_local_dynamic = {
       
           { "source": "notice", "target": "Publisher" },
       
-          { "source": "distinction", "target": "objects" },
+          { "source": "distinction", "target": "notice" },
       
-          { "source": "distinction", "target": "consensual-behavior" },
+          { "source": "distinction", "target": "philosophers" },
       
-          { "source": "distinction", "target": "name" },
+          { "source": "distinction", "target": "idea" },
       
-          { "source": "distinction", "target": "newspapers" },
-      
-          { "source": "Publisher", "target": "metadata" },
+          { "source": "distinction", "target": "relation" },
       
           { "source": "Publisher", "target": "notice" },
+      
+          { "source": "Publisher", "target": "metadata" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -753,19 +781,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "objects", "size": 5, "score": 0.4 , "title": "objects", "type": "circle"},
+        {"id": "philosophers", "size": 5, "score": 0.4 , "title": "philosophers", "type": "circle"},
 
       
 
-        {"id": "consensual-behavior", "size": 5, "score": 0.4 , "title": "consensual-behavior", "type": "circle"},
+        {"id": "idea", "size": 5, "score": 0.4 , "title": "idea", "type": "circle"},
 
       
 
-        {"id": "name", "size": 5, "score": 0.4 , "title": "name", "type": "circle"},
-
-      
-
-        {"id": "newspapers", "size": 5, "score": 0.4 , "title": "newspapers", "type": "circle"},
+        {"id": "relation", "size": 5, "score": 0.4 , "title": "relation", "type": "circle"},
 
       
 
@@ -899,10 +923,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

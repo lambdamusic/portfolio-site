@@ -572,12 +572,51 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >The Wire</span>
+							</small>
+							<!-- Words taken from <cite title="The Wire">
+								<a class="-underline -text-muted">The Wire</a></cite> -->
+						</h4>
+						
+					
+						
+		
+					<li style="margin-bottom: 10px;">
+						<a style="font-size: 120%;" href="2013-02-26-The-Wire-1.md/index.html">On being flexible</a>
+						<br />
+						
+						<a class="text-muted" href="index.html%3Ftag=trees.html">#trees</a>&nbsp;
+							
+							</small>
+		
+					
+					</li>
+
+		
+				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Towards A Multilingual , Comprehensive And Open Scientific Journal Ontology</span>
+							</small>
+							<!-- Words taken from <cite title="Towards A Multilingual , Comprehensive And Open Scientific Journal Ontology">
+								<a class="-underline -text-muted">Towards A Multilingual , Comprehensive And Open Scientific Journal Ontology</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Towards-A-Multilingual-Comprehensive-And-Open-Scientific-1.md/index.html">Classification of journals</a>
-						<br />
-						<small style="color: #cbcbcb;">Towards A Multilingual , Comprehensive And Open Scientific Journal Ontology
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=domain.html">#domain</a>&nbsp;
@@ -590,22 +629,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
-		
-				
-		
-					<li style="margin-bottom: 10px;">
-						<a style="font-size: 120%;" href="2013-02-26-The-Wire-1.md/index.html">On being flexible</a>
-						<br />
-						<small style="color: #cbcbcb;">The Wire
 
-						<br />
-						
-						<a class="text-muted" href="index.html%3Ftag=trees.html">#trees</a>&nbsp;
-							
-							</small>
-		
-					
-					</li>
 		
 				
 			</div>
@@ -724,21 +748,21 @@ var data_local_dynamic = {
       
           { "source": "trees", "target": "aggregation" },
       
-          { "source": "domain", "target": "types" },
+          { "source": "domain", "target": "changes" },
       
-          { "source": "domain", "target": "unity" },
+          { "source": "domain", "target": "high-impact" },
       
-          { "source": "domain", "target": "entities" },
+          { "source": "domain", "target": "results" },
       
-          { "source": "domain", "target": "terms" },
-      
-          { "source": "aggregation", "target": "domain" },
-      
-          { "source": "aggregation", "target": "trees" },
+          { "source": "domain", "target": "ontology-development" },
       
           { "source": "aggregation", "target": "publications" },
       
           { "source": "aggregation", "target": "information" },
+      
+          { "source": "aggregation", "target": "purpose" },
+      
+          { "source": "aggregation", "target": "link" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -757,19 +781,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "types", "size": 5, "score": 0.4 , "title": "types", "type": "circle"},
+        {"id": "changes", "size": 5, "score": 0.4 , "title": "changes", "type": "circle"},
 
       
 
-        {"id": "unity", "size": 5, "score": 0.4 , "title": "unity", "type": "circle"},
+        {"id": "high-impact", "size": 5, "score": 0.4 , "title": "high-impact", "type": "circle"},
 
       
 
-        {"id": "entities", "size": 5, "score": 0.4 , "title": "entities", "type": "circle"},
+        {"id": "results", "size": 5, "score": 0.4 , "title": "results", "type": "circle"},
 
       
 
-        {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
+        {"id": "ontology-development", "size": 5, "score": 0.4 , "title": "ontology-development", "type": "circle"},
 
       
 
@@ -778,6 +802,14 @@ var data_local_dynamic = {
       
 
         {"id": "information", "size": 5, "score": 0.4 , "title": "information", "type": "circle"},
+
+      
+
+        {"id": "purpose", "size": 5, "score": 0.4 , "title": "purpose", "type": "circle"},
+
+      
+
+        {"id": "link", "size": 5, "score": 0.4 , "title": "link", "type": "circle"},
 
        
 
@@ -907,10 +939,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -572,12 +572,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Shantaram (gregory David Roberts)</span>
+							</small>
+							<!-- Words taken from <cite title="Shantaram (gregory David Roberts)">
+								<a class="-underline -text-muted">Shantaram (gregory David Roberts)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-11-05-Shantaram-gregory-David-Roberts-1.md/index.html">Khaderbhai once said that every...</a>
-						<br />
-						<small style="color: #cbcbcb;">Shantaram (gregory David Roberts)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=course.html">#course</a>&nbsp;
@@ -592,14 +603,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-11-05-Shantaram-gregory-David-Roberts-25.md/index.html">Prison also taught me how...</a>
-						<br />
-						<small style="color: #cbcbcb;">Shantaram (gregory David Roberts)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=light.html">#light</a>&nbsp;
@@ -612,6 +625,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -744,21 +758,21 @@ var data_local_dynamic = {
       
           { "source": "course", "target": "acts" },
       
-          { "source": "motif", "target": "course" },
-      
-          { "source": "motif", "target": "shadow" },
-      
-          { "source": "motif", "target": "acts" },
-      
           { "source": "motif", "target": "character" },
       
-          { "source": "acts", "target": "leaders" },
+          { "source": "motif", "target": "maturity" },
       
-          { "source": "acts", "target": "West" },
+          { "source": "motif", "target": "lines" },
+      
+          { "source": "motif", "target": "course" },
       
           { "source": "acts", "target": "tone" },
       
           { "source": "acts", "target": "impression" },
+      
+          { "source": "acts", "target": "voice" },
+      
+          { "source": "acts", "target": "course" },
       
           { "source": "light", "target": "function" },
       
@@ -768,11 +782,11 @@ var data_local_dynamic = {
       
           { "source": "light", "target": "shadow" },
       
+          { "source": "strength", "target": "front" },
+      
           { "source": "strength", "target": "men" },
       
           { "source": "strength", "target": "meeting" },
-      
-          { "source": "strength", "target": "front" },
       
           { "source": "strength", "target": "light" },
                 
@@ -813,11 +827,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "leaders", "size": 5, "score": 0.4 , "title": "leaders", "type": "circle"},
+        {"id": "maturity", "size": 5, "score": 0.4 , "title": "maturity", "type": "circle"},
 
       
 
-        {"id": "West", "size": 5, "score": 0.4 , "title": "West", "type": "circle"},
+        {"id": "lines", "size": 5, "score": 0.4 , "title": "lines", "type": "circle"},
 
       
 
@@ -829,6 +843,10 @@ var data_local_dynamic = {
 
       
 
+        {"id": "voice", "size": 5, "score": 0.4 , "title": "voice", "type": "circle"},
+
+      
+
         {"id": "function", "size": 5, "score": 0.4 , "title": "function", "type": "circle"},
 
       
@@ -837,15 +855,15 @@ var data_local_dynamic = {
 
       
 
+        {"id": "front", "size": 5, "score": 0.4 , "title": "front", "type": "circle"},
+
+      
+
         {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
 
       
 
         {"id": "meeting", "size": 5, "score": 0.4 , "title": "meeting", "type": "circle"},
-
-      
-
-        {"id": "front", "size": 5, "score": 0.4 , "title": "front", "type": "circle"},
 
        
 
@@ -975,10 +993,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -764,29 +764,29 @@ var data_local_dynamic = {
       
           { "source": "nets", "target": "field-of-AI" },
       
-          { "source": "graph", "target": "RDF/XML" },
+          { "source": "graph", "target": "knowledge-graph" },
       
-          { "source": "graph", "target": "RDF" },
+          { "source": "graph", "target": "data-analytics" },
       
-          { "source": "graph", "target": "syntax" },
+          { "source": "graph", "target": "analytics" },
       
-          { "source": "graph", "target": "computational-ontology" },
+          { "source": "graph", "target": "semantics" },
       
-          { "source": "logic", "target": "objectivity" },
+          { "source": "logic", "target": "science" },
       
           { "source": "logic", "target": "things" },
       
-          { "source": "logic", "target": "reality" },
+          { "source": "logic", "target": "assumption" },
       
-          { "source": "logic", "target": "graph" },
+          { "source": "logic", "target": "words" },
+      
+          { "source": "field-of-AI", "target": "graph" },
+      
+          { "source": "field-of-AI", "target": "nets" },
+      
+          { "source": "field-of-AI", "target": "logic" },
       
           { "source": "field-of-AI", "target": "Internet-of-Things" },
-      
-          { "source": "field-of-AI", "target": "Internet" },
-      
-          { "source": "field-of-AI", "target": "things" },
-      
-          { "source": "field-of-AI", "target": "devices" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -809,23 +809,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "RDF/XML", "size": 5, "score": 0.4 , "title": "RDF/XML", "type": "circle"},
+        {"id": "knowledge-graph", "size": 5, "score": 0.4 , "title": "knowledge-graph", "type": "circle"},
 
       
 
-        {"id": "RDF", "size": 5, "score": 0.4 , "title": "RDF", "type": "circle"},
+        {"id": "data-analytics", "size": 5, "score": 0.4 , "title": "data-analytics", "type": "circle"},
 
       
 
-        {"id": "syntax", "size": 5, "score": 0.4 , "title": "syntax", "type": "circle"},
+        {"id": "analytics", "size": 5, "score": 0.4 , "title": "analytics", "type": "circle"},
 
       
 
-        {"id": "computational-ontology", "size": 5, "score": 0.4 , "title": "computational-ontology", "type": "circle"},
+        {"id": "semantics", "size": 5, "score": 0.4 , "title": "semantics", "type": "circle"},
 
       
 
-        {"id": "objectivity", "size": 5, "score": 0.4 , "title": "objectivity", "type": "circle"},
+        {"id": "science", "size": 5, "score": 0.4 , "title": "science", "type": "circle"},
 
       
 
@@ -833,19 +833,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "reality", "size": 5, "score": 0.4 , "title": "reality", "type": "circle"},
+        {"id": "assumption", "size": 5, "score": 0.4 , "title": "assumption", "type": "circle"},
+
+      
+
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
 
       
 
         {"id": "Internet-of-Things", "size": 5, "score": 0.4 , "title": "Internet-of-Things", "type": "circle"},
-
-      
-
-        {"id": "Internet", "size": 5, "score": 0.4 , "title": "Internet", "type": "circle"},
-
-      
-
-        {"id": "devices", "size": 5, "score": 0.4 , "title": "devices", "type": "circle"},
 
        
 
@@ -975,10 +971,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -768,6 +768,16 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "imposition", "target": "semiotic-analysis" },
+      
+          { "source": "imposition", "target": "signification" },
+      
+          { "source": "imposition", "target": "vocal-expressions" },
+      
+          { "source": "imposition", "target": "language" },
+      
+          { "source": "imposition", "target": "meaning" },
+      
           { "source": "semiotic-analysis", "target": "signification" },
       
           { "source": "semiotic-analysis", "target": "vocal-expressions" },
@@ -775,8 +785,6 @@ var data_local_dynamic = {
           { "source": "semiotic-analysis", "target": "imposition" },
       
           { "source": "semiotic-analysis", "target": "language" },
-      
-          { "source": "semiotic-analysis", "target": "meaning" },
       
           { "source": "signification", "target": "semiotic-analysis" },
       
@@ -794,33 +802,29 @@ var data_local_dynamic = {
       
           { "source": "vocal-expressions", "target": "language" },
       
-          { "source": "imposition", "target": "semiotic-analysis" },
+          { "source": "language", "target": "words" },
       
-          { "source": "imposition", "target": "signification" },
+          { "source": "language", "target": "Sapir-Whorf-hypothesis" },
       
-          { "source": "imposition", "target": "vocal-expressions" },
+          { "source": "language", "target": "idea" },
       
-          { "source": "imposition", "target": "language" },
+          { "source": "language", "target": "different-languages" },
       
-          { "source": "language", "target": "programming-language" },
+          { "source": "meaning", "target": "concept" },
       
-          { "source": "language", "target": "semiotic-analysis" },
+          { "source": "meaning", "target": "knowledge-representation" },
       
-          { "source": "language", "target": "signification" },
+          { "source": "meaning", "target": "representation" },
       
-          { "source": "language", "target": "vocal-expressions" },
-      
-          { "source": "meaning", "target": "semiotic-analysis" },
-      
-          { "source": "meaning", "target": "signification" },
-      
-          { "source": "meaning", "target": "vocal-expressions" },
-      
-          { "source": "meaning", "target": "imposition" },
+          { "source": "meaning", "target": "terms" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "semiotic-analysis", "size": 70, "score": 0 , "title": "semiotic-analysis", "type": "circle"},
+
       
 
         {"id": "signification", "size": 70, "score": 0 , "title": "signification", "type": "circle"},
@@ -828,10 +832,6 @@ var data_local_dynamic = {
       
 
         {"id": "vocal-expressions", "size": 70, "score": 0 , "title": "vocal-expressions", "type": "circle"},
-
-      
-
-        {"id": "imposition", "size": 70, "score": 0 , "title": "imposition", "type": "circle"},
 
       
 
@@ -843,11 +843,39 @@ var data_local_dynamic = {
 
       
 
-        {"id": "semiotic-analysis", "size": 140, "score": 0.5 , "title": "semiotic-analysis", "type": "circle"},
+        {"id": "imposition", "size": 140, "score": 0.5 , "title": "imposition", "type": "circle"},
 
       
 
-        {"id": "programming-language", "size": 5, "score": 0.4 , "title": "programming-language", "type": "circle"},
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "Sapir-Whorf-hypothesis", "size": 5, "score": 0.4 , "title": "Sapir-Whorf-hypothesis", "type": "circle"},
+
+      
+
+        {"id": "idea", "size": 5, "score": 0.4 , "title": "idea", "type": "circle"},
+
+      
+
+        {"id": "different-languages", "size": 5, "score": 0.4 , "title": "different-languages", "type": "circle"},
+
+      
+
+        {"id": "concept", "size": 5, "score": 0.4 , "title": "concept", "type": "circle"},
+
+      
+
+        {"id": "knowledge-representation", "size": 5, "score": 0.4 , "title": "knowledge-representation", "type": "circle"},
+
+      
+
+        {"id": "representation", "size": 5, "score": 0.4 , "title": "representation", "type": "circle"},
+
+      
+
+        {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
 
        
 
@@ -977,10 +1005,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

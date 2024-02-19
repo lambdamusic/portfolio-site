@@ -763,78 +763,64 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "visualization", "target": "graphics" },
+          { "source": "visualization", "target": "interactive-visualization" },
       
-          { "source": "visualization", "target": "information-graphics" },
+          { "source": "visualization", "target": "dashboard" },
       
-          { "source": "visualization", "target": "information-design" },
+          { "source": "visualization", "target": "BI" },
       
-          { "source": "visualization", "target": "information-architecture" },
+          { "source": "visualization", "target": "digital-projects" },
       
-          { "source": "visualization", "target": "information" },
+          { "source": "visualization", "target": "users" },
       
-          { "source": "graphics", "target": "information-graphics" },
+          { "source": "interactive-visualization", "target": "visualization" },
       
-          { "source": "graphics", "target": "information-design" },
+          { "source": "dashboard", "target": "BI" },
       
-          { "source": "graphics", "target": "visualization" },
+          { "source": "dashboard", "target": "visualization" },
       
-          { "source": "graphics", "target": "information-architecture" },
+          { "source": "BI", "target": "dashboard" },
       
-          { "source": "information-graphics", "target": "graphics" },
+          { "source": "BI", "target": "visualization" },
       
-          { "source": "information-graphics", "target": "information-design" },
+          { "source": "digital-projects", "target": "visualization" },
       
-          { "source": "information-graphics", "target": "visualization" },
+          { "source": "digital-projects", "target": "users" },
       
-          { "source": "information-graphics", "target": "information-architecture" },
+          { "source": "digital-projects", "target": "historical-knowledge" },
       
-          { "source": "information-design", "target": "graphics" },
+          { "source": "digital-projects", "target": "records" },
       
-          { "source": "information-design", "target": "information-graphics" },
+          { "source": "users", "target": "user-testing" },
       
-          { "source": "information-design", "target": "visualization" },
+          { "source": "users", "target": "Google" },
       
-          { "source": "information-design", "target": "information-architecture" },
+          { "source": "users", "target": "search" },
       
-          { "source": "information-architecture", "target": "graphics" },
-      
-          { "source": "information-architecture", "target": "information-graphics" },
-      
-          { "source": "information-architecture", "target": "information-design" },
-      
-          { "source": "information-architecture", "target": "visualization" },
-      
-          { "source": "information", "target": "documents" },
-      
-          { "source": "information", "target": "corpus" },
-      
-          { "source": "information", "target": "tool" },
-      
-          { "source": "information", "target": "RDF-Schema" },
+          { "source": "users", "target": "version" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "graphics", "size": 70, "score": 0 , "title": "graphics", "type": "circle"},
+        {"id": "interactive-visualization", "size": 70, "score": 0 , "title": "interactive-visualization", "type": "circle"},
 
       
 
-        {"id": "information-graphics", "size": 70, "score": 0 , "title": "information-graphics", "type": "circle"},
+        {"id": "dashboard", "size": 70, "score": 0 , "title": "dashboard", "type": "circle"},
 
       
 
-        {"id": "information-design", "size": 70, "score": 0 , "title": "information-design", "type": "circle"},
+        {"id": "BI", "size": 70, "score": 0 , "title": "BI", "type": "circle"},
 
       
 
-        {"id": "information-architecture", "size": 70, "score": 0 , "title": "information-architecture", "type": "circle"},
+        {"id": "digital-projects", "size": 70, "score": 0 , "title": "digital-projects", "type": "circle"},
 
       
 
-        {"id": "information", "size": 70, "score": 0 , "title": "information", "type": "circle"},
+        {"id": "users", "size": 70, "score": 0 , "title": "users", "type": "circle"},
 
       
 
@@ -842,19 +828,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "documents", "size": 5, "score": 0.4 , "title": "documents", "type": "circle"},
+        {"id": "historical-knowledge", "size": 5, "score": 0.4 , "title": "historical-knowledge", "type": "circle"},
 
       
 
-        {"id": "corpus", "size": 5, "score": 0.4 , "title": "corpus", "type": "circle"},
+        {"id": "records", "size": 5, "score": 0.4 , "title": "records", "type": "circle"},
 
       
 
-        {"id": "tool", "size": 5, "score": 0.4 , "title": "tool", "type": "circle"},
+        {"id": "user-testing", "size": 5, "score": 0.4 , "title": "user-testing", "type": "circle"},
 
       
 
-        {"id": "RDF-Schema", "size": 5, "score": 0.4 , "title": "RDF-Schema", "type": "circle"},
+        {"id": "Google", "size": 5, "score": 0.4 , "title": "Google", "type": "circle"},
+
+      
+
+        {"id": "search", "size": 5, "score": 0.4 , "title": "search", "type": "circle"},
+
+      
+
+        {"id": "version", "size": 5, "score": 0.4 , "title": "version", "type": "circle"},
 
        
 
@@ -984,10 +978,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

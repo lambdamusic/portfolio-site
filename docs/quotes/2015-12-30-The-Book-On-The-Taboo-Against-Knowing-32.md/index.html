@@ -760,6 +760,38 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "hallucinations", "target": "death" },
+      
+          { "source": "hallucinations", "target": "fear" },
+      
+          { "source": "hallucinations", "target": "meditation" },
+      
+          { "source": "hallucinations", "target": "mechanism" },
+      
+          { "source": "death", "target": "hallucinations" },
+      
+          { "source": "death", "target": "fear" },
+      
+          { "source": "death", "target": "meditation" },
+      
+          { "source": "death", "target": "men" },
+      
+          { "source": "fear", "target": "hallucinations" },
+      
+          { "source": "fear", "target": "death" },
+      
+          { "source": "fear", "target": "meditation" },
+      
+          { "source": "fear", "target": "night" },
+      
+          { "source": "meditation", "target": "hallucinations" },
+      
+          { "source": "meditation", "target": "death" },
+      
+          { "source": "meditation", "target": "fear" },
+      
+          { "source": "meditation", "target": "months" },
+      
           { "source": "mechanism", "target": "character" },
       
           { "source": "mechanism", "target": "basis" },
@@ -767,91 +799,57 @@ var data_local_dynamic = {
           { "source": "mechanism", "target": "generality" },
       
           { "source": "mechanism", "target": "reference" },
-      
-          { "source": "mechanism", "target": "resources" },
-      
-          { "source": "character", "target": "mechanism" },
-      
-          { "source": "character", "target": "basis" },
-      
-          { "source": "character", "target": "generality" },
-      
-          { "source": "character", "target": "reference" },
-      
-          { "source": "basis", "target": "mechanism" },
-      
-          { "source": "basis", "target": "character" },
-      
-          { "source": "basis", "target": "generality" },
-      
-          { "source": "basis", "target": "reference" },
-      
-          { "source": "generality", "target": "mechanism" },
-      
-          { "source": "generality", "target": "character" },
-      
-          { "source": "generality", "target": "basis" },
-      
-          { "source": "generality", "target": "reference" },
-      
-          { "source": "reference", "target": "mechanism" },
-      
-          { "source": "reference", "target": "character" },
-      
-          { "source": "reference", "target": "basis" },
-      
-          { "source": "reference", "target": "generality" },
-      
-          { "source": "resources", "target": "data-structure" },
-      
-          { "source": "resources", "target": "structure" },
-      
-          { "source": "resources", "target": "description" },
-      
-          { "source": "resources", "target": "reification" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "character", "size": 70, "score": 0 , "title": "character", "type": "circle"},
+        {"id": "death", "size": 70, "score": 0 , "title": "death", "type": "circle"},
 
       
 
-        {"id": "basis", "size": 70, "score": 0 , "title": "basis", "type": "circle"},
+        {"id": "fear", "size": 70, "score": 0 , "title": "fear", "type": "circle"},
 
       
 
-        {"id": "generality", "size": 70, "score": 0 , "title": "generality", "type": "circle"},
+        {"id": "meditation", "size": 70, "score": 0 , "title": "meditation", "type": "circle"},
 
       
 
-        {"id": "reference", "size": 70, "score": 0 , "title": "reference", "type": "circle"},
+        {"id": "mechanism", "size": 70, "score": 0 , "title": "mechanism", "type": "circle"},
 
       
 
-        {"id": "resources", "size": 70, "score": 0 , "title": "resources", "type": "circle"},
+        {"id": "hallucinations", "size": 140, "score": 0.5 , "title": "hallucinations", "type": "circle"},
 
       
 
-        {"id": "mechanism", "size": 140, "score": 0.5 , "title": "mechanism", "type": "circle"},
+        {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
 
       
 
-        {"id": "data-structure", "size": 5, "score": 0.4 , "title": "data-structure", "type": "circle"},
+        {"id": "night", "size": 5, "score": 0.4 , "title": "night", "type": "circle"},
 
       
 
-        {"id": "structure", "size": 5, "score": 0.4 , "title": "structure", "type": "circle"},
+        {"id": "months", "size": 5, "score": 0.4 , "title": "months", "type": "circle"},
 
       
 
-        {"id": "description", "size": 5, "score": 0.4 , "title": "description", "type": "circle"},
+        {"id": "character", "size": 5, "score": 0.4 , "title": "character", "type": "circle"},
 
       
 
-        {"id": "reification", "size": 5, "score": 0.4 , "title": "reification", "type": "circle"},
+        {"id": "basis", "size": 5, "score": 0.4 , "title": "basis", "type": "circle"},
+
+      
+
+        {"id": "generality", "size": 5, "score": 0.4 , "title": "generality", "type": "circle"},
+
+      
+
+        {"id": "reference", "size": 5, "score": 0.4 , "title": "reference", "type": "circle"},
 
        
 
@@ -981,10 +979,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

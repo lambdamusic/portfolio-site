@@ -766,24 +766,6 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "game", "target": "pride" },
-      
-          { "source": "game", "target": "ego" },
-      
-          { "source": "game", "target": "people" },
-      
-          { "source": "game", "target": "unselfishness" },
-      
-          { "source": "game", "target": "digital-narratives" },
-      
-          { "source": "pride", "target": "ego" },
-      
-          { "source": "pride", "target": "game" },
-      
-          { "source": "pride", "target": "people" },
-      
-          { "source": "pride", "target": "unselfishness" },
-      
           { "source": "ego", "target": "pride" },
       
           { "source": "ego", "target": "game" },
@@ -792,13 +774,31 @@ var data_local_dynamic = {
       
           { "source": "ego", "target": "unselfishness" },
       
-          { "source": "people", "target": "pride" },
+          { "source": "ego", "target": "individuals" },
       
-          { "source": "people", "target": "ego" },
+          { "source": "pride", "target": "traits" },
       
-          { "source": "people", "target": "game" },
+          { "source": "pride", "target": "friends" },
       
-          { "source": "people", "target": "unselfishness" },
+          { "source": "pride", "target": "ego" },
+      
+          { "source": "pride", "target": "game" },
+      
+          { "source": "game", "target": "story" },
+      
+          { "source": "game", "target": "text" },
+      
+          { "source": "game", "target": "character" },
+      
+          { "source": "game", "target": "interactive-fiction" },
+      
+          { "source": "people", "target": "stage" },
+      
+          { "source": "people", "target": "words" },
+      
+          { "source": "people", "target": "God" },
+      
+          { "source": "people", "target": "knowledge" },
       
           { "source": "unselfishness", "target": "pride" },
       
@@ -808,9 +808,13 @@ var data_local_dynamic = {
       
           { "source": "unselfishness", "target": "people" },
       
-          { "source": "digital-narratives", "target": "game" },
+          { "source": "individuals", "target": "connectionism" },
       
-          { "source": "digital-narratives", "target": "format" },
+          { "source": "individuals", "target": "philosophy" },
+      
+          { "source": "individuals", "target": "instances" },
+      
+          { "source": "individuals", "target": "ontology" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -821,7 +825,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "ego", "size": 70, "score": 0 , "title": "ego", "type": "circle"},
+        {"id": "game", "size": 70, "score": 0 , "title": "game", "type": "circle"},
 
       
 
@@ -833,15 +837,67 @@ var data_local_dynamic = {
 
       
 
-        {"id": "digital-narratives", "size": 70, "score": 0 , "title": "digital-narratives", "type": "circle"},
+        {"id": "individuals", "size": 70, "score": 0 , "title": "individuals", "type": "circle"},
 
       
 
-        {"id": "game", "size": 140, "score": 0.5 , "title": "game", "type": "circle"},
+        {"id": "ego", "size": 140, "score": 0.5 , "title": "ego", "type": "circle"},
 
       
 
-        {"id": "format", "size": 5, "score": 0.4 , "title": "format", "type": "circle"},
+        {"id": "traits", "size": 5, "score": 0.4 , "title": "traits", "type": "circle"},
+
+      
+
+        {"id": "friends", "size": 5, "score": 0.4 , "title": "friends", "type": "circle"},
+
+      
+
+        {"id": "story", "size": 5, "score": 0.4 , "title": "story", "type": "circle"},
+
+      
+
+        {"id": "text", "size": 5, "score": 0.4 , "title": "text", "type": "circle"},
+
+      
+
+        {"id": "character", "size": 5, "score": 0.4 , "title": "character", "type": "circle"},
+
+      
+
+        {"id": "interactive-fiction", "size": 5, "score": 0.4 , "title": "interactive-fiction", "type": "circle"},
+
+      
+
+        {"id": "stage", "size": 5, "score": 0.4 , "title": "stage", "type": "circle"},
+
+      
+
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "God", "size": 5, "score": 0.4 , "title": "God", "type": "circle"},
+
+      
+
+        {"id": "knowledge", "size": 5, "score": 0.4 , "title": "knowledge", "type": "circle"},
+
+      
+
+        {"id": "connectionism", "size": 5, "score": 0.4 , "title": "connectionism", "type": "circle"},
+
+      
+
+        {"id": "philosophy", "size": 5, "score": 0.4 , "title": "philosophy", "type": "circle"},
+
+      
+
+        {"id": "instances", "size": 5, "score": 0.4 , "title": "instances", "type": "circle"},
+
+      
+
+        {"id": "ontology", "size": 5, "score": 0.4 , "title": "ontology", "type": "circle"},
 
        
 
@@ -971,10 +1027,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -778,29 +778,29 @@ var data_local_dynamic = {
       
           { "source": "movies", "target": "cAMP" },
       
-          { "source": "book", "target": "linguistics" },
-      
-          { "source": "book", "target": "imagination" },
-      
           { "source": "book", "target": "news" },
       
           { "source": "book", "target": "journals" },
       
-          { "source": "pleasure", "target": "sex" },
+          { "source": "book", "target": "nature" },
       
-          { "source": "pleasure", "target": "association" },
-      
-          { "source": "pleasure", "target": "authors" },
+          { "source": "book", "target": "text" },
       
           { "source": "pleasure", "target": "movies" },
       
-          { "source": "style", "target": "identity" },
+          { "source": "pleasure", "target": "book" },
+      
+          { "source": "pleasure", "target": "sex" },
+      
+          { "source": "pleasure", "target": "association" },
       
           { "source": "style", "target": "relation" },
       
           { "source": "style", "target": "painting" },
       
           { "source": "style", "target": "experts" },
+      
+          { "source": "style", "target": "movies" },
       
           { "source": "actors", "target": "book" },
       
@@ -810,13 +810,13 @@ var data_local_dynamic = {
       
           { "source": "actors", "target": "movies" },
       
-          { "source": "cAMP", "target": "mass" },
-      
-          { "source": "cAMP", "target": "Church" },
-      
           { "source": "cAMP", "target": "style" },
       
           { "source": "cAMP", "target": "movies" },
+      
+          { "source": "cAMP", "target": "actors" },
+      
+          { "source": "cAMP", "target": "nouns" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -847,14 +847,6 @@ var data_local_dynamic = {
 
       
 
-        {"id": "linguistics", "size": 5, "score": 0.4 , "title": "linguistics", "type": "circle"},
-
-      
-
-        {"id": "imagination", "size": 5, "score": 0.4 , "title": "imagination", "type": "circle"},
-
-      
-
         {"id": "news", "size": 5, "score": 0.4 , "title": "news", "type": "circle"},
 
       
@@ -863,19 +855,19 @@ var data_local_dynamic = {
 
       
 
+        {"id": "nature", "size": 5, "score": 0.4 , "title": "nature", "type": "circle"},
+
+      
+
+        {"id": "text", "size": 5, "score": 0.4 , "title": "text", "type": "circle"},
+
+      
+
         {"id": "sex", "size": 5, "score": 0.4 , "title": "sex", "type": "circle"},
 
       
 
         {"id": "association", "size": 5, "score": 0.4 , "title": "association", "type": "circle"},
-
-      
-
-        {"id": "authors", "size": 5, "score": 0.4 , "title": "authors", "type": "circle"},
-
-      
-
-        {"id": "identity", "size": 5, "score": 0.4 , "title": "identity", "type": "circle"},
 
       
 
@@ -895,11 +887,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "mass", "size": 5, "score": 0.4 , "title": "mass", "type": "circle"},
-
-      
-
-        {"id": "Church", "size": 5, "score": 0.4 , "title": "Church", "type": "circle"},
+        {"id": "nouns", "size": 5, "score": 0.4 , "title": "nouns", "type": "circle"},
 
        
 
@@ -1029,10 +1017,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

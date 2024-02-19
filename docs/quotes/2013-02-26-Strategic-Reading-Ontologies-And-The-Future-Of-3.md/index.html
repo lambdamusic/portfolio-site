@@ -766,31 +766,41 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "collection", "target": "broadcast" },
+          { "source": "Abstract", "target": "accidents" },
       
-          { "source": "collection", "target": "themes" },
+          { "source": "Abstract", "target": "existence" },
       
-          { "source": "collection", "target": "protein" },
+          { "source": "Abstract", "target": "particulars" },
       
-          { "source": "collection", "target": "genes" },
+          { "source": "Abstract", "target": "protein" },
       
-          { "source": "collection", "target": "Abstract" },
+          { "source": "Abstract", "target": "genes" },
       
-          { "source": "broadcast", "target": "themes" },
+          { "source": "accidents", "target": "people" },
       
-          { "source": "broadcast", "target": "collection" },
+          { "source": "accidents", "target": "future" },
       
-          { "source": "broadcast", "target": "media-assets" },
+          { "source": "accidents", "target": "Abstract" },
       
-          { "source": "broadcast", "target": "story" },
+          { "source": "accidents", "target": "existence" },
       
-          { "source": "themes", "target": "broadcast" },
+          { "source": "existence", "target": "operation" },
       
-          { "source": "themes", "target": "collection" },
+          { "source": "existence", "target": "phenomenon" },
       
-          { "source": "themes", "target": "context" },
+          { "source": "existence", "target": "unity" },
       
-          { "source": "themes", "target": "validity" },
+          { "source": "existence", "target": "front" },
+      
+          { "source": "particulars", "target": "kind" },
+      
+          { "source": "particulars", "target": "human-beings" },
+      
+          { "source": "particulars", "target": "being" },
+      
+          { "source": "particulars", "target": "accidents" },
+      
+          { "source": "protein", "target": "genome" },
       
           { "source": "protein", "target": "genes" },
       
@@ -798,34 +808,28 @@ var data_local_dynamic = {
       
           { "source": "protein", "target": "example" },
       
-          { "source": "protein", "target": "collection" },
+          { "source": "genes", "target": "evolution" },
+      
+          { "source": "genes", "target": "genome" },
       
           { "source": "genes", "target": "protein" },
       
           { "source": "genes", "target": "Abstract" },
-      
-          { "source": "genes", "target": "example" },
-      
-          { "source": "genes", "target": "collection" },
-      
-          { "source": "Abstract", "target": "protein" },
-      
-          { "source": "Abstract", "target": "genes" },
-      
-          { "source": "Abstract", "target": "example" },
-      
-          { "source": "Abstract", "target": "collection" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "broadcast", "size": 70, "score": 0 , "title": "broadcast", "type": "circle"},
+        {"id": "accidents", "size": 70, "score": 0 , "title": "accidents", "type": "circle"},
 
       
 
-        {"id": "themes", "size": 70, "score": 0 , "title": "themes", "type": "circle"},
+        {"id": "existence", "size": 70, "score": 0 , "title": "existence", "type": "circle"},
+
+      
+
+        {"id": "particulars", "size": 70, "score": 0 , "title": "particulars", "type": "circle"},
 
       
 
@@ -837,31 +841,55 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Abstract", "size": 70, "score": 0 , "title": "Abstract", "type": "circle"},
+        {"id": "Abstract", "size": 140, "score": 0.5 , "title": "Abstract", "type": "circle"},
 
       
 
-        {"id": "collection", "size": 140, "score": 0.5 , "title": "collection", "type": "circle"},
+        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
 
       
 
-        {"id": "media-assets", "size": 5, "score": 0.4 , "title": "media-assets", "type": "circle"},
+        {"id": "future", "size": 5, "score": 0.4 , "title": "future", "type": "circle"},
 
       
 
-        {"id": "story", "size": 5, "score": 0.4 , "title": "story", "type": "circle"},
+        {"id": "operation", "size": 5, "score": 0.4 , "title": "operation", "type": "circle"},
 
       
 
-        {"id": "context", "size": 5, "score": 0.4 , "title": "context", "type": "circle"},
+        {"id": "phenomenon", "size": 5, "score": 0.4 , "title": "phenomenon", "type": "circle"},
 
       
 
-        {"id": "validity", "size": 5, "score": 0.4 , "title": "validity", "type": "circle"},
+        {"id": "unity", "size": 5, "score": 0.4 , "title": "unity", "type": "circle"},
+
+      
+
+        {"id": "front", "size": 5, "score": 0.4 , "title": "front", "type": "circle"},
+
+      
+
+        {"id": "kind", "size": 5, "score": 0.4 , "title": "kind", "type": "circle"},
+
+      
+
+        {"id": "human-beings", "size": 5, "score": 0.4 , "title": "human-beings", "type": "circle"},
+
+      
+
+        {"id": "being", "size": 5, "score": 0.4 , "title": "being", "type": "circle"},
+
+      
+
+        {"id": "genome", "size": 5, "score": 0.4 , "title": "genome", "type": "circle"},
 
       
 
         {"id": "example", "size": 5, "score": 0.4 , "title": "example", "type": "circle"},
+
+      
+
+        {"id": "evolution", "size": 5, "score": 0.4 , "title": "evolution", "type": "circle"},
 
        
 
@@ -991,10 +1019,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

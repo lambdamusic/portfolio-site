@@ -764,82 +764,122 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "team", "target": "sprint" },
+          { "source": "role", "target": "team" },
       
-          { "source": "team", "target": "features" },
+          { "source": "role", "target": "persons" },
       
-          { "source": "team", "target": "list" },
+          { "source": "role", "target": "benefits" },
       
-          { "source": "team", "target": "number" },
+          { "source": "role", "target": "historical-research" },
       
-          { "source": "team", "target": "lines" },
+          { "source": "role", "target": "development" },
       
-          { "source": "sprint", "target": "team" },
+          { "source": "team", "target": "goal" },
       
-          { "source": "sprint", "target": "features" },
+          { "source": "team", "target": "link" },
       
-          { "source": "sprint", "target": "list" },
+          { "source": "team", "target": "owners" },
       
-          { "source": "sprint", "target": "number" },
+          { "source": "team", "target": "product-owners" },
       
-          { "source": "features", "target": "sprint" },
+          { "source": "persons", "target": "team" },
       
-          { "source": "features", "target": "team" },
+          { "source": "persons", "target": "role" },
       
-          { "source": "features", "target": "list" },
+          { "source": "persons", "target": "benefits" },
       
-          { "source": "features", "target": "number" },
+          { "source": "persons", "target": "humans" },
       
-          { "source": "list", "target": "sprint" },
+          { "source": "benefits", "target": "team" },
       
-          { "source": "list", "target": "team" },
+          { "source": "benefits", "target": "role" },
       
-          { "source": "list", "target": "features" },
+          { "source": "benefits", "target": "persons" },
       
-          { "source": "list", "target": "number" },
+          { "source": "benefits", "target": "men" },
       
-          { "source": "number", "target": "sprint" },
+          { "source": "historical-research", "target": "development" },
       
-          { "source": "number", "target": "team" },
+          { "source": "historical-research", "target": "research" },
       
-          { "source": "number", "target": "features" },
+          { "source": "historical-research", "target": "role" },
       
-          { "source": "number", "target": "list" },
+          { "source": "historical-research", "target": "Garfield" },
       
-          { "source": "lines", "target": "sprint" },
+          { "source": "development", "target": "law" },
       
-          { "source": "lines", "target": "team" },
+          { "source": "development", "target": "coding" },
       
-          { "source": "lines", "target": "features" },
+          { "source": "development", "target": "historical-research" },
       
-          { "source": "lines", "target": "list" },
+          { "source": "development", "target": "research" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "sprint", "size": 70, "score": 0 , "title": "sprint", "type": "circle"},
+        {"id": "team", "size": 70, "score": 0 , "title": "team", "type": "circle"},
 
       
 
-        {"id": "features", "size": 70, "score": 0 , "title": "features", "type": "circle"},
+        {"id": "persons", "size": 70, "score": 0 , "title": "persons", "type": "circle"},
 
       
 
-        {"id": "list", "size": 70, "score": 0 , "title": "list", "type": "circle"},
+        {"id": "benefits", "size": 70, "score": 0 , "title": "benefits", "type": "circle"},
 
       
 
-        {"id": "number", "size": 70, "score": 0 , "title": "number", "type": "circle"},
+        {"id": "historical-research", "size": 70, "score": 0 , "title": "historical-research", "type": "circle"},
 
       
 
-        {"id": "lines", "size": 70, "score": 0 , "title": "lines", "type": "circle"},
+        {"id": "development", "size": 70, "score": 0 , "title": "development", "type": "circle"},
 
       
 
-        {"id": "team", "size": 140, "score": 0.5 , "title": "team", "type": "circle"},
+        {"id": "role", "size": 140, "score": 0.5 , "title": "role", "type": "circle"},
+
+      
+
+        {"id": "goal", "size": 5, "score": 0.4 , "title": "goal", "type": "circle"},
+
+      
+
+        {"id": "link", "size": 5, "score": 0.4 , "title": "link", "type": "circle"},
+
+      
+
+        {"id": "owners", "size": 5, "score": 0.4 , "title": "owners", "type": "circle"},
+
+      
+
+        {"id": "product-owners", "size": 5, "score": 0.4 , "title": "product-owners", "type": "circle"},
+
+      
+
+        {"id": "humans", "size": 5, "score": 0.4 , "title": "humans", "type": "circle"},
+
+      
+
+        {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
+
+      
+
+        {"id": "research", "size": 5, "score": 0.4 , "title": "research", "type": "circle"},
+
+      
+
+        {"id": "Garfield", "size": 5, "score": 0.4 , "title": "Garfield", "type": "circle"},
+
+      
+
+        {"id": "law", "size": 5, "score": 0.4 , "title": "law", "type": "circle"},
+
+      
+
+        {"id": "coding", "size": 5, "score": 0.4 , "title": "coding", "type": "circle"},
 
        
 
@@ -969,10 +1009,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

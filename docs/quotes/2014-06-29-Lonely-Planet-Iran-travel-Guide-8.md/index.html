@@ -765,94 +765,110 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "people", "target": "pride" },
+          { "source": "border", "target": "Iranians" },
       
-          { "source": "people", "target": "ego" },
+          { "source": "border", "target": "Iraq" },
       
-          { "source": "people", "target": "game" },
+          { "source": "border", "target": "Turkish" },
       
-          { "source": "people", "target": "unselfishness" },
+          { "source": "border", "target": "Iran" },
+      
+          { "source": "border", "target": "people" },
+      
+          { "source": "Iranians", "target": "war" },
+      
+          { "source": "Iranians", "target": "century" },
+      
+          { "source": "Iranians", "target": "Iraq" },
+      
+          { "source": "Iranians", "target": "Iran" },
+      
+          { "source": "Iraq", "target": "Iranians" },
+      
+          { "source": "Iraq", "target": "war" },
+      
+          { "source": "Iraq", "target": "century" },
+      
+          { "source": "Iraq", "target": "Iran" },
+      
+          { "source": "Turkish", "target": "population" },
+      
+          { "source": "Turkish", "target": "Iran" },
+      
+          { "source": "Turkish", "target": "Iranians" },
+      
+          { "source": "Turkish", "target": "Iraq" },
+      
+          { "source": "Iran", "target": "Iranians" },
+      
+          { "source": "Iran", "target": "war" },
+      
+          { "source": "Iran", "target": "century" },
+      
+          { "source": "Iran", "target": "Iraq" },
       
           { "source": "people", "target": "stage" },
       
-          { "source": "pride", "target": "ego" },
+          { "source": "people", "target": "words" },
       
-          { "source": "pride", "target": "game" },
+          { "source": "people", "target": "God" },
       
-          { "source": "pride", "target": "people" },
-      
-          { "source": "pride", "target": "unselfishness" },
-      
-          { "source": "ego", "target": "pride" },
-      
-          { "source": "ego", "target": "game" },
-      
-          { "source": "ego", "target": "people" },
-      
-          { "source": "ego", "target": "unselfishness" },
-      
-          { "source": "game", "target": "pride" },
-      
-          { "source": "game", "target": "ego" },
-      
-          { "source": "game", "target": "people" },
-      
-          { "source": "game", "target": "unselfishness" },
-      
-          { "source": "unselfishness", "target": "pride" },
-      
-          { "source": "unselfishness", "target": "ego" },
-      
-          { "source": "unselfishness", "target": "game" },
-      
-          { "source": "unselfishness", "target": "people" },
-      
-          { "source": "stage", "target": "people" },
-      
-          { "source": "stage", "target": "fruit" },
-      
-          { "source": "stage", "target": "days" },
-      
-          { "source": "stage", "target": "heart" },
+          { "source": "people", "target": "knowledge" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "pride", "size": 70, "score": 0 , "title": "pride", "type": "circle"},
+        {"id": "Iranians", "size": 70, "score": 0 , "title": "Iranians", "type": "circle"},
 
       
 
-        {"id": "ego", "size": 70, "score": 0 , "title": "ego", "type": "circle"},
+        {"id": "Iraq", "size": 70, "score": 0 , "title": "Iraq", "type": "circle"},
 
       
 
-        {"id": "game", "size": 70, "score": 0 , "title": "game", "type": "circle"},
+        {"id": "Turkish", "size": 70, "score": 0 , "title": "Turkish", "type": "circle"},
 
       
 
-        {"id": "unselfishness", "size": 70, "score": 0 , "title": "unselfishness", "type": "circle"},
+        {"id": "Iran", "size": 70, "score": 0 , "title": "Iran", "type": "circle"},
 
       
 
-        {"id": "stage", "size": 70, "score": 0 , "title": "stage", "type": "circle"},
+        {"id": "people", "size": 70, "score": 0 , "title": "people", "type": "circle"},
 
       
 
-        {"id": "people", "size": 140, "score": 0.5 , "title": "people", "type": "circle"},
+        {"id": "border", "size": 140, "score": 0.5 , "title": "border", "type": "circle"},
 
       
 
-        {"id": "fruit", "size": 5, "score": 0.4 , "title": "fruit", "type": "circle"},
+        {"id": "war", "size": 5, "score": 0.4 , "title": "war", "type": "circle"},
 
       
 
-        {"id": "days", "size": 5, "score": 0.4 , "title": "days", "type": "circle"},
+        {"id": "century", "size": 5, "score": 0.4 , "title": "century", "type": "circle"},
 
       
 
-        {"id": "heart", "size": 5, "score": 0.4 , "title": "heart", "type": "circle"},
+        {"id": "population", "size": 5, "score": 0.4 , "title": "population", "type": "circle"},
+
+      
+
+        {"id": "stage", "size": 5, "score": 0.4 , "title": "stage", "type": "circle"},
+
+      
+
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "God", "size": 5, "score": 0.4 , "title": "God", "type": "circle"},
+
+      
+
+        {"id": "knowledge", "size": 5, "score": 0.4 , "title": "knowledge", "type": "circle"},
 
        
 
@@ -982,10 +998,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -572,12 +572,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Utopia Andata E Ritorno (philip K. Dick)</span>
+							</small>
+							<!-- Words taken from <cite title="Utopia Andata E Ritorno (philip K. Dick)">
+								<a class="-underline -text-muted">Utopia Andata E Ritorno (philip K. Dick)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-11-17-Utopia-Andata-E-Ritorno-philip-K-Dick-17.md/index.html">Rachmael domandò cauto: — Perché...</a>
-						<br />
-						<small style="color: #cbcbcb;">Utopia Andata E Ritorno (philip K. Dick)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=Pausa.html">#Pausa</a>&nbsp;
@@ -590,14 +601,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-11-17-Utopia-Andata-E-Ritorno-philip-K-Dick-20.md/index.html">La struttura della realta</a>
-						<br />
-						<small style="color: #cbcbcb;">Utopia Andata E Ritorno (philip K. Dick)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=Leu.html">#Leu</a>&nbsp;
@@ -612,6 +625,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -744,21 +758,21 @@ var data_local_dynamic = {
       
           { "source": "Pausa", "target": "Disse" },
       
-          { "source": "Volta", "target": "Pausa" },
-      
-          { "source": "Volta", "target": "LO" },
-      
           { "source": "Volta", "target": "Prima" },
       
           { "source": "Volta", "target": "vitae" },
       
+          { "source": "Volta", "target": "Pausa" },
+      
+          { "source": "Volta", "target": "LO" },
+      
+          { "source": "Leu", "target": "ancora" },
+      
+          { "source": "Leu", "target": "solo" },
+      
           { "source": "Leu", "target": "LO" },
       
           { "source": "Leu", "target": "Tu" },
-      
-          { "source": "Leu", "target": "sistema" },
-      
-          { "source": "Leu", "target": "ancora" },
       
           { "source": "Tu", "target": "Leu" },
       
@@ -822,6 +836,10 @@ var data_local_dynamic = {
       
 
         {"id": "ancora", "size": 5, "score": 0.4 , "title": "ancora", "type": "circle"},
+
+      
+
+        {"id": "solo", "size": 5, "score": 0.4 , "title": "solo", "type": "circle"},
 
       
 
@@ -963,10 +981,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

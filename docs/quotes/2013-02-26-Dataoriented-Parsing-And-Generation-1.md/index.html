@@ -764,21 +764,21 @@ var data_local_dynamic = {
       
           { "source": "corpus", "target": "tool" },
       
-          { "source": "documents", "target": "corpus" },
-      
-          { "source": "documents", "target": "information" },
-      
-          { "source": "documents", "target": "tool" },
+          { "source": "documents", "target": "web-documents" },
       
           { "source": "documents", "target": "URI" },
       
-          { "source": "information", "target": "documents" },
+          { "source": "documents", "target": "files" },
       
-          { "source": "information", "target": "corpus" },
+          { "source": "documents", "target": "Web" },
       
-          { "source": "information", "target": "tool" },
+          { "source": "information", "target": "nanopublications" },
       
-          { "source": "information", "target": "RDF-Schema" },
+          { "source": "information", "target": "metadata" },
+      
+          { "source": "information", "target": "contextual-information" },
+      
+          { "source": "information", "target": "collection-objects" },
       
           { "source": "tool", "target": "documents" },
       
@@ -809,11 +809,35 @@ var data_local_dynamic = {
 
       
 
+        {"id": "web-documents", "size": 5, "score": 0.4 , "title": "web-documents", "type": "circle"},
+
+      
+
         {"id": "URI", "size": 5, "score": 0.4 , "title": "URI", "type": "circle"},
 
       
 
-        {"id": "RDF-Schema", "size": 5, "score": 0.4 , "title": "RDF-Schema", "type": "circle"},
+        {"id": "files", "size": 5, "score": 0.4 , "title": "files", "type": "circle"},
+
+      
+
+        {"id": "Web", "size": 5, "score": 0.4 , "title": "Web", "type": "circle"},
+
+      
+
+        {"id": "nanopublications", "size": 5, "score": 0.4 , "title": "nanopublications", "type": "circle"},
+
+      
+
+        {"id": "metadata", "size": 5, "score": 0.4 , "title": "metadata", "type": "circle"},
+
+      
+
+        {"id": "contextual-information", "size": 5, "score": 0.4 , "title": "contextual-information", "type": "circle"},
+
+      
+
+        {"id": "collection-objects", "size": 5, "score": 0.4 , "title": "collection-objects", "type": "circle"},
 
       
 
@@ -947,10 +971,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

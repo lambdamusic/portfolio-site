@@ -768,59 +768,71 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "list", "target": "members" },
+      
+          { "source": "list", "target": "RDF" },
+      
+          { "source": "list", "target": "programming-language" },
+      
           { "source": "list", "target": "sprint" },
       
           { "source": "list", "target": "team" },
       
-          { "source": "list", "target": "features" },
+          { "source": "members", "target": "list" },
       
-          { "source": "list", "target": "number" },
+          { "source": "members", "target": "RDF" },
       
-          { "source": "list", "target": "lines" },
+          { "source": "members", "target": "programming-language" },
+      
+          { "source": "members", "target": "types" },
+      
+          { "source": "RDF", "target": "architecture" },
+      
+          { "source": "RDF", "target": "ontology" },
+      
+          { "source": "RDF", "target": "metadata" },
+      
+          { "source": "RDF", "target": "schema" },
+      
+          { "source": "programming-language", "target": "language" },
+      
+          { "source": "programming-language", "target": "members" },
+      
+          { "source": "programming-language", "target": "list" },
+      
+          { "source": "programming-language", "target": "RDF" },
+      
+          { "source": "sprint", "target": "weeks" },
+      
+          { "source": "sprint", "target": "duration" },
       
           { "source": "sprint", "target": "team" },
       
           { "source": "sprint", "target": "features" },
       
-          { "source": "sprint", "target": "list" },
+          { "source": "team", "target": "goal" },
       
-          { "source": "sprint", "target": "number" },
+          { "source": "team", "target": "link" },
       
-          { "source": "team", "target": "sprint" },
+          { "source": "team", "target": "owners" },
       
-          { "source": "team", "target": "features" },
-      
-          { "source": "team", "target": "list" },
-      
-          { "source": "team", "target": "number" },
-      
-          { "source": "features", "target": "sprint" },
-      
-          { "source": "features", "target": "team" },
-      
-          { "source": "features", "target": "list" },
-      
-          { "source": "features", "target": "number" },
-      
-          { "source": "number", "target": "sprint" },
-      
-          { "source": "number", "target": "team" },
-      
-          { "source": "number", "target": "features" },
-      
-          { "source": "number", "target": "list" },
-      
-          { "source": "lines", "target": "sprint" },
-      
-          { "source": "lines", "target": "team" },
-      
-          { "source": "lines", "target": "features" },
-      
-          { "source": "lines", "target": "list" },
+          { "source": "team", "target": "product-owners" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "members", "size": 70, "score": 0 , "title": "members", "type": "circle"},
+
+      
+
+        {"id": "RDF", "size": 70, "score": 0 , "title": "RDF", "type": "circle"},
+
+      
+
+        {"id": "programming-language", "size": 70, "score": 0 , "title": "programming-language", "type": "circle"},
+
       
 
         {"id": "sprint", "size": 70, "score": 0 , "title": "sprint", "type": "circle"},
@@ -831,19 +843,59 @@ var data_local_dynamic = {
 
       
 
-        {"id": "features", "size": 70, "score": 0 , "title": "features", "type": "circle"},
-
-      
-
-        {"id": "number", "size": 70, "score": 0 , "title": "number", "type": "circle"},
-
-      
-
-        {"id": "lines", "size": 70, "score": 0 , "title": "lines", "type": "circle"},
-
-      
-
         {"id": "list", "size": 140, "score": 0.5 , "title": "list", "type": "circle"},
+
+      
+
+        {"id": "types", "size": 5, "score": 0.4 , "title": "types", "type": "circle"},
+
+      
+
+        {"id": "architecture", "size": 5, "score": 0.4 , "title": "architecture", "type": "circle"},
+
+      
+
+        {"id": "ontology", "size": 5, "score": 0.4 , "title": "ontology", "type": "circle"},
+
+      
+
+        {"id": "metadata", "size": 5, "score": 0.4 , "title": "metadata", "type": "circle"},
+
+      
+
+        {"id": "schema", "size": 5, "score": 0.4 , "title": "schema", "type": "circle"},
+
+      
+
+        {"id": "language", "size": 5, "score": 0.4 , "title": "language", "type": "circle"},
+
+      
+
+        {"id": "weeks", "size": 5, "score": 0.4 , "title": "weeks", "type": "circle"},
+
+      
+
+        {"id": "duration", "size": 5, "score": 0.4 , "title": "duration", "type": "circle"},
+
+      
+
+        {"id": "features", "size": 5, "score": 0.4 , "title": "features", "type": "circle"},
+
+      
+
+        {"id": "goal", "size": 5, "score": 0.4 , "title": "goal", "type": "circle"},
+
+      
+
+        {"id": "link", "size": 5, "score": 0.4 , "title": "link", "type": "circle"},
+
+      
+
+        {"id": "owners", "size": 5, "score": 0.4 , "title": "owners", "type": "circle"},
+
+      
+
+        {"id": "product-owners", "size": 5, "score": 0.4 , "title": "product-owners", "type": "circle"},
 
        
 
@@ -973,10 +1025,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

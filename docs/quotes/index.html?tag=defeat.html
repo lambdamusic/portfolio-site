@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.guardian.co.uk/politics/scottish-independence-essential-guide" class="text-muted" target="_blank">Scottish Independence: The Essential Guide | Politics | Guardian.co.uk</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Scottish Independence: The Essential Guide | Politics | Guardian.co.uk">
+								<a href="http://www.guardian.co.uk/politics/scottish-independence-essential-guide" class="-underline -text-muted" target="_blank">
+								  Scottish Independence: The Essential Guide | Politics | Guardian.co.uk</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Scottish-Independence-The-Essential-Guide-Politics-Guardiancouk-1.md/index.html">Scotland and england</a>
-						<br />
-						<small style="color: #cbcbcb;">Scottish Independence: The Essential Guide | Politics | Guardian.co.uk
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=defeat.html">#defeat</a>&nbsp;
@@ -592,14 +605,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.thefreedictionary.com/take+it+on+the+chin" class="text-muted" target="_blank">Take It On The Chin - Definition Of Take It On The Chin By The Free Online Dictionary, Thesaurus And Encyclopedia.</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Take It On The Chin - Definition Of Take It On The Chin By The Free Online Dictionary, Thesaurus And Encyclopedia.">
+								<a href="http://www.thefreedictionary.com/take+it+on+the+chin" class="-underline -text-muted" target="_blank">
+								  Take It On The Chin - Definition Of Take It On The Chin By The Free Online Dictionary, Thesaurus And Encyclopedia.</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Take-It-On-The-Chin-Definition-Of-1.md/index.html">take it on the chin...</a>
-						<br />
-						<small style="color: #cbcbcb;">Take It On The Chin - Definition Of Take It On The Chin By The Free Online Dictionary, Thesaurus And Encyclopedia.
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=defeat.html">#defeat</a>&nbsp;
@@ -608,6 +635,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -728,29 +756,29 @@ var data_local_dynamic = {
       
           { "source": "defeat", "target": "Union" },
       
+          { "source": "Scotland", "target": "citizens" },
+      
+          { "source": "Scotland", "target": "-students" },
+      
           { "source": "Scotland", "target": "defeat" },
       
           { "source": "Scotland", "target": "era" },
       
-          { "source": "Scotland", "target": "Union" },
+          { "source": "era", "target": "defeat" },
       
-          { "source": "Scotland", "target": "citizens" },
+          { "source": "era", "target": "Scotland" },
+      
+          { "source": "era", "target": "Union" },
       
           { "source": "era", "target": "vivo" },
       
-          { "source": "era", "target": "POCO" },
+          { "source": "Union", "target": "Americans" },
       
-          { "source": "era", "target": "doves" },
+          { "source": "Union", "target": "Spain" },
       
-          { "source": "era", "target": "Prima" },
+          { "source": "Union", "target": "countries" },
       
-          { "source": "Union", "target": "topic" },
-      
-          { "source": "Union", "target": "indicators" },
-      
-          { "source": "Union", "target": "defeat" },
-      
-          { "source": "Union", "target": "Scotland" },
+          { "source": "Union", "target": "New-York" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -777,27 +805,27 @@ var data_local_dynamic = {
 
       
 
+        {"id": "-students", "size": 5, "score": 0.4 , "title": "-students", "type": "circle"},
+
+      
+
         {"id": "vivo", "size": 5, "score": 0.4 , "title": "vivo", "type": "circle"},
 
       
 
-        {"id": "POCO", "size": 5, "score": 0.4 , "title": "POCO", "type": "circle"},
+        {"id": "Americans", "size": 5, "score": 0.4 , "title": "Americans", "type": "circle"},
 
       
 
-        {"id": "doves", "size": 5, "score": 0.4 , "title": "doves", "type": "circle"},
+        {"id": "Spain", "size": 5, "score": 0.4 , "title": "Spain", "type": "circle"},
 
       
 
-        {"id": "Prima", "size": 5, "score": 0.4 , "title": "Prima", "type": "circle"},
+        {"id": "countries", "size": 5, "score": 0.4 , "title": "countries", "type": "circle"},
 
       
 
-        {"id": "topic", "size": 5, "score": 0.4 , "title": "topic", "type": "circle"},
-
-      
-
-        {"id": "indicators", "size": 5, "score": 0.4 , "title": "indicators", "type": "circle"},
+        {"id": "New-York", "size": 5, "score": 0.4 , "title": "New-York", "type": "circle"},
 
        
 
@@ -927,10 +955,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

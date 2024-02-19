@@ -760,94 +760,110 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "language", "target": "programming-language" },
+          { "source": "task", "target": "comprehension" },
       
-          { "source": "language", "target": "semiotic-analysis" },
+          { "source": "task", "target": "judgments" },
       
-          { "source": "language", "target": "signification" },
+          { "source": "task", "target": "skills" },
       
-          { "source": "language", "target": "vocal-expressions" },
+          { "source": "task", "target": "learning" },
       
-          { "source": "language", "target": "imposition" },
+          { "source": "task", "target": "performance" },
       
-          { "source": "programming-language", "target": "language" },
+          { "source": "comprehension", "target": "task" },
       
-          { "source": "programming-language", "target": "members" },
+          { "source": "comprehension", "target": "judgments" },
       
-          { "source": "programming-language", "target": "list" },
+          { "source": "comprehension", "target": "skills" },
       
-          { "source": "programming-language", "target": "RDF" },
+          { "source": "comprehension", "target": "learning" },
       
-          { "source": "semiotic-analysis", "target": "signification" },
+          { "source": "judgments", "target": "task" },
       
-          { "source": "semiotic-analysis", "target": "vocal-expressions" },
+          { "source": "judgments", "target": "comprehension" },
       
-          { "source": "semiotic-analysis", "target": "imposition" },
+          { "source": "judgments", "target": "skills" },
       
-          { "source": "semiotic-analysis", "target": "language" },
+          { "source": "judgments", "target": "learning" },
       
-          { "source": "signification", "target": "semiotic-analysis" },
+          { "source": "skills", "target": "task" },
       
-          { "source": "signification", "target": "vocal-expressions" },
+          { "source": "skills", "target": "comprehension" },
       
-          { "source": "signification", "target": "imposition" },
+          { "source": "skills", "target": "judgments" },
       
-          { "source": "signification", "target": "language" },
+          { "source": "skills", "target": "learning" },
       
-          { "source": "vocal-expressions", "target": "semiotic-analysis" },
+          { "source": "learning", "target": "students" },
       
-          { "source": "vocal-expressions", "target": "signification" },
+          { "source": "learning", "target": "instruction" },
       
-          { "source": "vocal-expressions", "target": "imposition" },
+          { "source": "learning", "target": "questions" },
       
-          { "source": "vocal-expressions", "target": "language" },
+          { "source": "learning", "target": "programmers" },
       
-          { "source": "imposition", "target": "semiotic-analysis" },
+          { "source": "performance", "target": "task" },
       
-          { "source": "imposition", "target": "signification" },
+          { "source": "performance", "target": "factors" },
       
-          { "source": "imposition", "target": "vocal-expressions" },
+          { "source": "performance", "target": "results" },
       
-          { "source": "imposition", "target": "language" },
+          { "source": "performance", "target": "ability" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "programming-language", "size": 70, "score": 0 , "title": "programming-language", "type": "circle"},
+        {"id": "comprehension", "size": 70, "score": 0 , "title": "comprehension", "type": "circle"},
 
       
 
-        {"id": "semiotic-analysis", "size": 70, "score": 0 , "title": "semiotic-analysis", "type": "circle"},
+        {"id": "judgments", "size": 70, "score": 0 , "title": "judgments", "type": "circle"},
 
       
 
-        {"id": "signification", "size": 70, "score": 0 , "title": "signification", "type": "circle"},
+        {"id": "skills", "size": 70, "score": 0 , "title": "skills", "type": "circle"},
 
       
 
-        {"id": "vocal-expressions", "size": 70, "score": 0 , "title": "vocal-expressions", "type": "circle"},
+        {"id": "learning", "size": 70, "score": 0 , "title": "learning", "type": "circle"},
 
       
 
-        {"id": "imposition", "size": 70, "score": 0 , "title": "imposition", "type": "circle"},
+        {"id": "performance", "size": 70, "score": 0 , "title": "performance", "type": "circle"},
 
       
 
-        {"id": "language", "size": 140, "score": 0.5 , "title": "language", "type": "circle"},
+        {"id": "task", "size": 140, "score": 0.5 , "title": "task", "type": "circle"},
 
       
 
-        {"id": "members", "size": 5, "score": 0.4 , "title": "members", "type": "circle"},
+        {"id": "students", "size": 5, "score": 0.4 , "title": "students", "type": "circle"},
 
       
 
-        {"id": "list", "size": 5, "score": 0.4 , "title": "list", "type": "circle"},
+        {"id": "instruction", "size": 5, "score": 0.4 , "title": "instruction", "type": "circle"},
 
       
 
-        {"id": "RDF", "size": 5, "score": 0.4 , "title": "RDF", "type": "circle"},
+        {"id": "questions", "size": 5, "score": 0.4 , "title": "questions", "type": "circle"},
+
+      
+
+        {"id": "programmers", "size": 5, "score": 0.4 , "title": "programmers", "type": "circle"},
+
+      
+
+        {"id": "factors", "size": 5, "score": 0.4 , "title": "factors", "type": "circle"},
+
+      
+
+        {"id": "results", "size": 5, "score": 0.4 , "title": "results", "type": "circle"},
+
+      
+
+        {"id": "ability", "size": 5, "score": 0.4 , "title": "ability", "type": "circle"},
 
        
 
@@ -977,10 +993,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

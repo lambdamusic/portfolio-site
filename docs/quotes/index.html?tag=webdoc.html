@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.webdoc.com/about" class="text-muted" target="_blank">Webdoc - About Page</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Webdoc - About Page">
+								<a href="http://www.webdoc.com/about" class="-underline -text-muted" target="_blank">
+								  Webdoc - About Page</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Webdoc-About-Page-1.md/index.html">Webdoc lets you create, share...</a>
-						<br />
-						<small style="color: #cbcbcb;">Webdoc - About Page
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=webdoc.html">#webdoc</a>&nbsp;
@@ -588,14 +601,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://thenextweb.com/apps/2011/05/13/webdoc-the-easy-way-to-mix-media-online/" class="text-muted" target="_blank">Webdoc: The Easy Way To Mix Media Online - The Next Web</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Webdoc: The Easy Way To Mix Media Online - The Next Web">
+								<a href="http://thenextweb.com/apps/2011/05/13/webdoc-the-easy-way-to-mix-media-online/" class="-underline -text-muted" target="_blank">
+								  Webdoc: The Easy Way To Mix Media Online - The Next Web</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Webdoc-The-Easy-Way-To-Mix-Media-1.md/index.html">Wouldn’t it be great if...</a>
-						<br />
-						<small style="color: #cbcbcb;">Webdoc: The Easy Way To Mix Media Online - The Next Web
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=webdoc.html">#webdoc</a>&nbsp;
@@ -604,6 +631,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -720,13 +748,13 @@ var data_local_dynamic = {
       
           { "source": "webdoc", "target": "social-networks" },
       
-          { "source": "social-networks", "target": "webdoc" },
-      
           { "source": "social-networks", "target": "Floridi" },
       
           { "source": "social-networks", "target": "Internet" },
       
           { "source": "social-networks", "target": "computer" },
+      
+          { "source": "social-networks", "target": "indexing" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -750,6 +778,10 @@ var data_local_dynamic = {
       
 
         {"id": "computer", "size": 5, "score": 0.4 , "title": "computer", "type": "circle"},
+
+      
+
+        {"id": "indexing", "size": 5, "score": 0.4 , "title": "indexing", "type": "circle"},
 
        
 
@@ -879,10 +911,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

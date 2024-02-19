@@ -572,12 +572,55 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.kickstarter.com/projects/dwhly/hypothesis-taking-peer-review-to-the-internet" class="text-muted" target="_blank">Hypothes.is - Taking Peer Review To The Internet. By Dan Whaley — Kickstarter</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Hypothes.is - Taking Peer Review To The Internet. By Dan Whaley — Kickstarter">
+								<a href="http://www.kickstarter.com/projects/dwhly/hypothesis-taking-peer-review-to-the-internet" class="-underline -text-muted" target="_blank">
+								  Hypothes.is - Taking Peer Review To The Internet. By Dan Whaley — Kickstarter</a></cite> -->
+						</h4>
+						
+					
+						
+		
+					<li style="margin-bottom: 10px;">
+						<a style="font-size: 120%;" href="2013-06-07-Hypothesis-Taking-Peer-Review-To-The-Internet-1.md/index.html">Hypothes.is will be a distributed,...</a>
+						<br />
+						
+						<a class="text-muted" href="index.html%3Ftag=software-code.html">#software-code</a>&nbsp;
+							
+							</small>
+		
+					
+					</li>
+
+		
+				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.inf.ufes.br/~gguizzardi/FOIS-v3-3-3.pdf" class="text-muted" target="_blank">Towards An Ontology Of Software: A Requirements Engineering Perspective</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Towards An Ontology Of Software: A Requirements Engineering Perspective">
+								<a href="http://www.inf.ufes.br/~gguizzardi/FOIS-v3-3-3.pdf" class="-underline -text-muted" target="_blank">
+								  Towards An Ontology Of Software: A Requirements Engineering Perspective</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-10-21-Towards-An-Ontology-Of-Software-A-Requirements-11.md/index.html">Focusing on the computational aspects,...</a>
-						<br />
-						<small style="color: #cbcbcb;">Towards An Ontology Of Software: A Requirements Engineering Perspective
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=set.html">#set</a>&nbsp;
@@ -588,22 +631,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
-		
-				
-		
-					<li style="margin-bottom: 10px;">
-						<a style="font-size: 120%;" href="2013-06-07-Hypothesis-Taking-Peer-Review-To-The-Internet-1.md/index.html">Hypothes.is will be a distributed,...</a>
-						<br />
-						<small style="color: #cbcbcb;">Hypothes.is - Taking Peer Review To The Internet. By Dan Whaley — Kickstarter
 
-						<br />
-						
-						<a class="text-muted" href="index.html%3Ftag=software-code.html">#software-code</a>&nbsp;
-							
-							</small>
-		
-					
-					</li>
 		
 				
 			</div>
@@ -720,13 +748,13 @@ var data_local_dynamic = {
       
           { "source": "software-code", "target": "set" },
       
-          { "source": "set", "target": "software-code" },
-      
           { "source": "set", "target": "reasoning" },
       
           { "source": "set", "target": "knowledge-representation" },
       
           { "source": "set", "target": "information-systems" },
+      
+          { "source": "set", "target": "instances" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -750,6 +778,10 @@ var data_local_dynamic = {
       
 
         {"id": "information-systems", "size": 5, "score": 0.4 , "title": "information-systems", "type": "circle"},
+
+      
+
+        {"id": "instances", "size": 5, "score": 0.4 , "title": "instances", "type": "circle"},
 
        
 
@@ -879,10 +911,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

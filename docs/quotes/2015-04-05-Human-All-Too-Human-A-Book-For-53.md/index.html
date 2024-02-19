@@ -768,11 +768,9 @@ var data_local_dynamic = {
       
           { "source": "Christians", "target": "God" },
       
-          { "source": "Christians", "target": "world" },
+          { "source": "Christians", "target": "Christianity" },
       
-          { "source": "Christians", "target": "good-life" },
-      
-          { "source": "believers", "target": "religion" },
+          { "source": "Christians", "target": "sinfulness" },
       
           { "source": "believers", "target": "sin" },
       
@@ -780,37 +778,37 @@ var data_local_dynamic = {
       
           { "source": "believers", "target": "God" },
       
+          { "source": "believers", "target": "religion" },
+      
           { "source": "sin", "target": "believers" },
       
           { "source": "sin", "target": "Christians" },
       
           { "source": "sin", "target": "God" },
       
-          { "source": "sin", "target": "love" },
-      
-          { "source": "God", "target": "universe" },
-      
-          { "source": "God", "target": "things" },
-      
-          { "source": "God", "target": "idea" },
+          { "source": "sin", "target": "nature" },
       
           { "source": "God", "target": "believers" },
       
-          { "source": "world", "target": "relation" },
+          { "source": "God", "target": "sin" },
       
-          { "source": "world", "target": "real-world" },
+          { "source": "God", "target": "Christians" },
       
-          { "source": "world", "target": "relationship" },
+          { "source": "God", "target": "words" },
       
-          { "source": "world", "target": "consciousness" },
+          { "source": "Christianity", "target": "prayer" },
       
-          { "source": "good-life", "target": "world" },
+          { "source": "Christianity", "target": "Christian-nation" },
       
-          { "source": "good-life", "target": "religion" },
+          { "source": "Christianity", "target": "Christians" },
       
-          { "source": "good-life", "target": "Buddhist" },
+          { "source": "Christianity", "target": "sinfulness" },
       
-          { "source": "good-life", "target": "Christians" },
+          { "source": "sinfulness", "target": "Christians" },
+      
+          { "source": "sinfulness", "target": "Christianity" },
+      
+          { "source": "sinfulness", "target": "Buddhist" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -829,11 +827,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "world", "size": 70, "score": 0 , "title": "world", "type": "circle"},
+        {"id": "Christianity", "size": 70, "score": 0 , "title": "Christianity", "type": "circle"},
 
       
 
-        {"id": "good-life", "size": 70, "score": 0 , "title": "good-life", "type": "circle"},
+        {"id": "sinfulness", "size": 70, "score": 0 , "title": "sinfulness", "type": "circle"},
 
       
 
@@ -845,35 +843,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "love", "size": 5, "score": 0.4 , "title": "love", "type": "circle"},
+        {"id": "nature", "size": 5, "score": 0.4 , "title": "nature", "type": "circle"},
 
       
 
-        {"id": "universe", "size": 5, "score": 0.4 , "title": "universe", "type": "circle"},
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "prayer", "size": 5, "score": 0.4 , "title": "prayer", "type": "circle"},
 
       
 
-        {"id": "idea", "size": 5, "score": 0.4 , "title": "idea", "type": "circle"},
-
-      
-
-        {"id": "relation", "size": 5, "score": 0.4 , "title": "relation", "type": "circle"},
-
-      
-
-        {"id": "real-world", "size": 5, "score": 0.4 , "title": "real-world", "type": "circle"},
-
-      
-
-        {"id": "relationship", "size": 5, "score": 0.4 , "title": "relationship", "type": "circle"},
-
-      
-
-        {"id": "consciousness", "size": 5, "score": 0.4 , "title": "consciousness", "type": "circle"},
+        {"id": "Christian-nation", "size": 5, "score": 0.4 , "title": "Christian-nation", "type": "circle"},
 
       
 
@@ -1007,10 +989,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

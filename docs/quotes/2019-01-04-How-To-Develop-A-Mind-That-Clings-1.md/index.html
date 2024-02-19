@@ -764,15 +764,23 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "months", "target": "minutes" },
+          { "source": "morning", "target": "months" },
       
-          { "source": "months", "target": "meditation" },
+          { "source": "morning", "target": "minutes" },
       
-          { "source": "months", "target": "morning" },
+          { "source": "morning", "target": "meditation" },
       
-          { "source": "months", "target": "weeks" },
+          { "source": "morning", "target": "weeks" },
       
-          { "source": "months", "target": "eyes" },
+          { "source": "morning", "target": "men" },
+      
+          { "source": "months", "target": "database" },
+      
+          { "source": "months", "target": "publications" },
+      
+          { "source": "months", "target": "journals" },
+      
+          { "source": "months", "target": "access" },
       
           { "source": "minutes", "target": "months" },
       
@@ -782,41 +790,37 @@ var data_local_dynamic = {
       
           { "source": "minutes", "target": "Suo" },
       
-          { "source": "meditation", "target": "months" },
-      
-          { "source": "meditation", "target": "minutes" },
-      
-          { "source": "meditation", "target": "morning" },
-      
           { "source": "meditation", "target": "hallucinations" },
       
-          { "source": "morning", "target": "months" },
+          { "source": "meditation", "target": "death" },
       
-          { "source": "morning", "target": "minutes" },
+          { "source": "meditation", "target": "fear" },
       
-          { "source": "morning", "target": "meditation" },
+          { "source": "meditation", "target": "months" },
       
-          { "source": "morning", "target": "days" },
+          { "source": "weeks", "target": "calories" },
       
-          { "source": "weeks", "target": "months" },
+          { "source": "weeks", "target": "hours" },
       
-          { "source": "weeks", "target": "eyes" },
+          { "source": "weeks", "target": "days" },
       
           { "source": "weeks", "target": "time" },
       
-          { "source": "weeks", "target": "slums" },
+          { "source": "men", "target": "phrases" },
       
-          { "source": "eyes", "target": "men" },
+          { "source": "men", "target": "sleep" },
       
-          { "source": "eyes", "target": "head" },
+          { "source": "men", "target": "living" },
       
-          { "source": "eyes", "target": "smile" },
-      
-          { "source": "eyes", "target": "heart" },
+          { "source": "men", "target": "years" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "months", "size": 70, "score": 0 , "title": "months", "type": "circle"},
+
       
 
         {"id": "minutes", "size": 70, "score": 0 , "title": "minutes", "type": "circle"},
@@ -827,19 +831,31 @@ var data_local_dynamic = {
 
       
 
-        {"id": "morning", "size": 70, "score": 0 , "title": "morning", "type": "circle"},
-
-      
-
         {"id": "weeks", "size": 70, "score": 0 , "title": "weeks", "type": "circle"},
 
       
 
-        {"id": "eyes", "size": 70, "score": 0 , "title": "eyes", "type": "circle"},
+        {"id": "men", "size": 70, "score": 0 , "title": "men", "type": "circle"},
 
       
 
-        {"id": "months", "size": 140, "score": 0.5 , "title": "months", "type": "circle"},
+        {"id": "morning", "size": 140, "score": 0.5 , "title": "morning", "type": "circle"},
+
+      
+
+        {"id": "database", "size": 5, "score": 0.4 , "title": "database", "type": "circle"},
+
+      
+
+        {"id": "publications", "size": 5, "score": 0.4 , "title": "publications", "type": "circle"},
+
+      
+
+        {"id": "journals", "size": 5, "score": 0.4 , "title": "journals", "type": "circle"},
+
+      
+
+        {"id": "access", "size": 5, "score": 0.4 , "title": "access", "type": "circle"},
 
       
 
@@ -851,6 +867,22 @@ var data_local_dynamic = {
 
       
 
+        {"id": "death", "size": 5, "score": 0.4 , "title": "death", "type": "circle"},
+
+      
+
+        {"id": "fear", "size": 5, "score": 0.4 , "title": "fear", "type": "circle"},
+
+      
+
+        {"id": "calories", "size": 5, "score": 0.4 , "title": "calories", "type": "circle"},
+
+      
+
+        {"id": "hours", "size": 5, "score": 0.4 , "title": "hours", "type": "circle"},
+
+      
+
         {"id": "days", "size": 5, "score": 0.4 , "title": "days", "type": "circle"},
 
       
@@ -859,23 +891,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "slums", "size": 5, "score": 0.4 , "title": "slums", "type": "circle"},
+        {"id": "phrases", "size": 5, "score": 0.4 , "title": "phrases", "type": "circle"},
 
       
 
-        {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
+        {"id": "sleep", "size": 5, "score": 0.4 , "title": "sleep", "type": "circle"},
 
       
 
-        {"id": "head", "size": 5, "score": 0.4 , "title": "head", "type": "circle"},
+        {"id": "living", "size": 5, "score": 0.4 , "title": "living", "type": "circle"},
 
       
 
-        {"id": "smile", "size": 5, "score": 0.4 , "title": "smile", "type": "circle"},
-
-      
-
-        {"id": "heart", "size": 5, "score": 0.4 , "title": "heart", "type": "circle"},
+        {"id": "years", "size": 5, "score": 0.4 , "title": "years", "type": "circle"},
 
        
 
@@ -1005,10 +1033,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="https://engineering.linkedin.com/blog/2016/10/building-the-linkedin-knowledge-graph" class="text-muted" target="_blank">Building The Linkedin Knowledge Graph | Linkedin Engineering</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Building The Linkedin Knowledge Graph | Linkedin Engineering">
+								<a href="https://engineering.linkedin.com/blog/2016/10/building-the-linkedin-knowledge-graph" class="-underline -text-muted" target="_blank">
+								  Building The Linkedin Knowledge Graph | Linkedin Engineering</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2018-01-10-Building-The-Linkedin-Knowledge-Graph-Linkedin-Engineering-1.md/index.html">Generating analytics and insights from a knowledge graph</a>
-						<br />
-						<small style="color: #cbcbcb;">Building The Linkedin Knowledge Graph | Linkedin Engineering
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=knowledge-graph.html">#knowledge-graph</a>&nbsp;
@@ -592,14 +605,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://radar.oreilly.com/2012/01/what-is-big-data.html" class="text-muted" target="_blank">What Is Big Data? An Introduction To The Big Data Landscape.</a>
+									
+							</small>
+							<!-- Words taken from <cite title="What Is Big Data? An Introduction To The Big Data Landscape.">
+								<a href="http://radar.oreilly.com/2012/01/what-is-big-data.html" class="-underline -text-muted" target="_blank">
+								  What Is Big Data? An Introduction To The Big Data Landscape.</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-What-Is-Big-Data-An-Introduction-To-2.md/index.html">The value of big data...</a>
-						<br />
-						<small style="color: #cbcbcb;">What Is Big Data? An Introduction To The Big Data Landscape.
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=transactions.html">#transactions</a>&nbsp;
@@ -612,6 +639,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -736,29 +764,29 @@ var data_local_dynamic = {
       
           { "source": "data-analytics", "target": "big-data" },
       
-          { "source": "knowledge-graph", "target": "graph" },
-      
-          { "source": "knowledge-graph", "target": "search-results" },
-      
           { "source": "knowledge-graph", "target": "data-analytics" },
       
           { "source": "knowledge-graph", "target": "analytics" },
       
-          { "source": "analytics", "target": "readers" },
+          { "source": "knowledge-graph", "target": "graph" },
       
-          { "source": "analytics", "target": "industry" },
+          { "source": "knowledge-graph", "target": "search-engines" },
       
           { "source": "analytics", "target": "knowledge-graph" },
       
           { "source": "analytics", "target": "data-analytics" },
       
-          { "source": "graph", "target": "RDF/XML" },
+          { "source": "analytics", "target": "graph" },
       
-          { "source": "graph", "target": "RDF" },
+          { "source": "analytics", "target": "Semantic-Web" },
       
-          { "source": "graph", "target": "syntax" },
+          { "source": "graph", "target": "knowledge-graph" },
       
-          { "source": "graph", "target": "computational-ontology" },
+          { "source": "graph", "target": "data-analytics" },
+      
+          { "source": "graph", "target": "analytics" },
+      
+          { "source": "graph", "target": "semantics" },
       
           { "source": "transactions", "target": "Bitcoin" },
       
@@ -805,31 +833,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "search-results", "size": 5, "score": 0.4 , "title": "search-results", "type": "circle"},
+        {"id": "search-engines", "size": 5, "score": 0.4 , "title": "search-engines", "type": "circle"},
 
       
 
-        {"id": "readers", "size": 5, "score": 0.4 , "title": "readers", "type": "circle"},
+        {"id": "Semantic-Web", "size": 5, "score": 0.4 , "title": "Semantic-Web", "type": "circle"},
 
       
 
-        {"id": "industry", "size": 5, "score": 0.4 , "title": "industry", "type": "circle"},
-
-      
-
-        {"id": "RDF/XML", "size": 5, "score": 0.4 , "title": "RDF/XML", "type": "circle"},
-
-      
-
-        {"id": "RDF", "size": 5, "score": 0.4 , "title": "RDF", "type": "circle"},
-
-      
-
-        {"id": "syntax", "size": 5, "score": 0.4 , "title": "syntax", "type": "circle"},
-
-      
-
-        {"id": "computational-ontology", "size": 5, "score": 0.4 , "title": "computational-ontology", "type": "circle"},
+        {"id": "semantics", "size": 5, "score": 0.4 , "title": "semantics", "type": "circle"},
 
       
 
@@ -983,10 +995,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

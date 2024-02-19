@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://plato.stanford.edu/entries/semiotics-medieval/" class="text-muted" target="_blank">Medieval Semiotics (meier-oeser, Stephan)</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Medieval Semiotics (meier-oeser, Stephan)">
+								<a href="http://plato.stanford.edu/entries/semiotics-medieval/" class="-underline -text-muted" target="_blank">
+								  Medieval Semiotics (meier-oeser, Stephan)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-07-02-Medieval-Semiotics-meieroeser-Stephan-15.md/index.html">The primary intention of bacon&#39;s semiotic analyses is, as it was already with augustine, to provide the foundations for the semantics of spoken language.</a>
-						<br />
-						<small style="color: #cbcbcb;">Medieval Semiotics (meier-oeser, Stephan)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=semiotic-analysis.html">#semiotic-analysis</a>&nbsp;
@@ -596,14 +609,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-07-02-Medieval-Semiotics-meieroeser-Stephan-25.md/index.html">Words signify, as it were, infinitely many things</a>
-						<br />
-						<small style="color: #cbcbcb;">Medieval Semiotics (meier-oeser, Stephan)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=words.html">#words</a>&nbsp;
@@ -618,14 +633,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-07-02-Medieval-Semiotics-meieroeser-Stephan-29.md/index.html">Rejection of Augustine&#39;s definition of the sign, and the semantic triangle</a>
-						<br />
-						<small style="color: #cbcbcb;">Medieval Semiotics (meier-oeser, Stephan)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=vocal-expressions.html">#vocal-expressions</a>&nbsp;
@@ -636,6 +653,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -784,21 +802,21 @@ var data_local_dynamic = {
       
           { "source": "imposition", "target": "language" },
       
-          { "source": "language", "target": "programming-language" },
+          { "source": "language", "target": "words" },
       
-          { "source": "language", "target": "semiotic-analysis" },
+          { "source": "language", "target": "Sapir-Whorf-hypothesis" },
       
-          { "source": "language", "target": "signification" },
+          { "source": "language", "target": "idea" },
       
-          { "source": "language", "target": "vocal-expressions" },
+          { "source": "language", "target": "different-languages" },
       
-          { "source": "meaning", "target": "semiotic-analysis" },
+          { "source": "meaning", "target": "concept" },
       
-          { "source": "meaning", "target": "signification" },
+          { "source": "meaning", "target": "knowledge-representation" },
       
-          { "source": "meaning", "target": "vocal-expressions" },
+          { "source": "meaning", "target": "representation" },
       
-          { "source": "meaning", "target": "imposition" },
+          { "source": "meaning", "target": "terms" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -829,7 +847,35 @@ var data_local_dynamic = {
 
       
 
-        {"id": "programming-language", "size": 5, "score": 0.4 , "title": "programming-language", "type": "circle"},
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "Sapir-Whorf-hypothesis", "size": 5, "score": 0.4 , "title": "Sapir-Whorf-hypothesis", "type": "circle"},
+
+      
+
+        {"id": "idea", "size": 5, "score": 0.4 , "title": "idea", "type": "circle"},
+
+      
+
+        {"id": "different-languages", "size": 5, "score": 0.4 , "title": "different-languages", "type": "circle"},
+
+      
+
+        {"id": "concept", "size": 5, "score": 0.4 , "title": "concept", "type": "circle"},
+
+      
+
+        {"id": "knowledge-representation", "size": 5, "score": 0.4 , "title": "knowledge-representation", "type": "circle"},
+
+      
+
+        {"id": "representation", "size": 5, "score": 0.4 , "title": "representation", "type": "circle"},
+
+      
+
+        {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
 
        
 
@@ -959,10 +1005,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

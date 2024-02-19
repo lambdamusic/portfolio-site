@@ -780,29 +780,29 @@ var data_local_dynamic = {
       
           { "source": "semiotics", "target": "linguistic-signs" },
       
-          { "source": "text", "target": "semiotics" },
+          { "source": "text", "target": "story" },
       
-          { "source": "text", "target": "concept" },
+          { "source": "text", "target": "game" },
       
-          { "source": "text", "target": "concept-of-sign" },
+          { "source": "text", "target": "character" },
       
-          { "source": "text", "target": "close-reading" },
+          { "source": "text", "target": "interactive-fiction" },
       
-          { "source": "concept", "target": "semiotics" },
+          { "source": "concept", "target": "article" },
       
-          { "source": "concept", "target": "text" },
+          { "source": "concept", "target": "Obama" },
       
-          { "source": "concept", "target": "concept-of-sign" },
+          { "source": "concept", "target": "information-science" },
       
-          { "source": "concept", "target": "computational-ontology" },
+          { "source": "concept", "target": "users" },
       
-          { "source": "theory", "target": "communication" },
+          { "source": "theory", "target": "cognitive-processes" },
       
-          { "source": "theory", "target": "organization" },
+          { "source": "theory", "target": "intuition" },
       
-          { "source": "theory", "target": "Nietzsche" },
+          { "source": "theory", "target": "psychological-state" },
       
-          { "source": "theory", "target": "things" },
+          { "source": "theory", "target": "physics" },
       
           { "source": "medieval-theories", "target": "concept-of-sign" },
       
@@ -843,27 +843,51 @@ var data_local_dynamic = {
 
       
 
-        {"id": "close-reading", "size": 5, "score": 0.4 , "title": "close-reading", "type": "circle"},
+        {"id": "story", "size": 5, "score": 0.4 , "title": "story", "type": "circle"},
 
       
 
-        {"id": "computational-ontology", "size": 5, "score": 0.4 , "title": "computational-ontology", "type": "circle"},
+        {"id": "game", "size": 5, "score": 0.4 , "title": "game", "type": "circle"},
 
       
 
-        {"id": "communication", "size": 5, "score": 0.4 , "title": "communication", "type": "circle"},
+        {"id": "character", "size": 5, "score": 0.4 , "title": "character", "type": "circle"},
 
       
 
-        {"id": "organization", "size": 5, "score": 0.4 , "title": "organization", "type": "circle"},
+        {"id": "interactive-fiction", "size": 5, "score": 0.4 , "title": "interactive-fiction", "type": "circle"},
 
       
 
-        {"id": "Nietzsche", "size": 5, "score": 0.4 , "title": "Nietzsche", "type": "circle"},
+        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "Obama", "size": 5, "score": 0.4 , "title": "Obama", "type": "circle"},
+
+      
+
+        {"id": "information-science", "size": 5, "score": 0.4 , "title": "information-science", "type": "circle"},
+
+      
+
+        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
+
+      
+
+        {"id": "cognitive-processes", "size": 5, "score": 0.4 , "title": "cognitive-processes", "type": "circle"},
+
+      
+
+        {"id": "intuition", "size": 5, "score": 0.4 , "title": "intuition", "type": "circle"},
+
+      
+
+        {"id": "psychological-state", "size": 5, "score": 0.4 , "title": "psychological-state", "type": "circle"},
+
+      
+
+        {"id": "physics", "size": 5, "score": 0.4 , "title": "physics", "type": "circle"},
 
       
 
@@ -997,10 +1021,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

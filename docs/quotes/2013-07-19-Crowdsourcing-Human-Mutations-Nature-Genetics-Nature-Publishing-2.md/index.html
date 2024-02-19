@@ -760,78 +760,100 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "technique", "target": "data-scientists" },
+          { "source": "values", "target": "publications" },
       
-          { "source": "technique", "target": "scientists" },
+          { "source": "values", "target": "hypothesis" },
       
-          { "source": "technique", "target": "values" },
-      
-          { "source": "data-scientists", "target": "technique" },
-      
-          { "source": "data-scientists", "target": "scientists" },
-      
-          { "source": "data-scientists", "target": "programmers" },
-      
-          { "source": "data-scientists", "target": "machine-learning" },
-      
-          { "source": "scientists", "target": "data-scientists" },
-      
-          { "source": "scientists", "target": "technique" },
-      
-          { "source": "scientists", "target": "information" },
-      
-          { "source": "scientists", "target": "answers" },
+          { "source": "values", "target": "distance" },
       
           { "source": "values", "target": "properties" },
       
           { "source": "values", "target": "instances" },
       
-          { "source": "values", "target": "range" },
+          { "source": "publications", "target": "hypothesis" },
       
-          { "source": "values", "target": "class" },
+          { "source": "publications", "target": "values" },
+      
+          { "source": "publications", "target": "distance" },
+      
+          { "source": "publications", "target": "area" },
+      
+          { "source": "hypothesis", "target": "experiments" },
+      
+          { "source": "hypothesis", "target": "constructs" },
+      
+          { "source": "hypothesis", "target": "process" },
+      
+          { "source": "hypothesis", "target": "publications" },
+      
+          { "source": "distance", "target": "publications" },
+      
+          { "source": "distance", "target": "hypothesis" },
+      
+          { "source": "distance", "target": "values" },
+      
+          { "source": "properties", "target": "network" },
+      
+          { "source": "properties", "target": "instances" },
+      
+          { "source": "properties", "target": "range" },
+      
+          { "source": "properties", "target": "class" },
+      
+          { "source": "instances", "target": "cases" },
+      
+          { "source": "instances", "target": "occurrence" },
+      
+          { "source": "instances", "target": "events" },
+      
+          { "source": "instances", "target": "class" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "data-scientists", "size": 70, "score": 0 , "title": "data-scientists", "type": "circle"},
+        {"id": "publications", "size": 70, "score": 0 , "title": "publications", "type": "circle"},
 
       
 
-        {"id": "scientists", "size": 70, "score": 0 , "title": "scientists", "type": "circle"},
+        {"id": "hypothesis", "size": 70, "score": 0 , "title": "hypothesis", "type": "circle"},
 
       
 
-        {"id": "values", "size": 70, "score": 0 , "title": "values", "type": "circle"},
+        {"id": "distance", "size": 70, "score": 0 , "title": "distance", "type": "circle"},
 
       
 
-        {"id": "technique", "size": 140, "score": 0.5 , "title": "technique", "type": "circle"},
+        {"id": "properties", "size": 70, "score": 0 , "title": "properties", "type": "circle"},
 
       
 
-        {"id": "programmers", "size": 5, "score": 0.4 , "title": "programmers", "type": "circle"},
+        {"id": "instances", "size": 70, "score": 0 , "title": "instances", "type": "circle"},
 
       
 
-        {"id": "machine-learning", "size": 5, "score": 0.4 , "title": "machine-learning", "type": "circle"},
+        {"id": "values", "size": 140, "score": 0.5 , "title": "values", "type": "circle"},
 
       
 
-        {"id": "information", "size": 5, "score": 0.4 , "title": "information", "type": "circle"},
+        {"id": "area", "size": 5, "score": 0.4 , "title": "area", "type": "circle"},
 
       
 
-        {"id": "answers", "size": 5, "score": 0.4 , "title": "answers", "type": "circle"},
+        {"id": "experiments", "size": 5, "score": 0.4 , "title": "experiments", "type": "circle"},
 
       
 
-        {"id": "properties", "size": 5, "score": 0.4 , "title": "properties", "type": "circle"},
+        {"id": "constructs", "size": 5, "score": 0.4 , "title": "constructs", "type": "circle"},
 
       
 
-        {"id": "instances", "size": 5, "score": 0.4 , "title": "instances", "type": "circle"},
+        {"id": "process", "size": 5, "score": 0.4 , "title": "process", "type": "circle"},
+
+      
+
+        {"id": "network", "size": 5, "score": 0.4 , "title": "network", "type": "circle"},
 
       
 
@@ -840,6 +862,18 @@ var data_local_dynamic = {
       
 
         {"id": "class", "size": 5, "score": 0.4 , "title": "class", "type": "circle"},
+
+      
+
+        {"id": "cases", "size": 5, "score": 0.4 , "title": "cases", "type": "circle"},
+
+      
+
+        {"id": "occurrence", "size": 5, "score": 0.4 , "title": "occurrence", "type": "circle"},
+
+      
+
+        {"id": "events", "size": 5, "score": 0.4 , "title": "events", "type": "circle"},
 
        
 
@@ -969,10 +1003,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -761,108 +761,110 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "information", "target": "documents" },
+          { "source": "URI", "target": "web-documents" },
       
-          { "source": "information", "target": "corpus" },
+          { "source": "URI", "target": "documents" },
       
-          { "source": "information", "target": "tool" },
+          { "source": "URI", "target": "files" },
       
-          { "source": "information", "target": "RDF-Schema" },
+          { "source": "URI", "target": "Web" },
       
-          { "source": "information", "target": "schema" },
+          { "source": "URI", "target": "pages" },
       
-          { "source": "documents", "target": "corpus" },
+          { "source": "web-documents", "target": "URI" },
       
-          { "source": "documents", "target": "information" },
+          { "source": "web-documents", "target": "documents" },
       
-          { "source": "documents", "target": "tool" },
+          { "source": "web-documents", "target": "files" },
+      
+          { "source": "web-documents", "target": "Web" },
+      
+          { "source": "documents", "target": "web-documents" },
       
           { "source": "documents", "target": "URI" },
       
-          { "source": "corpus", "target": "documents" },
+          { "source": "documents", "target": "files" },
       
-          { "source": "corpus", "target": "information" },
+          { "source": "documents", "target": "Web" },
       
-          { "source": "corpus", "target": "tool" },
+          { "source": "files", "target": "authority-files" },
       
-          { "source": "tool", "target": "documents" },
+          { "source": "files", "target": "indexing" },
       
-          { "source": "tool", "target": "corpus" },
+          { "source": "files", "target": "thesaurus" },
       
-          { "source": "tool", "target": "information" },
+          { "source": "files", "target": "vocabulary" },
       
-          { "source": "tool", "target": "theory" },
+          { "source": "Web", "target": "web-documents" },
       
-          { "source": "RDF-Schema", "target": "schema" },
+          { "source": "Web", "target": "URI" },
       
-          { "source": "RDF-Schema", "target": "information" },
+          { "source": "Web", "target": "documents" },
       
-          { "source": "RDF-Schema", "target": "applications" },
+          { "source": "Web", "target": "files" },
       
-          { "source": "RDF-Schema", "target": "book" },
+          { "source": "pages", "target": "Web-sites" },
       
-          { "source": "schema", "target": "scheme" },
+          { "source": "pages", "target": "browser" },
       
-          { "source": "schema", "target": "format" },
+          { "source": "pages", "target": "search-engines" },
       
-          { "source": "schema", "target": "archives" },
-      
-          { "source": "schema", "target": "RDF-Schema" },
+          { "source": "pages", "target": "web-documents" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
+        {"id": "web-documents", "size": 70, "score": 0 , "title": "web-documents", "type": "circle"},
+
+      
+
         {"id": "documents", "size": 70, "score": 0 , "title": "documents", "type": "circle"},
 
       
 
-        {"id": "corpus", "size": 70, "score": 0 , "title": "corpus", "type": "circle"},
+        {"id": "files", "size": 70, "score": 0 , "title": "files", "type": "circle"},
 
       
 
-        {"id": "tool", "size": 70, "score": 0 , "title": "tool", "type": "circle"},
+        {"id": "Web", "size": 70, "score": 0 , "title": "Web", "type": "circle"},
 
       
 
-        {"id": "RDF-Schema", "size": 70, "score": 0 , "title": "RDF-Schema", "type": "circle"},
+        {"id": "pages", "size": 70, "score": 0 , "title": "pages", "type": "circle"},
 
       
 
-        {"id": "schema", "size": 70, "score": 0 , "title": "schema", "type": "circle"},
+        {"id": "URI", "size": 140, "score": 0.5 , "title": "URI", "type": "circle"},
 
       
 
-        {"id": "information", "size": 140, "score": 0.5 , "title": "information", "type": "circle"},
+        {"id": "authority-files", "size": 5, "score": 0.4 , "title": "authority-files", "type": "circle"},
 
       
 
-        {"id": "URI", "size": 5, "score": 0.4 , "title": "URI", "type": "circle"},
+        {"id": "indexing", "size": 5, "score": 0.4 , "title": "indexing", "type": "circle"},
 
       
 
-        {"id": "theory", "size": 5, "score": 0.4 , "title": "theory", "type": "circle"},
+        {"id": "thesaurus", "size": 5, "score": 0.4 , "title": "thesaurus", "type": "circle"},
 
       
 
-        {"id": "applications", "size": 5, "score": 0.4 , "title": "applications", "type": "circle"},
+        {"id": "vocabulary", "size": 5, "score": 0.4 , "title": "vocabulary", "type": "circle"},
 
       
 
-        {"id": "book", "size": 5, "score": 0.4 , "title": "book", "type": "circle"},
+        {"id": "Web-sites", "size": 5, "score": 0.4 , "title": "Web-sites", "type": "circle"},
 
       
 
-        {"id": "scheme", "size": 5, "score": 0.4 , "title": "scheme", "type": "circle"},
+        {"id": "browser", "size": 5, "score": 0.4 , "title": "browser", "type": "circle"},
 
       
 
-        {"id": "format", "size": 5, "score": 0.4 , "title": "format", "type": "circle"},
-
-      
-
-        {"id": "archives", "size": 5, "score": 0.4 , "title": "archives", "type": "circle"},
+        {"id": "search-engines", "size": 5, "score": 0.4 , "title": "search-engines", "type": "circle"},
 
        
 
@@ -992,10 +994,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

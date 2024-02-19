@@ -772,17 +772,17 @@ var data_local_dynamic = {
       
           { "source": "mind", "target": "consciousness" },
       
-          { "source": "mind", "target": "brain" },
+          { "source": "mind", "target": "philosophers" },
       
-          { "source": "mind", "target": "reasoning" },
+          { "source": "mind", "target": "employees" },
+      
+          { "source": "human-experience", "target": "humanists" },
       
           { "source": "human-experience", "target": "mind" },
       
           { "source": "human-experience", "target": "transpersonal-consciousness" },
       
           { "source": "human-experience", "target": "consciousness" },
-      
-          { "source": "human-experience", "target": "world" },
       
           { "source": "transpersonal-consciousness", "target": "human-experience" },
       
@@ -792,29 +792,29 @@ var data_local_dynamic = {
       
           { "source": "transpersonal-consciousness", "target": "world" },
       
-          { "source": "consciousness", "target": "human-experience" },
+          { "source": "consciousness", "target": "philosophers" },
       
-          { "source": "consciousness", "target": "mind" },
+          { "source": "consciousness", "target": "intuition" },
       
-          { "source": "consciousness", "target": "transpersonal-consciousness" },
+          { "source": "consciousness", "target": "people" },
       
           { "source": "consciousness", "target": "subjective-experience" },
       
-          { "source": "brain", "target": "reasoning" },
+          { "source": "philosophers", "target": "intuition" },
       
-          { "source": "brain", "target": "mind" },
+          { "source": "philosophers", "target": "consciousness" },
       
-          { "source": "brain", "target": "stomach" },
+          { "source": "philosophers", "target": "people" },
       
-          { "source": "brain", "target": "heart" },
+          { "source": "philosophers", "target": "philosophical-problems" },
       
-          { "source": "reasoning", "target": "brain" },
+          { "source": "employees", "target": "language" },
       
-          { "source": "reasoning", "target": "mind" },
+          { "source": "employees", "target": "mind" },
       
-          { "source": "reasoning", "target": "disambiguation" },
+          { "source": "employees", "target": "people" },
       
-          { "source": "reasoning", "target": "article" },
+          { "source": "employees", "target": "jobs" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -833,11 +833,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "brain", "size": 70, "score": 0 , "title": "brain", "type": "circle"},
+        {"id": "philosophers", "size": 70, "score": 0 , "title": "philosophers", "type": "circle"},
 
       
 
-        {"id": "reasoning", "size": 70, "score": 0 , "title": "reasoning", "type": "circle"},
+        {"id": "employees", "size": 70, "score": 0 , "title": "employees", "type": "circle"},
 
       
 
@@ -845,7 +845,19 @@ var data_local_dynamic = {
 
       
 
+        {"id": "humanists", "size": 5, "score": 0.4 , "title": "humanists", "type": "circle"},
+
+      
+
         {"id": "world", "size": 5, "score": 0.4 , "title": "world", "type": "circle"},
+
+      
+
+        {"id": "intuition", "size": 5, "score": 0.4 , "title": "intuition", "type": "circle"},
+
+      
+
+        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
 
       
 
@@ -853,19 +865,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "stomach", "size": 5, "score": 0.4 , "title": "stomach", "type": "circle"},
+        {"id": "philosophical-problems", "size": 5, "score": 0.4 , "title": "philosophical-problems", "type": "circle"},
 
       
 
-        {"id": "heart", "size": 5, "score": 0.4 , "title": "heart", "type": "circle"},
+        {"id": "language", "size": 5, "score": 0.4 , "title": "language", "type": "circle"},
 
       
 
-        {"id": "disambiguation", "size": 5, "score": 0.4 , "title": "disambiguation", "type": "circle"},
-
-      
-
-        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
+        {"id": "jobs", "size": 5, "score": 0.4 , "title": "jobs", "type": "circle"},
 
        
 
@@ -995,10 +1003,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

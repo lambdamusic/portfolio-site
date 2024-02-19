@@ -762,23 +762,23 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "assumption", "target": "use" },
-      
-          { "source": "assumption", "target": "impact" },
-      
-          { "source": "assumption", "target": "metaphysics" },
-      
-          { "source": "assumption", "target": "meaningful-statements" },
-      
-          { "source": "assumption", "target": "philosophers" },
-      
           { "source": "use", "target": "assumption" },
       
           { "source": "use", "target": "impact" },
       
-          { "source": "use", "target": "subjects" },
+          { "source": "use", "target": "drugs" },
       
-          { "source": "use", "target": "people" },
+          { "source": "use", "target": "sound" },
+      
+          { "source": "use", "target": "choice" },
+      
+          { "source": "assumption", "target": "use" },
+      
+          { "source": "assumption", "target": "impact" },
+      
+          { "source": "assumption", "target": "inference" },
+      
+          { "source": "assumption", "target": "concept" },
       
           { "source": "impact", "target": "use" },
       
@@ -788,36 +788,36 @@ var data_local_dynamic = {
       
           { "source": "impact", "target": "attributes" },
       
-          { "source": "metaphysics", "target": "meaningful-statements" },
+          { "source": "drugs", "target": "eyes" },
       
-          { "source": "metaphysics", "target": "philosophers" },
+          { "source": "drugs", "target": "babies" },
       
-          { "source": "metaphysics", "target": "philosophy" },
+          { "source": "drugs", "target": "control" },
       
-          { "source": "metaphysics", "target": "assumption" },
+          { "source": "drugs", "target": "pain" },
       
-          { "source": "meaningful-statements", "target": "metaphysics" },
+          { "source": "sound", "target": "drugs" },
       
-          { "source": "meaningful-statements", "target": "philosophers" },
+          { "source": "sound", "target": "use" },
       
-          { "source": "meaningful-statements", "target": "philosophy" },
+          { "source": "sound", "target": "choice" },
       
-          { "source": "meaningful-statements", "target": "assumption" },
+          { "source": "sound", "target": "weeks" },
       
-          { "source": "philosophers", "target": "questions" },
+          { "source": "choice", "target": "drugs" },
       
-          { "source": "philosophers", "target": "speech-acts" },
+          { "source": "choice", "target": "sound" },
       
-          { "source": "philosophers", "target": "reification" },
+          { "source": "choice", "target": "use" },
       
-          { "source": "philosophers", "target": "metaphysics" },
+          { "source": "choice", "target": "people" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "use", "size": 70, "score": 0 , "title": "use", "type": "circle"},
+        {"id": "assumption", "size": 70, "score": 0 , "title": "assumption", "type": "circle"},
 
       
 
@@ -825,27 +825,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "metaphysics", "size": 70, "score": 0 , "title": "metaphysics", "type": "circle"},
+        {"id": "drugs", "size": 70, "score": 0 , "title": "drugs", "type": "circle"},
 
       
 
-        {"id": "meaningful-statements", "size": 70, "score": 0 , "title": "meaningful-statements", "type": "circle"},
+        {"id": "sound", "size": 70, "score": 0 , "title": "sound", "type": "circle"},
 
       
 
-        {"id": "philosophers", "size": 70, "score": 0 , "title": "philosophers", "type": "circle"},
+        {"id": "choice", "size": 70, "score": 0 , "title": "choice", "type": "circle"},
 
       
 
-        {"id": "assumption", "size": 140, "score": 0.5 , "title": "assumption", "type": "circle"},
+        {"id": "use", "size": 140, "score": 0.5 , "title": "use", "type": "circle"},
 
       
 
-        {"id": "subjects", "size": 5, "score": 0.4 , "title": "subjects", "type": "circle"},
+        {"id": "inference", "size": 5, "score": 0.4 , "title": "inference", "type": "circle"},
 
       
 
-        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
+        {"id": "concept", "size": 5, "score": 0.4 , "title": "concept", "type": "circle"},
 
       
 
@@ -857,19 +857,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "philosophy", "size": 5, "score": 0.4 , "title": "philosophy", "type": "circle"},
+        {"id": "eyes", "size": 5, "score": 0.4 , "title": "eyes", "type": "circle"},
 
       
 
-        {"id": "questions", "size": 5, "score": 0.4 , "title": "questions", "type": "circle"},
+        {"id": "babies", "size": 5, "score": 0.4 , "title": "babies", "type": "circle"},
 
       
 
-        {"id": "speech-acts", "size": 5, "score": 0.4 , "title": "speech-acts", "type": "circle"},
+        {"id": "control", "size": 5, "score": 0.4 , "title": "control", "type": "circle"},
 
       
 
-        {"id": "reification", "size": 5, "score": 0.4 , "title": "reification", "type": "circle"},
+        {"id": "pain", "size": 5, "score": 0.4 , "title": "pain", "type": "circle"},
+
+      
+
+        {"id": "weeks", "size": 5, "score": 0.4 , "title": "weeks", "type": "circle"},
+
+      
+
+        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
 
        
 
@@ -999,10 +1007,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

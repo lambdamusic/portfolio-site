@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.google.co.uk/url?sa=t&amp;rct=j&amp;q=from%20encyclopedia%20to%20ontology%3A%20toward%20dynamic%20representation%20of%20the%20discipline%20of%20philosophy&amp;source=web&amp;cd=3&amp;ved=0CD4QFjAC&amp;url=http%3A%" class="text-muted" target="_blank">From Encyclopedia To Ontology: Toward Dynamic Representation Of The Discipline Of Philosophy</a>
+									
+							</small>
+							<!-- Words taken from <cite title="From Encyclopedia To Ontology: Toward Dynamic Representation Of The Discipline Of Philosophy">
+								<a href="http://www.google.co.uk/url?sa=t&amp;rct=j&amp;q=from%20encyclopedia%20to%20ontology%3A%20toward%20dynamic%20representation%20of%20the%20discipline%20of%20philosophy&amp;source=web&amp;cd=3&amp;ved=0CD4QFjAC&amp;url=http%3A%" class="-underline -text-muted" target="_blank">
+								  From Encyclopedia To Ontology: Toward Dynamic Representation Of The Discipline Of Philosophy</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-From-Encyclopedia-To-Ontology-Toward-Dynamic-Representation-8.md/index.html">Classification of ideas according to semantic inheritance relationships</a>
-						<br />
-						<small style="color: #cbcbcb;">From Encyclopedia To Ontology: Toward Dynamic Representation Of The Discipline Of Philosophy
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=philosophical-ideas.html">#philosophical-ideas</a>&nbsp;
@@ -590,6 +603,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -716,13 +730,13 @@ var data_local_dynamic = {
       
           { "source": "philosophical-ideas", "target": "philosophy-of-mind" },
       
-          { "source": "idea", "target": "God" },
+          { "source": "idea", "target": "language" },
       
-          { "source": "idea", "target": "universe" },
+          { "source": "idea", "target": "Sapir-Whorf-hypothesis" },
       
-          { "source": "idea", "target": "things" },
+          { "source": "idea", "target": "different-languages" },
       
-          { "source": "idea", "target": "terms" },
+          { "source": "idea", "target": "linguistics" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -749,19 +763,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "God", "size": 5, "score": 0.4 , "title": "God", "type": "circle"},
+        {"id": "language", "size": 5, "score": 0.4 , "title": "language", "type": "circle"},
 
       
 
-        {"id": "universe", "size": 5, "score": 0.4 , "title": "universe", "type": "circle"},
+        {"id": "Sapir-Whorf-hypothesis", "size": 5, "score": 0.4 , "title": "Sapir-Whorf-hypothesis", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "different-languages", "size": 5, "score": 0.4 , "title": "different-languages", "type": "circle"},
 
       
 
-        {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
+        {"id": "linguistics", "size": 5, "score": 0.4 , "title": "linguistics", "type": "circle"},
 
        
 
@@ -891,10 +905,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

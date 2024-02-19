@@ -764,90 +764,82 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "data-elements", "target": "Semantic-Web-technologies" },
+          { "source": "ontology", "target": "use-cases" },
       
-          { "source": "data-elements", "target": "web-services" },
+          { "source": "ontology", "target": "data-model" },
       
-          { "source": "data-elements", "target": "Web-technologies" },
+          { "source": "ontology", "target": "architecture" },
       
-          { "source": "data-elements", "target": "business-rules" },
+          { "source": "ontology", "target": "requirements" },
       
-          { "source": "data-elements", "target": "XML-schema" },
+          { "source": "ontology", "target": "domain-specific-ontology" },
       
-          { "source": "Semantic-Web-technologies", "target": "data-elements" },
+          { "source": "use-cases", "target": "ontology" },
       
-          { "source": "Semantic-Web-technologies", "target": "web-services" },
+          { "source": "use-cases", "target": "data-model" },
       
-          { "source": "Semantic-Web-technologies", "target": "Web-technologies" },
+          { "source": "use-cases", "target": "architecture" },
       
-          { "source": "Semantic-Web-technologies", "target": "business-rules" },
+          { "source": "use-cases", "target": "requirements" },
       
-          { "source": "web-services", "target": "data-elements" },
+          { "source": "data-model", "target": "ontology" },
       
-          { "source": "web-services", "target": "Semantic-Web-technologies" },
+          { "source": "data-model", "target": "use-cases" },
       
-          { "source": "web-services", "target": "Web-technologies" },
+          { "source": "data-model", "target": "architecture" },
       
-          { "source": "web-services", "target": "business-rules" },
+          { "source": "data-model", "target": "requirements" },
       
-          { "source": "Web-technologies", "target": "data-elements" },
+          { "source": "architecture", "target": "ontology" },
       
-          { "source": "Web-technologies", "target": "Semantic-Web-technologies" },
+          { "source": "architecture", "target": "use-cases" },
       
-          { "source": "Web-technologies", "target": "web-services" },
+          { "source": "architecture", "target": "data-model" },
       
-          { "source": "Web-technologies", "target": "business-rules" },
+          { "source": "architecture", "target": "requirements" },
       
-          { "source": "business-rules", "target": "data-elements" },
+          { "source": "requirements", "target": "ontology" },
       
-          { "source": "business-rules", "target": "Semantic-Web-technologies" },
+          { "source": "requirements", "target": "use-cases" },
       
-          { "source": "business-rules", "target": "web-services" },
+          { "source": "requirements", "target": "data-model" },
       
-          { "source": "business-rules", "target": "Web-technologies" },
+          { "source": "requirements", "target": "architecture" },
       
-          { "source": "XML-schema", "target": "web-services" },
+          { "source": "domain-specific-ontology", "target": "ontology" },
       
-          { "source": "XML-schema", "target": "data-elements" },
+          { "source": "domain-specific-ontology", "target": "use-cases" },
       
-          { "source": "XML-schema", "target": "semantics" },
+          { "source": "domain-specific-ontology", "target": "data-model" },
       
-          { "source": "XML-schema", "target": "schema" },
+          { "source": "domain-specific-ontology", "target": "architecture" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "Semantic-Web-technologies", "size": 70, "score": 0 , "title": "Semantic-Web-technologies", "type": "circle"},
+        {"id": "use-cases", "size": 70, "score": 0 , "title": "use-cases", "type": "circle"},
 
       
 
-        {"id": "web-services", "size": 70, "score": 0 , "title": "web-services", "type": "circle"},
+        {"id": "data-model", "size": 70, "score": 0 , "title": "data-model", "type": "circle"},
 
       
 
-        {"id": "Web-technologies", "size": 70, "score": 0 , "title": "Web-technologies", "type": "circle"},
+        {"id": "architecture", "size": 70, "score": 0 , "title": "architecture", "type": "circle"},
 
       
 
-        {"id": "business-rules", "size": 70, "score": 0 , "title": "business-rules", "type": "circle"},
+        {"id": "requirements", "size": 70, "score": 0 , "title": "requirements", "type": "circle"},
 
       
 
-        {"id": "XML-schema", "size": 70, "score": 0 , "title": "XML-schema", "type": "circle"},
+        {"id": "domain-specific-ontology", "size": 70, "score": 0 , "title": "domain-specific-ontology", "type": "circle"},
 
       
 
-        {"id": "data-elements", "size": 140, "score": 0.5 , "title": "data-elements", "type": "circle"},
-
-      
-
-        {"id": "semantics", "size": 5, "score": 0.4 , "title": "semantics", "type": "circle"},
-
-      
-
-        {"id": "schema", "size": 5, "score": 0.4 , "title": "schema", "type": "circle"},
+        {"id": "ontology", "size": 140, "score": 0.5 , "title": "ontology", "type": "circle"},
 
        
 
@@ -977,10 +969,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

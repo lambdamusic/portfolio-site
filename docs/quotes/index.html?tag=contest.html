@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.phrases.org.uk/bulletin_board/43/messages/69.html" class="text-muted" target="_blank">Re: Blink</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Re: Blink">
+								<a href="http://www.phrases.org.uk/bulletin_board/43/messages/69.html" class="-underline -text-muted" target="_blank">
+								  Re: Blink</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-02-06-Re-Blink-1.md/index.html">Who blinks first</a>
-						<br />
-						<small style="color: #cbcbcb;">Re: Blink
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=game.html">#game</a>&nbsp;
@@ -592,14 +605,26 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Shantaram (gregory David Roberts)</span>
+							</small>
+							<!-- Words taken from <cite title="Shantaram (gregory David Roberts)">
+								<a class="-underline -text-muted">Shantaram (gregory David Roberts)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-11-05-Shantaram-gregory-David-Roberts-64.md/index.html">‘lai ka rani?’ he asked....</a>
-						<br />
-						<small style="color: #cbcbcb;">Shantaram (gregory David Roberts)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=new-way.html">#new-way</a>&nbsp;
@@ -612,6 +637,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -736,13 +762,13 @@ var data_local_dynamic = {
       
           { "source": "contest", "target": "queens" },
       
-          { "source": "game", "target": "pride" },
+          { "source": "game", "target": "story" },
       
-          { "source": "game", "target": "ego" },
+          { "source": "game", "target": "text" },
       
-          { "source": "game", "target": "people" },
+          { "source": "game", "target": "character" },
       
-          { "source": "game", "target": "unselfishness" },
+          { "source": "game", "target": "interactive-fiction" },
       
           { "source": "business", "target": "product-owners" },
       
@@ -752,13 +778,13 @@ var data_local_dynamic = {
       
           { "source": "business", "target": "product-backlog" },
       
-          { "source": "meaning", "target": "semiotic-analysis" },
+          { "source": "meaning", "target": "concept" },
       
-          { "source": "meaning", "target": "signification" },
+          { "source": "meaning", "target": "knowledge-representation" },
       
-          { "source": "meaning", "target": "vocal-expressions" },
+          { "source": "meaning", "target": "representation" },
       
-          { "source": "meaning", "target": "imposition" },
+          { "source": "meaning", "target": "terms" },
       
           { "source": "new-way", "target": "queens" },
       
@@ -803,19 +829,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "pride", "size": 5, "score": 0.4 , "title": "pride", "type": "circle"},
+        {"id": "story", "size": 5, "score": 0.4 , "title": "story", "type": "circle"},
 
       
 
-        {"id": "ego", "size": 5, "score": 0.4 , "title": "ego", "type": "circle"},
+        {"id": "text", "size": 5, "score": 0.4 , "title": "text", "type": "circle"},
 
       
 
-        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
+        {"id": "character", "size": 5, "score": 0.4 , "title": "character", "type": "circle"},
 
       
 
-        {"id": "unselfishness", "size": 5, "score": 0.4 , "title": "unselfishness", "type": "circle"},
+        {"id": "interactive-fiction", "size": 5, "score": 0.4 , "title": "interactive-fiction", "type": "circle"},
 
       
 
@@ -835,19 +861,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "semiotic-analysis", "size": 5, "score": 0.4 , "title": "semiotic-analysis", "type": "circle"},
+        {"id": "concept", "size": 5, "score": 0.4 , "title": "concept", "type": "circle"},
 
       
 
-        {"id": "signification", "size": 5, "score": 0.4 , "title": "signification", "type": "circle"},
+        {"id": "knowledge-representation", "size": 5, "score": 0.4 , "title": "knowledge-representation", "type": "circle"},
 
       
 
-        {"id": "vocal-expressions", "size": 5, "score": 0.4 , "title": "vocal-expressions", "type": "circle"},
+        {"id": "representation", "size": 5, "score": 0.4 , "title": "representation", "type": "circle"},
 
       
 
-        {"id": "imposition", "size": 5, "score": 0.4 , "title": "imposition", "type": "circle"},
+        {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
 
       
 
@@ -989,10 +1015,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

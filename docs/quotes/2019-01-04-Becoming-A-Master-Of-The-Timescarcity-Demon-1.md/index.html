@@ -771,74 +771,62 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "time", "target": "episodes" },
+          { "source": "experience", "target": "time" },
       
-          { "source": "time", "target": "orphans" },
+          { "source": "experience", "target": "weeks" },
       
-          { "source": "time", "target": "series" },
+          { "source": "experience", "target": "days" },
       
-          { "source": "time", "target": "years" },
+          { "source": "experience", "target": "lack" },
+      
+          { "source": "experience", "target": "people" },
       
           { "source": "time", "target": "weeks" },
       
-          { "source": "episodes", "target": "orphans" },
+          { "source": "time", "target": "experience" },
       
-          { "source": "episodes", "target": "series" },
+          { "source": "time", "target": "days" },
       
-          { "source": "episodes", "target": "years" },
+          { "source": "time", "target": "lack" },
       
-          { "source": "episodes", "target": "time" },
+          { "source": "weeks", "target": "calories" },
       
-          { "source": "orphans", "target": "episodes" },
+          { "source": "weeks", "target": "hours" },
       
-          { "source": "orphans", "target": "series" },
-      
-          { "source": "orphans", "target": "years" },
-      
-          { "source": "orphans", "target": "time" },
-      
-          { "source": "series", "target": "episodes" },
-      
-          { "source": "series", "target": "orphans" },
-      
-          { "source": "series", "target": "years" },
-      
-          { "source": "series", "target": "time" },
-      
-          { "source": "years", "target": "UK" },
-      
-          { "source": "years", "target": "Europe" },
-      
-          { "source": "years", "target": "episodes" },
-      
-          { "source": "years", "target": "orphans" },
-      
-          { "source": "weeks", "target": "months" },
-      
-          { "source": "weeks", "target": "eyes" },
+          { "source": "weeks", "target": "days" },
       
           { "source": "weeks", "target": "time" },
       
-          { "source": "weeks", "target": "slums" },
+          { "source": "days", "target": "calories" },
+      
+          { "source": "days", "target": "hours" },
+      
+          { "source": "days", "target": "weeks" },
+      
+          { "source": "days", "target": "time" },
+      
+          { "source": "lack", "target": "time" },
+      
+          { "source": "lack", "target": "weeks" },
+      
+          { "source": "lack", "target": "experience" },
+      
+          { "source": "lack", "target": "days" },
+      
+          { "source": "people", "target": "stage" },
+      
+          { "source": "people", "target": "words" },
+      
+          { "source": "people", "target": "God" },
+      
+          { "source": "people", "target": "knowledge" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "episodes", "size": 70, "score": 0 , "title": "episodes", "type": "circle"},
-
-      
-
-        {"id": "orphans", "size": 70, "score": 0 , "title": "orphans", "type": "circle"},
-
-      
-
-        {"id": "series", "size": 70, "score": 0 , "title": "series", "type": "circle"},
-
-      
-
-        {"id": "years", "size": 70, "score": 0 , "title": "years", "type": "circle"},
+        {"id": "time", "size": 70, "score": 0 , "title": "time", "type": "circle"},
 
       
 
@@ -846,27 +834,43 @@ var data_local_dynamic = {
 
       
 
-        {"id": "time", "size": 140, "score": 0.5 , "title": "time", "type": "circle"},
+        {"id": "days", "size": 70, "score": 0 , "title": "days", "type": "circle"},
 
       
 
-        {"id": "UK", "size": 5, "score": 0.4 , "title": "UK", "type": "circle"},
+        {"id": "lack", "size": 70, "score": 0 , "title": "lack", "type": "circle"},
 
       
 
-        {"id": "Europe", "size": 5, "score": 0.4 , "title": "Europe", "type": "circle"},
+        {"id": "people", "size": 70, "score": 0 , "title": "people", "type": "circle"},
 
       
 
-        {"id": "months", "size": 5, "score": 0.4 , "title": "months", "type": "circle"},
+        {"id": "experience", "size": 140, "score": 0.5 , "title": "experience", "type": "circle"},
 
       
 
-        {"id": "eyes", "size": 5, "score": 0.4 , "title": "eyes", "type": "circle"},
+        {"id": "calories", "size": 5, "score": 0.4 , "title": "calories", "type": "circle"},
 
       
 
-        {"id": "slums", "size": 5, "score": 0.4 , "title": "slums", "type": "circle"},
+        {"id": "hours", "size": 5, "score": 0.4 , "title": "hours", "type": "circle"},
+
+      
+
+        {"id": "stage", "size": 5, "score": 0.4 , "title": "stage", "type": "circle"},
+
+      
+
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "God", "size": 5, "score": 0.4 , "title": "God", "type": "circle"},
+
+      
+
+        {"id": "knowledge", "size": 5, "score": 0.4 , "title": "knowledge", "type": "circle"},
 
        
 
@@ -996,10 +1000,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

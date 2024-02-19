@@ -774,21 +774,21 @@ var data_local_dynamic = {
       
           { "source": "legacy", "target": "son" },
       
-          { "source": "science", "target": "complexity" },
+          { "source": "science", "target": "article" },
       
-          { "source": "science", "target": "network" },
+          { "source": "science", "target": "hierarchy" },
       
-          { "source": "science", "target": "soul" },
+          { "source": "science", "target": "social-sciences" },
       
-          { "source": "science", "target": "things" },
+          { "source": "science", "target": "publications" },
       
-          { "source": "experience", "target": "eyes" },
+          { "source": "experience", "target": "time" },
       
-          { "source": "experience", "target": "ear" },
+          { "source": "experience", "target": "weeks" },
       
-          { "source": "experience", "target": "young-men" },
+          { "source": "experience", "target": "days" },
       
-          { "source": "experience", "target": "men" },
+          { "source": "experience", "target": "lack" },
       
           { "source": "son", "target": "God" },
       
@@ -819,35 +819,35 @@ var data_local_dynamic = {
 
       
 
-        {"id": "complexity", "size": 5, "score": 0.4 , "title": "complexity", "type": "circle"},
+        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
 
       
 
-        {"id": "network", "size": 5, "score": 0.4 , "title": "network", "type": "circle"},
+        {"id": "hierarchy", "size": 5, "score": 0.4 , "title": "hierarchy", "type": "circle"},
 
       
 
-        {"id": "soul", "size": 5, "score": 0.4 , "title": "soul", "type": "circle"},
+        {"id": "social-sciences", "size": 5, "score": 0.4 , "title": "social-sciences", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "publications", "size": 5, "score": 0.4 , "title": "publications", "type": "circle"},
 
       
 
-        {"id": "eyes", "size": 5, "score": 0.4 , "title": "eyes", "type": "circle"},
+        {"id": "time", "size": 5, "score": 0.4 , "title": "time", "type": "circle"},
 
       
 
-        {"id": "ear", "size": 5, "score": 0.4 , "title": "ear", "type": "circle"},
+        {"id": "weeks", "size": 5, "score": 0.4 , "title": "weeks", "type": "circle"},
 
       
 
-        {"id": "young-men", "size": 5, "score": 0.4 , "title": "young-men", "type": "circle"},
+        {"id": "days", "size": 5, "score": 0.4 , "title": "days", "type": "circle"},
 
       
 
-        {"id": "men", "size": 5, "score": 0.4 , "title": "men", "type": "circle"},
+        {"id": "lack", "size": 5, "score": 0.4 , "title": "lack", "type": "circle"},
 
       
 
@@ -860,6 +860,10 @@ var data_local_dynamic = {
       
 
         {"id": "justice", "size": 5, "score": 0.4 , "title": "justice", "type": "circle"},
+
+      
+
+        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
 
        
 
@@ -989,10 +993,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

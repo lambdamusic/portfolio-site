@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://plato.stanford.edu/entries/semiotics-medieval/" class="text-muted" target="_blank">Medieval Semiotics (meier-oeser, Stephan)</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Medieval Semiotics (meier-oeser, Stephan)">
+								<a href="http://plato.stanford.edu/entries/semiotics-medieval/" class="-underline -text-muted" target="_blank">
+								  Medieval Semiotics (meier-oeser, Stephan)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-07-02-Medieval-Semiotics-meieroeser-Stephan-1.md/index.html">Aristotle and peter of spain: main classical contributors of the theory of signs</a>
-						<br />
-						<small style="color: #cbcbcb;">Medieval Semiotics (meier-oeser, Stephan)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=concept-of-sign.html">#concept-of-sign</a>&nbsp;
@@ -590,14 +603,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-07-02-Medieval-Semiotics-meieroeser-Stephan-2.md/index.html">Boetius and augustine are the main sources of ideas for medieval scholars</a>
-						<br />
-						<small style="color: #cbcbcb;">Medieval Semiotics (meier-oeser, Stephan)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=doctrine.html">#doctrine</a>&nbsp;
@@ -610,6 +625,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -738,21 +754,21 @@ var data_local_dynamic = {
       
           { "source": "concept-of-sign", "target": "theory" },
       
-          { "source": "theory", "target": "communication" },
+          { "source": "theory", "target": "cognitive-processes" },
       
-          { "source": "theory", "target": "organization" },
+          { "source": "theory", "target": "intuition" },
       
-          { "source": "theory", "target": "Nietzsche" },
+          { "source": "theory", "target": "psychological-state" },
       
-          { "source": "theory", "target": "things" },
+          { "source": "theory", "target": "physics" },
+      
+          { "source": "doctrine", "target": "science" },
+      
+          { "source": "doctrine", "target": "spirit" },
       
           { "source": "doctrine", "target": "linguistic-signs" },
       
           { "source": "doctrine", "target": "history-of-semiotics" },
-      
-          { "source": "doctrine", "target": "semiotics" },
-      
-          { "source": "doctrine", "target": "notion" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -787,19 +803,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "communication", "size": 5, "score": 0.4 , "title": "communication", "type": "circle"},
+        {"id": "cognitive-processes", "size": 5, "score": 0.4 , "title": "cognitive-processes", "type": "circle"},
 
       
 
-        {"id": "organization", "size": 5, "score": 0.4 , "title": "organization", "type": "circle"},
+        {"id": "intuition", "size": 5, "score": 0.4 , "title": "intuition", "type": "circle"},
 
       
 
-        {"id": "Nietzsche", "size": 5, "score": 0.4 , "title": "Nietzsche", "type": "circle"},
+        {"id": "psychological-state", "size": 5, "score": 0.4 , "title": "psychological-state", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "physics", "size": 5, "score": 0.4 , "title": "physics", "type": "circle"},
+
+      
+
+        {"id": "science", "size": 5, "score": 0.4 , "title": "science", "type": "circle"},
+
+      
+
+        {"id": "spirit", "size": 5, "score": 0.4 , "title": "spirit", "type": "circle"},
 
       
 
@@ -808,10 +832,6 @@ var data_local_dynamic = {
       
 
         {"id": "history-of-semiotics", "size": 5, "score": 0.4 , "title": "history-of-semiotics", "type": "circle"},
-
-      
-
-        {"id": "notion", "size": 5, "score": 0.4 , "title": "notion", "type": "circle"},
 
        
 
@@ -941,10 +961,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

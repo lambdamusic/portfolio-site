@@ -760,102 +760,82 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "plugin", "target": "ontology" },
+          { "source": "ontology", "target": "use-cases" },
       
-          { "source": "plugin", "target": "users" },
+          { "source": "ontology", "target": "data-model" },
       
-          { "source": "plugin", "target": "nanopublications" },
+          { "source": "ontology", "target": "architecture" },
       
-          { "source": "ontology", "target": "Web" },
+          { "source": "ontology", "target": "requirements" },
       
-          { "source": "ontology", "target": "RDF-data" },
+          { "source": "ontology", "target": "domain-specific-ontology" },
       
-          { "source": "ontology", "target": "World-Wide-Web" },
+          { "source": "use-cases", "target": "ontology" },
       
-          { "source": "ontology", "target": "Ontology-Language" },
+          { "source": "use-cases", "target": "data-model" },
       
-          { "source": "users", "target": "address" },
+          { "source": "use-cases", "target": "architecture" },
       
-          { "source": "users", "target": "information-architects" },
+          { "source": "use-cases", "target": "requirements" },
       
-          { "source": "users", "target": "-designers" },
+          { "source": "data-model", "target": "ontology" },
       
-          { "source": "users", "target": "designers" },
+          { "source": "data-model", "target": "use-cases" },
       
-          { "source": "nanopublications", "target": "efforts" },
+          { "source": "data-model", "target": "architecture" },
       
-          { "source": "nanopublications", "target": "database" },
+          { "source": "data-model", "target": "requirements" },
       
-          { "source": "nanopublications", "target": "metadata" },
+          { "source": "architecture", "target": "ontology" },
       
-          { "source": "nanopublications", "target": "information" },
+          { "source": "architecture", "target": "use-cases" },
+      
+          { "source": "architecture", "target": "data-model" },
+      
+          { "source": "architecture", "target": "requirements" },
+      
+          { "source": "requirements", "target": "ontology" },
+      
+          { "source": "requirements", "target": "use-cases" },
+      
+          { "source": "requirements", "target": "data-model" },
+      
+          { "source": "requirements", "target": "architecture" },
+      
+          { "source": "domain-specific-ontology", "target": "ontology" },
+      
+          { "source": "domain-specific-ontology", "target": "use-cases" },
+      
+          { "source": "domain-specific-ontology", "target": "data-model" },
+      
+          { "source": "domain-specific-ontology", "target": "architecture" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "ontology", "size": 70, "score": 0 , "title": "ontology", "type": "circle"},
+        {"id": "use-cases", "size": 70, "score": 0 , "title": "use-cases", "type": "circle"},
 
       
 
-        {"id": "users", "size": 70, "score": 0 , "title": "users", "type": "circle"},
+        {"id": "data-model", "size": 70, "score": 0 , "title": "data-model", "type": "circle"},
 
       
 
-        {"id": "nanopublications", "size": 70, "score": 0 , "title": "nanopublications", "type": "circle"},
+        {"id": "architecture", "size": 70, "score": 0 , "title": "architecture", "type": "circle"},
 
       
 
-        {"id": "plugin", "size": 140, "score": 0.5 , "title": "plugin", "type": "circle"},
+        {"id": "requirements", "size": 70, "score": 0 , "title": "requirements", "type": "circle"},
 
       
 
-        {"id": "Web", "size": 5, "score": 0.4 , "title": "Web", "type": "circle"},
+        {"id": "domain-specific-ontology", "size": 70, "score": 0 , "title": "domain-specific-ontology", "type": "circle"},
 
       
 
-        {"id": "RDF-data", "size": 5, "score": 0.4 , "title": "RDF-data", "type": "circle"},
-
-      
-
-        {"id": "World-Wide-Web", "size": 5, "score": 0.4 , "title": "World-Wide-Web", "type": "circle"},
-
-      
-
-        {"id": "Ontology-Language", "size": 5, "score": 0.4 , "title": "Ontology-Language", "type": "circle"},
-
-      
-
-        {"id": "address", "size": 5, "score": 0.4 , "title": "address", "type": "circle"},
-
-      
-
-        {"id": "information-architects", "size": 5, "score": 0.4 , "title": "information-architects", "type": "circle"},
-
-      
-
-        {"id": "-designers", "size": 5, "score": 0.4 , "title": "-designers", "type": "circle"},
-
-      
-
-        {"id": "designers", "size": 5, "score": 0.4 , "title": "designers", "type": "circle"},
-
-      
-
-        {"id": "efforts", "size": 5, "score": 0.4 , "title": "efforts", "type": "circle"},
-
-      
-
-        {"id": "database", "size": 5, "score": 0.4 , "title": "database", "type": "circle"},
-
-      
-
-        {"id": "metadata", "size": 5, "score": 0.4 , "title": "metadata", "type": "circle"},
-
-      
-
-        {"id": "information", "size": 5, "score": 0.4 , "title": "information", "type": "circle"},
+        {"id": "ontology", "size": 140, "score": 0.5 , "title": "ontology", "type": "circle"},
 
        
 
@@ -985,10 +965,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

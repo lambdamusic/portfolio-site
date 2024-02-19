@@ -765,6 +765,12 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "long-hours", "target": "work-hours" },
+      
+          { "source": "long-hours", "target": "Keynes" },
+      
+          { "source": "long-hours", "target": "workers" },
+      
           { "source": "work-hours", "target": "Keynes" },
       
           { "source": "work-hours", "target": "workers" },
@@ -781,31 +787,21 @@ var data_local_dynamic = {
       
           { "source": "Keynes", "target": "work-time" },
       
-          { "source": "workers", "target": "work-hours" },
+          { "source": "workers", "target": "labor" },
       
-          { "source": "workers", "target": "Keynes" },
+          { "source": "workers", "target": "factors" },
       
-          { "source": "workers", "target": "long-hours" },
+          { "source": "workers", "target": "personal-identity" },
       
-          { "source": "workers", "target": "Iranians" },
-      
-          { "source": "long-hours", "target": "work-hours" },
-      
-          { "source": "long-hours", "target": "Keynes" },
-      
-          { "source": "long-hours", "target": "workers" },
-      
-          { "source": "work-time", "target": "weeks" },
-      
-          { "source": "work-time", "target": "time" },
-      
-          { "source": "work-time", "target": "Keynes" },
-      
-          { "source": "work-time", "target": "hours" },
+          { "source": "workers", "target": "conditions" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "work-hours", "size": 70, "score": 0 , "title": "work-hours", "type": "circle"},
+
       
 
         {"id": "Keynes", "size": 70, "score": 0 , "title": "Keynes", "type": "circle"},
@@ -816,31 +812,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "long-hours", "size": 70, "score": 0 , "title": "long-hours", "type": "circle"},
+        {"id": "long-hours", "size": 140, "score": 0.5 , "title": "long-hours", "type": "circle"},
 
       
 
-        {"id": "work-time", "size": 70, "score": 0 , "title": "work-time", "type": "circle"},
+        {"id": "work-time", "size": 5, "score": 0.4 , "title": "work-time", "type": "circle"},
 
       
 
-        {"id": "work-hours", "size": 140, "score": 0.5 , "title": "work-hours", "type": "circle"},
+        {"id": "labor", "size": 5, "score": 0.4 , "title": "labor", "type": "circle"},
 
       
 
-        {"id": "Iranians", "size": 5, "score": 0.4 , "title": "Iranians", "type": "circle"},
+        {"id": "factors", "size": 5, "score": 0.4 , "title": "factors", "type": "circle"},
 
       
 
-        {"id": "weeks", "size": 5, "score": 0.4 , "title": "weeks", "type": "circle"},
+        {"id": "personal-identity", "size": 5, "score": 0.4 , "title": "personal-identity", "type": "circle"},
 
       
 
-        {"id": "time", "size": 5, "score": 0.4 , "title": "time", "type": "circle"},
-
-      
-
-        {"id": "hours", "size": 5, "score": 0.4 , "title": "hours", "type": "circle"},
+        {"id": "conditions", "size": 5, "score": 0.4 , "title": "conditions", "type": "circle"},
 
        
 
@@ -970,10 +962,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

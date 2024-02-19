@@ -572,30 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
-		
-					<li style="margin-bottom: 10px;">
-						<a style="font-size: 120%;" href="2013-02-26-Thailand-1.md/index.html">Jaded</a>
-						<br />
-						<small style="color: #cbcbcb;">Thailand
 
-						<br />
-						
-						<a class="text-muted" href="index.html%3Ftag=beaches.html">#beaches</a>&nbsp;
-							
-						<a class="text-muted" href="index.html%3Ftag=infrastructure.html">#infrastructure</a>&nbsp;
-							
-							</small>
-		
 					
-					</li>
-		
-				
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.bbc.co.uk/programmes/b00z78b5" class="text-muted" target="_blank">Coast Series: Waterford To Hook Head</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Coast Series: Waterford To Hook Head">
+								<a href="http://www.bbc.co.uk/programmes/b00z78b5" class="-underline -text-muted" target="_blank">
+								  Coast Series: Waterford To Hook Head</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Coast-Series-Waterford-To-Hook-Head-1.md/index.html">Using the power of nature</a>
-						<br />
-						<small style="color: #cbcbcb;">Coast Series: Waterford To Hook Head
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=power.html">#power</a>&nbsp;
@@ -608,6 +603,37 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
+		
+				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Thailand</span>
+							</small>
+							<!-- Words taken from <cite title="Thailand">
+								<a class="-underline -text-muted">Thailand</a></cite> -->
+						</h4>
+						
+					
+						
+		
+					<li style="margin-bottom: 10px;">
+						<a style="font-size: 120%;" href="2013-02-26-Thailand-1.md/index.html">Jaded</a>
+						<br />
+						
+						<a class="text-muted" href="index.html%3Ftag=beaches.html">#beaches</a>&nbsp;
+							
+						<a class="text-muted" href="index.html%3Ftag=infrastructure.html">#infrastructure</a>&nbsp;
+							
+							</small>
+		
+					
+					</li>
+
 		
 				
 			</div>
@@ -722,23 +748,19 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "beaches", "target": "infrastructure" },
-      
           { "source": "beaches", "target": "power" },
       
           { "source": "beaches", "target": "wood" },
       
-          { "source": "infrastructure", "target": "countries" },
+          { "source": "beaches", "target": "infrastructure" },
       
-          { "source": "infrastructure", "target": "beaches" },
+          { "source": "power", "target": "wood" },
       
-          { "source": "power", "target": "point" },
-      
-          { "source": "power", "target": "maps" },
-      
-          { "source": "power", "target": "number" },
+          { "source": "power", "target": "beaches" },
       
           { "source": "power", "target": "past" },
+      
+          { "source": "power", "target": "figures" },
       
           { "source": "wood", "target": "power" },
       
@@ -747,14 +769,14 @@ var data_local_dynamic = {
           { "source": "wood", "target": "world" },
       
           { "source": "wood", "target": "dreams" },
+      
+          { "source": "infrastructure", "target": "countries" },
+      
+          { "source": "infrastructure", "target": "beaches" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
-      
-
-        {"id": "infrastructure", "size": 70, "score": 0 , "title": "infrastructure", "type": "circle"},
-
       
 
         {"id": "power", "size": 70, "score": 0 , "title": "power", "type": "circle"},
@@ -765,27 +787,19 @@ var data_local_dynamic = {
 
       
 
+        {"id": "infrastructure", "size": 70, "score": 0 , "title": "infrastructure", "type": "circle"},
+
+      
+
         {"id": "beaches", "size": 140, "score": 0.5 , "title": "beaches", "type": "circle"},
 
       
 
-        {"id": "countries", "size": 5, "score": 0.4 , "title": "countries", "type": "circle"},
-
-      
-
-        {"id": "point", "size": 5, "score": 0.4 , "title": "point", "type": "circle"},
-
-      
-
-        {"id": "maps", "size": 5, "score": 0.4 , "title": "maps", "type": "circle"},
-
-      
-
-        {"id": "number", "size": 5, "score": 0.4 , "title": "number", "type": "circle"},
-
-      
-
         {"id": "past", "size": 5, "score": 0.4 , "title": "past", "type": "circle"},
+
+      
+
+        {"id": "figures", "size": 5, "score": 0.4 , "title": "figures", "type": "circle"},
 
       
 
@@ -794,6 +808,10 @@ var data_local_dynamic = {
       
 
         {"id": "dreams", "size": 5, "score": 0.4 , "title": "dreams", "type": "circle"},
+
+      
+
+        {"id": "countries", "size": 5, "score": 0.4 , "title": "countries", "type": "circle"},
 
        
 
@@ -923,10 +941,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

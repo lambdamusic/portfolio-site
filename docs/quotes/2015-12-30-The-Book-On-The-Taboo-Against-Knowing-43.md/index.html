@@ -766,15 +766,31 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "truth", "target": "movement" },
+      
+          { "source": "truth", "target": "life" },
+      
           { "source": "truth", "target": "delusions" },
       
-          { "source": "truth", "target": "soul" },
+          { "source": "truth", "target": "scientific-method" },
       
-          { "source": "truth", "target": "things" },
+          { "source": "truth", "target": "faith" },
       
-          { "source": "truth", "target": "astrology" },
+          { "source": "movement", "target": "truth" },
       
-          { "source": "truth", "target": "science" },
+          { "source": "movement", "target": "life" },
+      
+          { "source": "movement", "target": "metaphysics" },
+      
+          { "source": "movement", "target": "gestures" },
+      
+          { "source": "life", "target": "movement" },
+      
+          { "source": "life", "target": "truth" },
+      
+          { "source": "life", "target": "religion" },
+      
+          { "source": "life", "target": "individuals" },
       
           { "source": "delusions", "target": "truth" },
       
@@ -784,64 +800,64 @@ var data_local_dynamic = {
       
           { "source": "delusions", "target": "men" },
       
-          { "source": "soul", "target": "things" },
+          { "source": "scientific-method", "target": "consciousness" },
       
-          { "source": "soul", "target": "truth" },
+          { "source": "scientific-method", "target": "subjective-experience" },
       
-          { "source": "soul", "target": "astrology" },
+          { "source": "scientific-method", "target": "things" },
       
-          { "source": "soul", "target": "science" },
+          { "source": "scientific-method", "target": "world" },
       
-          { "source": "things", "target": "nature" },
+          { "source": "faith", "target": "truth" },
       
-          { "source": "things", "target": "God" },
+          { "source": "faith", "target": "scientific-method" },
       
-          { "source": "things", "target": "universe" },
+          { "source": "faith", "target": "thought" },
       
-          { "source": "things", "target": "idea" },
-      
-          { "source": "astrology", "target": "soul" },
-      
-          { "source": "astrology", "target": "things" },
-      
-          { "source": "astrology", "target": "truth" },
-      
-          { "source": "astrology", "target": "science" },
-      
-          { "source": "science", "target": "complexity" },
-      
-          { "source": "science", "target": "network" },
-      
-          { "source": "science", "target": "soul" },
-      
-          { "source": "science", "target": "things" },
+          { "source": "faith", "target": "feelings" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
+        {"id": "movement", "size": 70, "score": 0 , "title": "movement", "type": "circle"},
+
+      
+
+        {"id": "life", "size": 70, "score": 0 , "title": "life", "type": "circle"},
+
+      
+
         {"id": "delusions", "size": 70, "score": 0 , "title": "delusions", "type": "circle"},
 
       
 
-        {"id": "soul", "size": 70, "score": 0 , "title": "soul", "type": "circle"},
+        {"id": "scientific-method", "size": 70, "score": 0 , "title": "scientific-method", "type": "circle"},
 
       
 
-        {"id": "things", "size": 70, "score": 0 , "title": "things", "type": "circle"},
-
-      
-
-        {"id": "astrology", "size": 70, "score": 0 , "title": "astrology", "type": "circle"},
-
-      
-
-        {"id": "science", "size": 70, "score": 0 , "title": "science", "type": "circle"},
+        {"id": "faith", "size": 70, "score": 0 , "title": "faith", "type": "circle"},
 
       
 
         {"id": "truth", "size": 140, "score": 0.5 , "title": "truth", "type": "circle"},
+
+      
+
+        {"id": "metaphysics", "size": 5, "score": 0.4 , "title": "metaphysics", "type": "circle"},
+
+      
+
+        {"id": "gestures", "size": 5, "score": 0.4 , "title": "gestures", "type": "circle"},
+
+      
+
+        {"id": "religion", "size": 5, "score": 0.4 , "title": "religion", "type": "circle"},
+
+      
+
+        {"id": "individuals", "size": 5, "score": 0.4 , "title": "individuals", "type": "circle"},
 
       
 
@@ -857,27 +873,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "nature", "size": 5, "score": 0.4 , "title": "nature", "type": "circle"},
+        {"id": "consciousness", "size": 5, "score": 0.4 , "title": "consciousness", "type": "circle"},
 
       
 
-        {"id": "God", "size": 5, "score": 0.4 , "title": "God", "type": "circle"},
+        {"id": "subjective-experience", "size": 5, "score": 0.4 , "title": "subjective-experience", "type": "circle"},
 
       
 
-        {"id": "universe", "size": 5, "score": 0.4 , "title": "universe", "type": "circle"},
+        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
 
       
 
-        {"id": "idea", "size": 5, "score": 0.4 , "title": "idea", "type": "circle"},
+        {"id": "world", "size": 5, "score": 0.4 , "title": "world", "type": "circle"},
 
       
 
-        {"id": "complexity", "size": 5, "score": 0.4 , "title": "complexity", "type": "circle"},
+        {"id": "thought", "size": 5, "score": 0.4 , "title": "thought", "type": "circle"},
 
       
 
-        {"id": "network", "size": 5, "score": 0.4 , "title": "network", "type": "circle"},
+        {"id": "feelings", "size": 5, "score": 0.4 , "title": "feelings", "type": "circle"},
 
        
 
@@ -1007,10 +1023,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

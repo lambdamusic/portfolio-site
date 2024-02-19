@@ -762,86 +762,78 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "name", "target": "terminology" },
+          { "source": "figures", "target": "book" },
       
-          { "source": "name", "target": "culture" },
+          { "source": "figures", "target": "name" },
       
-          { "source": "name", "target": "researchers" },
+          { "source": "figures", "target": "past" },
       
-          { "source": "name", "target": "cultural-period" },
+          { "source": "figures", "target": "power" },
       
-          { "source": "name", "target": "concept" },
+          { "source": "book", "target": "news" },
       
-          { "source": "terminology", "target": "name" },
+          { "source": "book", "target": "journals" },
       
-          { "source": "terminology", "target": "culture" },
+          { "source": "book", "target": "nature" },
       
-          { "source": "terminology", "target": "researchers" },
+          { "source": "book", "target": "text" },
       
-          { "source": "terminology", "target": "cultural-period" },
+          { "source": "name", "target": "book" },
       
-          { "source": "culture", "target": "terminology" },
+          { "source": "name", "target": "figures" },
       
-          { "source": "culture", "target": "name" },
+          { "source": "name", "target": "cases" },
       
-          { "source": "culture", "target": "researchers" },
+          { "source": "name", "target": "philosophy" },
       
-          { "source": "culture", "target": "cultural-period" },
+          { "source": "past", "target": "figures" },
       
-          { "source": "researchers", "target": "terminology" },
+          { "source": "past", "target": "power" },
       
-          { "source": "researchers", "target": "name" },
+          { "source": "past", "target": "history" },
       
-          { "source": "researchers", "target": "culture" },
+          { "source": "power", "target": "wood" },
       
-          { "source": "researchers", "target": "cultural-period" },
+          { "source": "power", "target": "beaches" },
       
-          { "source": "cultural-period", "target": "terminology" },
+          { "source": "power", "target": "past" },
       
-          { "source": "cultural-period", "target": "name" },
-      
-          { "source": "cultural-period", "target": "culture" },
-      
-          { "source": "cultural-period", "target": "researchers" },
-      
-          { "source": "concept", "target": "semiotics" },
-      
-          { "source": "concept", "target": "text" },
-      
-          { "source": "concept", "target": "concept-of-sign" },
-      
-          { "source": "concept", "target": "computational-ontology" },
+          { "source": "power", "target": "figures" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "terminology", "size": 70, "score": 0 , "title": "terminology", "type": "circle"},
+        {"id": "book", "size": 70, "score": 0 , "title": "book", "type": "circle"},
 
       
 
-        {"id": "culture", "size": 70, "score": 0 , "title": "culture", "type": "circle"},
+        {"id": "name", "size": 70, "score": 0 , "title": "name", "type": "circle"},
 
       
 
-        {"id": "researchers", "size": 70, "score": 0 , "title": "researchers", "type": "circle"},
+        {"id": "past", "size": 70, "score": 0 , "title": "past", "type": "circle"},
 
       
 
-        {"id": "cultural-period", "size": 70, "score": 0 , "title": "cultural-period", "type": "circle"},
+        {"id": "power", "size": 70, "score": 0 , "title": "power", "type": "circle"},
 
       
 
-        {"id": "concept", "size": 70, "score": 0 , "title": "concept", "type": "circle"},
+        {"id": "figures", "size": 140, "score": 0.5 , "title": "figures", "type": "circle"},
 
       
 
-        {"id": "name", "size": 140, "score": 0.5 , "title": "name", "type": "circle"},
+        {"id": "news", "size": 5, "score": 0.4 , "title": "news", "type": "circle"},
 
       
 
-        {"id": "semiotics", "size": 5, "score": 0.4 , "title": "semiotics", "type": "circle"},
+        {"id": "journals", "size": 5, "score": 0.4 , "title": "journals", "type": "circle"},
+
+      
+
+        {"id": "nature", "size": 5, "score": 0.4 , "title": "nature", "type": "circle"},
 
       
 
@@ -849,11 +841,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "concept-of-sign", "size": 5, "score": 0.4 , "title": "concept-of-sign", "type": "circle"},
+        {"id": "cases", "size": 5, "score": 0.4 , "title": "cases", "type": "circle"},
 
       
 
-        {"id": "computational-ontology", "size": 5, "score": 0.4 , "title": "computational-ontology", "type": "circle"},
+        {"id": "philosophy", "size": 5, "score": 0.4 , "title": "philosophy", "type": "circle"},
+
+      
+
+        {"id": "history", "size": 5, "score": 0.4 , "title": "history", "type": "circle"},
+
+      
+
+        {"id": "wood", "size": 5, "score": 0.4 , "title": "wood", "type": "circle"},
+
+      
+
+        {"id": "beaches", "size": 5, "score": 0.4 , "title": "beaches", "type": "circle"},
 
        
 
@@ -983,10 +987,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

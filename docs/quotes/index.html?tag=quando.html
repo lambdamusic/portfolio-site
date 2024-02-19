@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.ilgiardinodeipensieri.eu/testi/pascal-1.htm" class="text-muted" target="_blank">Discorso Sulle Passioni Dell&#39;amore</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Discorso Sulle Passioni Dell&#39;amore">
+								<a href="http://www.ilgiardinodeipensieri.eu/testi/pascal-1.htm" class="-underline -text-muted" target="_blank">
+								  Discorso Sulle Passioni Dell&#39;amore</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-03-03-Discorso-Sulle-Passioni-Dellamore-7.md/index.html">Amore e vita d&#39;azione</a>
-						<br />
-						<small style="color: #cbcbcb;">Discorso Sulle Passioni Dell&#39;amore
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=Hanno.html">#Hanno</a>&nbsp;
@@ -590,14 +603,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.amazon.co.uk/La-Formica-Zen-Italian-Edition-ebook/dp/B00HT26ODY" class="text-muted" target="_blank">La Formica Zen (italian Edition) ( )</a>
+									
+							</small>
+							<!-- Words taken from <cite title="La Formica Zen (italian Edition) ( )">
+								<a href="http://www.amazon.co.uk/La-Formica-Zen-Italian-Edition-ebook/dp/B00HT26ODY" class="-underline -text-muted" target="_blank">
+								  La Formica Zen (italian Edition) ( )</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-11-07-La-Formica-Zen-italian-Edition-19.md/index.html">Quando impieghi il tuo tempo...</a>
-						<br />
-						<small style="color: #cbcbcb;">La Formica Zen (italian Edition) ( )
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=DARE.html">#DARE</a>&nbsp;
@@ -612,6 +639,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -750,29 +778,29 @@ var data_local_dynamic = {
       
           { "source": "Fuoco", "target": "COSA" },
       
-          { "source": "DARE", "target": "forma" },
-      
           { "source": "DARE", "target": "tempo" },
       
           { "source": "DARE", "target": "CoSe" },
       
           { "source": "DARE", "target": "quando" },
       
-          { "source": "tempo", "target": "Fattori" },
+          { "source": "DARE", "target": "forma" },
       
-          { "source": "tempo", "target": "anni" },
+          { "source": "tempo", "target": "DIO" },
+      
+          { "source": "tempo", "target": "momento" },
       
           { "source": "tempo", "target": "DARE" },
       
           { "source": "tempo", "target": "CoSe" },
       
-          { "source": "CoSe", "target": "vitae" },
-      
           { "source": "CoSe", "target": "significa" },
       
           { "source": "CoSe", "target": "termine" },
       
-          { "source": "CoSe", "target": "DARE" },
+          { "source": "CoSe", "target": "perché" },
+      
+          { "source": "CoSe", "target": "Grandi" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -819,15 +847,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Fattori", "size": 5, "score": 0.4 , "title": "Fattori", "type": "circle"},
-
-      
-
-        {"id": "anni", "size": 5, "score": 0.4 , "title": "anni", "type": "circle"},
-
-      
-
-        {"id": "vitae", "size": 5, "score": 0.4 , "title": "vitae", "type": "circle"},
+        {"id": "momento", "size": 5, "score": 0.4 , "title": "momento", "type": "circle"},
 
       
 
@@ -836,6 +856,14 @@ var data_local_dynamic = {
       
 
         {"id": "termine", "size": 5, "score": 0.4 , "title": "termine", "type": "circle"},
+
+      
+
+        {"id": "perché", "size": 5, "score": 0.4 , "title": "perché", "type": "circle"},
+
+      
+
+        {"id": "Grandi", "size": 5, "score": 0.4 , "title": "Grandi", "type": "circle"},
 
        
 
@@ -965,10 +993,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

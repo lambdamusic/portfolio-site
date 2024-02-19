@@ -769,74 +769,52 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "class", "target": "traits" },
+          { "source": "subclasses", "target": "exception" },
       
-          { "source": "class", "target": "categories" },
+          { "source": "subclasses", "target": "instances" },
       
-          { "source": "class", "target": "items" },
+          { "source": "subclasses", "target": "addition" },
       
-          { "source": "class", "target": "criteria" },
+          { "source": "subclasses", "target": "class" },
       
-          { "source": "class", "target": "instances" },
+          { "source": "exception", "target": "subclasses" },
       
-          { "source": "traits", "target": "class" },
+          { "source": "exception", "target": "instances" },
       
-          { "source": "traits", "target": "categories" },
+          { "source": "exception", "target": "addition" },
       
-          { "source": "traits", "target": "items" },
+          { "source": "exception", "target": "class" },
       
-          { "source": "traits", "target": "criteria" },
+          { "source": "instances", "target": "cases" },
       
-          { "source": "categories", "target": "traits" },
+          { "source": "instances", "target": "occurrence" },
       
-          { "source": "categories", "target": "class" },
-      
-          { "source": "categories", "target": "items" },
-      
-          { "source": "categories", "target": "criteria" },
-      
-          { "source": "items", "target": "traits" },
-      
-          { "source": "items", "target": "class" },
-      
-          { "source": "items", "target": "categories" },
-      
-          { "source": "items", "target": "criteria" },
-      
-          { "source": "criteria", "target": "traits" },
-      
-          { "source": "criteria", "target": "class" },
-      
-          { "source": "criteria", "target": "categories" },
-      
-          { "source": "criteria", "target": "items" },
+          { "source": "instances", "target": "events" },
       
           { "source": "instances", "target": "class" },
       
-          { "source": "instances", "target": "criteria" },
+          { "source": "addition", "target": "subclasses" },
       
-          { "source": "instances", "target": "intension" },
+          { "source": "addition", "target": "instances" },
       
-          { "source": "instances", "target": "items" },
+          { "source": "addition", "target": "exception" },
+      
+          { "source": "addition", "target": "class" },
+      
+          { "source": "class", "target": "cases" },
+      
+          { "source": "class", "target": "occurrence" },
+      
+          { "source": "class", "target": "events" },
+      
+          { "source": "class", "target": "instances" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "traits", "size": 70, "score": 0 , "title": "traits", "type": "circle"},
-
-      
-
-        {"id": "categories", "size": 70, "score": 0 , "title": "categories", "type": "circle"},
-
-      
-
-        {"id": "items", "size": 70, "score": 0 , "title": "items", "type": "circle"},
-
-      
-
-        {"id": "criteria", "size": 70, "score": 0 , "title": "criteria", "type": "circle"},
+        {"id": "exception", "size": 70, "score": 0 , "title": "exception", "type": "circle"},
 
       
 
@@ -844,11 +822,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "class", "size": 140, "score": 0.5 , "title": "class", "type": "circle"},
+        {"id": "addition", "size": 70, "score": 0 , "title": "addition", "type": "circle"},
 
       
 
-        {"id": "intension", "size": 5, "score": 0.4 , "title": "intension", "type": "circle"},
+        {"id": "class", "size": 70, "score": 0 , "title": "class", "type": "circle"},
+
+      
+
+        {"id": "subclasses", "size": 140, "score": 0.5 , "title": "subclasses", "type": "circle"},
+
+      
+
+        {"id": "cases", "size": 5, "score": 0.4 , "title": "cases", "type": "circle"},
+
+      
+
+        {"id": "occurrence", "size": 5, "score": 0.4 , "title": "occurrence", "type": "circle"},
+
+      
+
+        {"id": "events", "size": 5, "score": 0.4 , "title": "events", "type": "circle"},
 
        
 
@@ -978,10 +972,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

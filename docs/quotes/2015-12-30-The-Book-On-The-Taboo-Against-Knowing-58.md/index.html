@@ -764,31 +764,47 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "heart", "target": "Christianity" },
+      
+          { "source": "heart", "target": "order" },
+      
           { "source": "heart", "target": "men" },
       
           { "source": "heart", "target": "head" },
       
           { "source": "heart", "target": "smile" },
       
-          { "source": "heart", "target": "eyes" },
+          { "source": "Christianity", "target": "prayer" },
       
-          { "source": "heart", "target": "stomach" },
+          { "source": "Christianity", "target": "Christian-nation" },
+      
+          { "source": "Christianity", "target": "Christians" },
+      
+          { "source": "Christianity", "target": "sinfulness" },
+      
+          { "source": "order", "target": "heart" },
+      
+          { "source": "order", "target": "Christianity" },
+      
+          { "source": "order", "target": "computer" },
+      
+          { "source": "order", "target": "life" },
       
           { "source": "men", "target": "phrases" },
       
           { "source": "men", "target": "sleep" },
       
-          { "source": "men", "target": "foot" },
+          { "source": "men", "target": "living" },
       
-          { "source": "men", "target": "toe" },
+          { "source": "men", "target": "years" },
+      
+          { "source": "head", "target": "months" },
       
           { "source": "head", "target": "men" },
       
           { "source": "head", "target": "smile" },
       
           { "source": "head", "target": "eyes" },
-      
-          { "source": "head", "target": "heart" },
       
           { "source": "smile", "target": "men" },
       
@@ -797,26 +813,18 @@ var data_local_dynamic = {
           { "source": "smile", "target": "eyes" },
       
           { "source": "smile", "target": "heart" },
-      
-          { "source": "eyes", "target": "men" },
-      
-          { "source": "eyes", "target": "head" },
-      
-          { "source": "eyes", "target": "smile" },
-      
-          { "source": "eyes", "target": "heart" },
-      
-          { "source": "stomach", "target": "brain" },
-      
-          { "source": "stomach", "target": "heart" },
-      
-          { "source": "stomach", "target": "nervous-system" },
-      
-          { "source": "stomach", "target": "food" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "Christianity", "size": 70, "score": 0 , "title": "Christianity", "type": "circle"},
+
+      
+
+        {"id": "order", "size": 70, "score": 0 , "title": "order", "type": "circle"},
+
       
 
         {"id": "men", "size": 70, "score": 0 , "title": "men", "type": "circle"},
@@ -831,15 +839,31 @@ var data_local_dynamic = {
 
       
 
-        {"id": "eyes", "size": 70, "score": 0 , "title": "eyes", "type": "circle"},
-
-      
-
-        {"id": "stomach", "size": 70, "score": 0 , "title": "stomach", "type": "circle"},
-
-      
-
         {"id": "heart", "size": 140, "score": 0.5 , "title": "heart", "type": "circle"},
+
+      
+
+        {"id": "prayer", "size": 5, "score": 0.4 , "title": "prayer", "type": "circle"},
+
+      
+
+        {"id": "Christian-nation", "size": 5, "score": 0.4 , "title": "Christian-nation", "type": "circle"},
+
+      
+
+        {"id": "Christians", "size": 5, "score": 0.4 , "title": "Christians", "type": "circle"},
+
+      
+
+        {"id": "sinfulness", "size": 5, "score": 0.4 , "title": "sinfulness", "type": "circle"},
+
+      
+
+        {"id": "computer", "size": 5, "score": 0.4 , "title": "computer", "type": "circle"},
+
+      
+
+        {"id": "life", "size": 5, "score": 0.4 , "title": "life", "type": "circle"},
 
       
 
@@ -851,23 +875,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "foot", "size": 5, "score": 0.4 , "title": "foot", "type": "circle"},
+        {"id": "living", "size": 5, "score": 0.4 , "title": "living", "type": "circle"},
 
       
 
-        {"id": "toe", "size": 5, "score": 0.4 , "title": "toe", "type": "circle"},
+        {"id": "years", "size": 5, "score": 0.4 , "title": "years", "type": "circle"},
 
       
 
-        {"id": "brain", "size": 5, "score": 0.4 , "title": "brain", "type": "circle"},
+        {"id": "months", "size": 5, "score": 0.4 , "title": "months", "type": "circle"},
 
       
 
-        {"id": "nervous-system", "size": 5, "score": 0.4 , "title": "nervous-system", "type": "circle"},
-
-      
-
-        {"id": "food", "size": 5, "score": 0.4 , "title": "food", "type": "circle"},
+        {"id": "eyes", "size": 5, "score": 0.4 , "title": "eyes", "type": "circle"},
 
        
 
@@ -997,10 +1017,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

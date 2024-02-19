@@ -762,9 +762,9 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "money", "target": "questions" },
+          { "source": "money", "target": "companies" },
       
-          { "source": "money", "target": "goods" },
+          { "source": "money", "target": "business" },
       
           { "source": "money", "target": "finance" },
       
@@ -772,21 +772,21 @@ var data_local_dynamic = {
       
           { "source": "money", "target": "philosophy" },
       
-          { "source": "questions", "target": "philosophers" },
+          { "source": "companies", "target": "ontology" },
       
-          { "source": "questions", "target": "speech-acts" },
+          { "source": "companies", "target": "Semantic-Web" },
       
-          { "source": "questions", "target": "reification" },
+          { "source": "companies", "target": "information-systems" },
       
-          { "source": "questions", "target": "topic" },
+          { "source": "companies", "target": "taxonomy" },
       
-          { "source": "goods", "target": "questions" },
+          { "source": "business", "target": "product-owners" },
       
-          { "source": "goods", "target": "money" },
+          { "source": "business", "target": "owners" },
       
-          { "source": "goods", "target": "days" },
+          { "source": "business", "target": "project" },
       
-          { "source": "goods", "target": "purpose" },
+          { "source": "business", "target": "product-backlog" },
       
           { "source": "finance", "target": "scholatics" },
       
@@ -804,24 +804,24 @@ var data_local_dynamic = {
       
           { "source": "scholatics", "target": "money" },
       
-          { "source": "philosophy", "target": "society" },
+          { "source": "philosophy", "target": "ontology" },
       
-          { "source": "philosophy", "target": "metaphysics" },
+          { "source": "philosophy", "target": "ethics" },
       
-          { "source": "philosophy", "target": "meaningful-statements" },
+          { "source": "philosophy", "target": "schema" },
       
-          { "source": "philosophy", "target": "philosophers" },
+          { "source": "philosophy", "target": "fact" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "questions", "size": 70, "score": 0 , "title": "questions", "type": "circle"},
+        {"id": "companies", "size": 70, "score": 0 , "title": "companies", "type": "circle"},
 
       
 
-        {"id": "goods", "size": 70, "score": 0 , "title": "goods", "type": "circle"},
+        {"id": "business", "size": 70, "score": 0 , "title": "business", "type": "circle"},
 
       
 
@@ -841,27 +841,35 @@ var data_local_dynamic = {
 
       
 
-        {"id": "philosophers", "size": 5, "score": 0.4 , "title": "philosophers", "type": "circle"},
+        {"id": "ontology", "size": 5, "score": 0.4 , "title": "ontology", "type": "circle"},
 
       
 
-        {"id": "speech-acts", "size": 5, "score": 0.4 , "title": "speech-acts", "type": "circle"},
+        {"id": "Semantic-Web", "size": 5, "score": 0.4 , "title": "Semantic-Web", "type": "circle"},
 
       
 
-        {"id": "reification", "size": 5, "score": 0.4 , "title": "reification", "type": "circle"},
+        {"id": "information-systems", "size": 5, "score": 0.4 , "title": "information-systems", "type": "circle"},
 
       
 
-        {"id": "topic", "size": 5, "score": 0.4 , "title": "topic", "type": "circle"},
+        {"id": "taxonomy", "size": 5, "score": 0.4 , "title": "taxonomy", "type": "circle"},
 
       
 
-        {"id": "days", "size": 5, "score": 0.4 , "title": "days", "type": "circle"},
+        {"id": "product-owners", "size": 5, "score": 0.4 , "title": "product-owners", "type": "circle"},
 
       
 
-        {"id": "purpose", "size": 5, "score": 0.4 , "title": "purpose", "type": "circle"},
+        {"id": "owners", "size": 5, "score": 0.4 , "title": "owners", "type": "circle"},
+
+      
+
+        {"id": "project", "size": 5, "score": 0.4 , "title": "project", "type": "circle"},
+
+      
+
+        {"id": "product-backlog", "size": 5, "score": 0.4 , "title": "product-backlog", "type": "circle"},
 
       
 
@@ -869,15 +877,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "society", "size": 5, "score": 0.4 , "title": "society", "type": "circle"},
+        {"id": "ethics", "size": 5, "score": 0.4 , "title": "ethics", "type": "circle"},
 
       
 
-        {"id": "metaphysics", "size": 5, "score": 0.4 , "title": "metaphysics", "type": "circle"},
+        {"id": "schema", "size": 5, "score": 0.4 , "title": "schema", "type": "circle"},
 
       
 
-        {"id": "meaningful-statements", "size": 5, "score": 0.4 , "title": "meaningful-statements", "type": "circle"},
+        {"id": "fact", "size": 5, "score": 0.4 , "title": "fact", "type": "circle"},
 
        
 
@@ -1007,10 +1015,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

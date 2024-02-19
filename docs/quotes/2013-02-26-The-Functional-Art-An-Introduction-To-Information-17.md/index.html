@@ -776,13 +776,13 @@ var data_local_dynamic = {
       
           { "source": "feelings", "target": "pain" },
       
-          { "source": "sense", "target": "sound" },
+          { "source": "sense", "target": "religion" },
       
-          { "source": "sense", "target": "words" },
+          { "source": "sense", "target": "mind" },
       
-          { "source": "sense", "target": "desire" },
+          { "source": "sense", "target": "information" },
       
-          { "source": "sense", "target": "world" },
+          { "source": "sense", "target": "patterns" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -817,15 +817,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "sound", "size": 5, "score": 0.4 , "title": "sound", "type": "circle"},
+        {"id": "religion", "size": 5, "score": 0.4 , "title": "religion", "type": "circle"},
 
       
 
-        {"id": "desire", "size": 5, "score": 0.4 , "title": "desire", "type": "circle"},
+        {"id": "mind", "size": 5, "score": 0.4 , "title": "mind", "type": "circle"},
 
       
 
-        {"id": "world", "size": 5, "score": 0.4 , "title": "world", "type": "circle"},
+        {"id": "information", "size": 5, "score": 0.4 , "title": "information", "type": "circle"},
+
+      
+
+        {"id": "patterns", "size": 5, "score": 0.4 , "title": "patterns", "type": "circle"},
 
        
 
@@ -955,10 +959,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

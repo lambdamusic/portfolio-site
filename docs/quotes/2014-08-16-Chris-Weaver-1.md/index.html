@@ -764,13 +764,13 @@ var data_local_dynamic = {
       
           { "source": "interactive-visualization", "target": "visualization" },
       
-          { "source": "visualization", "target": "graphics" },
+          { "source": "visualization", "target": "interactive-visualization" },
       
-          { "source": "visualization", "target": "information-graphics" },
+          { "source": "visualization", "target": "dashboard" },
       
-          { "source": "visualization", "target": "information-design" },
+          { "source": "visualization", "target": "BI" },
       
-          { "source": "visualization", "target": "information-architecture" },
+          { "source": "visualization", "target": "digital-projects" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -785,19 +785,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "graphics", "size": 5, "score": 0.4 , "title": "graphics", "type": "circle"},
+        {"id": "dashboard", "size": 5, "score": 0.4 , "title": "dashboard", "type": "circle"},
 
       
 
-        {"id": "information-graphics", "size": 5, "score": 0.4 , "title": "information-graphics", "type": "circle"},
+        {"id": "BI", "size": 5, "score": 0.4 , "title": "BI", "type": "circle"},
 
       
 
-        {"id": "information-design", "size": 5, "score": 0.4 , "title": "information-design", "type": "circle"},
-
-      
-
-        {"id": "information-architecture", "size": 5, "score": 0.4 , "title": "information-architecture", "type": "circle"},
+        {"id": "digital-projects", "size": 5, "score": 0.4 , "title": "digital-projects", "type": "circle"},
 
        
 
@@ -927,10 +923,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

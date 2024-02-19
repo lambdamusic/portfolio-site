@@ -761,82 +761,114 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "machine", "target": "technology" },
+          { "source": "context", "target": "relation" },
       
-          { "source": "machine", "target": "virtual-world" },
+          { "source": "context", "target": "philosophical-discussion" },
       
-          { "source": "machine", "target": "Internet" },
+          { "source": "context", "target": "discussion" },
       
-          { "source": "machine", "target": "printing-press" },
+          { "source": "context", "target": "nature" },
       
-          { "source": "machine", "target": "sharing" },
+          { "source": "context", "target": "humanities-research" },
       
-          { "source": "technology", "target": "virtual-world" },
+          { "source": "relation", "target": "world" },
       
-          { "source": "technology", "target": "Internet" },
+          { "source": "relation", "target": "real-world" },
       
-          { "source": "technology", "target": "printing-press" },
+          { "source": "relation", "target": "relationship" },
       
-          { "source": "technology", "target": "sharing" },
+          { "source": "relation", "target": "properties" },
       
-          { "source": "virtual-world", "target": "technology" },
+          { "source": "philosophical-discussion", "target": "relation" },
       
-          { "source": "virtual-world", "target": "Internet" },
+          { "source": "philosophical-discussion", "target": "context" },
       
-          { "source": "virtual-world", "target": "printing-press" },
+          { "source": "philosophical-discussion", "target": "discussion" },
       
-          { "source": "virtual-world", "target": "sharing" },
+          { "source": "philosophical-discussion", "target": "nature" },
       
-          { "source": "Internet", "target": "technology" },
+          { "source": "discussion", "target": "relation" },
       
-          { "source": "Internet", "target": "virtual-world" },
+          { "source": "discussion", "target": "philosophical-discussion" },
       
-          { "source": "Internet", "target": "printing-press" },
+          { "source": "discussion", "target": "context" },
       
-          { "source": "Internet", "target": "sharing" },
+          { "source": "discussion", "target": "nature" },
       
-          { "source": "printing-press", "target": "technology" },
+          { "source": "nature", "target": "news" },
       
-          { "source": "printing-press", "target": "virtual-world" },
+          { "source": "nature", "target": "journals" },
       
-          { "source": "printing-press", "target": "Internet" },
+          { "source": "nature", "target": "book" },
       
-          { "source": "printing-press", "target": "sharing" },
+          { "source": "nature", "target": "people" },
       
-          { "source": "sharing", "target": "technology" },
+          { "source": "humanities-research", "target": "digital-environment" },
       
-          { "source": "sharing", "target": "virtual-world" },
-      
-          { "source": "sharing", "target": "Internet" },
-      
-          { "source": "sharing", "target": "printing-press" },
+          { "source": "humanities-research", "target": "context" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "technology", "size": 70, "score": 0 , "title": "technology", "type": "circle"},
+        {"id": "relation", "size": 70, "score": 0 , "title": "relation", "type": "circle"},
 
       
 
-        {"id": "virtual-world", "size": 70, "score": 0 , "title": "virtual-world", "type": "circle"},
+        {"id": "philosophical-discussion", "size": 70, "score": 0 , "title": "philosophical-discussion", "type": "circle"},
 
       
 
-        {"id": "Internet", "size": 70, "score": 0 , "title": "Internet", "type": "circle"},
+        {"id": "discussion", "size": 70, "score": 0 , "title": "discussion", "type": "circle"},
 
       
 
-        {"id": "printing-press", "size": 70, "score": 0 , "title": "printing-press", "type": "circle"},
+        {"id": "nature", "size": 70, "score": 0 , "title": "nature", "type": "circle"},
 
       
 
-        {"id": "sharing", "size": 70, "score": 0 , "title": "sharing", "type": "circle"},
+        {"id": "humanities-research", "size": 70, "score": 0 , "title": "humanities-research", "type": "circle"},
 
       
 
-        {"id": "machine", "size": 140, "score": 0.5 , "title": "machine", "type": "circle"},
+        {"id": "context", "size": 140, "score": 0.5 , "title": "context", "type": "circle"},
+
+      
+
+        {"id": "world", "size": 5, "score": 0.4 , "title": "world", "type": "circle"},
+
+      
+
+        {"id": "real-world", "size": 5, "score": 0.4 , "title": "real-world", "type": "circle"},
+
+      
+
+        {"id": "relationship", "size": 5, "score": 0.4 , "title": "relationship", "type": "circle"},
+
+      
+
+        {"id": "properties", "size": 5, "score": 0.4 , "title": "properties", "type": "circle"},
+
+      
+
+        {"id": "news", "size": 5, "score": 0.4 , "title": "news", "type": "circle"},
+
+      
+
+        {"id": "journals", "size": 5, "score": 0.4 , "title": "journals", "type": "circle"},
+
+      
+
+        {"id": "book", "size": 5, "score": 0.4 , "title": "book", "type": "circle"},
+
+      
+
+        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
+
+      
+
+        {"id": "digital-environment", "size": 5, "score": 0.4 , "title": "digital-environment", "type": "circle"},
 
        
 
@@ -966,10 +998,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

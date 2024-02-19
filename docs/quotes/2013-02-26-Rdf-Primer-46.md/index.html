@@ -760,78 +760,78 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "resources", "target": "data-structure" },
+          { "source": "resources", "target": "services" },
       
-          { "source": "resources", "target": "structure" },
+          { "source": "resources", "target": "metadata-model" },
       
-          { "source": "resources", "target": "description" },
+          { "source": "resources", "target": "digital-libraries" },
       
-          { "source": "resources", "target": "reification" },
+          { "source": "resources", "target": "raw-data" },
       
-          { "source": "resources", "target": "context" },
+          { "source": "resources", "target": "information-resources" },
       
-          { "source": "data-structure", "target": "structure" },
+          { "source": "services", "target": "things" },
       
-          { "source": "data-structure", "target": "resources" },
+          { "source": "services", "target": "industrial-revolution" },
       
-          { "source": "data-structure", "target": "description" },
+          { "source": "services", "target": "bits" },
       
-          { "source": "data-structure", "target": "users" },
+          { "source": "services", "target": "metadata-model" },
       
-          { "source": "structure", "target": "drift" },
+          { "source": "metadata-model", "target": "services" },
       
-          { "source": "structure", "target": "components" },
+          { "source": "metadata-model", "target": "digital-libraries" },
       
-          { "source": "structure", "target": "data-structure" },
+          { "source": "metadata-model", "target": "resources" },
       
-          { "source": "structure", "target": "resources" },
+          { "source": "metadata-model", "target": "raw-data" },
       
-          { "source": "description", "target": "data-structure" },
+          { "source": "digital-libraries", "target": "raw-data" },
       
-          { "source": "description", "target": "structure" },
+          { "source": "digital-libraries", "target": "access" },
       
-          { "source": "description", "target": "resources" },
+          { "source": "digital-libraries", "target": "services" },
       
-          { "source": "description", "target": "time" },
+          { "source": "digital-libraries", "target": "metadata-model" },
       
-          { "source": "reification", "target": "context" },
+          { "source": "raw-data", "target": "digital-libraries" },
       
-          { "source": "reification", "target": "resources" },
+          { "source": "raw-data", "target": "access" },
       
-          { "source": "reification", "target": "statements" },
+          { "source": "raw-data", "target": "services" },
       
-          { "source": "reification", "target": "original-statement" },
+          { "source": "raw-data", "target": "metadata-model" },
       
-          { "source": "context", "target": "reification" },
+          { "source": "information-resources", "target": "URI" },
       
-          { "source": "context", "target": "resources" },
+          { "source": "information-resources", "target": "server" },
       
-          { "source": "context", "target": "statements" },
+          { "source": "information-resources", "target": "clients" },
       
-          { "source": "context", "target": "original-statement" },
+          { "source": "information-resources", "target": "resources" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "data-structure", "size": 70, "score": 0 , "title": "data-structure", "type": "circle"},
+        {"id": "services", "size": 70, "score": 0 , "title": "services", "type": "circle"},
 
       
 
-        {"id": "structure", "size": 70, "score": 0 , "title": "structure", "type": "circle"},
+        {"id": "metadata-model", "size": 70, "score": 0 , "title": "metadata-model", "type": "circle"},
 
       
 
-        {"id": "description", "size": 70, "score": 0 , "title": "description", "type": "circle"},
+        {"id": "digital-libraries", "size": 70, "score": 0 , "title": "digital-libraries", "type": "circle"},
 
       
 
-        {"id": "reification", "size": 70, "score": 0 , "title": "reification", "type": "circle"},
+        {"id": "raw-data", "size": 70, "score": 0 , "title": "raw-data", "type": "circle"},
 
       
 
-        {"id": "context", "size": 70, "score": 0 , "title": "context", "type": "circle"},
+        {"id": "information-resources", "size": 70, "score": 0 , "title": "information-resources", "type": "circle"},
 
       
 
@@ -839,27 +839,31 @@ var data_local_dynamic = {
 
       
 
-        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
+        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
 
       
 
-        {"id": "drift", "size": 5, "score": 0.4 , "title": "drift", "type": "circle"},
+        {"id": "industrial-revolution", "size": 5, "score": 0.4 , "title": "industrial-revolution", "type": "circle"},
 
       
 
-        {"id": "components", "size": 5, "score": 0.4 , "title": "components", "type": "circle"},
+        {"id": "bits", "size": 5, "score": 0.4 , "title": "bits", "type": "circle"},
 
       
 
-        {"id": "time", "size": 5, "score": 0.4 , "title": "time", "type": "circle"},
+        {"id": "access", "size": 5, "score": 0.4 , "title": "access", "type": "circle"},
 
       
 
-        {"id": "statements", "size": 5, "score": 0.4 , "title": "statements", "type": "circle"},
+        {"id": "URI", "size": 5, "score": 0.4 , "title": "URI", "type": "circle"},
 
       
 
-        {"id": "original-statement", "size": 5, "score": 0.4 , "title": "original-statement", "type": "circle"},
+        {"id": "server", "size": 5, "score": 0.4 , "title": "server", "type": "circle"},
+
+      
+
+        {"id": "clients", "size": 5, "score": 0.4 , "title": "clients", "type": "circle"},
 
        
 
@@ -989,10 +993,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

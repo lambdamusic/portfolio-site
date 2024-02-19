@@ -786,51 +786,35 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "carboidrati", "target": "zuccheri" },
+      
+          { "source": "carboidrati", "target": "health" },
+      
+          { "source": "carboidrati", "target": "eating" },
+      
+          { "source": "zuccheri", "target": "health" },
+      
+          { "source": "zuccheri", "target": "fruttosio" },
+      
+          { "source": "zuccheri", "target": "eating" },
+      
+          { "source": "zuccheri", "target": "saccarosio" },
+      
+          { "source": "health", "target": "zuccheri" },
+      
+          { "source": "health", "target": "fruttosio" },
+      
+          { "source": "health", "target": "eating" },
+      
+          { "source": "health", "target": "years" },
+      
           { "source": "eating", "target": "zuccheri" },
       
           { "source": "eating", "target": "health" },
       
-          { "source": "eating", "target": "saccarosio" },
-      
           { "source": "eating", "target": "fruttosio" },
       
           { "source": "eating", "target": "food" },
-      
-          { "source": "zuccheri", "target": "health" },
-      
-          { "source": "zuccheri", "target": "saccarosio" },
-      
-          { "source": "zuccheri", "target": "eating" },
-      
-          { "source": "zuccheri", "target": "fruttosio" },
-      
-          { "source": "health", "target": "zuccheri" },
-      
-          { "source": "health", "target": "saccarosio" },
-      
-          { "source": "health", "target": "eating" },
-      
-          { "source": "health", "target": "fruttosio" },
-      
-          { "source": "saccarosio", "target": "zuccheri" },
-      
-          { "source": "saccarosio", "target": "health" },
-      
-          { "source": "saccarosio", "target": "eating" },
-      
-          { "source": "fruttosio", "target": "zuccheri" },
-      
-          { "source": "fruttosio", "target": "health" },
-      
-          { "source": "fruttosio", "target": "eating" },
-      
-          { "source": "food", "target": "stomach" },
-      
-          { "source": "food", "target": "brain" },
-      
-          { "source": "food", "target": "heart" },
-      
-          { "source": "food", "target": "nervous-system" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -845,35 +829,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "saccarosio", "size": 70, "score": 0 , "title": "saccarosio", "type": "circle"},
+        {"id": "eating", "size": 70, "score": 0 , "title": "eating", "type": "circle"},
 
       
 
-        {"id": "fruttosio", "size": 70, "score": 0 , "title": "fruttosio", "type": "circle"},
+        {"id": "carboidrati", "size": 140, "score": 0.5 , "title": "carboidrati", "type": "circle"},
 
       
 
-        {"id": "food", "size": 70, "score": 0 , "title": "food", "type": "circle"},
+        {"id": "fruttosio", "size": 5, "score": 0.4 , "title": "fruttosio", "type": "circle"},
 
       
 
-        {"id": "eating", "size": 140, "score": 0.5 , "title": "eating", "type": "circle"},
+        {"id": "saccarosio", "size": 5, "score": 0.4 , "title": "saccarosio", "type": "circle"},
 
       
 
-        {"id": "stomach", "size": 5, "score": 0.4 , "title": "stomach", "type": "circle"},
+        {"id": "years", "size": 5, "score": 0.4 , "title": "years", "type": "circle"},
 
       
 
-        {"id": "brain", "size": 5, "score": 0.4 , "title": "brain", "type": "circle"},
-
-      
-
-        {"id": "heart", "size": 5, "score": 0.4 , "title": "heart", "type": "circle"},
-
-      
-
-        {"id": "nervous-system", "size": 5, "score": 0.4 , "title": "nervous-system", "type": "circle"},
+        {"id": "food", "size": 5, "score": 0.4 , "title": "food", "type": "circle"},
 
        
 
@@ -1003,10 +979,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

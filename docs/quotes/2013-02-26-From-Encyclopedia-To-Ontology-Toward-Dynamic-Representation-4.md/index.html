@@ -770,37 +770,37 @@ var data_local_dynamic = {
       
           { "source": "computational-ontology", "target": "formal-ontology" },
       
-          { "source": "ontology", "target": "Web" },
+          { "source": "ontology", "target": "use-cases" },
       
-          { "source": "ontology", "target": "RDF-data" },
+          { "source": "ontology", "target": "data-model" },
       
-          { "source": "ontology", "target": "World-Wide-Web" },
+          { "source": "ontology", "target": "architecture" },
       
-          { "source": "ontology", "target": "Ontology-Language" },
+          { "source": "ontology", "target": "requirements" },
       
-          { "source": "graph", "target": "RDF/XML" },
+          { "source": "graph", "target": "knowledge-graph" },
       
-          { "source": "graph", "target": "RDF" },
+          { "source": "graph", "target": "data-analytics" },
       
-          { "source": "graph", "target": "syntax" },
+          { "source": "graph", "target": "analytics" },
       
-          { "source": "graph", "target": "computational-ontology" },
+          { "source": "graph", "target": "semantics" },
       
-          { "source": "nodes", "target": "identifiers" },
+          { "source": "nodes", "target": "hierarchy" },
       
-          { "source": "nodes", "target": "subjects" },
+          { "source": "nodes", "target": "vocabulary" },
       
-          { "source": "nodes", "target": "form" },
+          { "source": "nodes", "target": "taxonomy" },
       
-          { "source": "nodes", "target": "results" },
+          { "source": "nodes", "target": "impact" },
       
-          { "source": "concept", "target": "semiotics" },
+          { "source": "concept", "target": "article" },
       
-          { "source": "concept", "target": "text" },
+          { "source": "concept", "target": "Obama" },
       
-          { "source": "concept", "target": "concept-of-sign" },
+          { "source": "concept", "target": "information-science" },
       
-          { "source": "concept", "target": "computational-ontology" },
+          { "source": "concept", "target": "users" },
       
           { "source": "formal-ontology", "target": "ontology" },
       
@@ -839,59 +839,67 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Web", "size": 5, "score": 0.4 , "title": "Web", "type": "circle"},
+        {"id": "use-cases", "size": 5, "score": 0.4 , "title": "use-cases", "type": "circle"},
 
       
 
-        {"id": "RDF-data", "size": 5, "score": 0.4 , "title": "RDF-data", "type": "circle"},
+        {"id": "data-model", "size": 5, "score": 0.4 , "title": "data-model", "type": "circle"},
 
       
 
-        {"id": "World-Wide-Web", "size": 5, "score": 0.4 , "title": "World-Wide-Web", "type": "circle"},
+        {"id": "architecture", "size": 5, "score": 0.4 , "title": "architecture", "type": "circle"},
 
       
 
-        {"id": "Ontology-Language", "size": 5, "score": 0.4 , "title": "Ontology-Language", "type": "circle"},
+        {"id": "requirements", "size": 5, "score": 0.4 , "title": "requirements", "type": "circle"},
 
       
 
-        {"id": "RDF/XML", "size": 5, "score": 0.4 , "title": "RDF/XML", "type": "circle"},
+        {"id": "knowledge-graph", "size": 5, "score": 0.4 , "title": "knowledge-graph", "type": "circle"},
 
       
 
-        {"id": "RDF", "size": 5, "score": 0.4 , "title": "RDF", "type": "circle"},
+        {"id": "data-analytics", "size": 5, "score": 0.4 , "title": "data-analytics", "type": "circle"},
 
       
 
-        {"id": "syntax", "size": 5, "score": 0.4 , "title": "syntax", "type": "circle"},
+        {"id": "analytics", "size": 5, "score": 0.4 , "title": "analytics", "type": "circle"},
 
       
 
-        {"id": "identifiers", "size": 5, "score": 0.4 , "title": "identifiers", "type": "circle"},
+        {"id": "semantics", "size": 5, "score": 0.4 , "title": "semantics", "type": "circle"},
 
       
 
-        {"id": "subjects", "size": 5, "score": 0.4 , "title": "subjects", "type": "circle"},
+        {"id": "hierarchy", "size": 5, "score": 0.4 , "title": "hierarchy", "type": "circle"},
 
       
 
-        {"id": "form", "size": 5, "score": 0.4 , "title": "form", "type": "circle"},
+        {"id": "vocabulary", "size": 5, "score": 0.4 , "title": "vocabulary", "type": "circle"},
 
       
 
-        {"id": "results", "size": 5, "score": 0.4 , "title": "results", "type": "circle"},
+        {"id": "taxonomy", "size": 5, "score": 0.4 , "title": "taxonomy", "type": "circle"},
 
       
 
-        {"id": "semiotics", "size": 5, "score": 0.4 , "title": "semiotics", "type": "circle"},
+        {"id": "impact", "size": 5, "score": 0.4 , "title": "impact", "type": "circle"},
 
       
 
-        {"id": "text", "size": 5, "score": 0.4 , "title": "text", "type": "circle"},
+        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
 
       
 
-        {"id": "concept-of-sign", "size": 5, "score": 0.4 , "title": "concept-of-sign", "type": "circle"},
+        {"id": "Obama", "size": 5, "score": 0.4 , "title": "Obama", "type": "circle"},
+
+      
+
+        {"id": "information-science", "size": 5, "score": 0.4 , "title": "information-science", "type": "circle"},
+
+      
+
+        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
 
       
 
@@ -1033,10 +1041,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

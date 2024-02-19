@@ -761,15 +761,39 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "Prima", "target": "passiones" },
+      
+          { "source": "Prima", "target": "Volta" },
+      
+          { "source": "Prima", "target": "perché" },
+      
           { "source": "Prima", "target": "vivo" },
       
           { "source": "Prima", "target": "era" },
       
-          { "source": "Prima", "target": "POCO" },
+          { "source": "passiones", "target": "Prima" },
       
-          { "source": "Prima", "target": "doves" },
+          { "source": "passiones", "target": "Spirito" },
       
-          { "source": "Prima", "target": "perché" },
+          { "source": "passiones", "target": "solo" },
+      
+          { "source": "Volta", "target": "Prima" },
+      
+          { "source": "Volta", "target": "vitae" },
+      
+          { "source": "Volta", "target": "Pausa" },
+      
+          { "source": "Volta", "target": "LO" },
+      
+          { "source": "perché", "target": "Grandi" },
+      
+          { "source": "perché", "target": "CoSe" },
+      
+          { "source": "perché", "target": "mafia" },
+      
+          { "source": "perché", "target": "Prima" },
+      
+          { "source": "vivo", "target": "DIO" },
       
           { "source": "vivo", "target": "era" },
       
@@ -777,43 +801,29 @@ var data_local_dynamic = {
       
           { "source": "vivo", "target": "doves" },
       
-          { "source": "vivo", "target": "Prima" },
+          { "source": "era", "target": "defeat" },
+      
+          { "source": "era", "target": "Scotland" },
+      
+          { "source": "era", "target": "Union" },
       
           { "source": "era", "target": "vivo" },
-      
-          { "source": "era", "target": "POCO" },
-      
-          { "source": "era", "target": "doves" },
-      
-          { "source": "era", "target": "Prima" },
-      
-          { "source": "POCO", "target": "vivo" },
-      
-          { "source": "POCO", "target": "era" },
-      
-          { "source": "POCO", "target": "doves" },
-      
-          { "source": "POCO", "target": "Prima" },
-      
-          { "source": "doves", "target": "vivo" },
-      
-          { "source": "doves", "target": "era" },
-      
-          { "source": "doves", "target": "POCO" },
-      
-          { "source": "doves", "target": "Prima" },
-      
-          { "source": "perché", "target": "Prima" },
-      
-          { "source": "perché", "target": "fronte" },
-      
-          { "source": "perché", "target": "Grandi" },
-      
-          { "source": "perché", "target": "CoSe" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "passiones", "size": 70, "score": 0 , "title": "passiones", "type": "circle"},
+
+      
+
+        {"id": "Volta", "size": 70, "score": 0 , "title": "Volta", "type": "circle"},
+
+      
+
+        {"id": "perché", "size": 70, "score": 0 , "title": "perché", "type": "circle"},
+
       
 
         {"id": "vivo", "size": 70, "score": 0 , "title": "vivo", "type": "circle"},
@@ -824,23 +834,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "POCO", "size": 70, "score": 0 , "title": "POCO", "type": "circle"},
-
-      
-
-        {"id": "doves", "size": 70, "score": 0 , "title": "doves", "type": "circle"},
-
-      
-
-        {"id": "perché", "size": 70, "score": 0 , "title": "perché", "type": "circle"},
-
-      
-
         {"id": "Prima", "size": 140, "score": 0.5 , "title": "Prima", "type": "circle"},
 
       
 
-        {"id": "fronte", "size": 5, "score": 0.4 , "title": "fronte", "type": "circle"},
+        {"id": "Spirito", "size": 5, "score": 0.4 , "title": "Spirito", "type": "circle"},
+
+      
+
+        {"id": "solo", "size": 5, "score": 0.4 , "title": "solo", "type": "circle"},
+
+      
+
+        {"id": "vitae", "size": 5, "score": 0.4 , "title": "vitae", "type": "circle"},
+
+      
+
+        {"id": "Pausa", "size": 5, "score": 0.4 , "title": "Pausa", "type": "circle"},
+
+      
+
+        {"id": "LO", "size": 5, "score": 0.4 , "title": "LO", "type": "circle"},
 
       
 
@@ -849,6 +863,34 @@ var data_local_dynamic = {
       
 
         {"id": "CoSe", "size": 5, "score": 0.4 , "title": "CoSe", "type": "circle"},
+
+      
+
+        {"id": "mafia", "size": 5, "score": 0.4 , "title": "mafia", "type": "circle"},
+
+      
+
+        {"id": "DIO", "size": 5, "score": 0.4 , "title": "DIO", "type": "circle"},
+
+      
+
+        {"id": "POCO", "size": 5, "score": 0.4 , "title": "POCO", "type": "circle"},
+
+      
+
+        {"id": "doves", "size": 5, "score": 0.4 , "title": "doves", "type": "circle"},
+
+      
+
+        {"id": "defeat", "size": 5, "score": 0.4 , "title": "defeat", "type": "circle"},
+
+      
+
+        {"id": "Scotland", "size": 5, "score": 0.4 , "title": "Scotland", "type": "circle"},
+
+      
+
+        {"id": "Union", "size": 5, "score": 0.4 , "title": "Union", "type": "circle"},
 
        
 
@@ -978,10 +1020,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

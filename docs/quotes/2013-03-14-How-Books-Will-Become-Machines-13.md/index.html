@@ -774,98 +774,118 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "dreams", "target": "sleep" },
+          { "source": "book", "target": "news" },
       
-          { "source": "dreams", "target": "room" },
+          { "source": "book", "target": "journals" },
       
-          { "source": "dreams", "target": "slums" },
+          { "source": "book", "target": "nature" },
       
-          { "source": "dreams", "target": "night" },
+          { "source": "book", "target": "text" },
       
-          { "source": "dreams", "target": "world" },
+          { "source": "book", "target": "readers" },
       
-          { "source": "sleep", "target": "dreams" },
+          { "source": "news", "target": "journals" },
       
-          { "source": "sleep", "target": "room" },
+          { "source": "news", "target": "book" },
       
-          { "source": "sleep", "target": "slums" },
+          { "source": "news", "target": "nature" },
       
-          { "source": "sleep", "target": "night" },
+          { "source": "news", "target": "grammar" },
       
-          { "source": "room", "target": "sleep" },
+          { "source": "journals", "target": "news" },
       
-          { "source": "room", "target": "dreams" },
+          { "source": "journals", "target": "book" },
       
-          { "source": "room", "target": "slums" },
+          { "source": "journals", "target": "nature" },
       
-          { "source": "room", "target": "night" },
+          { "source": "journals", "target": "database" },
       
-          { "source": "slums", "target": "sleep" },
+          { "source": "nature", "target": "news" },
       
-          { "source": "slums", "target": "dreams" },
+          { "source": "nature", "target": "journals" },
       
-          { "source": "slums", "target": "room" },
+          { "source": "nature", "target": "book" },
       
-          { "source": "slums", "target": "night" },
+          { "source": "nature", "target": "people" },
       
-          { "source": "night", "target": "sleep" },
+          { "source": "text", "target": "story" },
       
-          { "source": "night", "target": "dreams" },
+          { "source": "text", "target": "game" },
       
-          { "source": "night", "target": "room" },
+          { "source": "text", "target": "character" },
       
-          { "source": "night", "target": "slums" },
+          { "source": "text", "target": "interactive-fiction" },
       
-          { "source": "world", "target": "relation" },
+          { "source": "readers", "target": "text" },
       
-          { "source": "world", "target": "real-world" },
+          { "source": "readers", "target": "book" },
       
-          { "source": "world", "target": "relationship" },
+          { "source": "readers", "target": "words" },
       
-          { "source": "world", "target": "consciousness" },
+          { "source": "readers", "target": "algorithm" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "sleep", "size": 70, "score": 0 , "title": "sleep", "type": "circle"},
+        {"id": "news", "size": 70, "score": 0 , "title": "news", "type": "circle"},
 
       
 
-        {"id": "room", "size": 70, "score": 0 , "title": "room", "type": "circle"},
+        {"id": "journals", "size": 70, "score": 0 , "title": "journals", "type": "circle"},
 
       
 
-        {"id": "slums", "size": 70, "score": 0 , "title": "slums", "type": "circle"},
+        {"id": "nature", "size": 70, "score": 0 , "title": "nature", "type": "circle"},
 
       
 
-        {"id": "night", "size": 70, "score": 0 , "title": "night", "type": "circle"},
+        {"id": "text", "size": 70, "score": 0 , "title": "text", "type": "circle"},
 
       
 
-        {"id": "world", "size": 70, "score": 0 , "title": "world", "type": "circle"},
+        {"id": "readers", "size": 70, "score": 0 , "title": "readers", "type": "circle"},
 
       
 
-        {"id": "dreams", "size": 140, "score": 0.5 , "title": "dreams", "type": "circle"},
+        {"id": "book", "size": 140, "score": 0.5 , "title": "book", "type": "circle"},
 
       
 
-        {"id": "relation", "size": 5, "score": 0.4 , "title": "relation", "type": "circle"},
+        {"id": "grammar", "size": 5, "score": 0.4 , "title": "grammar", "type": "circle"},
 
       
 
-        {"id": "real-world", "size": 5, "score": 0.4 , "title": "real-world", "type": "circle"},
+        {"id": "database", "size": 5, "score": 0.4 , "title": "database", "type": "circle"},
 
       
 
-        {"id": "relationship", "size": 5, "score": 0.4 , "title": "relationship", "type": "circle"},
+        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
 
       
 
-        {"id": "consciousness", "size": 5, "score": 0.4 , "title": "consciousness", "type": "circle"},
+        {"id": "story", "size": 5, "score": 0.4 , "title": "story", "type": "circle"},
+
+      
+
+        {"id": "game", "size": 5, "score": 0.4 , "title": "game", "type": "circle"},
+
+      
+
+        {"id": "character", "size": 5, "score": 0.4 , "title": "character", "type": "circle"},
+
+      
+
+        {"id": "interactive-fiction", "size": 5, "score": 0.4 , "title": "interactive-fiction", "type": "circle"},
+
+      
+
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "algorithm", "size": 5, "score": 0.4 , "title": "algorithm", "type": "circle"},
 
        
 
@@ -995,10 +1015,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

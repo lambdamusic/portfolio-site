@@ -766,13 +766,13 @@ var data_local_dynamic = {
       
           { "source": "Africa", "target": "Asia" },
       
-          { "source": "New-York", "target": "business" },
-      
-          { "source": "New-York", "target": "friends" },
-      
-          { "source": "New-York", "target": "Africa" },
-      
           { "source": "New-York", "target": "Americans" },
+      
+          { "source": "New-York", "target": "Union" },
+      
+          { "source": "New-York", "target": "Spain" },
+      
+          { "source": "New-York", "target": "countries" },
       
           { "source": "business", "target": "product-owners" },
       
@@ -782,13 +782,13 @@ var data_local_dynamic = {
       
           { "source": "business", "target": "product-backlog" },
       
-          { "source": "friends", "target": "violence" },
-      
-          { "source": "friends", "target": "personal-identity" },
-      
           { "source": "friends", "target": "pride" },
       
           { "source": "friends", "target": "traits" },
+      
+          { "source": "friends", "target": "New-York" },
+      
+          { "source": "friends", "target": "business" },
       
           { "source": "Asia", "target": "Iranians" },
       
@@ -827,6 +827,18 @@ var data_local_dynamic = {
 
       
 
+        {"id": "Union", "size": 5, "score": 0.4 , "title": "Union", "type": "circle"},
+
+      
+
+        {"id": "Spain", "size": 5, "score": 0.4 , "title": "Spain", "type": "circle"},
+
+      
+
+        {"id": "countries", "size": 5, "score": 0.4 , "title": "countries", "type": "circle"},
+
+      
+
         {"id": "product-owners", "size": 5, "score": 0.4 , "title": "product-owners", "type": "circle"},
 
       
@@ -840,14 +852,6 @@ var data_local_dynamic = {
       
 
         {"id": "product-backlog", "size": 5, "score": 0.4 , "title": "product-backlog", "type": "circle"},
-
-      
-
-        {"id": "violence", "size": 5, "score": 0.4 , "title": "violence", "type": "circle"},
-
-      
-
-        {"id": "personal-identity", "size": 5, "score": 0.4 , "title": "personal-identity", "type": "circle"},
 
       
 
@@ -997,10 +1001,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

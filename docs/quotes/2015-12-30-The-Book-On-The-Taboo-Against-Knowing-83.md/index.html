@@ -760,94 +760,114 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "mechanical-view", "target": "science" },
+          { "source": "science", "target": "article" },
       
-          { "source": "mechanical-view", "target": "world" },
+          { "source": "science", "target": "hierarchy" },
       
-          { "source": "mechanical-view", "target": "view" },
+          { "source": "science", "target": "social-sciences" },
       
-          { "source": "science", "target": "complexity" },
+          { "source": "science", "target": "publications" },
       
-          { "source": "science", "target": "network" },
+          { "source": "science", "target": "area" },
       
-          { "source": "science", "target": "soul" },
+          { "source": "article", "target": "hierarchy" },
       
-          { "source": "science", "target": "things" },
+          { "source": "article", "target": "social-sciences" },
       
-          { "source": "world", "target": "relation" },
+          { "source": "article", "target": "science" },
       
-          { "source": "world", "target": "real-world" },
+          { "source": "article", "target": "concept" },
       
-          { "source": "world", "target": "relationship" },
+          { "source": "hierarchy", "target": "article" },
       
-          { "source": "world", "target": "consciousness" },
+          { "source": "hierarchy", "target": "social-sciences" },
       
-          { "source": "view", "target": "disorders" },
+          { "source": "hierarchy", "target": "science" },
       
-          { "source": "view", "target": "cent" },
+          { "source": "hierarchy", "target": "nodes" },
       
-          { "source": "view", "target": "science" },
+          { "source": "social-sciences", "target": "article" },
       
-          { "source": "view", "target": "mechanical-view" },
+          { "source": "social-sciences", "target": "hierarchy" },
+      
+          { "source": "social-sciences", "target": "science" },
+      
+          { "source": "social-sciences", "target": "journals" },
+      
+          { "source": "publications", "target": "hypothesis" },
+      
+          { "source": "publications", "target": "values" },
+      
+          { "source": "publications", "target": "distance" },
+      
+          { "source": "publications", "target": "area" },
+      
+          { "source": "area", "target": "publications" },
+      
+          { "source": "area", "target": "contribution" },
+      
+          { "source": "area", "target": "highest-contribution" },
+      
+          { "source": "area", "target": "science" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "science", "size": 70, "score": 0 , "title": "science", "type": "circle"},
+        {"id": "article", "size": 70, "score": 0 , "title": "article", "type": "circle"},
 
       
 
-        {"id": "world", "size": 70, "score": 0 , "title": "world", "type": "circle"},
+        {"id": "hierarchy", "size": 70, "score": 0 , "title": "hierarchy", "type": "circle"},
 
       
 
-        {"id": "view", "size": 70, "score": 0 , "title": "view", "type": "circle"},
+        {"id": "social-sciences", "size": 70, "score": 0 , "title": "social-sciences", "type": "circle"},
 
       
 
-        {"id": "mechanical-view", "size": 140, "score": 0.5 , "title": "mechanical-view", "type": "circle"},
+        {"id": "publications", "size": 70, "score": 0 , "title": "publications", "type": "circle"},
 
       
 
-        {"id": "complexity", "size": 5, "score": 0.4 , "title": "complexity", "type": "circle"},
+        {"id": "area", "size": 70, "score": 0 , "title": "area", "type": "circle"},
 
       
 
-        {"id": "network", "size": 5, "score": 0.4 , "title": "network", "type": "circle"},
+        {"id": "science", "size": 140, "score": 0.5 , "title": "science", "type": "circle"},
 
       
 
-        {"id": "soul", "size": 5, "score": 0.4 , "title": "soul", "type": "circle"},
+        {"id": "concept", "size": 5, "score": 0.4 , "title": "concept", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "nodes", "size": 5, "score": 0.4 , "title": "nodes", "type": "circle"},
 
       
 
-        {"id": "relation", "size": 5, "score": 0.4 , "title": "relation", "type": "circle"},
+        {"id": "journals", "size": 5, "score": 0.4 , "title": "journals", "type": "circle"},
 
       
 
-        {"id": "real-world", "size": 5, "score": 0.4 , "title": "real-world", "type": "circle"},
+        {"id": "hypothesis", "size": 5, "score": 0.4 , "title": "hypothesis", "type": "circle"},
 
       
 
-        {"id": "relationship", "size": 5, "score": 0.4 , "title": "relationship", "type": "circle"},
+        {"id": "values", "size": 5, "score": 0.4 , "title": "values", "type": "circle"},
 
       
 
-        {"id": "consciousness", "size": 5, "score": 0.4 , "title": "consciousness", "type": "circle"},
+        {"id": "distance", "size": 5, "score": 0.4 , "title": "distance", "type": "circle"},
 
       
 
-        {"id": "disorders", "size": 5, "score": 0.4 , "title": "disorders", "type": "circle"},
+        {"id": "contribution", "size": 5, "score": 0.4 , "title": "contribution", "type": "circle"},
 
       
 
-        {"id": "cent", "size": 5, "score": 0.4 , "title": "cent", "type": "circle"},
+        {"id": "highest-contribution", "size": 5, "score": 0.4 , "title": "highest-contribution", "type": "circle"},
 
        
 
@@ -977,10 +997,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

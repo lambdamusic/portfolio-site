@@ -762,84 +762,40 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "data-scientists", "target": "technique" },
+          { "source": "decision-making", "target": "data" },
       
-          { "source": "data-scientists", "target": "scientists" },
+          { "source": "decision-making", "target": "data-scientists" },
+      
+          { "source": "data", "target": "information" },
+      
+          { "source": "data", "target": "information-systems" },
+      
+          { "source": "data", "target": "communication" },
+      
+          { "source": "data", "target": "number" },
+      
+          { "source": "data-scientists", "target": "decision-making" },
       
           { "source": "data-scientists", "target": "programmers" },
       
           { "source": "data-scientists", "target": "machine-learning" },
       
           { "source": "data-scientists", "target": "learning" },
-      
-          { "source": "technique", "target": "data-scientists" },
-      
-          { "source": "technique", "target": "scientists" },
-      
-          { "source": "technique", "target": "values" },
-      
-          { "source": "scientists", "target": "data-scientists" },
-      
-          { "source": "scientists", "target": "technique" },
-      
-          { "source": "scientists", "target": "information" },
-      
-          { "source": "scientists", "target": "answers" },
-      
-          { "source": "programmers", "target": "machine" },
-      
-          { "source": "programmers", "target": "MapReduce" },
-      
-          { "source": "programmers", "target": "execution" },
-      
-          { "source": "programmers", "target": "music" },
-      
-          { "source": "machine-learning", "target": "artificial-intelligence" },
-      
-          { "source": "machine-learning", "target": "intelligence" },
-      
-          { "source": "machine-learning", "target": "learning" },
-      
-          { "source": "machine-learning", "target": "technology" },
-      
-          { "source": "learning", "target": "machine-learning" },
-      
-          { "source": "learning", "target": "artificial-intelligence" },
-      
-          { "source": "learning", "target": "intelligence" },
-      
-          { "source": "learning", "target": "technology" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "technique", "size": 70, "score": 0 , "title": "technique", "type": "circle"},
+        {"id": "data", "size": 70, "score": 0 , "title": "data", "type": "circle"},
 
       
 
-        {"id": "scientists", "size": 70, "score": 0 , "title": "scientists", "type": "circle"},
+        {"id": "data-scientists", "size": 70, "score": 0 , "title": "data-scientists", "type": "circle"},
 
       
 
-        {"id": "programmers", "size": 70, "score": 0 , "title": "programmers", "type": "circle"},
-
-      
-
-        {"id": "machine-learning", "size": 70, "score": 0 , "title": "machine-learning", "type": "circle"},
-
-      
-
-        {"id": "learning", "size": 70, "score": 0 , "title": "learning", "type": "circle"},
-
-      
-
-        {"id": "data-scientists", "size": 140, "score": 0.5 , "title": "data-scientists", "type": "circle"},
-
-      
-
-        {"id": "values", "size": 5, "score": 0.4 , "title": "values", "type": "circle"},
+        {"id": "decision-making", "size": 140, "score": 0.5 , "title": "decision-making", "type": "circle"},
 
       
 
@@ -847,35 +803,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "answers", "size": 5, "score": 0.4 , "title": "answers", "type": "circle"},
+        {"id": "information-systems", "size": 5, "score": 0.4 , "title": "information-systems", "type": "circle"},
 
       
 
-        {"id": "machine", "size": 5, "score": 0.4 , "title": "machine", "type": "circle"},
+        {"id": "communication", "size": 5, "score": 0.4 , "title": "communication", "type": "circle"},
 
       
 
-        {"id": "MapReduce", "size": 5, "score": 0.4 , "title": "MapReduce", "type": "circle"},
+        {"id": "number", "size": 5, "score": 0.4 , "title": "number", "type": "circle"},
 
       
 
-        {"id": "execution", "size": 5, "score": 0.4 , "title": "execution", "type": "circle"},
+        {"id": "programmers", "size": 5, "score": 0.4 , "title": "programmers", "type": "circle"},
 
       
 
-        {"id": "music", "size": 5, "score": 0.4 , "title": "music", "type": "circle"},
+        {"id": "machine-learning", "size": 5, "score": 0.4 , "title": "machine-learning", "type": "circle"},
 
       
 
-        {"id": "artificial-intelligence", "size": 5, "score": 0.4 , "title": "artificial-intelligence", "type": "circle"},
-
-      
-
-        {"id": "intelligence", "size": 5, "score": 0.4 , "title": "intelligence", "type": "circle"},
-
-      
-
-        {"id": "technology", "size": 5, "score": 0.4 , "title": "technology", "type": "circle"},
+        {"id": "learning", "size": 5, "score": 0.4 , "title": "learning", "type": "circle"},
 
        
 
@@ -1005,10 +953,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

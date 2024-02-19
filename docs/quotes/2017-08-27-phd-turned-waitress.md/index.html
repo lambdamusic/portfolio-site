@@ -762,6 +762,10 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "PhD", "target": "academics" },
+      
+          { "source": "PhD", "target": "education" },
+      
           { "source": "academics", "target": "PhD" },
       
           { "source": "academics", "target": "education" },
@@ -770,46 +774,16 @@ var data_local_dynamic = {
       
           { "source": "academics", "target": "perspective" },
       
-          { "source": "academics", "target": "writers" },
-      
-          { "source": "PhD", "target": "academics" },
-      
-          { "source": "PhD", "target": "education" },
-      
           { "source": "education", "target": "PhD" },
       
           { "source": "education", "target": "academics" },
-      
-          { "source": "writing", "target": "Philip-K-Dick" },
-      
-          { "source": "writing", "target": "academics" },
-      
-          { "source": "writing", "target": "perspective" },
-      
-          { "source": "writing", "target": "writers" },
-      
-          { "source": "perspective", "target": "writing" },
-      
-          { "source": "perspective", "target": "academics" },
-      
-          { "source": "perspective", "target": "writers" },
-      
-          { "source": "perspective", "target": "life" },
-      
-          { "source": "writers", "target": "writing" },
-      
-          { "source": "writers", "target": "academics" },
-      
-          { "source": "writers", "target": "perspective" },
-      
-          { "source": "writers", "target": "sentences" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "PhD", "size": 70, "score": 0 , "title": "PhD", "type": "circle"},
+        {"id": "academics", "size": 70, "score": 0 , "title": "academics", "type": "circle"},
 
       
 
@@ -817,31 +791,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "writing", "size": 70, "score": 0 , "title": "writing", "type": "circle"},
+        {"id": "PhD", "size": 140, "score": 0.5 , "title": "PhD", "type": "circle"},
 
       
 
-        {"id": "perspective", "size": 70, "score": 0 , "title": "perspective", "type": "circle"},
+        {"id": "writing", "size": 5, "score": 0.4 , "title": "writing", "type": "circle"},
 
       
 
-        {"id": "writers", "size": 70, "score": 0 , "title": "writers", "type": "circle"},
-
-      
-
-        {"id": "academics", "size": 140, "score": 0.5 , "title": "academics", "type": "circle"},
-
-      
-
-        {"id": "Philip-K-Dick", "size": 5, "score": 0.4 , "title": "Philip-K-Dick", "type": "circle"},
-
-      
-
-        {"id": "life", "size": 5, "score": 0.4 , "title": "life", "type": "circle"},
-
-      
-
-        {"id": "sentences", "size": 5, "score": 0.4 , "title": "sentences", "type": "circle"},
+        {"id": "perspective", "size": 5, "score": 0.4 , "title": "perspective", "type": "circle"},
 
        
 
@@ -971,10 +929,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

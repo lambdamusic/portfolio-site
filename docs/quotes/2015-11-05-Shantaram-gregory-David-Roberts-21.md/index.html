@@ -760,94 +760,84 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "people", "target": "pride" },
+          { "source": "Ali", "target": "del" },
       
-          { "source": "people", "target": "ego" },
+          { "source": "Ali", "target": "people" },
       
-          { "source": "people", "target": "game" },
+          { "source": "Ali", "target": "restaurants" },
       
-          { "source": "people", "target": "unselfishness" },
+          { "source": "del", "target": "frase" },
+      
+          { "source": "del", "target": "Ali" },
+      
+          { "source": "del", "target": "DIO" },
+      
+          { "source": "del", "target": "anni" },
       
           { "source": "people", "target": "stage" },
       
-          { "source": "pride", "target": "ego" },
+          { "source": "people", "target": "words" },
       
-          { "source": "pride", "target": "game" },
+          { "source": "people", "target": "God" },
       
-          { "source": "pride", "target": "people" },
+          { "source": "people", "target": "knowledge" },
       
-          { "source": "pride", "target": "unselfishness" },
+          { "source": "restaurants", "target": "fire" },
       
-          { "source": "ego", "target": "pride" },
+          { "source": "restaurants", "target": "people" },
       
-          { "source": "ego", "target": "game" },
-      
-          { "source": "ego", "target": "people" },
-      
-          { "source": "ego", "target": "unselfishness" },
-      
-          { "source": "game", "target": "pride" },
-      
-          { "source": "game", "target": "ego" },
-      
-          { "source": "game", "target": "people" },
-      
-          { "source": "game", "target": "unselfishness" },
-      
-          { "source": "unselfishness", "target": "pride" },
-      
-          { "source": "unselfishness", "target": "ego" },
-      
-          { "source": "unselfishness", "target": "game" },
-      
-          { "source": "unselfishness", "target": "people" },
-      
-          { "source": "stage", "target": "people" },
-      
-          { "source": "stage", "target": "fruit" },
-      
-          { "source": "stage", "target": "days" },
-      
-          { "source": "stage", "target": "heart" },
+          { "source": "restaurants", "target": "Ali" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "pride", "size": 70, "score": 0 , "title": "pride", "type": "circle"},
+        {"id": "del", "size": 70, "score": 0 , "title": "del", "type": "circle"},
 
       
 
-        {"id": "ego", "size": 70, "score": 0 , "title": "ego", "type": "circle"},
+        {"id": "people", "size": 70, "score": 0 , "title": "people", "type": "circle"},
 
       
 
-        {"id": "game", "size": 70, "score": 0 , "title": "game", "type": "circle"},
+        {"id": "restaurants", "size": 70, "score": 0 , "title": "restaurants", "type": "circle"},
 
       
 
-        {"id": "unselfishness", "size": 70, "score": 0 , "title": "unselfishness", "type": "circle"},
+        {"id": "Ali", "size": 140, "score": 0.5 , "title": "Ali", "type": "circle"},
 
       
 
-        {"id": "stage", "size": 70, "score": 0 , "title": "stage", "type": "circle"},
+        {"id": "frase", "size": 5, "score": 0.4 , "title": "frase", "type": "circle"},
 
       
 
-        {"id": "people", "size": 140, "score": 0.5 , "title": "people", "type": "circle"},
+        {"id": "DIO", "size": 5, "score": 0.4 , "title": "DIO", "type": "circle"},
 
       
 
-        {"id": "fruit", "size": 5, "score": 0.4 , "title": "fruit", "type": "circle"},
+        {"id": "anni", "size": 5, "score": 0.4 , "title": "anni", "type": "circle"},
 
       
 
-        {"id": "days", "size": 5, "score": 0.4 , "title": "days", "type": "circle"},
+        {"id": "stage", "size": 5, "score": 0.4 , "title": "stage", "type": "circle"},
 
       
 
-        {"id": "heart", "size": 5, "score": 0.4 , "title": "heart", "type": "circle"},
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "God", "size": 5, "score": 0.4 , "title": "God", "type": "circle"},
+
+      
+
+        {"id": "knowledge", "size": 5, "score": 0.4 , "title": "knowledge", "type": "circle"},
+
+      
+
+        {"id": "fire", "size": 5, "score": 0.4 , "title": "fire", "type": "circle"},
 
        
 
@@ -977,10 +967,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

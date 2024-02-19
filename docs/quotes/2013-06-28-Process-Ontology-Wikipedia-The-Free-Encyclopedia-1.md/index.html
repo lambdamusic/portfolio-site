@@ -768,16 +768,6 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "specific-properties", "target": "manufacturing" },
-      
-          { "source": "specific-properties", "target": "process" },
-      
-          { "source": "specific-properties", "target": "elements" },
-      
-          { "source": "specific-properties", "target": "engineering" },
-      
-          { "source": "specific-properties", "target": "properties" },
-      
           { "source": "manufacturing", "target": "machine" },
       
           { "source": "manufacturing", "target": "things" },
@@ -786,13 +776,31 @@ var data_local_dynamic = {
       
           { "source": "manufacturing", "target": "elements" },
       
+          { "source": "manufacturing", "target": "engineering" },
+      
+          { "source": "machine", "target": "things" },
+      
+          { "source": "machine", "target": "manufacturing" },
+      
+          { "source": "machine", "target": "data-citation" },
+      
+          { "source": "machine", "target": "metadata" },
+      
+          { "source": "things", "target": "industrial-revolution" },
+      
+          { "source": "things", "target": "bits" },
+      
+          { "source": "things", "target": "services" },
+      
+          { "source": "things", "target": "machine" },
+      
           { "source": "process", "target": "experiments" },
       
           { "source": "process", "target": "constructs" },
       
           { "source": "process", "target": "hypothesis" },
       
-          { "source": "process", "target": "function" },
+          { "source": "process", "target": "bridge" },
       
           { "source": "elements", "target": "work" },
       
@@ -809,21 +817,17 @@ var data_local_dynamic = {
           { "source": "engineering", "target": "elements" },
       
           { "source": "engineering", "target": "specific-properties" },
-      
-          { "source": "properties", "target": "class" },
-      
-          { "source": "properties", "target": "instances" },
-      
-          { "source": "properties", "target": "kind" },
-      
-          { "source": "properties", "target": "range" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "manufacturing", "size": 70, "score": 0 , "title": "manufacturing", "type": "circle"},
+        {"id": "machine", "size": 70, "score": 0 , "title": "machine", "type": "circle"},
+
+      
+
+        {"id": "things", "size": 70, "score": 0 , "title": "things", "type": "circle"},
 
       
 
@@ -839,19 +843,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "properties", "size": 70, "score": 0 , "title": "properties", "type": "circle"},
+        {"id": "manufacturing", "size": 140, "score": 0.5 , "title": "manufacturing", "type": "circle"},
 
       
 
-        {"id": "specific-properties", "size": 140, "score": 0.5 , "title": "specific-properties", "type": "circle"},
+        {"id": "data-citation", "size": 5, "score": 0.4 , "title": "data-citation", "type": "circle"},
 
       
 
-        {"id": "machine", "size": 5, "score": 0.4 , "title": "machine", "type": "circle"},
+        {"id": "metadata", "size": 5, "score": 0.4 , "title": "metadata", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "industrial-revolution", "size": 5, "score": 0.4 , "title": "industrial-revolution", "type": "circle"},
+
+      
+
+        {"id": "bits", "size": 5, "score": 0.4 , "title": "bits", "type": "circle"},
+
+      
+
+        {"id": "services", "size": 5, "score": 0.4 , "title": "services", "type": "circle"},
 
       
 
@@ -867,7 +879,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "function", "size": 5, "score": 0.4 , "title": "function", "type": "circle"},
+        {"id": "bridge", "size": 5, "score": 0.4 , "title": "bridge", "type": "circle"},
 
       
 
@@ -887,19 +899,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "class", "size": 5, "score": 0.4 , "title": "class", "type": "circle"},
-
-      
-
-        {"id": "instances", "size": 5, "score": 0.4 , "title": "instances", "type": "circle"},
-
-      
-
-        {"id": "kind", "size": 5, "score": 0.4 , "title": "kind", "type": "circle"},
-
-      
-
-        {"id": "range", "size": 5, "score": 0.4 , "title": "range", "type": "circle"},
+        {"id": "specific-properties", "size": 5, "score": 0.4 , "title": "specific-properties", "type": "circle"},
 
        
 
@@ -1029,10 +1029,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="https://en.wikipedia.org/wiki/Complex_system" class="text-muted" target="_blank">Complex system - Wikipedia</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Complex system - Wikipedia">
+								<a href="https://en.wikipedia.org/wiki/Complex_system" class="-underline -text-muted" target="_blank">
+								  Complex system - Wikipedia</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2022-06-21-emergence.md/index.html">Emergent behaviors and properties</a>
-						<br />
-						<small style="color: #cbcbcb;">Complex system - Wikipedia
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=complexity.html">#complexity</a>&nbsp;
@@ -590,6 +603,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -708,21 +722,21 @@ var data_local_dynamic = {
       
           { "source": "emergence", "target": "science" },
       
+          { "source": "complexity", "target": "dataset" },
+      
           { "source": "complexity", "target": "network" },
       
           { "source": "complexity", "target": "science" },
       
-          { "source": "complexity", "target": "data-structure" },
+          { "source": "complexity", "target": "emergence" },
       
-          { "source": "complexity", "target": "users" },
+          { "source": "science", "target": "article" },
       
-          { "source": "science", "target": "complexity" },
+          { "source": "science", "target": "hierarchy" },
       
-          { "source": "science", "target": "network" },
+          { "source": "science", "target": "social-sciences" },
       
-          { "source": "science", "target": "soul" },
-      
-          { "source": "science", "target": "things" },
+          { "source": "science", "target": "publications" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -741,23 +755,27 @@ var data_local_dynamic = {
 
       
 
+        {"id": "dataset", "size": 5, "score": 0.4 , "title": "dataset", "type": "circle"},
+
+      
+
         {"id": "network", "size": 5, "score": 0.4 , "title": "network", "type": "circle"},
 
       
 
-        {"id": "data-structure", "size": 5, "score": 0.4 , "title": "data-structure", "type": "circle"},
+        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
 
       
 
-        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
+        {"id": "hierarchy", "size": 5, "score": 0.4 , "title": "hierarchy", "type": "circle"},
 
       
 
-        {"id": "soul", "size": 5, "score": 0.4 , "title": "soul", "type": "circle"},
+        {"id": "social-sciences", "size": 5, "score": 0.4 , "title": "social-sciences", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "publications", "size": 5, "score": 0.4 , "title": "publications", "type": "circle"},
 
        
 
@@ -887,10 +905,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

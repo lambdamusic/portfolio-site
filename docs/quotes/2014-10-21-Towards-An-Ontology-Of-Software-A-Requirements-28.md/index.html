@@ -770,21 +770,21 @@ var data_local_dynamic = {
       
           { "source": "software-products", "target": "software-systems" },
       
-          { "source": "products", "target": "software-products" },
+          { "source": "products", "target": "similarity" },
       
-          { "source": "products", "target": "relationship" },
+          { "source": "products", "target": "roots" },
       
-          { "source": "products", "target": "jet-aircraft" },
+          { "source": "products", "target": "years" },
       
-          { "source": "products", "target": "cost" },
+          { "source": "products", "target": "count" },
+      
+          { "source": "relationship", "target": "verbs" },
+      
+          { "source": "relationship", "target": "attitudes" },
+      
+          { "source": "relationship", "target": "period" },
       
           { "source": "relationship", "target": "relation" },
-      
-          { "source": "relationship", "target": "world" },
-      
-          { "source": "relationship", "target": "real-world" },
-      
-          { "source": "relationship", "target": "associative-relationships" },
       
           { "source": "environment", "target": "interface" },
       
@@ -794,13 +794,13 @@ var data_local_dynamic = {
       
           { "source": "environment", "target": "machine" },
       
-          { "source": "interface", "target": "environment" },
+          { "source": "interface", "target": "user-interface" },
       
-          { "source": "interface", "target": "software-systems" },
+          { "source": "interface", "target": "users" },
       
-          { "source": "interface", "target": "software-products" },
+          { "source": "interface", "target": "task" },
       
-          { "source": "interface", "target": "machine" },
+          { "source": "interface", "target": "operation" },
       
           { "source": "software-systems", "target": "environment" },
       
@@ -839,11 +839,31 @@ var data_local_dynamic = {
 
       
 
-        {"id": "jet-aircraft", "size": 5, "score": 0.4 , "title": "jet-aircraft", "type": "circle"},
+        {"id": "similarity", "size": 5, "score": 0.4 , "title": "similarity", "type": "circle"},
 
       
 
-        {"id": "cost", "size": 5, "score": 0.4 , "title": "cost", "type": "circle"},
+        {"id": "roots", "size": 5, "score": 0.4 , "title": "roots", "type": "circle"},
+
+      
+
+        {"id": "years", "size": 5, "score": 0.4 , "title": "years", "type": "circle"},
+
+      
+
+        {"id": "count", "size": 5, "score": 0.4 , "title": "count", "type": "circle"},
+
+      
+
+        {"id": "verbs", "size": 5, "score": 0.4 , "title": "verbs", "type": "circle"},
+
+      
+
+        {"id": "attitudes", "size": 5, "score": 0.4 , "title": "attitudes", "type": "circle"},
+
+      
+
+        {"id": "period", "size": 5, "score": 0.4 , "title": "period", "type": "circle"},
 
       
 
@@ -851,19 +871,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "world", "size": 5, "score": 0.4 , "title": "world", "type": "circle"},
-
-      
-
-        {"id": "real-world", "size": 5, "score": 0.4 , "title": "real-world", "type": "circle"},
-
-      
-
-        {"id": "associative-relationships", "size": 5, "score": 0.4 , "title": "associative-relationships", "type": "circle"},
-
-      
-
         {"id": "machine", "size": 5, "score": 0.4 , "title": "machine", "type": "circle"},
+
+      
+
+        {"id": "user-interface", "size": 5, "score": 0.4 , "title": "user-interface", "type": "circle"},
+
+      
+
+        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
+
+      
+
+        {"id": "task", "size": 5, "score": 0.4 , "title": "task", "type": "circle"},
+
+      
+
+        {"id": "operation", "size": 5, "score": 0.4 , "title": "operation", "type": "circle"},
 
       
 
@@ -997,10 +1021,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

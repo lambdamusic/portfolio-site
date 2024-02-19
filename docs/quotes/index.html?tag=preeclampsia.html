@@ -572,33 +572,58 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://it.wikipedia.org/wiki/Eclampsia" class="text-muted" target="_blank">Eclampsia - Wikipedia</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Eclampsia - Wikipedia">
+								<a href="http://it.wikipedia.org/wiki/Eclampsia" class="-underline -text-muted" target="_blank">
+								  Eclampsia - Wikipedia</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-08-18-Eclampsia-Wikipedia-1.md/index.html">Eclampsia</a>
 						<br />
-						<small style="color: #cbcbcb;">Eclampsia - Wikipedia
-
-						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=preeclampsia.html">#preeclampsia</a>&nbsp;
 							
 						<a class="text-muted" href="index.html%3Ftag=edema.html">#edema</a>&nbsp;
 							
-						<a class="text-muted" href="index.html%3Ftag=DAL.html">#DAL</a>&nbsp;
-							
 							</small>
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://it.wikipedia.org/wiki/Preeclampsia" class="text-muted" target="_blank">Preeclampsia - Wikipedia</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Preeclampsia - Wikipedia">
+								<a href="http://it.wikipedia.org/wiki/Preeclampsia" class="-underline -text-muted" target="_blank">
+								  Preeclampsia - Wikipedia</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-08-18-Preeclampsia-Wikipedia-1.md/index.html">Preeclampsia</a>
 						<br />
-						<small style="color: #cbcbcb;">Preeclampsia - Wikipedia
-
-						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=preeclampsia.html">#preeclampsia</a>&nbsp;
 							
@@ -608,6 +633,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -724,17 +750,7 @@ var data_local_dynamic = {
       
           { "source": "preeclampsia", "target": "edema" },
       
-          { "source": "preeclampsia", "target": "DAL" },
-      
           { "source": "edema", "target": "preeclampsia" },
-      
-          { "source": "edema", "target": "DAL" },
-      
-          { "source": "DAL", "target": "preeclampsia" },
-      
-          { "source": "DAL", "target": "edema" },
-      
-          { "source": "DAL", "target": "natura" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -745,15 +761,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "DAL", "size": 70, "score": 0 , "title": "DAL", "type": "circle"},
-
-      
-
         {"id": "preeclampsia", "size": 140, "score": 0.5 , "title": "preeclampsia", "type": "circle"},
-
-      
-
-        {"id": "natura", "size": 5, "score": 0.4 , "title": "natura", "type": "circle"},
 
        
 
@@ -883,10 +891,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

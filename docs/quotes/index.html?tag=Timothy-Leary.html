@@ -572,12 +572,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Erik Davis - On Psychedelics</span>
+							</small>
+							<!-- Words taken from <cite title="Erik Davis - On Psychedelics">
+								<a class="-underline -text-muted">Erik Davis - On Psychedelics</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-11-05-Erik-Davis-On-Psychedelics-3.md/index.html">1960s literature on psychedelics</a>
-						<br />
-						<small style="color: #cbcbcb;">Erik Davis - On Psychedelics
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=book.html">#book</a>&nbsp;
@@ -588,14 +599,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-11-05-Erik-Davis-On-Psychedelics-8.md/index.html">The good friday (or marsh chapel) experiment</a>
-						<br />
-						<small style="color: #cbcbcb;">Erik Davis - On Psychedelics
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=human-mind.html">#human-mind</a>&nbsp;
@@ -608,6 +621,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -728,27 +742,27 @@ var data_local_dynamic = {
       
           { "source": "Timothy-Leary", "target": "privileged-access" },
       
-          { "source": "book", "target": "linguistics" },
-      
-          { "source": "book", "target": "imagination" },
-      
           { "source": "book", "target": "news" },
       
           { "source": "book", "target": "journals" },
+      
+          { "source": "book", "target": "nature" },
+      
+          { "source": "book", "target": "text" },
       
           { "source": "human-mind", "target": "Timothy-Leary" },
       
           { "source": "human-mind", "target": "privileged-access" },
       
-          { "source": "human-mind", "target": "short-term-memory" },
+          { "source": "human-mind", "target": "psychological-state" },
       
-          { "source": "human-mind", "target": "memory" },
-      
-          { "source": "privileged-access", "target": "explanation" },
+          { "source": "human-mind", "target": "subjective-experience" },
       
           { "source": "privileged-access", "target": "human-mind" },
       
           { "source": "privileged-access", "target": "Timothy-Leary" },
+      
+          { "source": "privileged-access", "target": "explanation" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -771,14 +785,6 @@ var data_local_dynamic = {
 
       
 
-        {"id": "linguistics", "size": 5, "score": 0.4 , "title": "linguistics", "type": "circle"},
-
-      
-
-        {"id": "imagination", "size": 5, "score": 0.4 , "title": "imagination", "type": "circle"},
-
-      
-
         {"id": "news", "size": 5, "score": 0.4 , "title": "news", "type": "circle"},
 
       
@@ -787,11 +793,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "short-term-memory", "size": 5, "score": 0.4 , "title": "short-term-memory", "type": "circle"},
+        {"id": "nature", "size": 5, "score": 0.4 , "title": "nature", "type": "circle"},
 
       
 
-        {"id": "memory", "size": 5, "score": 0.4 , "title": "memory", "type": "circle"},
+        {"id": "text", "size": 5, "score": 0.4 , "title": "text", "type": "circle"},
+
+      
+
+        {"id": "psychological-state", "size": 5, "score": 0.4 , "title": "psychological-state", "type": "circle"},
+
+      
+
+        {"id": "subjective-experience", "size": 5, "score": 0.4 , "title": "subjective-experience", "type": "circle"},
 
       
 
@@ -925,10 +939,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

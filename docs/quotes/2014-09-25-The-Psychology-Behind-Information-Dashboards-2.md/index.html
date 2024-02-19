@@ -770,21 +770,21 @@ var data_local_dynamic = {
       
           { "source": "short-term-memory", "target": "users" },
       
-          { "source": "memory", "target": "feelings" },
-      
-          { "source": "memory", "target": "emotions" },
-      
-          { "source": "memory", "target": "words" },
+          { "source": "memory", "target": "co-occurrence-information" },
       
           { "source": "memory", "target": "sleep" },
+      
+          { "source": "memory", "target": "meaning" },
+      
+          { "source": "memory", "target": "feelings" },
       
           { "source": "human-mind", "target": "Timothy-Leary" },
       
           { "source": "human-mind", "target": "privileged-access" },
       
-          { "source": "human-mind", "target": "short-term-memory" },
+          { "source": "human-mind", "target": "psychological-state" },
       
-          { "source": "human-mind", "target": "memory" },
+          { "source": "human-mind", "target": "subjective-experience" },
       
           { "source": "mind", "target": "human-experience" },
       
@@ -792,15 +792,15 @@ var data_local_dynamic = {
       
           { "source": "mind", "target": "consciousness" },
       
-          { "source": "mind", "target": "brain" },
+          { "source": "mind", "target": "philosophers" },
       
-          { "source": "users", "target": "address" },
+          { "source": "users", "target": "user-testing" },
       
-          { "source": "users", "target": "information-architects" },
+          { "source": "users", "target": "Google" },
       
-          { "source": "users", "target": "-designers" },
+          { "source": "users", "target": "search" },
       
-          { "source": "users", "target": "designers" },
+          { "source": "users", "target": "version" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -827,19 +827,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "feelings", "size": 5, "score": 0.4 , "title": "feelings", "type": "circle"},
-
-      
-
-        {"id": "emotions", "size": 5, "score": 0.4 , "title": "emotions", "type": "circle"},
-
-      
-
-        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+        {"id": "co-occurrence-information", "size": 5, "score": 0.4 , "title": "co-occurrence-information", "type": "circle"},
 
       
 
         {"id": "sleep", "size": 5, "score": 0.4 , "title": "sleep", "type": "circle"},
+
+      
+
+        {"id": "meaning", "size": 5, "score": 0.4 , "title": "meaning", "type": "circle"},
+
+      
+
+        {"id": "feelings", "size": 5, "score": 0.4 , "title": "feelings", "type": "circle"},
 
       
 
@@ -848,6 +848,14 @@ var data_local_dynamic = {
       
 
         {"id": "privileged-access", "size": 5, "score": 0.4 , "title": "privileged-access", "type": "circle"},
+
+      
+
+        {"id": "psychological-state", "size": 5, "score": 0.4 , "title": "psychological-state", "type": "circle"},
+
+      
+
+        {"id": "subjective-experience", "size": 5, "score": 0.4 , "title": "subjective-experience", "type": "circle"},
 
       
 
@@ -863,23 +871,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "brain", "size": 5, "score": 0.4 , "title": "brain", "type": "circle"},
+        {"id": "philosophers", "size": 5, "score": 0.4 , "title": "philosophers", "type": "circle"},
 
       
 
-        {"id": "address", "size": 5, "score": 0.4 , "title": "address", "type": "circle"},
+        {"id": "user-testing", "size": 5, "score": 0.4 , "title": "user-testing", "type": "circle"},
 
       
 
-        {"id": "information-architects", "size": 5, "score": 0.4 , "title": "information-architects", "type": "circle"},
+        {"id": "Google", "size": 5, "score": 0.4 , "title": "Google", "type": "circle"},
 
       
 
-        {"id": "-designers", "size": 5, "score": 0.4 , "title": "-designers", "type": "circle"},
+        {"id": "search", "size": 5, "score": 0.4 , "title": "search", "type": "circle"},
 
       
 
-        {"id": "designers", "size": 5, "score": 0.4 , "title": "designers", "type": "circle"},
+        {"id": "version", "size": 5, "score": 0.4 , "title": "version", "type": "circle"},
 
        
 
@@ -1009,10 +1017,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

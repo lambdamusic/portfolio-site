@@ -771,13 +771,13 @@ var data_local_dynamic = {
       
           { "source": "images", "target": "parents" },
       
-          { "source": "fathers", "target": "emotions" },
+          { "source": "fathers", "target": "knowledge" },
       
-          { "source": "fathers", "target": "image-of-God" },
+          { "source": "fathers", "target": "persons" },
       
-          { "source": "fathers", "target": "parents" },
+          { "source": "fathers", "target": "instances" },
       
-          { "source": "fathers", "target": "images" },
+          { "source": "fathers", "target": "control" },
       
           { "source": "emotions", "target": "feelings" },
       
@@ -785,7 +785,7 @@ var data_local_dynamic = {
       
           { "source": "emotions", "target": "words" },
       
-          { "source": "emotions", "target": "fathers" },
+          { "source": "emotions", "target": "conversation" },
       
           { "source": "image-of-God", "target": "fathers" },
       
@@ -795,13 +795,13 @@ var data_local_dynamic = {
       
           { "source": "image-of-God", "target": "images" },
       
+          { "source": "parents", "target": "creativity" },
+      
+          { "source": "parents", "target": "marriage" },
+      
+          { "source": "parents", "target": "art" },
+      
           { "source": "parents", "target": "fathers" },
-      
-          { "source": "parents", "target": "emotions" },
-      
-          { "source": "parents", "target": "image-of-God" },
-      
-          { "source": "parents", "target": "images" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -828,6 +828,22 @@ var data_local_dynamic = {
 
       
 
+        {"id": "knowledge", "size": 5, "score": 0.4 , "title": "knowledge", "type": "circle"},
+
+      
+
+        {"id": "persons", "size": 5, "score": 0.4 , "title": "persons", "type": "circle"},
+
+      
+
+        {"id": "instances", "size": 5, "score": 0.4 , "title": "instances", "type": "circle"},
+
+      
+
+        {"id": "control", "size": 5, "score": 0.4 , "title": "control", "type": "circle"},
+
+      
+
         {"id": "feelings", "size": 5, "score": 0.4 , "title": "feelings", "type": "circle"},
 
       
@@ -837,6 +853,22 @@ var data_local_dynamic = {
       
 
         {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "conversation", "size": 5, "score": 0.4 , "title": "conversation", "type": "circle"},
+
+      
+
+        {"id": "creativity", "size": 5, "score": 0.4 , "title": "creativity", "type": "circle"},
+
+      
+
+        {"id": "marriage", "size": 5, "score": 0.4 , "title": "marriage", "type": "circle"},
+
+      
+
+        {"id": "art", "size": 5, "score": 0.4 , "title": "art", "type": "circle"},
 
        
 
@@ -966,10 +998,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

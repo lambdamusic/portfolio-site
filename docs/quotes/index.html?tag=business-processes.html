@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://en.wikipedia.org/wiki/Records_management_taxonomy" class="text-muted" target="_blank">Records Management Taxonomy - Wikipedia, The Free Encyclopedia</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Records Management Taxonomy - Wikipedia, The Free Encyclopedia">
+								<a href="http://en.wikipedia.org/wiki/Records_management_taxonomy" class="-underline -text-muted" target="_blank">
+								  Records Management Taxonomy - Wikipedia, The Free Encyclopedia</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Records-Management-Taxonomy-Wikipedia-The-Free-Encyclopedia-1.md/index.html">Records management taxonomy is the...</a>
-						<br />
-						<small style="color: #cbcbcb;">Records Management Taxonomy - Wikipedia, The Free Encyclopedia
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=format.html">#format</a>&nbsp;
@@ -590,14 +603,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="https://en.wikipedia.org/wiki/Reference_data" class="text-muted" target="_blank">Reference Data - Wikipedia, The Free Encyclopedia</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Reference Data - Wikipedia, The Free Encyclopedia">
+								<a href="https://en.wikipedia.org/wiki/Reference_data" class="-underline -text-muted" target="_blank">
+								  Reference Data - Wikipedia, The Free Encyclopedia</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-07-31-Reference-Data-Wikipedia-The-Free-Encyclopedia-1.md/index.html">Reference data (vs master data)</a>
-						<br />
-						<small style="color: #cbcbcb;">Reference Data - Wikipedia, The Free Encyclopedia
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=business-processes.html">#business-processes</a>&nbsp;
@@ -608,6 +635,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -728,13 +756,13 @@ var data_local_dynamic = {
       
           { "source": "business-processes", "target": "customers" },
       
-          { "source": "format", "target": "schema" },
+          { "source": "format", "target": "web-documents" },
       
-          { "source": "format", "target": "scheme" },
+          { "source": "format", "target": "content-negotiation" },
       
-          { "source": "format", "target": "archives" },
+          { "source": "format", "target": "server" },
       
-          { "source": "format", "target": "game" },
+          { "source": "format", "target": "documents" },
       
           { "source": "companies", "target": "ontology" },
       
@@ -744,13 +772,13 @@ var data_local_dynamic = {
       
           { "source": "companies", "target": "taxonomy" },
       
+          { "source": "customers", "target": "game" },
+      
+          { "source": "customers", "target": "features" },
+      
+          { "source": "customers", "target": "schedule" },
+      
           { "source": "customers", "target": "services" },
-      
-          { "source": "customers", "target": "raw-data" },
-      
-          { "source": "customers", "target": "processing" },
-      
-          { "source": "customers", "target": "information" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -773,19 +801,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "schema", "size": 5, "score": 0.4 , "title": "schema", "type": "circle"},
+        {"id": "web-documents", "size": 5, "score": 0.4 , "title": "web-documents", "type": "circle"},
 
       
 
-        {"id": "scheme", "size": 5, "score": 0.4 , "title": "scheme", "type": "circle"},
+        {"id": "content-negotiation", "size": 5, "score": 0.4 , "title": "content-negotiation", "type": "circle"},
 
       
 
-        {"id": "archives", "size": 5, "score": 0.4 , "title": "archives", "type": "circle"},
+        {"id": "server", "size": 5, "score": 0.4 , "title": "server", "type": "circle"},
 
       
 
-        {"id": "game", "size": 5, "score": 0.4 , "title": "game", "type": "circle"},
+        {"id": "documents", "size": 5, "score": 0.4 , "title": "documents", "type": "circle"},
 
       
 
@@ -805,19 +833,19 @@ var data_local_dynamic = {
 
       
 
+        {"id": "game", "size": 5, "score": 0.4 , "title": "game", "type": "circle"},
+
+      
+
+        {"id": "features", "size": 5, "score": 0.4 , "title": "features", "type": "circle"},
+
+      
+
+        {"id": "schedule", "size": 5, "score": 0.4 , "title": "schedule", "type": "circle"},
+
+      
+
         {"id": "services", "size": 5, "score": 0.4 , "title": "services", "type": "circle"},
-
-      
-
-        {"id": "raw-data", "size": 5, "score": 0.4 , "title": "raw-data", "type": "circle"},
-
-      
-
-        {"id": "processing", "size": 5, "score": 0.4 , "title": "processing", "type": "circle"},
-
-      
-
-        {"id": "information", "size": 5, "score": 0.4 , "title": "information", "type": "circle"},
 
        
 
@@ -947,10 +975,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

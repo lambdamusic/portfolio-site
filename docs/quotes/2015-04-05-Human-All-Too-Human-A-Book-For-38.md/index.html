@@ -770,21 +770,21 @@ var data_local_dynamic = {
       
           { "source": "conduct", "target": "love" },
       
+          { "source": "responsibility", "target": "office" },
+      
           { "source": "responsibility", "target": "conduct" },
       
           { "source": "responsibility", "target": "nature" },
       
           { "source": "responsibility", "target": "affairs" },
       
-          { "source": "responsibility", "target": "project" },
+          { "source": "nature", "target": "news" },
       
-          { "source": "nature", "target": "things" },
+          { "source": "nature", "target": "journals" },
       
-          { "source": "nature", "target": "relation" },
+          { "source": "nature", "target": "book" },
       
-          { "source": "nature", "target": "philosophical-discussion" },
-      
-          { "source": "nature", "target": "context" },
+          { "source": "nature", "target": "people" },
       
           { "source": "affairs", "target": "conduct" },
       
@@ -796,19 +796,19 @@ var data_local_dynamic = {
       
           { "source": "mankind", "target": "conduct" },
       
-          { "source": "mankind", "target": "society" },
-      
-          { "source": "mankind", "target": "human-nature" },
-      
           { "source": "mankind", "target": "humanity" },
       
-          { "source": "love", "target": "God" },
+          { "source": "mankind", "target": "life" },
       
-          { "source": "love", "target": "music" },
-      
-          { "source": "love", "target": "sin" },
+          { "source": "mankind", "target": "feelings" },
       
           { "source": "love", "target": "conduct" },
+      
+          { "source": "love", "target": "town" },
+      
+          { "source": "love", "target": "language" },
+      
+          { "source": "love", "target": "Maturana" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -839,23 +839,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "project", "size": 5, "score": 0.4 , "title": "project", "type": "circle"},
+        {"id": "office", "size": 5, "score": 0.4 , "title": "office", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "news", "size": 5, "score": 0.4 , "title": "news", "type": "circle"},
 
       
 
-        {"id": "relation", "size": 5, "score": 0.4 , "title": "relation", "type": "circle"},
+        {"id": "journals", "size": 5, "score": 0.4 , "title": "journals", "type": "circle"},
 
       
 
-        {"id": "philosophical-discussion", "size": 5, "score": 0.4 , "title": "philosophical-discussion", "type": "circle"},
+        {"id": "book", "size": 5, "score": 0.4 , "title": "book", "type": "circle"},
 
       
 
-        {"id": "context", "size": 5, "score": 0.4 , "title": "context", "type": "circle"},
+        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
 
       
 
@@ -863,27 +863,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "society", "size": 5, "score": 0.4 , "title": "society", "type": "circle"},
-
-      
-
-        {"id": "human-nature", "size": 5, "score": 0.4 , "title": "human-nature", "type": "circle"},
-
-      
-
         {"id": "humanity", "size": 5, "score": 0.4 , "title": "humanity", "type": "circle"},
 
       
 
-        {"id": "God", "size": 5, "score": 0.4 , "title": "God", "type": "circle"},
+        {"id": "life", "size": 5, "score": 0.4 , "title": "life", "type": "circle"},
 
       
 
-        {"id": "music", "size": 5, "score": 0.4 , "title": "music", "type": "circle"},
+        {"id": "feelings", "size": 5, "score": 0.4 , "title": "feelings", "type": "circle"},
 
       
 
-        {"id": "sin", "size": 5, "score": 0.4 , "title": "sin", "type": "circle"},
+        {"id": "town", "size": 5, "score": 0.4 , "title": "town", "type": "circle"},
+
+      
+
+        {"id": "language", "size": 5, "score": 0.4 , "title": "language", "type": "circle"},
+
+      
+
+        {"id": "Maturana", "size": 5, "score": 0.4 , "title": "Maturana", "type": "circle"},
 
        
 
@@ -1013,10 +1013,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -764,37 +764,23 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "zuccheri", "target": "health" },
-      
-          { "source": "zuccheri", "target": "saccarosio" },
-      
-          { "source": "zuccheri", "target": "eating" },
-      
-          { "source": "zuccheri", "target": "fruttosio" },
-      
-          { "source": "zuccheri", "target": "carboidrati" },
-      
           { "source": "health", "target": "zuccheri" },
-      
-          { "source": "health", "target": "saccarosio" },
-      
-          { "source": "health", "target": "eating" },
       
           { "source": "health", "target": "fruttosio" },
       
-          { "source": "saccarosio", "target": "zuccheri" },
+          { "source": "health", "target": "eating" },
       
-          { "source": "saccarosio", "target": "health" },
+          { "source": "health", "target": "years" },
       
-          { "source": "saccarosio", "target": "eating" },
+          { "source": "health", "target": "risk" },
       
-          { "source": "eating", "target": "zuccheri" },
+          { "source": "zuccheri", "target": "health" },
       
-          { "source": "eating", "target": "health" },
+          { "source": "zuccheri", "target": "fruttosio" },
       
-          { "source": "eating", "target": "saccarosio" },
+          { "source": "zuccheri", "target": "eating" },
       
-          { "source": "eating", "target": "fruttosio" },
+          { "source": "zuccheri", "target": "saccarosio" },
       
           { "source": "fruttosio", "target": "zuccheri" },
       
@@ -802,26 +788,36 @@ var data_local_dynamic = {
       
           { "source": "fruttosio", "target": "eating" },
       
-          { "source": "carboidrati", "target": "zuccheri" },
+          { "source": "eating", "target": "zuccheri" },
       
-          { "source": "carboidrati", "target": "health" },
+          { "source": "eating", "target": "health" },
       
-          { "source": "carboidrati", "target": "eating" },
+          { "source": "eating", "target": "fruttosio" },
+      
+          { "source": "eating", "target": "food" },
+      
+          { "source": "years", "target": "factors" },
+      
+          { "source": "years", "target": "article" },
+      
+          { "source": "years", "target": "citations" },
+      
+          { "source": "years", "target": "episodes" },
+      
+          { "source": "risk", "target": "episodes" },
+      
+          { "source": "risk", "target": "orphans" },
+      
+          { "source": "risk", "target": "series" },
+      
+          { "source": "risk", "target": "health" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "health", "size": 70, "score": 0 , "title": "health", "type": "circle"},
-
-      
-
-        {"id": "saccarosio", "size": 70, "score": 0 , "title": "saccarosio", "type": "circle"},
-
-      
-
-        {"id": "eating", "size": 70, "score": 0 , "title": "eating", "type": "circle"},
+        {"id": "zuccheri", "size": 70, "score": 0 , "title": "zuccheri", "type": "circle"},
 
       
 
@@ -829,11 +825,51 @@ var data_local_dynamic = {
 
       
 
-        {"id": "carboidrati", "size": 70, "score": 0 , "title": "carboidrati", "type": "circle"},
+        {"id": "eating", "size": 70, "score": 0 , "title": "eating", "type": "circle"},
 
       
 
-        {"id": "zuccheri", "size": 140, "score": 0.5 , "title": "zuccheri", "type": "circle"},
+        {"id": "years", "size": 70, "score": 0 , "title": "years", "type": "circle"},
+
+      
+
+        {"id": "risk", "size": 70, "score": 0 , "title": "risk", "type": "circle"},
+
+      
+
+        {"id": "health", "size": 140, "score": 0.5 , "title": "health", "type": "circle"},
+
+      
+
+        {"id": "saccarosio", "size": 5, "score": 0.4 , "title": "saccarosio", "type": "circle"},
+
+      
+
+        {"id": "food", "size": 5, "score": 0.4 , "title": "food", "type": "circle"},
+
+      
+
+        {"id": "factors", "size": 5, "score": 0.4 , "title": "factors", "type": "circle"},
+
+      
+
+        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
+
+      
+
+        {"id": "citations", "size": 5, "score": 0.4 , "title": "citations", "type": "circle"},
+
+      
+
+        {"id": "episodes", "size": 5, "score": 0.4 , "title": "episodes", "type": "circle"},
+
+      
+
+        {"id": "orphans", "size": 5, "score": 0.4 , "title": "orphans", "type": "circle"},
+
+      
+
+        {"id": "series", "size": 5, "score": 0.4 , "title": "series", "type": "circle"},
 
        
 
@@ -963,10 +999,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

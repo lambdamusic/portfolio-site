@@ -769,51 +769,51 @@ var data_local_dynamic = {
       
           { "source": "men", "target": "sleep" },
       
-          { "source": "men", "target": "foot" },
+          { "source": "men", "target": "living" },
       
-          { "source": "men", "target": "toe" },
+          { "source": "men", "target": "years" },
       
-          { "source": "men", "target": "border" },
+          { "source": "men", "target": "body" },
+      
+          { "source": "phrases", "target": "poetry" },
+      
+          { "source": "phrases", "target": "reality" },
       
           { "source": "phrases", "target": "men" },
       
           { "source": "phrases", "target": "sleep" },
       
-          { "source": "phrases", "target": "language" },
+          { "source": "sleep", "target": "memory" },
       
-          { "source": "phrases", "target": "words" },
+          { "source": "sleep", "target": "meaning" },
       
-          { "source": "sleep", "target": "dreams" },
+          { "source": "sleep", "target": "men" },
       
-          { "source": "sleep", "target": "room" },
+          { "source": "sleep", "target": "phrases" },
       
-          { "source": "sleep", "target": "slums" },
+          { "source": "living", "target": "men" },
       
-          { "source": "sleep", "target": "night" },
+          { "source": "living", "target": "years" },
       
-          { "source": "foot", "target": "nail" },
+          { "source": "living", "target": "body" },
       
-          { "source": "foot", "target": "association" },
+          { "source": "living", "target": "hypothesis" },
       
-          { "source": "foot", "target": "men" },
+          { "source": "years", "target": "factors" },
       
-          { "source": "foot", "target": "toe" },
+          { "source": "years", "target": "article" },
       
-          { "source": "toe", "target": "men" },
+          { "source": "years", "target": "citations" },
       
-          { "source": "toe", "target": "foot" },
+          { "source": "years", "target": "episodes" },
       
-          { "source": "toe", "target": "border" },
+          { "source": "body", "target": "calories" },
       
-          { "source": "toe", "target": "vein" },
+          { "source": "body", "target": "weight" },
       
-          { "source": "border", "target": "men" },
+          { "source": "body", "target": "men" },
       
-          { "source": "border", "target": "foot" },
-      
-          { "source": "border", "target": "toe" },
-      
-          { "source": "border", "target": "Iranians" },
+          { "source": "body", "target": "living" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -828,15 +828,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "foot", "size": 70, "score": 0 , "title": "foot", "type": "circle"},
+        {"id": "living", "size": 70, "score": 0 , "title": "living", "type": "circle"},
 
       
 
-        {"id": "toe", "size": 70, "score": 0 , "title": "toe", "type": "circle"},
+        {"id": "years", "size": 70, "score": 0 , "title": "years", "type": "circle"},
 
       
 
-        {"id": "border", "size": 70, "score": 0 , "title": "border", "type": "circle"},
+        {"id": "body", "size": 70, "score": 0 , "title": "body", "type": "circle"},
 
       
 
@@ -844,43 +844,47 @@ var data_local_dynamic = {
 
       
 
-        {"id": "language", "size": 5, "score": 0.4 , "title": "language", "type": "circle"},
+        {"id": "poetry", "size": 5, "score": 0.4 , "title": "poetry", "type": "circle"},
 
       
 
-        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+        {"id": "reality", "size": 5, "score": 0.4 , "title": "reality", "type": "circle"},
 
       
 
-        {"id": "dreams", "size": 5, "score": 0.4 , "title": "dreams", "type": "circle"},
+        {"id": "memory", "size": 5, "score": 0.4 , "title": "memory", "type": "circle"},
 
       
 
-        {"id": "room", "size": 5, "score": 0.4 , "title": "room", "type": "circle"},
+        {"id": "meaning", "size": 5, "score": 0.4 , "title": "meaning", "type": "circle"},
 
       
 
-        {"id": "slums", "size": 5, "score": 0.4 , "title": "slums", "type": "circle"},
+        {"id": "hypothesis", "size": 5, "score": 0.4 , "title": "hypothesis", "type": "circle"},
 
       
 
-        {"id": "night", "size": 5, "score": 0.4 , "title": "night", "type": "circle"},
+        {"id": "factors", "size": 5, "score": 0.4 , "title": "factors", "type": "circle"},
 
       
 
-        {"id": "nail", "size": 5, "score": 0.4 , "title": "nail", "type": "circle"},
+        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
 
       
 
-        {"id": "association", "size": 5, "score": 0.4 , "title": "association", "type": "circle"},
+        {"id": "citations", "size": 5, "score": 0.4 , "title": "citations", "type": "circle"},
 
       
 
-        {"id": "vein", "size": 5, "score": 0.4 , "title": "vein", "type": "circle"},
+        {"id": "episodes", "size": 5, "score": 0.4 , "title": "episodes", "type": "circle"},
 
       
 
-        {"id": "Iranians", "size": 5, "score": 0.4 , "title": "Iranians", "type": "circle"},
+        {"id": "calories", "size": 5, "score": 0.4 , "title": "calories", "type": "circle"},
+
+      
+
+        {"id": "weight", "size": 5, "score": 0.4 , "title": "weight", "type": "circle"},
 
        
 
@@ -1010,10 +1014,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

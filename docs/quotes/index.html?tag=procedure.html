@@ -572,30 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
-		
-					<li style="margin-bottom: 10px;">
-						<a style="font-size: 120%;" href="2015-11-05-Shantaram-gregory-David-Roberts-44.md/index.html">A make-up assistant held up...</a>
-						<br />
-						<small style="color: #cbcbcb;">Shantaram (gregory David Roberts)
 
-						<br />
-						
-						<a class="text-muted" href="index.html%3Ftag=mirror.html">#mirror</a>&nbsp;
-							
-						<a class="text-muted" href="index.html%3Ftag=procedure.html">#procedure</a>&nbsp;
-							
-							</small>
-		
 					
-					</li>
-		
-				
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.repubblica.it/cronaca/2014/09/06/news/la_ferguson_di_casa_nostra-95099820/?ref=HRER3-1" class="text-muted" target="_blank">La Ferguson Di Casa Nostra - Repubblica.it</a>
+									
+							</small>
+							<!-- Words taken from <cite title="La Ferguson Di Casa Nostra - Repubblica.it">
+								<a href="http://www.repubblica.it/cronaca/2014/09/06/news/la_ferguson_di_casa_nostra-95099820/?ref=HRER3-1" class="-underline -text-muted" target="_blank">
+								  La Ferguson Di Casa Nostra - Repubblica.it</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-09-06-La-Ferguson-Di-Casa-Nostra-Repubblicait-1.md/index.html">Seguire l&#39;etichetta</a>
-						<br />
-						<small style="color: #cbcbcb;">La Ferguson Di Casa Nostra - Repubblica.it
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=procedure.html">#procedure</a>&nbsp;
@@ -608,6 +603,37 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
+		
+				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Shantaram (gregory David Roberts)</span>
+							</small>
+							<!-- Words taken from <cite title="Shantaram (gregory David Roberts)">
+								<a class="-underline -text-muted">Shantaram (gregory David Roberts)</a></cite> -->
+						</h4>
+						
+					
+						
+		
+					<li style="margin-bottom: 10px;">
+						<a style="font-size: 120%;" href="2015-11-05-Shantaram-gregory-David-Roberts-44.md/index.html">A make-up assistant held up...</a>
+						<br />
+						
+						<a class="text-muted" href="index.html%3Ftag=mirror.html">#mirror</a>&nbsp;
+							
+						<a class="text-muted" href="index.html%3Ftag=procedure.html">#procedure</a>&nbsp;
+							
+							</small>
+		
+					
+					</li>
+
 		
 				
 			</div>
@@ -722,37 +748,33 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "procedure", "target": "mirror" },
-      
           { "source": "procedure", "target": "Napoli" },
       
           { "source": "procedure", "target": "Morte" },
       
-          { "source": "mirror", "target": "energy" },
-      
-          { "source": "mirror", "target": "procedure" },
-      
-          { "source": "Napoli", "target": "Italia" },
+          { "source": "procedure", "target": "mirror" },
       
           { "source": "Napoli", "target": "procedure" },
       
           { "source": "Napoli", "target": "Morte" },
       
-          { "source": "Morte", "target": "vicine" },
-      
-          { "source": "Morte", "target": "Bambino" },
+          { "source": "Napoli", "target": "Italia" },
       
           { "source": "Morte", "target": "procedure" },
       
           { "source": "Morte", "target": "Napoli" },
+      
+          { "source": "Morte", "target": "vicine" },
+      
+          { "source": "Morte", "target": "Bambino" },
+      
+          { "source": "mirror", "target": "procedure" },
+      
+          { "source": "mirror", "target": "energy" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
-      
-
-        {"id": "mirror", "size": 70, "score": 0 , "title": "mirror", "type": "circle"},
-
       
 
         {"id": "Napoli", "size": 70, "score": 0 , "title": "Napoli", "type": "circle"},
@@ -763,11 +785,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "procedure", "size": 140, "score": 0.5 , "title": "procedure", "type": "circle"},
+        {"id": "mirror", "size": 70, "score": 0 , "title": "mirror", "type": "circle"},
 
       
 
-        {"id": "energy", "size": 5, "score": 0.4 , "title": "energy", "type": "circle"},
+        {"id": "procedure", "size": 140, "score": 0.5 , "title": "procedure", "type": "circle"},
 
       
 
@@ -780,6 +802,10 @@ var data_local_dynamic = {
       
 
         {"id": "Bambino", "size": 5, "score": 0.4 , "title": "Bambino", "type": "circle"},
+
+      
+
+        {"id": "energy", "size": 5, "score": 0.4 , "title": "energy", "type": "circle"},
 
        
 
@@ -909,10 +935,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

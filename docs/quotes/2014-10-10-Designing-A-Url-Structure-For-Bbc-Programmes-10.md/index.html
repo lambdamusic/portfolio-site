@@ -766,15 +766,47 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "duration", "target": "episodes" },
+          { "source": "events", "target": "cases" },
       
-          { "source": "duration", "target": "program" },
+          { "source": "events", "target": "occurrence" },
       
-          { "source": "duration", "target": "events" },
+          { "source": "events", "target": "instances" },
       
-          { "source": "duration", "target": "same-episode" },
+          { "source": "events", "target": "class" },
       
-          { "source": "duration", "target": "weeks" },
+          { "source": "events", "target": "episodes" },
+      
+          { "source": "cases", "target": "title" },
+      
+          { "source": "cases", "target": "content" },
+      
+          { "source": "cases", "target": "story" },
+      
+          { "source": "cases", "target": "occurrence" },
+      
+          { "source": "occurrence", "target": "cases" },
+      
+          { "source": "occurrence", "target": "events" },
+      
+          { "source": "occurrence", "target": "instances" },
+      
+          { "source": "occurrence", "target": "class" },
+      
+          { "source": "instances", "target": "cases" },
+      
+          { "source": "instances", "target": "occurrence" },
+      
+          { "source": "instances", "target": "events" },
+      
+          { "source": "instances", "target": "class" },
+      
+          { "source": "class", "target": "cases" },
+      
+          { "source": "class", "target": "occurrence" },
+      
+          { "source": "class", "target": "events" },
+      
+          { "source": "class", "target": "instances" },
       
           { "source": "episodes", "target": "orphans" },
       
@@ -783,65 +815,45 @@ var data_local_dynamic = {
           { "source": "episodes", "target": "years" },
       
           { "source": "episodes", "target": "time" },
-      
-          { "source": "program", "target": "episodes" },
-      
-          { "source": "program", "target": "events" },
-      
-          { "source": "program", "target": "duration" },
-      
-          { "source": "program", "target": "same-episode" },
-      
-          { "source": "events", "target": "digital-hermeneutics" },
-      
-          { "source": "events", "target": "objects" },
-      
-          { "source": "events", "target": "hermeneutics" },
-      
-          { "source": "events", "target": "episodes" },
-      
-          { "source": "same-episode", "target": "episodes" },
-      
-          { "source": "same-episode", "target": "program" },
-      
-          { "source": "same-episode", "target": "events" },
-      
-          { "source": "same-episode", "target": "duration" },
-      
-          { "source": "weeks", "target": "months" },
-      
-          { "source": "weeks", "target": "eyes" },
-      
-          { "source": "weeks", "target": "time" },
-      
-          { "source": "weeks", "target": "slums" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
+        {"id": "cases", "size": 70, "score": 0 , "title": "cases", "type": "circle"},
+
+      
+
+        {"id": "occurrence", "size": 70, "score": 0 , "title": "occurrence", "type": "circle"},
+
+      
+
+        {"id": "instances", "size": 70, "score": 0 , "title": "instances", "type": "circle"},
+
+      
+
+        {"id": "class", "size": 70, "score": 0 , "title": "class", "type": "circle"},
+
+      
+
         {"id": "episodes", "size": 70, "score": 0 , "title": "episodes", "type": "circle"},
 
       
 
-        {"id": "program", "size": 70, "score": 0 , "title": "program", "type": "circle"},
+        {"id": "events", "size": 140, "score": 0.5 , "title": "events", "type": "circle"},
 
       
 
-        {"id": "events", "size": 70, "score": 0 , "title": "events", "type": "circle"},
+        {"id": "title", "size": 5, "score": 0.4 , "title": "title", "type": "circle"},
 
       
 
-        {"id": "same-episode", "size": 70, "score": 0 , "title": "same-episode", "type": "circle"},
+        {"id": "content", "size": 5, "score": 0.4 , "title": "content", "type": "circle"},
 
       
 
-        {"id": "weeks", "size": 70, "score": 0 , "title": "weeks", "type": "circle"},
-
-      
-
-        {"id": "duration", "size": 140, "score": 0.5 , "title": "duration", "type": "circle"},
+        {"id": "story", "size": 5, "score": 0.4 , "title": "story", "type": "circle"},
 
       
 
@@ -858,30 +870,6 @@ var data_local_dynamic = {
       
 
         {"id": "time", "size": 5, "score": 0.4 , "title": "time", "type": "circle"},
-
-      
-
-        {"id": "digital-hermeneutics", "size": 5, "score": 0.4 , "title": "digital-hermeneutics", "type": "circle"},
-
-      
-
-        {"id": "objects", "size": 5, "score": 0.4 , "title": "objects", "type": "circle"},
-
-      
-
-        {"id": "hermeneutics", "size": 5, "score": 0.4 , "title": "hermeneutics", "type": "circle"},
-
-      
-
-        {"id": "months", "size": 5, "score": 0.4 , "title": "months", "type": "circle"},
-
-      
-
-        {"id": "eyes", "size": 5, "score": 0.4 , "title": "eyes", "type": "circle"},
-
-      
-
-        {"id": "slums", "size": 5, "score": 0.4 , "title": "slums", "type": "circle"},
 
        
 
@@ -1011,10 +999,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

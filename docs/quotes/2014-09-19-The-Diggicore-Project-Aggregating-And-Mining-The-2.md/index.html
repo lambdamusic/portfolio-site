@@ -766,31 +766,15 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "impact", "target": "use" },
+          { "source": "evidence", "target": "citations" },
       
-          { "source": "impact", "target": "assumption" },
+          { "source": "evidence", "target": "attributes" },
       
-          { "source": "impact", "target": "citations" },
+          { "source": "evidence", "target": "impact" },
       
-          { "source": "impact", "target": "attributes" },
+          { "source": "evidence", "target": "cause" },
       
-          { "source": "impact", "target": "evidence" },
-      
-          { "source": "use", "target": "assumption" },
-      
-          { "source": "use", "target": "impact" },
-      
-          { "source": "use", "target": "subjects" },
-      
-          { "source": "use", "target": "people" },
-      
-          { "source": "assumption", "target": "use" },
-      
-          { "source": "assumption", "target": "impact" },
-      
-          { "source": "assumption", "target": "metaphysics" },
-      
-          { "source": "assumption", "target": "meaningful-statements" },
+          { "source": "evidence", "target": "subjects" },
       
           { "source": "citations", "target": "attributes" },
       
@@ -798,7 +782,7 @@ var data_local_dynamic = {
       
           { "source": "citations", "target": "impact" },
       
-          { "source": "citations", "target": "expectations" },
+          { "source": "citations", "target": "evaluation" },
       
           { "source": "attributes", "target": "citations" },
       
@@ -808,25 +792,33 @@ var data_local_dynamic = {
       
           { "source": "attributes", "target": "users" },
       
-          { "source": "evidence", "target": "claims" },
+          { "source": "impact", "target": "use" },
       
-          { "source": "evidence", "target": "argument" },
+          { "source": "impact", "target": "assumption" },
       
-          { "source": "evidence", "target": "framework" },
+          { "source": "impact", "target": "citations" },
       
-          { "source": "evidence", "target": "citations" },
+          { "source": "impact", "target": "attributes" },
+      
+          { "source": "cause", "target": "evidence" },
+      
+          { "source": "cause", "target": "subjects" },
+      
+          { "source": "cause", "target": "cats" },
+      
+          { "source": "cause", "target": "head" },
+      
+          { "source": "subjects", "target": "evidence" },
+      
+          { "source": "subjects", "target": "cause" },
+      
+          { "source": "subjects", "target": "pain" },
+      
+          { "source": "subjects", "target": "sensation" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
-      
-
-        {"id": "use", "size": 70, "score": 0 , "title": "use", "type": "circle"},
-
-      
-
-        {"id": "assumption", "size": 70, "score": 0 , "title": "assumption", "type": "circle"},
-
       
 
         {"id": "citations", "size": 70, "score": 0 , "title": "citations", "type": "circle"},
@@ -837,31 +829,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "evidence", "size": 70, "score": 0 , "title": "evidence", "type": "circle"},
+        {"id": "impact", "size": 70, "score": 0 , "title": "impact", "type": "circle"},
 
       
 
-        {"id": "impact", "size": 140, "score": 0.5 , "title": "impact", "type": "circle"},
+        {"id": "cause", "size": 70, "score": 0 , "title": "cause", "type": "circle"},
 
       
 
-        {"id": "subjects", "size": 5, "score": 0.4 , "title": "subjects", "type": "circle"},
+        {"id": "subjects", "size": 70, "score": 0 , "title": "subjects", "type": "circle"},
 
       
 
-        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
+        {"id": "evidence", "size": 140, "score": 0.5 , "title": "evidence", "type": "circle"},
 
       
 
-        {"id": "metaphysics", "size": 5, "score": 0.4 , "title": "metaphysics", "type": "circle"},
-
-      
-
-        {"id": "meaningful-statements", "size": 5, "score": 0.4 , "title": "meaningful-statements", "type": "circle"},
-
-      
-
-        {"id": "expectations", "size": 5, "score": 0.4 , "title": "expectations", "type": "circle"},
+        {"id": "evaluation", "size": 5, "score": 0.4 , "title": "evaluation", "type": "circle"},
 
       
 
@@ -869,15 +853,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "claims", "size": 5, "score": 0.4 , "title": "claims", "type": "circle"},
+        {"id": "use", "size": 5, "score": 0.4 , "title": "use", "type": "circle"},
 
       
 
-        {"id": "argument", "size": 5, "score": 0.4 , "title": "argument", "type": "circle"},
+        {"id": "assumption", "size": 5, "score": 0.4 , "title": "assumption", "type": "circle"},
 
       
 
-        {"id": "framework", "size": 5, "score": 0.4 , "title": "framework", "type": "circle"},
+        {"id": "cats", "size": 5, "score": 0.4 , "title": "cats", "type": "circle"},
+
+      
+
+        {"id": "head", "size": 5, "score": 0.4 , "title": "head", "type": "circle"},
+
+      
+
+        {"id": "pain", "size": 5, "score": 0.4 , "title": "pain", "type": "circle"},
+
+      
+
+        {"id": "sensation", "size": 5, "score": 0.4 , "title": "sensation", "type": "circle"},
 
        
 
@@ -1007,10 +1003,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -762,39 +762,39 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "human-nature", "target": "thinking" },
+      
           { "source": "human-nature", "target": "mankind" },
       
           { "source": "human-nature", "target": "society" },
-      
-          { "source": "human-nature", "target": "thinking" },
       
           { "source": "human-nature", "target": "angels" },
       
           { "source": "human-nature", "target": "devil" },
       
-          { "source": "mankind", "target": "conduct" },
-      
-          { "source": "mankind", "target": "society" },
-      
-          { "source": "mankind", "target": "human-nature" },
-      
-          { "source": "mankind", "target": "humanity" },
-      
-          { "source": "society", "target": "philosophy" },
-      
-          { "source": "society", "target": "mankind" },
-      
-          { "source": "society", "target": "human-nature" },
-      
-          { "source": "society", "target": "family" },
-      
-          { "source": "thinking", "target": "task" },
-      
-          { "source": "thinking", "target": "principles" },
-      
           { "source": "thinking", "target": "human-nature" },
       
           { "source": "thinking", "target": "philosophy" },
+      
+          { "source": "thinking", "target": "reasoning" },
+      
+          { "source": "thinking", "target": "Western-philosophy" },
+      
+          { "source": "mankind", "target": "conduct" },
+      
+          { "source": "mankind", "target": "humanity" },
+      
+          { "source": "mankind", "target": "life" },
+      
+          { "source": "mankind", "target": "feelings" },
+      
+          { "source": "society", "target": "family" },
+      
+          { "source": "society", "target": "philosophy" },
+      
+          { "source": "society", "target": "rights" },
+      
+          { "source": "society", "target": "relation" },
       
           { "source": "angels", "target": "devil" },
       
@@ -817,15 +817,15 @@ var data_local_dynamic = {
   "nodes": [
       
 
+        {"id": "thinking", "size": 70, "score": 0 , "title": "thinking", "type": "circle"},
+
+      
+
         {"id": "mankind", "size": 70, "score": 0 , "title": "mankind", "type": "circle"},
 
       
 
         {"id": "society", "size": 70, "score": 0 , "title": "society", "type": "circle"},
-
-      
-
-        {"id": "thinking", "size": 70, "score": 0 , "title": "thinking", "type": "circle"},
 
       
 
@@ -841,6 +841,18 @@ var data_local_dynamic = {
 
       
 
+        {"id": "philosophy", "size": 5, "score": 0.4 , "title": "philosophy", "type": "circle"},
+
+      
+
+        {"id": "reasoning", "size": 5, "score": 0.4 , "title": "reasoning", "type": "circle"},
+
+      
+
+        {"id": "Western-philosophy", "size": 5, "score": 0.4 , "title": "Western-philosophy", "type": "circle"},
+
+      
+
         {"id": "conduct", "size": 5, "score": 0.4 , "title": "conduct", "type": "circle"},
 
       
@@ -849,7 +861,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "philosophy", "size": 5, "score": 0.4 , "title": "philosophy", "type": "circle"},
+        {"id": "life", "size": 5, "score": 0.4 , "title": "life", "type": "circle"},
+
+      
+
+        {"id": "feelings", "size": 5, "score": 0.4 , "title": "feelings", "type": "circle"},
 
       
 
@@ -857,11 +873,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "task", "size": 5, "score": 0.4 , "title": "task", "type": "circle"},
+        {"id": "rights", "size": 5, "score": 0.4 , "title": "rights", "type": "circle"},
 
       
 
-        {"id": "principles", "size": 5, "score": 0.4 , "title": "principles", "type": "circle"},
+        {"id": "relation", "size": 5, "score": 0.4 , "title": "relation", "type": "circle"},
 
       
 
@@ -999,10 +1015,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

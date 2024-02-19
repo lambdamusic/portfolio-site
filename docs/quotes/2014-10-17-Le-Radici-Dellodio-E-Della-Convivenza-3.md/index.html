@@ -770,19 +770,19 @@ var data_local_dynamic = {
       
           { "source": "DELLA", "target": "Hanno" },
       
-          { "source": "DELLA", "target": "Matteo" },
+          { "source": "DELLA", "target": "culture" },
       
-          { "source": "DELLA", "target": "proprio" },
+          { "source": "DELLA", "target": "Fondo" },
       
-          { "source": "DELLA", "target": "vitae" },
+          { "source": "DELLA", "target": "oggi" },
+      
+          { "source": "DIO", "target": "tempo" },
+      
+          { "source": "DIO", "target": "momento" },
       
           { "source": "DIO", "target": "ED" },
       
           { "source": "DIO", "target": "Parola" },
-      
-          { "source": "DIO", "target": "vivo" },
-      
-          { "source": "DIO", "target": "Hanno" },
       
           { "source": "Hanno", "target": "quando" },
       
@@ -792,29 +792,29 @@ var data_local_dynamic = {
       
           { "source": "Hanno", "target": "DELLA" },
       
-          { "source": "Matteo", "target": "proprio" },
+          { "source": "culture", "target": "communication" },
       
-          { "source": "Matteo", "target": "vitae" },
+          { "source": "culture", "target": "digital-media" },
       
-          { "source": "Matteo", "target": "DELLA" },
+          { "source": "culture", "target": "Fondo" },
       
-          { "source": "Matteo", "target": "nausea" },
+          { "source": "culture", "target": "oggi" },
       
-          { "source": "proprio", "target": "FA" },
+          { "source": "Fondo", "target": "momento" },
       
-          { "source": "proprio", "target": "nulla" },
+          { "source": "Fondo", "target": "culture" },
       
-          { "source": "proprio", "target": "Matteo" },
+          { "source": "Fondo", "target": "oggi" },
       
-          { "source": "proprio", "target": "vitae" },
+          { "source": "Fondo", "target": "Fino" },
       
-          { "source": "vitae", "target": "CoSe" },
+          { "source": "oggi", "target": "Italy" },
       
-          { "source": "vitae", "target": "Chiesa" },
+          { "source": "oggi", "target": "Italiana" },
       
-          { "source": "vitae", "target": "Matteo" },
+          { "source": "oggi", "target": "Unico" },
       
-          { "source": "vitae", "target": "proprio" },
+          { "source": "oggi", "target": "Luis" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -829,19 +829,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Matteo", "size": 70, "score": 0 , "title": "Matteo", "type": "circle"},
+        {"id": "culture", "size": 70, "score": 0 , "title": "culture", "type": "circle"},
 
       
 
-        {"id": "proprio", "size": 70, "score": 0 , "title": "proprio", "type": "circle"},
+        {"id": "Fondo", "size": 70, "score": 0 , "title": "Fondo", "type": "circle"},
 
       
 
-        {"id": "vitae", "size": 70, "score": 0 , "title": "vitae", "type": "circle"},
+        {"id": "oggi", "size": 70, "score": 0 , "title": "oggi", "type": "circle"},
 
       
 
         {"id": "DELLA", "size": 140, "score": 0.5 , "title": "DELLA", "type": "circle"},
+
+      
+
+        {"id": "tempo", "size": 5, "score": 0.4 , "title": "tempo", "type": "circle"},
+
+      
+
+        {"id": "momento", "size": 5, "score": 0.4 , "title": "momento", "type": "circle"},
 
       
 
@@ -853,10 +861,6 @@ var data_local_dynamic = {
 
       
 
-        {"id": "vivo", "size": 5, "score": 0.4 , "title": "vivo", "type": "circle"},
-
-      
-
         {"id": "quando", "size": 5, "score": 0.4 , "title": "quando", "type": "circle"},
 
       
@@ -865,23 +869,31 @@ var data_local_dynamic = {
 
       
 
-        {"id": "nausea", "size": 5, "score": 0.4 , "title": "nausea", "type": "circle"},
+        {"id": "communication", "size": 5, "score": 0.4 , "title": "communication", "type": "circle"},
 
       
 
-        {"id": "FA", "size": 5, "score": 0.4 , "title": "FA", "type": "circle"},
+        {"id": "digital-media", "size": 5, "score": 0.4 , "title": "digital-media", "type": "circle"},
 
       
 
-        {"id": "nulla", "size": 5, "score": 0.4 , "title": "nulla", "type": "circle"},
+        {"id": "Fino", "size": 5, "score": 0.4 , "title": "Fino", "type": "circle"},
 
       
 
-        {"id": "CoSe", "size": 5, "score": 0.4 , "title": "CoSe", "type": "circle"},
+        {"id": "Italy", "size": 5, "score": 0.4 , "title": "Italy", "type": "circle"},
 
       
 
-        {"id": "Chiesa", "size": 5, "score": 0.4 , "title": "Chiesa", "type": "circle"},
+        {"id": "Italiana", "size": 5, "score": 0.4 , "title": "Italiana", "type": "circle"},
+
+      
+
+        {"id": "Unico", "size": 5, "score": 0.4 , "title": "Unico", "type": "circle"},
+
+      
+
+        {"id": "Luis", "size": 5, "score": 0.4 , "title": "Luis", "type": "circle"},
 
        
 
@@ -1011,10 +1023,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

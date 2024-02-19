@@ -760,62 +760,52 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "pace", "target": "natura" },
-      
-          { "source": "pace", "target": "base" },
-      
-          { "source": "natura", "target": "DAL" },
-      
           { "source": "natura", "target": "nulla" },
       
           { "source": "natura", "target": "pace" },
       
-          { "source": "base", "target": "Basso" },
+          { "source": "nulla", "target": "natura" },
       
-          { "source": "base", "target": "Quattro" },
+          { "source": "nulla", "target": "InveCe" },
       
-          { "source": "base", "target": "Italiano" },
+          { "source": "nulla", "target": "totale" },
       
-          { "source": "base", "target": "caso" },
+          { "source": "nulla", "target": "FA" },
+      
+          { "source": "pace", "target": "natura" },
+      
+          { "source": "pace", "target": "base" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "natura", "size": 70, "score": 0 , "title": "natura", "type": "circle"},
+        {"id": "nulla", "size": 70, "score": 0 , "title": "nulla", "type": "circle"},
 
       
 
-        {"id": "base", "size": 70, "score": 0 , "title": "base", "type": "circle"},
+        {"id": "pace", "size": 70, "score": 0 , "title": "pace", "type": "circle"},
 
       
 
-        {"id": "pace", "size": 140, "score": 0.5 , "title": "pace", "type": "circle"},
+        {"id": "natura", "size": 140, "score": 0.5 , "title": "natura", "type": "circle"},
 
       
 
-        {"id": "DAL", "size": 5, "score": 0.4 , "title": "DAL", "type": "circle"},
+        {"id": "InveCe", "size": 5, "score": 0.4 , "title": "InveCe", "type": "circle"},
 
       
 
-        {"id": "nulla", "size": 5, "score": 0.4 , "title": "nulla", "type": "circle"},
+        {"id": "totale", "size": 5, "score": 0.4 , "title": "totale", "type": "circle"},
 
       
 
-        {"id": "Basso", "size": 5, "score": 0.4 , "title": "Basso", "type": "circle"},
+        {"id": "FA", "size": 5, "score": 0.4 , "title": "FA", "type": "circle"},
 
       
 
-        {"id": "Quattro", "size": 5, "score": 0.4 , "title": "Quattro", "type": "circle"},
-
-      
-
-        {"id": "Italiano", "size": 5, "score": 0.4 , "title": "Italiano", "type": "circle"},
-
-      
-
-        {"id": "caso", "size": 5, "score": 0.4 , "title": "caso", "type": "circle"},
+        {"id": "base", "size": 5, "score": 0.4 , "title": "base", "type": "circle"},
 
        
 
@@ -945,10 +935,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

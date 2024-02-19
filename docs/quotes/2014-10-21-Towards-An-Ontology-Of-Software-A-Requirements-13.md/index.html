@@ -788,27 +788,27 @@ var data_local_dynamic = {
       
           { "source": "psychological-state", "target": "human-mind" },
       
-          { "source": "theory", "target": "communication" },
+          { "source": "theory", "target": "cognitive-processes" },
       
-          { "source": "theory", "target": "organization" },
+          { "source": "theory", "target": "intuition" },
       
-          { "source": "theory", "target": "Nietzsche" },
+          { "source": "theory", "target": "psychological-state" },
       
-          { "source": "theory", "target": "things" },
+          { "source": "theory", "target": "physics" },
       
-          { "source": "philosophers", "target": "questions" },
+          { "source": "philosophers", "target": "intuition" },
       
-          { "source": "philosophers", "target": "speech-acts" },
+          { "source": "philosophers", "target": "consciousness" },
       
-          { "source": "philosophers", "target": "reification" },
+          { "source": "philosophers", "target": "people" },
       
-          { "source": "philosophers", "target": "metaphysics" },
+          { "source": "philosophers", "target": "philosophical-problems" },
       
-          { "source": "consciousness", "target": "human-experience" },
+          { "source": "consciousness", "target": "philosophers" },
       
-          { "source": "consciousness", "target": "mind" },
+          { "source": "consciousness", "target": "intuition" },
       
-          { "source": "consciousness", "target": "transpersonal-consciousness" },
+          { "source": "consciousness", "target": "people" },
       
           { "source": "consciousness", "target": "subjective-experience" },
                 
@@ -845,47 +845,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "communication", "size": 5, "score": 0.4 , "title": "communication", "type": "circle"},
+        {"id": "physics", "size": 5, "score": 0.4 , "title": "physics", "type": "circle"},
 
       
 
-        {"id": "organization", "size": 5, "score": 0.4 , "title": "organization", "type": "circle"},
+        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
 
       
 
-        {"id": "Nietzsche", "size": 5, "score": 0.4 , "title": "Nietzsche", "type": "circle"},
-
-      
-
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
-
-      
-
-        {"id": "questions", "size": 5, "score": 0.4 , "title": "questions", "type": "circle"},
-
-      
-
-        {"id": "speech-acts", "size": 5, "score": 0.4 , "title": "speech-acts", "type": "circle"},
-
-      
-
-        {"id": "reification", "size": 5, "score": 0.4 , "title": "reification", "type": "circle"},
-
-      
-
-        {"id": "metaphysics", "size": 5, "score": 0.4 , "title": "metaphysics", "type": "circle"},
-
-      
-
-        {"id": "human-experience", "size": 5, "score": 0.4 , "title": "human-experience", "type": "circle"},
-
-      
-
-        {"id": "mind", "size": 5, "score": 0.4 , "title": "mind", "type": "circle"},
-
-      
-
-        {"id": "transpersonal-consciousness", "size": 5, "score": 0.4 , "title": "transpersonal-consciousness", "type": "circle"},
+        {"id": "philosophical-problems", "size": 5, "score": 0.4 , "title": "philosophical-problems", "type": "circle"},
 
       
 
@@ -1019,10 +987,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

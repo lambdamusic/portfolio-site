@@ -762,78 +762,76 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "children", "target": "self" },
+          { "source": "children", "target": "fun" },
       
-          { "source": "children", "target": "being" },
+          { "source": "children", "target": "disciplines" },
       
-          { "source": "children", "target": "individuals" },
+          { "source": "children", "target": "thought" },
       
-          { "source": "children", "target": "persons" },
+          { "source": "children", "target": "food" },
       
-          { "source": "children", "target": "community" },
+          { "source": "children", "target": "kids" },
       
-          { "source": "self", "target": "children" },
+          { "source": "fun", "target": "disciplines" },
       
-          { "source": "self", "target": "being" },
+          { "source": "fun", "target": "thought" },
       
-          { "source": "self", "target": "spirituality" },
+          { "source": "fun", "target": "children" },
       
-          { "source": "self", "target": "happiness" },
+          { "source": "fun", "target": "screen-time" },
       
-          { "source": "being", "target": "self" },
+          { "source": "disciplines", "target": "fun" },
       
-          { "source": "being", "target": "children" },
+          { "source": "disciplines", "target": "thought" },
       
-          { "source": "being", "target": "human-beings" },
+          { "source": "disciplines", "target": "children" },
       
-          { "source": "being", "target": "words" },
+          { "source": "disciplines", "target": "philosophers" },
       
-          { "source": "individuals", "target": "ego" },
+          { "source": "thought", "target": "fun" },
       
-          { "source": "individuals", "target": "persons" },
+          { "source": "thought", "target": "disciplines" },
       
-          { "source": "individuals", "target": "children" },
+          { "source": "thought", "target": "children" },
       
-          { "source": "individuals", "target": "community" },
+          { "source": "thought", "target": "book" },
       
-          { "source": "persons", "target": "ego" },
+          { "source": "food", "target": "group" },
       
-          { "source": "persons", "target": "individuals" },
+          { "source": "food", "target": "kids" },
       
-          { "source": "persons", "target": "ontology" },
+          { "source": "food", "target": "children" },
       
-          { "source": "persons", "target": "philosophers" },
+          { "source": "food", "target": "eating" },
       
-          { "source": "community", "target": "patterns" },
+          { "source": "kids", "target": "food" },
       
-          { "source": "community", "target": "high-impact" },
+          { "source": "kids", "target": "children" },
       
-          { "source": "community", "target": "behavior" },
-      
-          { "source": "community", "target": "trends" },
+          { "source": "kids", "target": "eating" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "self", "size": 70, "score": 0 , "title": "self", "type": "circle"},
+        {"id": "fun", "size": 70, "score": 0 , "title": "fun", "type": "circle"},
 
       
 
-        {"id": "being", "size": 70, "score": 0 , "title": "being", "type": "circle"},
+        {"id": "disciplines", "size": 70, "score": 0 , "title": "disciplines", "type": "circle"},
 
       
 
-        {"id": "individuals", "size": 70, "score": 0 , "title": "individuals", "type": "circle"},
+        {"id": "thought", "size": 70, "score": 0 , "title": "thought", "type": "circle"},
 
       
 
-        {"id": "persons", "size": 70, "score": 0 , "title": "persons", "type": "circle"},
+        {"id": "food", "size": 70, "score": 0 , "title": "food", "type": "circle"},
 
       
 
-        {"id": "community", "size": 70, "score": 0 , "title": "community", "type": "circle"},
+        {"id": "kids", "size": 70, "score": 0 , "title": "kids", "type": "circle"},
 
       
 
@@ -841,27 +839,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "spirituality", "size": 5, "score": 0.4 , "title": "spirituality", "type": "circle"},
-
-      
-
-        {"id": "happiness", "size": 5, "score": 0.4 , "title": "happiness", "type": "circle"},
-
-      
-
-        {"id": "human-beings", "size": 5, "score": 0.4 , "title": "human-beings", "type": "circle"},
-
-      
-
-        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
-
-      
-
-        {"id": "ego", "size": 5, "score": 0.4 , "title": "ego", "type": "circle"},
-
-      
-
-        {"id": "ontology", "size": 5, "score": 0.4 , "title": "ontology", "type": "circle"},
+        {"id": "screen-time", "size": 5, "score": 0.4 , "title": "screen-time", "type": "circle"},
 
       
 
@@ -869,19 +847,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "patterns", "size": 5, "score": 0.4 , "title": "patterns", "type": "circle"},
+        {"id": "book", "size": 5, "score": 0.4 , "title": "book", "type": "circle"},
 
       
 
-        {"id": "high-impact", "size": 5, "score": 0.4 , "title": "high-impact", "type": "circle"},
+        {"id": "group", "size": 5, "score": 0.4 , "title": "group", "type": "circle"},
 
       
 
-        {"id": "behavior", "size": 5, "score": 0.4 , "title": "behavior", "type": "circle"},
-
-      
-
-        {"id": "trends", "size": 5, "score": 0.4 , "title": "trends", "type": "circle"},
+        {"id": "eating", "size": 5, "score": 0.4 , "title": "eating", "type": "circle"},
 
        
 
@@ -1011,10 +985,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

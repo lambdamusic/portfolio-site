@@ -763,56 +763,50 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "sole", "target": "mares" },
+          { "source": "Spirito", "target": "sole" },
       
-          { "source": "sole", "target": "ancora" },
+          { "source": "Spirito", "target": "vicine" },
+      
+          { "source": "Spirito", "target": "solo" },
+      
+          { "source": "Spirito", "target": "passiones" },
       
           { "source": "sole", "target": "vicine" },
       
           { "source": "sole", "target": "Spirito" },
       
-          { "source": "mares", "target": "nausea" },
+          { "source": "sole", "target": "mares" },
       
-          { "source": "mares", "target": "sole" },
-      
-          { "source": "mares", "target": "possibile" },
-      
-          { "source": "mares", "target": "SRH" },
-      
-          { "source": "ancora", "target": "forma" },
-      
-          { "source": "ancora", "target": "nulla" },
-      
-          { "source": "ancora", "target": "Soldatos" },
-      
-          { "source": "ancora", "target": "sole" },
-      
-          { "source": "vicine", "target": "Bambino" },
-      
-          { "source": "vicine", "target": "Morte" },
+          { "source": "sole", "target": "ancora" },
       
           { "source": "vicine", "target": "sole" },
       
           { "source": "vicine", "target": "Spirito" },
       
-          { "source": "Spirito", "target": "solo" },
+          { "source": "vicine", "target": "Bambino" },
       
-          { "source": "Spirito", "target": "sole" },
+          { "source": "vicine", "target": "Morte" },
       
-          { "source": "Spirito", "target": "vicine" },
+          { "source": "solo", "target": "cis" },
       
-          { "source": "Spirito", "target": "passiones" },
+          { "source": "solo", "target": "sociales" },
+      
+          { "source": "solo", "target": "Spirito" },
+      
+          { "source": "solo", "target": "passiones" },
+      
+          { "source": "passiones", "target": "Prima" },
+      
+          { "source": "passiones", "target": "Spirito" },
+      
+          { "source": "passiones", "target": "solo" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "mares", "size": 70, "score": 0 , "title": "mares", "type": "circle"},
-
-      
-
-        {"id": "ancora", "size": 70, "score": 0 , "title": "ancora", "type": "circle"},
+        {"id": "sole", "size": 70, "score": 0 , "title": "sole", "type": "circle"},
 
       
 
@@ -820,35 +814,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Spirito", "size": 70, "score": 0 , "title": "Spirito", "type": "circle"},
+        {"id": "solo", "size": 70, "score": 0 , "title": "solo", "type": "circle"},
 
       
 
-        {"id": "sole", "size": 140, "score": 0.5 , "title": "sole", "type": "circle"},
+        {"id": "passiones", "size": 70, "score": 0 , "title": "passiones", "type": "circle"},
 
       
 
-        {"id": "nausea", "size": 5, "score": 0.4 , "title": "nausea", "type": "circle"},
+        {"id": "Spirito", "size": 140, "score": 0.5 , "title": "Spirito", "type": "circle"},
 
       
 
-        {"id": "possibile", "size": 5, "score": 0.4 , "title": "possibile", "type": "circle"},
+        {"id": "mares", "size": 5, "score": 0.4 , "title": "mares", "type": "circle"},
 
       
 
-        {"id": "SRH", "size": 5, "score": 0.4 , "title": "SRH", "type": "circle"},
-
-      
-
-        {"id": "forma", "size": 5, "score": 0.4 , "title": "forma", "type": "circle"},
-
-      
-
-        {"id": "nulla", "size": 5, "score": 0.4 , "title": "nulla", "type": "circle"},
-
-      
-
-        {"id": "Soldatos", "size": 5, "score": 0.4 , "title": "Soldatos", "type": "circle"},
+        {"id": "ancora", "size": 5, "score": 0.4 , "title": "ancora", "type": "circle"},
 
       
 
@@ -860,11 +842,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "solo", "size": 5, "score": 0.4 , "title": "solo", "type": "circle"},
+        {"id": "cis", "size": 5, "score": 0.4 , "title": "cis", "type": "circle"},
 
       
 
-        {"id": "passiones", "size": 5, "score": 0.4 , "title": "passiones", "type": "circle"},
+        {"id": "sociales", "size": 5, "score": 0.4 , "title": "sociales", "type": "circle"},
+
+      
+
+        {"id": "Prima", "size": 5, "score": 0.4 , "title": "Prima", "type": "circle"},
 
        
 
@@ -994,10 +980,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -572,12 +572,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Osx Dictionary</span>
+							</small>
+							<!-- Words taken from <cite title="Osx Dictionary">
+								<a class="-underline -text-muted">Osx Dictionary</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Osx-Dictionary-14.md/index.html">Kerfuffle</a>
-						<br />
-						<small style="color: #cbcbcb;">Osx Dictionary
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=disorders.html">#disorders</a>&nbsp;
@@ -590,14 +601,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Osx-Dictionary-8.md/index.html">resilient |riˈzilyənt</a>
-						<br />
-						<small style="color: #cbcbcb;">Osx Dictionary
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=cent.html">#cent</a>&nbsp;
@@ -610,6 +623,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -732,21 +746,21 @@ var data_local_dynamic = {
       
           { "source": "cent", "target": "conditions" },
       
-          { "source": "disorders", "target": "cent" },
-      
-          { "source": "disorders", "target": "view" },
-      
           { "source": "disorders", "target": "symptoms" },
       
           { "source": "disorders", "target": "purpose" },
       
-          { "source": "view", "target": "disorders" },
+          { "source": "disorders", "target": "function" },
       
-          { "source": "view", "target": "cent" },
+          { "source": "disorders", "target": "cent" },
       
-          { "source": "view", "target": "science" },
+          { "source": "view", "target": "God" },
       
-          { "source": "view", "target": "mechanical-view" },
+          { "source": "view", "target": "world" },
+      
+          { "source": "view", "target": "possible-worlds" },
+      
+          { "source": "view", "target": "assertion" },
       
           { "source": "fish", "target": "cent" },
       
@@ -754,13 +768,13 @@ var data_local_dynamic = {
       
           { "source": "fish", "target": "organisms" },
       
-          { "source": "conditions", "target": "cent" },
+          { "source": "conditions", "target": "labor" },
       
-          { "source": "conditions", "target": "fish" },
+          { "source": "conditions", "target": "factors" },
       
-          { "source": "conditions", "target": "doubt" },
+          { "source": "conditions", "target": "personal-identity" },
       
-          { "source": "conditions", "target": "people" },
+          { "source": "conditions", "target": "workers" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -795,11 +809,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "science", "size": 5, "score": 0.4 , "title": "science", "type": "circle"},
+        {"id": "function", "size": 5, "score": 0.4 , "title": "function", "type": "circle"},
 
       
 
-        {"id": "mechanical-view", "size": 5, "score": 0.4 , "title": "mechanical-view", "type": "circle"},
+        {"id": "God", "size": 5, "score": 0.4 , "title": "God", "type": "circle"},
+
+      
+
+        {"id": "world", "size": 5, "score": 0.4 , "title": "world", "type": "circle"},
+
+      
+
+        {"id": "possible-worlds", "size": 5, "score": 0.4 , "title": "possible-worlds", "type": "circle"},
+
+      
+
+        {"id": "assertion", "size": 5, "score": 0.4 , "title": "assertion", "type": "circle"},
 
       
 
@@ -807,11 +833,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "doubt", "size": 5, "score": 0.4 , "title": "doubt", "type": "circle"},
+        {"id": "labor", "size": 5, "score": 0.4 , "title": "labor", "type": "circle"},
 
       
 
-        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
+        {"id": "factors", "size": 5, "score": 0.4 , "title": "factors", "type": "circle"},
+
+      
+
+        {"id": "personal-identity", "size": 5, "score": 0.4 , "title": "personal-identity", "type": "circle"},
+
+      
+
+        {"id": "workers", "size": 5, "score": 0.4 , "title": "workers", "type": "circle"},
 
        
 
@@ -941,10 +975,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

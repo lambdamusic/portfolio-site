@@ -759,59 +759,65 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "forma", "target": "Fede" },
+      
+          { "source": "forma", "target": "Una" },
+      
           { "source": "forma", "target": "nulla" },
       
           { "source": "forma", "target": "ancora" },
       
-          { "source": "forma", "target": "InveCe" },
-      
-          { "source": "forma", "target": "del" },
-      
           { "source": "forma", "target": "DARE" },
       
-          { "source": "nulla", "target": "forma" },
+          { "source": "Fede", "target": "forma" },
       
-          { "source": "nulla", "target": "ancora" },
+          { "source": "Fede", "target": "Una" },
+      
+          { "source": "Fede", "target": "Vero" },
+      
+          { "source": "Una", "target": "forma" },
+      
+          { "source": "Una", "target": "Fede" },
+      
+          { "source": "Una", "target": "vistas" },
+      
+          { "source": "Una", "target": "Punto" },
+      
+          { "source": "nulla", "target": "natura" },
+      
+          { "source": "nulla", "target": "InveCe" },
+      
+          { "source": "nulla", "target": "totale" },
       
           { "source": "nulla", "target": "FA" },
-      
-          { "source": "nulla", "target": "proprio" },
       
           { "source": "ancora", "target": "forma" },
       
           { "source": "ancora", "target": "nulla" },
       
-          { "source": "ancora", "target": "Soldatos" },
-      
           { "source": "ancora", "target": "sole" },
       
-          { "source": "InveCe", "target": "forma" },
-      
-          { "source": "InveCe", "target": "del" },
-      
-          { "source": "InveCe", "target": "nulla" },
-      
-          { "source": "InveCe", "target": "totale" },
-      
-          { "source": "del", "target": "Basso" },
-      
-          { "source": "del", "target": "males" },
-      
-          { "source": "del", "target": "InveCe" },
-      
-          { "source": "del", "target": "forma" },
-      
-          { "source": "DARE", "target": "forma" },
+          { "source": "ancora", "target": "possibile" },
       
           { "source": "DARE", "target": "tempo" },
       
           { "source": "DARE", "target": "CoSe" },
       
           { "source": "DARE", "target": "quando" },
+      
+          { "source": "DARE", "target": "forma" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "Fede", "size": 70, "score": 0 , "title": "Fede", "type": "circle"},
+
+      
+
+        {"id": "Una", "size": 70, "score": 0 , "title": "Una", "type": "circle"},
+
       
 
         {"id": "nulla", "size": 70, "score": 0 , "title": "nulla", "type": "circle"},
@@ -819,14 +825,6 @@ var data_local_dynamic = {
       
 
         {"id": "ancora", "size": 70, "score": 0 , "title": "ancora", "type": "circle"},
-
-      
-
-        {"id": "InveCe", "size": 70, "score": 0 , "title": "InveCe", "type": "circle"},
-
-      
-
-        {"id": "del", "size": 70, "score": 0 , "title": "del", "type": "circle"},
 
       
 
@@ -838,19 +836,23 @@ var data_local_dynamic = {
 
       
 
-        {"id": "FA", "size": 5, "score": 0.4 , "title": "FA", "type": "circle"},
+        {"id": "Vero", "size": 5, "score": 0.4 , "title": "Vero", "type": "circle"},
 
       
 
-        {"id": "proprio", "size": 5, "score": 0.4 , "title": "proprio", "type": "circle"},
+        {"id": "vistas", "size": 5, "score": 0.4 , "title": "vistas", "type": "circle"},
 
       
 
-        {"id": "Soldatos", "size": 5, "score": 0.4 , "title": "Soldatos", "type": "circle"},
+        {"id": "Punto", "size": 5, "score": 0.4 , "title": "Punto", "type": "circle"},
 
       
 
-        {"id": "sole", "size": 5, "score": 0.4 , "title": "sole", "type": "circle"},
+        {"id": "natura", "size": 5, "score": 0.4 , "title": "natura", "type": "circle"},
+
+      
+
+        {"id": "InveCe", "size": 5, "score": 0.4 , "title": "InveCe", "type": "circle"},
 
       
 
@@ -858,11 +860,15 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Basso", "size": 5, "score": 0.4 , "title": "Basso", "type": "circle"},
+        {"id": "FA", "size": 5, "score": 0.4 , "title": "FA", "type": "circle"},
 
       
 
-        {"id": "males", "size": 5, "score": 0.4 , "title": "males", "type": "circle"},
+        {"id": "sole", "size": 5, "score": 0.4 , "title": "sole", "type": "circle"},
+
+      
+
+        {"id": "possibile", "size": 5, "score": 0.4 , "title": "possibile", "type": "circle"},
 
       
 
@@ -1004,10 +1010,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

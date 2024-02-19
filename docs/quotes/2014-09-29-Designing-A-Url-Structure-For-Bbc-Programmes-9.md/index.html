@@ -768,15 +768,15 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "series", "target": "episodes" },
+          { "source": "orphans", "target": "episodes" },
       
-          { "source": "series", "target": "orphans" },
+          { "source": "orphans", "target": "series" },
       
-          { "source": "series", "target": "years" },
+          { "source": "orphans", "target": "years" },
       
-          { "source": "series", "target": "time" },
+          { "source": "orphans", "target": "time" },
       
-          { "source": "series", "target": "risk" },
+          { "source": "orphans", "target": "risk" },
       
           { "source": "episodes", "target": "orphans" },
       
@@ -786,29 +786,29 @@ var data_local_dynamic = {
       
           { "source": "episodes", "target": "time" },
       
-          { "source": "orphans", "target": "episodes" },
+          { "source": "series", "target": "episodes" },
       
-          { "source": "orphans", "target": "series" },
+          { "source": "series", "target": "orphans" },
       
-          { "source": "orphans", "target": "years" },
+          { "source": "series", "target": "years" },
       
-          { "source": "orphans", "target": "time" },
+          { "source": "series", "target": "time" },
       
-          { "source": "years", "target": "UK" },
+          { "source": "years", "target": "factors" },
       
-          { "source": "years", "target": "Europe" },
+          { "source": "years", "target": "article" },
+      
+          { "source": "years", "target": "citations" },
       
           { "source": "years", "target": "episodes" },
       
-          { "source": "years", "target": "orphans" },
+          { "source": "time", "target": "weeks" },
       
-          { "source": "time", "target": "episodes" },
+          { "source": "time", "target": "experience" },
       
-          { "source": "time", "target": "orphans" },
+          { "source": "time", "target": "days" },
       
-          { "source": "time", "target": "series" },
-      
-          { "source": "time", "target": "years" },
+          { "source": "time", "target": "lack" },
       
           { "source": "risk", "target": "episodes" },
       
@@ -816,7 +816,7 @@ var data_local_dynamic = {
       
           { "source": "risk", "target": "series" },
       
-          { "source": "risk", "target": "factors" },
+          { "source": "risk", "target": "health" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -827,7 +827,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "orphans", "size": 70, "score": 0 , "title": "orphans", "type": "circle"},
+        {"id": "series", "size": 70, "score": 0 , "title": "series", "type": "circle"},
 
       
 
@@ -843,19 +843,39 @@ var data_local_dynamic = {
 
       
 
-        {"id": "series", "size": 140, "score": 0.5 , "title": "series", "type": "circle"},
-
-      
-
-        {"id": "UK", "size": 5, "score": 0.4 , "title": "UK", "type": "circle"},
-
-      
-
-        {"id": "Europe", "size": 5, "score": 0.4 , "title": "Europe", "type": "circle"},
+        {"id": "orphans", "size": 140, "score": 0.5 , "title": "orphans", "type": "circle"},
 
       
 
         {"id": "factors", "size": 5, "score": 0.4 , "title": "factors", "type": "circle"},
+
+      
+
+        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
+
+      
+
+        {"id": "citations", "size": 5, "score": 0.4 , "title": "citations", "type": "circle"},
+
+      
+
+        {"id": "weeks", "size": 5, "score": 0.4 , "title": "weeks", "type": "circle"},
+
+      
+
+        {"id": "experience", "size": 5, "score": 0.4 , "title": "experience", "type": "circle"},
+
+      
+
+        {"id": "days", "size": 5, "score": 0.4 , "title": "days", "type": "circle"},
+
+      
+
+        {"id": "lack", "size": 5, "score": 0.4 , "title": "lack", "type": "circle"},
+
+      
+
+        {"id": "health", "size": 5, "score": 0.4 , "title": "health", "type": "circle"},
 
        
 
@@ -985,10 +1005,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

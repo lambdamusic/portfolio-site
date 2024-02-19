@@ -572,12 +572,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >La Vena Ovvero L&#39;oscuro Caso Del Professor Fazel</span>
+							</small>
+							<!-- Words taken from <cite title="La Vena Ovvero L&#39;oscuro Caso Del Professor Fazel">
+								<a class="-underline -text-muted">La Vena Ovvero L&#39;oscuro Caso Del Professor Fazel</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2016-04-24-La-Vena-Ovvero-Loscuro-Caso-Del-Professor-6.md/index.html">F. taceva ma la sua...</a>
-						<br />
-						<small style="color: #cbcbcb;">La Vena Ovvero L&#39;oscuro Caso Del Professor Fazel
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=minutes.html">#minutes</a>&nbsp;
@@ -594,14 +605,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://it.wikipedia.org/wiki/Perch%C3%A9_non_possiamo_essere_cristiani_%28e_meno_che_mai_cattolici%29" class="text-muted" target="_blank">Perché Non Possiamo Essere Cristiani (e Meno Che Mai Cattolici)</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Perché Non Possiamo Essere Cristiani (e Meno Che Mai Cattolici)">
+								<a href="http://it.wikipedia.org/wiki/Perch%C3%A9_non_possiamo_essere_cristiani_%28e_meno_che_mai_cattolici%29" class="-underline -text-muted" target="_blank">
+								  Perché Non Possiamo Essere Cristiani (e Meno Che Mai Cattolici)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="http://127.0.0.1:8000/quotes/2015-05-06-Perche%CC%81-Non-Possiamo-Essere-Cristiani-e-Meno-1.md/">L&#39;assurdita dei dogmi della chiesa</a>
-						<br />
-						<small style="color: #cbcbcb;">Perché Non Possiamo Essere Cristiani (e Meno Che Mai Cattolici)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=vistas.html">#vistas</a>&nbsp;
@@ -614,6 +639,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -754,29 +780,29 @@ var data_local_dynamic = {
       
           { "source": "Suo", "target": "vistas" },
       
-          { "source": "SU", "target": "Disse" },
-      
-          { "source": "SU", "target": "credo" },
-      
           { "source": "SU", "target": "minutes" },
       
           { "source": "SU", "target": "Suo" },
+      
+          { "source": "SU", "target": "Io" },
+      
+          { "source": "SU", "target": "vistas" },
+      
+          { "source": "Io", "target": "caso" },
+      
+          { "source": "Io", "target": "Italiano" },
       
           { "source": "Io", "target": "minutes" },
       
           { "source": "Io", "target": "Suo" },
       
-          { "source": "Io", "target": "SU" },
-      
-          { "source": "Io", "target": "vistas" },
-      
           { "source": "Una", "target": "forma" },
       
           { "source": "Una", "target": "Fede" },
       
-          { "source": "Una", "target": "Luis" },
-      
           { "source": "Una", "target": "vistas" },
+      
+          { "source": "Una", "target": "Punto" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -819,11 +845,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Disse", "size": 5, "score": 0.4 , "title": "Disse", "type": "circle"},
+        {"id": "caso", "size": 5, "score": 0.4 , "title": "caso", "type": "circle"},
 
       
 
-        {"id": "credo", "size": 5, "score": 0.4 , "title": "credo", "type": "circle"},
+        {"id": "Italiano", "size": 5, "score": 0.4 , "title": "Italiano", "type": "circle"},
 
       
 
@@ -835,7 +861,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "Luis", "size": 5, "score": 0.4 , "title": "Luis", "type": "circle"},
+        {"id": "Punto", "size": 5, "score": 0.4 , "title": "Punto", "type": "circle"},
 
        
 
@@ -965,10 +991,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

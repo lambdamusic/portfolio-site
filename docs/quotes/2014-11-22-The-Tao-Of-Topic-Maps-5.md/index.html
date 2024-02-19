@@ -762,98 +762,118 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "reference", "target": "mechanism" },
+          { "source": "book", "target": "news" },
       
-          { "source": "reference", "target": "character" },
+          { "source": "book", "target": "journals" },
       
-          { "source": "reference", "target": "basis" },
+          { "source": "book", "target": "nature" },
       
-          { "source": "reference", "target": "generality" },
+          { "source": "book", "target": "text" },
       
-          { "source": "reference", "target": "resources" },
+          { "source": "book", "target": "readers" },
       
-          { "source": "mechanism", "target": "character" },
+          { "source": "news", "target": "journals" },
       
-          { "source": "mechanism", "target": "basis" },
+          { "source": "news", "target": "book" },
       
-          { "source": "mechanism", "target": "generality" },
+          { "source": "news", "target": "nature" },
       
-          { "source": "mechanism", "target": "reference" },
+          { "source": "news", "target": "grammar" },
       
-          { "source": "character", "target": "mechanism" },
+          { "source": "journals", "target": "news" },
       
-          { "source": "character", "target": "basis" },
+          { "source": "journals", "target": "book" },
       
-          { "source": "character", "target": "generality" },
+          { "source": "journals", "target": "nature" },
       
-          { "source": "character", "target": "reference" },
+          { "source": "journals", "target": "database" },
       
-          { "source": "basis", "target": "mechanism" },
+          { "source": "nature", "target": "news" },
       
-          { "source": "basis", "target": "character" },
+          { "source": "nature", "target": "journals" },
       
-          { "source": "basis", "target": "generality" },
+          { "source": "nature", "target": "book" },
       
-          { "source": "basis", "target": "reference" },
+          { "source": "nature", "target": "people" },
       
-          { "source": "generality", "target": "mechanism" },
+          { "source": "text", "target": "story" },
       
-          { "source": "generality", "target": "character" },
+          { "source": "text", "target": "game" },
       
-          { "source": "generality", "target": "basis" },
+          { "source": "text", "target": "character" },
       
-          { "source": "generality", "target": "reference" },
+          { "source": "text", "target": "interactive-fiction" },
       
-          { "source": "resources", "target": "data-structure" },
+          { "source": "readers", "target": "text" },
       
-          { "source": "resources", "target": "structure" },
+          { "source": "readers", "target": "book" },
       
-          { "source": "resources", "target": "description" },
+          { "source": "readers", "target": "words" },
       
-          { "source": "resources", "target": "reification" },
+          { "source": "readers", "target": "algorithm" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "mechanism", "size": 70, "score": 0 , "title": "mechanism", "type": "circle"},
+        {"id": "news", "size": 70, "score": 0 , "title": "news", "type": "circle"},
 
       
 
-        {"id": "character", "size": 70, "score": 0 , "title": "character", "type": "circle"},
+        {"id": "journals", "size": 70, "score": 0 , "title": "journals", "type": "circle"},
 
       
 
-        {"id": "basis", "size": 70, "score": 0 , "title": "basis", "type": "circle"},
+        {"id": "nature", "size": 70, "score": 0 , "title": "nature", "type": "circle"},
 
       
 
-        {"id": "generality", "size": 70, "score": 0 , "title": "generality", "type": "circle"},
+        {"id": "text", "size": 70, "score": 0 , "title": "text", "type": "circle"},
 
       
 
-        {"id": "resources", "size": 70, "score": 0 , "title": "resources", "type": "circle"},
+        {"id": "readers", "size": 70, "score": 0 , "title": "readers", "type": "circle"},
 
       
 
-        {"id": "reference", "size": 140, "score": 0.5 , "title": "reference", "type": "circle"},
+        {"id": "book", "size": 140, "score": 0.5 , "title": "book", "type": "circle"},
 
       
 
-        {"id": "data-structure", "size": 5, "score": 0.4 , "title": "data-structure", "type": "circle"},
+        {"id": "grammar", "size": 5, "score": 0.4 , "title": "grammar", "type": "circle"},
 
       
 
-        {"id": "structure", "size": 5, "score": 0.4 , "title": "structure", "type": "circle"},
+        {"id": "database", "size": 5, "score": 0.4 , "title": "database", "type": "circle"},
 
       
 
-        {"id": "description", "size": 5, "score": 0.4 , "title": "description", "type": "circle"},
+        {"id": "people", "size": 5, "score": 0.4 , "title": "people", "type": "circle"},
 
       
 
-        {"id": "reification", "size": 5, "score": 0.4 , "title": "reification", "type": "circle"},
+        {"id": "story", "size": 5, "score": 0.4 , "title": "story", "type": "circle"},
+
+      
+
+        {"id": "game", "size": 5, "score": 0.4 , "title": "game", "type": "circle"},
+
+      
+
+        {"id": "character", "size": 5, "score": 0.4 , "title": "character", "type": "circle"},
+
+      
+
+        {"id": "interactive-fiction", "size": 5, "score": 0.4 , "title": "interactive-fiction", "type": "circle"},
+
+      
+
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "algorithm", "size": 5, "score": 0.4 , "title": "algorithm", "type": "circle"},
 
        
 
@@ -983,10 +1003,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

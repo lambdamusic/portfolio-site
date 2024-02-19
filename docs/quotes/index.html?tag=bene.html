@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.ilfattoquotidiano.it/2011/11/18/capire-lattualita-frank-zappa-grillo-parlante-novecento/1" class="text-muted" target="_blank">Capire L’attualità Di Frank Zappa Il Grillo Parlante Del Novecento</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Capire L’attualità Di Frank Zappa Il Grillo Parlante Del Novecento">
+								<a href="http://www.ilfattoquotidiano.it/2011/11/18/capire-lattualita-frank-zappa-grillo-parlante-novecento/1" class="-underline -text-muted" target="_blank">
+								  Capire L’attualità Di Frank Zappa Il Grillo Parlante Del Novecento</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="http://127.0.0.1:8000/quotes/2013-02-26-Capire-Lattualita%CC%80-Di-Frank-Zappa-Il-Grillo-1.md/">Gente di plastica</a>
-						<br />
-						<small style="color: #cbcbcb;">Capire L’attualità Di Frank Zappa Il Grillo Parlante Del Novecento
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=bene.html">#bene</a>&nbsp;
@@ -586,14 +599,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.ilfattoquotidiano.it/2014/09/14/indipendentismo-perche-la-sicilia-non-e-ne-la-catalogna-ne-la-scozia/1120341/" class="text-muted" target="_blank">Indipendentismo, Perché La Sicilia Non È Né La Catalogna Né La Scozia - Il Fatto Quotidiano</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Indipendentismo, Perché La Sicilia Non È Né La Catalogna Né La Scozia - Il Fatto Quotidiano">
+								<a href="http://www.ilfattoquotidiano.it/2014/09/14/indipendentismo-perche-la-sicilia-non-e-ne-la-catalogna-ne-la-scozia/1120341/" class="-underline -text-muted" target="_blank">
+								  Indipendentismo, Perché La Sicilia Non È Né La Catalogna Né La Scozia - Il Fatto Quotidiano</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="http://127.0.0.1:8000/quotes/2014-09-14-Indipendentismo-Perche%CC%81-La-Sicilia-Non-E%CC%80-Ne%CC%81-1.md/">Indipendentismo siciliano</a>
-						<br />
-						<small style="color: #cbcbcb;">Indipendentismo, Perché La Sicilia Non È Né La Catalogna Né La Scozia - Il Fatto Quotidiano
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=adultos.html">#adultos</a>&nbsp;
@@ -606,6 +633,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -732,13 +760,13 @@ var data_local_dynamic = {
       
           { "source": "adultos", "target": "drogas" },
       
-          { "source": "Presto", "target": "adultos" },
-      
-          { "source": "Presto", "target": "bene" },
-      
           { "source": "Presto", "target": "Italiano" },
       
           { "source": "Presto", "target": "cons" },
+      
+          { "source": "Presto", "target": "adultos" },
+      
+          { "source": "Presto", "target": "bene" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -899,10 +927,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

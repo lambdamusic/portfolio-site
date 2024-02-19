@@ -766,15 +766,7 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "categories", "target": "traits" },
-      
-          { "source": "categories", "target": "class" },
-      
-          { "source": "categories", "target": "items" },
-      
-          { "source": "categories", "target": "criteria" },
-      
-          { "source": "categories", "target": "types" },
+          { "source": "traits", "target": "taxa" },
       
           { "source": "traits", "target": "class" },
       
@@ -784,13 +776,25 @@ var data_local_dynamic = {
       
           { "source": "traits", "target": "criteria" },
       
-          { "source": "class", "target": "traits" },
+          { "source": "taxa", "target": "traits" },
       
-          { "source": "class", "target": "categories" },
+          { "source": "taxa", "target": "synonym" },
       
-          { "source": "class", "target": "items" },
+          { "source": "class", "target": "cases" },
       
-          { "source": "class", "target": "criteria" },
+          { "source": "class", "target": "occurrence" },
+      
+          { "source": "class", "target": "events" },
+      
+          { "source": "class", "target": "instances" },
+      
+          { "source": "categories", "target": "traits" },
+      
+          { "source": "categories", "target": "class" },
+      
+          { "source": "categories", "target": "items" },
+      
+          { "source": "categories", "target": "criteria" },
       
           { "source": "items", "target": "traits" },
       
@@ -807,25 +811,21 @@ var data_local_dynamic = {
           { "source": "criteria", "target": "categories" },
       
           { "source": "criteria", "target": "items" },
-      
-          { "source": "types", "target": "unity" },
-      
-          { "source": "types", "target": "entities" },
-      
-          { "source": "types", "target": "domain" },
-      
-          { "source": "types", "target": "terms" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "traits", "size": 70, "score": 0 , "title": "traits", "type": "circle"},
+        {"id": "taxa", "size": 70, "score": 0 , "title": "taxa", "type": "circle"},
 
       
 
         {"id": "class", "size": 70, "score": 0 , "title": "class", "type": "circle"},
+
+      
+
+        {"id": "categories", "size": 70, "score": 0 , "title": "categories", "type": "circle"},
 
       
 
@@ -837,27 +837,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "types", "size": 70, "score": 0 , "title": "types", "type": "circle"},
+        {"id": "traits", "size": 140, "score": 0.5 , "title": "traits", "type": "circle"},
 
       
 
-        {"id": "categories", "size": 140, "score": 0.5 , "title": "categories", "type": "circle"},
+        {"id": "synonym", "size": 5, "score": 0.4 , "title": "synonym", "type": "circle"},
 
       
 
-        {"id": "unity", "size": 5, "score": 0.4 , "title": "unity", "type": "circle"},
+        {"id": "cases", "size": 5, "score": 0.4 , "title": "cases", "type": "circle"},
 
       
 
-        {"id": "entities", "size": 5, "score": 0.4 , "title": "entities", "type": "circle"},
+        {"id": "occurrence", "size": 5, "score": 0.4 , "title": "occurrence", "type": "circle"},
 
       
 
-        {"id": "domain", "size": 5, "score": 0.4 , "title": "domain", "type": "circle"},
+        {"id": "events", "size": 5, "score": 0.4 , "title": "events", "type": "circle"},
 
       
 
-        {"id": "terms", "size": 5, "score": 0.4 , "title": "terms", "type": "circle"},
+        {"id": "instances", "size": 5, "score": 0.4 , "title": "instances", "type": "circle"},
 
        
 
@@ -987,10 +987,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

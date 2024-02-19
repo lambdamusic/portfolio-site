@@ -765,72 +765,114 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "non-linearity", "target": "complexity" },
+          { "source": "science", "target": "article" },
       
-          { "source": "non-linearity", "target": "chaos" },
+          { "source": "science", "target": "hierarchy" },
       
-          { "source": "non-linearity", "target": "science" },
+          { "source": "science", "target": "social-sciences" },
       
-          { "source": "complexity", "target": "network" },
+          { "source": "science", "target": "publications" },
       
-          { "source": "complexity", "target": "science" },
+          { "source": "science", "target": "area" },
       
-          { "source": "complexity", "target": "data-structure" },
+          { "source": "article", "target": "hierarchy" },
       
-          { "source": "complexity", "target": "users" },
+          { "source": "article", "target": "social-sciences" },
       
-          { "source": "chaos", "target": "complexity" },
+          { "source": "article", "target": "science" },
       
-          { "source": "chaos", "target": "science" },
+          { "source": "article", "target": "concept" },
       
-          { "source": "chaos", "target": "non-linearity" },
+          { "source": "hierarchy", "target": "article" },
       
-          { "source": "science", "target": "complexity" },
+          { "source": "hierarchy", "target": "social-sciences" },
       
-          { "source": "science", "target": "network" },
+          { "source": "hierarchy", "target": "science" },
       
-          { "source": "science", "target": "soul" },
+          { "source": "hierarchy", "target": "nodes" },
       
-          { "source": "science", "target": "things" },
+          { "source": "social-sciences", "target": "article" },
+      
+          { "source": "social-sciences", "target": "hierarchy" },
+      
+          { "source": "social-sciences", "target": "science" },
+      
+          { "source": "social-sciences", "target": "journals" },
+      
+          { "source": "publications", "target": "hypothesis" },
+      
+          { "source": "publications", "target": "values" },
+      
+          { "source": "publications", "target": "distance" },
+      
+          { "source": "publications", "target": "area" },
+      
+          { "source": "area", "target": "publications" },
+      
+          { "source": "area", "target": "contribution" },
+      
+          { "source": "area", "target": "highest-contribution" },
+      
+          { "source": "area", "target": "science" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "complexity", "size": 70, "score": 0 , "title": "complexity", "type": "circle"},
+        {"id": "article", "size": 70, "score": 0 , "title": "article", "type": "circle"},
 
       
 
-        {"id": "chaos", "size": 70, "score": 0 , "title": "chaos", "type": "circle"},
+        {"id": "hierarchy", "size": 70, "score": 0 , "title": "hierarchy", "type": "circle"},
 
       
 
-        {"id": "science", "size": 70, "score": 0 , "title": "science", "type": "circle"},
+        {"id": "social-sciences", "size": 70, "score": 0 , "title": "social-sciences", "type": "circle"},
 
       
 
-        {"id": "non-linearity", "size": 140, "score": 0.5 , "title": "non-linearity", "type": "circle"},
+        {"id": "publications", "size": 70, "score": 0 , "title": "publications", "type": "circle"},
 
       
 
-        {"id": "network", "size": 5, "score": 0.4 , "title": "network", "type": "circle"},
+        {"id": "area", "size": 70, "score": 0 , "title": "area", "type": "circle"},
 
       
 
-        {"id": "data-structure", "size": 5, "score": 0.4 , "title": "data-structure", "type": "circle"},
+        {"id": "science", "size": 140, "score": 0.5 , "title": "science", "type": "circle"},
 
       
 
-        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
+        {"id": "concept", "size": 5, "score": 0.4 , "title": "concept", "type": "circle"},
 
       
 
-        {"id": "soul", "size": 5, "score": 0.4 , "title": "soul", "type": "circle"},
+        {"id": "nodes", "size": 5, "score": 0.4 , "title": "nodes", "type": "circle"},
 
       
 
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
+        {"id": "journals", "size": 5, "score": 0.4 , "title": "journals", "type": "circle"},
+
+      
+
+        {"id": "hypothesis", "size": 5, "score": 0.4 , "title": "hypothesis", "type": "circle"},
+
+      
+
+        {"id": "values", "size": 5, "score": 0.4 , "title": "values", "type": "circle"},
+
+      
+
+        {"id": "distance", "size": 5, "score": 0.4 , "title": "distance", "type": "circle"},
+
+      
+
+        {"id": "contribution", "size": 5, "score": 0.4 , "title": "contribution", "type": "circle"},
+
+      
+
+        {"id": "highest-contribution", "size": 5, "score": 0.4 , "title": "highest-contribution", "type": "circle"},
 
        
 
@@ -960,10 +1002,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

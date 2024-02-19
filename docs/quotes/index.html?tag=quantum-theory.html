@@ -572,12 +572,53 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<span class="text-muted" >Do They Think You&#39;re Stupid? (julian Baggini)</span>
+							</small>
+							<!-- Words taken from <cite title="Do They Think You&#39;re Stupid? (julian Baggini)">
+								<a class="-underline -text-muted">Do They Think You&#39;re Stupid? (julian Baggini)</a></cite> -->
+						</h4>
+						
+					
+						
+		
+					<li style="margin-bottom: 10px;">
+						<a style="font-size: 120%;" href="2017-06-08-Do-They-Think-Youre-Stupid-julian-Baggini-1.md/index.html">Quantum consciousness: a lot of speculation and dubious analogy</a>
+						<br />
+						
+						<a class="text-muted" href="index.html%3Ftag=quantum-theory.html">#quantum-theory</a>&nbsp;
+							
+							</small>
+		
+					
+					</li>
+
+		
+				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.goodreads.com/book/show/60551.The_Book_on_the_Taboo_Against_Knowing_Who_You_Are" class="text-muted" target="_blank">The Book: On The Taboo Against Knowing Who You Are</a>
+									
+							</small>
+							<!-- Words taken from <cite title="The Book: On The Taboo Against Knowing Who You Are">
+								<a href="http://www.goodreads.com/book/show/60551.The_Book_on_the_Taboo_Against_Knowing_Who_You_Are" class="-underline -text-muted" target="_blank">
+								  The Book: On The Taboo Against Knowing Who You Are</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2015-12-30-The-Book-On-The-Taboo-Against-Knowing-69.md/index.html">In accordance with william blake’s...</a>
-						<br />
-						<small style="color: #cbcbcb;">The Book: On The Taboo Against Knowing Who You Are
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=quantum-theory.html">#quantum-theory</a>&nbsp;
@@ -592,22 +633,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
-		
-				
-		
-					<li style="margin-bottom: 10px;">
-						<a style="font-size: 120%;" href="2017-06-08-Do-They-Think-Youre-Stupid-julian-Baggini-1.md/index.html">Quantum consciousness: a lot of speculation and dubious analogy</a>
-						<br />
-						<small style="color: #cbcbcb;">Do They Think You&#39;re Stupid? (julian Baggini)
 
-						<br />
-						
-						<a class="text-muted" href="index.html%3Ftag=quantum-theory.html">#quantum-theory</a>&nbsp;
-							
-							</small>
-		
-					
-					</li>
 		
 				
 			</div>
@@ -736,21 +762,21 @@ var data_local_dynamic = {
       
           { "source": "electrons", "target": "quantum-theory" },
       
-          { "source": "properties", "target": "class" },
+          { "source": "properties", "target": "network" },
       
           { "source": "properties", "target": "instances" },
       
-          { "source": "properties", "target": "kind" },
-      
           { "source": "properties", "target": "range" },
       
-          { "source": "objects", "target": "digital-hermeneutics" },
+          { "source": "properties", "target": "class" },
       
-          { "source": "objects", "target": "events" },
+          { "source": "objects", "target": "class" },
       
-          { "source": "objects", "target": "hermeneutics" },
+          { "source": "objects", "target": "real-world" },
       
-          { "source": "objects", "target": "CRM" },
+          { "source": "objects", "target": "instances" },
+      
+          { "source": "objects", "target": "types" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -785,7 +811,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "class", "size": 5, "score": 0.4 , "title": "class", "type": "circle"},
+        {"id": "network", "size": 5, "score": 0.4 , "title": "network", "type": "circle"},
 
       
 
@@ -793,27 +819,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "kind", "size": 5, "score": 0.4 , "title": "kind", "type": "circle"},
-
-      
-
         {"id": "range", "size": 5, "score": 0.4 , "title": "range", "type": "circle"},
 
       
 
-        {"id": "digital-hermeneutics", "size": 5, "score": 0.4 , "title": "digital-hermeneutics", "type": "circle"},
+        {"id": "class", "size": 5, "score": 0.4 , "title": "class", "type": "circle"},
 
       
 
-        {"id": "events", "size": 5, "score": 0.4 , "title": "events", "type": "circle"},
+        {"id": "real-world", "size": 5, "score": 0.4 , "title": "real-world", "type": "circle"},
 
       
 
-        {"id": "hermeneutics", "size": 5, "score": 0.4 , "title": "hermeneutics", "type": "circle"},
-
-      
-
-        {"id": "CRM", "size": 5, "score": 0.4 , "title": "CRM", "type": "circle"},
+        {"id": "types", "size": 5, "score": 0.4 , "title": "types", "type": "circle"},
 
        
 
@@ -943,10 +961,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

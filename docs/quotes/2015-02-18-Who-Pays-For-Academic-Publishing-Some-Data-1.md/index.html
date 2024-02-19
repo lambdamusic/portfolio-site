@@ -764,31 +764,23 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "academic-publishing", "target": "publishing" },
-      
-          { "source": "academic-publishing", "target": "article" },
-      
-          { "source": "academic-publishing", "target": "web-server" },
-      
-          { "source": "academic-publishing", "target": "server" },
-      
-          { "source": "academic-publishing", "target": "academics" },
-      
-          { "source": "publishing", "target": "semantic-publishing" },
-      
-          { "source": "publishing", "target": "machine" },
-      
-          { "source": "publishing", "target": "data-environment" },
-      
           { "source": "publishing", "target": "article" },
       
-          { "source": "article", "target": "claims" },
+          { "source": "publishing", "target": "web-server" },
       
-          { "source": "article", "target": "scientific-articles" },
+          { "source": "publishing", "target": "academic-publishing" },
+      
+          { "source": "publishing", "target": "server" },
+      
+          { "source": "publishing", "target": "data-citation" },
       
           { "source": "article", "target": "hierarchy" },
       
           { "source": "article", "target": "social-sciences" },
+      
+          { "source": "article", "target": "science" },
+      
+          { "source": "article", "target": "concept" },
       
           { "source": "web-server", "target": "publishing" },
       
@@ -798,29 +790,33 @@ var data_local_dynamic = {
       
           { "source": "web-server", "target": "server" },
       
+          { "source": "academic-publishing", "target": "publishing" },
+      
+          { "source": "academic-publishing", "target": "article" },
+      
+          { "source": "academic-publishing", "target": "web-server" },
+      
+          { "source": "academic-publishing", "target": "server" },
+      
+          { "source": "server", "target": "metadata" },
+      
+          { "source": "server", "target": "algorithm" },
+      
           { "source": "server", "target": "publishing" },
       
           { "source": "server", "target": "article" },
       
-          { "source": "server", "target": "web-server" },
+          { "source": "data-citation", "target": "publishing" },
       
-          { "source": "server", "target": "academic-publishing" },
+          { "source": "data-citation", "target": "data-discovery" },
       
-          { "source": "academics", "target": "PhD" },
+          { "source": "data-citation", "target": "metadata" },
       
-          { "source": "academics", "target": "education" },
-      
-          { "source": "academics", "target": "writing" },
-      
-          { "source": "academics", "target": "perspective" },
+          { "source": "data-citation", "target": "interoperability" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
-      
-
-        {"id": "publishing", "size": 70, "score": 0 , "title": "publishing", "type": "circle"},
-
       
 
         {"id": "article", "size": 70, "score": 0 , "title": "article", "type": "circle"},
@@ -831,35 +827,19 @@ var data_local_dynamic = {
 
       
 
+        {"id": "academic-publishing", "size": 70, "score": 0 , "title": "academic-publishing", "type": "circle"},
+
+      
+
         {"id": "server", "size": 70, "score": 0 , "title": "server", "type": "circle"},
 
       
 
-        {"id": "academics", "size": 70, "score": 0 , "title": "academics", "type": "circle"},
+        {"id": "data-citation", "size": 70, "score": 0 , "title": "data-citation", "type": "circle"},
 
       
 
-        {"id": "academic-publishing", "size": 140, "score": 0.5 , "title": "academic-publishing", "type": "circle"},
-
-      
-
-        {"id": "semantic-publishing", "size": 5, "score": 0.4 , "title": "semantic-publishing", "type": "circle"},
-
-      
-
-        {"id": "machine", "size": 5, "score": 0.4 , "title": "machine", "type": "circle"},
-
-      
-
-        {"id": "data-environment", "size": 5, "score": 0.4 , "title": "data-environment", "type": "circle"},
-
-      
-
-        {"id": "claims", "size": 5, "score": 0.4 , "title": "claims", "type": "circle"},
-
-      
-
-        {"id": "scientific-articles", "size": 5, "score": 0.4 , "title": "scientific-articles", "type": "circle"},
+        {"id": "publishing", "size": 140, "score": 0.5 , "title": "publishing", "type": "circle"},
 
       
 
@@ -871,19 +851,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "PhD", "size": 5, "score": 0.4 , "title": "PhD", "type": "circle"},
+        {"id": "science", "size": 5, "score": 0.4 , "title": "science", "type": "circle"},
 
       
 
-        {"id": "education", "size": 5, "score": 0.4 , "title": "education", "type": "circle"},
+        {"id": "concept", "size": 5, "score": 0.4 , "title": "concept", "type": "circle"},
 
       
 
-        {"id": "writing", "size": 5, "score": 0.4 , "title": "writing", "type": "circle"},
+        {"id": "metadata", "size": 5, "score": 0.4 , "title": "metadata", "type": "circle"},
 
       
 
-        {"id": "perspective", "size": 5, "score": 0.4 , "title": "perspective", "type": "circle"},
+        {"id": "algorithm", "size": 5, "score": 0.4 , "title": "algorithm", "type": "circle"},
+
+      
+
+        {"id": "data-discovery", "size": 5, "score": 0.4 , "title": "data-discovery", "type": "circle"},
+
+      
+
+        {"id": "interoperability", "size": 5, "score": 0.4 , "title": "interoperability", "type": "circle"},
 
        
 
@@ -1013,10 +1001,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.google.co.uk/url?sa=t&amp;rct=j&amp;q=from%20encyclopedia%20to%20ontology%3A%20toward%20dynamic%20representation%20of%20the%20discipline%20of%20philosophy&amp;source=web&amp;cd=3&amp;ved=0CD4QFjAC&amp;url=http%3A%" class="text-muted" target="_blank">From Encyclopedia To Ontology: Toward Dynamic Representation Of The Discipline Of Philosophy</a>
+									
+							</small>
+							<!-- Words taken from <cite title="From Encyclopedia To Ontology: Toward Dynamic Representation Of The Discipline Of Philosophy">
+								<a href="http://www.google.co.uk/url?sa=t&amp;rct=j&amp;q=from%20encyclopedia%20to%20ontology%3A%20toward%20dynamic%20representation%20of%20the%20discipline%20of%20philosophy&amp;source=web&amp;cd=3&amp;ved=0CD4QFjAC&amp;url=http%3A%" class="-underline -text-muted" target="_blank">
+								  From Encyclopedia To Ontology: Toward Dynamic Representation Of The Discipline Of Philosophy</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-From-Encyclopedia-To-Ontology-Toward-Dynamic-Representation-6.md/index.html">Automatic methods in dynamic ontology; a hybrid solution that keeps experts in the loop</a>
-						<br />
-						<small style="color: #cbcbcb;">From Encyclopedia To Ontology: Toward Dynamic Representation Of The Discipline Of Philosophy
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=ontology-population.html">#ontology-population</a>&nbsp;
@@ -588,14 +601,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-From-Encyclopedia-To-Ontology-Toward-Dynamic-Representation-12.md/index.html">Novel discoveries thanks to the expert-supervised approach</a>
-						<br />
-						<small style="color: #cbcbcb;">From Encyclopedia To Ontology: Toward Dynamic Representation Of The Discipline Of Philosophy
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=ontology-population.html">#ontology-population</a>&nbsp;
@@ -608,6 +623,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -732,21 +748,21 @@ var data_local_dynamic = {
       
           { "source": "co-occurrence-information", "target": "memory" },
       
+          { "source": "experts", "target": "concept" },
+      
+          { "source": "experts", "target": "CRM" },
+      
+          { "source": "experts", "target": "class" },
+      
           { "source": "experts", "target": "ontology" },
       
-          { "source": "experts", "target": "Ontology-Language" },
-      
-          { "source": "experts", "target": "relation" },
-      
-          { "source": "experts", "target": "style" },
+          { "source": "search", "target": "user-testing" },
       
           { "source": "search", "target": "users" },
       
-          { "source": "search", "target": "use-cases" },
+          { "source": "search", "target": "Google" },
       
-          { "source": "search", "target": "analysts" },
-      
-          { "source": "search", "target": "user-testing" },
+          { "source": "search", "target": "version" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -773,19 +789,23 @@ var data_local_dynamic = {
 
       
 
+        {"id": "concept", "size": 5, "score": 0.4 , "title": "concept", "type": "circle"},
+
+      
+
+        {"id": "CRM", "size": 5, "score": 0.4 , "title": "CRM", "type": "circle"},
+
+      
+
+        {"id": "class", "size": 5, "score": 0.4 , "title": "class", "type": "circle"},
+
+      
+
         {"id": "ontology", "size": 5, "score": 0.4 , "title": "ontology", "type": "circle"},
 
       
 
-        {"id": "Ontology-Language", "size": 5, "score": 0.4 , "title": "Ontology-Language", "type": "circle"},
-
-      
-
-        {"id": "relation", "size": 5, "score": 0.4 , "title": "relation", "type": "circle"},
-
-      
-
-        {"id": "style", "size": 5, "score": 0.4 , "title": "style", "type": "circle"},
+        {"id": "user-testing", "size": 5, "score": 0.4 , "title": "user-testing", "type": "circle"},
 
       
 
@@ -793,15 +813,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "use-cases", "size": 5, "score": 0.4 , "title": "use-cases", "type": "circle"},
+        {"id": "Google", "size": 5, "score": 0.4 , "title": "Google", "type": "circle"},
 
       
 
-        {"id": "analysts", "size": 5, "score": 0.4 , "title": "analysts", "type": "circle"},
-
-      
-
-        {"id": "user-testing", "size": 5, "score": 0.4 , "title": "user-testing", "type": "circle"},
+        {"id": "version", "size": 5, "score": 0.4 , "title": "version", "type": "circle"},
 
        
 
@@ -931,10 +947,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

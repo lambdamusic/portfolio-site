@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.create-conference.org/" class="text-muted" target="_blank">Create Ixd Conference - Welcome To Create11</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Create Ixd Conference - Welcome To Create11">
+								<a href="http://www.create-conference.org/" class="-underline -text-muted" target="_blank">
+								  Create Ixd Conference - Welcome To Create11</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2013-02-26-Create-Ixd-Conference-Welcome-To-Create11-1.md/index.html">Interaction design</a>
-						<br />
-						<small style="color: #cbcbcb;">Create Ixd Conference - Welcome To Create11
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=design.html">#design</a>&nbsp;
@@ -590,14 +603,28 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://www.svpg.com/flavors-of-prototypes/" class="text-muted" target="_blank">Flavors Of Prototypes</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Flavors Of Prototypes">
+								<a href="http://www.svpg.com/flavors-of-prototypes/" class="-underline -text-muted" target="_blank">
+								  Flavors Of Prototypes</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-02-17-Flavors-Of-Prototypes-2.md/index.html">Low-fidelity user prototypes</a>
-						<br />
-						<small style="color: #cbcbcb;">Flavors Of Prototypes
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=prototype.html">#prototype</a>&nbsp;
@@ -612,6 +639,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -736,21 +764,21 @@ var data_local_dynamic = {
       
           { "source": "visual-design", "target": "usability-issues" },
       
+          { "source": "design", "target": "model" },
+      
+          { "source": "design", "target": "bottom" },
+      
           { "source": "design", "target": "information-design" },
       
           { "source": "design", "target": "visual-design" },
       
-          { "source": "design", "target": "users" },
+          { "source": "information-design", "target": "design" },
       
-          { "source": "design", "target": "model" },
+          { "source": "information-design", "target": "visual-design" },
       
           { "source": "information-design", "target": "graphics" },
       
           { "source": "information-design", "target": "information-graphics" },
-      
-          { "source": "information-design", "target": "visualization" },
-      
-          { "source": "information-design", "target": "information-architecture" },
       
           { "source": "prototype", "target": "users" },
       
@@ -805,11 +833,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
+        {"id": "model", "size": 5, "score": 0.4 , "title": "model", "type": "circle"},
 
       
 
-        {"id": "model", "size": 5, "score": 0.4 , "title": "model", "type": "circle"},
+        {"id": "bottom", "size": 5, "score": 0.4 , "title": "bottom", "type": "circle"},
 
       
 
@@ -821,11 +849,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "visualization", "size": 5, "score": 0.4 , "title": "visualization", "type": "circle"},
-
-      
-
-        {"id": "information-architecture", "size": 5, "score": 0.4 , "title": "information-architecture", "type": "circle"},
+        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
 
       
 
@@ -963,10 +987,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

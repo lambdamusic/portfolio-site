@@ -762,15 +762,29 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "morality", "target": "self" },
+      
+          { "source": "morality", "target": "maxim" },
+      
           { "source": "morality", "target": "passion" },
       
           { "source": "morality", "target": "enemies" },
       
-          { "source": "morality", "target": "faith" },
+          { "source": "morality", "target": "conduct" },
       
-          { "source": "morality", "target": "religion" },
+          { "source": "self", "target": "article" },
       
-          { "source": "morality", "target": "God" },
+          { "source": "self", "target": "journals" },
+      
+          { "source": "self", "target": "story" },
+      
+          { "source": "self", "target": "words" },
+      
+          { "source": "maxim", "target": "self" },
+      
+          { "source": "maxim", "target": "morality" },
+      
+          { "source": "maxim", "target": "virtue" },
       
           { "source": "passion", "target": "morality" },
       
@@ -788,33 +802,25 @@ var data_local_dynamic = {
       
           { "source": "enemies", "target": "conditions" },
       
-          { "source": "faith", "target": "morality" },
+          { "source": "conduct", "target": "responsibility" },
       
-          { "source": "faith", "target": "religion" },
+          { "source": "conduct", "target": "nature" },
       
-          { "source": "faith", "target": "God" },
+          { "source": "conduct", "target": "affairs" },
       
-          { "source": "faith", "target": "truth" },
-      
-          { "source": "religion", "target": "believers" },
-      
-          { "source": "religion", "target": "Martin-Buber" },
-      
-          { "source": "religion", "target": "rabbis" },
-      
-          { "source": "religion", "target": "notion" },
-      
-          { "source": "God", "target": "universe" },
-      
-          { "source": "God", "target": "things" },
-      
-          { "source": "God", "target": "idea" },
-      
-          { "source": "God", "target": "believers" },
+          { "source": "conduct", "target": "mankind" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
+      
+
+        {"id": "self", "size": 70, "score": 0 , "title": "self", "type": "circle"},
+
+      
+
+        {"id": "maxim", "size": 70, "score": 0 , "title": "maxim", "type": "circle"},
+
       
 
         {"id": "passion", "size": 70, "score": 0 , "title": "passion", "type": "circle"},
@@ -825,19 +831,31 @@ var data_local_dynamic = {
 
       
 
-        {"id": "faith", "size": 70, "score": 0 , "title": "faith", "type": "circle"},
-
-      
-
-        {"id": "religion", "size": 70, "score": 0 , "title": "religion", "type": "circle"},
-
-      
-
-        {"id": "God", "size": 70, "score": 0 , "title": "God", "type": "circle"},
+        {"id": "conduct", "size": 70, "score": 0 , "title": "conduct", "type": "circle"},
 
       
 
         {"id": "morality", "size": 140, "score": 0.5 , "title": "morality", "type": "circle"},
+
+      
+
+        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
+
+      
+
+        {"id": "journals", "size": 5, "score": 0.4 , "title": "journals", "type": "circle"},
+
+      
+
+        {"id": "story", "size": 5, "score": 0.4 , "title": "story", "type": "circle"},
+
+      
+
+        {"id": "words", "size": 5, "score": 0.4 , "title": "words", "type": "circle"},
+
+      
+
+        {"id": "virtue", "size": 5, "score": 0.4 , "title": "virtue", "type": "circle"},
 
       
 
@@ -857,35 +875,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "truth", "size": 5, "score": 0.4 , "title": "truth", "type": "circle"},
+        {"id": "responsibility", "size": 5, "score": 0.4 , "title": "responsibility", "type": "circle"},
 
       
 
-        {"id": "believers", "size": 5, "score": 0.4 , "title": "believers", "type": "circle"},
+        {"id": "nature", "size": 5, "score": 0.4 , "title": "nature", "type": "circle"},
 
       
 
-        {"id": "Martin-Buber", "size": 5, "score": 0.4 , "title": "Martin-Buber", "type": "circle"},
+        {"id": "affairs", "size": 5, "score": 0.4 , "title": "affairs", "type": "circle"},
 
       
 
-        {"id": "rabbis", "size": 5, "score": 0.4 , "title": "rabbis", "type": "circle"},
-
-      
-
-        {"id": "notion", "size": 5, "score": 0.4 , "title": "notion", "type": "circle"},
-
-      
-
-        {"id": "universe", "size": 5, "score": 0.4 , "title": "universe", "type": "circle"},
-
-      
-
-        {"id": "things", "size": 5, "score": 0.4 , "title": "things", "type": "circle"},
-
-      
-
-        {"id": "idea", "size": 5, "score": 0.4 , "title": "idea", "type": "circle"},
+        {"id": "mankind", "size": 5, "score": 0.4 , "title": "mankind", "type": "circle"},
 
        
 
@@ -1015,10 +1017,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

@@ -771,15 +771,15 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "OWL-DL", "target": "annotation-properties" },
+          { "source": "data-properties", "target": "annotation-properties" },
       
-          { "source": "OWL-DL", "target": "data-values" },
+          { "source": "data-properties", "target": "blank-nodes" },
       
-          { "source": "OWL-DL", "target": "ontology" },
+          { "source": "data-properties", "target": "OWL-DL" },
       
-          { "source": "OWL-DL", "target": "instances" },
+          { "source": "data-properties", "target": "reasoner" },
       
-          { "source": "OWL-DL", "target": "datatype-properties" },
+          { "source": "data-properties", "target": "semantics" },
       
           { "source": "annotation-properties", "target": "OWL-DL" },
       
@@ -789,37 +789,37 @@ var data_local_dynamic = {
       
           { "source": "annotation-properties", "target": "instances" },
       
-          { "source": "data-values", "target": "OWL-DL" },
+          { "source": "blank-nodes", "target": "annotation-properties" },
       
-          { "source": "data-values", "target": "annotation-properties" },
+          { "source": "blank-nodes", "target": "data-properties" },
       
-          { "source": "data-values", "target": "ontology" },
+          { "source": "blank-nodes", "target": "OWL-DL" },
       
-          { "source": "data-values", "target": "instances" },
+          { "source": "blank-nodes", "target": "reasoner" },
       
-          { "source": "ontology", "target": "Web" },
+          { "source": "OWL-DL", "target": "annotation-properties" },
       
-          { "source": "ontology", "target": "RDF-data" },
+          { "source": "OWL-DL", "target": "data-values" },
       
-          { "source": "ontology", "target": "World-Wide-Web" },
+          { "source": "OWL-DL", "target": "ontology" },
       
-          { "source": "ontology", "target": "Ontology-Language" },
+          { "source": "OWL-DL", "target": "instances" },
       
-          { "source": "instances", "target": "class" },
+          { "source": "reasoner", "target": "annotation-properties" },
       
-          { "source": "instances", "target": "criteria" },
+          { "source": "reasoner", "target": "data-properties" },
       
-          { "source": "instances", "target": "intension" },
+          { "source": "reasoner", "target": "blank-nodes" },
       
-          { "source": "instances", "target": "items" },
+          { "source": "reasoner", "target": "OWL-DL" },
       
-          { "source": "datatype-properties", "target": "OWL-DL" },
+          { "source": "semantics", "target": "annotation-properties" },
       
-          { "source": "datatype-properties", "target": "annotation-properties" },
+          { "source": "semantics", "target": "data-properties" },
       
-          { "source": "datatype-properties", "target": "data-values" },
+          { "source": "semantics", "target": "blank-nodes" },
       
-          { "source": "datatype-properties", "target": "ontology" },
+          { "source": "semantics", "target": "OWL-DL" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -830,55 +830,35 @@ var data_local_dynamic = {
 
       
 
-        {"id": "data-values", "size": 70, "score": 0 , "title": "data-values", "type": "circle"},
+        {"id": "blank-nodes", "size": 70, "score": 0 , "title": "blank-nodes", "type": "circle"},
 
       
 
-        {"id": "ontology", "size": 70, "score": 0 , "title": "ontology", "type": "circle"},
+        {"id": "OWL-DL", "size": 70, "score": 0 , "title": "OWL-DL", "type": "circle"},
 
       
 
-        {"id": "instances", "size": 70, "score": 0 , "title": "instances", "type": "circle"},
+        {"id": "reasoner", "size": 70, "score": 0 , "title": "reasoner", "type": "circle"},
 
       
 
-        {"id": "datatype-properties", "size": 70, "score": 0 , "title": "datatype-properties", "type": "circle"},
+        {"id": "semantics", "size": 70, "score": 0 , "title": "semantics", "type": "circle"},
 
       
 
-        {"id": "OWL-DL", "size": 140, "score": 0.5 , "title": "OWL-DL", "type": "circle"},
+        {"id": "data-properties", "size": 140, "score": 0.5 , "title": "data-properties", "type": "circle"},
 
       
 
-        {"id": "Web", "size": 5, "score": 0.4 , "title": "Web", "type": "circle"},
+        {"id": "data-values", "size": 5, "score": 0.4 , "title": "data-values", "type": "circle"},
 
       
 
-        {"id": "RDF-data", "size": 5, "score": 0.4 , "title": "RDF-data", "type": "circle"},
+        {"id": "ontology", "size": 5, "score": 0.4 , "title": "ontology", "type": "circle"},
 
       
 
-        {"id": "World-Wide-Web", "size": 5, "score": 0.4 , "title": "World-Wide-Web", "type": "circle"},
-
-      
-
-        {"id": "Ontology-Language", "size": 5, "score": 0.4 , "title": "Ontology-Language", "type": "circle"},
-
-      
-
-        {"id": "class", "size": 5, "score": 0.4 , "title": "class", "type": "circle"},
-
-      
-
-        {"id": "criteria", "size": 5, "score": 0.4 , "title": "criteria", "type": "circle"},
-
-      
-
-        {"id": "intension", "size": 5, "score": 0.4 , "title": "intension", "type": "circle"},
-
-      
-
-        {"id": "items", "size": 5, "score": 0.4 , "title": "items", "type": "circle"},
+        {"id": "instances", "size": 5, "score": 0.4 , "title": "instances", "type": "circle"},
 
        
 
@@ -1008,10 +988,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

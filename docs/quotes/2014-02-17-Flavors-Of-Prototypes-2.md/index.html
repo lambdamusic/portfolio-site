@@ -776,21 +776,21 @@ var data_local_dynamic = {
       
           { "source": "visual-design", "target": "usability-issues" },
       
+          { "source": "design", "target": "model" },
+      
+          { "source": "design", "target": "bottom" },
+      
           { "source": "design", "target": "information-design" },
       
           { "source": "design", "target": "visual-design" },
       
-          { "source": "design", "target": "users" },
+          { "source": "information-design", "target": "design" },
       
-          { "source": "design", "target": "model" },
+          { "source": "information-design", "target": "visual-design" },
       
           { "source": "information-design", "target": "graphics" },
       
           { "source": "information-design", "target": "information-graphics" },
-      
-          { "source": "information-design", "target": "visualization" },
-      
-          { "source": "information-design", "target": "information-architecture" },
       
           { "source": "prototype", "target": "users" },
       
@@ -845,11 +845,11 @@ var data_local_dynamic = {
 
       
 
-        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
+        {"id": "model", "size": 5, "score": 0.4 , "title": "model", "type": "circle"},
 
       
 
-        {"id": "model", "size": 5, "score": 0.4 , "title": "model", "type": "circle"},
+        {"id": "bottom", "size": 5, "score": 0.4 , "title": "bottom", "type": "circle"},
 
       
 
@@ -861,11 +861,7 @@ var data_local_dynamic = {
 
       
 
-        {"id": "visualization", "size": 5, "score": 0.4 , "title": "visualization", "type": "circle"},
-
-      
-
-        {"id": "information-architecture", "size": 5, "score": 0.4 , "title": "information-architecture", "type": "circle"},
+        {"id": "users", "size": 5, "score": 0.4 , "title": "users", "type": "circle"},
 
       
 
@@ -1003,10 +999,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

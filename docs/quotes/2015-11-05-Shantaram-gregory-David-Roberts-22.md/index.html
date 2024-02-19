@@ -762,6 +762,16 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
+          { "source": "acts", "target": "tone" },
+      
+          { "source": "acts", "target": "impression" },
+      
+          { "source": "acts", "target": "voice" },
+      
+          { "source": "acts", "target": "course" },
+      
+          { "source": "acts", "target": "shadow" },
+      
           { "source": "tone", "target": "impression" },
       
           { "source": "tone", "target": "acts" },
@@ -769,8 +779,6 @@ var data_local_dynamic = {
           { "source": "tone", "target": "voice" },
       
           { "source": "tone", "target": "music" },
-      
-          { "source": "tone", "target": "people" },
       
           { "source": "impression", "target": "tone" },
       
@@ -780,48 +788,40 @@ var data_local_dynamic = {
       
           { "source": "impression", "target": "behavior" },
       
-          { "source": "acts", "target": "leaders" },
+          { "source": "voice", "target": "language" },
       
-          { "source": "acts", "target": "West" },
+          { "source": "voice", "target": "reification" },
       
-          { "source": "acts", "target": "tone" },
-      
-          { "source": "acts", "target": "impression" },
+          { "source": "voice", "target": "nouns" },
       
           { "source": "voice", "target": "tone" },
       
-          { "source": "voice", "target": "impression" },
+          { "source": "course", "target": "changes" },
       
-          { "source": "voice", "target": "acts" },
+          { "source": "course", "target": "shadow" },
       
-          { "source": "voice", "target": "language" },
+          { "source": "course", "target": "motif" },
       
-          { "source": "music", "target": "ego" },
+          { "source": "course", "target": "acts" },
       
-          { "source": "music", "target": "exercise" },
+          { "source": "shadow", "target": "course" },
       
-          { "source": "music", "target": "sensation" },
+          { "source": "shadow", "target": "motif" },
       
-          { "source": "music", "target": "awakening" },
+          { "source": "shadow", "target": "acts" },
       
-          { "source": "people", "target": "pride" },
-      
-          { "source": "people", "target": "ego" },
-      
-          { "source": "people", "target": "game" },
-      
-          { "source": "people", "target": "unselfishness" },
+          { "source": "shadow", "target": "light" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "impression", "size": 70, "score": 0 , "title": "impression", "type": "circle"},
+        {"id": "tone", "size": 70, "score": 0 , "title": "tone", "type": "circle"},
 
       
 
-        {"id": "acts", "size": 70, "score": 0 , "title": "acts", "type": "circle"},
+        {"id": "impression", "size": 70, "score": 0 , "title": "impression", "type": "circle"},
 
       
 
@@ -829,15 +829,19 @@ var data_local_dynamic = {
 
       
 
-        {"id": "music", "size": 70, "score": 0 , "title": "music", "type": "circle"},
+        {"id": "course", "size": 70, "score": 0 , "title": "course", "type": "circle"},
 
       
 
-        {"id": "people", "size": 70, "score": 0 , "title": "people", "type": "circle"},
+        {"id": "shadow", "size": 70, "score": 0 , "title": "shadow", "type": "circle"},
 
       
 
-        {"id": "tone", "size": 140, "score": 0.5 , "title": "tone", "type": "circle"},
+        {"id": "acts", "size": 140, "score": 0.5 , "title": "acts", "type": "circle"},
+
+      
+
+        {"id": "music", "size": 5, "score": 0.4 , "title": "music", "type": "circle"},
 
       
 
@@ -845,43 +849,27 @@ var data_local_dynamic = {
 
       
 
-        {"id": "leaders", "size": 5, "score": 0.4 , "title": "leaders", "type": "circle"},
-
-      
-
-        {"id": "West", "size": 5, "score": 0.4 , "title": "West", "type": "circle"},
-
-      
-
         {"id": "language", "size": 5, "score": 0.4 , "title": "language", "type": "circle"},
 
       
 
-        {"id": "ego", "size": 5, "score": 0.4 , "title": "ego", "type": "circle"},
+        {"id": "reification", "size": 5, "score": 0.4 , "title": "reification", "type": "circle"},
 
       
 
-        {"id": "exercise", "size": 5, "score": 0.4 , "title": "exercise", "type": "circle"},
+        {"id": "nouns", "size": 5, "score": 0.4 , "title": "nouns", "type": "circle"},
 
       
 
-        {"id": "sensation", "size": 5, "score": 0.4 , "title": "sensation", "type": "circle"},
+        {"id": "changes", "size": 5, "score": 0.4 , "title": "changes", "type": "circle"},
 
       
 
-        {"id": "awakening", "size": 5, "score": 0.4 , "title": "awakening", "type": "circle"},
+        {"id": "motif", "size": 5, "score": 0.4 , "title": "motif", "type": "circle"},
 
       
 
-        {"id": "pride", "size": 5, "score": 0.4 , "title": "pride", "type": "circle"},
-
-      
-
-        {"id": "game", "size": 5, "score": 0.4 , "title": "game", "type": "circle"},
-
-      
-
-        {"id": "unselfishness", "size": 5, "score": 0.4 , "title": "unselfishness", "type": "circle"},
+        {"id": "light", "size": 5, "score": 0.4 , "title": "light", "type": "circle"},
 
        
 
@@ -1011,10 +999,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

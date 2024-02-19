@@ -768,27 +768,39 @@ var data_local_dynamic = {
   "graph": [],
   "links": [
       
-          { "source": "years", "target": "UK" },
+          { "source": "years", "target": "factors" },
       
-          { "source": "years", "target": "Europe" },
+          { "source": "years", "target": "article" },
+      
+          { "source": "years", "target": "citations" },
       
           { "source": "years", "target": "episodes" },
       
           { "source": "years", "target": "orphans" },
       
-          { "source": "years", "target": "series" },
+          { "source": "factors", "target": "years" },
       
-          { "source": "UK", "target": "years" },
+          { "source": "factors", "target": "article" },
       
-          { "source": "UK", "target": "Europe" },
+          { "source": "factors", "target": "citations" },
       
-          { "source": "UK", "target": "outcomes" },
+          { "source": "factors", "target": "task" },
       
-          { "source": "UK", "target": "countries" },
+          { "source": "article", "target": "hierarchy" },
       
-          { "source": "Europe", "target": "years" },
+          { "source": "article", "target": "social-sciences" },
       
-          { "source": "Europe", "target": "UK" },
+          { "source": "article", "target": "science" },
+      
+          { "source": "article", "target": "concept" },
+      
+          { "source": "citations", "target": "attributes" },
+      
+          { "source": "citations", "target": "evidence" },
+      
+          { "source": "citations", "target": "impact" },
+      
+          { "source": "citations", "target": "evaluation" },
       
           { "source": "episodes", "target": "orphans" },
       
@@ -805,25 +817,21 @@ var data_local_dynamic = {
           { "source": "orphans", "target": "years" },
       
           { "source": "orphans", "target": "time" },
-      
-          { "source": "series", "target": "episodes" },
-      
-          { "source": "series", "target": "orphans" },
-      
-          { "source": "series", "target": "years" },
-      
-          { "source": "series", "target": "time" },
                 
     //{"source": 0, "target": 1},
     ],
   "nodes": [
       
 
-        {"id": "UK", "size": 70, "score": 0 , "title": "UK", "type": "circle"},
+        {"id": "factors", "size": 70, "score": 0 , "title": "factors", "type": "circle"},
 
       
 
-        {"id": "Europe", "size": 70, "score": 0 , "title": "Europe", "type": "circle"},
+        {"id": "article", "size": 70, "score": 0 , "title": "article", "type": "circle"},
+
+      
+
+        {"id": "citations", "size": 70, "score": 0 , "title": "citations", "type": "circle"},
 
       
 
@@ -835,19 +843,47 @@ var data_local_dynamic = {
 
       
 
-        {"id": "series", "size": 70, "score": 0 , "title": "series", "type": "circle"},
-
-      
-
         {"id": "years", "size": 140, "score": 0.5 , "title": "years", "type": "circle"},
 
       
 
-        {"id": "outcomes", "size": 5, "score": 0.4 , "title": "outcomes", "type": "circle"},
+        {"id": "task", "size": 5, "score": 0.4 , "title": "task", "type": "circle"},
 
       
 
-        {"id": "countries", "size": 5, "score": 0.4 , "title": "countries", "type": "circle"},
+        {"id": "hierarchy", "size": 5, "score": 0.4 , "title": "hierarchy", "type": "circle"},
+
+      
+
+        {"id": "social-sciences", "size": 5, "score": 0.4 , "title": "social-sciences", "type": "circle"},
+
+      
+
+        {"id": "science", "size": 5, "score": 0.4 , "title": "science", "type": "circle"},
+
+      
+
+        {"id": "concept", "size": 5, "score": 0.4 , "title": "concept", "type": "circle"},
+
+      
+
+        {"id": "attributes", "size": 5, "score": 0.4 , "title": "attributes", "type": "circle"},
+
+      
+
+        {"id": "evidence", "size": 5, "score": 0.4 , "title": "evidence", "type": "circle"},
+
+      
+
+        {"id": "impact", "size": 5, "score": 0.4 , "title": "impact", "type": "circle"},
+
+      
+
+        {"id": "evaluation", "size": 5, "score": 0.4 , "title": "evaluation", "type": "circle"},
+
+      
+
+        {"id": "series", "size": 5, "score": 0.4 , "title": "series", "type": "circle"},
 
       
 
@@ -981,10 +1017,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

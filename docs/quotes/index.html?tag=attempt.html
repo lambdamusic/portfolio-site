@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://plato.stanford.edu/entries/nishida-kitaro/" class="text-muted" target="_blank">Nishida Kitarō (stanford Encyclopedia Of Philosophy)</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Nishida Kitarō (stanford Encyclopedia Of Philosophy)">
+								<a href="http://plato.stanford.edu/entries/nishida-kitaro/" class="-underline -text-muted" target="_blank">
+								  Nishida Kitarō (stanford Encyclopedia Of Philosophy)</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="http://127.0.0.1:8000/quotes/2013-12-01-Nishida-Kitaro%CC%84-stanford-Encyclopedia-Of-Philosophy-10.md/">...the standpoint of place or...</a>
-						<br />
-						<small style="color: #cbcbcb;">Nishida Kitarō (stanford Encyclopedia Of Philosophy)
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=topos.html">#topos</a>&nbsp;
@@ -592,6 +605,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -728,13 +742,13 @@ var data_local_dynamic = {
       
           { "source": "Nishida", "target": "things" },
       
+          { "source": "place", "target": "article" },
+      
+          { "source": "place", "target": "problem" },
+      
           { "source": "place", "target": "system" },
       
           { "source": "place", "target": "structure" },
-      
-          { "source": "place", "target": "interaction" },
-      
-          { "source": "place", "target": "science" },
                 
     //{"source": 0, "target": 1},
     ],
@@ -769,19 +783,19 @@ var data_local_dynamic = {
 
       
 
+        {"id": "article", "size": 5, "score": 0.4 , "title": "article", "type": "circle"},
+
+      
+
+        {"id": "problem", "size": 5, "score": 0.4 , "title": "problem", "type": "circle"},
+
+      
+
         {"id": "system", "size": 5, "score": 0.4 , "title": "system", "type": "circle"},
 
       
 
         {"id": "structure", "size": 5, "score": 0.4 , "title": "structure", "type": "circle"},
-
-      
-
-        {"id": "interaction", "size": 5, "score": 0.4 , "title": "interaction", "type": "circle"},
-
-      
-
-        {"id": "science", "size": 5, "score": 0.4 , "title": "science", "type": "circle"},
 
        
 
@@ -911,10 +925,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         

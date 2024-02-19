@@ -572,12 +572,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 			<div class="col-md-6" >
 
 				
+
+					
+					
+					    <hr>
+						<h4>
+							<small style="color: #cbcbcb; text-transform: uppercase;">From: 
+								<a href="http://en.wikipedia.org/wiki/Chemical_bond" class="text-muted" target="_blank">Chemical Bond - Wikipedia, The Free Encyclopedia</a>
+									
+							</small>
+							<!-- Words taken from <cite title="Chemical Bond - Wikipedia, The Free Encyclopedia">
+								<a href="http://en.wikipedia.org/wiki/Chemical_bond" class="-underline -text-muted" target="_blank">
+								  Chemical Bond - Wikipedia, The Free Encyclopedia</a></cite> -->
+						</h4>
+						
+					
+						
 		
 					<li style="margin-bottom: 10px;">
 						<a style="font-size: 120%;" href="2014-03-11-Chemical-Bond-Wikipedia-The-Free-Encyclopedia-4.md/index.html">Covalent bonding is a common...</a>
-						<br />
-						<small style="color: #cbcbcb;">Chemical Bond - Wikipedia, The Free Encyclopedia
-
 						<br />
 						
 						<a class="text-muted" href="index.html%3Ftag=bonding.html">#bonding</a>&nbsp;
@@ -588,6 +601,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 		
 					
 					</li>
+
 		
 				
 			</div>
@@ -857,10 +871,18 @@ svg.style("cursor","move");
 
  
     //
-    // NEW: requery on a dbclick 
+    // Update page based on dbclick 
     //
+
+         
+
     node.on("dblclick", function(d) { d3.event.stopPropagation();
-            window.location.href = "?tag=" + d.id;
+            if (window.location.host.includes("michelepasin.org")) {
+                window.location.href = "https://www.michelepasin.org/quotes/index.html%3Ftag=" + d.id + ".html";
+            } else {
+                window.location.href = "/quotes/?tag=" + d.id;
+            }
+            
         });   
 
         
