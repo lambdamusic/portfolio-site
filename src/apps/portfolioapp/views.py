@@ -14,7 +14,7 @@ import markdown
 
 from render_block import render_block_to_string
 
-from settings import STATICFILES_DIRS, BLOGS_ROOT
+from settings import STATICFILES_DIRS, BLOGS_ROOT, FLICKR_API_KEY, FLICKR_API_SECRET
 
 from researchapp.models import *
 from researchapp.topics import *
@@ -61,8 +61,8 @@ def photos(request):
 	"""
 
 	import flickrapi
-	api_key = "6b36d6a49a7abb07d8f156bbe5562380"
-	secret = "920639143ba2cd27"
+	api_key = FLICKR_API_KEY
+	secret = FLICKR_API_SECRET
 	flickr = flickrapi.FlickrAPI(api_key, secret, cache=True)
 	sets = flickr.photosets_getList(user_id='76186999@N00')
 	sets_list = []
