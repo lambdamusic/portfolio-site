@@ -158,6 +158,7 @@ def parse_markdown(full_file_path, verbose=False):
 	```
 
 	"""
+
 	if verbose: printDebug("Parsing..: " + full_file_path)
 	with open(full_file_path) as f:
 		lines = f.readlines()
