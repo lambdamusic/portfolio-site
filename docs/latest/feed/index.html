@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The news feed of www.michelepasin.org</title><link>http://www.michelepasin.org/words/</link><description>Latest articles, blogs posts and news</description><atom:link href="http://127.0.0.1:8000/latest/feed/" rel="self"></atom:link><language>en-us</language><lastBuildDate>Fri, 27 Sep 2024 00:00:00 +0000</lastBuildDate><item><title>Unpacking OpenAlex topics classification</title><link>https://www.michelepasin.org/blog/2024/09/27/open-alex-topics/</link><description>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>The news feed of www.michelepasin.org</title><link>http://www.michelepasin.org/words/</link><description>Latest articles, blogs posts and news</description><atom:link href="http://127.0.0.1:8000/latest/feed/" rel="self"></atom:link><language>en-us</language><lastBuildDate>Mon, 16 Jun 2025 00:00:00 +0000</lastBuildDate><item><title>Enhancing the Accessibility of ORCID Public Data, now additionally hosted on Google BigQuery</title><link>https://www.michelepasin.org/papers/2025/06/16/enhancing-the-accessibility-of-orcid-public-data-now-additionally-hosted-on-google-bigquery/</link><description>ORCID is committed to openness, exemplified by the annual release of its Public Data File since 2012. This dataset, encompassing all public ORCID records, has been downloaded over 190,000 times and serves as a resource for analyzing research community dynamics, scientific migrations, collaboration networks, and ORCID adoption trends. However, the file’s substantial size poses challenges for users lacking advanced data management skills, hindering exploratory analyses</description><pubDate>Mon, 16 Jun 2025 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/papers/2025/06/16/enhancing-the-accessibility-of-orcid-public-data-now-additionally-hosted-on-google-bigquery/</guid></item><item><title>Performing Research Analytics at Scale: the Dimensions Reporting Platform</title><link>https://www.michelepasin.org/papers/2025/06/02/performing-research-analytics-at-scale-the-dimensions-reporting-platform/</link><description></description><pubDate>Mon, 02 Jun 2025 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/papers/2025/06/02/performing-research-analytics-at-scale-the-dimensions-reporting-platform/</guid></item><item><title>Performing Research Analytics at Scale: the Dimensions Reporting Platform</title><link>https://www.michelepasin.org/papers/2025/05/05/performing-research-analytics-at-scale-the-dimensions-reporting-platform/</link><description></description><pubDate>Mon, 05 May 2025 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/papers/2025/05/05/performing-research-analytics-at-scale-the-dimensions-reporting-platform/</guid></item><item><title>Alleanze Ingannevoli: Svelare il lato nascosto della ricerca</title><link>https://www.michelepasin.org/papers/2025/01/22/alleanze-ingannevoli-svelare-il-lato-nascosto-della-ricerca/</link><description>Introdotta nel mondo della ricerca nel 2024, la scientometria forense (Forensic Scientometrics o FoSci) è una nuova disciplina sviluppata per facilitare l'analisi dei dati di pubblicazione, delle reti di co-autorialità, delle collaborazioni istituzionali e altro ancora. Le tecniche FoSci permettono di portare alla luce aspetti della ricerca scientifica  che indicano potenziali rischi, come la partecipazione occulta a reti di ricerca compromesse o i rapporti con individui o gruppi noti per la diffusione di produzioni scientifiche di dubbia qualità o fraudolente.</description><pubDate>Tue, 28 Jan 2025 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/papers/2025/01/22/alleanze-ingannevoli-svelare-il-lato-nascosto-della-ricerca/</guid></item><item><title>Unpacking OpenAlex topics classification</title><link>https://www.michelepasin.org/blog/2024/09/27/open-alex-topics/</link><description>
 
 In this post I have taken a closer look at the classification of scientific disciplines in [OpenAlex](https://openalex.org/), a recently developed database of scientific works. The topics classification has been entirely generated computationally using a mix of citation clustering techniques and LLM-based labeling. The results, although not always so precise, are definitely worth exploring further.
 
@@ -169,65 +169,4 @@ Looker is a business intelligence and data visualization tool which was recenlty
 
 LookML provides a dedicated modeling layer for your dashboard applications.  Think of LookML objects as building blocks, which can be extended and combined together in different ways without repeating code.
 
-Compared to simply writing SQL que ...</description><pubDate>Wed, 02 Mar 2022 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2022/03/02/Three-things-i-like-about-looker/</guid></item><item><title>A static site generator using Django, Wget and Github Pages</title><link>https://www.michelepasin.org/blog/2021/10/29/django-wget-static-site/</link><description>
-If you're a Django developer and want to publish a website without the hassle (and costs) of deploying a web app, then this post may give you some useful tips. 
-
-I found myself in this situation several times, so have created a time-saving workflow/set of tools for extracting a dynamic [Django](https://www.djangoproject.com/) website into a [static](https://en.wikipedia.org/wiki/Static_web_page) website (= a website that does not require a web application, just plain simple HTML pages). 
-
-&gt; Disclaimer: this method is not suited for all types of websites. EG if your Django application is updated frequently (e.g. more than once a day), or if it has keyword search (or faceted search) pages that inherently rely on dynamical queries to the Django back-end based on user input, then a static site won't cut it for you, most likely. 
-
-In a nutshell - this is how it works:
-
-1. On my computer, I create / edit the website contents using [Markdown](https://en.wikipedia.org/wiki/Markdown) as much a ...</description><pubDate>Fri, 05 Nov 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/10/29/django-wget-static-site/</guid></item><item><title>Terminal script: getting the time in different world time zones</title><link>https://www.michelepasin.org/blog/2021/10/12/world-date-terminal/</link><description>
-A little Bash script to show information about world time zones. Because I love my colleagues abroad, but I constantly struggle to remember how many hours ahead (or behind?) they are.
-
-I am using the script on a Mac, but it should work on other systems too with little or no changes. Basically, it scans the `zoneinfo` database ([more info](https://en.wikipedia.org/wiki/Tz_database)) that most likely already exists on your computer, in order to return the rows matching an input string.
-
-For example - what's the time in Australia right now?
-
-```bash
-$ wdate australia
-/Australia/Melbourne               Tue 2021-10-12 20:47:48
-/Australia/Queensland              Tue 2021-10-12 19:47:48
-/Australia/North                   Tue 2021-10-12 19:17:48
-/Australia/Lord_Howe               Tue 2021-10-12 20:47:48
-/Australia/Adelaide                Tue 2021-10-12 20:17:48
-/Australia/Yancowinna              Tue 2021-10-12 20:17:48
-/Australia/Victoria                Tue 2021-10-12 20:47:48
-/Australia/Canb ...</description><pubDate>Tue, 07 Sep 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/10/12/world-date-terminal/</guid></item><item><title>Recipe: Making a livecoding screencast with QuickTime and RecordIt</title><link>https://www.michelepasin.org/blog/2021/08/30/recordit-plugin/</link><description>
-This post shows how to make a livecoding screencast using free OSX technologies. 
-
-Capturing system audio and screen-recording your live coding performance can be done in multiple ways. Here's a method based on Apple's [Quicktime](https://en.wikipedia.org/wiki/QuickTime) and an audio plugin that is part of a third-party software, [Record It](https://www.buildtoconnect.com/en/products/recordit).
-
-&gt; Note: both of these software components are free.  The [Record It Audio Device](https://www.buildtoconnect.com/downloads/RecordItAudioDevice.pkg) which is a free extension that enables you to capture system sounds on your Mac. It acts as a virtual audio input device and sends the sound from music, videos, and system alerts that you would normally hear through your speakers to the input cha
-
-
-## Recording a screencast: steps 
-
-1.  Get the [Record It audio plugin](https://www.buildtoconnect.com/help/how-to-record-system-audio) PS this is a free audio extension, even if it is part of a paid-for ...</description><pubDate>Mon, 30 Aug 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/08/30/recordit-plugin/</guid></item><item><title>Composition: 'Rhythmic Cycles' with Extempore</title><link>https://www.michelepasin.org/blog/2021/04/10/livecoding-rhythmic-cycles/</link><description>
-A new livecoding composition using [Extempore](https://extemporelang.github.io/) and Ableton Live: 'Rhythmic Cycles'. 
-
-&lt;iframe width="560" height="315" src="https://www.youtube.com/embed/m3v8gRzROkU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen&gt;&lt;/iframe&gt;
-
-## Using 'map' to generate musical textures
-
-The gist of this experiment relies on the `map` function. 
-
-Using `map` and lists of notes and offsets, it is possible to schedule repeated calls to the `play` note function:
-
-``` scheme
-(map (lambda (x y z)
-	  (onbeat x 0 (play y z (* dur .9) 1))
-		)
-	times
-	notes
-	volumes
-	)
-```
-
-When the `map`  pattern above gets repeated via a loop, changing the input parameters generates a texture of sounds with a touch of randomness. 
-
-For example, some parameters to experiment with:
-
-- times can be shifted up or down by 1/4 beat or so
-- notes can be transposed using different chord struc ...</description><pubDate>Sat, 10 Apr 2021 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2021/04/10/livecoding-rhythmic-cycles/</guid></item></channel></rss>
+Compared to simply writing SQL que ...</description><pubDate>Wed, 02 Mar 2022 00:00:00 +0000</pubDate><guid>https://www.michelepasin.org/blog/2022/03/02/Three-things-i-like-about-looker/</guid></item></channel></rss>
