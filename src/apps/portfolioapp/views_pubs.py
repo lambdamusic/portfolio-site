@@ -249,7 +249,7 @@ def get_pubs(query, ttype, tag):
 
 	# TYPE = latest
 	elif ttype == 'latest':
-		ddset = Publication.objects.exclude(review=True)[:10]
+		ddset = Publication.objects.exclude(review=True).exclude(pubtype=type_talks)[:10]
 		return_items = [("Latest", ddset)]
 		return return_items
 
