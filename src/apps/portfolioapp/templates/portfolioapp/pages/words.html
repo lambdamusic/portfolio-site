@@ -21,11 +21,39 @@
   {% block bodycontent %}
 
   <div class="page-header">
-    Words {% if tag %} - by keyword | <a href="?query=date&type=tags" class="">View all</a>{% endif %}
+    Words 
+		{% if tag %} - by keyword | <a href="?query=date&type=tags" class="">View all</a>
+		{% else %}
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			<a class="{% if ttype == 'latest' %}project-active{% endif %}" href="?query=date&type=latest"> latest</a>&nbsp;|
+			
+			<a class="h1links {% if ttype == 'blogs' %}project-active{% endif %}" href="?query=date&type=blogs"> blogs</a>&nbsp;|
+
+		
+			<a class="{% if ttype == 'papers' %}project-active{% endif %}" href="?query=date&type=papers"> papers</a>&nbsp;|
+
+			<a class="{% if ttype == 'tags' %}project-active{% endif %}" href="?query=date&type=tags"> tags</a>&nbsp;|
+
+						
+			<a class="{% if ttype == 'all' %}project-active{% endif %}" href="?query=date&type=all"> all</a>&nbsp;
+
+
+			{% if admin_change_url %}
+			|&nbsp;<a class="{% if ttype == 'review' %}project-active{% endif %}" href="?query=date&type=review" style="background: yellow;">review</a>&nbsp;
+			{% endif %}
+			
+			{% comment %}
+			<a class="-text-muted" href="?query=date&type=misc"> misc</a>&nbsp;
+			{% endcomment %}
+
+
+
+		{% endif %}
 
   </div>
 
   <div class="container">
+
 
 
 
@@ -48,63 +76,63 @@
 
 		
 		<div class="col-sm-7 col-md-12 text-left">
+		
 			
-			
+			{% comment %} 
 			<div class="row ">
+			<div class="text-muted col-md-3">
 
-			<div class="text-muted col-md-4">
-				View:
-				
-				<a class="h1links {% if ttype == 'latest' %}project-active{% endif %}" href="?query=date&type=latest"> latest</a>&nbsp;|
-				
-				<a class="h1links {% if ttype == 'papers' %}project-active{% endif %}" href="?query=date&type=papers"> papers</a>&nbsp;|
+				Export: <a class="h1links -text-muted" href="?format=txt">txt</a> |
+				<a class="h1links -text-muted" href="?format=bibtex&query=type">bib</a>
 
-				<a class="h1links {% if ttype == 'tags' %}project-active{% endif %}" href="?query=date&type=tags"> tags</a>&nbsp;|
 				
-				<a class="h1links {% if ttype == 'all' %}project-active{% endif %}" href="?query=date&type=all"> all</a>&nbsp;
-				<!-- <a class="h1links {% if ttype == 'blogs' %}project-active{% endif %}" href="?query=date&type=blogs"> blogs</a>&nbsp; -->
+				&nbsp;|&nbsp;
+				<a href="{% url 'portfolioapp:words-feed' %}">
+					<img height=20 src="{% static 'rss.png' %}" alt="Main image"/ >
+				</a>	
+				
+			</div></div>
+			{% endcomment %}
+			
 
-				{% if admin_change_url %}
-				|&nbsp;<a class="h1links {% if ttype == 'review' %}project-active{% endif %}" href="?query=date&type=review" style="background: yellow;">review</a>&nbsp;
-				{% endif %}
+			{% if ttype == 'papers' %}
+			<div class="row ">
+			<div class="text-muted col-md-3" style="margin-left: -15px; margin-top: -2px;">			
 				
-				{% comment %}
-				<a class="h1links -text-muted" href="?query=date&type=misc"> misc</a>&nbsp;
-				{% endcomment %}
-				
-			</div>
-				
-
-			<div class="text-muted col-md-3">			
-				
-				Order by:
-				<a class="h1links {% if query == 'date' %}project-active{% endif %}" href="?query=date"> date</a>&nbsp;|
+				Order by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+				<a class="h1links {% if query == 'date' %}project-active{% endif %}" href="?query=date&type=papers"> date</a>&nbsp;|
 				
 				<a class="h1links {% if query == 'type' %}project-active{% endif %}" href="?query=type&type=papers"> type</a>&nbsp;|
 				
 				<a class="h1links {% if query == 'project' %}project-active{% endif %}" href="?query=project&type=papers"> project</a>
-			</div>
+			</div></div>
+			{% endif %}
 
-			<div class="text-muted col-md-2">
-
-				Format: <a class="h1links -text-muted" href="?format=txt">txt</a> |
-				<a class="h1links -text-muted" href="?format=bibtex&query=type">bib</a>
-
+			{% if ttype == 'blogs' %}
+			<div class="row ">
+			<div class="text-muted col-sm-7 col-md-9 -text-right" style="margin-left: -15px; margin-top: -2px;">
 				
-			</div>
+				Categories&nbsp;&nbsp;
 
+				<a class="h1links {% if ctype == 'justblogging' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=justblogging"> JustBlogging</a>&nbsp;|
 
-			<div class="text-muted col-md-3 text-right">
+				<a class="h1links {% if ctype == 'techlife' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=techlife"> TechLife</a>&nbsp;|
 				
-				<a href="{% url 'portfolioapp:words-feed' %}">
-					<img height=20 src="{% static 'rss.png' %}" alt="Main image"/ >
-				</a>	
+				<a class="h1links {% if ctype == 'computermusic' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=computermusic"> ComputerMusic</a>&nbsp;|
+				
+				<a class="h1links {% if ctype == 'digitalhumanities' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=digitalhumanities"> DigitalHumanities</a>&nbsp;|
+
+				<a class="h1links {% if ctype == 'informationarchitecture' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=informationarchitecture"> InformationArchitecture</a>&nbsp;|
+
+				<a class="h1links {% if ctype == 'semantic-web' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=semantic-web"> SemanticWeb</a>&nbsp;
+
+
+
 			</div>
-
-
-
 			</div>
 			<!-- end of inner row -->
+			 {% endif %}
+
 
 		</div>
 		<!-- end of col-sm-7 -->
@@ -126,9 +154,9 @@
 
 	{% for group_and_pubs in return_items %}
 
-	<div class="row row_pubitem">
+	<div class="row row_pubitem" {% if forloop.first %}style="margin-top: 80px;"{% endif %}>
 
-		<hr>
+		{% if not forloop.first %}<hr>{% endif %}
 
 		 <div class="col-sm-2 col-md-3">
 		 
@@ -236,9 +264,9 @@
 	
 	{% if tags %}
 		
-	<div class="row {% if tag %}margin50Top{% endif %} margin50Bottom ">
+	<div class="row {% if tag %}margin50Top{% endif %} margin50Bottom " style="margin-top: 80px;">
 
-		<hr class=" margin50Bottom  ">	
+		<!-- <hr class=" margin50Bottom  ">	 -->
 
 		<div class="col-sm-3 col-md-3">
 
@@ -269,6 +297,21 @@
 	
 	<!-- end of row -->
 
+				
+	<div class="row ">
+		<hr>
+	<div class="text-muted col-md-3">
+
+		
+		<a href="{% url 'portfolioapp:words-feed' %}">
+			<img height=20 src="{% static 'rss.png' %}" alt="Main image"/ >
+		</a>	
+		
+		&nbsp;|&nbsp;
+		Export papers: <a class="h1links -text-muted" href="?format=txt">txt</a> |
+		<a class="h1links -text-muted" href="?format=bibtex&query=type">bib</a>
+
+	</div></div>
 
 
 

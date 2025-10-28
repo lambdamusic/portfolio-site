@@ -496,7 +496,7 @@ class Publication(mymodels.EnhancedModel):
         # radio_fields = {"ltbrole": admin.VERTICAL}
         list_filter = [
             'isspeaking', 'review', 'pubtype', 'created_at', 'updated_at',
-            'editedrecord',  'isforthcoming', 'project'
+            'editedrecord',  'isforthcoming', 'categories', 'project', 
         ]
         list_display_links = ('title', )
         search_fields = ['title', 'id']

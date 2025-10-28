@@ -36,6 +36,7 @@ def words(request):
 
 	query = request.GET.get('query', 'date')
 	ttype = request.GET.get('type', 'latest')
+	ctype = request.GET.get('ctype', 'justblogging')
 	tag = request.GET.get('tag', None)
 	format = request.GET.get('format', 'html')
 	
@@ -61,6 +62,10 @@ def words(request):
 	elif ttype == 'latest':
 		return_items = get_pubs(query, ttype, tag)
 		tags = get_tags(2)
+	elif ttype == 'blogs':
+		return_items = get_pubs(query, ttype, tag, ctype)
+		cooccurring_tags = get_corelated_tags(return_items)
+		tags = get_tags(subset=cooccurring_tags)
 	else:
 		return_items = get_pubs(query, ttype, tag)
 		cooccurring_tags = get_corelated_tags(return_items)
@@ -72,6 +77,7 @@ def words(request):
 		'urlname': "papers",
 		'query': query,
 		'ttype': ttype,
+		'ctype': ctype,
 		'tag': tag,
 		'admin_change_url': admin_change_url,
 		'tags': tags,
@@ -199,7 +205,7 @@ def blog_detail(request, year="", month="", day="", namedetail=""):
 # ===========
 
 
-def get_pubs(query, ttype, tag):
+def get_pubs(query, ttype, tag, ctype=""):
 	""" retrieves pubs info 
 	
 	query: the ordering parameter eg date or pubtype
@@ -254,7 +260,6 @@ def get_pubs(query, ttype, tag):
 		return return_items
 
 
-
 	# SORT BY DATE, with an optional filter for type
 	else:
 		# ==>  query == 'date':  
@@ -265,7 +270,7 @@ def get_pubs(query, ttype, tag):
 		if ttype == "blogs":
 			printDebug("ttype == blogs")
 			printDebug(str(QSET.count()))
-			ddset = QSET.filter(pubtype__groupfk__pk=6)
+			ddset = QSET.filter(pubtype__groupfk__pk=6).filter(categories__name=ctype)
 			printDebug(str(ddset.count()))
 
 		elif ttype == "papers":
