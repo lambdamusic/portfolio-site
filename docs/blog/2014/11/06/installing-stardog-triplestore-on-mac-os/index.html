@@ -599,7 +599,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p><a href="http://www.stardog.com/">Stardog</a> is an enterprise-level triplestore developed by <a href="http://clarkparsia.com/">clarkparsia.com</a>. It combines tools to store and query RDF data with more advanced features for inference and data analytics - in particular via the built-in <a href="http://clarkparsia.com/pellet/">Pellet Java reasoner</a>. All of this, combineded with a user experience which is arguably the best you can currently find in the market.</p>
+            <p><a href="http://www.stardog.com/">Stardog</a> is an enterprise-level triplestore developed by <a href="http://clarkparsia.com/">clarkparsia.com</a>. It combines tools to store and query RDF data with more advanced features for inference and data analytics - in particular via the built-in <a href="http://clarkparsia.com/pellet/">Pellet Java reasoner</a>. All of this is combined with a user experience that is arguably the best you can currently find in the market.</p>
 <h3>1. Requirements</h3>
 <p><strong>OSX</strong>: Mavericks 10.9.5 (that's what I used, but it'll work on older versions too). <strong>JAVA</strong>: available <a href="http://support.apple.com/kb/dl1572">from Apple</a>. <strong>Stardog</strong>: grab the free <em>community</em> edition at <a href="http://www.stardog.com/">http://www.stardog.com/</a> (you can also get the 'developer' version for a 30-days trial, which is actually what I did).</p>
 <h3>2. Setting up</h3>
@@ -611,7 +611,7 @@ alias cdstardog="cd /Applications/stardog-2.2.2"  # just a handy shortcut</p>
 <p>Finally, copy the license key file (which should have come together with the installer) into the data folder:</p>
 <p>$ cp stardog-license-key.bin $STARDOG_HOME</p>
 <h3>3. Running Stardog</h3>
-<p>The stardog-admin server start command is used to start and stop the server. Then you can use the stardog-admin db create command to create a DB and load some data. For example:</p>
+<p>The <code>stardog-admin server start</code> command is used to start and stop the server. Then you can use the <code>stardog-admin db create</code> command to create a database and load some data. For example:</p>
 <p>[michele.pasin]@Tartaruga:~&gt;cdstardog </p>
 <p>[michele.pasin]@l5611:/Applications/stardog-2.2.2&gt;stardog-admin server start</p>
 <p>************************************************************
@@ -674,12 +674,12 @@ Bulk load complete.  Loaded 8,521 triples from 1 file(s) in 00:00:01 @ 8.4K trip
 | http://www.University241.edu                           |
 +--------------------------------------------------------+</p>
 <p>Query returned 10 results in 00:00:00.061</p>
-<p>In the snippet above, I've just loaded the test dataset that comes with Stardog into the myDB database, then queried it using the stardog query command.</p>
-<p>There's a <strong>fancy user interface</strong> too, which can be accessed by going to http://localhost:5820 (note: by default, you can log in with usr/psw = admin).</p>
+<p>In the snippet above, I've just loaded the test dataset that comes with Stardog into the myDB database, then queried it using the <code>stardog query</code> command.</p>
+<p>There's a <strong>fancy user interface</strong> too, which can be accessed by going to http://localhost:5820 (note: by default, you can log in with username/password = admin).</p>
 <p><img alt="Stardog1" src="../../../../../media/static/blog_img/stardog1.png" title="stardog1.png" /></p>
 <p><img alt="Stardog2" src="../../../../../media/static/blog_img/stardog2.png" title="stardog2.png" /></p>
 <h3>4. Loading a big dataset</h3>
-<p>As in my <a href="http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/">previous post</a>, I've tried loading the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com's legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>. The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that's been published by NPG and Scientific American from 1845 till nowadays. The file size is <strong>~6 gigs</strong> so it's not a huge dataset. Still, something big enough to pose a challenge to my macbook pro (8gigs RAM).</p>
+<p>As in my <a href="http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/">previous post</a>, I tried loading the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com's legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>. The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that's been published by NPG and Scientific American from 1845 until now. The file size is <strong>~6 GB</strong>, so it's not a huge dataset. Still, it's something big enough to pose a challenge to my MacBook Pro (8GB RAM).</p>
 <p>First off, I tried loading the dataset via the command line by passing an extra argument when creating a new database:</p>
 <p>[michele.pasin]@Tartaruga:~/Downloads/NPGcitationsGraph/articles.2012-07-16&gt;stardog-admin db create -n npgArticles articles.nq 
 Bulk loading data to new database.
@@ -696,8 +696,8 @@ Bulk load complete.  Loaded 10,107,653 triples from 1 file(s) in 00:02:16 @ 74.3
 File: /Users/michele.pasin/Downloads/NPGcitationsGraph/articles.2012-07-16/articles.nq Message: '2000-13-01' is not a valid value for datatype http://www.w3.org/2001/XMLSchema#date [line 10144786]
 Successfully created database 'npgArticles'.</p>
 <p>As you can see, that didn't work as expected: only 10M out of the 40M triples were loaded, because of an <strong>XML parsing error</strong> the installer encountered.</p>
-<p>After some googling and pinging the mailing list, I discover that Stardog is actually right: the parsing error derives from the fact that <a href="http://www.w3.org/TR/xmlschema-2/#isoformats">valid values for XMLSchema#date are ISO8601 Dates</a>. My data contained an XML date 2000-13-01 which is wrong - that should be 2000-01-13 instead.</p>
-<p>What's interesting is that I've previously managed to load the same dataset with other triple stores without any problems. <strong>How was that possible</strong>?</p>
+<p>After some googling and pinging the mailing list, I discovered that Stardog is actually right: the parsing error derives from the fact that <a href="http://www.w3.org/TR/xmlschema-2/#isoformats">valid values for XMLSchema#date are ISO8601 Dates</a>. My data contained an XML date <code>2000-13-01</code> which is wrong - that should be <code>2000-01-13</code> instead.</p>
+<p>What's interesting is that I had previously managed to load the same dataset with other triplestores without any problems. <strong>How was that possible</strong>?</p>
 <p>The <a href="http://docs.stardog.com/using/#sd-Updating">online documentation</a> provides the answer:</p>
 <blockquote>
 <p>RDF parsing in Stardog is strict: it requires typed RDF literals to match their explicit datatypes, URIs to be well-formed, etc. In some cases, strict parsing isn't ideal, so it may be disabled using the --strict-parsing=FALSE to disable it.</p>
@@ -706,8 +706,8 @@ Successfully created database 'npgArticles'.</p>
 <blockquote>
 <p>By default, if you say "1.5"^^xsd:int or "twelve point four"^^xsd:float, Stardog is going to complain.  While it's perfectly legal to have that in RDF, you can run into trouble later on, particularly when doing query evaluation with filters that would handle those literal values where you will hit the dark corners of the SPARQL spec.</p>
 </blockquote>
-<p>So, the way to load a (partially or potentially broken) dataset without having to worry about it too much is to use the strict.parsing=false flag:</p>
-<p>>stardog-admin db create -o strict.parsing=false -n articlesNPG2 articles.nq
+<p>So, the way to load a (partially or potentially broken) dataset without having to worry about it too much is to use the <code>strict.parsing=false</code> flag:</p>
+<p>> stardog-admin db create -o strict.parsing=false -n articlesNPG2 articles.nq
 Bulk loading data to new database.
 Parsing triples: 100% complete in 00:05:55 (39.4M triples - 110.7K triples/sec)
 Parsing triples finished in 00:05:55.643
@@ -720,14 +720,14 @@ Inserted 39,262,620 unique triples from 39,384,548 read triples in 00:07:51.402 
 Bulk load complete.  Loaded 39,262,620 triples from 1 file(s) in 00:07:51 @ 83.3K triples/sec.</p>
 <p>Successfully created database 'articlesNPG2'.</p>
 <p>Job done in around <strong>7 minutes</strong>!</p>
-<h4>Conclusion:</h4>
-<p>Extremely <strong>easy to install</strong>, <strong>efficient</strong> and packed with <strong>advanced features</strong> (inferencing and data-checking among the most useful ones imho). Also, as far as the UX and web interface goes, I doubt you can get any better than this with triplestores.</p>
-<p>It's a commercial product, of course, so you may not expect anything less than that. However the community edition (which is free) allows for 10 databases &amp; 25M triples per db - which may be just fine for many projects.</p>
-<p>If we had more tools as accessible as this one, I do think rdf triplestores would have a much higher uptake by now!</p>
+<h4>Conclusion</h4>
+<p>Extremely <strong>easy to install</strong>, <strong>efficient</strong>, and packed with <strong>advanced features</strong> (inferencing and data-checking among the most useful ones, in my opinion). Also, as far as the UX and web interface go, I doubt you can get any better than this with triplestores.</p>
+<p>It's a commercial product, of course, so you may not expect anything less than that. However, the community edition (which is free) allows for 10 databases and 25M triples per database - which may be just fine for many projects.</p>
+<p>If we had more tools as accessible as this one, I do think RDF triplestores would have a much higher uptake by now!</p>
 <h3>5. Useful resources</h3>
-<p><strong>> Documentation</strong>- <a href="http://docs.stardog.com/">http://docs.stardog.com/</a></p>
-<p><strong>> Mailing list</strong>- <a href="https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog">https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog</a></p>
-<p><strong>> Python API</strong>- If you're a <em>pythonista</em>, this small library can be useful: <a href="https://github.com/knorex/pystardog/wiki">https://github.com/knorex/pystardog/wiki</a></p>
+<p><strong>Documentation</strong> - <a href="http://docs.stardog.com/">http://docs.stardog.com/</a></p>
+<p><strong>Mailing list</strong> - <a href="https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog">https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog</a></p>
+<p><strong>Python API</strong> - If you're a <em>pythonista</em>, this small library can be useful: <a href="https://github.com/knorex/pystardog/wiki">https://github.com/knorex/pystardog/wiki</a></p>
 
             </div>
 

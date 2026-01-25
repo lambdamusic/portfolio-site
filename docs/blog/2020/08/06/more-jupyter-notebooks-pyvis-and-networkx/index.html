@@ -601,13 +601,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <blockquote>
-<p>Lately I've been spending more time creating Jupyter notebooks that demonstrate how to use the <a href="https://api-lab.dimensions.ai/">Dimensions API for research analytics.</a> In this post I'll talk a little bit about two cool Python libraries I've recenlty discovered for working with <strong>graph</strong> data: <strong>pyvis</strong> and <strong>networkx</strong>.</p>
-</blockquote>
-<h3>pyvis and networkx</h3>
-<p>The <a href="https://networkx.github.io/documentation/stable/reference/introduction.html">networkx</a> and <a href="https://pyvis.readthedocs.io/en/latest/tutorial.html">pyvis</a> libraries are used for <em>generating</em> and <em>visualizing</em> network data, respectively.</p>
-<p><strong>Pyvis</strong> is fundamentally a python wrapper around the popular <a href="https://visjs.github.io/vis-network/examples/">Javascript visJS library.</a> 
-<strong>Networkx</strong>, instead, of is a pretty sophisticated package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.</p>
+            <p>Lately I've been spending more time creating Jupyter notebooks that demonstrate how to use the <a href="https://api-lab.dimensions.ai/">Dimensions API for research analytics</a>. In this post I'll talk a little bit about two cool Python libraries I've recently discovered for working with <strong>graph</strong> data: <strong>pyvis</strong> and <strong>networkx</strong>.</p>
+<h3>Pyvis and Networkx</h3>
+<p>The <a href="https://networkx.github.io/documentation/stable/reference/introduction.html">networkx</a> and <a href="https://pyvis.readthedocs.io/en/latest/tutorial.html">pyvis</a> libraries are used for generating and visualizing network data, respectively.</p>
+<p><strong>Pyvis</strong> is fundamentally a Python wrapper around the popular <a href="https://visjs.github.io/vis-network/examples/">JavaScript vis.js library</a>. <strong>Networkx</strong>, on the other hand, is a pretty sophisticated package for the creation, manipulation, and study of the structure, dynamics, and functions of complex networks.</p>
+<h3>Example Usage</h3>
 <div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">pyvis.network</span> <span class="kn">import</span> <span class="n">Network</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">networkx</span> <span class="k">as</span> <span class="nn">nx</span>
 <span class="c1"># generate generic network graph instance</span>
@@ -621,26 +619,35 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">nx_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">21</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;couple&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">nx_graph</span><span class="o">.</span><span class="n">add_edge</span><span class="p">(</span><span class="mi">20</span><span class="p">,</span> <span class="mi">21</span><span class="p">,</span> <span class="n">weight</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">nx_graph</span><span class="o">.</span><span class="n">add_node</span><span class="p">(</span><span class="mi">25</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="mi">25</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="s1">&#39;lonely&#39;</span><span class="p">,</span> <span class="n">title</span><span class="o">=</span><span class="s1">&#39;lonely node&#39;</span><span class="p">,</span> <span class="n">group</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
-<span class="c1"># instantiatet pyvis network</span>
+<span class="c1"># instantiate pyvis network</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">nt</span> <span class="o">=</span> <span class="n">Network</span><span class="p">(</span><span class="s2">&quot;500px&quot;</span><span class="p">,</span> <span class="s2">&quot;500px&quot;</span><span class="p">)</span>
-<span class="c1"># populates pyvis network from networkx instance</span>
+<span class="c1"># populate pyvis network from networkx instance</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">nt</span><span class="o">.</span><span class="n">from_nx</span><span class="p">(</span><span class="n">nx_graph</span><span class="p">)</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">nt</span><span class="o">.</span><span class="n">show</span><span class="p">(</span><span class="s2">&quot;nx.html&quot;</span><span class="p">)</span>
 </code></pre></div>
 
-<p>It took me a little to familiarise with the libraries' concepts and to generate some basic graphs. Once I got the hang of it though, the fun part began. What are the best data variables to represent in the graph? What color coding strategy is making it easier to explore the data? How many nodes/edges to display? Can we add some interactivity to the visualizations? Check out the resulting visualizations below for more ideas.</p>
-<h3>Building a concepts co-occurence network</h3>
-<p>The <a href="https://api-lab.dimensions.ai/cookbooks/2-publications/Concepts-network-graph.html">Building a concepts co-occurence network</a> notebook shows how to turn document keywords extracted from 'semantic web' publications into a simple topic map - by virtue of their co-occurrence within the same documents.</p>
+<p>It took me a little while to familiarize myself with the libraries' concepts and to generate some basic graphs. Once I got the hang of it though, the fun part began. What are the best data variables to represent in the graph? What color coding strategy makes it easier to explore the data? How many nodes/edges should be displayed? Can we add some interactivity to the visualizations? Check out the resulting visualizations below for more ideas.</p>
+<h3>Building a Concepts Co-occurrence Network</h3>
+<p>The <a href="https://api-lab.dimensions.ai/cookbooks/2-publications/Concepts-network-graph.html">Building a concepts co-occurrence network</a> notebook shows how to turn document keywords extracted from 'semantic web' publications into a simple topic map by virtue of their co-occurrence within the same documents.</p>
 <p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph2.jpg"><img alt="graph2" src="../../../../../media/static/blog_img/graph2-1024x513.jpg" /></a></p>
 <blockquote>
-<p>An interactive HTML html version of the 'Semantic Web' concepts network can be found here: <a href="http://api-sample-data.dimensions.ai/dataviz-exports/concets-cooccurence/concepts_network_2020-08-05.html">concepts_network_2020-08-05.html</a></p>
+<p>An interactive HTML version of the 'Semantic Web' concepts network can be found here: <a href="http://api-sample-data.dimensions.ai/dataviz-exports/concets-cooccurence/concepts_network_2020-08-05.html">concepts_network_2020-08-05.html</a></p>
 </blockquote>
 <h3>Building an Organizations Collaboration Network Diagram</h3>
-<p>The <a href="https://api-lab.dimensions.ai/cookbooks/8-organizations/3-Organizations-Collaboration-Network.html">Building an Organizations Collaboration Network Diagram</a> notebook shows how to use publications' authors and <a href="https://grid.ac/">GRID</a> data to generate a network of collaborating research organizations.</p>
+<p>The <a href="https://api-lab.dimensions.ai/cookbooks/8-organizations/3-Organizations-Collaboration-Network.html">Building an Organizations Collaboration Network Diagram</a> notebook shows how to use publications' authors and <a href="https://grid.ac/">GRID</a> data to generate a network of collaborating research organizations.</p>
 <p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2020/08/graph1.jpg"><img alt="graph1" src="../../../../../media/static/blog_img/graph1-1024x515.jpg" /></a></p>
 <blockquote>
-<p>An interactive HTML html version of the Organizations Collaboration Network can be found here:  <a href="http://api-sample-data.dimensions.ai/dataviz-exports/3-Organizations-Collaboration-Network/network_2_levels_grid.412125.1.html">network_2_levels_grid.412125.1.html</a></p>
+<p>An interactive HTML version of the Organizations Collaboration Network can be found here: <a href="http://api-sample-data.dimensions.ai/dataviz-exports/3-Organizations-Collaboration-Network/network_2_levels_grid.412125.1.html">network_2_levels_grid.412125.1.html</a></p>
 </blockquote>
+<h3>Key Takeaways</h3>
+<p>Working with pyvis and networkx has been a great learning experience. Some key insights:</p>
+<ul>
+<li><strong>Start simple:</strong> Begin with a small dataset to understand the data structures before scaling up</li>
+<li><strong>Interactivity matters:</strong> The interactive features of pyvis make exploring complex networks much more intuitive</li>
+<li><strong>Color and size coding:</strong> Use visual properties strategically to convey different dimensions of your data</li>
+<li><strong>Performance considerations:</strong> Large graphs (thousands of nodes) can become slow; consider filtering or sampling your data</li>
+</ul>
+<p>These tools are excellent for research analytics, social network analysis, citation networks, and any domain where relationships between entities matter. Give them a try!</p>
 
             </div>
 

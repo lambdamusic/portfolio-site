@@ -597,9 +597,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>A little Bash script to show information about world time zones. Because I love my colleagues abroad, but I constantly struggle to remember how many hours ahead (or behind?) they are.</p>
-<p>I am using the script on a Mac, but it should work on other systems too with little or no changes. Basically, it scans the <code>zoneinfo</code> database (<a href="https://en.wikipedia.org/wiki/Tz_database">more info</a>) that most likely already exists on your computer, in order to return the rows matching an input string.</p>
-<p>For example - what's the time in Australia right now?</p>
+            <p>A little Bash script to show information about world time zones. Because I love my colleagues abroad, but I constantly struggle to remember how many hours ahead (or behind) they are.</p>
+<p>I am using the script on a Mac, but it should work on other systems too with little or no changes. Basically, it scans the <code>zoneinfo</code> database (<a href="https://en.wikipedia.org/wiki/Tz_database">more info</a>) that most likely already exists on your computer to return the rows matching an input string.</p>
+<p>For example, what's the time in Australia right now?</p>
 <div class="codehilite"><pre><span></span><code>$<span class="w"> </span>wdate<span class="w"> </span>australia
 /Australia/Melbourne<span class="w">               </span>Tue<span class="w"> </span><span class="m">2021</span>-10-12<span class="w"> </span><span class="m">20</span>:47:48
 /Australia/Queensland<span class="w">              </span>Tue<span class="w"> </span><span class="m">2021</span>-10-12<span class="w"> </span><span class="m">19</span>:47:48
@@ -626,27 +626,27 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 /Australia/Currie<span class="w">                  </span>Tue<span class="w"> </span><span class="m">2021</span>-10-12<span class="w"> </span><span class="m">20</span>:47:48
 </code></pre></div>
 
-<h2>Set up</h2>
-<p>NOTE On my Mac I found the <code>zoneinfo</code> database in this location:</p>
+<h2>Setup</h2>
+<p>Note: On my Mac, I found the <code>zoneinfo</code> database in this location:</p>
 <p><code>/System/Library/Frameworks/Python.framework/Versions/2.7/Extras/lib/python/pytz/zoneinfo/</code></p>
-<p>This path is needed for the script to work. You can customise it of course, see below how to do it. </p>
+<p>This path is needed for the script to work. You can customize it, of course—see below for how to do it. </p>
 <script src="https://gist.github.com/lambdamusic/4a5b852c8f9051b1f29033619cd38e36.js"></script>
 
-<p>Save the file above eg as <code>wdate</code> and then make it executable</p>
+<p>Save the file above, e.g., as <code>wdate</code>, and then make it executable:</p>
 <div class="codehilite"><pre><span></span><code>chmod<span class="w"> </span>+x<span class="w"> </span>wdate
 </code></pre></div>
 
 <h2>Troubleshoot</h2>
-<p>If you don't know where to find <code>zoneinfo</code> data on your computer, just search for it. Eg on a Mac: </p>
+<p>If you don't know where to find <code>zoneinfo</code> data on your computer, just search for it. For example, on a Mac: </p>
 <div class="codehilite"><pre><span></span><code>mdfind -name zoneinfo
 </code></pre></div>
 
-<p>That'll give you a list of possible candidates. </p>
+<p>That will give you a list of possible candidates.</p>
 <h2>See also</h2>
 <ul>
-<li>The inspiration for this post: <a href="https://stackoverflow.com/questions/26802201/bash-get-date-and-time-from-another-time-zone">a Stackoverflow thread</a></li>
-<li>Menu World Time - a free Mac <a href="https://apps.apple.com/us/app/menu-world-time/id1446377255">Menu Bar app</a></li>
-<li>Working with timezones in Python: <a href="https://stackoverflow.com/questions/16505501/get-timezone-from-city-in-python-django">more background info</a></li>
+<li>The inspiration for this post: <a href="https://stackoverflow.com/questions/26802201/bash-get-date-and-time-from-another-time-zone">a Stack Overflow thread</a></li>
+<li>Menu World Time—a free Mac <a href="https://apps.apple.com/us/app/menu-world-time/id1446377255">Menu Bar app</a></li>
+<li>Working with time zones in Python: <a href="https://stackoverflow.com/questions/16505501/get-timezone-from-city-in-python-django">more background info</a></li>
 </ul>
 
             </div>

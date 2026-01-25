@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Nature.com Subjects Stream Graph The nature.com subjects stream graph displays the distribution of content across the subject areas covered by the nature.com portal. This is an experimental interactive visualisation ...">
+  <meta name="description" content="Nature.com Subjects Stream Graph The nature.com subjects stream graph displays the distribution of content across the subject areas covered by the nature.com portal. This is an experimental interactive visualization ...">
 
 
 
@@ -602,14 +602,14 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
             <p>The <a href="http://www.nature.com/developers/hacks/articles/stream/by-subject/">nature.com subjects stream graph</a> displays the distribution of content across the subject areas covered by the nature.com portal.</p>
-<p>This is an experimental interactive visualisation based on a freely available dataset from the <a href="http://www.nature.com/ontologies/datasets/">nature.com linked data platform</a>, which I've been working on in the last few months. <a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6.png"><img alt="streamgraph" src="../../../../../media/static/blog_img/streamgraph6-1024x657.png" /></a></p>
-<p>The main visualization provides an overview of selected content within the level 2 disciplines of the <a href="http://www.nature.com/ontologies/models/subjects/">NPG Subjects Ontology</a>. By clicking on these, it is then possible to explore more specific subdisciplines and their related articles.</p>
-<p>For those of you who are not familiar with the Subjects Ontology: this is a categorization of scholarly subject areas which are used for the indexing of content on nature.com. It includes subject terms of varying levels of specificity such as Biological sciences (top level), Cancer (level 2), or B-2 cells (level 7). In total there are more than 2500 subject terms, organized into a <a href="http://www.nature.com/developers/hacks/subjects/tree">polyhierarchical tree</a>. Starting in 2010, the various journals published on nature.com have adopted the subject ontology to tag their articles (note: different journals have started doing this at different times, hence some variations in the graph starting dates).</p>
+<p>This is an experimental interactive visualization based on a freely available dataset from the <a href="http://www.nature.com/ontologies/datasets/">nature.com linked data platform</a>, which I've been working on over the last few months. <a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph6.png"><img alt="streamgraph" src="../../../../../media/static/blog_img/streamgraph6-1024x657.png" /></a></p>
+<p>The main visualization provides an overview of selected content within the level 2 disciplines of the <a href="http://www.nature.com/ontologies/models/subjects/">NPG Subjects Ontology</a>. By clicking on these, you can explore more specific subdisciplines and their related articles.</p>
+<p>For those of you who are not familiar with the Subjects Ontology: this is a categorization of scholarly subject areas used for the indexing of content on nature.com. It includes subject terms of varying levels of specificity, such as Biological Sciences (top level), Cancer (level 2), or B-2 cells (level 7). In total, there are more than 2,500 subject terms organized into a <a href="http://www.nature.com/developers/hacks/subjects/tree">polyhierarchical tree</a>. Starting in 2010, the various journals published on nature.com have adopted the subject ontology to tag their articles (note: different journals started doing this at different times, hence some variations in the graph starting dates).</p>
 <p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph22.png"><img alt="streamgraph2" src="../../../../../media/static/blog_img/streamgraph22.png" /></a></p>
 <p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/streamgraph33.png"><img alt="streamgraph3" src="../../../../../media/static/blog_img/streamgraph33-1024x472.png" /></a></p>
-<p>The visualization makes use of various <a href="http://d3js.org/">d3.js</a> modules, plus some simple customizations here and there. The hardest part of the work was putting the different page components together, to the effect of a more fluent 'narrative' achieved by gradually zooming into the data.</p>
-<p>The back end is a <a href="https://www.djangoproject.com/">Django</a> web application with a relational database. The original dataset is <a href="http://www.nature.com/ontologies/downloads/">published as RDF</a>, so in order to use the Django APIs I've recreated it as a relational model. That let me also add a few extra data fields containing search indexes (e.g. article counts per month), so to make the stream graph load faster.</p>
-<p>Comments or suggestions, as always very welcome.</p>
+<p>The visualization makes use of various <a href="http://d3js.org/">D3.js</a> modules, plus some simple customizations here and there. The hardest part of the work was putting the different page components together to create a more fluent 'narrative' achieved by gradually zooming into the data.</p>
+<p>The backend is a <a href="https://www.djangoproject.com/">Django</a> web application with a relational database. The original dataset is <a href="http://www.nature.com/ontologies/downloads/">published as RDF</a>, so in order to use the Django APIs, I recreated it as a relational model. This also let me add a few extra data fields containing search indexes (e.g., article counts per month) to make the stream graph load faster.</p>
+<p>Comments or suggestions are, as always, very welcome.</p>
 
             </div>
 

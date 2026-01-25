@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Using Impromptu to visualize RSS feeds Some time ago I&#39;ve been experimenting with the processing and display of RSS feeds within Impromptu, and as a result I built a small app ...">
+  <meta name="description" content="Using Impromptu to visualize RSS feeds Some time ago, I was experimenting with the processing and display of RSS feeds within Impromptu, and as a result, I built a small app ...">
 
 
 
@@ -603,12 +603,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>Some time ago I've been experimenting with the processing and display of <a href="http://www.google.co.uk/url?sa=t&amp;rct=j&amp;q=rss%20feed&amp;source=web&amp;cd=1&amp;ved=0CD0QFjAA&amp;url=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FRSS&amp;ei=K9jxTtyyMY-K4gSwibHBAQ&amp;usg=AFQjCNEdBSkFc9gzQ_IRDoz4mZzyuZwfbw">RSS feeds</a> within <a href="http://impromptu.moso.com.au/">Impromptu</a>, and as a result I built a small app that retrieves the news feed from <a href="http://www.guardian.co.uk/">The Guardian</a> online and displays on a canvas. I've had a bit of free time these days, so last night I thought it was time to polish it a little and make it available on this blog (who knows maybe someone else will use it as starting point for another project).</p>
+            <p>Some time ago, I was experimenting with the processing and display of <a href="http://www.google.co.uk/url?sa=t&amp;rct=j&amp;q=rss%20feed&amp;source=web&amp;cd=1&amp;ved=0CD0QFjAA&amp;url=http%3A%2F%2Fen.wikipedia.org%2Fwiki%2FRSS&amp;ei=K9jxTtyyMY-K4gSwibHBAQ&amp;usg=AFQjCNEdBSkFc9gzQ_IRDoz4mZzyuZwfbw">RSS feeds</a> within <a href="http://impromptu.moso.com.au/">Impromptu</a>, and as a result, I built a small app that retrieves the news feed from <a href="http://www.guardian.co.uk/">The Guardian</a> online and displays it on a canvas. I've had a bit of free time these days, so last night I thought it was time to polish it a little and make it available on this blog (who knows, maybe someone else will use it as a starting point for another project).</p>
 <p><a href="http://www.flickr.com/photos/mikele/6549002895/" title="Visualizing rss feeds with Impromptu by MagIcReBirth, on Flickr"><img alt="Visualizing rss feeds with Impromptu" src="../../../../../media/static/blog_img/6549002895_2b42b95cef.jpg" /></a></p>
 <blockquote>
 <p>There're a thousand improvements that could be done to it still, but the core of the application is there: I packaged it as a standalone app that you can <a href="http://www.box.com/s/oprvyybridp0gtij8j5d">download here</a>. (use the 'show package contents' Finder command to see the source code).</p>
 </blockquote>
-<p>The application relies on a bunch of XML processing functions that I found within Impromptu 'examples' folder (specifically, it's the example named <a href="http://impromptu.moso.com.au/examples_2.5/35_objc_xml_lib.html">35_objc_xml_lib</a>). I pruned that a bit so to fit my purposes and renamed it xml_lib.scm.</p>
+<p>The application relies on a bunch of XML processing functions that I found within Impromptu's 'examples' folder (specifically, the example named <a href="http://impromptu.moso.com.au/examples_2.5/35_objc_xml_lib.html">35_objc_xml_lib</a>). I pruned that a bit to fit my purposes and renamed it xml_lib.scm.</p>
 <p>By using that, I created a function that extracts title and url info from the guardian feed:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="k">load</span><span class="w"> </span><span class="s">&quot;xml_lib.scm&quot;</span><span class="p">)</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nv">feedurl</span><span class="w"> </span><span class="s">&quot;http://feeds.guardian.co.uk/theguardian/world/rss&quot;</span><span class="p">)</span>
@@ -653,7 +653,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">             </span><span class="nv">txt</span><span class="p">))))</span>
 </code></pre></div>
 
-<p>And here's the <strong>main loop</strong>: it goes through all the feed items at a predefined speed, and displays it on the canvas using a cosine oscillator to vary the colours a bit. At the end of it I'm also updating 3 global variables that are used for the mouse-click-capturing routine.</p>
+<p>And here's the <strong>main loop</strong>: it goes through all the feed items at a predefined speed and displays them on the canvas using a cosine oscillator to vary the colors a bit. At the end, I'm also updating three global variables that are used for the mouse-click-capturing routine.</p>
 <div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nv">displayloop</span>
 <span class="w">   </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="nf">beat</span><span class="w"> </span><span class="nv">feeds</span><span class="p">)</span><span class="w"> </span>
 <span class="w">      </span><span class="p">(</span><span class="k">let*</span><span class="w"> </span><span class="p">((</span><span class="nf">dur</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
@@ -678,7 +678,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">                               </span><span class="p">(</span><span class="nf">get-articles-online</span><span class="p">))))))</span>
 </code></pre></div>
 
-<p>In order to capture the clicks on the feed titles I simply create a rectangle path based on the x,y coordinates randomly assigned when displaying the title on the canvas. These coordinates are stored in global variables so that they can be updated constantly.</p>
+<p>To capture clicks on the feed titles, I simply create a rectangle path based on the x,y coordinates randomly assigned when displaying the title on the canvas. These coordinates are stored in global variables so they can be updated constantly.</p>
 <div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="nf">io:register-mouse-events</span><span class="w"> </span><span class="nv">*canvas*</span><span class="p">)</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nv">io:mouse-down</span>
 <span class="w">   </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="nf">x</span><span class="w"> </span><span class="nv">y</span><span class="p">)</span>
@@ -687,16 +687,16 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">            </span><span class="p">(</span><span class="nf">util:open-url</span><span class="w"> </span><span class="nv">*current_url*</span><span class="p">))))</span>
 </code></pre></div>
 
-<p>Finally, the util:open-url opens up a url string in your browser (I've already talked about it <a href="http://www.michelepasin.org/blog/2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/">here</a>).</p>
-<p>You can see all of this code in action by <a href="http://www.box.com/s/oprvyybridp0gtij8j5d">downloading the app</a> and taking a look its contents (all the files are under Contents/Resources/app).</p>
+<p>Finally, the util:open-url function opens a URL string in your browser (I've already talked about it <a href="http://www.michelepasin.org/blog/2010/02/15/impromptu-function-to-access-wiki-docs-from-the-editor/">here</a>).</p>
+<p>You can see all of this code in action by <a href="http://www.box.com/s/oprvyybridp0gtij8j5d">downloading the app</a> and taking a look at its contents (all the files are under Contents/Resources/app).</p>
 <p><a href="http://www.flickr.com/photos/mikele/6549002521/" title="Visualizing rss feeds with Impromptu by MagIcReBirth, on Flickr"><img alt="Visualizing rss feeds with Impromptu" src="../../../../../media/static/blog_img/6549002521_9b39fb2120.jpg" /></a></p>
-<h3>If I had the time…</h3>
-<p>Some other things it'd be nice to do:</p>
+<h3>If I had the time...</h3>
+<p>Some other things it would be nice to do:</p>
 <ul>
-<li>Creating a routine that makes the <strong>transitions</strong> among feed items <strong>less abrupt</strong>, maybe by using canvas layers.</li>
-<li>Refining the <strong>clicking events</strong> creation: now you can click only on the most recent title; moreover the clicking event handler is updated too quickly, thus unless you click on the titles as soon as it appears you won't be able to trigger the open-url action.</li>
-<li>Refining the <strong>xml-tree parsing</strong> function, which now is very very minimal. We could extract news entries description and other stuff that can make the app more informative.</li>
-<li>Adding some <strong>background music</strong> to it.</li>
+<li>Create a routine that makes the <strong>transitions</strong> among feed items <strong>less abrupt</strong>, perhaps by using canvas layers.</li>
+<li>Refine the <strong>clicking events</strong> creation: now you can only click on the most recent title. Moreover, the clicking event handler is updated too quickly, so unless you click on the title as soon as it appears, you won't be able to trigger the open-url action.</li>
+<li>Refine the <strong>XML-tree parsing</strong> function, which is currently very minimal. We could extract news entry descriptions and other information that could make the app more informative.</li>
+<li>Add some <strong>background music</strong> to it.</li>
 </ul>
 
             </div>

@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Installing GraphDB (aka OWLIM) triplestore on mac os GraphDB (formerly called OWLIM) is an RDF triplestore which is used - among others - by large organisations like the BBC or the British Museum. ...">
+  <meta name="description" content="Installing GraphDB (aka OWLIM) triplestore on mac os GraphDB (formerly called OWLIM) is an RDF triplestore which is used - among others - by large organizations like the BBC and the British Museum. ...">
 
 
 
@@ -603,15 +603,19 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p><a href="http://www.ontotext.com/products/ontotext-graphdb/">GraphDB</a> (formerly called OWLIM) is an RDF triplestore which is used - among others - by large organisations like the <a href="http://www.ontotext.com/customers/">BBC or the British Museum</a>. I've recently installed the LITE release of this graph database on my mac, so what follows is a simple write up of the steps that worked for me.</p>
-<p>Haven't played much with the database yet, but all in all, the installation was much simpler than expected (ps: this old <a href="https://code.google.com/p/sgvizler/wiki/HowTo_MacOWLIMLiteTomcat7Apache">recipe on google code</a> was very helpful in steering me in the right direction with the whole Tomcat/Java setup).</p>
+            <p><a href="http://www.ontotext.com/products/ontotext-graphdb/">GraphDB</a> (formerly called OWLIM) is an RDF triplestore which is used - among others - by large organizations like the <a href="http://www.ontotext.com/customers/">BBC and the British Museum</a>. I've recently installed the LITE release of this graph database on my Mac, so what follows is a simple write-up of the steps that worked for me.</p>
+<p>I haven't played much with the database yet, but all in all, the installation was much simpler than expected (note: this old <a href="https://code.google.com/p/sgvizler/wiki/HowTo_MacOWLIMLiteTomcat7Apache">recipe on Google Code</a> was very helpful in steering me in the right direction with the whole Tomcat/Java setup).</p>
 <h3>1. Requirements</h3>
 <p><strong>OSX</strong>: Mavericks 10.9.5 <strong>XCode</strong>: latest version <a href="https://developer.apple.com/xcode/downloads/">available from Apple</a> <strong>HOMEBREW</strong>: ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)" <strong>Tomcat7</strong>: brew install tomcat <strong>JAVA</strong>: available <a href="http://support.apple.com/kb/dl1572">from Apple</a></p>
 <p>Finally - we obviously want to get a copy of <strong>OWLIM-Lite</strong> too: <a href="http://www.ontotext.com/owlim/downloads">http://www.ontotext.com/owlim/downloads</a></p>
 <h3>2. Setting up</h3>
-<p>After you have downloaded and unpacked the archive, you must simply <strong>copy</strong> these two files: owlim-lite/sesame_owlim/openrdf-sesame.war owlim-lite/sesame_owlim/openrdf-workbench.war</p>
-<p>..to the Tomcat webapps folder: /usr/local/Cellar/tomcat/7.0.29/libexec/webapps/</p>
-<p>Essentially that's because OWLIM-Lite is packaged as a storage and inference layer for the <a href="http://rdf4j.org/">Sesame RDF framework</a>, which runs here as a component within the <a href="http://tomcat.apache.org/">Tomcat</a> server (note: there are <a href="https://confluence.ontotext.com/display/OWLIMv53/OWLIM-Lite+Installation#OWLIM-LiteInstallation-Usefulinformation">other ways to run OWLIM</a>, but this one seemed the quickest).</p>
+<p>After you have downloaded and unpacked the archive, you must simply <strong>copy</strong> these two files:</p>
+<ul>
+<li>owlim-lite/sesame_owlim/openrdf-sesame.war</li>
+<li>owlim-lite/sesame_owlim/openrdf-workbench.war</li>
+</ul>
+<p>...to the Tomcat webapps folder: /usr/local/Cellar/tomcat/7.0.29/libexec/webapps/</p>
+<p>Essentially, this is because OWLIM-Lite is packaged as a storage and inference layer for the <a href="http://rdf4j.org/">Sesame RDF framework</a>, which runs here as a component within the <a href="http://tomcat.apache.org/">Tomcat</a> server (note: there are <a href="https://confluence.ontotext.com/display/OWLIMv53/OWLIM-Lite+Installation#OWLIM-LiteInstallation-Usefulinformation">other ways to run OWLIM</a>, but this one seemed the quickest).</p>
 <h3>3. Starting Tomcat</h3>
 <p>First I created a symbolic link in my ~/Library folder, so to better manage new versions (as suggested <a href="http://wolfpaulus.com/jounal/mac/tomcat7">here</a>).</p>
 <p>sudo ln -s /usr/local/Cellar/tomcat/7.0.39 ~/Library/Tomcat</p>
@@ -639,21 +643,21 @@ Using CLASSPATH:       /usr/local/Cellar/tomcat/7.0.39/libexec/bin/bootstrap.jar
 <p>Fill in the fields as required and click ‘create’.</p>
 <p>That's it! A message should be displayed that gives details of the new repository and this should also appear in the repository list (click ‘repositories’ to see this).</p>
 <h3>5. Loading a big dataset</h3>
-<p>I've set out to load the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com's legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>.</p>
-<p>The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that's been published by NPG and Scientific American from 1845 till nowadays. The file size is <strong>~6 gigs</strong> so it's not a huge dataset. Still, something big enough to pose a challenge to my macbook pro (8gigs RAM).</p>
-<p>First, I <strong>increased the memory</strong> allocated to the Tomcat application to 5G. It was enough to create a setenv.sh file in the ${tomcat-folder}\bin\ folder. The file contains this line:</p>
+<p>I set out to load the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com's legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>.</p>
+<p>The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that's been published by NPG and Scientific American from 1845 until now. The file size is <strong>~6 GB</strong>, so it's not a huge dataset. Still, it's something big enough to pose a challenge to my MacBook Pro (8GB RAM).</p>
+<p>First, I <strong>increased the memory</strong> allocated to the Tomcat application to 5GB. It was enough to create a setenv.sh file in the ${tomcat-folder}\bin\ folder. The file contains this line:</p>
 <p>CATALINA_OPTS="$CATALINA_OPTS -server -Xms5g -Xmx5g"</p>
 <blockquote>
 <p>More details on Tomcat's and Java memory issues are <a href="http://www.mkyong.com/tomcat/tomcat-javalangoutofmemoryerror-permgen-space/">available here</a>.</p>
 </blockquote>
-<p>Then I used OWLIM's <strong>web interface</strong> to create a new graph repository and upload the dataset file into it (I previously downloaded a copy of the dataset to my computer so to work with local files only).</p>
-<p>It took around 10 minutes for the application to upload the file into the triplestore, and 2-3 minutes for OWLIM to process it. <strong>Much much faster than what I expected</strong>. Only minor issue, the lack of notifications (in the UI) of what was going on. Not a big deal in my case, but with larger dataset uploads it might be a potential downer.</p>
+<p>Then I used OWLIM's <strong>web interface</strong> to create a new graph repository and upload the dataset file into it (I had previously downloaded a copy of the dataset to my computer to work with local files only).</p>
+<p>It took around 10 minutes for the application to upload the file into the triplestore, and 2-3 minutes for OWLIM to process it. <strong>Much faster than I expected</strong>. The only minor issue was the lack of notifications (in the UI) of what was going on. Not a big deal in my case, but with larger dataset uploads it might be a potential downside.</p>
 <p>Note: I used the web form to upload the dataset, but there are also <a href="http://answers.ontotext.com/questions/1045/archive-loading-a-large-triple-store-using-owlim-se">ways to do that from the command line</a> (which will probably result in even faster uploads).</p>
 <h3>6. Useful information</h3>
-<p><strong>> Sparql endpoints</strong></p>
-<p>All of your repositories come also with a handy SPARQL endpoint, which is available at this url: http://localhost:8080/openrdf-sesame/repositories/test1 (just change the last bit so that it matches your repository name).</p>
-<p><strong>> Official documentation</strong>- <a href="https://confluence.ontotext.com/display/GraphDB6/">https://confluence.ontotext.com/display/GraphDB6</a></p>
-<p><strong>> Ontotext's Q&amp;A forum</strong>- <a href="http://answers.ontotext.com">http://answers.ontotext.com</a></p>
+<p><strong>SPARQL endpoints</strong></p>
+<p>All of your repositories also come with a handy SPARQL endpoint, which is available at this URL: http://localhost:8080/openrdf-sesame/repositories/test1 (just change the last bit so that it matches your repository name).</p>
+<p><strong>Official documentation</strong> - <a href="https://confluence.ontotext.com/display/GraphDB6/">https://confluence.ontotext.com/display/GraphDB6</a></p>
+<p><strong>Ontotext's Q&amp;A forum</strong> - <a href="http://answers.ontotext.com">http://answers.ontotext.com</a></p>
 
             </div>
 

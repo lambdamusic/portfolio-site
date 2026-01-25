@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="An alternative to the &#39;play&#39; macro: &#39;iplay&#39; and &#39;with-instrument&#39; The other day I was thinking: when I use the play macro in Impromptu (video tutorial), in my head it&#39;s already obvious what&#39;s the virtual ...">
+  <meta name="description" content="An alternative to the &#39;play&#39; macro: &#39;iplay&#39; and &#39;with-instrument&#39; The other day I was thinking: when I use the play macro in Impromptu (video tutorial), in my head it&#39;s already obvious which virtual instrument ...">
 
 
 
@@ -599,7 +599,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>The other day I was thinking: when I use the <a href="http://moso.com.au/wiki/index.php?title=Play">play macro in Impromptu</a>  (<a href="http://impromptu.moso.com.au/resources.html#faq16">video tutorial</a>), in my head it's already <strong>obvious</strong> what's the virtual instrument I want to play. So why do I have to specify that all the time? Wouldn't it be more natural just being able to say, for example, <strong>get this instrument</strong> and now <strong>play this and that note with it</strong>...</p>
+            <p>The other day I was thinking: when I use the <a href="http://moso.com.au/wiki/index.php?title=Play">play macro in Impromptu</a> (<a href="http://impromptu.moso.com.au/resources.html#faq16">video tutorial</a>), in my head it's already <strong>obvious</strong> which virtual instrument I want to play. So why do I have to specify that all the time? Wouldn't it be more natural to simply say, for example, <strong>get this instrument</strong> and now <strong>play this and that note with it</strong>?</p>
 <p>Let me clarify this with an example. Let's set up the standard Apple's DLS-synth audiounit and the metronome:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="nf">au:clear-graph</span><span class="p">)</span>
 <span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nv">dls</span><span class="w">     </span><span class="p">(</span><span class="nf">au:make-node</span><span class="w"> </span><span class="s">&quot;aumu&quot;</span><span class="w"> </span><span class="s">&quot;dls &quot;</span><span class="w"> </span><span class="s">&quot;appl&quot;</span><span class="p">))</span>
@@ -622,9 +622,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="p">(</span><span class="nf">the-usual-play</span><span class="w"> </span><span class="p">(</span><span class="nf">*metro*</span><span class="w"> </span><span class="ss">&#39;get-beat</span><span class="w"> </span><span class="mi">4</span><span class="p">))</span>
 </code></pre></div>
 
-<p><strong>That's where I started getting nervous</strong> (so to say). Having to write 'dls' each time I play a new note seemed to me redundant and illogical; I <strong>know</strong> that it's dls the instrument I want to play - I heard my mind screaming - why can't I focus on the music instead of making sure I type in the instrument name all the time?</p>
+<p><strong>That's where I started getting frustrated</strong>. Having to write 'dls' each time I play a new note seemed redundant and illogical; I <strong>know</strong> that dls is the instrument I want to play—why can't I focus on the music instead of making sure I type the instrument name all the time?</p>
 <h3>Taking advantage of Scheme, the self-modifying language</h3>
-<p>Luckily though we're using <a href="http://www.michelepasin.org/blog/2010/08/10/learning-resources-about-scheme/">Scheme</a>, which differently from most other computer languages allows you to change the language grammar as you like, thanks to <a href="http://en.wikipedia.org/wiki/Macro_(computer_science)">macros</a>. So here we go, we can create a new macro similar to <em>play</em> that lets you omit the instrument you're playing. We'll call it <em><strong>iplay</strong></em> (shortcut for instrument-play, not itunes :-)):</p>
+<p>Luckily, we're using <a href="http://www.michelepasin.org/blog/2010/08/10/learning-resources-about-scheme/">Scheme</a>, which—unlike most other computer languages—allows you to change the language grammar as you like, thanks to <a href="http://en.wikipedia.org/wiki/Macro_(computer_science)">macros</a>. So we can create a new macro similar to <em>play</em> that lets you omit the instrument you're playing. We'll call it <em><strong>iplay</strong></em> (shortcut for instrument-play, not iTunes!):</p>
 <div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="nf">macro</span><span class="w"> </span><span class="p">(</span><span class="nf">iplay</span><span class="w"> </span><span class="nv">args</span><span class="p">)</span><span class="w">  </span>
 <span class="w">   </span><span class="p">(</span><span class="k">cond</span><span class="w"> </span><span class="p">((</span><span class="nb">equal?</span><span class="w"> </span><span class="p">(</span><span class="nb">length</span><span class="w"> </span><span class="p">(</span><span class="nb">cdr</span><span class="w"> </span><span class="nv">args</span><span class="p">))</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span>
 <span class="w">          </span><span class="o">`</span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="nf">note</span><span class="w"> </span><span class="o">,</span><span class="p">(</span><span class="nb">cadr</span><span class="w"> </span><span class="nv">args</span><span class="p">))</span>
@@ -663,7 +663,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">       </span><span class="o">,@</span><span class="p">(</span><span class="nb">cddr</span><span class="w"> </span><span class="nv">args</span><span class="p">)))</span>
 </code></pre></div>
 
-<p>As you can see, this macro doesn't do much: it just rephrases the <em>let</em> form above in a way that is probably more natural to me (and to others too I believe..).</p>
+<p>As you can see, this macro doesn't do much: it just rephrases the <em>let</em> form above in a way that is probably more natural to me (and to others as well, I believe).</p>
 <p>For example, now we can use <em>iplay</em> like this:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nv">justatest</span>
 <span class="w">   </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="nf">beat</span><span class="p">)</span><span class="w">      </span>

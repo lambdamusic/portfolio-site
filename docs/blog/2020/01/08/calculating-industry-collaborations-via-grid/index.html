@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Calculating Industry Collaborations via GRID A new tutorial demostrating how to extract and visualize data about industry collaborations, by combining the Dimensions data with GRID. Dimensions uses GRID (the Global ...">
+  <meta name="description" content="Calculating Industry Collaborations via GRID A new tutorial demonstrating how to extract and visualize data about industry collaborations by combining Dimensions data with GRID. Dimensions uses GRID (the Global Research ...">
 
 
 
@@ -589,14 +589,30 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>A new <a href="https://api-lab.dimensions.ai/cookbooks/8-organizations/2-Industry-Collaboration.html">tutorial</a> demostrating how to extract and visualize data about <em>industry collaborations</em>, by combining the Dimensions data with GRID.</p>
-<p>Dimensions uses <a href="https://grid.ac/">GRID</a> (the Global Research Identifiers Database) to unambiguously identify research organizations. GRID includes a wealth of data, for example whether an organization has type 'Education' or 'Industry'. So it's pretty easy to take advantage of these metadata in order to highlight collaboration patterns between a selected university and other organizations from the industry sector.</p>
-<p>The <a href="https://api-lab.dimensions.ai/cookbooks/8-organizations/2-Industry-Collaboration.html">Identifying the Industry Collaborators of an Academic Institution</a> notebook can be adapted so to focus on any research organization: many of us are linked to some university, hence it's quite interesting to explore what are the non-academic organizations related to </p>
+            <p>A new <a href="https://api-lab.dimensions.ai/cookbooks/8-organizations/2-Industry-Collaboration.html">tutorial</a> demonstrating how to extract and visualize data about industry collaborations by combining Dimensions data with GRID.</p>
+<p>Dimensions uses <a href="https://grid.ac/">GRID</a> (the Global Research Identifiers Database) to unambiguously identify research organizations. GRID includes a wealth of data, for example whether an organization has type 'Education' or 'Industry'. This makes it easy to take advantage of these metadata to highlight collaboration patterns between a selected university and other organizations from the industry sector.</p>
+<p>The <a href="https://api-lab.dimensions.ai/cookbooks/8-organizations/2-Industry-Collaboration.html">Identifying the Industry Collaborators of an Academic Institution</a> notebook can be adapted to focus on any research organization. Many of us are linked to some university, hence it's quite interesting to explore what the non-academic organizations are that collaborate with our institutions and in what research areas these collaborations occur.</p>
 <blockquote>
-<p>The <a href="https://www.dimensions.ai/dimensions-apis/">Dimensions API</a> can be accessed for <strong>free</strong> for <a href="https://www.dimensions.ai/scientometric-research/">non-commercial research projects.</a></p>
+<p>The <a href="https://www.dimensions.ai/dimensions-apis/">Dimensions API</a> can be accessed <strong>for free</strong> for <a href="https://www.dimensions.ai/scientometric-research/">non-commercial research projects</a>.</p>
 </blockquote>
+<h3>Example Visualization</h3>
 <p>For example, see below a <a href="https://plot.ly/python/">Plotly</a> visualization of the industry collaborators for <a href="https://grid.ac/institutes/grid.11696.39">University of Trento, Italy</a>.</p>
 <p><a href="../../../../../media/static/blog_img/2020-01-08-calculating-industry-collaborations-via-grid.jpg"><img alt="plotly-chart" src="../../../../../media/static/blog_img/2020-01-08-calculating-industry-collaborations-via-grid.jpg" /></a></p>
+<h3>Key Insights</h3>
+<p>This type of analysis can reveal:
+- <strong>Major industry partners:</strong> Which companies collaborate most frequently with your institution
+- <strong>Research areas:</strong> What fields of study attract industry collaboration
+- <strong>Geographic patterns:</strong> Where your industry partners are located
+- <strong>Trends over time:</strong> How these collaborations have evolved</p>
+<h3>How It Works</h3>
+<p>The notebook uses the Dimensions API to:
+1. Query publications from a specific academic institution
+2. Filter for co-authored publications involving industry organizations (identified via GRID types)
+3. Aggregate collaboration data by organization and research field
+4. Create interactive visualizations to explore the patterns</p>
+<p>This approach can be valuable for university administrators, research officers, and policy makers who want to understand and strengthen university-industry partnerships.</p>
+<h3>Try It Yourself</h3>
+<p>Visit the <a href="https://api-lab.dimensions.ai/cookbooks/8-organizations/2-Industry-Collaboration.html">full tutorial</a> to run the analysis on your own institution or explore different collaboration patterns.</p>
 
             </div>
 

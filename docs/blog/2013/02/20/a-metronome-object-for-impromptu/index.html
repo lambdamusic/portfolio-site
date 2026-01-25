@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="A metronome object for Impromptu Metronome: a device used by musicians that marks time at a selected rate by giving a regular tick. If you ever felt that you missed ...">
+  <meta name="description" content="A metronome object for Impromptu Metronome: a device used by musicians that marks time at a selected rate by giving a regular tick. If you&#39;ve ever felt that you needed ...">
 
 
 
@@ -599,14 +599,23 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>Metronome: <em>a device used by musicians that marks time at a selected rate by giving a regular tick</em>. If you ever felt that you missed a metronome in <a href="http://impromptu.moso.com.au/">Impromptu</a>, here is a little scheme object that can do that job for you.</p>
+            <p>Metronome: <em>a device used by musicians that marks time at a selected rate by giving a regular tick</em>. If you've ever felt that you needed a metronome in <a href="http://impromptu.moso.com.au/">Impromptu</a>, here is a little Scheme object that can do that job for you.</p>
+<p>Live coding with Impromptu is an exciting experience, but keeping time while building musical patterns on the fly can be challenging. Having an audible metronome click helps maintain rhythmic accuracy and makes it easier to layer multiple musical elements coherently.</p>
 <h2>Function: <code>make-metroclick</code></h2>
-<p>The make-metroclick function returns a closure that can be called with a specific time in beats, so that it plays a sound for each beat and marks the downbeat using a different sound.</p>
-<p>Possibly useful in order to keep track of the downbeats while you compose, or just to experiment a little with some rhythmic figures before composing a more complex drum kit section.</p>
+<p>The <code>make-metroclick</code> function returns a closure that can be called with a specific time in beats. It plays a sound for each beat and marks the downbeat (the first beat of each measure) using a different sound, making it easy to track where you are in the musical phrase.</p>
+<p>This is particularly useful for keeping track of downbeats while you compose, or for experimenting with rhythmic figures before composing a more complex drum kit section. The distinct downbeat sound helps orient you within the measure, which is especially valuable when working with complex time signatures or polyrhythmic patterns.</p>
+<h2>Demo</h2>
 <p>Here's a short example of how to use it:</p>
 <iframe src="http://player.vimeo.com/video/60047833?autoplay=1" width="500" height="533" frameborder="0" webkitallowfullscreen mozallowfullscreen="" allowfullscreen=""></iframe>
 
-<p>Make-metronome relies on the standard libraries that come with Impromptu, in particular make-metro, which is <a href="http://impromptu.moso.com.au/tutorials/making_music/Beat%20%26%20Tempo.html">described in this tutorial</a>e and on this <a href="http://impromptu.moso.com.au/resources.html#faq7">video</a>. Essentially, it requires you to define a <em>metro</em> object first, e.g. (define *metro* (make-metro 120)).</p>
+<h2>Implementation Details</h2>
+<p>The <code>make-metroclick</code> function relies on the standard libraries that come with Impromptu, in particular <code>make-metro</code>, which is <a href="http://impromptu.moso.com.au/tutorials/making_music/Beat%20%26%20Tempo.html">described in this tutorial</a> and in this <a href="http://impromptu.moso.com.au/resources.html#faq7">video</a>.</p>
+<p>Before using <code>make-metroclick</code>, you need to define a metro object first. For example:</p>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nv">*metro*</span><span class="w"> </span><span class="p">(</span><span class="nf">make-metro</span><span class="w"> </span><span class="mi">120</span><span class="p">))</span>
+</code></pre></div>
+
+<p>This sets up a metronome at 120 beats per minute, which serves as the timing foundation for the metronome clicks.</p>
+<h2>Source Code</h2>
 <p>Here's the source code:</p>
 <script src="https://gist.github.com/lambdamusic/4991900.js"></script>
 

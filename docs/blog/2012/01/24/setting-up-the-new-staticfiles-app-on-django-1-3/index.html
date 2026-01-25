@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Setting up the new &#39;staticfiles&#39; app on Django 1.3 Even if I&#39;ve been using Django 1.3 for a while now, I&#39;ve been holding off on some of it new features, such as the new ...">
+  <meta name="description" content="Setting up the new &#39;staticfiles&#39; app on Django 1.3 Even though I&#39;ve been using Django 1.3 for a while now, I&#39;ve been holding off on some of its new features, such as the new ...">
 
 
 
@@ -597,8 +597,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>Even if I've been using Django 1.3 for a while now, I've been holding off on some of it new features, such as the new way to handle static files via a <a href="https://docs.djangoproject.com/en/dev/howto/static-files/">new app</a> called (guess what) staticfiles . Essentially, what the new static app does is allowing you to leave all static files within the /static directory of each of the django apps you're using. This is for development; when you're deploying and (most likely) want these files to be served via a (faster) separate server process, the staticfiles app helps you gather all of them into a predefined directory by using a handy shell command.</p>
-<p>That's the gist of it. I finally took a look at django.contrib.staticfiles last week, so here's a brief report on how to get it to work (p.s. a couple of related threads on stack overflow can be found <a href="http://stackoverflow.com/questions/7620307/how-do-i-serve-css-to-django-in-development">here</a> and <a href="http://stackoverflow.com/questions/4565935/django-staticfiles-app-help">here</a>).</p>
+            <p>Even though I've been using Django 1.3 for a while now, I've been holding off on some of its new features, such as the new way to handle static files via a <a href="https://docs.djangoproject.com/en/dev/howto/static-files/">new app</a> called (guess what) staticfiles. Essentially, what the new static app does is allow you to leave all static files within the /static directory of each of the Django apps you're using. This is for development; when you're deploying and (most likely) want these files to be served via a (faster) separate server process, the staticfiles app helps you gather all of them into a predefined directory by using a handy shell command.</p>
+<p>That's the gist of it. I finally took a look at django.contrib.staticfiles last week, so here's a brief report on how to get it to work. (P.S. A couple of related threads on Stack Overflow can be found <a href="http://stackoverflow.com/questions/7620307/how-do-i-serve-css-to-django-in-development">here</a> and <a href="http://stackoverflow.com/questions/4565935/django-staticfiles-app-help">here</a>.)</p>
 <h3>1. Set up the static and media paths settings</h3>
 <p>My previous settings looked like this:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># the site root is one level up from where settings.py is</span>
@@ -608,7 +608,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="n">ADMIN_MEDIA_PREFIX</span> <span class="o">=</span> <span class="s1">&#39;/static/adminmedia1.3/&#39;</span>
 </code></pre></div>
 
-<p>The media root contained all of my static files, some of which I had to copy in there manually, each time I added a new django app to my project. On the production server, the <code>MEDIA_URL</code> is mapped to a local path (in the apache conf settings) that is essentially a duplicate of the /static directory we have in the development server. The only difference, the static stuff is delivered directly by Apache, bypassing django (=so to make it faster).</p>
+<p>The media root contained all of my static files, some of which I had to copy in there manually each time I added a new Django app to my project. On the production server, the <code>MEDIA_URL</code> is mapped to a local path (in the Apache conf settings) that is essentially a duplicate of the /static directory we have in the development server. The only difference: the static files are delivered directly by Apache, bypassing Django (to make it faster).</p>
 <p>The <strong>new way</strong> of declaring these variables is this instead:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">MEDIA_URL</span> <span class="o">=</span> <span class="s1">&#39;/media/uploads/&#39;</span>
 <span class="n">STATIC_URL</span> <span class="o">=</span> <span class="s1">&#39;/media/static/&#39;</span>
@@ -636,8 +636,8 @@ Alias<span class="w"> </span>/media/static/<span class="w"> </span>/path/to/mysi
 <blockquote>
 <p>In previous versions of Django, it was common to place static assets in MEDIA_ROOT along with user-uploaded files, and serve them both at MEDIA_URL. Part of the purpose of introducing the staticfiles app is to make it easier to keep static files separate from user-uploaded files.</p>
 <p>For this reason, you need to make your MEDIA_ROOT and MEDIA_URL different from your STATIC_ROOT and STATIC_URL.</p>
-<p>The STATIC_ROOT directory is not necessary in the development server: in fact is only used if you call the collectstatic manangement command. It's not needed to add the directory to the STATICFILES_DIRS setting to serve your static files!</p>
-<p>Furthemore, the STATICFILES_DIRS variable tells Django of the location of static files which are not within specific applications. Mind that during the 'collection' operations also these files will be copied into the STATIC_ROOT directory.</p>
+<p>The STATIC_ROOT directory is not necessary in the development server: in fact, it is only used if you call the collectstatic management command. It's not needed to add the directory to the STATICFILES_DIRS setting to serve your static files!</p>
+<p>Furthermore, the STATICFILES_DIRS variable tells Django the location of static files which are not within specific applications. Note that during the 'collection' operations, these files will also be copied into the STATIC_ROOT directory.</p>
 </blockquote>
 <h3>2. Add context processors and the app</h3>
 <p>Add the required context processor in setting.py:</p>
@@ -662,7 +662,7 @@ Alias<span class="w"> </span>/media/static/<span class="w"> </span>/path/to/mysi
 <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">staticfiles_urlpatterns</span><span class="p">()</span>
 </code></pre></div>
 
-<p>This will inspect your <code>STATIC_URL</code> setting and wire up the view to serve static files accordingly. Don't forget to set the <code>STATICFILES_DIRS</code> setting appropriately to let django.contrib.staticfiles know where to look for files additionally to files in app directories.</p>
+<p>This will inspect your <code>STATIC_URL</code> setting and wire up the view to serve static files accordingly. Don't forget to set the <code>STATICFILES_DIRS</code> setting appropriately to let django.contrib.staticfiles know where to look for files in addition to files in app directories.</p>
 <blockquote>
 <p>WARNING: the staticfiles_urlpatterns helper function will only work if DEBUG is True and your STATIC_URL setting is neither empty nor a full URL such as http://static.example.com/ (more info <a href="https://docs.djangoproject.com/en/dev/ref/contrib/staticfiles/#staticfiles-development-view">here</a>).</p>
 </blockquote>
@@ -674,7 +674,7 @@ Alias<span class="w"> </span>/media/static/<span class="w"> </span>/path/to/mysi
         <span class="p">)</span>
 </code></pre></div>
 
-<p>In the end, I conflated the two things into this code (ps I've added a variable called <code>LOCAL_SERVER</code> to quickly see which platform I'm on):</p>
+<p>In the end, I combined the two things into this code (P.S. I've added a variable called <code>LOCAL_SERVER</code> to quickly see which platform I'm on):</p>
 <div class="codehilite"><pre><span></span><code><span class="k">if</span> <span class="n">settings</span><span class="o">.</span><span class="n">LOCAL_SERVER</span><span class="p">:</span>     <span class="c1"># ===&gt; static files on local machine</span>
     <span class="kn">from</span> <span class="nn">django.contrib.staticfiles.urls</span> <span class="kn">import</span> <span class="n">staticfiles_urlpatterns</span>
     <span class="n">urlpatterns</span> <span class="o">+=</span> <span class="n">staticfiles_urlpatterns</span><span class="p">()</span>    
@@ -685,12 +685,12 @@ Alias<span class="w"> </span>/media/static/<span class="w"> </span>/path/to/mysi
 </code></pre></div>
 
 <h3>4. On your production server</h3>
-<p>Easy: in your urlconf there's no need to do anything, as static urls are usually handled by Apache directly. However for that to happen what you have to do is collect all static files into the directory that apache is looking into, that is, the one specified with the STATIC_ROOT setting. This is how you do it:</p>
+<p>Easy: in your urlconf there's no need to do anything, as static URLs are usually handled by Apache directly. However, for that to happen, what you have to do is collect all static files into the directory that Apache is looking into—that is, the one specified with the STATIC_ROOT setting. This is how you do it:</p>
 <div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="sb">`</span>python<span class="w"> </span>manage.py<span class="w"> </span>collectstatic<span class="sb">`</span>
 </code></pre></div>
 
-<p>This shell command will a) look in the <code>/static/</code> directory of each of the apps of yours <code>INSTALLED_APPS</code> setting. b) look in directories you specify in the <code>STATICFILES_DIRS</code> setting.</p>
-<p>…and copy whatever it finds into the <code>STATIC_ROOT</code> directory, as defined in your settings (ps: it'll preserve the original directory structure).</p>
+<p>This shell command will: a) look in the <code>/static/</code> directory of each of the apps in your <code>INSTALLED_APPS</code> setting, and b) look in directories you specify in the <code>STATICFILES_DIRS</code> setting.</p>
+<p>It will then copy whatever it finds into the <code>STATIC_ROOT</code> directory, as defined in your settings (P.S. It will preserve the original directory structure).</p>
 <p>That's all folks!</p>
 
             </div>

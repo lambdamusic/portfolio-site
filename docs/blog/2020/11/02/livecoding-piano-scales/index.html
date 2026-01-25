@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Livecoding: Piano Scales &quot;Piano Scales&quot; is a new experiment in algorithmic compositions, demonstrating the captivating simplicity of piano-based systems. The piece generates musical patterns from time-triggered, overlapping piano ...">
+  <meta name="description" content="Livecoding: Piano Scales &quot;Piano Scales&quot; is a new experiment in algorithmic composition, demonstrating the captivating simplicity of piano-based systems. The piece generates musical patterns from time-triggered, overlapping piano ...">
 
 
 
@@ -599,19 +599,19 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>"Piano Scales" is a new experiment in <a href="https://en.wikipedia.org/wiki/Algorithmic_composition">algorithmic compositions</a>, demonstrating the captivating simplicity of piano-based systems. The piece generates musical patterns from time-triggered, overlapping piano scales, using a simple but effective technique: a cosine function (<code>cosr</code>) dictates the variable time-interval between notes. This variable timing removes the rigid "computer-like" feel, injecting a subtle, intriguing touch of suspense.</p>
+            <p>"Piano Scales" is a new experiment in <a href="https://en.wikipedia.org/wiki/Algorithmic_composition">algorithmic composition</a>, demonstrating the captivating simplicity of piano-based systems. The piece generates musical patterns from time-triggered, overlapping piano scales, using a simple but effective technique: a cosine function (<code>cosr</code>) dictates the variable time interval between notes. This variable timing removes the rigid "computer-like" feel, injecting a subtle, intriguing touch of suspense.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/Qix3tbpb9V4" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<h2>Repeated scales with a touch of randomness</h2>
-<p>The gist of this musical algorithm is amazingly simple. </p>
-<p>Pick a scale. You play it using a variable time-interval between its notes, which is determined by a cosine function (<a href="https://extempore.michelepasin.org/1030.html"><code>cosr</code></a>). The variable interval gives the final result a touch of suspense and makes it less computer-like. </p>
-<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nv">xsc</span><span class="w"> </span>
-<span class="w">    </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="nf">beat</span><span class="w"> </span><span class="nv">vel</span><span class="w"> </span><span class="nv">scale</span><span class="p">)</span><span class="w"> </span>
+<h2>Repeated Scales with a Touch of Randomness</h2>
+<p>The gist of this musical algorithm is amazingly simple.</p>
+<p>Pick a scale. You play it using a variable time interval between its notes, which is determined by a cosine function (<a href="https://extempore.michelepasin.org/1030.html"><code>cosr</code></a>). The variable interval gives the final result a touch of suspense and makes it less computer-like.</p>
+<div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nv">xsc</span>
+<span class="w">    </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="nf">beat</span><span class="w"> </span><span class="nv">vel</span><span class="w"> </span><span class="nv">scale</span><span class="p">)</span>
 <span class="w">        </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="nf">dur</span><span class="w"> </span><span class="p">(</span><span class="nf">cosratio</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1/128</span><span class="p">)))</span>
 </code></pre></div>
 
 <p>After each note, more notes are played programmatically, after brief (random) intervals of half a beat, or 3/2 of a beat. Fifths, octaves, minor sevenths... as you please.</p>
-<p>This whole thing repeating itself, at each iteration of the loop though the sound volume gets quieter by a fixed amount. Eventually, when the volume goes to 0, the repetition stops. </p>
+<p>This whole thing repeats itself. At each iteration of the loop, though, the sound volume gets quieter by a fixed amount. Eventually, when the volume goes to 0, the repetition stops.</p>
 <div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nv">xsc</span>
 <span class="w">  </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="nf">beat</span><span class="w"> </span><span class="nv">vel</span><span class="w"> </span><span class="nv">scale</span><span class="p">)</span>
 <span class="w">    </span><span class="p">(</span><span class="k">let</span><span class="w"> </span><span class="p">((</span><span class="nf">dur</span><span class="w"> </span><span class="p">(</span><span class="nf">cosratio</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="mi">2</span><span class="w"> </span><span class="mi">1/128</span><span class="p">)))</span>
@@ -630,7 +630,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">      </span><span class="p">(</span><span class="k">set!</span><span class="w"> </span><span class="nv">vel</span><span class="w"> </span><span class="p">(</span><span class="nb">-</span><span class="w"> </span><span class="nv">vel</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
 
 <span class="w">      </span><span class="p">(</span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">&gt;</span><span class="w"> </span><span class="nv">vel</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span>
-<span class="w">        </span><span class="p">(</span><span class="nf">callback</span><span class="w"> </span><span class="p">(</span><span class="nf">*metro*</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="nv">beat</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">1/2</span><span class="w"> </span><span class="nv">dur</span><span class="p">)))</span><span class="w"> </span><span class="ss">&#39;xsc</span><span class="w"> </span>
+<span class="w">        </span><span class="p">(</span><span class="nf">callback</span><span class="w"> </span><span class="p">(</span><span class="nf">*metro*</span><span class="w"> </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="nv">beat</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="mi">1/2</span><span class="w"> </span><span class="nv">dur</span><span class="p">)))</span><span class="w"> </span><span class="ss">&#39;xsc</span>
 <span class="w">          </span><span class="p">(</span><span class="nb">+</span><span class="w"> </span><span class="nv">beat</span><span class="w"> </span><span class="nv">dur</span><span class="p">)</span>
 <span class="w">          </span><span class="nv">vel</span>
 <span class="w">          </span><span class="nv">scale</span><span class="p">)))))</span>
@@ -638,18 +638,21 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <span class="c1">;; set scale to play so that scales overlap with each other</span>
 
-<span class="p">(</span><span class="nf">xsc</span><span class="w"> </span><span class="p">(</span><span class="nf">*metro*</span><span class="w"> </span><span class="ss">&#39;get-beat</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span>
-<span class="w">  </span><span class="mi">50</span><span class="w"> </span><span class="c1">; vol </span>
-<span class="w">  </span><span class="p">(</span><span class="nf">:mkscale</span><span class="w"> </span><span class="nv">c1</span><span class="w"> </span><span class="ss">&#39;pentatonic</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span><span class="w"> </span>
-<span class="w">  </span><span class="c1">;; run again with &#39;ionian, &#39;aeolian etc.. for interesting harmonic effects</span>
+<span class="p">(</span><span class="nf">xsc</span><span class="w"> </span><span class="p">(</span><span class="nf">*metro*</span><span class="w"> </span><span class="ss">&#39;get-beat</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">  </span><span class="mi">50</span><span class="w"> </span><span class="c1">; volume</span>
+<span class="w">  </span><span class="p">(</span><span class="nf">:mkscale</span><span class="w"> </span><span class="nv">c1</span><span class="w"> </span><span class="ss">&#39;pentatonic</span><span class="w"> </span><span class="mi">2</span><span class="p">))</span>
+<span class="w">  </span><span class="c1">;; run again with &#39;ionian, &#39;aeolian etc. for interesting harmonic effects</span>
 </code></pre></div>
 
-<p>The full source code on <a href="https://github.com/lambdamusic/The-Musical-Code/blob/main/works/2020-11-piano-scales.xtm">GitHub</a>.</p>
-<h2>About Extempore</h2>
+<p>The full source code is available on <a href="https://github.com/lambdamusic/The-Musical-Code/blob/main/works/2020-11-piano-scales.xtm">GitHub</a>.</p>
+<h2>About Extempore and Algorithmic Composition</h2>
 <blockquote>
-<p><a href="https://extemporelang.github.io/">Extempore</a> is a programming language and runtime environment designed by <a href="https://twitter.com/digego?lang=en">Andrew Sorensen</a> to support livecoding and cyberphysical programming, where a human programmer operates as an active agent in the world. </p>
+<p><a href="https://extemporelang.github.io/">Extempore</a> is a programming language and runtime environment designed by <a href="https://twitter.com/digego?lang=en">Andrew Sorensen</a> to support livecoding and cyberphysical programming, where a human programmer operates as an active agent in the world.</p>
 <p><a href="https://en.wikipedia.org/wiki/Algorithmic_composition">Algorithmic composition</a> is the technique of using algorithms to create music.</p>
 </blockquote>
+<h3>The Beauty of Generative Music</h3>
+<p>What makes algorithmic composition particularly interesting is the element of surprise. Each time the code runs, the interaction between the deterministic elements (the scale structure) and the random elements (the variable timing) creates something slightly different. This mirrors the natural variation we find in human musical performance, where no two performances are ever exactly the same.</p>
+<p>By layering multiple instances of the same algorithm with different parameters (different scales, different starting notes), complex harmonic textures emerge from simple rules, creating an evolving soundscape that rewards extended listening.</p>
 
             </div>
 

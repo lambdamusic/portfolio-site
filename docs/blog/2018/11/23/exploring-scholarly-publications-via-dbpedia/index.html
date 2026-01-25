@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Exploring scholarly publications using DBPedia concepts: an experiment This post is about a recent prototype I developed, which allows to explore a sample collection of Springer Nature publications using subject tags automatically extracted ...">
+  <meta name="description" content="Exploring scholarly publications using DBPedia concepts: an experiment This post is about a recent prototype I developed, which allows exploration of a sample collection of Springer Nature publications using subject tags automatically extracted ...">
 
 
 
@@ -601,33 +601,32 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>This post is about a recent <a href="https://github.com/lambdamusic/dbpedialinks">prototype</a> I developed, which allows to explore a sample collection of Springer Nature publications using subject tags automatically extracted from DBPedia.</p>
+            <p>This post is about a recent <a href="https://github.com/lambdamusic/dbpedialinks">prototype</a> I developed, which allows exploration of a sample collection of Springer Nature publications using subject tags automatically extracted from DBPedia.</p>
 <blockquote>
-<p><a href="https://wiki.dbpedia.org/about">DBpedia</a> is a crowd-sourced community effort to extract structured content from the information created in various Wikimedia projects. This structured information resembles an open knowledge graph (OKG) which is available for everyone on the Web.</p>
+<p><a href="https://wiki.dbpedia.org/about">DBpedia</a> is a crowd-sourced community effort to extract structured content from the information created in various Wikimedia projects. This structured information resembles an open knowledge graph (OKG) which is available for everyone on the Web.</p>
 </blockquote>
 <h3>Datasets</h3>
-<p>The dataset I used is the result of a <strong>collaboration with <a href="https://twitter.com/beyza__yaman?lang=en">Beyza Yaman</a></strong>, a researcher working with the <a href="https://wiki.dbpedia.org/about">DBpedia</a> team in Leipzig, who used the <a href="https://scigraph.springernature.com/explorer">SciGraph datasets</a> as input to the <a href="https://www.dbpedia-spotlight.org/">DBPedia-Spotlight</a> entity-mining tool.</p>
-<p>By using <a href="https://www.dbpedia-spotlight.org/">DBPedia-Spotlight</a> we automatically associated DBpedia subjects terms to a  subset of abstracts available in the SciGraph dataset (around 90k abstract from 2017 publications).</p>
-<p>The prototype allows to search the Springer Nature publications using these subject terms.</p>
-<p>Also, DBpedia subjects include definitions and semantic relationships (which we are currently not using, but one can imagine how they could be raw material for generating more thematic 'pathways').</p>
-<h3>Results: serendipitous discovery of scientific publications</h3>
-<p><strong>The results are pretty encouraging:</strong> despite the fact that the concepts extracted sometimes are only marginally relevant (or not relevant at all), the breadth and depth of the DBpedia classification makes the interactive <strong>exploration</strong> quite <strong>interesting</strong> and <strong>serendipitous</strong>.</p>
-<p>You can judge for yourself: <strong>the tool is available here</strong>: <a href="https://dbpedialinks.michelepasin.org/">https://dbpedialinks.michelepasin.org/</a></p>
-<p>The purpose of this prototype is to evaluate the quality of the tagging and generate ideas for future applications. So any kind of feedback or ideas is very welcome!</p>
-<p>We are working with Beyza to write up the results of this investigation as a research paper. The data and software is already freely available on <a href="https://github.com/dbpedia/sci-graph-links/">github</a>.</p>
-<h3>A couple of screenshots:</h3>
-<p>Eg see the topic '<a href="https://dbpedialinks.michelepasin.org/entities/63004">artificial intelligence</a>'</p>
+<p>The dataset I used is the result of a collaboration with <a href="https://twitter.com/beyza__yaman?lang=en">Beyza Yaman</a>, a researcher working with the <a href="https://wiki.dbpedia.org/about">DBpedia</a> team in Leipzig, who used the <a href="https://scigraph.springernature.com/explorer">SciGraph datasets</a> as input to the <a href="https://www.dbpedia-spotlight.org/">DBPedia-Spotlight</a> entity-mining tool.</p>
+<p>By using <a href="https://www.dbpedia-spotlight.org/">DBPedia-Spotlight</a>, we automatically associated DBpedia subject terms to a subset of abstracts available in the SciGraph dataset (around 90,000 abstracts from 2017 publications).</p>
+<p>The prototype allows searching of Springer Nature publications using these subject terms. Additionally, DBpedia subjects include definitions and semantic relationships. While we are currently not using these features, one can imagine how they could be raw material for generating more thematic 'pathways' through the content.</p>
+<h3>Results: Serendipitous Discovery of Scientific Publications</h3>
+<p>The results are pretty encouraging. Despite the fact that the concepts extracted are sometimes only marginally relevant (or not relevant at all), the breadth and depth of the DBpedia classification makes the interactive exploration quite interesting and serendipitous.</p>
+<p>You can judge for yourself. The tool is available here: <a href="https://dbpedialinks.michelepasin.org/">https://dbpedialinks.michelepasin.org/</a></p>
+<p>The purpose of this prototype is to evaluate the quality of the tagging and generate ideas for future applications. Any kind of feedback or ideas is very welcome!</p>
+<p>We are working with Beyza to write up the results of this investigation as a research paper. The data and software are already freely available on <a href="https://github.com/dbpedia/sci-graph-links/">GitHub</a>.</p>
+<h3>A Couple of Screenshots</h3>
+<p>For example, see the topic '<a href="https://dbpedialinks.michelepasin.org/entities/63004">artificial intelligence</a>':</p>
 <p><a href="../../../../../media/static/blog_img/Screen-Shot-2018-11-23-at-17.15.07.png"><img alt="Screen Shot 2018-11-23 at 17.15.07.png" src="../../../../../media/static/blog_img/Screen-Shot-2018-11-23-at-17.15.07.png" /></a></p>
-<p>One can add more subjects to a search in order to 'zoom in' into a results set, eg by <a href="https://dbpedialinks.michelepasin.org/entities/63004?filters=61361">adding 'China'</a> to the search:</p>
+<p>One can add more subjects to a search in order to 'zoom in' into a results set, for example by <a href="https://dbpedialinks.michelepasin.org/entities/63004?filters=61361">adding 'China'</a> to the search:</p>
 <p><a href="../../../../../media/static/blog_img/Screen-Shot-2018-11-23-at-17.16.38.png"><img alt="Screen Shot 2018-11-23 at 17.16.38" src="../../../../../media/static/blog_img/Screen-Shot-2018-11-23-at-17.16.38.png" /></a></p>
-<h3>Implementation details</h3>
+<h3>Implementation Details</h3>
 <ul>
-<li>Main webapp is using Python and <a href="https://www.djangoproject.com/">Django</a>. I've finally found a good excuse to upgrade to the latest release (<a href="https://docs.djangoproject.com/en/2.1/">2.1</a>) so very proud of myself!</li>
-<li><a href="https://getbootstrap.com/docs/3.3/components/">Bootstrap</a></li>
-<li><a href="https://d3js.org/">d3.js</a> and in particular I've learned a lot from this great <a href="http://bl.ocks.org/eyaler/10586116">force-directed layout example</a></li>
+<li>Main webapp is using Python and <a href="https://www.djangoproject.com/">Django</a>. I finally found a good excuse to upgrade to the latest release (<a href="https://docs.djangoproject.com/en/2.1/">2.1</a>), so very proud of myself!</li>
+<li><a href="https://getbootstrap.com/docs/3.3/components/">Bootstrap</a> for UI components</li>
+<li><a href="https://d3js.org/">d3.js</a> for visualizations, in particular I learned a lot from this great <a href="http://bl.ocks.org/eyaler/10586116">force-directed layout example</a></li>
 <li>The Springer Nature <a href="https://scigraph.springernature.com">SciGraph</a> dataset of scientific publications</li>
-<li>The <a href="https://www.dbpedia-spotlight.org/demo/">DBpedia Spotlight</a> tool</li>
-<li>See the <a href="https://github.com/lambdamusic/dbpedialinks">Github source</a> for more details</li>
+<li>The <a href="https://www.dbpedia-spotlight.org/demo/">DBpedia Spotlight</a> tool for entity extraction</li>
+<li>See the <a href="https://github.com/lambdamusic/dbpedialinks">GitHub source</a> for more details</li>
 </ul>
 
             </div>

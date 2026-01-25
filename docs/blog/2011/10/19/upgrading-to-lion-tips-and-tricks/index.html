@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Upgrading to Lion: tips and tricks I&#39;ve finally decided to upgrade my mac operating system from Snow Leopard (10.6.8) to Lion (10.7.2). Not really for the new features such as Mission ...">
+  <meta name="description" content="Upgrading to Lion: tips and tricks I&#39;ve finally decided to upgrade my Mac operating system from Snow Leopard (10.6.8) to Lion (10.7.2). Not really for the new features such as Mission ...">
 
 
 
@@ -599,13 +599,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>I've finally decided to upgrade my mac operating system from Snow Leopard (10.6.8) to Lion (10.7.2). Not really for the <a href="http://www.apple.com/uk/macosx/whats-new/features.html">new features</a> such as Mission Control and LaunchPad (which although being pretty cool are not going to change my life) but mostly for the fact that the new OS is well integrated with <a href="http://www.apple.com/uk/icloud/">iCloud</a>. Sharing my iCal calendars, Address book contacts and other useful stuff across my apple computers and mobile devices is going to be a digital-life-changer, hopefully for the better.</p>
-<p>Unfortunately as usual an OS upgrade is never as smooth as I would like it to be; so here's a list of the problems I ran into (and still am), with pointers to solutions whenever I found one.</p>
+            <p>I've finally decided to upgrade my Mac operating system from Snow Leopard (10.6.8) to Lion (10.7.2). Not really for the <a href="http://www.apple.com/uk/macosx/whats-new/features.html">new features</a> such as Mission Control and LaunchPad (which, although pretty cool, are not going to change my life), but mostly because the new OS is well integrated with <a href="http://www.apple.com/uk/icloud/">iCloud</a>. Sharing my iCal calendars, Address Book contacts, and other useful stuff across my Apple computers and mobile devices is going to be a digital-life-changer, hopefully for the better.</p>
+<p>Unfortunately, as usual, an OS upgrade is never as smooth as I would like it to be. So here's a list of the problems I ran into (and am still experiencing), with pointers to solutions whenever I found one.</p>
 <blockquote>
 <p>Tip: A useful place where to get info about Lion is here: <a href="http://osxdaily.com/tag/mac-os-x-10-7/">http://osxdaily.com/tag/mac-os-x-10-7/</a></p>
 </blockquote>
 <h3>1. Wi-Fi disconnection issues</h3>
-<p>This is quite a bad one: my wifi connection wouldn't stay on for more than 2-3 minutes at times, making it impossible to do any continuative work online. After a lot of swearing and searching online, I found a good solution on <a href="http://www.ilounge.com/index.php/backstage/comments/os-x-lion-serious-wi-fi-disconnect-problems-for-macs-and-solutions/">this article on iLounge.com</a>. The article offers many solutions, but the one that worked for me is to manually downgrading the Atheros WiFi driver which seems to be ill on Lion to the version provided with Snow Leopard (comment 53). Here's the recipy:</p>
+<p>This is quite a bad one: my Wi-Fi connection wouldn't stay on for more than 2-3 minutes at times, making it impossible to do any continuous work online. After a lot of swearing and searching online, I found a good solution in <a href="http://www.ilounge.com/index.php/backstage/comments/os-x-lion-serious-wi-fi-disconnect-problems-for-macs-and-solutions/">this article on iLounge.com</a>. The article offers many solutions, but the one that worked for me was to manually downgrade the Atheros Wi-Fi driver (which seems to have issues on Lion) to the version provided with Snow Leopard (comment 53). Here's the recipe:</p>
 <blockquote>
 <p>1. run kextstat | grep -i atheros if a line was returned, you are most likely using Atheros WiFi card and the related kext 2. In your home folder create two directories: cd &amp;&amp; mkdir New Old 3. If you have a copy (time machine backup) or other system installed with Snow Leopard (as latest as possible), take a copy of /System/Library/Extensions/IO80211Family.kext and put it into ~/Old/ directory [<em>P.S. if you don't know where to get that file, I've uploaded a copy here: <a href="http://www.box.net/shared/8igl4hybcml0e4zc5dzx">IO80211Family.kext.zip</a></em>] 4. (Back on to your main system) gain root access: sudo -s 5. Move: mv /System/Library/Extensions/IO80211Family.kext ~/New/ 6. Move cache file: mv /System/Library/Caches/com.apple.kext.caches/Startup/kernelcache ~/New/ 7. copy old kext: cp -r ~/Old/IO80211Family.kext /System/Library/Extensions/ 8. go to: cd /System/Library/Caches/com.apple.kext.caches/Startup/ 9. rebuild cache: kextcache -v 1 -a i386 -a x86_64 -mkext kernelcache /System/Library/Extensions 10. Using GUI Utilities-&gt;Disk Utility-&gt;Macintosh HD-&gt;Repair permissions 11. pray and reboot</p>
 </blockquote>

@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Installing ClioPatria triplestore on mac os ClioPatria is a &quot;SWI-Prolog application that integrates SWI-Prolog&#39;s the SWI-Prolog libraries for RDF and HTTP services into a ready to use (semantic) web server&quot;. It ...">
+  <meta name="description" content="Installing ClioPatria triplestore on mac os ClioPatria is a &quot;SWI-Prolog application that integrates SWI-Prolog&#39;s libraries for RDF and HTTP services into a ready-to-use (semantic) web server&quot;. It is actively developed by ...">
 
 
 
@@ -601,8 +601,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>ClioPatria is a "<a href="http://www.swi-prolog.org/">SWI-Prolog</a> application that integrates SWI-Prolog's the SWI-Prolog libraries for RDF and HTTP services into a ready to use (semantic) web server". It is actively developed by the folks at the <a href="http://www.cs.vu.nl/en/index.asp">VU University of Amsterdam</a> and is freely available online.</p>
-<p>While at a conference last week I saw a pretty cool demo (<a href="http://dive.beeldengeluid.nl/">DIVE</a>) which, I later learned, is powered by the ClioPatria triplestore. So I thought I'd give it a try and by doing so write a follow up on my recent post on <a href="http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/">installing OWLIM on Mac OS</a>.</p>
+            <p>ClioPatria is a "<a href="http://www.swi-prolog.org/">SWI-Prolog</a> application that integrates SWI-Prolog's libraries for RDF and HTTP services into a ready-to-use (semantic) web server". It is actively developed by the folks at the <a href="http://www.cs.vu.nl/en/index.asp">VU University of Amsterdam</a> and is freely available online.</p>
+<p>While at a conference last week, I saw a pretty cool demo (<a href="http://dive.beeldengeluid.nl/">DIVE</a>) which, I later learned, is powered by the ClioPatria triplestore. So I thought I'd give it a try and, by doing so, write a follow-up to my recent post on <a href="http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/">installing OWLIM on Mac OS</a>.</p>
 <h3>1. Requirements</h3>
 <p><strong>OSX</strong>: Mavericks 10.9.5 <strong>XCode</strong>: latest version <a href="https://developer.apple.com/xcode/downloads/">available from Apple</a> <strong>HOMEBREW</strong>: ruby -e "$(curl -fsSkL raw.github.com/mxcl/homebrew/go)" <strong>Prolog</strong>: build it from source <a href="http://www.swi-prolog.org/build/macos.html">using brew</a>: brew install swi-prolog <strong>ClioPatria</strong>: git clone https://github.com/ClioPatria/ClioPatria.git</p>
 <h3>2. Setting up</h3>
@@ -617,8 +617,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 ./run.pl: line 6: This: command not found
 ./run.pl: line 8: syntax error near unexpected token `('
 ./run.pl: line 8: `    % ./configure           (Unix)'</p>
-<p>According to a thread on stack overflow, the <a href="http://stackoverflow.com/questions/25467090/how-to-run-swi-prolog-from-the-command-line">Prolog shebang line isn't interpreted correctly by OSx</a>, meaning that Mac OS doesn't recognise that script as a Prolog program.</p>
-<p>That can be easily <strong>solved</strong> by calling the Prolog interpreter (swipl) explicitly:</p>
+<p>According to a thread on Stack Overflow, the <a href="http://stackoverflow.com/questions/25467090/how-to-run-swi-prolog-from-the-command-line">Prolog shebang line isn't interpreted correctly by OS X</a>, meaning that Mac OS doesn't recognize that script as a Prolog program.</p>
+<p>This can be easily <strong>solved</strong> by calling the Prolog interpreter (swipl) explicitly:</p>
 <p>[michele.pasin]@Tartaruga:~/Documents/ClioPatriaProjects/firstproject&gt;swipl run.pl 
 ERROR: /Applications/-Other-Apps/8-Languages-IDEs/ClioPatria/rdfql/sparql_runtime.pl:1246:14: Syntax error: Operator expected
 % run.pl compiled 1.64 sec, 25,789 clauses
@@ -630,32 +630,32 @@ Copyright (c) 1990-2013 University of Amsterdam, VU Amsterdam
 SWI-Prolog comes with ABSOLUTELY NO WARRANTY. This is free software,
 and you are welcome to redistribute it under certain conditions.
 Please visit http://www.swi-prolog.org for details. </p>
-<p>You should be able to access the server with your browser on <strong>port 3020</strong> (ps: the previous command caused a syntax error too, but luckily that isn't a game stopper).</p>
+<p>You should be able to access the server with your browser on <strong>port 3020</strong> (note: the previous command caused a syntax error too, but luckily that isn't a showstopper).</p>
 <p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2014/10/cliopatria.png"><img alt="Cliopatria" src="../../../../../media/static/blog_img/cliopatria.png" /></a></p>
-<h4>First impression:</h4>
-<p>Super-easy to install, <strong>clean</strong> and <strong>intuitive</strong> user interface. I subsequently added a couple of RDF datasets and it all went very very smoothy.</p>
+<h4>First impression</h4>
+<p>Super-easy to install, with a <strong>clean</strong> and <strong>intuitive</strong> user interface. I subsequently added a couple of RDF datasets and it all went very smoothly.</p>
 <p>One cool feature is the fact that ClioPatria has a <a href="http://cliopatria.swi-prolog.org/help/source/doc/home/vnc/prolog/src/ClioPatria/web/help/cpack/index.txt">built-in package management system</a>, which allows you to easily install <strong>extensions</strong> to the application. For example what follows allows one to quickly extend the UI with a couple of 'intelligent' SPARQL query interfaces (<a href="http://yasqe.yasgui.org/">Yasque</a> and <a href="http://openuplabs.tso.co.uk/demos/sparqleditor">Flint</a>):</p>
 <p>[michele.pasin]@Tartaruga:/Applications/ClioPatria&gt;sudo git submodule update --init web/yasqe web/yasr
 Password:</p>
 <p>[michele.pasin]@Tartaruga:/Applications/ClioPatria&gt;sudo git submodule update --init web/FlintSparqlEditor</p>
 <h3>4. Loading a big dataset</h3>
-<p>As in my <a href="http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/">previous post</a>, I've tried loading the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com's legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>. The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that's been published by NPG and Scientific American from 1845 till nowadays. The file size is <strong>~6 gigs</strong> so it's not a huge dataset. Still, something big enough to pose a challenge to my macbook pro (8gigs RAM).</p>
-<p>I used the <strong>web UI</strong> ('load local file') to load the dataset but I quickly ran into a <strong>'not enough memory' error</strong>. Tried fiddling with the settings accessible via the web interface (<em>Stack limit</em>, <em>Time limit</em>), but that didn't seem to do much. So I <strong>increased the memory allocated to the Prolog process</strong> (more info <a href="http://www.swi-prolog.org/FAQ/StackSizes.html">here</a>) however this wasn't enough since after around 20mins the whole thing crashed again due to an <em>out of memory</em> error.</p>
+<p>As in my <a href="http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/">previous post</a>, I tried loading the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com's legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>. The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that's been published by NPG and Scientific American from 1845 until now. The file size is <strong>~6 GB</strong>, so it's not a huge dataset. Still, it's something big enough to pose a challenge to my MacBook Pro (8GB RAM).</p>
+<p>I used the <strong>web UI</strong> ('load local file') to load the dataset, but I quickly ran into a <strong>'not enough memory' error</strong>. I tried fiddling with the settings accessible via the web interface (<em>Stack limit</em>, <em>Time limit</em>), but that didn't seem to help much. So I <strong>increased the memory allocated to the Prolog process</strong> (more info <a href="http://www.swi-prolog.org/FAQ/StackSizes.html">here</a>); however, this wasn't enough since after around 20 minutes the whole thing crashed again due to an <em>out of memory</em> error.</p>
 <p>[michele.pasin]@Tartaruga:~/Documents/ClioPatriaProjects/firstproject&gt;swipl -G6g run.pl</p>
 <p>In the end I got in touch with the ClioPatria creators via the <a href="http://mailman.few.vu.nl/pipermail/cliopatria-list/">mailing list</a>: in their (incredibly fast) reply they suggested to <strong>load the dataset manually using the server Prolog console</strong>. You'd do that simply by using the rdf_load command after starting the ClioPatria server (as shown above):</p>
 <p>?- rdf_load('/Users/michele.pasin/Downloads/NPGcitationsGraph/articles.2012-07-16/articles.nq')
 |    .
 % Parsed "articles.nq" in 1149.71 sec; 0 triples</p>
-<p><strong>That worked</strong>: the dataset was loaded in around 20 mins. Job done!</p>
-<p><strong>However</strong> when I tried to run some queries the application became very slow and ultimately <strong>not responding</strong> (especially with queries like trying to retrieve all named classes from the graph). I tried <strong>restarting the triplestore</strong>, and realised that once you do that, ClioPatria begins by re-loading all repositories previously created - which, in the case of my 40M triples repo, would take around 10-15 minutes.</p>
-<p>After restarting the server, queries were a bit faster but in many cases still pretty slowish on my 8G ram laptop.</p>
-<h4>Conclusion:</h4>
-<p>I am sure there are many more things which could be optimised, however I'm no Prolog expert nor I could figure out where to start just based on the online documentation. So I kind of gave up on using it to work on large datasets on my macbook for now.</p>
-<p>On the other hand, I <strong>really liked</strong> ClioPatria's intuitive and simple UI, its ease of installation and the fact you can perform operations transparently and interactively via a Prolog-console (assuming you know how to do that).</p>
-<p>All in all, ClioPatria seems to me a really good option if you want to get up and running quickly e.g. in order to prototype linked data applications or explore small to medium-sized RDF datasets (10M triples or so I guess). For bigger datasets, you better <a href="http://mac.appstorm.net/how-to/hardware-how-to/how-and-why-to-upgrade-your-macs-ram/">equip your mac</a> with a few gigs of extra RAM!</p>
+<p><strong>That worked</strong>: the dataset was loaded in around 20 minutes. Job done!</p>
+<p><strong>However</strong>, when I tried to run some queries, the application became very slow and ultimately <strong>unresponsive</strong> (especially with queries like trying to retrieve all named classes from the graph). I tried <strong>restarting the triplestore</strong> and realized that once you do that, ClioPatria begins by reloading all repositories previously created - which, in the case of my 40M triples repo, would take around 10-15 minutes.</p>
+<p>After restarting the server, queries were a bit faster but in many cases still pretty slow on my 8GB RAM laptop.</p>
+<h4>Conclusion</h4>
+<p>I am sure there are many more things that could be optimized; however, I'm no Prolog expert, nor could I figure out where to start just based on the online documentation. So I kind of gave up on using it to work on large datasets on my MacBook for now.</p>
+<p>On the other hand, I <strong>really liked</strong> ClioPatria's intuitive and simple UI, its ease of installation, and the fact that you can perform operations transparently and interactively via a Prolog console (assuming you know how to do that).</p>
+<p>All in all, ClioPatria seems to me a really good option if you want to get up and running quickly, for example in order to prototype linked data applications or explore small to medium-sized RDF datasets (10M triples or so, I guess). For bigger datasets, you'd better <a href="http://mac.appstorm.net/how-to/hardware-how-to/how-and-why-to-upgrade-your-macs-ram/">equip your Mac</a> with a few gigabytes of extra RAM!</p>
 <h3>5. Useful resources</h3>
-<p><strong>> Whitepaper with technical analysis</strong>- <a href="http://cliopatria.swi-prolog.org/help/whitepaper.html">http://cliopatria.swi-prolog.org/help/whitepaper.html</a></p>
-<p><strong>> Mailing list</strong>- <a href="http://mailman.few.vu.nl/mailman/listinfo/cliopatria-list">http://mailman.few.vu.nl/mailman/listinfo/cliopatria-list</a></p>
+<p><strong>Whitepaper with technical analysis</strong> - <a href="http://cliopatria.swi-prolog.org/help/whitepaper.html">http://cliopatria.swi-prolog.org/help/whitepaper.html</a></p>
+<p><strong>Mailing list</strong> - <a href="http://mailman.few.vu.nl/mailman/listinfo/cliopatria-list">http://mailman.few.vu.nl/mailman/listinfo/cliopatria-list</a></p>
 
             </div>
 

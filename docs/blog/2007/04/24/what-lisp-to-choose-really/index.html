@@ -595,21 +595,21 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>During the last days, I almost switched from Lispworks (too many tabs, too many things in general) back to MCL (essential, fast, with a powerful meta-dot command). But I run into many problems, the most important of them is getting ASDF to run, so to be able to run the server (Hunchentoot) from there. I set up the init file to load ASDF in MCL, and tried to share the same registry which I previously created through Lispworks and asdf-install.... but it doesnt want to work! Why's that?</p>
+            <p>During the last days, I almost switched from Lispworks (too many tabs, too many things in general) back to MCL (essential, fast, with a powerful meta-dot command). But I run into many problems, the most important of them is getting ASDF to run, so to be able to run the server (Hunchentoot) from there. I set up the init file to load ASDF in MCL, and tried to share the same registry which I previously created through Lispworks and asdf-install.... but it doesn't want to work! Why's that?</p>
 <p>..............LISTENER<br />
 Welcome to Macintosh Common Lisp Version 5.0!<br />
 ? (asdf:operate 'asdf:compile-op :asdf-install)<br />
 > Error: Error component "asdf-install" not found<br />
 > While executing: ASDF:FIND-SYSTEM<br />
 > Type Command-. to abort.<br />
-See the Restartsâ€¦ menu item for further choices.<br />
+See the Restarts... menu item for further choices.<br />
 1 &gt; asdf:*central-registry*<br />
 ("Macintosh HD:Users:michelepasin:Documents:Lisp:asdf-mcl-install-dir:systems:" *DEFAULT-PATHNAME-DEFAULTS*)<br />
 1 &gt; (asdf:operate 'asdf:compile-op :cl-who)<br />
 > Error: Error component "cl-who" not found<br />
 > While executing: ASDF:FIND-SYSTEM<br />
 > Type Command-. to abort.<br />
-See the Restartsâ€¦ menu item for further choices.<br />
+See the Restarts... menu item for further choices.<br />
 2 &gt;</p>
 <p>...............INIT file (in MCL folder)  </p>
 <h1>-:asdf (load "Macintosh HD:Users:michelepasin:Documents:Lisp:asdf:asdf")</h1>

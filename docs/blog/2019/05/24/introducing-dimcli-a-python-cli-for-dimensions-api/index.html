@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Introducing DimCli: a Python CLI for the Dimensions API For the last couple of months I&#39;ve been working on a new open source Python project. This is called DimCli and it&#39;s a command-line library ...">
+  <meta name="description" content="Introducing DimCli: a Python CLI for the Dimensions API For the last couple of months I&#39;ve been working on a new open source Python project called DimCli. It&#39;s a command-line library aimed at making ...">
 
 
 
@@ -603,22 +603,33 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>For the last couple of months I've been working on a new open source Python project. This is called <strong>DimCli</strong>  and it's a command-line library aimed at making it simpler to work with the Dimensions Analytics API.</p>
-<p>The project is <a href="https://github.com/lambdamusic/dimcli">available on Github</a>. In a nutshell, DimCli helps people becoming productive with the powerful scholarly analytics API from Dimensions. See the video below for a quick taster of the functionalities available.</p>
+            <p>For the last couple of months I've been working on a new open source Python project called <strong>DimCli</strong>. It's a command-line library aimed at making it simpler to work with the Dimensions Analytics API.</p>
+<p>The project is <a href="https://github.com/lambdamusic/dimcli">available on GitHub</a>. In a nutshell, DimCli helps people become productive with the powerful scholarly analytics API from Dimensions. See the video below for a quick overview of the available functionality.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HbZPxJ7G_00?controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <h3>Background</h3>
-<p>I recenlty joined the <a href="https://www.dimensions.ai/">Dimensions</a> team, so needed a way to get to grips with their feature-rich API (<a href="https://docs.dimensions.ai/dsl">official docs</a>). So, building DimCli has been a fun way for me to dig into the logic of the <strong>Dimensions Search Language</strong> (DSL).</p>
-<p>Plus, this project gave me a chance to learn more about two awesome Python technologies: <a href="https://github.com/jupyterlab/jupyterlab">JupyterLab</a> and its magic commands, as well as the <a href="https://python-prompt-toolkit.readthedocs.io/en/stable/">Python Prompt Toolkit</a> library.</p>
+<p>I recently joined the <a href="https://www.dimensions.ai/">Dimensions</a> team, so I needed a way to get to grips with their feature-rich API (<a href="https://docs.dimensions.ai/dsl">official documentation</a>). Building DimCli has been a fun way for me to dig into the logic of the <strong>Dimensions Search Language</strong> (DSL).</p>
+<p>Plus, this project gave me a chance to learn more about two awesome Python technologies: <a href="https://github.com/jupyterlab/jupyterlab">JupyterLab</a> and its magic commands, as well as the <a href="https://python-prompt-toolkit.readthedocs.io/en/stable/">Python Prompt Toolkit</a> library.</p>
 <p><a href="../../../../../media/static/blog_img/Screenshot-2019-05-24-dimcli.png"><img alt="" src="../../../../../media/static/blog_img/Screenshot-2019-05-24-dimcli.png" /></a></p>
-<h3>Features, at a glance</h3>
+<h3>Features at a Glance</h3>
 <ul>
-<li>DimCli is an <strong>interactive</strong> <strong>query console</strong> for the Dimensions Analytics API (ps: <a href="https://www.dimensions.ai/">Dimensions</a> is a world-class research-data platform including information about millions of documents like publications, patents, grants, clinical trials and policy documents.</li>
-<li>It <strong>helps</strong> <strong>learning the Dimensions Search Language (DSL)</strong> thanks to a built-in autocomplete and documentation search mechanism.</li>
-<li>It handles <strong>authentication</strong> transparently either via a global user-specific credentials file, or by passing credentials manually (e.g. when used within shared environments).</li>
-<li>It allows to <strong>export results to CSV, JSON and pandas dataframes</strong>, hence making it easier to integrate with other data analysis tools.</li>
-<li>It is <strong>compatible with Jupyter</strong>, e.g. it includes various magic commands that make it super simple to interrogate Dimensions (<a href="https://github.com/digital-science/dimensions-api/tree/master/1.Getting%20Started">various examples here</a>).</li>
+<li>
+<p><strong>Interactive Query Console:</strong> DimCli provides an interactive query console for the Dimensions Analytics API. <a href="https://www.dimensions.ai/">Dimensions</a> is a world-class research data platform including information about millions of documents such as publications, patents, grants, clinical trials, and policy documents.</p>
+</li>
+<li>
+<p><strong>Learning Tool:</strong> It helps you learn the Dimensions Search Language (DSL) thanks to built-in autocomplete and documentation search mechanisms.</p>
+</li>
+<li>
+<p><strong>Seamless Authentication:</strong> It handles authentication transparently either via a global user-specific credentials file or by passing credentials manually (e.g., when used within shared environments).</p>
+</li>
+<li>
+<p><strong>Flexible Export Options:</strong> It allows you to export results to CSV, JSON, and pandas dataframes, making it easier to integrate with other data analysis tools.</p>
+</li>
+<li>
+<p><strong>Jupyter Compatible:</strong> It includes various magic commands that make it super simple to interrogate Dimensions within Jupyter notebooks (<a href="https://github.com/digital-science/dimensions-api/tree/master/1.Getting%20Started">various examples here</a>).</p>
+</li>
 </ul>
+<h3>Example Usage</h3>
 <div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">dimcli</span>
 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">dimcli</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">username</span><span class="o">=</span><span class="s2">&quot;mary.poppins&quot;</span><span class="p">,</span> <span class="n">password</span><span class="o">=</span><span class="s2">&quot;chimneysweeper&quot;</span><span class="p">)</span>
@@ -641,8 +652,8 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
  <span class="s1">&#39;_stats&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;total_count&#39;</span><span class="p">:</span> <span class="mi">8735</span><span class="p">}}</span>
 </code></pre></div>
 
-<h3>Feedback</h3>
-<p>DimCli lives on <a href="https://github.com/lambdamusic/dimcli">Github</a>, so for any feedback or bug reports, feel free to open an issue there.</p>
+<h3>Feedback and Contributions</h3>
+<p>DimCli lives on <a href="https://github.com/lambdamusic/dimcli">GitHub</a>, so for any feedback or bug reports, feel free to open an issue there. Contributions are also welcome!</p>
 <p><img alt="" src="http://127.0.0.1:8000/media/static/blog_img/Screenshot&#32;2019-05-23&#32;at&#32;18.06.32.png" /></p>
 
             </div>

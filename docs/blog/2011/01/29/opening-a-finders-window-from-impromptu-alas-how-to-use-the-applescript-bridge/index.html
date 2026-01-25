@@ -31,7 +31,7 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Opening a Finder&#39;s window from Impromptu (alas how to use the applescript bridge..) Imagine you&#39;ve got a bunch of audio samples you want to load up while livecoding with Impromptu but you can&#39;t remember exactly their names - ...">
+  <meta name="description" content="Opening a Finder&#39;s window from Impromptu (alas how to use the applescript bridge..) Imagine you have a bunch of audio samples you want to load up while live coding with Impromptu, but you can&#39;t remember exactly their names. ...">
 
 
 
@@ -605,9 +605,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>Imagine you've got a bunch of audio samples you want to load up while livecoding with <a href="http://impromptu.moso.com.au/">Impromptu</a> but you can't remember exactly their names - it'd be handy to be able to open up the corresponding Finder window directly from scheme, without too much clicking around. Do-able or not?</p>
-<p>I spent some time trying to figure this out, and the answer is yes! Quite a nice learning experience... although it came with a <strong>surprise</strong> at the end.</p>
-<p>Originally I thought, let's do it via impromptu's <a href="http://moso.com.au/wiki/index.php?title=ObjC_Functions">ObjC bridge</a>. I don't know much about ObjC but after a bit of googling it seemed evident that the <a href="http://stackoverflow.com/questions/1446814/open-a-terminal-window-to-a-specified-folder-from-a-cocoa-app">quickest way to accomplish this</a> is by writing ObjC code that, in turns, runs a simple <a href="http://www.macosxautomation.com/applescript/">applescript</a> command that opens a window:</p>
+            <p>Imagine you have a bunch of audio samples you want to load up while live coding with <a href="http://impromptu.moso.com.au/">Impromptu</a>, but you can't remember exactly their names. It would be handy to open the corresponding Finder window directly from Scheme, without too much clicking around. Doable or not?</p>
+<p>I spent some time trying to figure this out, and the answer is yes! It was quite a nice learning experience, although it came with a <strong>surprise</strong> at the end.</p>
+<p>Originally I thought, let's do it via Impromptu's <a href="http://moso.com.au/wiki/index.php?title=ObjC_Functions">ObjC bridge</a>. I don't know much about Objective-C, but after a bit of searching it seemed evident that the <a href="http://stackoverflow.com/questions/1446814/open-a-terminal-window-to-a-specified-folder-from-a-cocoa-app">quickest way to accomplish this</a> is by writing Objective-C code that, in turn, runs a simple <a href="http://www.macosxautomation.com/applescript/">AppleScript</a> command that opens a window:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">[</span><span class="n">NSString</span><span class="p">](</span><span class="n">http</span><span class="o">:</span><span class="c1">//developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/) \*s \= \[[NSString](http://developer.apple.com/documentation/Cocoa/Reference/Foundation/Classes/NSString_Class/) stringWithFormat:  </span>
 <span class="w">     </span><span class="err">@</span><span class="s">&quot;tell application &quot;</span><span class="n">Terminal</span><span class="s">&quot; to do script &quot;</span><span class="n">cd</span><span class="w"> </span><span class="o">%</span><span class="err">@</span><span class="s">&quot;&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">folderPath</span><span class="p">];</span><span class="w">  </span>
 

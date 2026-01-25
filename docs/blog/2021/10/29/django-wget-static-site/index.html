@@ -589,51 +589,51 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>If you're a Django developer and want to publish a website without the hassle (and costs) of deploying a web app, then this post may give you some useful tips. </p>
-<p>I found myself in this situation several times, so have created a time-saving workflow/set of tools for extracting a dynamic <a href="https://www.djangoproject.com/">Django</a> website into a <a href="https://en.wikipedia.org/wiki/Static_web_page">static</a> website (= a website that does not require a web application, just plain simple HTML pages). </p>
+            <p>If you're a Django developer and want to publish a website without the hassle (and costs) of deploying a web app, then this post may give you some useful tips.</p>
+<p>I found myself in this situation several times, so I've created a time-saving workflow and set of tools for extracting a dynamic <a href="https://www.djangoproject.com/">Django</a> website into a <a href="https://en.wikipedia.org/wiki/Static_web_page">static</a> website (i.e., a website that does not require a web application, just plain simple HTML pages).</p>
 <blockquote>
-<p>Disclaimer: this method is not suited for all types of websites. EG if your Django application is updated frequently (e.g. more than once a day), or if it has keyword search (or faceted search) pages that inherently rely on dynamical queries to the Django back-end based on user input, then a static site won't cut it for you, most likely. </p>
+<p>Disclaimer: This method is not suited for all types of websites. For example, if your Django application is updated frequently (e.g., more than once a day), or if it has keyword search (or faceted search) pages that inherently rely on dynamic queries to the Django back-end based on user input, then a static site won't cut it for you, most likely. </p>
 </blockquote>
-<p>In a nutshell - this is how it works:</p>
+<p>In a nutshell, this is how it works:</p>
 <ol>
-<li>On my computer, I create / edit the website contents using <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> as much as I can, i.e. text files.</li>
-<li>Markdown files are transformed to HTML using a <a href="https://www.djangoproject.com/">Django</a> (Python) application, which runs on <code>localhost</code> and is used to review/style these pages.</li>
-<li>Finally, I use the almighty <a href="https://en.wikipedia.org/wiki/Wget">wget</a> to extract the website HTML into a standalone static site that I can easily publish online, e.g. by syncing it to <a href="https://pages.github.com/">GitHub Pages</a> or any of the other free hosting services for static sites.</li>
+<li>On my computer, I create and edit the website contents using <a href="https://en.wikipedia.org/wiki/Markdown">Markdown</a> as much as I can—i.e., text files.</li>
+<li>Markdown files are transformed to HTML using a <a href="https://www.djangoproject.com/">Django</a> (Python) application, which runs on <code>localhost</code> and is used to review and style these pages.</li>
+<li>Finally, I use the almighty <a href="https://en.wikipedia.org/wiki/Wget">wget</a> to extract the website HTML into a standalone static site that I can easily publish online, e.g., by syncing it to <a href="https://pages.github.com/">GitHub Pages</a> or any of the other free hosting services for static sites.</li>
 </ol>
 <p><a href="../../../../../media/static/blog_img/django-wget-1.jpg"><img alt="Image django-wget-1.jpg" src="../../../../../media/static/blog_img/django-wget-1.jpg" /></a></p>
-<p>All of the steps happen on your <strong>local computer</strong>. Keep reading to find out more about each of these steps. </p>
+<p>All of the steps happen on your <strong>local computer</strong>. Keep reading to find out more about each of these steps.</p>
 <h2>1. Editing</h2>
-<p>It's useful to think of a concrete use-case, so I'll be talking about my personal site <a href="https://www.michelepasin.org/">www.michelepasin.org</a> (the site you're on right now) which happens to be the first site I've published following this method. </p>
-<p>My website has generally two types of pages: </p>
+<p>It's useful to think of a concrete use case, so I'll be talking about my personal site <a href="https://www.michelepasin.org/">www.michelepasin.org</a> (the site you're on right now), which happens to be the first site I've published following this method. </p>
+<p>My website has generally two types of pages:</p>
 <ul>
-<li><strong>Static text</strong> pages created from markdown files, e.g. a <a href="https://www.michelepasin.org/blog/2018/06/07/pyscigraph-simple-api-for-accessing-springer-nature-scigraph-content/index.html">blog post</a>. </li>
-<li><strong>Dynamic HTML</strong> pages created from metadata stored in the database, e.g. a <a href="https://www.michelepasin.org/projects/dimensionscovid/index.html">project description page</a>. </li>
+<li><strong>Static text</strong> pages created from Markdown files, e.g., a <a href="https://www.michelepasin.org/blog/2018/06/07/pyscigraph-simple-api-for-accessing-springer-nature-scigraph-content/index.html">blog post</a>.</li>
+<li><strong>Dynamic HTML</strong> pages created from metadata stored in the database, e.g., a <a href="https://www.michelepasin.org/projects/dimensionscovid/index.html">project description page</a>. </li>
 </ul>
 <h4>Static pages</h4>
-<p>For the static text pages, I basically have a folder on my computer full of Markdown files, which I can edit using any text editor I want. E.g., lately I've been using <a href="https://obsidian.md/">Obsidian</a> (screenshot below) for taking notes and editing markdown documents. It's excellent (see this <a href="https://www.vanderwal.net/random/entrysel.php?blog=2091">review</a>). So I keep all the blog posts in a folder (outside the Django app) that is monitored by Obsidian (a 'vault', that's how Obsidian calls it). </p>
+<p>For the static text pages, I basically have a folder on my computer full of Markdown files, which I can edit using any text editor I want. For example, lately I've been using <a href="https://obsidian.md/">Obsidian</a> (screenshot below) for taking notes and editing Markdown documents. It's excellent (see this <a href="https://www.vanderwal.net/random/entrysel.php?blog=2091">review</a>). So I keep all the blog posts in a folder (outside the Django app) that is monitored by Obsidian (a "vault"—that's what Obsidian calls it). </p>
 <p><a href="../../../../../media/static/blog_img/obsidian1.jpg"><img alt="Image obsidian1.jpg" src="../../../../../media/static/blog_img/obsidian1.jpg" /></a></p>
-<p>As a result, I can make use of Obsidian's  advanced Markdown editing features. </p>
-<p>Plus, <strong>it fits nicely in my daily routine</strong> because the posts live alongside other daily notes that are not meant for sharing. This is super cool because I have my entire blog archive accessible in my note-taking app, which kinds of blurs the line between <em>published</em> note and <em>private</em> notes. </p>
+<p>As a result, I can make use of Obsidian's advanced Markdown editing features.</p>
+<p>Plus, <strong>it fits nicely into my daily routine</strong> because the posts live alongside other daily notes that are not meant for sharing. This is super cool because I have my entire blog archive accessible in my note-taking app, which kind of blurs the line between <em>published</em> notes and <em>private</em> notes. </p>
 <h4>Dynamic pages</h4>
-<p>For the dynamic pages, I just use the good old <a href="https://docs.djangoproject.com/en/3.2/topics/templates/">Django templates</a> (the usual Django-way of doing things).</p>
-<p>There's nothing new here - if you are a Django developer, you'd know immediately what I'm talking about. HTML, template tags etc. etc... </p>
+<p>For the dynamic pages, I just use the good old <a href="https://docs.djangoproject.com/en/3.2/topics/templates/">Django templates</a> (the usual Django way of doing things).</p>
+<p>There's nothing new here—if you are a Django developer, you'd know immediately what I'm talking about. HTML, template tags, etc. </p>
 <p><a href="../../../../../media/static/blog_img/django-templating-html.png"><img alt="Image django-templating-html.png" src="../../../../../media/static/blog_img/django-templating-html.png" /></a></p>
 <h4>Conclusion</h4>
-<p>This approach allows me to have a clean separation between content I need a database for - that is, content I want to catalog and organize methodically (e.g. projects, papers, etc…) - and other textual content that I'd rather edit outside the web app, for example using my text editor of choice. </p>
+<p>This approach allows me to have a clean separation between content I need a database for—that is, content I want to catalog and organize methodically (e.g., projects, papers, etc.)—and other textual content that I'd rather edit outside the web app, for example using my text editor of choice.</p>
 <p><strong>So, in a nutshell</strong></p>
 <ul>
-<li>Creating / editing a blog post → Obsidian, using a pre-defined folder </li>
-<li>Creating / editing other pages → Django HTML templates </li>
+<li>Creating/editing a blog post → Obsidian, using a pre-defined folder</li>
+<li>Creating/editing other pages → Django HTML templates </li>
 </ul>
-<h2>2. Rendering / Reviewing</h2>
+<h2>2. Rendering/Reviewing</h2>
 <p>The Django web app is where things come together. The idea is that you run the Django app as usual and see the results on <code>localhost</code>.</p>
 <div class="codehilite"><pre><span></span><code>$<span class="w"> </span>python<span class="w"> </span>manage.py<span class="w"> </span>runserver
 </code></pre></div>
 
-<p>The interesting bit has to do with how the Markdown / static text pages get integrated into the website. There are two parts: markdown <em>indexing</em> and markdown <em>rendering</em>. </p>
+<p>The interesting bit has to do with how the Markdown/static text pages get integrated into the website. There are two parts: Markdown <em>indexing</em> and Markdown <em>rendering</em>.</p>
 <h4>Markdown indexing</h4>
-<p>A <strong>command line script</strong> creates an index of all the Markdown files (in the blog posts folder). This index is basically a <strong>collection of metadata</strong> about these files (e.g. <em>title</em>, <em>publication date</em>, <em>tags</em>, file <em>location</em> on the computer), which get stored in the Django back-end database. </p>
-<p>As a result, this metadata can be used by the Django web app in order to retrieve / search / filter the Markdown files, via the usual <em>model-view-controller</em> machinery Django provides.</p>
+<p>A <strong>command-line script</strong> creates an index of all the Markdown files (in the blog posts folder). This index is basically a <strong>collection of metadata</strong> about these files (e.g., <em>title</em>, <em>publication date</em>, <em>tags</em>, file <em>location</em> on the computer), which get stored in the Django back-end database. </p>
+<p>As a result, this metadata can be used by the Django web app to retrieve, search, and filter the Markdown files via the usual <em>model-view-controller</em> machinery Django provides.</p>
 <p>Here is a sample run of the interactive script, called <code>blogs-reindex</code>:</p>
 <div class="codehilite"><pre><span></span><code>$<span class="w"> </span>./tools/blogs-reindex
 +++++++++++++++++
@@ -660,9 +660,9 @@ Cleaning<span class="w"> </span>db...
 Done
 </code></pre></div>
 
-<p>See the <a href="https://github.com/lambdamusic/portfolio-site/blob/master/src/apps/researchapp/management/commands/do_blogs_reindex.py">full source code</a> on Github. </p>
+<p>See the <a href="https://github.com/lambdamusic/portfolio-site/blob/master/src/apps/researchapp/management/commands/do_blogs_reindex.py">full source code</a> on GitHub.</p>
 <h4>Markdown rendering</h4>
-<p>The second part of this architecture simply consists of the Python functions that transform Markdown into HTML. Of course, that follows the usual Django pattern, i.e. a <code>url</code> controller and related <code>view</code> functions that know how to handle the Markdown format: </p>
+<p>The second part of this architecture simply consists of the Python functions that transform Markdown into HTML. Of course, that follows the usual Django pattern—i.e., a <code>url</code> controller and related <code>view</code> functions that know how to handle the Markdown format: </p>
 <div class="codehilite"><pre><span></span><code><span class="c1">#</span>
 <span class="c1"># in settings.py</span>
 <span class="c1">#</span>
@@ -708,15 +708,15 @@ Done
 <span class="n">url</span><span class="p">(</span><span class="sa">r</span><span class="s1">&#39;^blog/(?P&lt;year&gt;[\w-]+)/(?P&lt;month&gt;[\w-]+)/(?P&lt;day&gt;[\w-]+)/(?P&lt;namedetail&gt;[\w-]+)/$&#39;</span><span class="p">,</span> <span class="n">views_pubs</span><span class="o">.</span><span class="n">blog_detail</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s1">&#39;blogs-detail&#39;</span><span class="p">),</span>
 </code></pre></div>
 
-<p>The code above uses the <a href="https://python-markdown.github.io/">python-markdown</a> library in order to transform Markdown text to HTML. For more details, see the <a href="https://github.com/lambdamusic/portfolio-site/blob/master/src/apps/researchapp/management/commands/do_blogs_reindex.py#L133">source code</a> of the  <code>parse_markdown</code> function. </p>
+<p>The code above uses the <a href="https://python-markdown.github.io/">python-markdown</a> library to transform Markdown text to HTML. For more details, see the <a href="https://github.com/lambdamusic/portfolio-site/blob/master/src/apps/researchapp/management/commands/do_blogs_reindex.py#L133">source code</a> of the <code>parse_markdown</code> function. </p>
 <h2>3. Publishing</h2>
-<p>The final step is publishing the website online. For this I'm using <a href="https://www.gnu.org/software/wget/">Wget</a> to generate a static version of the site, and <a href="https://pages.github.com/">GitHub pages</a> to make it available online at no cost. </p>
-<p>This is done via another command line script: <code>./tools/site-dump-and-publish</code>. The command does four main things: </p>
+<p>The final step is publishing the website online. For this, I'm using <a href="https://www.gnu.org/software/wget/">Wget</a> to generate a static version of the site and <a href="https://pages.github.com/">GitHub Pages</a> to make it available online at no cost.</p>
+<p>This is done via another command-line script: <code>./tools/site-dump-and-publish</code>. The command does four main things: </p>
 <ol>
-<li>Backup the previous version of the site.</li>
-<li>Use <code>wget</code> on the Django app running in local to pull all the site pages as a static website (note: hyperlinks must be 'mirrored').</li>
-<li>Copy the static files to the <code>docs</code> folder (which I configured in <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">GitHub Pages</a> as the site source location). </li>
-<li>Add/commit/push all changes to GitHub - so that the new version of the site is live</li>
+<li>Back up the previous version of the site.</li>
+<li>Use <code>wget</code> on the Django app running locally to pull all the site pages as a static website (note: hyperlinks must be "mirrored").</li>
+<li>Copy the static files to the <code>docs</code> folder (which I configured in <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site">GitHub Pages</a> as the site source location).</li>
+<li>Add/commit/push all changes to GitHub so that the new version of the site is live.</li>
 </ol>
 <p>See the full command <a href="https://github.com/lambdamusic/portfolio-site/blob/master/tools/site-dump">source code</a>. </p>
 <p>Here is a sample run: </p>
@@ -806,35 +806,35 @@ To<span class="w"> </span>https://github.com/lambdamusic/portfolio-site.git
 </code></pre></div>
 
 <h3>About <code>wget</code></h3>
-<p><a href="https://www.gnu.org/software/wget/">GNU Wget</a> is your friend. It's as old as the web (nearly, 1996) and still one of the most powerful tools for extracting web pages. </p>
-<p>Trivia</p>
+<p><a href="https://www.gnu.org/software/wget/">GNU Wget</a> is your friend. It's as old as the web (nearly—1996) and still one of the most powerful tools for extracting web pages.</p>
+<p>Trivia:</p>
 <blockquote>
-<p>In 2010, <a href="https://en.wikipedia.org/wiki/Chelsea_Manning">Chelsea Manning</a> used Wget to download 250,000 U.S. diplomatic cables and 500,000 Army reports that came to be known as the Iraq War logs and Afghan War logs sent to WikiLeaks. (<a href="https://en.wikipedia.org/wiki/Wget">wikipedia</a>)</p>
+<p>In 2010, <a href="https://en.wikipedia.org/wiki/Chelsea_Manning">Chelsea Manning</a> used Wget to download 250,000 U.S. diplomatic cables and 500,000 Army reports that came to be known as the Iraq War logs and Afghan War logs sent to WikiLeaks. (<a href="https://en.wikipedia.org/wiki/Wget">Wikipedia</a>)</p>
 </blockquote>
-<p>Here are some powerful options as described in the <a href="https://www.gnu.org/software/wget/manual/wget.html">manual</a>: </p>
+<p>Here are some powerful options as described in the <a href="https://www.gnu.org/software/wget/manual/wget.html">manual</a>:</p>
 <ul>
 <li><code>--mirror</code> – Makes (among other things) the download recursive.</li>
-<li><code>--convert-links</code> – convert all the links (also to stuff like CSS stylesheets) to relative, so it will be suitable for offline viewing.</li>
-<li><code>--adjust-extension</code> – Adds suitable extensions to filenames (<code>html</code> or <code>css</code>) depending on their content-type.</li>
-<li><code>--page-requisites</code> – Download things like CSS style-sheets and images required to properly display the page offline.</li>
-<li><code>--no-parent</code> – When recursing do not ascend to the parent directory. It useful for restricting the download to only a portion of the site.</li>
-<li><code>--no-host-directories</code> – Disable generation of host-prefixed directories. By default, invoking Wget with ‘-r http://fly.srk.fer.hr/’ will create a structure of directories beginning with fly.srk.fer.hr/. This option disables such behavior.</li>
-<li><code>--wait</code> – Waiting time between calls. Set reasonable or random waiting times between two downloads to avoid the Connection closed by peer error.</li>
+<li><code>--convert-links</code> – Convert all the links (also to stuff like CSS stylesheets) to relative, so it will be suitable for offline viewing.</li>
+<li><code>--adjust-extension</code> – Adds suitable extensions to filenames (<code>html</code> or <code>css</code>) depending on their content type.</li>
+<li><code>--page-requisites</code> – Download things like CSS stylesheets and images required to properly display the page offline.</li>
+<li><code>--no-parent</code> – When recursing, do not ascend to the parent directory. It's useful for restricting the download to only a portion of the site.</li>
+<li><code>--no-host-directories</code> – Disable generation of host-prefixed directories. By default, invoking Wget with <code>-r http://fly.srk.fer.hr/</code> will create a structure of directories beginning with <code>fly.srk.fer.hr/</code>. This option disables such behavior.</li>
+<li><code>--wait</code> – Waiting time between calls. Set reasonable or random waiting times between two downloads to avoid the "Connection closed by peer" error.</li>
 </ul>
 <h3>About GitHub pages</h3>
-<p>I used <a href="https://pages.github.com/">GitHub pages</a> to host my static site, but there are many other no-cost options out there e.g. <a href="https://docs.gitlab.com/ee/user/project/pages/">GitLab</a> or <a href="https://www.netlify.com/">Netlify</a>. So take your pick.</p>
-<p>Of course, there are size limits too. EG with GitHub Pages the maximum size for a repo (and hence a site) is 1 GB. </p>
-<p>Also, there might be issues with how frequently you publish the site, although I never ran into any problem with that so far. </p>
+<p>I used <a href="https://pages.github.com/">GitHub Pages</a> to host my static site, but there are many other no-cost options out there, e.g., <a href="https://docs.gitlab.com/ee/user/project/pages/">GitLab</a> or <a href="https://www.netlify.com/">Netlify</a>. So take your pick.</p>
+<p>Of course, there are size limits too. For example, with GitHub Pages the maximum size for a repo (and hence a site) is 1 GB. </p>
+<p>Also, there might be issues with how frequently you publish the site, although I've never run into any problem with that so far. </p>
 <h2>Wrapping up</h2>
-<p>In this post I've shown how to turn a Django site into a static website, so that it can be published online without the hassle (and costs) of deploying a web app. </p>
+<p>In this post, I've shown how to turn a Django site into a static website so that it can be published online without the hassle (and costs) of deploying a web app.</p>
 <p>Most likely, this method will resonate with <a href="https://www.djangoproject.com/">Django</a> developers primarily, but even if you're not, I'm hoping that some of these ideas can be easily transposed to other Python web frameworks.</p>
 <h3>Other options</h3>
-<p>I found a couple of other options online that allow turning a Django site into a static website. None of them worked for me, but they may for you, so worth having alook:</p>
+<p>I found a couple of other options online that allow turning a Django site into a static website. None of them worked for me, but they may for you, so they're worth having a look:</p>
 <ul>
-<li><a href="https://github.com/fabiocaccamo/django-freeze">django-freeze</a> looks interesting, but it hasn't been updated for a while and doesn't work with Django &gt;1.10 (I have 2.1.3)</li>
-<li><a href="https://github.com/meeb/django-distill">django-distill</a> has lots of features but it's way too complex for my needs cause you have to define special URL controllers for the static pages you want to generate, which I didn't want to do/maintain. </li>
+<li><a href="https://github.com/fabiocaccamo/django-freeze">django-freeze</a> looks interesting, but it hasn't been updated for a while and doesn't work with Django &gt;1.10 (I have 2.1.3).</li>
+<li><a href="https://github.com/meeb/django-distill">django-distill</a> has lots of features, but it's way too complex for my needs because you have to define special URL controllers for the static pages you want to generate, which I didn't want to do or maintain.</li>
 </ul>
-<p>Feedbacks/comments are welcome, here or on <a href="https://github.com/lambdamusic/portfolio-site/issues">Github</a> as usual :-)</p>
+<p>Feedback and comments are welcome, here or on <a href="https://github.com/lambdamusic/portfolio-site/issues">GitHub</a> as usual!</p>
 
             </div>
 

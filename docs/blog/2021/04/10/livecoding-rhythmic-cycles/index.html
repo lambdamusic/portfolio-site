@@ -597,11 +597,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>"Rhythmic Cycles" is a new livecoding composition created using Extempore and Ableton Live. Inspired by minimalism, the piece generates complex, evolving rhythmic patterns by leveraging the powerful map function. The core experiment relies on using lists of notes and offsets to schedule repeated calls, creating a texture of sound that features controlled randomness within a precise, cycling structure.</p>
+            <p>"Rhythmic Cycles" is a new livecoding composition created using Extempore and Ableton Live. Inspired by minimalism, the piece generates complex, evolving rhythmic patterns by leveraging the powerful <code>map</code> function. The core experiment relies on using lists of notes and offsets to schedule repeated calls, creating a texture of sound that features controlled randomness within a precise, cycling structure.</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/m3v8gRzROkU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<h2>Using 'map' to generate musical textures</h2>
-<p>The gist of this experiment relies on the <code>map</code> function. </p>
+<h2>Using <code>map</code> to generate musical textures</h2>
+<p>The gist of this experiment relies on the <code>map</code> function.</p>
 <p>Using <code>map</code> and lists of notes and offsets, it is possible to schedule repeated calls to the <code>play</code> note function:</p>
 <div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="nb">map</span><span class="w"> </span><span class="p">(</span><span class="k">lambda</span><span class="w"> </span><span class="p">(</span><span class="nf">x</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class="nv">z</span><span class="p">)</span>
 <span class="w">      </span><span class="p">(</span><span class="nf">onbeat</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="mi">0</span><span class="w"> </span><span class="p">(</span><span class="nf">play</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class="nv">z</span><span class="w"> </span><span class="p">(</span><span class="nb">*</span><span class="w"> </span><span class="nv">dur</span><span class="w"> </span><span class="mf">.9</span><span class="p">)</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
@@ -612,15 +612,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="w">    </span><span class="p">)</span>
 </code></pre></div>
 
-<p>When the <code>map</code>  pattern above gets repeated via a loop, changing the input parameters generates a texture of sounds with a touch of randomness. </p>
+<p>When the <code>map</code> pattern above gets repeated via a loop, changing the input parameters generates a texture of sounds with a touch of randomness.</p>
 <p>For example, some parameters to experiment with:</p>
 <ul>
-<li>times can be shifted up or down by 1/4 beat or so</li>
-<li>notes can be transposed using different chord structures</li>
-<li>volumes can use cyclical variations e.g. a cosine function</li>
+<li>Times can be shifted up or down by 1/4 beat or so</li>
+<li>Notes can be transposed using different chord structures</li>
+<li>Volumes can use cyclical variations, e.g., a cosine function</li>
 </ul>
-<p>What you get is a mesmerising tune, which keeps repeating itself but it's never exactly the same. </p>
-<p>Rendered using a simple sine-wave synth it may sound similar to 8-bit video game music patterns.. but when using more interesting sounds/instruments, the end result is much more interesting too. </p>
+<p>What you get is a mesmerizing tune that keeps repeating itself but is never exactly the same.</p>
+<p>Rendered using a simple sine-wave synth, it may sound similar to 8-bit video game music patterns. But when using more interesting sounds and instruments, the end result is much more engaging. </p>
 <h2>Source code</h2>
 <p>The full source code can be found on <a href="https://github.com/lambdamusic/The-Musical-Code/blob/main/works/2021-04-rhytmic-cycles.xtm">Github</a>.</p>
 <div class="codehilite"><pre><span></span><code><span class="p">(</span><span class="k">define</span><span class="w"> </span><span class="nv">notes</span><span class="w"> </span><span class="p">(</span><span class="nb">list</span><span class="w"> </span><span class="nv">c3</span><span class="w"> </span><span class="nv">g3</span><span class="w"> </span><span class="nv">bb3</span><span class="p">))</span>
