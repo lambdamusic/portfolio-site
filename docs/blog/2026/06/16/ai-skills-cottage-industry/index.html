@@ -31,14 +31,14 @@
 
     <meta name="author" content="Michele Pasin">
   
-  <meta name="description" content="Calculating Industry Collaborations via GRID A new tutorial demonstrating how to extract and visualize data about industry collaborations by combining Dimensions data with GRID. Dimensions uses GRID (the Global Research ...">
+  <meta name="description" content="AI Skills Are a Cottage Industry - And That Might Be Permanent Everyone in my organisation is building their own AI skills. Prompts for summarising documents, triaging emails, drafting updates, analysing data. Each one slightly different. Each ...">
 
 
 
     <link rel="icon" href="../../../../../media/static/favicon.ico">
 
 	
-  <title>Calculating Industry Collaborations via GRID | Blogs | Michele Pasin</title>
+  <title>AI Skills Are a Cottage Industry - And That Might Be Permanent | Blogs | Michele Pasin</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -554,10 +554,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
           <p style="color: #e8e5e5; margin-top: 10px;">
           <span style="font-size: 500%;">
-					  Jan
+					  Jun
 					</span>
           <span style="font-size: 700%;">
-					  2020
+					  2026
 					</span>
           </p>
 
@@ -576,11 +576,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         <div class="col-xs-12 col-md-7 col-md-pull-3">
 
           <div>
-            <h2 class="blogtitle"><b>Calculating Industry Collaborations via GRID</b></h2>
+            <h2 class="blogtitle"><b>AI Skills Are a Cottage Industry - And That Might Be Permanent</b></h2>
           </div>
           
 
-          <!-- <p>Jan. 8, 2020</p> -->
+          <!-- <p>June 16, 2026</p> -->
 
           
 
@@ -589,30 +589,38 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
 
-            <p>A new <a href="https://api-lab.dimensions.ai/cookbooks/8-organizations/2-Industry-Collaboration.html">tutorial</a> demonstrating how to extract and visualize data about industry collaborations by combining Dimensions data with GRID.</p>
-<p>Dimensions uses <a href="https://grid.ac/">GRID</a> (the Global Research Identifiers Database) to unambiguously identify research organizations. GRID includes a wealth of data, for example whether an organization has type 'Education' or 'Industry'. This makes it easy to take advantage of these metadata to highlight collaboration patterns between a selected university and other organizations from the industry sector.</p>
-<p>The <a href="https://api-lab.dimensions.ai/cookbooks/8-organizations/2-Industry-Collaboration.html">Identifying the Industry Collaborators of an Academic Institution</a> notebook can be adapted to focus on any research organization. Many of us are linked to some university, hence it's quite interesting to explore what the non-academic organizations are that collaborate with our institutions and in what research areas these collaborations occur.</p>
-<blockquote>
-<p>The <a href="https://www.dimensions.ai/dimensions-apis/">Dimensions API</a> can be accessed <strong>for free</strong> for <a href="https://www.dimensions.ai/scientometric-research/">non-commercial research projects</a>.</p>
-</blockquote>
-<h3>Example Visualization</h3>
-<p>For example, see below a <a href="https://plot.ly/python/">Plotly</a> visualization of the industry collaborators for <a href="https://grid.ac/institutes/grid.11696.39">University of Trento, Italy</a>.</p>
-<p><a href="../../../../../media/static/blog_img/2020-01-08-calculating-industry-collaborations-via-grid.jpg"><img alt="plotly-chart" src="../../../../../media/static/blog_img/2020-01-08-calculating-industry-collaborations-via-grid.jpg" /></a></p>
-<h3>Key Insights</h3>
-<p>This type of analysis can reveal:
-- <strong>Major industry partners:</strong> Which companies collaborate most frequently with your institution
-- <strong>Research areas:</strong> What fields of study attract industry collaboration
-- <strong>Geographic patterns:</strong> Where your industry partners are located
-- <strong>Trends over time:</strong> How these collaborations have evolved</p>
-<h3>How It Works</h3>
-<p>The notebook uses the Dimensions API to:
-1. Query publications from a specific academic institution
-2. Filter for co-authored publications involving industry organizations (identified via GRID types)
-3. Aggregate collaboration data by organization and research field
-4. Create interactive visualizations to explore the patterns</p>
-<p>This approach can be valuable for university administrators, research officers, and policy makers who want to understand and strengthen university-industry partnerships.</p>
-<h3>Try It Yourself</h3>
-<p>Visit the <a href="https://api-lab.dimensions.ai/cookbooks/8-organizations/2-Industry-Collaboration.html">full tutorial</a> to run the analysis on your own institution or explore different collaboration patterns.</p>
+            <p>Everyone in my organisation is building their own <a href="https://agentskills.io/home">AI skills</a>. Prompts for summarising documents, triaging emails, drafting updates, analysing data. Each one slightly different. Each one optimised for the person who built it.</p>
+<p>The obvious reaction is: we need to standardise this. Create a shared library. Avoid duplication. But I'm not sure that instinct is right - or even achievable.</p>
+<hr />
+<h2>The Python library analogy, and where it breaks</h2>
+<p>At first it looks a lot like the early days of Python. A massive proliferation of libraries, everyone solving the same problems slightly differently, and only gradually a market emerging where you could tell the mature, trustworthy packages from the abandoned proof-of-concepts.</p>
+<p>And the numbers are striking. <a href="https://www.articsledge.com/post/python-package-index-pypi">PyPI grew from 60,000 packages in 2015 to over 500,000 a decade later</a> - today it lists more than 800,000. <a href="https://arxiv.org/abs/1907.11073">Most of them built by single individuals, not organisations</a>. A huge long tail of abandoned or barely-maintained work, and a tiny fraction dominating actual usage. The ecosystem became navigable - but it never converged to a clean, curated set of canonical packages. The market never fully cleared.</p>
+<p>But there's a critical difference. Writing a Python library required real technical depth. You had to understand APIs, packaging, dependency management. That friction was also a filter - it meant most libraries were written by people with enough rigour to make something coherent.</p>
+<p>With AI skills, that bar is gone. Anyone who understands a problem and knows how to talk to an LLM can build a skill. That's genuinely exciting - domain experts can now build tools for their own domains without needing a developer. But it also means the signal-to-noise ratio will be far worse than PyPI ever was. The Custom GPT store gives a glimpse of what's coming: <a href="https://seo.ai/blog/gpt-store-statistics-facts">over 3 million custom GPTs were created within two months of launch, yet only around 160,000 were ever made public</a>. The rest built privately, used once, or quietly abandoned. And unlike code, <a href="https://arxiv.org/abs/2507.03405">there's no agreed standard for what a good prompt even looks like</a> - let alone how to evaluate one.</p>
+<hr />
+<h2>Trust, not quality</h2>
+<p>Here's what I think changes most fundamentally. With code, you can inspect quality. Read the source, check the tests, look at the issue tracker. With a skill, the source is a prompt - and even if you read it, there's no coding standard for prompts, no way to formally verify correctness, and the outputs are probabilistic anyway. The same skill can give you something sharp on Monday and something subtly off on Friday.</p>
+<p>So you can't really evaluate a skill. You can only trust it - or not.</p>
+<p>Trust built through repeated use, word of mouth, and the credibility of whoever built it. That's a very different relationship to tooling. It's closer to how you trust a colleague than how you trust a library.</p>
+<p>This connects to something deeper. <a href="https://en.wikipedia.org/wiki/Tacit_knowledge">Michael Polanyi observed that "we can know more than we can tell"</a> - that the most valuable knowledge is often the hardest to articulate. Skills are a kind of externalised tacit knowledge. Every refinement you make, every edge case you quietly handle, every implicit assumption about your workflow - it all folds into the prompt in ways you probably couldn't fully explain. And <a href="https://www.idc.com/resource-center/blog/the-knowledge-your-ai-may-never-have/">that kind of knowledge doesn't transfer cleanly</a>. Hand someone the skill and you're not handing them the context that shaped it.</p>
+<hr />
+<h2>Skills resist generalisation</h2>
+<p>There's another dynamic at play. Skills are so malleable that you can refine them endlessly for your own use case - ask the LLM to adjust them, specialise them further, fold in your own context. The result is something exquisitely fitted to your niche. And unlike extending a Python library, you don't need to understand how it was constructed to modify it.</p>
+<p>But that personalisation is also what makes skills hard to share.</p>
+<p>This is <a href="https://oecs.mit.edu/pub/xyn6l8i3">niche construction</a> in the biological sense - individuals adapting their local environment in ways that work for them, which is rational at the individual level, but which fragments the shared environment over time. With a skill, the tacit knowledge doesn't just surround the artifact. It lives inside it. The divergence compounds with every refinement.</p>
+<p>So the ecosystem might not converge the way PyPI did. It might stay fragmented almost by nature - not because people aren't trying to share, but because the artifact resists generalisation.</p>
+<hr />
+<h2>The marketplace is forming - but the rules are different</h2>
+<p>There are early signs of infrastructure. <a href="https://github.com/skillmatic-ai/awesome-agent-skills">GitHub repos cataloguing agent skills</a> are accumulating stars. Dedicated marketplaces are emerging: <a href="https://skillsmp.com">SkillsMP</a> alone indexes over 800,000 skills scraped from public GitHub repositories. Collections curated by practitioners who've earned credibility are appearing. Social proof is forming.</p>
+<p>But look more closely and the PyPI parallel reasserts itself. <a href="https://www.agensi.io/learn/best-ai-agent-skills-marketplaces-2026">SkillsMP's catalog size is the most misleading metric in the category</a> - much of it abandoned experiments, half-finished tests, and duplicates, with no quality filter beyond having at least two GitHub stars. And the stakes of getting it wrong are higher than with a badly written library. <a href="https://arxiv.org/abs/2601.10338v1">The first large-scale empirical study of skills in the wild analysed over 31,000 skills from major marketplaces and found that 26.1% contained at least one security vulnerability</a> - spanning prompt injection, data exfiltration, and supply chain risks. Skills execute with implicit trust. There's no pip audit equivalent. Anthropic's own documentation advises users to install only from trusted sources and thoroughly audit anything unverified.</p>
+<p>That word again: trusted.</p>
+<p>A starred skill repo isn't quite like a popular library. Forking a library produces something legible - another developer can read it, understand what changed, and evaluate the fork on its own terms. Forking a skill produces something that looks almost identical but behaves differently in ways that are hard to articulate. The non-determinism means two forks of the same skill can diverge silently, with no diff to inspect and no test suite to run. Stars travel with the original; trust doesn't automatically transfer to the fork.</p>
+<hr />
+<h2>The cottage industry might be permanent</h2>
+<p>The Python ecosystem partially converged - not through top-down standardisation, but through a few dominant packages pulling away on genuine merit, and experienced practitioners developing taste. But even there, the long tail never disappeared. PyPI is navigable, not clean.</p>
+<p>I'm not sure the same convergence is coming for AI skills. The artifact itself resists generalisation. There's no deterministic behaviour to diff, no breaking change to announce, no changelog to read. Versioning a skill is a conceptual problem we haven't even started to solve - what does it mean for a skill to "change" if the output drifts rather than breaks?</p>
+<p>So the cottage industry might not be a phase. It might be the natural state of this ecosystem.</p>
+<p>If that's true, the question isn't how to standardise skills eventually. It's how to function well when fragmentation is the baseline. How trust networks replace registries. How taste develops without inspection. How knowledge survives when it lives in the practitioner, not the artifact.</p>
 
             </div>
 
@@ -623,7 +631,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
               <hr>
 
               <div class="well well-big" >
-                Michele Pasin. <a href="index.html" class="bluelink">Calculating Industry Collaborations via GRID</a>. Blog post on www.michelepasin.org. Published on Jan. 8, 2020.
+                Michele Pasin. <a href="index.html" class="bluelink">AI Skills Are a Cottage Industry - And That Might Be Permanent</a>. Blog post on www.michelepasin.org. Published on June 16, 2026.
               </div>
             </div>
 
@@ -698,84 +706,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a href="../../../../2026/06/16/ai-skills-cottage-industry/index.html" class="bluelink " >AI Skills Are a Cottage Industry - And That Might Be Permanent</a>
+              <a  class="bluelink paper-active" title="The article on this page">AI Skills Are a Cottage Industry - And That Might Be Permanent</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
 
-            
-
-
-
-
-
-            
-
-
-          </div>
-
-        
-
-
-        </div>
-
-
-
-      </div>
-
-      
-
-      <div class="row row_pubitem">
-
-        <hr>
-
-        <div class="col-sm-2 col-md-3">
-          <p style="color: lightgrey; font-size: 300%; ">2024</p>
-        </div>
-
-
-        <div class="col-sm-7 col-md-9">
-
-
-        
-
-        <br />
-
-          <div class='pubitem'>
-
-
-            
-
-
-           
-            <!-- <small class="text-muted">Sep 2024</small> -->
-
-            <p class='lead' style="font-size: 13px;">
-              <span class='label label-warning'>paper</span>&nbsp;
-              <a href="../../../../../papers/2023/09/13/dimensions-calculating-disruption-indices-at-scale/index.html" class="bluelink " >Dimensions: Calculating Disruption Indices at Scale</a>
-              <!-- <br />
-              <span class="">Joerg Sixt, Michele Pasin</span> -->
-            </p>
-
-
-            <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-              
-                <span class='journal'> Quantitative Science Studies,</span>
-              
-              
-              
-              
-                <span class='pubdate'> Sep 2024.</span>
-              
-              
-                <span class='extrainfo'> https://doi.org/10.48550/arXiv.2309.06120</span>
-              
-              
-              
-              
-
-            </p>
             
 
 
@@ -820,7 +755,304 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             
             <p class='lead' style="font-size: 13px;">
               <span class='label label-info'>blog</span>&nbsp;
-              <a  class="bluelink paper-active" title="The article on this page">Calculating Industry Collaborations via GRID</a>
+              <a href="../../../../2020/01/08/calculating-industry-collaborations-via-grid/index.html" class="bluelink " >Calculating Industry Collaborations via GRID</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2013</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+
+
+           
+            <!-- <small class="text-muted">Aug 2013</small> -->
+
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-warning'>paper</span>&nbsp;
+              <a href="../../../../../papers/2013/08/15/structuring-that-whichcannotbe-structured-a-roleforformal-models-in-representing-aspects-of-medieval-scotland/index.html" class="bluelink " >Structuring that which cannot be structured: A role	for	formal models in representing aspects of Medieval Scotland</a>
+              <!-- <br />
+              <span class="">John Bradley, Michele Pasin</span> -->
+            </p>
+
+
+            <p class="pubinfo text-muted" style="margin-top: -15px;">
+
+              
+                <span class='journal'> New Perspectives on Medieval Scotland: 1093-1286,</span>
+              
+              
+              
+                <span class='pubplace'> Woodbridge, Suffolk: Boydell and Brewer, Studies in Celtic History Series,</span>
+              
+              
+                <span class='pubdate'> Aug 2013.</span>
+              
+              
+              
+              
+              
+
+            </p>
+            
+
+
+
+
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2011</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2011/09/28/event-thatcamp-kansas-and-digital-humanities-forum/index.html" class="bluelink " >Event: THATcamp Kansas and Digital Humanities Forum</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2010</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2010/10/29/a-video-that-may-convince-you-that-lispers-are-a-bit-crazy/index.html" class="bluelink " >A video that may convince you that LISPers are a bit crazy</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2009</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/05/04/freedom-of-press-is-that-asking-too-much/index.html" class="bluelink " >Freedom of Press: is that asking too much?</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+              <hr>
+            
+
+
+          </div>
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2009/01/27/how-to-make-a-mac-screen-saver-that-shows-your-uptime/index.html" class="bluelink " >How to make a (Mac) screen saver that shows your uptime</a>
+              <!-- <br /> -->
+              <!-- <span class="">Michele Pasin</span> -->
+            </p>
+
+            
+
+
+
+
+
+            
+
+
+          </div>
+
+        
+
+
+        </div>
+
+
+
+      </div>
+
+      
+
+      <div class="row row_pubitem">
+
+        <hr>
+
+        <div class="col-sm-2 col-md-3">
+          <p style="color: lightgrey; font-size: 300%; ">2007</p>
+        </div>
+
+
+        <div class="col-sm-7 col-md-9">
+
+
+        
+
+        <br />
+
+          <div class='pubitem'>
+
+
+            
+            <p class='lead' style="font-size: 13px;">
+              <span class='label label-info'>blog</span>&nbsp;
+              <a href="../../../../2007/10/11/mmm-that-ruby-is-hot/index.html" class="bluelink " >Mmm that ruby is hot..</a>
               <!-- <br /> -->
               <!-- <span class="">Michele Pasin</span> -->
             </p>
