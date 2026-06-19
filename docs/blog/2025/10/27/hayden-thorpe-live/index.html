@@ -593,6 +593,43 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>Here's a brief excerpt:</p>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/HRWEPGi-Hjk?si=bE8UmgBY7hzgoUYQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
+<h2>A Thorpe Music Box</h2>
+<p>A little interactive experiment..</p>
+<p>A lyric collage built from Hayden Thorpe's 2019 album <a href="https://www.youtube.com/results?search_query=thorpe+diviner">Diviner</a>. Phrases cut from all nine songs are scattered across the screen like torn newspaper clippings — move your mouse to illuminate them, click any fragment to read the full song on Genius.</p>
+<p>The piece runs entirely in the browser with no server: layout, sound, and interaction are generated in pure HTML and JavaScript. Audio is synthesised on the fly using the Web Audio API — a soft paper-flick when you brush a phrase, and occasional minor-pentatonic tones drifting in from the edges as the collage quietly stirs around you.</p>
+<div style="position:relative; background:#080808; margin:2em 0;">
+
+  <div id="thorpe-gate"
+    style="position:absolute;inset:0;background:#080808;display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;z-index:5;transition:opacity 0.7s ease;"
+    onclick="this.style.opacity='0'; setTimeout(()=>this.style.display='none', 700)">
+    <span style="font-family:Georgia,serif;font-size:1.1em;letter-spacing:0.2em;color:#f4f1eb;text-transform:uppercase;">Thorpe Music Box</span>
+    <span style="font-family:Georgia,serif;font-size:0.72em;letter-spacing:0.14em;color:rgba(244,241,235,0.3);margin-top:12px;font-style:italic;">click to illuminate</span>
+  </div>
+
+  <iframe
+    src="https://hacks.michelepasin.org/2026-06-19-thorpe-diviner/index.html"
+    style="display:block; width:100%; height:500px; border:0;"
+    title="Thorpe Music Box"
+    allow="autoplay"
+    allowfullscreen>
+  </iframe>
+
+</div>
+
+<p><a id="thorpe-fs-link" href="https://hacks.michelepasin.org/2026-06-19-thorpe-diviner/index.html" target="_blank" rel="noopener">
+    ↗ open full screen
+  </a></p>
+<script>
+    document.getElementById('thorpe-fs-link').addEventListener('click', function(e) {
+      var f = document.getElementById('thorpe-frame');
+      if (f && f.requestFullscreen) {
+        e.preventDefault();
+        f.requestFullscreen();
+      }
+      // else falls through to the href → opens in new tab
+    });
+  </script>
+
             </div>
 
 
