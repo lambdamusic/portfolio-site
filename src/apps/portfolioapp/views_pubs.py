@@ -36,7 +36,7 @@ def words(request):
 
 	query = request.GET.get('query', 'date')
 	ttype = request.GET.get('type', 'latest')
-	ctype = request.GET.get('ctype', 'justblogging')
+	ctype = request.GET.get('ctype', 'all')
 	tag = request.GET.get('tag', None)
 	format = request.GET.get('format', 'html')
 	
@@ -270,7 +270,10 @@ def get_pubs(query, ttype, tag, ctype=""):
 		if ttype == "blogs":
 			printDebug("ttype == blogs")
 			printDebug(str(QSET.count()))
-			ddset = QSET.filter(pubtype__groupfk__pk=6).filter(categories__name=ctype)
+			if ctype == 'all':
+				ddset = QSET.filter(pubtype__groupfk__pk=6)
+			else:
+				ddset = QSET.filter(pubtype__groupfk__pk=6).filter(categories__name=ctype)
 			printDebug(str(ddset.count()))
 
 		elif ttype == "papers":
