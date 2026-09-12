@@ -201,9 +201,11 @@ def parse_markdown(full_file_path, verbose=False):
 					DATE = DATE[:-1] # remove newline char
 				DATE = datetime.datetime.strptime(DATE, "%Y-%m-%d")
 				DATE = DATE.replace(tzinfo=datetime.timezone.utc).date()
-			elif l.startswith("categories: "):
+			elif l.startswith("categories:") and not l[len("categories:"):].strip():
+				# matches both "categories: \n" and "categories:\n" (no trailing space)
 				cat_flag, tag_flag = 1, 0
-			elif l.startswith("tags: "):
+			elif l.startswith("tags:") and not l[len("tags:"):].strip():
+				# matches both "tags: \n" and "tags:\n" (no trailing space)
 				cat_flag, tag_flag = 0, 1
 
 
