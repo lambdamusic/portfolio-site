@@ -53,12 +53,6 @@
     <!-- Custom styles for this template -->
     <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 <style type="text/css">
 
     .tooltip-inner {
@@ -601,7 +595,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 def get_absolute_url(self):
     return ('person_detail', [str(self.id)])</p>
 <p>When you do that, the admin site automatically picks it up and adds some nice <strong>'view on site' buttons</strong> on all of your individual object pages...:</p>
-<p><img alt="Picture 3" src="../../../../../media/static/blog_img/picture-3.png" title="Picture 3" /></p>
+<p><img loading="lazy" alt="Picture 3" src="../../../../../media/static/blog_img/picture-3.png" title="Picture 3" /></p>
 <p>The problem is, the links are being attached to a mysterious <em>'example.com'</em> domain. I left it aside the other day, cause of it was the last of a long series of weird bugs, but today the solution appeared to be quite simple (<a href="http://stackoverflow.com/questions/344851/django-admins-view-on-site-points-to-example-com-instead-of-my-domain">found it on stackoverflow</a> too).</p>
 <h3>The solution:</h3>
 <p><a href="http://docs.djangoproject.com/en/dev/ref/contrib/sites/#ref-contrib-sites">Django has a nice <strong>'sites' framework</strong></a> which comes by default with the contrib application. If you are like me, you probably have wondered at the beginning of your django-adventure what that was for, and then just forgot about it. Well, I realized today that <strong>actually the sites framework is really useful</strong> when you are running multiple sites and want, for example, to share stuff between them:</p>
@@ -612,7 +606,7 @@ def get_absolute_url(self):
 </blockquote>
 <p>Another thing the sites-framework does - and <strong>this is what solves the <em>example.com</em> problem</strong> - is setting the 'default site' for the django-admin button behaviour. And there you go, that's where that unexpected domain name was originating from....</p>
 <p>This value (= 'example.com') is stored in the database, so it's enough to change it through the admin interface, and everything should go into its own place :-) For example, below I changed it into the localhost value/port I'm running django on...</p>
-<p><img alt="Picture 2" src="../../../../../media/static/blog_img/picture-2.png" title="Picture 2" /></p>
+<p><img loading="lazy" alt="Picture 2" src="../../../../../media/static/blog_img/picture-2.png" title="Picture 2" /></p>
 
             </div>
 

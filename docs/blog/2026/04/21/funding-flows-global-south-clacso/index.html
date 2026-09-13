@@ -53,12 +53,6 @@
     <!-- Custom styles for this template -->
     <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 <style type="text/css">
 
     .tooltip-inner {
@@ -609,12 +603,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>My job was to explain what <a href="https://www.dimensions.ai/">Dimensions</a> can contribute to that question.</p>
 <p>The short version: we hold around 10 million grant records from approximately 800 funders worldwide, linked to 130 million publications and 1.5 billion citations. The linking is the important part - we can trace a grant from the funder through to the papers it produced, across institutions and borders.</p>
 <p>For questions about international funding flows specifically, the approach is to query where funder country differs from recipient country. A Canadian grant (say, from IDRC) landing at a Mexican university shows up as an external flow. An EU Horizon grant to a Brazilian institution shows up the same way. In principle, you can build a reasonably detailed picture of how money moves across borders.</p>
-<p><img alt="2026-04-29-funding-data.png" src="../../../../../media/static/blog_img/2026-04-29-funding-data.png" /></p>
+<p><img loading="lazy" alt="2026-04-29-funding-data.png" src="../../../../../media/static/blog_img/2026-04-29-funding-data.png" /></p>
 <p>We also extract funding acknowledgements from the full text of publications using NLP. This is the second data stream, and it matters because a lot of funding - especially informal, bilateral, or smaller-scale support - never gets registered as a formal grant anywhere. It only appears in the acknowledgements section of a paper. If we can extract those at scale, we can see flows that would otherwise be invisible.</p>
 <blockquote>
 <p>See the notebook <strong><a href="https://colab.research.google.com/drive/1o7EqY3kpWYhSdnR8lpBagtD3p1LYR7-B">Analysing Research Funding in Latin America - A tutorial using the Dimensions Analytics API</a></strong> for more real world examples.</p>
 </blockquote>
-<p><a href="https://colab.research.google.com/drive/1o7EqY3kpWYhSdnR8lpBagtD3p1LYR7-B"><img alt="2026-04-29-notebook-1.png" src="../../../../../media/static/blog_img/2026-04-29-notebook-1.png" /></a></p>
+<p><a href="https://colab.research.google.com/drive/1o7EqY3kpWYhSdnR8lpBagtD3p1LYR7-B"><img loading="lazy" alt="2026-04-29-notebook-1.png" src="../../../../../media/static/blog_img/2026-04-29-notebook-1.png" /></a></p>
 <!-- ![2026-04-29-funding-brazil.png](/media/static/blog_img/2026-04-29-funding-brazil.png) -->
 
 <hr />
@@ -622,13 +616,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>Here's the honest part.</p>
 <p>Both data streams have the same structural bias: they see the world through the lens of who's already in the registries and the indexed journals. That means they're reasonably good at capturing flows <em>into</em> Latin America from Northern funders - IDRC, NIH, Gates Foundation, EU Horizon. These organisations register their grants. Their grantees publish in indexed journals.</p>
 <p>What we see much less clearly is domestic funding, South-South flows, and the informal support structures that keep a lot of regional science running.</p>
-<p><img alt="2026-04-29-latam-funding.png" src="../../../../../media/static/blog_img/2026-04-29-latam-funding.png" /></p>
+<p><img loading="lazy" alt="2026-04-29-latam-funding.png" src="../../../../../media/static/blog_img/2026-04-29-latam-funding.png" /></p>
 <p>Take Argentina. Over the past couple of years, the <a href="https://www.rpubs.com/daniloceschin/Argentina-Scientific-Funding-Crisis-Under-Milei">CONICET funding crisis</a> has been serious - budget cuts, delays, researchers leaving. Against that backdrop, the question of how much Argentine science now depends on international funders isn't just academic. It matters for policy, for sovereignty, for what gets studied. We can begin to answer that question with Dimensions data. But we can't answer it completely, because the picture gets blurry exactly where domestic and informal flows dominate.</p>
 <p>South-South flows - say, a Brazilian agency funding work in Colombia, or African-Latin American scientific partnerships - are largely invisible in the data. Not because they don't exist. Because the infrastructure wasn't built to see them.</p>
 <blockquote>
 <p>See the notebook <strong><a href="https://colab.research.google.com/drive/1iqPNkJjCTbjPMZvk2C9qt8rZYSQD8IZU">Latin America Research Funding Patterns- A tutorial using the Dimensions on Google BigQuery</a></strong> for more examples.</p>
 </blockquote>
-<p><a href="https://colab.research.google.com/drive/1iqPNkJjCTbjPMZvk2C9qt8rZYSQD8IZU"><img alt="2026-04-29-notebook-2.png" src="../../../../../media/static/blog_img/2026-04-29-notebook-2.png" /></a></p>
+<p><a href="https://colab.research.google.com/drive/1iqPNkJjCTbjPMZvk2C9qt8rZYSQD8IZU"><img loading="lazy" alt="2026-04-29-notebook-2.png" src="../../../../../media/static/blog_img/2026-04-29-notebook-2.png" /></a></p>
 <hr />
 <h2>What I learned from the feedback</h2>
 <p>The researchers at this event had been using Dimensions - and pushing it hard. The feedback they gave wasn't the vague kind you get from people who've skimmed the documentation. It was specific. Funder X isn't linked correctly. Country Y's national agency has three different names in the data and they resolve to different entity IDs. The acknowledgement extraction misses a common Portuguese grant number format.</p>

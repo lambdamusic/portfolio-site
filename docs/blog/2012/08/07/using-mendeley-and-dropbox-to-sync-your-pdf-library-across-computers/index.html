@@ -53,12 +53,6 @@
     <!-- Custom styles for this template -->
     <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 <style type="text/css">
 
     .tooltip-inner {
@@ -605,7 +599,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>This recipe assumes that you have two Macs and both <a href="https://www.dropbox.com/">Dropbox</a> and <a href="http://www.mendeley.com/">Mendeley</a> <strong>installed</strong> on both of them. We'll call one of the two machines <em>mac-1</em>, and the other one <em>mac-2</em>. Also, the method <strong>requires</strong> that you are using the <strong>same username</strong> on both Macs. I know this is a big limitation, but since Mendeley indexes PDF files using their full path, that's the only way for things to be wired up correctly (otherwise on one of the two Macs, the path of the PDF files will be broken).</p>
 <h3>1. Set up Mendeley and DropBox on mac-1</h3>
 <p>On Mac-1, create a Mendeley folder in your Dropbox. Within that, create two new folders, <code>pdf</code> and <code>db</code>. Now launch Mendeley Desktop and in the preferences panel set the PDF-files location to the pdf folder you just created. After clicking on 'apply', Mendeley will move your existing library (if you have one) into the new folder. Wait until that's finished before moving on to step 2.</p>
-<p><a href="../../../../../media/static/blog_img/mendeley-1.png"><img alt="Image mendeley-1.png" src="../../../../../media/static/blog_img/mendeley-1.png" /></a></p>
+<p><a href="../../../../../media/static/blog_img/mendeley-1.png"><img loading="lazy" alt="Image mendeley-1.png" src="../../../../../media/static/blog_img/mendeley-1.png" /></a></p>
 <h3>2. Add Mendeley database to DropBox on mac-1</h3>
 <p>Close Mendeley Desktop on mac-1. Now open up the terminal and <a href="http://en.wikipedia.org/wiki/Symbolic_link">symlink</a> the <code>~/Library/Application Support/Mendeley Desktop</code> folder to the db folder just created in Dropbox. This way the DB and preferences can be shared across computers.</p>
 <div class="codehilite"><pre><span></span><code><span class="o">[</span>mac<span class="o">]</span>@mac1:~/Library/Application<span class="w"> </span>Support&gt;cp<span class="w"> </span>-r<span class="w"> </span>Mendeley<span class="se">\ </span>Desktop/<span class="w"> </span>~/Dropbox/Mendeley/db/

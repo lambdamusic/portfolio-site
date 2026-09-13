@@ -53,12 +53,6 @@
     <!-- Custom styles for this template -->
     <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 <style type="text/css">
 
     .tooltip-inner {
@@ -618,9 +612,9 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h3>Installing AllegroCL</h3>
 <p>The <strong>good news</strong> is that if you follow the installation instructions for AllegroCL, this will also include AllegroGraph and AllegroCache. Long story short, I was able to get started with this environment <em>surprisingly</em> quickly. The <a href="http://www.franz.com/downloads/clp/validate_survey">installation</a> on macOS involves only two steps (after filling out a form): getting the GTK+ framework (a <a href="http://en.wikipedia.org/wiki/GTK%2B">cross-platform graphical toolkit</a>) and then downloading the Lisp image. Double-click, install, and voilà—you're done!</p>
 <p>Here's how the Lisp IDE looks like:</p>
-<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.46.491.png"><img alt="Screen shot 2011 04 14 at 13 46 49" src="../../../../../media/static/blog_img/Screen-shot-2011-04-14-at-13.46.491.png" /></a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.46.491.png"><img loading="lazy" alt="Screen shot 2011 04 14 at 13 46 49" src="../../../../../media/static/blog_img/Screen-shot-2011-04-14-at-13.46.491.png" /></a></p>
 <p>The IDE includes also an integrated patches-loading tool, which you should run straightaway to get the latest versions of several libraries needed by AllegroCL (wonder whether it's <em>that</em> easy to install all the standard Lisp packages too..):</p>
-<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.31.431.png"><img alt="Screen shot 2011 04 14 at 13 31 43" src="../../../../../media/static/blog_img/Screen-shot-2011-04-14-at-13.31.431.png" /></a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-13.31.431.png"><img loading="lazy" alt="Screen shot 2011 04 14 at 13 31 43" src="../../../../../media/static/blog_img/Screen-shot-2011-04-14-at-13.31.431.png" /></a></p>
 <p>Finally, in order to run AllegroGraph too it's necessary to invoke an update command manually, which is easily done:</p>
 <p>CG-USER(3): (SYSTEM.UPDATE:INSTALL-ALLEGROGRAPH)
 Checking available AllegroGraph versions...
@@ -636,7 +630,7 @@ evaluating the following forms:</p>
 <p>Ancillary files are located in ``/Applications//AllegroCL/agraph/''.</p>
 <h3>Installing Gruff</h3>
 <p>I also downloaded <a href="http://www.franz.com/agraph/gruff/">Gruff</a> and ran it. Again, on OSx the whole process was very very straightforward. I loaded up an ontology stored in an RDF/XML file and here's the result:</p>
-<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-14.18.561.png"><img alt="Screen shot 2011 04 14 at 14 18 56" src="../../../../../media/static/blog_img/Screen-shot-2011-04-14-at-14.18.561.png" /></a></p>
+<p><a href="http://www.michelepasin.org/blog/wp-content/uploads/2011/04/Screen-shot-2011-04-14-at-14.18.561.png"><img loading="lazy" alt="Screen shot 2011 04 14 at 14 18 56" src="../../../../../media/static/blog_img/Screen-shot-2011-04-14-at-14.18.561.png" /></a></p>
 <p>Very impressive—that's my conclusion. <a href="http://www.franz.com/agraph/gruff/">Gruff</a> offers plenty of features for viewing and editing RDF graphs (check out the <a href="http://www.franz.com/agraph/gruff/index.lhtml#download">video tutorials on the homepage</a>). With a little practice, I think it wouldn't be difficult to use it for creating RDF models by hand (e.g., as an alternative to tools like Protégé). The main advantage in my view is that it's highly interactive: being able to switch very quickly from a graph view to a tabular one is extremely practical when inspecting or creating an RDF model.</p>
 <h3>Time to write some code</h3>
 <p>Haven't been writing Lisp in a while, but since we've got till here it would be a shame not to get our hands dirty a little, right?</p>

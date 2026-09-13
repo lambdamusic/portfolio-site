@@ -53,12 +53,6 @@
     <!-- Custom styles for this template -->
     <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
 
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
-
 <style type="text/css">
 
     .tooltip-inner {
@@ -610,17 +604,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </blockquote>
 <p>Dashboard sharing was <a href="https://support.google.com/datastudio/answer/6287179?hl=en#zippy=%2Cin-this-article">so easy with Data Studio</a> that I suppose I got spoiled by that. I'd be happy enough if Looker could provide a 'public sharing' option for dashboards with reduced features or something like that, e.g. inferior data refresh rate, max number of tiles allowed, or limited query complexity. </p>
 <p>In all fairness, Looker permits to <a href="https://docs.looker.com/sharing-and-publishing/publishing-looks-with-public-urls">share publicly a single visualization</a> (aka a 'look'). Not the same thing, but still, that can be handy e.g. in order to include little information snippets on a blog or site. </p>
-<p><img alt="looker-share-look.png" src="../../../../../media/static/blog_img/looker-share-look.png" /></p>
+<p><img loading="lazy" alt="looker-share-look.png" src="../../../../../media/static/blog_img/looker-share-look.png" /></p>
 <h2>2. Built-in visualizations can be sloppy</h2>
 <p>Even taking into account that visualizations are clearly not Looker's main selling point (VS the powerful modeling layer, for example), some of the built-in visualizations can be rather low-quality. Which I found rather surprising, considering the overall sophistication of the overall UI/UX of Looker. </p>
 <p>Example: the built-in <strong>scatter plot</strong> works fine, as long as you plot two dimensions (e.g. article type VS article country), or a dimension and a measure (article country VS article citations). However, what if you want to plot two measures against each other (article count VS article citations)? </p>
 <p>This is handy because by having two measures on the chart axes, the dots could be mapped to a dimension of choice (eg country, or organization). As a result, one can quickly compare how that dimension performs against the two measures. That is, how different organizations compare with each other, in terms of articles counts and articles citations.  </p>
-<p><img alt="datastudio-scatter-plot-issue.png" src="../../../../../media/static/blog_img/datastudio-scatter-plot-issue.png" /></p>
+<p><img loading="lazy" alt="datastudio-scatter-plot-issue.png" src="../../../../../media/static/blog_img/datastudio-scatter-plot-issue.png" /></p>
 <p>In Data Studio I was able to do that easily (see above). The result being a handy visualization  displaying the single records that lie at the intersection of such measures. But <a href="https://community.looker.com/dashboards-looks-7/measure-vs-measure-scatterplots-3-28-1296">in Looker two measures can be plotted only by 'hiding' the dimension</a>. So the dots in the chart are not representing the dimension, simply the correlation between two numerical measures.</p>
 <p>Another example: the <strong>map visualization</strong>. It generally works ok but if you happen to be plotting a single point (eg a city), the zoom is automatically set at such a high resolution that the map view becomes unusable. </p>
 <p>Why isn't there there's no way to <a href="https://community.looker.com/lookml-5/map-with-a-single-datapoint-not-supported-29731">specify the default zoom level</a> with a single point?  Such an obvious feature, it makes you wonder how they could have forgotten about it.</p>
 <p>NOTE: there is a <em>Map Visualisation options - Map - Map Position (Custom) - Zoom Level</em>  option, but that requires static lat/long coordinates to be added to the settings, rather than being retrieved dynamically from the data being plotted.</p>
-<p><img alt="looker-map-focus.png" src="../../../../../media/static/blog_img/looker-map-focus.png" /></p>
+<p><img loading="lazy" alt="looker-map-focus.png" src="../../../../../media/static/blog_img/looker-map-focus.png" /></p>
 <h2>3. Cross-filtering dashboards is limited</h2>
 <p>You can set  <a href="https://docs.looker.com/dashboards/dashboard-beta-filters#understanding_dashboard_filters">standard dashboard filters</a>  and specify exactly which tiles should be effected by these filters. That's pretty cool. </p>
 <p>The problem arises when cross-filtering is turned on. </p>
@@ -629,7 +623,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </blockquote>
 <p>With cross-filtering, it's an all-or-nothing matter: you <a href="https://community.looker.com/dashboards-looks-7/cross-filtering-some-tiles-not-all-of-them-27772">either filter all the tiles or none</a>. Which I found out to be a game stopper as soon as you have a handful of data-hungry tiles on your page. These tiles will slow everything down and there is no way to selectively disactivate cross-filtering on them. So you end up removing cross-filtering altogether.</p>
 <p>Similarly, if your dashboard uses data from multiple explores (i.e. data sources), then cross-filtering is a no-go by default.</p>
-<p><img alt="looker-filters-2.png" src="../../../../../media/static/blog_img/looker-filters-2.png" /></p>
+<p><img loading="lazy" alt="looker-filters-2.png" src="../../../../../media/static/blog_img/looker-filters-2.png" /></p>
 <p>This is another little thing that was easy to master in Data Studio, but impossible to do in Looker:  in Data Studio <a href="https://support.google.com/datastudio/answer/9173401?hl=en#zippy=%2Cin-this-article">you can group charts</a> so that cross-filters will trigger only those within the same group. </p>
 <h3>Find out more about Looker</h3>
 <p>Start by checking out the <a href="https://connect.looker.com/">Looker user guide</a>.</p>
