@@ -228,12 +228,14 @@ def url_domain(uri):
 
 
 import markdown
+from myutils.myutils import add_lazy_loading_to_images
 
 @register.filter(name='markdown')
 def render_markdown(md):
 	""" Render markdown in the template """
 	try:
-		return markdown.markdown(md, extensions=['fenced_code', 'codehilite'])
+		html = markdown.markdown(md, extensions=['fenced_code', 'codehilite'])
+		return add_lazy_loading_to_images(html)
 	except:
 		return md
 

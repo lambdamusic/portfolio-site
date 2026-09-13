@@ -16,7 +16,7 @@ import markdown
 from render_block import render_block_to_string
 
 from settings import STATICFILES_DIRS, BLOGS_ROOT
-from myutils.myutils import printDebug
+from myutils.myutils import printDebug, add_lazy_loading_to_images
 
 from researchapp.models import *
 from researchapp.topics import *
@@ -177,6 +177,7 @@ def blog_detail(request, year="", month="", day="", namedetail=""):
 	TITLE, DATE, REVIEW, CATS, TAGS, PURE_MARKDOWN = parse_markdown(blog_source_file)
 
 	html_blog_entry = markdown.markdown(PURE_MARKDOWN, extensions=['fenced_code', 'codehilite'])
+	html_blog_entry = add_lazy_loading_to_images(html_blog_entry)
 
 	context = {
 		'return_item' : return_item,

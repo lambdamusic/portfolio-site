@@ -15,6 +15,7 @@ import markdown
 from render_block import render_block_to_string
 
 from settings import STATICFILES_DIRS, BLOGS_ROOT, FLICKR_API_KEY, FLICKR_API_SECRET
+from myutils.myutils import add_lazy_loading_to_images
 
 from researchapp.models import *
 from researchapp.topics import *
@@ -171,6 +172,7 @@ def projects(request, namedetail=""):
 
 
 		html_description = markdown.markdown(return_item.description, extensions=['fenced_code', 'codehilite'])
+		html_description = add_lazy_loading_to_images(html_description)
 
 		context = {
 			'admin_change_url': admin_change_url,

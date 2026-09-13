@@ -16,6 +16,13 @@ import re
 ######################
 
 
+def add_lazy_loading_to_images(html):
+    """Add loading="lazy" to <img> tags in rendered HTML (eg from markdown.markdown()),
+    so images below the fold don't block/slow down initial page load.
+    """
+    return re.sub(r'<img ', '<img loading="lazy" ', html)
+
+
 def nice_titles(s):
     """good for generating titles - for human consumption"""
     return string.capwords(s)
