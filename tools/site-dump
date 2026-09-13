@@ -57,7 +57,16 @@ mkdir $DIR_DB_BACKUP
 echo -e "\nBACKING UP SITE....RSYNC /DOCS TO /$DIR_DOCS_BACKUP"
 echo "+++++++++++++++++"
 # the legacy /blog static files don't need to be refreshed
-rsync -av --delete --exclude archived --exclude assets $DIR_DOCS/ $DIR_DOCS_BACKUP/
+#
+# --link-dest against the previous backup's docs/ turns this into a
+# space/time-efficient snapshot: unchanged files are hardlinked instead of
+# copied, so each backup only costs disk/time proportional to what changed.
+PREV_DOCS_BACKUP=$(ls -1dt backups/*/docs 2>/dev/null | head -1)
+if [ -n "$PREV_DOCS_BACKUP" ]; then
+    rsync -av --delete --exclude archived --exclude assets --link-dest="$(cd "$PREV_DOCS_BACKUP" && pwd)" $DIR_DOCS/ $DIR_DOCS_BACKUP/
+else
+    rsync -av --delete --exclude archived --exclude assets $DIR_DOCS/ $DIR_DOCS_BACKUP/
+fi
 
 
 
@@ -97,6 +106,21 @@ echo "+++++++++++++++++"
 rm -rf $DIR_BUILD/*
 
 #
+# STATIC ASSETS
+# CSS/JS/images under STATICFILES_DIRS (src/static/, ~225MB) never need Django
+# to render them - they're already flat files. Copying them straight into the
+# build dir via collectstatic is a filesystem copy (well under a second) versus
+# wget fetching each one individually over HTTP. wget below is told to skip
+# this directory (-X, plus -nc as a belt-and-braces check) since it's already
+# in place.
+#
+echo -e "\nCOLLECTING STATIC ASSETS.."
+echo "+++++++++++++++++"
+src/manage.py collectstatic --noinput -c
+mkdir -p $DIR_BUILD/media
+cp -R collectstatic/portfolioapp $DIR_BUILD/media/static
+
+#
 # WGET
 # https://www.gnu.org/software/wget/manual/wget.html
 # opt: -m, --mirror: Makes (among other things) the download recursive.
@@ -105,11 +129,110 @@ rm -rf $DIR_BUILD/*
 # opt: -p, --page-requisites: Download things like CSS style-sheets and images required to properly display the page offline.
 # opt: -np, --no-parent: When recursing do not ascend to the parent directory. It useful for restricting the download to only a portion of the site.
 # opt: -nH, --no-host-directories Disable generation of host-prefixed directories. By default, invoking Wget with ‘-r http://fly.srk.fer.hr/’ will create a structure of directories beginning with fly.srk.fer.hr/. This option disables such behavior.
-# opt: -w, --wait: Waiting time between calls. Set reasonable or random waiting times between two downloads to avoid the Connection closed by peer error.
+# opt: -nc, --no-clobber: skip re-downloading a URL if the destination file already exists locally.
+#   -m implies -N (timestamping), and collectstatic preserves file mtimes, so
+#   wget still visits every /media/static/ URL (needed for correct -k link
+#   conversion below) but does a cheap conditional check per file instead of
+#   re-transferring content it already has.
+#   NOTE: do NOT use -X to skip /media/static entirely - it stops wget from
+#   ever visiting those URLs, so -k has no record of them and leaves absolute
+#   http://127.0.0.1:8000/... links in the output instead of relative ones.
+# NOTE: no --wait here (was 0.1s/request) - that throttle is meant for being
+# polite to someone else's server, this is our own localhost dev server.
 #
-echo -e "\nWGET SITE INTO TEMP BUILD DIRECTORY.." 
+echo -e "\nWGET SITE INTO TEMP BUILD DIRECTORY.."
 echo "+++++++++++++++++"
-wget  -P $DIR_BUILD -mkEpnp -nH http://127.0.0.1:8000/ --wait=0.1 --exclude-domains www.michelepasin.org
+wget  -P $DIR_BUILD -mkEpnp -nH -nc http://127.0.0.1:8000/ --exclude-domains www.michelepasin.org
+
+#
+# PRUNE UNUSED STATIC ASSETS
+# collectstatic copies the *entire* src/static tree (plus every installed
+# app's own static/, e.g. django admin) regardless of whether anything
+# actually links to it. wget's old page-requisite fetching only ever pulled
+# in files a page actually referenced, so keep that same "used files only"
+# behavior: scan everything just crawled for media/static/... references and
+# delete any collected static file that nothing pointed to.
+#
+# NOTE: this can't be a plain grep for the literal "media/static/" substring.
+# CSS files commonly reference sibling assets by *relative* path instead (e.g.
+# Bootstrap's glyphicon fonts: `url('../fonts/glyphicons-halflings-regular.woff')`
+# inside bootstrap.min.css) - those never contain "media/static/" at all, so a
+# substring-only pass wrongly treats them as unused and deletes fonts/images
+# that are genuinely loaded, breaking icons/assets site-wide. This resolves
+# such relative references against the referencing file's own directory,
+# transitively, so a CSS file pulling in a font (which could in turn pull in
+# something else) is handled correctly.
+#
+echo -e "\nPRUNING UNUSED STATIC ASSETS.."
+echo "+++++++++++++++++"
+python3 - "$DIR_BUILD" <<'PYEOF'
+import os, re, sys
+
+BUILD_DIR = sys.argv[1]
+STATIC_PREFIX = "media/static/"
+STATIC_DIR = os.path.join(BUILD_DIR, "media", "static")
+
+def clean(ref):
+    return ref.split("?", 1)[0].split("#", 1)[0]
+
+def read_text(path):
+    try:
+        with open(path, "r", encoding="utf-8", errors="ignore") as f:
+            return f.read()
+    except OSError:
+        return ""
+
+# Phase 1: every literal media/static/... reference anywhere in the crawled
+# build tree (pages, and the static files themselves) - catches the normal
+# case: Django's {% static %} tag always emits an absolute-from-STATIC_URL
+# path, which wget's -k conversion turns into "../../media/static/..." but
+# never strips the "media/static/" substring itself.
+used = set()
+abs_pattern = re.compile(r"media/static/[A-Za-z0-9_./+%-]+")
+for root, _, files in os.walk(BUILD_DIR):
+    for fn in files:
+        fp = os.path.join(root, fn)
+        for m in abs_pattern.finditer(read_text(fp)):
+            rel = clean(m.group(0))[len(STATIC_PREFIX):]
+            used.add(os.path.normpath(os.path.join(STATIC_DIR, rel)))
+
+# Phase 2: CSS/JS/SVG inside the static tree can reference siblings by
+# relative path instead - resolve those against each referencing file's own
+# directory, transitively, until nothing new turns up.
+url_pattern = re.compile(r"url\(\s*['\"]?([^'\")]+)['\"]?\s*\)")
+changed = True
+while changed:
+    changed = False
+    for fp in list(used):
+        if os.path.splitext(fp)[1].lower() not in (".css", ".js", ".svg"):
+            continue
+        if not os.path.isfile(fp):
+            continue
+        for m in url_pattern.finditer(read_text(fp)):
+            ref = clean(m.group(1))
+            if ref.startswith(("http://", "https://", "data:", "//")):
+                continue
+            target = os.path.normpath(os.path.join(os.path.dirname(fp), ref))
+            if target.startswith(os.path.normpath(STATIC_DIR)) and target not in used:
+                used.add(target)
+                changed = True
+
+before = after = 0
+for root, _, files in os.walk(STATIC_DIR):
+    for fn in files:
+        fp = os.path.normpath(os.path.join(root, fn))
+        before += 1
+        if fp in used:
+            after += 1
+        else:
+            os.remove(fp)
+
+for root, _, _ in os.walk(STATIC_DIR, topdown=False):
+    if root != STATIC_DIR and not os.listdir(root):
+        os.rmdir(root)
+
+print(f"Kept {after} of {before} collected static files ({before - after} unreferenced files dropped).")
+PYEOF
 
 # add a log file
 cd $DIR_BUILD
