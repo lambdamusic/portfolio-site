@@ -20,6 +20,7 @@ from collections import Counter
 
 from django.core.management.base import BaseCommand, CommandError
 
+from researchapp.frontmatter import read_list, render_list, split_frontmatter
 from researchapp.tag_vocabulary import ALIASES, DROP, VOCABULARY
 
 from settings import BLOGS_ROOT
@@ -42,52 +43,6 @@ def map_tags(tags):
         if tag not in out:
             out.append(tag)
     return sorted(out)
-
-
-def split_frontmatter(lines):
-    """Return (before, tag_block_slice, after) for the tags: block.
-
-    tag_block_slice is a (start, end) pair of line indexes covering the
-    `tags:` line and its `- "..."` items, or None if the post has no tags
-    block at all.
-    """
-    # locate the frontmatter fences
-    fences = [i for i, l in enumerate(lines) if l.rstrip("\n") == "---"]
-    if len(fences) < 2:
-        return None
-    head_start, head_end = fences[0], fences[1]
-
-    for i in range(head_start + 1, head_end):
-        line = lines[i]
-        if line.startswith("tags:") and not line[len("tags:"):].strip():
-            end = i + 1
-            while end < head_end and lines[end].strip().startswith("-"):
-                end += 1
-            return (i, end)
-    return None
-
-
-def read_tags(lines, block):
-    start, end = block
-    return [
-        lines[i].replace("- ", "", 1).strip().strip('"').lower()
-        for i in range(start + 1, end)
-    ]
-
-
-TAG_INDENT = "  "
-
-
-def render_tags(tags, header="tags: \n"):
-    """Render the tags block, preserving the file's own `tags:` header line.
-
-    Items are indented with TAG_INDENT to match the `categories:` block that
-    sits right above them in every post - the markdown parser accepts any
-    indentation, but a gratuitous reformat makes the git diff unreadable.
-    """
-    if not tags:
-        return []
-    return [header] + [f'{TAG_INDENT}- "{t}"\n' for t in tags]
 
 
 class Command(BaseCommand):
@@ -127,12 +82,12 @@ class Command(BaseCommand):
             with open(path) as f:
                 lines = f.readlines()
 
-            block = split_frontmatter(lines)
+            block = split_frontmatter(lines, "tags")
             if block is None:
                 untouched += 1
                 continue
 
-            old_tags = read_tags(lines, block)
+            old_tags = read_list(lines, block)
             new_tags = map_tags(old_tags)
 
             for t in old_tags:
@@ -147,7 +102,7 @@ class Command(BaseCommand):
             # canonical but whose formatting has drifted gets repaired too,
             # and re-running the command is a no-op once everything converges.
             start, end = block
-            rendered = render_tags(new_tags, header=lines[start])
+            rendered = render_list(new_tags, lines[start])
             if lines[start:end] != rendered:
                 changes.append((filename, old_tags, new_tags, lines, block))
 
@@ -172,7 +127,7 @@ class Command(BaseCommand):
                 start, end = block
                 new_lines = (
                     lines[:start]
-                    + render_tags(new_tags, header=lines[start])
+                    + render_list(new_tags, lines[start])
                     + lines[end:]
                 )
                 with open(os.path.join(BLOGS_ROOT, filename), "w") as f:
