@@ -290,6 +290,14 @@ def do_cleanup_db(filenames_list, verbose=False, force=False):
 			if force or click.confirm("Delete tag?"):
 				tag.delete()
 
+	# cleanup unused categories
+	# Unlike Tag, BlogCategory is only ever used by blog posts, so a row with
+	# no publications is simply stale - eg a category renamed in the markdown.
+	for cat in BlogCategory.objects.filter(publications=None):
+		printDebug(f"Unused category: {cat}", "red")
+		if force or click.confirm("Delete category?"):
+			cat.delete()
+
 
 
 def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN, verbose=False, force=False):

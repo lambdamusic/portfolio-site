@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# rewrite the categories in the blog markdown files to match the controlled
+# vocabulary in src/apps/researchapp/category_vocabulary.py
+#
+# DRY RUN by default - pass --apply to actually write the files
+
+echo "+++++++++++++++++"
+echo -e "\nAPPLYING CATEGORY VOCABULARY TO MARKDOWN..."
+echo "+++++++++++++++++"
+src/manage.py categories_apply "$@"
+
+
+# $ src/manage.py categories_apply --help // more info
