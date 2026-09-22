@@ -6,16 +6,22 @@ of hack / prototype / data / science / nlp / ontology etc.
 Tag is shared between Project and Publication (see Tag model docstring),
 so this command only changes which Tag rows are attached to Projects -
 it never renames or deletes a Tag, and reuses Tag rows Publications
-already use (semanticweb, livecoding, python, lisp) rather than creating
+already use (semantic-web, livecoding, python, lisp) rather than creating
 near-duplicates.
+
+2026-09-22: the tag names here are now governed by the shared controlled
+vocabulary in researchapp/tag_vocabulary.py - every name below must be a key
+in VOCABULARY. `semanticweb` was renamed to `semantic-web` in that pass, so
+re-run this command after `tags_apply` to move Projects onto the new Tag row.
 
 Usage:
     python manage.py retag_projects            # dry run, prints diff
     python manage.py retag_projects --apply     # actually writes changes
 """
 
-from django.core.management.base import BaseCommand
+from django.core.management.base import BaseCommand, CommandError
 from researchapp.models import Project, Tag
+from researchapp.tag_vocabulary import VOCABULARY
 
 
 # urlstub -> list of new tag names (domain + format + tech)
@@ -28,32 +34,32 @@ NEW_TAGS = {
     "dimensionscovid": ["research-analytics", "dashboard"],
     "dimensionsapilabs": ["research-analytics", "tool", "python"],
     "dimcli": ["research-analytics", "tool", "python"],
-    "scigraph": ["research-analytics", "semanticweb", "website"],
+    "scigraph": ["research-analytics", "semantic-web", "website"],
     "pypapers": ["tool", "python"],
     "dbpedia2scigraph": ["research-analytics", "visualization"],
     "zerohunger2018": ["research-analytics", "visualization"],
     "sganalytics": ["research-analytics", "dashboard"],
-    "ontodocs": ["semanticweb", "tool", "python"],
+    "ontodocs": ["semantic-web", "tool", "python"],
     "npgstreamgraph": ["research-analytics", "visualization"],
-    "ontospy": ["semanticweb", "tool", "python"],
+    "ontospy": ["semantic-web", "tool", "python"],
     "npgwikipedia": ["research-analytics", "visualization"],
-    "natureontologyportal": ["semanticweb", "website"],
+    "natureontologyportal": ["semantic-web", "website"],
     "impromptudocs": ["livecoding", "tool"],
     "liquidquotes": ["tool"],
-    "npgsubjectstree": ["research-analytics", "semanticweb", "visualization"],
+    "npgsubjectstree": ["research-analytics", "semantic-web", "visualization"],
     "npgsubjectpages": ["research-analytics", "website"],
     "artofmaking": ["digital-humanities", "website"],
     "pomslabs": ["digital-humanities", "visualization"],
     "poms": ["digital-humanities", "website"],
     "bob": ["digital-humanities", "website"],
     "mkcheur": ["digital-humanities", "website"],
-    "sails": ["digital-humanities", "semanticweb", "tool"],
+    "sails": ["digital-humanities", "semantic-web", "tool"],
     "emlot": ["digital-humanities", "website"],
-    "philosurfical": ["digital-humanities", "semanticweb", "website"],
-    "cohere": ["semanticweb", "tool"],
-    "irs": ["semanticweb", "tool"],
-    "aqualog": ["semanticweb", "tool"],
-    "hucit": ["digital-humanities", "semanticweb", "tool"],
+    "philosurfical": ["digital-humanities", "semantic-web", "website"],
+    "cohere": ["semantic-web", "tool"],
+    "irs": ["semantic-web", "tool"],
+    "aqualog": ["semantic-web", "tool"],
+    "hucit": ["digital-humanities", "semantic-web", "tool"],
     "dimensionsgbqlab": ["research-analytics", "tool"],
     "dimensionsmenubar": ["research-analytics", "tool", "python"],
     "dimensionsbigquery": ["research-analytics", "tool"],
@@ -79,6 +85,17 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         apply_changes = options["apply"]
+
+        # the shared vocabulary is the authority for tag names - catch any
+        # project tag that has drifted away from it before writing anything
+        off_vocabulary = sorted(
+            {name for names in NEW_TAGS.values() for name in names} - set(VOCABULARY)
+        )
+        if off_vocabulary:
+            raise CommandError(
+                "These project tags are not in tag_vocabulary.VOCABULARY: "
+                f"{off_vocabulary}. Add them there, or use the canonical spelling."
+            )
 
         projects = {p.urlstub: p for p in Project.objects.all()}
 

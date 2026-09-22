@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+# report on the health of the blog tag vocabulary (read-only)
+
+echo "+++++++++++++++++"
+echo -e "\nAUDITING TAG VOCABULARY..."
+echo "+++++++++++++++++"
+src/manage.py tags_audit "$@"
+
+
+# $ src/manage.py tags_audit --help // more info

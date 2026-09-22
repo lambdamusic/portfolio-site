@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+
+# rewrite the tags in the blog markdown files to match the controlled
+# vocabulary in src/apps/researchapp/tag_vocabulary.py
+#
+# DRY RUN by default - pass --apply to actually write the files
+
+echo "+++++++++++++++++"
+echo -e "\nAPPLYING TAG VOCABULARY TO MARKDOWN..."
+echo "+++++++++++++++++"
+src/manage.py tags_apply "$@"
+
+
+# $ src/manage.py tags_apply --help // more info

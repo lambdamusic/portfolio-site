@@ -40,6 +40,13 @@ from myutils.myutils import printDebug
 # TIP: set to True to print out extra info about tags and categories
 DEBUG_TAGS = False
 
+from collections import defaultdict
+from researchapp.tag_vocabulary import VOCABULARY
+
+# tags seen during this run that are not in the controlled vocabulary,
+# reported in one block at the end rather than buried in the per-file noise
+OFF_VOCABULARY = defaultdict(list)
+
 
 class Command(BaseCommand):
 	help = """Reindex the blog files in BLOGS_SOURCE_DIR. For each file, parse the markdown content and add to the DB is the file is new or has changed. 
@@ -85,9 +92,28 @@ class Command(BaseCommand):
 
 		do_cleanup_db(filenames_list, verbose, force)
 
+		report_off_vocabulary()
+
 		print("----------\nDone")
 
 
+
+
+def report_off_vocabulary():
+	"""Warn about tags used in markdown that aren't in the controlled vocabulary.
+
+	Deliberately a warning, not an error - inventing a tag is allowed, it just
+	has to be registered in researchapp/tag_vocabulary.py so the vocabulary
+	stays curated instead of drifting. See TAGS_PLAN.md.
+	"""
+	if not OFF_VOCABULARY:
+		return
+	printDebug(f"\n{len(OFF_VOCABULARY)} tags are not in the controlled vocabulary:", "red")
+	for tag_name in sorted(OFF_VOCABULARY):
+		files = OFF_VOCABULARY[tag_name]
+		printDebug(f"  {tag_name}  ({len(files)}): {', '.join(files[:3])}", "red")
+	printDebug("Add them to VOCABULARY / ALIASES / DROP in researchapp/tag_vocabulary.py,")
+	printDebug("then run: src/manage.py tags_apply")
 
 
 def do_parse_md_folder(verbose=False, force=False):
@@ -109,6 +135,14 @@ def do_parse_md_folder(verbose=False, force=False):
 			counter1 +=1
 			TITLE, DATE, REVIEW, CATS, TAGS, PURE_MARKDOWN = parse_markdown(BLOGS_SOURCE_DIR+"/"+filename, verbose)
 			# print(TITLE, PURE_MARKDOWN)
+
+			# Checked for every file, not just the ones being written, so an
+			# unchanged post using a stray tag still gets flagged. Not fatal:
+			# inventing a tag is allowed, it just has to be registered in
+			# researchapp/tag_vocabulary.py. See TAGS_PLAN.md.
+			for tag_name in TAGS:
+				if tag_name not in VOCABULARY:
+					OFF_VOCABULARY[tag_name].append(filename)
 
 			result = try_write_record(filename, 
 										TITLE, 
