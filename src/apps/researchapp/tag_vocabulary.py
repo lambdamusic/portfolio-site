@@ -540,3 +540,75 @@ DROP = {
     "podcast", "satire", "settings", "smtp", "smtpd", "storyteller", "tagore",
     "technology", "television-uk", "tropical", "uk", "volume", "zebra",
 }
+
+
+# Explicit tag assignment for individual posts. Used for the 32 posts that
+# had no tags at all (mostly 2006-2007, written before I was tagging), where
+# there is nothing to map from - the tags were read off the post content.
+# Wins over ALIASES/DROP, and a tags: block is created if the post lacks one.
+POST_TAGS = {
+    "2006-04-06-library-20.md":
+        ['learning', 'social-web', 'talk'],
+    "2006-10-04-navigating-the-rijksmuseum.md":
+        ['art', 'navigation', 'ui'],
+    "2006-10-09-howar-gardners-talk.md":
+        ['academia', 'cognitive-science', 'talk'],
+    "2006-10-23-semantic-wikipedia-some-issues.md":
+        ['semantic-web', 'social-web', 'talk'],
+    "2006-10-28-firefox-20-will-i-ever-go-back-to-safari.md":
+        ['browser', 'macos'],
+    "2006-10-29-132.md":
+        ['academia', 'quote'],
+    "2006-11-21-web-30.md":
+        ['news', 'semantic-web', 'web'],
+    "2006-11-23-multimedian-semantic-navigator.md":
+        ['art', 'navigation', 'semantic-web'],
+    "2006-11-28-the-nora-project.md":
+        ['digital-humanities', 'language', 'nlp'],
+    "2006-11-30-knowledge-elicitation-playing-with-cards.md":
+        ['knowledge-representation', 'research'],
+    "2006-12-01-a-cyberspace-atlas.md":
+        ['graphics', 'visualization'],
+    "2006-12-06-lisp-and-the-web.md":
+        ['lisp', 'programming', 'web'],
+    "2007-01-05-text-encoding-initiative-a-historical-paper.md":
+        ['digital-humanities', 'paper', 'xml'],
+    "2007-01-17-where-is-italy.md":
+        ['italy', 'politics', 'visualization'],
+    "2007-01-18-the-internet-classics-archive.md":
+        ['book', 'digital-humanities', 'history'],
+    "2007-01-24-google-map-goes-down-to-the-humans.md":
+        ['event', 'google'],
+    "2007-01-26-turning-the-pages-of-literature.md":
+        ['book', 'digital-humanities', 'ui'],
+    "2007-02-01-philosophical-search-engine.md":
+        ['academia', 'philosophy', 'search'],
+    "2007-02-06-lisp-conference-in-cambridge.md":
+        ['conference', 'lisp'],
+    "2007-03-19-navigating-the-eternal-egypt.md":
+        ['art', 'digital-humanities', 'history', 'navigation'],
+    "2007-03-22-digital-document-quarterly.md":
+        ['digital-humanities', 'publishing', 'semantics'],
+    "2007-04-02-indiana-philosophy-ontology-project.md":
+        ['digital-humanities', 'ontology', 'philosophy', 'wittgenstein'],
+    "2007-04-17-hypernietzsche.md":
+        ['digital-humanities', 'navigation', 'philosophy'],
+    "2007-04-19-carnap-on-syntax.md":
+        ['language', 'logic', 'philosophy'],
+    "2007-05-12-impromptu-scheme-based-music-and-video.md":
+        ['impromptu', 'livecoding', 'scheme'],
+    "2007-05-31-go-get-the-milk.md":
+        ['graphics', 'video'],
+    "2009-08-01-end-of-this-adventure.md":
+        ['academia', 'london'],
+    "2018-03-22-interesting-read-scisci-i-e-the-science-of-science.md":
+        ['graph', 'paper', 'research-analytics', 'science'],
+    "2019-02-11-zero-hunger-hack-day.md":
+        ['dashboard', 'dimensions', 'research-analytics', 'visualization'],
+    "2019-04-25-vscode-override-snippets.md":
+        ['extempore', 'ide', 'tutorial'],
+    "2020-01-08-calculating-industry-collaborations-via-grid.md":
+        ['dimensions', 'research-analytics', 'tutorial', 'visualization'],
+    "2021-10-29-django-wget-static-site.md":
+        ['django', 'python', 'tutorial', 'website'],
+}

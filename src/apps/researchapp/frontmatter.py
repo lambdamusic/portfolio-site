@@ -45,6 +45,16 @@ def split_frontmatter(lines, key):
     return None
 
 
+def frontmatter_end(lines):
+    """Index of the closing `---` fence, or None if there isn't a frontmatter.
+
+    New blocks are inserted here, which puts them last in the frontmatter -
+    matching where `tags:` already sits in every existing post.
+    """
+    fences = [i for i, l in enumerate(lines) if l.rstrip("\n") == "---"]
+    return fences[1] if len(fences) >= 2 else None
+
+
 def read_list(lines, block):
     """Read the values out of a block located by split_frontmatter()."""
     start, end = block

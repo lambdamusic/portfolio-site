@@ -54,6 +54,10 @@ RENAMES = {
 # `md_file` is the post id (see do_blogs_reindex).
 
 POST_CATEGORIES = {
+    # The first Impromptu post - where the whole livecoding strand starts.
+    # Was filed under justblogging; moved 2026-09-22.
+    "2007-05-12-impromptu-scheme-based-music-and-video.md":
+        ['computermusic'],   # was ['justblogging']
     "2006-06-29-compendium-vs-nestor.md":
         ['knowledge-engineering'],   # was ['informationarchitecture']
     "2006-06-29-review-automatist-storyteller-systems-and-the-shifting-sands-of-story-by-g-davenport-and-m-murtaugh.md":

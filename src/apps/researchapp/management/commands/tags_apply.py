@@ -20,8 +20,12 @@ from collections import Counter
 
 from django.core.management.base import BaseCommand, CommandError
 
-from researchapp.frontmatter import read_list, render_list, split_frontmatter
-from researchapp.tag_vocabulary import ALIASES, DROP, VOCABULARY
+from researchapp.frontmatter import (
+    frontmatter_end, read_list, render_list, split_frontmatter,
+)
+from researchapp.tag_vocabulary import ALIASES, DROP, POST_TAGS, VOCABULARY
+
+NEW_BLOCK_HEADER = "tags: \n"
 
 from settings import BLOGS_ROOT
 
@@ -68,7 +72,7 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         apply_changes = options["apply"]
 
-        changes = []        # (filename, old_tags, new_tags, lines, block)
+        changes = []        # (filename, old_tags, new_tags, lines, block, header)
         before = Counter()
         after = Counter()
         unknown = Counter()
@@ -83,12 +87,27 @@ class Command(BaseCommand):
                 lines = f.readlines()
 
             block = split_frontmatter(lines, "tags")
-            if block is None:
-                untouched += 1
-                continue
 
-            old_tags = read_list(lines, block)
-            new_tags = map_tags(old_tags)
+            if block is None:
+                # No tags block at all. Only worth touching if POST_TAGS says
+                # what this post should have - then we insert one at the end
+                # of the frontmatter. Otherwise leave the file alone.
+                if filename not in POST_TAGS:
+                    untouched += 1
+                    continue
+                end_fence = frontmatter_end(lines)
+                if end_fence is None:
+                    untouched += 1
+                    continue
+                block = (end_fence, end_fence)      # empty range = insert here
+                header = NEW_BLOCK_HEADER
+                old_tags = []
+            else:
+                header = lines[block[0]]
+                old_tags = read_list(lines, block)
+
+            # POST_TAGS is an explicit decision and wins over the alias mapping
+            new_tags = map_tags(POST_TAGS.get(filename, old_tags))
 
             for t in old_tags:
                 before[t] += 1
@@ -102,9 +121,9 @@ class Command(BaseCommand):
             # canonical but whose formatting has drifted gets repaired too,
             # and re-running the command is a no-op once everything converges.
             start, end = block
-            rendered = render_list(new_tags, lines[start])
+            rendered = render_list(new_tags, header)
             if lines[start:end] != rendered:
-                changes.append((filename, old_tags, new_tags, lines, block))
+                changes.append((filename, old_tags, new_tags, lines, block, header))
 
         if unknown and not options["allow_unknown"]:
             self.stdout.write(self.style.ERROR(
@@ -123,13 +142,9 @@ class Command(BaseCommand):
         self.print_summary(before, after, changes, untouched)
 
         if apply_changes:
-            for filename, _, new_tags, lines, block in changes:
+            for filename, _, new_tags, lines, block, header in changes:
                 start, end = block
-                new_lines = (
-                    lines[:start]
-                    + render_list(new_tags, lines[start])
-                    + lines[end:]
-                )
+                new_lines = lines[:start] + render_list(new_tags, header) + lines[end:]
                 with open(os.path.join(BLOGS_ROOT, filename), "w") as f:
                     f.writelines(new_lines)
             self.stdout.write(self.style.SUCCESS(
@@ -150,7 +165,7 @@ class Command(BaseCommand):
     # ------------------------------------------------------------------ #
 
     def print_diff(self, changes):
-        for filename, old_tags, new_tags, _, _ in changes:
+        for filename, old_tags, new_tags, *_ in changes:
             self.stdout.write(f"\n{filename}")
             self.stdout.write(f"  - {sorted(old_tags)}")
             self.stdout.write(f"  + {new_tags}")
