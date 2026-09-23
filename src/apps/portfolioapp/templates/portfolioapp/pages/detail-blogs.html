@@ -3,7 +3,6 @@
 {% load static %}
 
 
-
 {% block metadescription %}
   <meta name="description" content="{{itemtitle}} {{blog_entry|striptags|truncatewords:25}}">
 {% endblock %}
@@ -13,169 +12,81 @@
   <title>{{return_item.title}} | Blogs | Michele Pasin</title>
 {% endblock pagetitle %}
 
-{% block navbar %}
 
-    {% with thispage="words" %}
+{% block bodycontent %}
 
-    {% include "portfolioapp/components/default-navbar.html" %}
+  <p class="sectionlabel">
+    <b>Words</b> <span class="sep">/</span>
+    <a href="{% url 'portfolioapp:words' %}?query=date&amp;type=blogs">blog</a>
+    <span class="sep">/</span> {{return_item.pubdate|date:"j F Y"}}
+  </p>
 
-    {% endwith %}
+  <article>
 
-{% endblock navbar %}
+    <header class="articlehead">
+      <h1>{{itemtitle}}</h1>
 
+      {% if return_item.tags.all %}
+        <p class="articlemeta">
+          {% for tag in return_item.tags.all %}<a href="{% url 'portfolioapp:words' %}?tag={{tag.name}}&amp;type=all">#{{tag.name}}</a>{% if not forloop.last %} {% endif %}{% endfor %}
+        </p>
+      {% endif %}
 
-  {% block bodycontent %}
+      {% if admin_change_url %}
+        <p class="admin-note">
+          Hello admin
+          <span class="sep">/</span> <a href="{{admin_change_url}}" target="_blank">edit</a>
+          <span class="sep">|</span> <a href="vscode://file/{{blog_source_file}}">edit in VSCode</a>
+        </p>
+      {% endif %}
+    </header>
 
+    <hr>
 
-  <div class="container">
+    <div class="blogentry">
+      {{blog_entry|safe}}
+    </div>
 
-
-      <div class="row " style="margin-bottom:50px;">
-
-        
-
-        <div class="col-xs-12 col-md-2 col-md-offset-1 col-md-push-7">
-
-          <p style="color: #e8e5e5; margin-top: 10px;">
-          <span style="font-size: 500%;">
-					  {{return_item.pubdate|date:"M"}}
-					</span>
-          <span style="font-size: 700%;">
-					  {{return_item.pubdate|date:"Y"}}
-					</span>
-          </p>
-
-
-          
-          {% if 0 and return_item.categories.all %}
-          <!-- UNUSED FOR NOW 2022-04-18 -->
-
-              {% for cat in return_item.categories.all %}
-                <a class="text-muted" href="?query=cat&type={{ttype}}&tag={{cat.slug}}">{{cat.name}}</a><br />
-              {% endfor %}
-            
-              <hr>
-          {% endif %}
-            
-
-          {% if return_item.tags.all %}
-
-            {% for tag in return_item.tags.all %}
-              <a class="text-muted" href="{% url 'portfolioapp:words' %}?tag={{tag.name}}&type=all">#{{tag.name}}</a><br />
-            {% endfor %}
-        
-          {% endif %}
-
-        </div>
-        
+  </article>
 
 
-
-        <div class="col-xs-12 col-md-7 col-md-pull-3">
-
-          <div>
-            <h2 class="blogtitle"><b>{{itemtitle}}</b></h2>
-          </div>
-          {% if admin_change_url %}
-          Hello admin!..
-          &nbsp;<a href="{{admin_change_url}}" target="_blank" class="editbtn btn-xs btn-info">edit</a>
-          &nbsp;<a href="vscode://file/{{blog_source_file}}" class="editbtn btn-xs btn-warning">edit in VSCode</a>&nbsp;
-          {% endif %}
-
-          <!-- <p>{{itempubdate}}</p> -->
-
-          
-
-            <div class="blogentry"> 
-
-              <hr>
+  <div class="blocknote">
+    <p class="sectionlabel"><b>Cite</b> <span class="sep">/</span> this blog post</p>
+    <blockquote>
+      Michele Pasin. <a href="{{return_item.get_absolute_url}}">{{return_item.title}}</a>.
+      Blog post on www.michelepasin.org. Published on {{itempubdate}}.
+    </blockquote>
+  </div>
 
 
-            {{blog_entry|safe}}
-
-            </div>
-
-
-         
-            <div style="margin-bottom: 80px;"> 
-              <p class="text-muted">Cite this blog post:</p>
-              <hr>
-
-              <div class="well well-big" >
-                Michele Pasin. <a href="{{return_item.get_absolute_url}}" class="bluelink">{{return_item.title}}</a>. Blog post on www.michelepasin.org. Published on {{itempubdate}}.
-              </div>
-            </div>
-
-
-          {% comment %} Github comments {% endcomment %}
-
-          <div class="utterances-div" style="margin-bottom: 80px;">
-          <p class="text-muted">Comments via Github:</p>
-          <hr>
-
-          <div class="utterances" style="margin-bottom: 80px;">
-            <script src="https://utteranc.es/client.js"
-            repo="lambdamusic/portfolio-site"
-            issue-term="url"
-            label="comment"
-            theme="github-light"
-            crossorigin="anonymous"
-            async>
-         </script>
-          </div>
-
-         </div>
+  <div class="blocknote">
+    <p class="sectionlabel"><b>Talk back</b> <span class="sep">/</span> comments via github</p>
+    <div class="utterances">
+      <script src="https://utteranc.es/client.js"
+              repo="lambdamusic/portfolio-site"
+              issue-term="url"
+              label="comment"
+              theme="github-light"
+              crossorigin="anonymous"
+              async>
+      </script>
+    </div>
+  </div>
 
 
-        </div>  {% comment %} end of left col {% endcomment %}
-        
-      
-
-
-
-
-
-      </div>
-
-
-
-
-      {% comment %} SECTION WITH SIMILAR PAPERS LIST {% endcomment %}
-
-      {% include "portfolioapp/components/similar-papers.html" %}
-
-
-
-
-
-
-
-    <div class="row" style="margin-top: 60px;">
-    &nbsp;
-    </div> 
-    {% comment %} second row ends {% endcomment %}
-
-
-
-  </div> <!-- /container -->
+  {% comment %} SECTION WITH SIMILAR PAPERS LIST {% endcomment %}
+  {% include "portfolioapp/components/similar-papers.html" %}
 
 
 {% endblock bodycontent %}
 
 
-
 {% block extra_js %}
-
-
-
 <script>
-
-  $( document ).ready(function() {
-    $("div.blogentry p:first").addClass( "first-paragraph" );
-});
-
-
+  // The old theme bolded the opening paragraph of every entry. Markdown
+  // output has no class to hook, so tag it here.
+  $(document).ready(function () {
+    $("div.blogentry p:first").addClass("first-paragraph");
+  });
 </script>
-
-
 {% endblock extra_js %}

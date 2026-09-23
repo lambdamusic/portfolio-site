@@ -7,361 +7,143 @@
   <title>Words | Michele Pasin</title>
 {% endblock pagetitle %}
 
-{% block navbar %}
 
-    {% with thispage="words" %}
+{% block bodycontent %}
+
+  {% comment %}
+    Filter strip. The drawer carries the same links, but keeping them inline
+    makes the current view legible without opening anything - the old blog
+    did the same with its "TAGS / ...." and "FRESH / LATEST POSTS" headers.
+  {% endcomment %}
+
+  {% if tag %}
+
+    <p class="sectionlabel">
+      <b>Words</b> <span class="sep">/</span> tagged
+      <a class="is-current">#{{tag}}</a>
+      <span class="sep">|</span>
+      <a href="?query=date&amp;type=tags">all tags</a>
+    </p>
 
-    {% include "portfolioapp/components/default-navbar.html" %}
+    <p class="ghostdate ghostdate--xl">#{{tag}}</p>
 
-    {% endwith %}
+  {% else %}
 
-{% endblock navbar %}
+    <p class="sectionlabel">
+      <b>Words</b> <span class="sep">/</span>
+      <a href="?query=date&amp;type=latest" {% if ttype == 'latest' %}class="is-current"{% endif %}>latest</a> <span class="sep">|</span>
+      <a href="?query=date&amp;type=blogs"  {% if ttype == 'blogs' %}class="is-current"{% endif %}>blogs</a> <span class="sep">|</span>
+      <a href="?query=date&amp;type=papers" {% if ttype == 'papers' %}class="is-current"{% endif %}>papers</a> <span class="sep">|</span>
+      <a href="?query=date&amp;type=tags"   {% if ttype == 'tags' %}class="is-current"{% endif %}>tags</a> <span class="sep">|</span>
+      <a href="?query=date&amp;type=all"    {% if ttype == 'all' %}class="is-current"{% endif %}>all</a>
+      {% if admin_change_url %}
+        <span class="sep">|</span>
+        <a href="?query=date&amp;type=review" class="admin-flag {% if ttype == 'review' %}is-current{% endif %}">review</a>
+      {% endif %}
+    </p>
 
+    {% if ttype == 'papers' %}
+      <p class="sectionlabel">
+        <b>Order</b> <span class="sep">/</span>
+        <a href="?query=date&amp;type=papers"    {% if query == 'date' %}class="is-current"{% endif %}>date</a> <span class="sep">|</span>
+        <a href="?query=type&amp;type=papers"    {% if query == 'type' %}class="is-current"{% endif %}>type</a> <span class="sep">|</span>
+        <a href="?query=project&amp;type=papers" {% if query == 'project' %}class="is-current"{% endif %}>project</a>
+      </p>
+    {% endif %}
 
-  {% block bodycontent %}
+    {% if ttype == 'blogs' %}
+      {% comment %}
+        Categories are a controlled vocabulary - see
+        researchapp/category_vocabulary.py. Keep in sync with CATEGORIES.
+      {% endcomment %}
+      <p class="sectionlabel">
+        <b>Categories</b> <span class="sep">/</span>
+        <a href="?query=date&amp;type=blogs&amp;ctype=computermusic"        {% if ctype == 'computermusic' %}class="is-current"{% endif %}>ComputerMusic</a> <span class="sep">|</span>
+        <a href="?query=date&amp;type=blogs&amp;ctype=knowledge-engineering"{% if ctype == 'knowledge-engineering' %}class="is-current"{% endif %}>KnowledgeEngineering</a> <span class="sep">|</span>
+        <a href="?query=date&amp;type=blogs&amp;ctype=research-analytics"   {% if ctype == 'research-analytics' %}class="is-current"{% endif %}>ResearchAnalytics</a> <span class="sep">|</span>
+        <a href="?query=date&amp;type=blogs&amp;ctype=digital-humanities"   {% if ctype == 'digital-humanities' %}class="is-current"{% endif %}>DigitalHumanities</a> <span class="sep">|</span>
+        <a href="?query=date&amp;type=blogs&amp;ctype=data-science"         {% if ctype == 'data-science' %}class="is-current"{% endif %}>DataScience</a> <span class="sep">|</span>
+        <a href="?query=date&amp;type=blogs&amp;ctype=techlife"             {% if ctype == 'techlife' %}class="is-current"{% endif %}>TechLife</a> <span class="sep">|</span>
+        <a href="?query=date&amp;type=blogs&amp;ctype=justblogging"         {% if ctype == 'justblogging' %}class="is-current"{% endif %}>JustBlogging</a>
+      </p>
+    {% endif %}
 
-  <div class="page-header">
-    Words 
-		{% if tag %} - by keyword | <a href="?query=date&type=tags" class="">View all</a>
-		{% else %}
-			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-			<a class="{% if ttype == 'latest' %}project-active{% endif %}" href="?query=date&type=latest"> latest</a>&nbsp;|
-			
-			<a class="h1links {% if ttype == 'blogs' %}project-active{% endif %}" href="?query=date&type=blogs"> blogs</a>&nbsp;|
+  {% endif %}
 
-		
-			<a class="{% if ttype == 'papers' %}project-active{% endif %}" href="?query=date&type=papers"> papers</a>&nbsp;|
 
-			<a class="{% if ttype == 'tags' %}project-active{% endif %}" href="?query=date&type=tags"> tags</a>&nbsp;|
+  {% comment %} The listing itself, grouped by date (or type / project) {% endcomment %}
 
-						
-			<a class="{% if ttype == 'all' %}project-active{% endif %}" href="?query=date&type=all"> all</a>&nbsp;
+  {% for group_and_pubs in return_items %}
 
+    <section class="pubgroup">
 
-			{% if admin_change_url %}
-			|&nbsp;<a class="{% if ttype == 'review' %}project-active{% endif %}" href="?query=date&type=review" style="background: yellow;">review</a>&nbsp;
-			{% endif %}
-			
-			{% comment %}
-			<a class="-text-muted" href="?query=date&type=misc"> misc</a>&nbsp;
-			{% endcomment %}
+      <p class="ghostdate {% if query == 'date' %}ghostdate--xl{% else %}ghostdate--lg{% endif %}">{{group_and_pubs.0}}</p>
 
+      {% for pub in group_and_pubs.1 %}
 
+        <article class="pubitem">
 
-		{% endif %}
+          {% if pub.pubtype.name == "Blog" %}
 
-  </div>
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="{{pub.get_absolute_url}}">{{pub.title|capfirst}}</a>
+            </p>
 
-  <div class="container">
+            <p class="pubinfo"><b>{{pub.pubdate|date:"M Y"}}</b></p>
 
+          {% else %}
 
+            <p class="pubtitle">
+              <span class="kind kind--paper">paper</span>
+              <a href="{{pub.get_absolute_url}}">{{pub.title|capfirst}}</a>
+            </p>
 
+            <p class="pubinfo">
+              <b>{{pub.pubdate|date:"M Y"}}</b>
+              {% if pub.journal %}<span class="journal">&middot; {{pub.journal}}</span>{% endif %}
+              {% if pub.conference %}<span class="conference">&middot; {{pub.conference}}</span>{% endif %}
+              {% if pub.pubplace %}<span class="pubplace">&middot; {{pub.pubplace}}</span>{% endif %}
+              {% if pub.isforthcoming %}<span class="forthcoming">&middot; forthcoming</span>{% endif %}
+              {% if pub.extrainfo %}<span class="extrainfo">&middot; {{pub.extrainfo|safe}}</span>{% endif %}
+            </p>
 
+          {% endif %}
 
-	<div class="row">
+          {% if ttype == 'latest' or tag %}
+            <div class="pubabstract">{{pub.abstract|markdown|striptags}}</div>
+          {% endif %}
 
-					
-		{% if tag %}
+        </article>
 
-			<!-- Single-tag page -->
+      {% endfor %}
 
-			<div class="col-sm-7 col-md-12 text-left">
-				<p style="color: #e8e5e5; font-size: 800%; ">
-				#{{tag}}
-				</p>
-			</div>
+    </section>
 
+  {% endfor %}
 
-		{% else %}
 
-		
-		<div class="col-sm-7 col-md-12 text-left">
-		
-			
-			{% comment %} 
-			<div class="row ">
-			<div class="text-muted col-md-3">
+  {% if tags %}
 
-				Export: <a class="h1links -text-muted" href="?format=txt">txt</a> |
-				<a class="h1links -text-muted" href="?format=bibtex&query=type">bib</a>
+    <p class="sectionlabel"><b>{% if tag %}Related {% endif %}Tags</b> <span class="sep">/</span> ....</p>
 
-				
-				&nbsp;|&nbsp;
-				<a href="{% url 'portfolioapp:words-feed' %}">
-					<img height=20 src="{% static 'rss.png' %}" alt="Main image"/ >
-				</a>	
-				
-			</div></div>
-			{% endcomment %}
-			
+    <div class="tagcloud">
+      {% for tag in tags %}
+        {% if tag.1 > 0 %}
+          <a href="?tag={{tag.0}}&amp;type=all" style="{{tag.1|tagsize}}">{{tag.0}}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
 
-			{% if ttype == 'papers' %}
-			<div class="row ">
-			<div class="text-muted col-md-3" style="margin-left: -15px; margin-top: -2px;">			
-				
-				Order by&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a class="h1links {% if query == 'date' %}project-active{% endif %}" href="?query=date&type=papers"> date</a>&nbsp;|
-				
-				<a class="h1links {% if query == 'type' %}project-active{% endif %}" href="?query=type&type=papers"> type</a>&nbsp;|
-				
-				<a class="h1links {% if query == 'project' %}project-active{% endif %}" href="?query=project&type=papers"> project</a>
-			</div></div>
-			{% endif %}
+  {% endif %}
 
-			{% if ttype == 'blogs' %}
-			<div class="row ">
-			<div class="text-muted col-sm-7 col-md-9 -text-right" style="margin-left: -15px; margin-top: -2px;">
-				
-				Categories&nbsp;&nbsp;
 
-				{% comment %}
-				Categories are a controlled vocabulary - see researchapp/category_vocabulary.py.
-				Listed subject-first, with the two catch-alls last. Keep in sync with CATEGORIES.
-				{% endcomment %}
-
-				<a class="h1links {% if ctype == 'computermusic' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=computermusic"> ComputerMusic</a>&nbsp;|
-
-				<a class="h1links {% if ctype == 'knowledge-engineering' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=knowledge-engineering"> KnowledgeEngineering</a>&nbsp;|
-
-				<a class="h1links {% if ctype == 'research-analytics' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=research-analytics"> ResearchAnalytics</a>&nbsp;|
-
-				<a class="h1links {% if ctype == 'digital-humanities' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=digital-humanities"> DigitalHumanities</a>&nbsp;|
-
-				<a class="h1links {% if ctype == 'data-science' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=data-science"> DataScience</a>&nbsp;|
-
-				<a class="h1links {% if ctype == 'techlife' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=techlife"> TechLife</a>&nbsp;|
-
-				<a class="h1links {% if ctype == 'justblogging' %}project-active{% endif %}" href="?query=date&type=blogs&ctype=justblogging"> JustBlogging</a>&nbsp;
-
-
-
-			</div>
-			</div>
-			<!-- end of inner row -->
-			 {% endif %}
-
-
-		</div>
-		<!-- end of col-sm-7 -->
-
-
-		{% endif %}
-		<!-- end of if-tag -->
-			
-
-
-	</div>  
-	
-	<!-- end of row -->
-
-
-
-
-
-
-	{% for group_and_pubs in return_items %}
-
-	<div class="row row_pubitem" {% if forloop.first %}style="margin-top: 80px;"{% endif %}>
-
-		{% if not forloop.first %}<hr>{% endif %}
-
-		 <div class="col-sm-2 col-md-3">
-		 
-		   <p style="color: #e8e5e5; {% if query == 'date' %}font-size: 600%;{% else %}font-size: 300%;{% endif %} ">
-			 {{group_and_pubs.0}}
-		   </p>
-
-		 </div>
-
-
-		<div class="col-sm-7 col-md-9">
-
-
-		   {% for pub in group_and_pubs.1 %}
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   {% if pub.pubtype.name == "Blog" %}
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.org{{pub.url1}}" class="bluelink">{{pub.title|capfirst}}</a>. -->
-					   <a href="{{pub.get_absolute_url}}" class="bluelink">{{pub.title|capfirst}}</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">{{pub.pubdate|date:"M Y"}}</b>
-					   <!-- {{pub.journal}} -->
-
-				   </p>
-
-				   {% else %}
-				   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-warning'>paper</span>&nbsp;
-					   <a href="{{pub.get_absolute_url}}" class="bluelink">{{pub.title|capfirst}}</a>.
-					   <!-- <br /> -->
-					   <!-- <span class="">{{pub|printmanyauthors}}</span> -->
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">{{pub.pubdate|date:"M Y"}}</b>
-
-					   {% if  pub.journal %}
-						   <span class='journal'> {{pub.journal}},</span>
-					   {% endif %}
-					   {% if  pub.conference %}
-						   <span class='conference'> {{pub.conference}},</span>
-					   {% endif %}
-					   {% if  pub.pubplace %}
-						   <span class='pubplace'> {{pub.pubplace}},</span>
-					   {% endif %}
-					   {% if pub.isforthcoming %}
-						   <span class='text-warning'> (forthcoming). </span>
-					   {% else %}
-						   <span class='pubdate'> {{pub.pubdate|date:"M Y"}}.</span>
-					   {% endif %}
-					   {% if  pub.extrainfo %}
-						   <span class='extrainfo'> {{pub.extrainfo|safe}}</span>
-					   {% endif %}
-					   {# {% for u in pub.all_urls %} #}
-					   {# 	<a class='url' href="{{u.0}}" style="color: #666;"> [{{u.1}}]</a> #}
-					   {# {% endfor %} #}
-
-				   </p> 
-
-				   {% endif %}
-
-				   
-				   {% if ttype == 'latest' or tag %} 
-					   <p><blockquote>{{pub.abstract|markdown|striptags}}</blockquote></p>				
-				   {% endif %}
-					
-
-				   {% if not forloop.last %}
-					   <hr>
-				   {% endif %}
-
-
-			   </div>
-
-		   {% endfor %}
-
-
-		</div>
-
-
-
-	</div>
-
-	{% endfor %}
-
-
-
-
-
-
-	
-	{% if tags %}
-		
-	<div class="row {% if tag %}margin50Top{% endif %} margin50Bottom " style="margin-top: 80px;">
-
-		<!-- <hr class=" margin50Bottom  ">	 -->
-
-		<div class="col-sm-3 col-md-3">
-
-			<p style="color: #e8e5e5; font-size: 600%; ">
-				{% if tag %}Related {% endif %}Tags
-			  </p>
-
-		</div>
-
-
-		
-		<div class="col-sm-9 col-md-9 text-right {% if tag %}margin50Top{% endif %}">
-
-			{% for tag in tags  %}
-
-				{% if tag.1 > 0 %}
-					<a href="?tag={{tag.0}}&type=all" style="{{tag.1|tagsize}}">{{tag.0}}</a>&nbsp;
-				{% endif %}
-									
-			{% endfor %}
-			
-
-		</div>
-
-	</div>  
-
-	{% endif %}
-	
-	<!-- end of row -->
-
-				
-	<div class="row ">
-		<hr>
-	<div class="text-muted col-md-3">
-
-		
-		<a href="{% url 'portfolioapp:words-feed' %}">
-			<img height=20 src="{% static 'rss.png' %}" alt="Main image"/ >
-		</a>	
-		
-		&nbsp;|&nbsp;
-		Export papers: <a class="h1links -text-muted" href="?format=txt">txt</a> |
-		<a class="h1links -text-muted" href="?format=bibtex&query=type">bib</a>
-
-	</div></div>
-
-
-
-
-
-
-    <div class="row" style="margin-top: 60px;">
-    &nbsp;
-    </div> 
-    {% comment %} second row ends {% endcomment %}
-
-
-
-  </div> <!-- /container -->
+  <p class="sectionlabel">
+    <b>Export</b> <span class="sep">/</span>
+    <a href="{% url 'portfolioapp:words-feed' %}">rss</a> <span class="sep">|</span>
+    <a href="?format=txt">txt</a> <span class="sep">|</span>
+    <a href="?format=bibtex&amp;query=type">bibtex</a>
+  </p>
 
 
 {% endblock bodycontent %}
-
-
-
-
-{% block extra_js %}
-
-
-	<script type="text/javascript">
-
-	$('#search-input').keyup(function() {
-
-	  var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-	  // var $rows = $(this).next(".entities-list").find("div");
-
-	  var $rows = $(this).parent().parent().parent().parent().find("div.pubitem");
-
-		console.log(val);
-		console.log($(this).parent().parent().parent().parent());
-
-	  $rows.show().filter(function() {
-	      var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-	      return !~text.indexOf(val);
-	  }).hide();
-	});
-
-	</script>
-
-
-{% endblock %}
