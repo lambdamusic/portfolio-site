@@ -507,6 +507,8 @@ a.project-active:hover { color: #fff !important; }
   stroke-width: 1.4;
   pointer-events: none;
 }
+/* a pinned place holds a heavier ring than a hovered one */
+.eventsmap-sticky.is-pinned .eventsmap-halo { stroke-width: 2.4; }
 
 .eventsmap-caption {
   margin: .5rem 0 0;
@@ -516,6 +518,19 @@ a.project-active:hover { color: #fff !important; }
   text-transform: uppercase;
   color: var(--muted);
 }
+
+.eventsmap-clear {
+  border: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--link);
+  font-weight: 700;
+  cursor: pointer;
+}
+.eventsmap-clear:hover { color: var(--accent); }
 
 /* what happened at the focused place. Reserve the height so the panel does
    not jump as the cursor moves between dots. */
@@ -893,8 +908,9 @@ a.ext_link:hover { color: var(--accent); }
   .eventslayout { flex-direction: column; align-items: stretch; gap: 0; }
   .eventsmap { order: -1; flex-basis: auto; width: 100%; margin-bottom: calc(var(--step) * 2); }
   .eventsmap-sticky { position: static; }
-  .eventsmap-caption,
-  .eventsmap-detail { display: none; }
+  /* tapping a dot pins it, so the detail panel is useful here too - it just
+     must not reserve empty height above the list when nothing is pinned */
+  .eventsmap-detail { min-height: 0; }
 }
 
 @media (max-width: 560px) {

@@ -27,6 +27,7 @@ function initEventsMap(options) {
     return;
   }
 
+  var wrap = host.closest('.eventsmap-sticky');
   var caption = document.getElementById('eventsmap-caption');
   var detail = document.getElementById('eventsmap-detail');
   var rows = Array.prototype.slice.call(
@@ -115,8 +116,12 @@ function initEventsMap(options) {
       .attr('cx', function (d) { return projection([d.lon, d.lat])[0]; })
       .attr('cy', function (d) { return projection([d.lon, d.lat])[1]; })
       .attr('r', function (d) { return 3.2 + Math.min(d.talks.length - 1, 3) * 1.5; })
-      .on('mouseenter', function (d) { focusPlace(d); })
-      .on('mouseleave', function () { focusPlace(null); });
+      .on('mouseenter', function (d) { hoverPlace(d); })
+      .on('mouseleave', function () { hoverPlace(null); })
+      .on('click', function (d) {
+        d3.event.stopPropagation();
+        pin(pinned === d ? null : d);
+      });
 
     // A ring drawn over the top: with fifty dots and half of them inside
     // Europe, recolouring one of them is not enough to find it.
@@ -124,6 +129,27 @@ function initEventsMap(options) {
       .attr('class', 'eventsmap-halo')
       .attr('r', 9)
       .style('display', 'none');
+
+    // Hovering only previews. Clicking pins, because the whole point of the
+    // detail list is to click through to a talk, and reaching it means
+    // moving the cursor off the dot - which would clear a hover-only panel
+    // before you got there.
+    var pinned = null;
+
+    // Set from JS, never in the template: if the map failed to draw there is
+    // nothing to click and the hint would be a lie.
+    var IDLE_HINT = 'Click a dot for details';
+
+    function hoverPlace(place) {
+      if (pinned) { return; }        // a pin wins until it is cleared
+      focusPlace(place);
+    }
+
+    function pin(place) {
+      pinned = place;
+      wrap.classList.toggle('is-pinned', !!place);
+      focusPlace(place);
+    }
 
     function focusPlace(place) {
       dots.classed('is-active', function (d) { return d === place; });
@@ -142,12 +168,29 @@ function initEventsMap(options) {
       });
 
       if (place) {
-        var n = place.talks.length;
-        caption.textContent = place.place + ' · ' + n + (n === 1 ? ' talk' : ' talks');
+        renderCaption(place);
         renderDetail(place);
       } else {
-        caption.innerHTML = '&nbsp;';
+        caption.textContent = IDLE_HINT;
         detail.innerHTML = '';
+      }
+    }
+
+    function renderCaption(place) {
+      var n = place.talks.length;
+      caption.textContent = place.place + ' · ' + n + (n === 1 ? ' talk' : ' talks');
+
+      if (pinned === place) {
+        var clear = document.createElement('button');
+        clear.type = 'button';
+        clear.className = 'eventsmap-clear';
+        clear.textContent = 'clear';
+        clear.addEventListener('click', function (e) {
+          e.stopPropagation();
+          pin(null);
+        });
+        caption.appendChild(document.createTextNode(' · '));
+        caption.appendChild(clear);
       }
     }
 
@@ -173,9 +216,21 @@ function initEventsMap(options) {
     // tabbing through the talk links should not be yanked sideways by it.
     rows.forEach(function (row) {
       row.addEventListener('mouseenter', function () {
-        focusPlace(placeByEventIndex[+row.dataset.event] || null);
+        hoverPlace(placeByEventIndex[+row.dataset.event] || null);
       });
-      row.addEventListener('mouseleave', function () { focusPlace(null); });
+      row.addEventListener('mouseleave', function () { hoverPlace(null); });
     });
+
+    // Let go of a pin the ways people expect: Escape, or a click anywhere
+    // that is not the panel itself (clicking a talk link inside the panel
+    // navigates away, so it never needs to survive).
+    document.addEventListener('click', function (e) {
+      if (pinned && !wrap.contains(e.target)) { pin(null); }
+    });
+    document.addEventListener('keydown', function (e) {
+      if (pinned && (e.key === 'Escape' || e.keyCode === 27)) { pin(null); }
+    });
+
+    focusPlace(null);   // puts the hint in place now the map is drawn
   });
 }
