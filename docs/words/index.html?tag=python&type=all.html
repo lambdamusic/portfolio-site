@@ -2,11 +2,10 @@
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
+
     <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-T4B4FDV3TR"></script>
 <script>
@@ -17,320 +16,27 @@
   gtag('config', 'G-T4B4FDV3TR');
 </script>
 
-
-    
-    
-
-    <script src="../media/static/libs/d3-v3/d3.v3.min.js"></script>
-
-
-
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <meta name="author" content="Michele Pasin">
-  
-    <meta name="description" property="og:description" content=" Portfolio website of Michele Pasin - computer science ontology knowledge graph digital humanities knowledge engineering pilosophy livecoding algorithmic composition">
-  
 
+    
+      <meta name="description" property="og:description" content=" Portfolio website of Michele Pasin - computer science ontology knowledge graph digital humanities knowledge engineering pilosophy livecoding algorithmic composition">
+    
 
     <link rel="icon" href="../media/static/favicon.ico">
+    <link rel="alternate" type="application/rss+xml" title="michelepasin.org" href="../latest/feed/index.html">
 
-	
+    
   <title>Words | Michele Pasin</title>
 
 
-    <!-- Bootstrap core CSS -->
     
-    <!-- Bootswatch:  -->
-    <!-- cerulean  | cyborg |  flatly |  lumen |  sandstone |   spacelab  |  yeti | cosmo |  darkly |  paper | simplex | superhero |  journal | readable  |   slate |  united -->
-    <link href="../media/static/libs/bootswatch3.2/simplex/bootstrap.min.css" rel="stylesheet">
+    <link href="../media/static/libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../media/static/css/parerga.css" rel="stylesheet">
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="../media/static/libs/bootstrap-3.3.7-dist/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="../media/static/libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css" rel="stylesheet">
-
-<style type="text/css">
-
-    .tooltip-inner {
-        max-width: 200px;
-        /* If max-width does not work, try using width instead */
-        width: 200px; 
-    }
-    .lead-plus {font-size: 26.5px;}
-    .label-dark {background: #2c3e50; color: white; padding: 1px;}
-    .margin50 {margin-top: 50px; margin-bottom: 50px;}
-    .marginb100 {margin-bottom: 100px;}
-
-    .breadcrumbs {margin-top: 80px;}
-    .namespaces {background: #ced2d6; width: 100%;}
-    .footer {background-color: #3e3f3a;}
-    .footer a {color: #cac0bf;}
-
-    .margin50Top {margin-top: 50px;}
-    .margin20Top {margin-top: 20px;}
-    .margin50Bottom { margin-bottom: 50px;}
-    .margin20Bottom { margin-bottom: 20px;}
-
-    /*so that the d3plus tooltip panel doesnt cover the top banner*/
-    .navbar {z-index: 3000;}
-
-
-    .navbar-alpha {
-        font-size: 65%;
-        font-style: italic;
-        font-weight: bold;
-        color: darkgoldenrod;
-    }
-
-
-    .btn-xxs {
-    padding: 1px 4px;
-    font-size: 10px;
-    line-height: 1.2;
-    border-radius: 2px;
-    }
-
-
-    .code-example {
-        overflow: auto;
-        height: 400px;
-    }
-
-
-    #side_title a {
-        color: blue;
-        text-decoration: underline;
-
-    }
-    .text-dark {
-        color: #5d5c5c;
-        
-    }
-
-
-    .paragraph_embed {
-      margin-top: 50px;
-      margin-bottom: 20px;
-    }
-
-
-    .thumb-div {
-      padding: 20px;
-
-    }
-
-    .thumbnail{
-      
-
-      
-
-    }
-
-    .thumb-img {
-      height: 200px;
-
-    }
-
-    .thumb-title b {
-      font-weight: bold;
-      color: black;
-
-    }
-
-    div.pubitem {
-      margin-top: 15px;
-    }
-
-
-
-    a.project-title {
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    a.project-title:hover {
-      background: indianred;
-      color: white;
-    }
-
-    a.project-active {
-      background: #d87064;
-      color: white;
-      padding: 2px;
-    }
-
-    .keyword {
-      font-style: italic;
-      color: grey;
-      text-decoration: none;
-      font-size: 12px;
-    }
-    .keyword-sm {
-      font-style: italic;
-      color: grey;
-      text-decoration: none;
-      font-size: 11px;
-    }
-
-    a.paper-active {
-      background: #d9230f;
-      color: white;
-    }
-
-    a.ext_link {
-      color: darkgrey;
-    }
-
-    .text-black {
-      color: black;
-    }
-
-    a.sounds-active {
-      background: #d9230f;
-      color: white;
-    }
-
-    img.project-screenshots {
-      margin-botton: 30px;
-    }
-
-
-     /* modal google search */ 
-
-    .modal .modal-dialog
-    {
-        width: 800px;
-        max-width: 95%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .modal-open .modal, a:focus
-    {
-        outline: none !important;
-    }
-
-
-    
-
-
-    h2.blogtitle {
-      color: black;
-      margin-top: 40px;
-    }
-
-
-    .blogentry {
-      font-size: 1.3em;
-      margin-top: 50px;
-      margin-bottom: 120px;
-      color: #444;
-      /* font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;  */
-    }
-
-    .blogentry p.first-paragraph {
-      font-weight: bold;
-      font-size: 1.1em;
-    }
-
-    .blogentry p {
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
-
-    .blogentry div {
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-
-    .blogentry blockquote:first-of-type {
-      font-size: 20px;
-      font-weight: normal;
-      background: #f9f9f9;
-      border-left: 10px solid #ccc;
-      margin: 1.5em 10px;
-      padding: 0.7em 10px;
-    }
-
-
-    .blogentry blockquote {
-      font-size: 16px;
-      background: #f9f9f9;
-      margin: 10px 30px 40px 10px; /* top right bottom left */
-      padding: 25px;
-    }
-
-
-    .blogentry  blockquote p:first-child, blockquote ul:first-child, blockquote ol:first-child {
-      margin-top: 0;
-    }
-
-
-    .blogentry pre {
-      margin-bottom: 40px;
-    }
-
-    .blogentry h1,  
-    .blogentry h2,  
-    .blogentry h3,  
-    .blogentry h4  {
-      margin-top: 50px;
-      margin-bottom: 30px;
-      font-weight: bold;
-      color: #000;
-    }
-
-    .blogentry img {
-      max-width: 80%;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-
-    .blogentry iframe {
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-
-    .blogentry ul {
-      margin-bottom: 20px;
-    }
-
-    .blogentry li {
-      padding: 5px;
-    }
-
-
-    .quote-title {
-      font-size: 2.0em;
-      font-weight: bold;
-      color: rgb(0, 0, 0);
-    }
-
-    .quote-block {
-      font-family: sans-serif, Helvetica;
-      font-size: 25px;
-      border-left: 5px solid #ffe700;
-      background: #f9f9f9;
-      margin: 0px 30px 40px 10px;
-      padding: 25px;
-    }
-
-    
-    .quote-block p::first-letter {
-      font-size: 150%;
-      color: rgb(62, 61, 61);
-    }
-
-
-</style>
-
-
-<style>
+    <style>
 
 <!-- Autogenerated with pygmentize => https://python-markdown.github.io/extensions/code_hilite/#step-2-add-css-classes -->
 
@@ -412,2048 +118,1132 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 </style>
 
-
-
-
-
-
+    
 
   </head>
 
-  <body>
-
-
-
-
+  <body class="">
 
     
+      
 
+<nav id="site-rail" class="site-rail" aria-label="Site navigation">
+
+  <button type="button" class="rail-handle" aria-expanded="false" aria-controls="site-rail">
+    Inside <span class="rail-arrow" aria-hidden="true">&larr;</span>
+  </button>
+
+  <div class="rail-body">
+
+  <a class="rail-home" href="../index.html">michelepasin.org</a>
+
+  <h2>Pages</h2>
+  <ul>
+    <li><a href="../index.html"
+           >Projects</a></li>
+    <li><a href="index.html"
+           class="is-current">Words</a></li>
+    <li><a href="../sounds/index.html"
+           >Sounds</a></li>
+    <li><a href="../events/index.html"
+           >Events</a></li>
+    <li><a href="../about/index.html"
+           >About</a></li>
+    <li><a href="../contact/index.html"
+           >Contact</a></li>
+  </ul>
+
+  <h2>Words</h2>
+  <ul>
+    <li><a href="index.html%3Fquery=date&amp;type=latest.html"
+           >latest</a></li>
+    <li><a href="index.html%3Fquery=date&amp;type=blogs.html"
+           >blogs</a></li>
+    <li><a href="index.html%3Fquery=date&amp;type=papers.html"
+           >papers</a></li>
+    <li><a href="index.html%3Fquery=date&amp;type=tags.html"
+           >tags</a></li>
+    <li><a href="index.html%3Fquery=date&amp;type=all.html"
+           class="is-current">all</a></li>
+  </ul>
+
+  
+  <h2>Categories</h2>
+  <ul>
+    <li><a href="index.html%3Fquery=date&amp;type=blogs&amp;ctype=computermusic.html"
+           >Computer Music</a></li>
+    <li><a href="index.html%3Fquery=date&amp;type=blogs&amp;ctype=knowledge-engineering.html"
+           >Knowledge Engineering</a></li>
+    <li><a href="index.html%3Fquery=date&amp;type=blogs&amp;ctype=research-analytics.html"
+           >Research Analytics</a></li>
+    <li><a href="index.html%3Fquery=date&amp;type=blogs&amp;ctype=digital-humanities.html"
+           >Digital Humanities</a></li>
+    <li><a href="index.html%3Fquery=date&amp;type=blogs&amp;ctype=data-science.html"
+           >Data Science</a></li>
+    <li><a href="index.html%3Fquery=date&amp;type=blogs&amp;ctype=techlife.html"
+           >TechLife</a></li>
+    <li><a href="index.html%3Fquery=date&amp;type=blogs&amp;ctype=justblogging.html"
+           >Just Blogging</a></li>
+  </ul>
+
+  <div class="rail-find">
+    <h2>Find <span class="sep">/</span> Search</h2>
     
-
-
-<!-- Fixed navbar -->
-<nav class="navbar navbar-default navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class="navbar-brand" href="../index.html">michelepasin<sup style="color: red;">&nbsp;.org</sup></a>
-    </div>
-    <div id="navbar" class="collapse navbar-collapse">
-      <ul class="nav navbar-nav">
-
-        <li >
-          <a href="../index.html">Projects</a></li>
-
-        <li class="active">
-            <a href="../words.html">Words</a></li>
-
-       <li >
-            <a href="../sounds.html">Sounds</a></li>
-
-        <li >
-          <a href="../events/index.html">Events</a></li>
-          
-          
-
-        <li 
-          
-            ><a href="../contact.html">Contact</a></li>
-
-        <li 
-        
-          ><a href="../about/index.html">About</a></li>
-          
-        <li>
-          <a href="index.html%3Ftag=python&amp;type=all.html#modalSearch" data-toggle="modal" data-target="#modalSearch">
-            <span id="searchGlyph" class="glyphicon glyphicon-search"></span> <span class="hidden-sm hidden-md hidden-lg">Search</span>
-          </a>
-       </li>
-
-
-      </ul>
-    </div><!--/.nav-collapse -->
-
+    <input type="text" class="rail-search" readonly
+           value="Type and hit enter&hellip;"
+           aria-label="Open site search"
+           data-toggle="modal" data-target="#modalSearch">
   </div>
+
+  </div><!-- /.rail-body -->
+
 </nav>
 
-
-
-<!-- Search Modal -->
-<div id="modalSearch" class="modal fade" role="dialog">
-  <div class="modal-dialog">
-
-      <!-- Modal content-->
-      <div class="modal-content">
-          <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal">&times;</button>
-              <h4 class="modal-title">Search michelepasin.org</h4>
-          </div>
-          <div class="modal-body">
-
-
-            <script>
-              (function ()
-              {
-                  var cx = 'c23e79d025688b327:nr0bhziz1xo';
-                  var gcse = document.createElement('script');
-                  gcse.type = 'text/javascript';
-                  gcse.async = true;
-                  gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
-                      '//cse.google.com/cse.js?cx=' + cx;
-                  var s = document.getElementsByTagName('script')[0];
-                  s.parentNode.insertBefore(gcse, s);
-              })();
-          </script>
-          <gcse:search></gcse:search>
-          
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          </div>
-      </div>
-
-  </div>
-</div>
-
+    
 
     
 
 
 
-
-
-
-
-
-    <!-- Begin page content -->
-    <div class="container">
-
-
-	
-
-  <div class="page-header">
-    Words 
-		 - by keyword | <a href="index.html%3Fquery=date&amp;type=tags.html" class="">View all</a>
-		
-
-  </div>
-
-  <div class="container">
-
-
-
-
-
-	<div class="row">
-
-					
-		
-
-			<!-- Single-tag page -->
-
-			<div class="col-sm-7 col-md-12 text-left">
-				<p style="color: #e8e5e5; font-size: 800%; ">
-				#python
-				</p>
-			</div>
-
-
-		
-		<!-- end of if-tag -->
-			
-
-
-	</div>  
-	
-	<!-- end of row -->
-
-
-
-
-
-
-	
-
-	<div class="row row_pubitem" style="margin-top: 80px;">
-
-		
-
-		 <div class="col-sm-2 col-md-3">
-		 
-		   <p style="color: #e8e5e5; font-size: 600%; ">
-			 2022
-		   </p>
-
-		 </div>
-
-
-		<div class="col-sm-7 col-md-9">
-
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orgNone" class="bluelink">Ontospy version 2.0 released</a>. -->
-					   <a href="../blog/2022/10/30/Ontospy-v2-released/index.html" class="bluelink">Ontospy version 2.0 released</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Oct 2022</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>Version 2 of the library includes SHACL support as well as various internal refactoring. Ontospy is an open source Python library and command line tool for working with vocabularies encoded in the RDF family of languages. </blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orgNone" class="bluelink">A semi-automated conference assistant</a>. -->
-					   <a href="../blog/2022/06/30/a-semi-automated-conference-assistant/index.html" class="bluelink">A semi-automated conference assistant</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Jun 2022</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>A couple of weeks ago I went to the excellent Move Or Perish—Scientific Trajectories, Inclusion, And Inequality, And Their Consequences For Transformative Science workshop in Vienna. While getting ready for it, I found myself asking some familiar questions. Who are the speakers? What is their background? How to best contextualise the topics being discussed? </blockquote></p>				
-				   
-					
-
-				   
-
-
-			   </div>
-
-		   
-
-
-		</div>
-
-
-
-	</div>
-
-	
-
-	<div class="row row_pubitem" >
-
-		<hr>
-
-		 <div class="col-sm-2 col-md-3">
-		 
-		   <p style="color: #e8e5e5; font-size: 600%; ">
-			 2021
-		   </p>
-
-		 </div>
-
-
-		<div class="col-sm-7 col-md-9">
-
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orgNone" class="bluelink">A static site generator using Django, Wget and Github Pages</a>. -->
-					   <a href="../blog/2021/10/29/django-wget-static-site/index.html" class="bluelink">A static site generator using Django, Wget and Github Pages</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Nov 2021</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>If you&#39;re a Django developer and want to publish a website without the hassle (and costs) of deploying a web app, then this post may give you some useful tips.</blockquote></p>				
-				   
-					
-
-				   
-
-
-			   </div>
-
-		   
-
-
-		</div>
-
-
-
-	</div>
-
-	
-
-	<div class="row row_pubitem" >
-
-		<hr>
-
-		 <div class="col-sm-2 col-md-3">
-		 
-		   <p style="color: #e8e5e5; font-size: 600%; ">
-			 2020
-		   </p>
-
-		 </div>
-
-
-		<div class="col-sm-7 col-md-9">
-
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2020/08/06/more-jupyter-notebooks-pyvis-and-networkx/index.html" class="bluelink">More Jupyter notebooks: pyvis and networkx</a>. -->
-					   <a href="../blog/2020/08/06/more-jupyter-notebooks-pyvis-and-networkx/index.html" class="bluelink">More Jupyter notebooks: pyvis and networkx</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Aug 2020</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>Lately I&#39;ve been spending more time creating Jupyter notebooks that demonstrate how to use the Dimensions API for research analytics. In this post I&#39;ll talk a little bit about two cool Python libraries I&#39;ve recently discovered for working with graph data: pyvis and networkx.</blockquote></p>				
-				   
-					
-
-				   
-
-
-			   </div>
-
-		   
-
-
-		</div>
-
-
-
-	</div>
-
-	
-
-	<div class="row row_pubitem" >
-
-		<hr>
-
-		 <div class="col-sm-2 col-md-3">
-		 
-		   <p style="color: #e8e5e5; font-size: 600%; ">
-			 2019
-		   </p>
-
-		 </div>
-
-
-		<div class="col-sm-7 col-md-9">
-
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2019/06/30/pypapers-a-bare-bones-command-line-pdf-manager/index.html" class="bluelink">Pypapers: a bare-bones, command-line PDF manager</a>. -->
-					   <a href="../blog/2019/06/30/pypapers-a-bare-bones-command-line-pdf-manager/index.html" class="bluelink">Pypapers: a bare-bones, command-line PDF manager</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Jun 2019</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>Ever felt like software such as Mendeley or Papers are great, but somehow slow you down? Ever felt like none of the many reference manager software options out there will ever cut it for you, because you need something REALLY SIMPLE? I did. Many times. So I&#39;ve finally crossed the line and tried building a simple command-line PDF manager called PyPapers.</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2019/05/24/introducing-dimcli-a-python-cli-for-dimensions-api/index.html" class="bluelink">Introducing DimCli: a Python CLI for the Dimensions API</a>. -->
-					   <a href="../blog/2019/05/24/introducing-dimcli-a-python-cli-for-dimensions-api/index.html" class="bluelink">Introducing DimCli: a Python CLI for the Dimensions API</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">May 2019</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>For the last couple of months I&#39;ve been working on a new open source Python project called DimCli. It&#39;s a command-line library aimed at making it simpler to work with the Dimensions Analytics API.</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2019/01/03/ontospy-1-9-8-released/index.html" class="bluelink">Ontospy 1.9.8 released</a>. -->
-					   <a href="../blog/2019/01/03/ontospy-1-9-8-released/index.html" class="bluelink">Ontospy 1.9.8 released</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Jan 2019</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>Ontospy version 1.9.8 has just been released and contains tons of improvements and new features. Ontospy is a lightweight open-source Python library and command-line tool for working with vocabularies encoded in the RDF family of languages.</blockquote></p>				
-				   
-					
-
-				   
-
-
-			   </div>
-
-		   
-
-
-		</div>
-
-
-
-	</div>
-
-	
-
-	<div class="row row_pubitem" >
-
-		<hr>
-
-		 <div class="col-sm-2 col-md-3">
-		 
-		   <p style="color: #e8e5e5; font-size: 600%; ">
-			 2016
-		   </p>
-
-		 </div>
-
-
-		<div class="col-sm-7 col-md-9">
-
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2016/06/12/ontospy-v-1-6-7/index.html" class="bluelink">Ontospy v. 1.6.7</a>. -->
-					   <a href="../blog/2016/06/12/ontospy-v-1-6-7/index.html" class="bluelink">Ontospy v. 1.6.7</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Jun 2016</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>A new and improved version of OntoSpy (1.6.7) is available online. OntoSpy is a lightweight Python library and command-line tool for inspecting and visualizing vocabularies encoded in the RDF family of languages.</blockquote></p>				
-				   
-					
-
-				   
-
-
-			   </div>
-
-		   
-
-
-		</div>
-
-
-
-	</div>
-
-	
-
-	<div class="row row_pubitem" >
-
-		<hr>
-
-		 <div class="col-sm-2 col-md-3">
-		 
-		   <p style="color: #e8e5e5; font-size: 600%; ">
-			 2015
-		   </p>
-
-		 </div>
-
-
-		<div class="col-sm-7 col-md-9">
-
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2015/11/28/accessing-os-x-dictionary-with-python/index.html" class="bluelink">Accessing OS X dictionary with Python</a>. -->
-					   <a href="../blog/2015/11/28/accessing-os-x-dictionary-with-python/index.html" class="bluelink">Accessing OS X dictionary with Python</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Nov 2015</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>Here&#39;s a little script that allows you to access the OS X Dictionary app using Python.</blockquote></p>				
-				   
-					
-
-				   
-
-
-			   </div>
-
-		   
-
-
-		</div>
-
-
-
-	</div>
-
-	
-
-	<div class="row row_pubitem" >
-
-		<hr>
-
-		 <div class="col-sm-2 col-md-3">
-		 
-		   <p style="color: #e8e5e5; font-size: 600%; ">
-			 2014
-		   </p>
-
-		 </div>
-
-
-		<div class="col-sm-7 col-md-9">
-
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2014/12/03/dereference-a-doi-using-python/index.html" class="bluelink">Dereference a DOI using python</a>. -->
-					   <a href="../blog/2014/12/03/dereference-a-doi-using-python/index.html" class="bluelink">Dereference a DOI using python</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Dec 2014</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>A little Python script that allows you to pass an article DOI in order to obtain all the metadata related to that article.</blockquote></p>				
-				   
-					
-
-				   
-
-
-			   </div>
-
-		   
-
-
-		</div>
-
-
-
-	</div>
-
-	
-
-	<div class="row row_pubitem" >
-
-		<hr>
-
-		 <div class="col-sm-2 col-md-3">
-		 
-		   <p style="color: #e8e5e5; font-size: 600%; ">
-			 2012
-		   </p>
-
-		 </div>
-
-
-		<div class="col-sm-7 col-md-9">
-
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2012/10/12/teaching-programming-concepts-visually-with-the-online-python-tutor/index.html" class="bluelink">Teaching programming concepts visually with the Online Python Tutor</a>. -->
-					   <a href="../blog/2012/10/12/teaching-programming-concepts-visually-with-the-online-python-tutor/index.html" class="bluelink">Teaching programming concepts visually with the Online Python Tutor</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Oct 2012</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>The Online Python Tutor is a web-based program visualization tool for CS education, developed in collaboration with Google. It provides an easy-to-use online environment for writing code and testing it interactively. A great resource for teaching computer science concepts!</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html" class="bluelink">Getting hold of your Flickr collections with Python</a>. -->
-					   <a href="../blog/2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html" class="bluelink">Getting hold of your Flickr collections with Python</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">May 2012</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>Recently I&#39;ve been a little disappointed with Flickr, the popular online photo-sharing service. Photos gone missing, entire albums disappeared. Not really what you&#39;d like to happen to your photo collection, especially when it&#39;s very large and therefore difficult to keep track of what&#39;s there and what&#39;s not.</blockquote></p>				
-				   
-					
-
-				   
-
-
-			   </div>
-
-		   
-
-
-		</div>
-
-
-
-	</div>
-
-	
-
-	<div class="row row_pubitem" >
-
-		<hr>
-
-		 <div class="col-sm-2 col-md-3">
-		 
-		   <p style="color: #e8e5e5; font-size: 600%; ">
-			 2011
-		   </p>
-
-		 </div>
-
-
-		<div class="col-sm-7 col-md-9">
-
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orgNone" class="bluelink">Survey of Pythonic tools for RDF and Linked Data programming</a>. -->
-					   <a href="../blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/index.html" class="bluelink">Survey of Pythonic tools for RDF and Linked Data programming</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Feb 2011</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>The Resource Description Framework (RDF) is a data model and language that is quickly gaining momentum in the open-data and data-integration worlds. In this post, I&#39;m reporting on a recent survey I conducted in the context of a Linked Data project I&#39;m working on, SAILS. In SAILS, we&#39;re developing a prototype for RDF data manipulation and querying. Since the final application will be written in Python and Django, in what follows I&#39;ve tried to gather information about all existing libraries and frameworks for RDF programming using Python.</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2011/02/08/installing-pil-on-djangostack-1-1-1/index.html" class="bluelink">Installing PIL on Djangostack 1.1.1/1.2/1.3</a>. -->
-					   <a href="../blog/2011/02/08/installing-pil-on-djangostack-1-1-1/index.html" class="bluelink">Installing PIL on Djangostack 1.1.1/1.2/1.3</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Feb 2011</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>The popular Python Imaging Library (PIL) adds image processing capabilities to your Python interpreter. This library supports many file formats and provides powerful image processing and graphics capabilities. I normally use Bitnami Djangostack for most of my Django development, which doesn&#39;t come with PIL installed by default so in this post I&#39;m summing up what steps I&#39;ve taken to get that up and running.</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2011/02/03/python-links-and-more-7211/index.html" class="bluelink">Python links (and more) 7/2/11</a>. -->
-					   <a href="../blog/2011/02/03/python-links-and-more-7211/index.html" class="bluelink">Python links (and more) 7/2/11</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Feb 2011</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>This post contains a collection of various interesting things I&#39;ve encountered over the last couple of weeks. They&#39;re organized into three categories: Python-related links, events and conferences, and new online tools. I hope you&#39;ll find something of interest!</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2011/01/14/setting-up-django-registration/index.html" class="bluelink">Setting up Django Registration</a>. -->
-					   <a href="../blog/2011/01/14/setting-up-django-registration/index.html" class="bluelink">Setting up Django Registration</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Jan 2011</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>Django&#39;s admin framework includes the basic functionalities for logging in and out of the admin site, but if you&#39;re building a so-called &#39;social&#39; application and want people to be able to sign-up, log in and thus benefit from additional site functionalities then you need to use a more generic &#39;registration&#39; application. The good news is: most of the work has already been done, so it&#39;s just a matter of putting things together correctly.</blockquote></p>				
-				   
-					
-
-				   
-
-
-			   </div>
-
-		   
-
-
-		</div>
-
-
-
-	</div>
-
-	
-
-	<div class="row row_pubitem" >
-
-		<hr>
-
-		 <div class="col-sm-2 col-md-3">
-		 
-		   <p style="color: #e8e5e5; font-size: 600%; ">
-			 2010
-		   </p>
-
-		 </div>
-
-
-		<div class="col-sm-7 col-md-9">
-
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2010/02/12/python-debugging-and-textmate/index.html" class="bluelink">Python debugging and Textmate</a>. -->
-					   <a href="../blog/2010/02/12/python-debugging-and-textmate/index.html" class="bluelink">Python debugging and Textmate</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Feb 2010</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>I&#39;ve never realized that among the many things Textmate does well there&#39;s also python debugging. Well, to be precise Textmate doesn&#39;t do much as it just relies on python&#39;s default debugger, called PDB. Ok, probably PDB isn&#39;t the cutting edge debugger you&#39;re looking for, but it&#39;s worth a try imho.</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2010/02/04/getting-back-to-the-ontological-work/index.html" class="bluelink">Getting back to the ontological work..</a>. -->
-					   <a href="../blog/2010/02/04/getting-back-to-the-ontological-work/index.html" class="bluelink">Getting back to the ontological work..</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Feb 2010</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>I&#39;ll be working in Osaka for three months on ontologizing a couple of datasets with the help of Riichiro Mizoguchi. This means that I&#39;ll have enough time to revise various notions about ontology engineering during this period. Here&#39;s a first and fundamental one, regarding the difference between ontologies and data models:</blockquote></p>				
-				   
-					
-
-				   
-
-
-			   </div>
-
-		   
-
-
-		</div>
-
-
-
-	</div>
-
-	
-
-	<div class="row row_pubitem" >
-
-		<hr>
-
-		 <div class="col-sm-2 col-md-3">
-		 
-		   <p style="color: #e8e5e5; font-size: 600%; ">
-			 2009
-		   </p>
-
-		 </div>
-
-
-		<div class="col-sm-7 col-md-9">
-
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/12/12/pyglet-multimedia-library-for-python/index.html" class="bluelink">Pyglet: multimedia library for python</a>. -->
-					   <a href="../blog/2009/12/12/pyglet-multimedia-library-for-python/index.html" class="bluelink">Pyglet: multimedia library for python</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Dec 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>UPDATE 30/03/1: Just realized that unfortunately pyglet doesn&#39;t play well with the latest 64bit architecture of oSX. A real shame, as this obviously breaks Pyglet&#39;s famed run-anywhere feature. There are reasons to think that the next version will fix this problem (check out this thread for more info).. but for the moment, I guess that the only alternative is falling back to PyOpenGl. UPDATE 14/12/09: pyProcessing is a project building on pyglet that that creates an environment for graphics applications that closely resembles that of the Processing system. Quite neat uh?</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/10/27/yolk-python-packages-index/index.html" class="bluelink">Yolk : Python packages index</a>. -->
-					   <a href="../blog/2009/10/27/yolk-python-packages-index/index.html" class="bluelink">Yolk : Python packages index</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Oct 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>
-Yolk is a Python tool for obtaining information about packages installed by distutils, setuptools and easy_install and querying packages on PyPI (Python Package Index a.k.a. The Cheese Shop).
-</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/10/14/installing-pygraphviz-tested-on-osx-leopard/index.html" class="bluelink">Installing PyGraphviz [tested on OSx Leopard]</a>. -->
-					   <a href="../blog/2009/10/14/installing-pygraphviz-tested-on-osx-leopard/index.html" class="bluelink">Installing PyGraphviz [tested on OSx Leopard]</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Oct 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>PyGraphviz is a Python interface to the Graphviz graph layout and visualization package. With PyGraphviz you can create, edit, read, write, and draw graphs using Python to access the Graphviz graph data structure and layout algorithms.</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/08/30/mysql-python-and-apple-osx-10-5-leopard/index.html" class="bluelink">MySQL-Python and Apple OSX 10.5 (Leopard)</a>. -->
-					   <a href="../blog/2009/08/30/mysql-python-and-apple-osx-10-5-leopard/index.html" class="bluelink">MySQL-Python and Apple OSX 10.5 (Leopard)</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Aug 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>UPDATE 30/12/09 : Snow Leopard and most recent versions of MySQL-python have broken the recipe below: you&#39;d better check this blog post for an updated version (it worked for me). In a nutshell, the new method involves using the Macports installation if you&#39;re on Leopard, or specifying your 64-bit architecture during the compile process if you&#39;re on Snow Leopard... but if you&#39;re still getting errors, there&#39;s nothing else to do than invoking the almighty google for help . .</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/07/28/python-web-parsing-libraries/index.html" class="bluelink">Python web-parsing libraries</a>. -->
-					   <a href="../blog/2009/07/28/python-web-parsing-libraries/index.html" class="bluelink">Python web-parsing libraries</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Jul 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>While continuing the interminable search for the ideal python editor, I run into three really useful libraries for scraping information off webpages:</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/05/27/snippet-to-quickly-load-stuff-in-the-django-shell/index.html" class="bluelink">Snippet to load stuff quickly in the Django shell</a>. -->
-					   <a href="../blog/2009/05/27/snippet-to-quickly-load-stuff-in-the-django-shell/index.html" class="bluelink">Snippet to load stuff quickly in the Django shell</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">May 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>Sometimes you end up testing out things a lot using the handy django shell, but every time you&#39;ve got to repeat the same commands to load all the necessary models, utils etc. etc.</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/05/18/python-pitfall-passing-mutable-objects-as-default-args/index.html" class="bluelink">Python pitfall: Passing Mutable Objects as Default Args</a>. -->
-					   <a href="../blog/2009/05/18/python-pitfall-passing-mutable-objects-as-default-args/index.html" class="bluelink">Python pitfall: Passing Mutable Objects as Default Args</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">May 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>I have a long and nested lists of parameters to throw out with a django template, but the visualization routine in the template processes them better if the parameters are ordered two by two. So I was trying to put together a simple function for reordering the original list accordingly. This is what I came up with:</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/05/07/installing-rdflib-on-osx/index.html" class="bluelink">Installing RDFlib on osX</a>. -->
-					   <a href="../blog/2009/05/07/installing-rdflib-on-osx/index.html" class="bluelink">Installing RDFlib on osX</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">May 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>RDFlib is a Python library for working with RDF, a simple yet powerful language for representing information.</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/04/29/offline-django-docs/index.html" class="bluelink">Offline django docs</a>. -->
-					   <a href="../blog/2009/04/29/offline-django-docs/index.html" class="bluelink">Offline django docs</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Apr 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>An offline copy of the django docs can be quite helpful if you find yourself doing development work without an internet connection. Obviously, django comes with its docs that you can generate (provided you have Sphinx and build tools). However sometimes a pdf is the handiest solution... here&#39;re some useful links I found: Docs in CHM and PDF formats: http://charupload.wordpress.com/2007/12/02/django-documentation-chm/</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/03/02/gae-sql-designer/index.html" class="bluelink">GAE SQL Designer</a>. -->
-					   <a href="../blog/2009/03/02/gae-sql-designer/index.html" class="bluelink">GAE SQL Designer</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Mar 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>GAE SQL designer is a simple app that allows you to Draw E-R designs, Edit tables and rows, Manage keys, Create relations (FK constraints), Save &amp;amp; Load designs and Import DB schemas. Finally - it&#39;s online and it&#39;s free!</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/02/25/macpythonleopard-pythoninfo-wiki/index.html" class="bluelink">MacPython/Leopard - PythonInfo Wiki</a>. -->
-					   <a href="../blog/2009/02/25/macpythonleopard-pythoninfo-wiki/index.html" class="bluelink">MacPython/Leopard - PythonInfo Wiki</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Feb 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>Some people have legitimate reasons for wanting to install IDLE on Leopard. E.g., even though Leopard&#39;s Xcode 3.0 (and later) supports Python development, it does so in a heavyweight, support-all-of-Cocoa fashion. And educators teaching Python who wish to do so in a platform-agnostic way may also be best served by IDLE.</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink">Pysmell - Python auto-complete - works with TextMate too!</a>. -->
-					   <a href="../blog/2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html" class="bluelink">Pysmell - Python auto-complete - works with TextMate too!</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Feb 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>One of the reasons that kept me away (sigh) from TextMate is the lack of autocompletion support.. especially in Python. Seems like those days have ended - I just downloaded and installed Pysmell, and it works great!!!</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/02/09/komodo-edit-a-nice-free-python-editor/index.html" class="bluelink">Komodo-Edit :: a nice free python editor!</a>. -->
-					   <a href="../blog/2009/02/09/komodo-edit-a-nice-free-python-editor/index.html" class="bluelink">Komodo-Edit :: a nice free python editor!</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Feb 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>Finding the perfect IDE for a programming language is always an ongoing process - even more if your language is python - I&#39;ve been happily using eclipse/pydev for a while now, but recently I ran into KomodoEdit and I liked it. Mostly, cause it&#39;s lightweight and it&#39;s built with a &#39;snippet-oriented&#39; philosophy (something like textmate).</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/01/27/python-easyinstall-the-peak-developers-center/index.html" class="bluelink">Python easy_install - The PEAK Developers&#39; Center</a>. -->
-					   <a href="../blog/2009/01/27/python-easyinstall-the-peak-developers-center/index.html" class="bluelink">Python easy_install - The PEAK Developers&#39; Center</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Jan 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>Easy Install is a python module bundled with setuptools that lets you automatically download, build, install, and manage Python packages. That is to say - super easy installation of a long list of Python modules.</blockquote></p>				
-				   
-					
-
-				   
-					   <hr>
-				   
-
-
-			   </div>
-
-		   
-
-
-			   <div class='pubitem'>
-
-				   
-				   
-				   
-					   
-
-				   <p class='lead' style="font-size: -16px;">
-					   <span class='label label-info'> blog</span>&nbsp;
-					   <!-- <a href="https://www.michelepasin.orghttps://www.michelepasin.org/blog/2009/01/06/pythons-phenotype/index.html" class="bluelink">Python&#39;s phenotype</a>. -->
-					   <a href="../blog/2009/01/06/pythons-phenotype/index.html" class="bluelink">Python&#39;s phenotype</a>.
-				   </p>
-
-				   <p class="pubinfo text-muted" style="margin-top: -15px;">
-
-					   <b class="text-muted">Jan 2009</b>
-					   <!-- Blog entry on www.michelepasin.org . -->
-
-				   </p>
-
-				   
-
-				   
-				    
-					   <p><blockquote>Phenotype: any observable characteristic or trait of an organism: such as its morphology, development, biochemical or physiological properties, or behavior.</blockquote></p>				
-				   
-					
-
-				   
-
-
-			   </div>
-
-		   
-
-
-		</div>
-
-
-
-	</div>
-
-	
-
-
-
-
-
-
-	
-	
-		
-	<div class="row margin50Top margin50Bottom " style="margin-top: 80px;">
-
-		<!-- <hr class=" margin50Bottom  ">	 -->
-
-		<div class="col-sm-3 col-md-3">
-
-			<p style="color: #e8e5e5; font-size: 600%; ">
-				Related Tags
-			  </p>
-
-		</div>
-
-
-		
-		<div class="col-sm-9 col-md-9 text-right margin50Top">
-
-			
-
-				
-					<a href="index.html%3Ftag=api&amp;type=all.html" style="font-size: 11px; line-height: 60%;">api</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=art&amp;type=all.html" style="font-size: 21px; line-height: 70%;">art</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=book&amp;type=all.html" style="font-size: 25px; line-height: 74%;">book</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=citation&amp;type=all.html" style="font-size: 13px; line-height: 62%;">citation</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=conference&amp;type=all.html" style="font-size: 37px; line-height: 86%;">conference</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=database&amp;type=all.html" style="font-size: 17px; line-height: 66%;">database</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=dimensions&amp;type=all.html" style="font-size: 11px; line-height: 60%;">dimensions</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=django&amp;type=all.html" style="font-size: 55px; line-height: 104%;">django</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=documentation&amp;type=all.html" style="font-size: 13px; line-height: 62%;">documentation</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=faceted-search&amp;type=all.html" style="font-size: 17px; line-height: 66%;">faceted-search</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=google&amp;type=all.html" style="font-size: 11px; line-height: 60%;">google</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=graph&amp;type=all.html" style="font-size: 17px; line-height: 66%;">graph</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=graphics&amp;type=all.html" style="font-size: 29px; line-height: 78%;">graphics</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=history&amp;type=all.html" style="font-size: 15px; line-height: 64%;">history</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=html5&amp;type=all.html" style="font-size: 13px; line-height: 62%;">html5</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=ide&amp;type=all.html" style="font-size: 21px; line-height: 70%;">ide</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=information-architecture&amp;type=all.html" style="font-size: 9px; line-height: 58%;">information-architecture</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=japan&amp;type=all.html" style="font-size: 9px; line-height: 58%;">japan</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=jupyter&amp;type=all.html" style="font-size: 7px; line-height: 56%;">jupyter</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=language&amp;type=all.html" style="font-size: 21px; line-height: 70%;">language</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=learning&amp;type=all.html" style="font-size: 25px; line-height: 74%;">learning</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=linked-data&amp;type=all.html" style="font-size: 33px; line-height: 82%;">linked-data</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=macos&amp;type=all.html" style="font-size: 63px; line-height: 112%;">macos</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=music&amp;type=all.html" style="font-size: 35px; line-height: 84%;">music</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=navigation&amp;type=all.html" style="font-size: 23px; line-height: 72%;">navigation</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=nlp&amp;type=all.html" style="font-size: 21px; line-height: 70%;">nlp</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=ontology&amp;type=all.html" style="font-size: 41px; line-height: 90%;">ontology</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=ontospy&amp;type=all.html" style="font-size: 7px; line-height: 56%;">ontospy</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=owl&amp;type=all.html" style="font-size: 9px; line-height: 58%;">owl</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=paper&amp;type=all.html" style="font-size: 19px; line-height: 68%;">paper</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=pdf&amp;type=all.html" style="font-size: 9px; line-height: 58%;">pdf</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=programming&amp;type=all.html" style="font-size: 31px; line-height: 80%;">programming</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=python&amp;type=all.html" style="font-size: 67px; line-height: 116%;">python</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=rdf&amp;type=all.html" style="font-size: 35px; line-height: 84%;">rdf</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=research-analytics&amp;type=all.html" style="font-size: 13px; line-height: 62%;">research-analytics</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=science&amp;type=all.html" style="font-size: 9px; line-height: 58%;">science</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=semantic-web&amp;type=all.html" style="font-size: 43px; line-height: 92%;">semantic-web</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=terminal&amp;type=all.html" style="font-size: 13px; line-height: 62%;">terminal</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=tutorial&amp;type=all.html" style="font-size: 23px; line-height: 72%;">tutorial</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=visualization&amp;type=all.html" style="font-size: 71px; line-height: 120%;">visualization</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=web&amp;type=all.html" style="font-size: 29px; line-height: 78%;">web</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=website&amp;type=all.html" style="font-size: 3px; line-height: 52%;">website</a>&nbsp;
-				
-									
-			
-
-				
-					<a href="index.html%3Ftag=xml&amp;type=all.html" style="font-size: 15px; line-height: 64%;">xml</a>&nbsp;
-				
-									
-			
-			
-
-		</div>
-
-	</div>  
-
-	
-	
-	<!-- end of row -->
-
-				
-	<div class="row ">
-		<hr>
-	<div class="text-muted col-md-3">
-
-		
-		<a href="../latest/feed/index.html">
-			<img height=20 src="../media/static/rss.png" alt="Main image"/ >
-		</a>	
-		
-		&nbsp;|&nbsp;
-		Export papers: <a class="h1links -text-muted" href="index.html%3Fformat=txt.html">txt</a> |
-		<a class="h1links -text-muted" href="index.html%3Fformat=bibtex&amp;query=type.html">bib</a>
-
-	</div></div>
-
-
-
-
-
-
-    <div class="row" style="margin-top: 60px;">
-    &nbsp;
-    </div> 
-    
-
-
-
-  </div> <!-- /container -->
-
-
-
-
-
-	</div>
-
-
-  
-
-
-
-  
-
-
-
-
-  <footer class="footer">
-    <div class="container">
-    
-      <p class="text-muted">Find me also on: &nbsp;
+<header class="site-head">
+  <span class="site-feed">
+    <a href="../latest/feed/index.html" title="RSS feed">RSS</a>
+  </span>
+  <a class="site-name" href="../index.html">michelepasin.org</a>
+  <span class="site-tagline">/ code, music, words</span>
+</header>
+
+
+    <main class="site-main">
       
+
+  
+
+  
+
+    <p class="sectionlabel">
+      <b>Words</b> <span class="sep">/</span> tagged
+      <a class="is-current">#python</a>
+      <span class="sep">|</span>
+      <a href="index.html%3Fquery=date&amp;type=tags.html">all tags</a>
+    </p>
+
+    <p class="ghostdate ghostdate--xl">#python</p>
+
+  
+
+
+  
+
+  
+
+    <section class="pubgroup">
+
+      <p class="ghostdate ghostdate--xl">2022</p>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2022/10/30/Ontospy-v2-released/index.html">Ontospy version 2.0 released</a>
+            </p>
+
+            <p class="pubinfo"><b>Oct 2022</b></p>
+
+          
+
+          
+            <div class="pubabstract">Version 2 of the library includes SHACL support as well as various internal refactoring. Ontospy is an open source Python library and command line tool for working with vocabularies encoded in the RDF family of languages. </div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2022/06/30/a-semi-automated-conference-assistant/index.html">A semi-automated conference assistant</a>
+            </p>
+
+            <p class="pubinfo"><b>Jun 2022</b></p>
+
+          
+
+          
+            <div class="pubabstract">A couple of weeks ago I went to the excellent Move Or Perish—Scientific Trajectories, Inclusion, And Inequality, And Their Consequences For Transformative Science workshop in Vienna. While getting ready for it, I found myself asking some familiar questions. Who are the speakers? What is their background? How to best contextualise the topics being discussed? </div>
+          
+
+        </article>
+
+      
+
+    </section>
+
+  
+
+    <section class="pubgroup">
+
+      <p class="ghostdate ghostdate--xl">2021</p>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2021/10/29/django-wget-static-site/index.html">A static site generator using Django, Wget and Github Pages</a>
+            </p>
+
+            <p class="pubinfo"><b>Nov 2021</b></p>
+
+          
+
+          
+            <div class="pubabstract">If you&#39;re a Django developer and want to publish a website without the hassle (and costs) of deploying a web app, then this post may give you some useful tips.</div>
+          
+
+        </article>
+
+      
+
+    </section>
+
+  
+
+    <section class="pubgroup">
+
+      <p class="ghostdate ghostdate--xl">2020</p>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2020/08/06/more-jupyter-notebooks-pyvis-and-networkx/index.html">More Jupyter notebooks: pyvis and networkx</a>
+            </p>
+
+            <p class="pubinfo"><b>Aug 2020</b></p>
+
+          
+
+          
+            <div class="pubabstract">Lately I&#39;ve been spending more time creating Jupyter notebooks that demonstrate how to use the Dimensions API for research analytics. In this post I&#39;ll talk a little bit about two cool Python libraries I&#39;ve recently discovered for working with graph data: pyvis and networkx.</div>
+          
+
+        </article>
+
+      
+
+    </section>
+
+  
+
+    <section class="pubgroup">
+
+      <p class="ghostdate ghostdate--xl">2019</p>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2019/06/30/pypapers-a-bare-bones-command-line-pdf-manager/index.html">Pypapers: a bare-bones, command-line PDF manager</a>
+            </p>
+
+            <p class="pubinfo"><b>Jun 2019</b></p>
+
+          
+
+          
+            <div class="pubabstract">Ever felt like software such as Mendeley or Papers are great, but somehow slow you down? Ever felt like none of the many reference manager software options out there will ever cut it for you, because you need something REALLY SIMPLE? I did. Many times. So I&#39;ve finally crossed the line and tried building a simple command-line PDF manager called PyPapers.</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2019/05/24/introducing-dimcli-a-python-cli-for-dimensions-api/index.html">Introducing DimCli: a Python CLI for the Dimensions API</a>
+            </p>
+
+            <p class="pubinfo"><b>May 2019</b></p>
+
+          
+
+          
+            <div class="pubabstract">For the last couple of months I&#39;ve been working on a new open source Python project called DimCli. It&#39;s a command-line library aimed at making it simpler to work with the Dimensions Analytics API.</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2019/01/03/ontospy-1-9-8-released/index.html">Ontospy 1.9.8 released</a>
+            </p>
+
+            <p class="pubinfo"><b>Jan 2019</b></p>
+
+          
+
+          
+            <div class="pubabstract">Ontospy version 1.9.8 has just been released and contains tons of improvements and new features. Ontospy is a lightweight open-source Python library and command-line tool for working with vocabularies encoded in the RDF family of languages.</div>
+          
+
+        </article>
+
+      
+
+    </section>
+
+  
+
+    <section class="pubgroup">
+
+      <p class="ghostdate ghostdate--xl">2016</p>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2016/06/12/ontospy-v-1-6-7/index.html">Ontospy v. 1.6.7</a>
+            </p>
+
+            <p class="pubinfo"><b>Jun 2016</b></p>
+
+          
+
+          
+            <div class="pubabstract">A new and improved version of OntoSpy (1.6.7) is available online. OntoSpy is a lightweight Python library and command-line tool for inspecting and visualizing vocabularies encoded in the RDF family of languages.</div>
+          
+
+        </article>
+
+      
+
+    </section>
+
+  
+
+    <section class="pubgroup">
+
+      <p class="ghostdate ghostdate--xl">2015</p>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2015/11/28/accessing-os-x-dictionary-with-python/index.html">Accessing OS X dictionary with Python</a>
+            </p>
+
+            <p class="pubinfo"><b>Nov 2015</b></p>
+
+          
+
+          
+            <div class="pubabstract">Here&#39;s a little script that allows you to access the OS X Dictionary app using Python.</div>
+          
+
+        </article>
+
+      
+
+    </section>
+
+  
+
+    <section class="pubgroup">
+
+      <p class="ghostdate ghostdate--xl">2014</p>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2014/12/03/dereference-a-doi-using-python/index.html">Dereference a DOI using python</a>
+            </p>
+
+            <p class="pubinfo"><b>Dec 2014</b></p>
+
+          
+
+          
+            <div class="pubabstract">A little Python script that allows you to pass an article DOI in order to obtain all the metadata related to that article.</div>
+          
+
+        </article>
+
+      
+
+    </section>
+
+  
+
+    <section class="pubgroup">
+
+      <p class="ghostdate ghostdate--xl">2012</p>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2012/10/12/teaching-programming-concepts-visually-with-the-online-python-tutor/index.html">Teaching programming concepts visually with the Online Python Tutor</a>
+            </p>
+
+            <p class="pubinfo"><b>Oct 2012</b></p>
+
+          
+
+          
+            <div class="pubabstract">The Online Python Tutor is a web-based program visualization tool for CS education, developed in collaboration with Google. It provides an easy-to-use online environment for writing code and testing it interactively. A great resource for teaching computer science concepts!</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2012/05/07/getting-hold-of-your-flickr-collections-with-python/index.html">Getting hold of your Flickr collections with Python</a>
+            </p>
+
+            <p class="pubinfo"><b>May 2012</b></p>
+
+          
+
+          
+            <div class="pubabstract">Recently I&#39;ve been a little disappointed with Flickr, the popular online photo-sharing service. Photos gone missing, entire albums disappeared. Not really what you&#39;d like to happen to your photo collection, especially when it&#39;s very large and therefore difficult to keep track of what&#39;s there and what&#39;s not.</div>
+          
+
+        </article>
+
+      
+
+    </section>
+
+  
+
+    <section class="pubgroup">
+
+      <p class="ghostdate ghostdate--xl">2011</p>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2011/02/24/survey-of-pythonic-tools-for-rdf-and-linked-data-programming/index.html">Survey of Pythonic tools for RDF and Linked Data programming</a>
+            </p>
+
+            <p class="pubinfo"><b>Feb 2011</b></p>
+
+          
+
+          
+            <div class="pubabstract">The Resource Description Framework (RDF) is a data model and language that is quickly gaining momentum in the open-data and data-integration worlds. In this post, I&#39;m reporting on a recent survey I conducted in the context of a Linked Data project I&#39;m working on, SAILS. In SAILS, we&#39;re developing a prototype for RDF data manipulation and querying. Since the final application will be written in Python and Django, in what follows I&#39;ve tried to gather information about all existing libraries and frameworks for RDF programming using Python.</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2011/02/08/installing-pil-on-djangostack-1-1-1/index.html">Installing PIL on Djangostack 1.1.1/1.2/1.3</a>
+            </p>
+
+            <p class="pubinfo"><b>Feb 2011</b></p>
+
+          
+
+          
+            <div class="pubabstract">The popular Python Imaging Library (PIL) adds image processing capabilities to your Python interpreter. This library supports many file formats and provides powerful image processing and graphics capabilities. I normally use Bitnami Djangostack for most of my Django development, which doesn&#39;t come with PIL installed by default so in this post I&#39;m summing up what steps I&#39;ve taken to get that up and running.</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2011/02/03/python-links-and-more-7211/index.html">Python links (and more) 7/2/11</a>
+            </p>
+
+            <p class="pubinfo"><b>Feb 2011</b></p>
+
+          
+
+          
+            <div class="pubabstract">This post contains a collection of various interesting things I&#39;ve encountered over the last couple of weeks. They&#39;re organized into three categories: Python-related links, events and conferences, and new online tools. I hope you&#39;ll find something of interest!</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2011/01/14/setting-up-django-registration/index.html">Setting up Django Registration</a>
+            </p>
+
+            <p class="pubinfo"><b>Jan 2011</b></p>
+
+          
+
+          
+            <div class="pubabstract">Django&#39;s admin framework includes the basic functionalities for logging in and out of the admin site, but if you&#39;re building a so-called &#39;social&#39; application and want people to be able to sign-up, log in and thus benefit from additional site functionalities then you need to use a more generic &#39;registration&#39; application. The good news is: most of the work has already been done, so it&#39;s just a matter of putting things together correctly.</div>
+          
+
+        </article>
+
+      
+
+    </section>
+
+  
+
+    <section class="pubgroup">
+
+      <p class="ghostdate ghostdate--xl">2010</p>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2010/02/12/python-debugging-and-textmate/index.html">Python debugging and Textmate</a>
+            </p>
+
+            <p class="pubinfo"><b>Feb 2010</b></p>
+
+          
+
+          
+            <div class="pubabstract">I&#39;ve never realized that among the many things Textmate does well there&#39;s also python debugging. Well, to be precise Textmate doesn&#39;t do much as it just relies on python&#39;s default debugger, called PDB. Ok, probably PDB isn&#39;t the cutting edge debugger you&#39;re looking for, but it&#39;s worth a try imho.</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2010/02/04/getting-back-to-the-ontological-work/index.html">Getting back to the ontological work..</a>
+            </p>
+
+            <p class="pubinfo"><b>Feb 2010</b></p>
+
+          
+
+          
+            <div class="pubabstract">I&#39;ll be working in Osaka for three months on ontologizing a couple of datasets with the help of Riichiro Mizoguchi. This means that I&#39;ll have enough time to revise various notions about ontology engineering during this period. Here&#39;s a first and fundamental one, regarding the difference between ontologies and data models:</div>
+          
+
+        </article>
+
+      
+
+    </section>
+
+  
+
+    <section class="pubgroup">
+
+      <p class="ghostdate ghostdate--xl">2009</p>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/12/12/pyglet-multimedia-library-for-python/index.html">Pyglet: multimedia library for python</a>
+            </p>
+
+            <p class="pubinfo"><b>Dec 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">UPDATE 30/03/1: Just realized that unfortunately pyglet doesn&#39;t play well with the latest 64bit architecture of oSX. A real shame, as this obviously breaks Pyglet&#39;s famed run-anywhere feature. There are reasons to think that the next version will fix this problem (check out this thread for more info).. but for the moment, I guess that the only alternative is falling back to PyOpenGl. UPDATE 14/12/09: pyProcessing is a project building on pyglet that that creates an environment for graphics applications that closely resembles that of the Processing system. Quite neat uh?</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/10/27/yolk-python-packages-index/index.html">Yolk : Python packages index</a>
+            </p>
+
+            <p class="pubinfo"><b>Oct 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">
+Yolk is a Python tool for obtaining information about packages installed by distutils, setuptools and easy_install and querying packages on PyPI (Python Package Index a.k.a. The Cheese Shop).
+</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/10/14/installing-pygraphviz-tested-on-osx-leopard/index.html">Installing PyGraphviz [tested on OSx Leopard]</a>
+            </p>
+
+            <p class="pubinfo"><b>Oct 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">PyGraphviz is a Python interface to the Graphviz graph layout and visualization package. With PyGraphviz you can create, edit, read, write, and draw graphs using Python to access the Graphviz graph data structure and layout algorithms.</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/08/30/mysql-python-and-apple-osx-10-5-leopard/index.html">MySQL-Python and Apple OSX 10.5 (Leopard)</a>
+            </p>
+
+            <p class="pubinfo"><b>Aug 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">UPDATE 30/12/09 : Snow Leopard and most recent versions of MySQL-python have broken the recipe below: you&#39;d better check this blog post for an updated version (it worked for me). In a nutshell, the new method involves using the Macports installation if you&#39;re on Leopard, or specifying your 64-bit architecture during the compile process if you&#39;re on Snow Leopard... but if you&#39;re still getting errors, there&#39;s nothing else to do than invoking the almighty google for help . .</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/07/28/python-web-parsing-libraries/index.html">Python web-parsing libraries</a>
+            </p>
+
+            <p class="pubinfo"><b>Jul 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">While continuing the interminable search for the ideal python editor, I run into three really useful libraries for scraping information off webpages:</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/05/27/snippet-to-quickly-load-stuff-in-the-django-shell/index.html">Snippet to load stuff quickly in the Django shell</a>
+            </p>
+
+            <p class="pubinfo"><b>May 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">Sometimes you end up testing out things a lot using the handy django shell, but every time you&#39;ve got to repeat the same commands to load all the necessary models, utils etc. etc.</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/05/18/python-pitfall-passing-mutable-objects-as-default-args/index.html">Python pitfall: Passing Mutable Objects as Default Args</a>
+            </p>
+
+            <p class="pubinfo"><b>May 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">I have a long and nested lists of parameters to throw out with a django template, but the visualization routine in the template processes them better if the parameters are ordered two by two. So I was trying to put together a simple function for reordering the original list accordingly. This is what I came up with:</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/05/07/installing-rdflib-on-osx/index.html">Installing RDFlib on osX</a>
+            </p>
+
+            <p class="pubinfo"><b>May 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">RDFlib is a Python library for working with RDF, a simple yet powerful language for representing information.</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/04/29/offline-django-docs/index.html">Offline django docs</a>
+            </p>
+
+            <p class="pubinfo"><b>Apr 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">An offline copy of the django docs can be quite helpful if you find yourself doing development work without an internet connection. Obviously, django comes with its docs that you can generate (provided you have Sphinx and build tools). However sometimes a pdf is the handiest solution... here&#39;re some useful links I found: Docs in CHM and PDF formats: http://charupload.wordpress.com/2007/12/02/django-documentation-chm/</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/03/02/gae-sql-designer/index.html">GAE SQL Designer</a>
+            </p>
+
+            <p class="pubinfo"><b>Mar 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">GAE SQL designer is a simple app that allows you to Draw E-R designs, Edit tables and rows, Manage keys, Create relations (FK constraints), Save &amp;amp; Load designs and Import DB schemas. Finally - it&#39;s online and it&#39;s free!</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/02/25/macpythonleopard-pythoninfo-wiki/index.html">MacPython/Leopard - PythonInfo Wiki</a>
+            </p>
+
+            <p class="pubinfo"><b>Feb 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">Some people have legitimate reasons for wanting to install IDLE on Leopard. E.g., even though Leopard&#39;s Xcode 3.0 (and later) supports Python development, it does so in a heavyweight, support-all-of-Cocoa fashion. And educators teaching Python who wish to do so in a platform-agnostic way may also be best served by IDLE.</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/02/15/pysmell-python-auto-complete-works-with-textmate-too/index.html">Pysmell - Python auto-complete - works with TextMate too!</a>
+            </p>
+
+            <p class="pubinfo"><b>Feb 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">One of the reasons that kept me away (sigh) from TextMate is the lack of autocompletion support.. especially in Python. Seems like those days have ended - I just downloaded and installed Pysmell, and it works great!!!</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/02/09/komodo-edit-a-nice-free-python-editor/index.html">Komodo-Edit :: a nice free python editor!</a>
+            </p>
+
+            <p class="pubinfo"><b>Feb 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">Finding the perfect IDE for a programming language is always an ongoing process - even more if your language is python - I&#39;ve been happily using eclipse/pydev for a while now, but recently I ran into KomodoEdit and I liked it. Mostly, cause it&#39;s lightweight and it&#39;s built with a &#39;snippet-oriented&#39; philosophy (something like textmate).</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/01/27/python-easyinstall-the-peak-developers-center/index.html">Python easy_install - The PEAK Developers&#39; Center</a>
+            </p>
+
+            <p class="pubinfo"><b>Jan 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">Easy Install is a python module bundled with setuptools that lets you automatically download, build, install, and manage Python packages. That is to say - super easy installation of a long list of Python modules.</div>
+          
+
+        </article>
+
+      
+
+        <article class="pubitem">
+
+          
+
+            <p class="pubtitle">
+              <span class="kind kind--blog">blog</span>
+              <a href="../blog/2009/01/06/pythons-phenotype/index.html">Python&#39;s phenotype</a>
+            </p>
+
+            <p class="pubinfo"><b>Jan 2009</b></p>
+
+          
+
+          
+            <div class="pubabstract">Phenotype: any observable characteristic or trait of an organism: such as its morphology, development, biochemical or physiological properties, or behavior.</div>
+          
+
+        </article>
+
+      
+
+    </section>
+
+  
+
+
+  
+
+    <p class="sectionlabel"><b>Related Tags</b> <span class="sep">/</span> ....</p>
+
+    <div class="tagcloud">
+      
+        
+          <a href="index.html%3Ftag=api&amp;type=all.html" style="font-size: 11px; line-height: 60%;">api</a>
+        
+      
+        
+          <a href="index.html%3Ftag=art&amp;type=all.html" style="font-size: 21px; line-height: 70%;">art</a>
+        
+      
+        
+          <a href="index.html%3Ftag=book&amp;type=all.html" style="font-size: 25px; line-height: 74%;">book</a>
+        
+      
+        
+          <a href="index.html%3Ftag=citation&amp;type=all.html" style="font-size: 13px; line-height: 62%;">citation</a>
+        
+      
+        
+          <a href="index.html%3Ftag=conference&amp;type=all.html" style="font-size: 37px; line-height: 86%;">conference</a>
+        
+      
+        
+          <a href="index.html%3Ftag=database&amp;type=all.html" style="font-size: 17px; line-height: 66%;">database</a>
+        
+      
+        
+          <a href="index.html%3Ftag=dimensions&amp;type=all.html" style="font-size: 11px; line-height: 60%;">dimensions</a>
+        
+      
+        
+          <a href="index.html%3Ftag=django&amp;type=all.html" style="font-size: 55px; line-height: 104%;">django</a>
+        
+      
+        
+          <a href="index.html%3Ftag=documentation&amp;type=all.html" style="font-size: 13px; line-height: 62%;">documentation</a>
+        
+      
+        
+          <a href="index.html%3Ftag=faceted-search&amp;type=all.html" style="font-size: 17px; line-height: 66%;">faceted-search</a>
+        
+      
+        
+          <a href="index.html%3Ftag=google&amp;type=all.html" style="font-size: 11px; line-height: 60%;">google</a>
+        
+      
+        
+          <a href="index.html%3Ftag=graph&amp;type=all.html" style="font-size: 17px; line-height: 66%;">graph</a>
+        
+      
+        
+          <a href="index.html%3Ftag=graphics&amp;type=all.html" style="font-size: 29px; line-height: 78%;">graphics</a>
+        
+      
+        
+          <a href="index.html%3Ftag=history&amp;type=all.html" style="font-size: 15px; line-height: 64%;">history</a>
+        
+      
+        
+          <a href="index.html%3Ftag=html5&amp;type=all.html" style="font-size: 13px; line-height: 62%;">html5</a>
+        
+      
+        
+          <a href="index.html%3Ftag=ide&amp;type=all.html" style="font-size: 21px; line-height: 70%;">ide</a>
+        
+      
+        
+          <a href="index.html%3Ftag=information-architecture&amp;type=all.html" style="font-size: 9px; line-height: 58%;">information-architecture</a>
+        
+      
+        
+          <a href="index.html%3Ftag=japan&amp;type=all.html" style="font-size: 9px; line-height: 58%;">japan</a>
+        
+      
+        
+          <a href="index.html%3Ftag=jupyter&amp;type=all.html" style="font-size: 7px; line-height: 56%;">jupyter</a>
+        
+      
+        
+          <a href="index.html%3Ftag=language&amp;type=all.html" style="font-size: 21px; line-height: 70%;">language</a>
+        
+      
+        
+          <a href="index.html%3Ftag=learning&amp;type=all.html" style="font-size: 25px; line-height: 74%;">learning</a>
+        
+      
+        
+          <a href="index.html%3Ftag=linked-data&amp;type=all.html" style="font-size: 33px; line-height: 82%;">linked-data</a>
+        
+      
+        
+          <a href="index.html%3Ftag=macos&amp;type=all.html" style="font-size: 63px; line-height: 112%;">macos</a>
+        
+      
+        
+          <a href="index.html%3Ftag=music&amp;type=all.html" style="font-size: 35px; line-height: 84%;">music</a>
+        
+      
+        
+          <a href="index.html%3Ftag=navigation&amp;type=all.html" style="font-size: 23px; line-height: 72%;">navigation</a>
+        
+      
+        
+          <a href="index.html%3Ftag=nlp&amp;type=all.html" style="font-size: 21px; line-height: 70%;">nlp</a>
+        
+      
+        
+          <a href="index.html%3Ftag=ontology&amp;type=all.html" style="font-size: 41px; line-height: 90%;">ontology</a>
+        
+      
+        
+          <a href="index.html%3Ftag=ontospy&amp;type=all.html" style="font-size: 7px; line-height: 56%;">ontospy</a>
+        
+      
+        
+          <a href="index.html%3Ftag=owl&amp;type=all.html" style="font-size: 9px; line-height: 58%;">owl</a>
+        
+      
+        
+          <a href="index.html%3Ftag=paper&amp;type=all.html" style="font-size: 19px; line-height: 68%;">paper</a>
+        
+      
+        
+          <a href="index.html%3Ftag=pdf&amp;type=all.html" style="font-size: 9px; line-height: 58%;">pdf</a>
+        
+      
+        
+          <a href="index.html%3Ftag=programming&amp;type=all.html" style="font-size: 31px; line-height: 80%;">programming</a>
+        
+      
+        
+          <a href="index.html%3Ftag=python&amp;type=all.html" style="font-size: 67px; line-height: 116%;">python</a>
+        
+      
+        
+          <a href="index.html%3Ftag=rdf&amp;type=all.html" style="font-size: 35px; line-height: 84%;">rdf</a>
+        
+      
+        
+          <a href="index.html%3Ftag=research-analytics&amp;type=all.html" style="font-size: 13px; line-height: 62%;">research-analytics</a>
+        
+      
+        
+          <a href="index.html%3Ftag=science&amp;type=all.html" style="font-size: 9px; line-height: 58%;">science</a>
+        
+      
+        
+          <a href="index.html%3Ftag=semantic-web&amp;type=all.html" style="font-size: 43px; line-height: 92%;">semantic-web</a>
+        
+      
+        
+          <a href="index.html%3Ftag=terminal&amp;type=all.html" style="font-size: 13px; line-height: 62%;">terminal</a>
+        
+      
+        
+          <a href="index.html%3Ftag=tutorial&amp;type=all.html" style="font-size: 23px; line-height: 72%;">tutorial</a>
+        
+      
+        
+          <a href="index.html%3Ftag=visualization&amp;type=all.html" style="font-size: 71px; line-height: 120%;">visualization</a>
+        
+      
+        
+          <a href="index.html%3Ftag=web&amp;type=all.html" style="font-size: 29px; line-height: 78%;">web</a>
+        
+      
+        
+          <a href="index.html%3Ftag=website&amp;type=all.html" style="font-size: 3px; line-height: 52%;">website</a>
+        
+      
+        
+          <a href="index.html%3Ftag=xml&amp;type=all.html" style="font-size: 15px; line-height: 64%;">xml</a>
+        
+      
+    </div>
+
+  
+
+
+  <p class="sectionlabel">
+    <b>Export</b> <span class="sep">/</span>
+    <a href="../latest/feed/index.html">rss</a> <span class="sep">|</span>
+    <a href="index.html%3Fformat=txt.html">txt</a> <span class="sep">|</span>
+    <a href="index.html%3Fformat=bibtex&amp;query=type.html">bibtex</a>
+  </p>
+
+
+
+    </main>
+
+    
+
+    <footer class="site-foot">
+      
+        <p class="sectionlabel"><b>Elsewhere</b> <span class="sep">/</span> find me also on</p>
+        <p class="foot-links">
+          
 
 <a href="http://kcl.academia.edu/MichelePasin" target="_blank">Academia</a> | 
 <a href="https://github.com/lambdamusic" target="_blank">GitHub</a> | 
@@ -2467,56 +1257,43 @@ Yolk is a Python tool for obtaining information about packages installed by dist
 <a href="https://x.com/lambdaman" target="_blank">X (Twitter)</a> |
 <a href="https://vimeo.com/lambdamusic" target="_blank">Vimeo</a> | 
 <a href="https://www.youtube.com/channel/UCanqSICbxzRNEZGMlu8qfyw" target="_blank">YouTube</a>
+        </p>
+        <p class="foot-legal">&copy; Michele Pasin. Built with Django, mirrored as a static site.</p>
       
-      </p>
+    </footer>
+
     
+
+<div id="modalSearch" class="modal fade" role="dialog" tabindex="-1" aria-labelledby="modalSearchTitle">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">&times;</button>
+        <h4 class="modal-title" id="modalSearchTitle">Find <span class="sep">/</span> michelepasin.org</h4>
+      </div>
+
+      <div class="modal-body">
+        <gcse:search></gcse:search>
+      </div>
+
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default btn-xs" data-dismiss="modal">Close</button>
+      </div>
+
     </div>
-  </footer>
+  </div>
+</div>
 
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="../media/static/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="../media/static/libs/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    <script src="../media/static/js/parerga.js"></script>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="../media/static/libs/bootstrap-3.3.7-dist/js/ie10-viewport-bug-workaround.js"></script>
-
-     <!-- Google site search --> 
+    
     <script async src="https://cse.google.com/cse.js?cx=c23e79d025688b327"></script>
 
     
-
-
-	<script type="text/javascript">
-
-	$('#search-input').keyup(function() {
-
-	  var val = $.trim($(this).val()).replace(/ +/g, ' ').toLowerCase();
-	  // var $rows = $(this).next(".entities-list").find("div");
-
-	  var $rows = $(this).parent().parent().parent().parent().find("div.pubitem");
-
-		console.log(val);
-		console.log($(this).parent().parent().parent().parent());
-
-	  $rows.show().filter(function() {
-	      var text = $(this).text().replace(/\s+/g, ' ').toLowerCase();
-	      return !~text.indexOf(val);
-	  }).hide();
-	});
-
-	</script>
-
-
-
-
-    
-
-      
-
-
 
   </body>
 </html>
