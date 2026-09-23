@@ -1,0 +1,61 @@
+#!/usr/bin/env bash
+#
+# Report which event `pubplace` strings have no coordinates in
+# researchapp/event_locations.py, and geocode them against OpenStreetMap
+# Nominatim so the results can be pasted into EVENT_LOCATIONS.
+#
+# Nothing is written automatically: the lookup table is hand-reviewed on
+# purpose (Nominatim's first hit is wrong often enough - see the notes in
+# event_locations.py), so this only prints candidates.
+#
+# Usage:  tools/geocode-event-places
+
+export ENVIRONMENT=local
+
+src/manage.py shell <<'PYEOF'
+import json, re, sys, time, urllib.parse, urllib.request
+
+from researchapp.models import Publication
+from researchapp.event_locations import EVENT_LOCATIONS
+
+# NOTE: plain loops, not comprehensions. `manage.py shell` runs this with
+# exec(), and a comprehension gets its own scope that cannot see names bound
+# by the exec'd code - so `Publication` / `EVENT_LOCATIONS` would be unbound.
+seen = set()
+for pub in Publication.objects.filter(isspeaking=True):
+    place = (pub.pubplace or '').strip()
+    if place:
+        seen.add(place)
+places = sorted(seen)
+
+missing = []
+for place in places:
+    if place not in EVENT_LOCATIONS:
+        missing.append(place)
+
+print(f"{len(places)} distinct event places, {len(missing)} without coordinates")
+if not missing:
+    sys.exit(0)
+
+UA = "michelepasin.org-events-map/1.0 (one-off geocoding of talk locations)"
+print("\nPaste into EVENT_LOCATIONS, after checking each one is the right place:\n")
+
+for place in missing:
+    url = "https://nominatim.openstreetmap.org/search?" + urllib.parse.urlencode(
+        {"q": re.sub(r"\s+", " ", place).strip(), "format": "json", "limit": 1})
+    try:
+        with urllib.request.urlopen(
+                urllib.request.Request(url, headers={"User-Agent": UA}), timeout=20) as r:
+            hits = json.load(r)
+    except Exception as exc:
+        hits = []
+        print(f"    # {place!r}: lookup failed ({exc})")
+
+    if hits:
+        lat, lon = round(float(hits[0]["lat"]), 4), round(float(hits[0]["lon"]), 4)
+        print(f"    {place!r}:\n        ({lat}, {lon}, {hits[0]['display_name']!r}),")
+    else:
+        print(f"    # {place!r}: no match, set by hand")
+
+    time.sleep(1.1)   # Nominatim asks for at most one request per second
+PYEOF

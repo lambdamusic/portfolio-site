@@ -465,6 +465,84 @@ a.project-active:hover { color: #fff !important; }
   white-space: nowrap;
 }
 
+/* events listing + world map
+   ------------------------------------------------------------------------
+   The list keeps the site's reading measure; the map sits beside it and
+   sticks while the list scrolls past. */
+
+.eventslayout {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+}
+.eventslist { flex: 1 1 auto; min-width: 0; max-width: var(--measure); }
+.eventsmap  { flex: 0 0 420px; }
+
+.eventsmap-sticky { position: sticky; top: 1.5rem; }
+.eventsmap-sticky .sectionlabel { margin-top: 0; }
+
+.eventsmap-svg { display: block; width: 100%; height: auto; }
+
+.eventsmap-land path { fill: #e2e2e2; stroke: none; }
+.eventsmap-borders  { fill: none; stroke: var(--paper); stroke-width: .7; }
+
+.eventsmap-dots circle {
+  fill: var(--accent);
+  fill-opacity: .7;
+  stroke: var(--paper);
+  stroke-width: .8;
+  cursor: pointer;
+  transition: fill-opacity .12s ease-out, r .12s ease-out;
+}
+.eventsmap-dots circle:hover,
+.eventsmap-dots circle.is-active { fill-opacity: 1; }
+
+/* while one place is focused, the rest step back */
+.eventsmap-svg.is-focused .eventsmap-dots circle { fill-opacity: .2; }
+.eventsmap-svg.is-focused .eventsmap-dots circle.is-active { fill-opacity: 1; }
+
+.eventsmap-halo {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.4;
+  pointer-events: none;
+}
+
+.eventsmap-caption {
+  margin: .5rem 0 0;
+  min-height: 1.4em;
+  font-size: .75rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* what happened at the focused place. Reserve the height so the panel does
+   not jump as the cursor moves between dots. */
+.eventsmap-detail {
+  list-style: none;
+  margin: .5rem 0 0;
+  padding: 0;
+  min-height: 7rem;
+  font-size: .85rem;
+  line-height: 1.4;
+}
+.eventsmap-detail li { margin-bottom: .5rem; }
+.eventsmap-detail b {
+  display: block;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* the row whose place is lit on the map */
+.speakingitem.is-mapped-active .eventplace {
+  background: var(--accent);
+  color: #fff;
+  padding: 1px 4px;
+}
+
 /* events listing */
 .speakingitem {
   margin: 0 0 var(--step);
@@ -740,7 +818,14 @@ a.project-title:hover { color: var(--accent); background: none; }
 
 .paragraph_embed { margin: calc(var(--step) * 2) 0 var(--step); }
 .code-example { overflow: auto; height: 400px; }
-a.ext_link { color: var(--muted); font-weight: 400; }
+/* bare URLs: no spaces to break at, so allow breaking anywhere rather than
+   let one long link set the width of its column */
+a.ext_link {
+  color: var(--muted);
+  font-weight: 400;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
 a.ext_link:hover { color: var(--accent); }
 
 .quote-title { font-size: 1.6rem; font-weight: 700; color: var(--ink); }
@@ -799,6 +884,17 @@ a.ext_link:hover { color: var(--accent); }
   .ghostdate--lg { font-size: 2.25rem; }
 
   .thumb-img { height: 130px; }
+
+  /* map above the list rather than beside it; hover linking is pointless on
+     touch, so it becomes a plain overview picture */
+  /* align-items must go back to stretch: in a column flex container the
+     desktop `flex-start` sizes each child to its max-content width, which
+     lets a long talk title push the list wider than the viewport */
+  .eventslayout { flex-direction: column; align-items: stretch; gap: 0; }
+  .eventsmap { order: -1; flex-basis: auto; width: 100%; margin-bottom: calc(var(--step) * 2); }
+  .eventsmap-sticky { position: static; }
+  .eventsmap-caption,
+  .eventsmap-detail { display: none; }
 }
 
 @media (max-width: 560px) {

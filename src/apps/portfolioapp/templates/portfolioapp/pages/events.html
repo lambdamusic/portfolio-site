@@ -6,30 +6,72 @@
   <title>Events | Michele Pasin</title>
 {% endblock pagetitle %}
 
+{% comment %} the list sits beside a sticky map, so this page needs the width {% endcomment %}
+{% block bodyclass %}is-wide{% endblock bodyclass %}
+
 
 {% block bodycontent %}
 
   <p class="sectionlabel"><b>Events</b> <span class="sep">/</span> talks, panels, workshops</p>
 
-  {% for pub in return_items %}
+  <div class="eventslayout">
 
-    {% ifchanged pub.pubdate|date:"Y" %}
-      <p class="ghostdate ghostdate--xl">{{pub.pubdate|date:"Y"}}</p>
-    {% endifchanged %}
+    <div class="eventslist">
 
-    <article class="speakingitem">
+      {% for pub in return_items %}
 
-      <p class="eventdate {% if pub.isforthcoming %}is-forthcoming{% endif %}">{{pub.pubdate|date:"d M Y"}}</p>
+        {% ifchanged pub.pubdate|date:"Y" %}
+          <p class="ghostdate ghostdate--xl">{{pub.pubdate|date:"Y"}}</p>
+        {% endifchanged %}
 
-      <p class="eventtitle"><a href="{{pub.get_absolute_url}}">{{pub.title|capfirst}}</a></p>
+        <article class="speakingitem" data-event="{{forloop.counter0}}">
 
-      <p class="eventwhere">
-        {% if pub.pubplace %}{{pub.pubplace}}{% endif %}{% if pub.conference %} &middot; {{pub.conference}}{% endif %}{% if pub.extrainfo %} &middot; {{pub.extrainfo|safe}}{% endif %}
-        {% if pub.conferenceurl %}<br><a href="{{pub.conferenceurl}}" target="_blank" class="ext_link">{{pub.conferenceurl|truncatechars:60}}</a>{% endif %}
-      </p>
+          <p class="eventdate {% if pub.isforthcoming %}is-forthcoming{% endif %}">{{pub.pubdate|date:"d M Y"}}</p>
 
-    </article>
+          <p class="eventtitle"><a href="{{pub.get_absolute_url}}">{{pub.title|capfirst}}</a></p>
 
-  {% endfor %}
+          <p class="eventwhere">
+            {% if pub.pubplace %}<span class="eventplace">{{pub.pubplace}}</span>{% endif %}{% if pub.conference %} &middot; {{pub.conference}}{% endif %}{% if pub.extrainfo %} &middot; {{pub.extrainfo|safe}}{% endif %}
+            {% if pub.conferenceurl %}<br><a href="{{pub.conferenceurl}}" target="_blank" class="ext_link">{{pub.conferenceurl|truncatechars:60}}</a>{% endif %}
+          </p>
+
+        </article>
+
+      {% endfor %}
+
+    </div>
+
+    {% comment %}
+      World map of every talk with a known location. Coordinates are frozen
+      in researchapp/event_locations.py and the map itself is drawn from a
+      vendored TopoJSON file - no tile server, no API key, so the mirrored
+      static site keeps working offline.
+    {% endcomment %}
+    <aside class="eventsmap" aria-label="Map of talk locations">
+      <div class="eventsmap-sticky">
+        <p class="sectionlabel"><b>Been</b> <span class="sep">/</span> {{mapped_count}} talks in {{mapped_places}} places</p>
+        <div id="eventsmap-canvas"></div>
+        <p class="eventsmap-caption" id="eventsmap-caption">&nbsp;</p>
+        <ul class="eventsmap-detail" id="eventsmap-detail"></ul>
+      </div>
+    </aside>
+
+  </div>
 
 {% endblock bodycontent %}
+
+
+{% block extra_js %}
+
+  <script type="application/json" id="eventsmap-data">{{ map_points_json|safe }}</script>
+
+  <script src="{% static 'libs/d3-v4/d3.min.js' %}"></script>
+  <script src="{% static 'libs/world-atlas/topojson-client.min.js' %}"></script>
+  <script src="{% static 'js/events-map.js' %}"></script>
+  <script>
+    initEventsMap({
+      worldUrl: "{% static 'libs/world-atlas/countries-110m.json' %}"
+    });
+  </script>
+
+{% endblock extra_js %}
