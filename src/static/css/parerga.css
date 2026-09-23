@@ -1,0 +1,949 @@
+/* ==========================================================================
+   parerga.css
+   --------------------------------------------------------------------------
+   Visual language of the old "Parerga und Paralipomena" blog (Upstart Blogger
+   "Modio" theme, 2006-2021), rebuilt for the current Django site.
+
+   What is carried over from the old theme:
+     - Helvetica Neue / system sans, black bold headings, #444 body copy
+     - bold blue links (#06c) turning red (#f31b1b) on hover, never underlined
+     - the "LABEL / descriptor" uppercase section headers
+     - the left rollover drawer with its red "INSIDE" handle
+     - an asymmetric page: narrow measure, pushed off the left edge
+     - no cards, no shadows, no rounded chrome - rules and whitespace only
+
+   What is deliberately NOT carried over:
+     - the 894px fixed-width, non-responsive shell
+     - the `font-size: 62.5%` / em-cascade sizing hack
+     - hover-only navigation (unusable on touch) - the drawer is now
+       click/tap/keyboard operable as well as hover
+
+   This file is loaded AFTER vanilla Bootstrap 3 and intentionally overrides
+   large parts of it: Bootstrap is kept for its grid and JS plugins only.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. Tokens
+   -------------------------------------------------------------------------- */
+
+:root {
+  --paper:      #fff;
+  --ink:        #000;     /* headings, structural text */
+  --body:       #444;     /* running copy - the old theme's .entry p colour */
+  --muted:      #8a8a8a;
+  --faint:      #c9c9c9;  /* the oversized ghost dates/numerals */
+  --link:       #06c;     /* old theme: a, h2 a:hover */
+  --link-visit: #265090;  /* old theme: .entry p a:visited */
+  --accent:     #f31b1b;  /* old theme: a:hover, .menu bar */
+  --rule:       #e6e6e6;
+  --rule-hard:  #000;
+  --wash:       #f8f8f8;  /* code / quote background */
+
+  --sans: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+  --mono: "SF Mono", "Menlo", "Courier New", Courier, monospace;
+
+  --rail-w:    250px;   /* drawer width */
+  --rail-gap:  265px;   /* content offset - the old theme's margin-left */
+  --measure:   46rem;   /* reading column, ~736px */
+  /* wide pages never exceed what is left of the viewport once the rail gap
+     and Bootstrap's -15px row gutter are accounted for, so nothing on the
+     site can produce a horizontal scrollbar */
+  --measure-wide: min(72rem, calc(100vw - var(--rail-gap) - 2.5rem));
+
+  --step: 1.5rem;       /* vertical rhythm unit */
+}
+
+
+/* --------------------------------------------------------------------------
+   2. Base
+   -------------------------------------------------------------------------- */
+
+html {
+  font-size: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background: var(--paper);
+  color: var(--body);
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.55;
+  text-align: left;
+  /* the drawer handle lives in the top-left corner; keep clear of it */
+  padding-top: 0;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--sans);
+  color: var(--ink);
+  font-weight: 700;
+  line-height: 1.2;
+  margin: calc(var(--step) * 2) 0 var(--step);
+}
+
+h1 { font-size: 2.25rem; }
+h2 { font-size: 1.6rem; }
+h3 { font-size: 1.25rem; }
+h4 { font-size: 1.05rem; }
+h5, h6 { font-size: 1rem; }
+
+p { margin: 0 0 var(--step); }
+
+a {
+  color: var(--link);
+  font-weight: 700;
+  text-decoration: none;
+}
+a:hover, a:focus {
+  color: var(--accent);
+  text-decoration: none;
+}
+/* the old theme only distinguished visited links inside running copy, which
+   is also the only place the distinction earns its keep */
+.blogentry a:visited,
+.pubabstract a:visited { color: var(--link-visit); }
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+hr {
+  border: 0;
+  border-top: 1px solid var(--rule);
+  margin: calc(var(--step) * 1.5) 0;
+}
+
+img { max-width: 100%; height: auto; }
+
+small { font-size: .85rem; font-weight: 400; }
+
+blockquote,
+.blogentry blockquote,
+.blogentry blockquote:first-of-type {
+  margin: var(--step) 0 var(--step) 0;
+  padding: 0 0 0 1.25rem;
+  border-left: 5px solid var(--rule);
+  background: none;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--body);
+}
+blockquote p:last-child { margin-bottom: 0; }
+
+code, kbd, samp {
+  font-family: var(--mono);
+  font-size: .9em;
+  /* long paths and URLs must wrap rather than push the column out */
+  overflow-wrap: break-word;
+  word-break: break-word;
+  background: var(--wash);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  color: #333;
+  padding: 1px 4px;
+}
+pre {
+  font-family: var(--mono);
+  font-size: .85rem;
+  background: var(--wash);
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  padding: 1rem;
+  margin: calc(var(--step) * 1.5) 0;
+  overflow: auto;
+}
+pre code { background: none; border: 0; padding: 0; }
+
+
+/* --------------------------------------------------------------------------
+   3. Shell: header strip, drawer, content column, footer
+   -------------------------------------------------------------------------- */
+
+/* --- top strip: site name / tagline / feed ------------------------------- */
+
+.site-head {
+  margin-left: var(--rail-gap);
+  padding: 1.35rem 0 0 0;
+  max-width: var(--measure);
+  font-size: .75rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+}
+.site-head a.site-name {
+  color: var(--ink);
+  font-weight: 700;
+}
+.site-head a.site-name:hover { color: var(--accent); }
+.site-head .site-tagline {
+  color: var(--muted);
+  font-weight: 400;
+}
+.site-head .site-feed { float: right; }
+.site-head .site-feed a { color: var(--muted); font-weight: 700; }
+.site-head .site-feed a:hover { color: var(--accent); }
+
+
+/* --- left drawer --------------------------------------------------------- */
+
+/* The panel sits fully off-canvas; only the red handle, which is deliberately
+   wider than the panel, pokes into view. Same trick as the original theme's
+   `#sidebar p.menu { left: -20px; width: 250px }` against a 180px sidebar. */
+.site-rail {
+  position: fixed;
+  top: 0;
+  left: calc(var(--rail-w) * -1);
+  width: var(--rail-w);
+  height: 100%;
+  padding: 0 10px 2rem 10px;
+  background: var(--paper);
+  text-align: right;
+  font-size: .8rem;
+  overflow: visible;   /* must not clip the overhanging handle */
+  z-index: 3000;
+  transition: left .18s ease-out;
+}
+.site-rail:hover,
+.site-rail:focus-within,
+.site-rail.is-open { left: 0; }
+
+/* the scrollable part, so a short viewport doesn't lose the lower sections */
+.site-rail .rail-body {
+  max-height: calc(100% - 2.5rem);
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+/* the red handle - "INSIDE <-" in the original */
+.site-rail .rail-handle {
+  display: block;
+  width: calc(var(--rail-w) + 100px);
+  margin: 5px 0 0 -10px;
+  padding: 5px 10px;
+  background: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  text-align: right;
+  border: 0;
+  cursor: pointer;
+}
+/* once open the handle pulls back to the panel's own width, so it stops
+   short of the content column instead of covering the header */
+.site-rail:hover .rail-handle,
+.site-rail:focus-within .rail-handle,
+.site-rail.is-open .rail-handle { width: calc(var(--rail-w) + 10px); }
+
+.site-rail .rail-handle:hover,
+.site-rail .rail-handle:focus { color: #fff; background: #d81414; }
+.site-rail .rail-handle .rail-arrow { display: inline-block; margin-left: .5rem; }
+
+.site-rail .rail-home {
+  display: block;
+  margin: 1.25rem 0 1.5rem;
+  font-weight: 700;
+}
+
+.site-rail h2 {
+  margin: 1.5rem 0 .4rem;
+  font-size: .8rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+.site-rail ul {
+  list-style: none;
+  margin: 0 0 .5rem;
+  padding: 0;
+}
+.site-rail li { padding: 2px 0; }
+.site-rail a { font-weight: 700; }
+.site-rail a.is-current {
+  background: var(--accent);
+  color: #fff;
+  padding: 1px 4px;
+}
+
+.site-rail .rail-find { margin-top: 2rem; }
+.site-rail .rail-search {
+  width: 100%;
+  margin-top: .4rem;
+  padding: 3px 5px;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  background: var(--paper);
+  font-family: var(--sans);
+  font-size: .8rem;
+  color: var(--muted);
+  cursor: pointer;
+  text-align: right;
+}
+.site-rail .rail-search:hover { border-color: var(--accent); color: var(--ink); }
+
+/* dim the page while the drawer is open (touch/click mode only) */
+.rail-scrim {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .12);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .18s ease-out;
+  z-index: 2500;
+}
+.rail-scrim.is-visible { opacity: 1; pointer-events: auto; }
+
+
+/* --- content column ------------------------------------------------------ */
+
+.site-main {
+  margin-left: var(--rail-gap);
+  max-width: var(--measure);
+  padding: 0 0 calc(var(--step) * 4) 0;
+}
+
+/* Pages whose content genuinely needs the room (tile grids, media embeds)
+   set `body.is-wide`; header, content and footer widen together so the
+   right-hand edge stays a single line down the page. */
+.is-wide .site-head,
+.is-wide .site-main,
+.is-wide .site-foot { max-width: var(--measure-wide); }
+
+/* Bootstrap's .container is centred and width-stepped; inside our offset
+   shell it must be inert so the left rail alignment survives. */
+.site-main .container,
+.site-main .container-fluid {
+  width: auto;
+  max-width: none;
+  margin: 0;
+  padding-left: 0;
+  padding-right: 0;
+}
+
+
+/* --- footer -------------------------------------------------------------- */
+
+.site-foot {
+  margin-left: var(--rail-gap);
+  max-width: var(--measure);
+  padding: var(--step) 0 calc(var(--step) * 3) 0;
+  border-top: 1px solid var(--rule);
+  background: none;
+  font-size: .8rem;
+  color: var(--muted);
+}
+.site-foot a { color: var(--link); font-weight: 700; }
+.site-foot a:hover { color: var(--accent); }
+.site-foot .foot-links { line-height: 2; }
+.site-foot .foot-legal { margin-top: var(--step); color: var(--faint); }
+
+
+/* --------------------------------------------------------------------------
+   4. The "LABEL / descriptor" section header
+   The old theme's signature device: TAGS / ....  |  FRESH / LATEST POSTS
+   -------------------------------------------------------------------------- */
+
+.sectionlabel {
+  margin: calc(var(--step) * 2.5) 0 var(--step);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 400;
+  line-height: 1.8;
+}
+.sectionlabel:first-child { margin-top: calc(var(--step) * 1.5); }
+.sectionlabel b,
+.sectionlabel strong {
+  color: var(--ink);
+  font-weight: 700;
+}
+.sectionlabel a { font-weight: 700; }
+.sectionlabel .sep { color: var(--faint); padding: 0 .15rem; }
+
+/* the currently-selected item inside a section label row */
+.is-current,
+a.project-active,
+a.paper-active,
+a.sounds-active {
+  background: var(--accent);
+  color: #fff !important;
+  padding: 1px 4px;
+}
+.is-current:hover,
+a.project-active:hover { color: #fff !important; }
+
+
+/* --------------------------------------------------------------------------
+   5. Listings (words / papers / events)
+   -------------------------------------------------------------------------- */
+
+/* oversized ghost year-and-month markers, as on the current site but keyed
+   to the old palette */
+.ghostdate {
+  color: var(--faint);
+  font-weight: 700;
+  line-height: .95;
+  letter-spacing: -.02em;
+  margin: 0 0 var(--step);
+}
+.ghostdate--lg { font-size: 3.5rem; }
+.ghostdate--xl { font-size: 5rem; }
+
+.pubgroup { margin: 0 0 calc(var(--step) * 3); }
+
+.pubitem { margin: 0 0 calc(var(--step) * 1.5); }
+.pubitem + .pubitem { padding-top: calc(var(--step) * 1.5); border-top: 1px solid var(--rule); }
+
+.pubitem .pubtitle {
+  margin: 0 0 .25rem;
+  font-size: 1.05rem;
+  line-height: 1.4;
+}
+.pubitem .pubtitle a { font-weight: 700; }
+
+/* Only the date is set in the old theme's uppercase metadata style; journal
+   and conference names stay in their own case, where long titles are far
+   easier to read. */
+.pubitem .pubinfo {
+  margin: 0 0 .5rem;
+  font-size: .8rem;
+  color: var(--muted);
+}
+.pubitem .pubinfo b {
+  color: var(--ink);
+  font-weight: 700;
+  font-size: .75rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+}
+.pubitem .pubinfo .forthcoming { color: var(--accent); }
+
+/* admin-only affordances: present but visually quiet */
+.admin-flag { color: var(--accent); }
+.admin-note {
+  margin: 0 0 var(--step);
+  font-size: .75rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.pubitem .pubabstract {
+  margin: .5rem 0 0;
+  padding-left: 1.25rem;
+  border-left: 3px solid var(--rule);
+  color: var(--body);
+  font-size: .95rem;
+}
+
+/* kind marker: "blog" / "paper" - the old theme had no badges, so these
+   become small uppercase words rather than coloured pills */
+.kind {
+  display: inline-block;
+  margin-right: .5rem;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  vertical-align: .1em;
+}
+.kind--blog  { color: var(--muted); }
+.kind--paper { color: var(--accent); }
+
+/* tag cloud - the old front page's most recognisable block */
+.tagcloud { line-height: 1.7; }
+.tagcloud a {
+  font-weight: 700;
+  margin-right: .35rem;
+  white-space: nowrap;
+}
+
+/* world map
+   ------------------------------------------------------------------------
+   Shared by the interactive map beside /events/ and the static one on a
+   paper's own page. Drawn by static/js/world-map.js. */
+
+.worldmap-svg { display: block; width: 100%; height: auto; }
+
+.worldmap-land path { fill: #e2e2e2; stroke: none; }
+.worldmap-borders  { fill: none; stroke: var(--paper); stroke-width: .7; }
+
+.worldmap-dots circle {
+  fill: var(--accent);
+  fill-opacity: .7;
+  stroke: var(--paper);
+  stroke-width: .8;
+  transition: fill-opacity .12s ease-out;
+}
+
+.worldmap-halo {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.4;
+  pointer-events: none;
+}
+
+/* the one place a paper's page is about, over its faded neighbours.
+   The context dots are darker than they look they should be: against #e2e2e2
+   land, anything lighter stops registering as a mark at all. */
+.worldmap-dots--context circle { fill: #a0a0a0; fill-opacity: 1; stroke: none; }
+.worldmap-focus {
+  fill: var(--accent);
+  stroke: var(--paper);
+  stroke-width: .8;
+}
+
+
+/* events listing + its map
+   ------------------------------------------------------------------------
+   The list keeps the site's reading measure; the map sits beside it and
+   sticks while the list scrolls past. */
+
+.eventslayout {
+  display: flex;
+  align-items: flex-start;
+  gap: 3rem;
+}
+.eventslist { flex: 1 1 auto; min-width: 0; max-width: var(--measure); }
+.eventsmap  { flex: 0 0 420px; }
+
+.eventsmap-sticky { position: sticky; top: 1.5rem; }
+.eventsmap-sticky .sectionlabel { margin-top: 0; }
+
+.eventsmap .worldmap-dots circle { cursor: pointer; }
+.eventsmap .worldmap-dots circle:hover,
+.eventsmap .worldmap-dots circle.is-active { fill-opacity: 1; }
+
+/* while one place is focused, the rest step back */
+.worldmap-svg.is-focused .worldmap-dots circle { fill-opacity: .2; }
+.worldmap-svg.is-focused .worldmap-dots circle.is-active { fill-opacity: 1; }
+
+/* a pinned place holds a heavier ring than a hovered one */
+.eventsmap-sticky.is-pinned .worldmap-halo { stroke-width: 2.4; }
+
+
+/* the map on a paper's own page */
+.pubmap { margin: calc(var(--step) * 2) 0; max-width: 520px; }
+.pubmap .sectionlabel { margin-bottom: .5rem; }
+
+.eventsmap-caption {
+  margin: .5rem 0 0;
+  min-height: 1.4em;
+  font-size: .75rem;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.eventsmap-clear {
+  border: 0;
+  padding: 0;
+  background: none;
+  font: inherit;
+  letter-spacing: inherit;
+  text-transform: inherit;
+  color: var(--link);
+  font-weight: 700;
+  cursor: pointer;
+}
+.eventsmap-clear:hover { color: var(--accent); }
+
+/* what happened at the focused place. Reserve the height so the panel does
+   not jump as the cursor moves between dots. */
+.eventsmap-detail {
+  list-style: none;
+  margin: .5rem 0 0;
+  padding: 0;
+  min-height: 7rem;
+  font-size: .85rem;
+  line-height: 1.4;
+}
+.eventsmap-detail li { margin-bottom: .5rem; }
+.eventsmap-detail b {
+  display: block;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  color: var(--muted);
+  font-weight: 700;
+}
+
+/* the row whose place is lit on the map */
+.speakingitem.is-mapped-active .eventplace {
+  background: var(--accent);
+  color: #fff;
+  padding: 1px 4px;
+}
+
+/* events listing */
+.speakingitem {
+  margin: 0 0 var(--step);
+  padding-bottom: var(--step);
+  border-bottom: 1px solid var(--rule);
+}
+.speakingitem .eventdate {
+  margin: 0 0 .15rem;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.speakingitem .eventdate.is-forthcoming { color: var(--accent); }
+.speakingitem .eventtitle { margin: 0 0 .25rem; font-size: 1.05rem; }
+.speakingitem .eventwhere { margin: 0; font-size: .9rem; color: var(--body); }
+
+/* sounds listing */
+.soundsitem {
+  margin: 0 0 calc(var(--step) * 2);
+  padding-bottom: calc(var(--step) * 2);
+  border-bottom: 1px solid var(--rule);
+}
+.soundsitem h3 { margin-top: 0; }
+
+/* inline notice - replaces Bootstrap's .alert boxes */
+.notice {
+  margin: 0 0 var(--step);
+  padding: 0 0 0 1.25rem;
+  border-left: 5px solid var(--accent);
+  font-size: .9rem;
+}
+
+/* key/value sidebars on project and sound detail pages */
+.factlist { margin: 0 0 var(--step); font-size: .9rem; }
+.factlist dt {
+  margin-top: var(--step);
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.factlist dd { margin: 0 0 .15rem; color: var(--body); }
+
+.linkout { list-style: none; margin: 0 0 var(--step); padding: 0; }
+.linkout li { padding: 2px 0; }
+
+.embedframe { margin: 0 0 calc(var(--step) * 2); }
+.embedframe iframe { display: block; border: 1px solid var(--rule); max-width: 100%; }
+.pdfframe { display: block; border: 1px solid var(--rule); margin: var(--step) 0; }
+
+.address { font-size: .95rem; line-height: 1.7; }
+
+.portrait { max-width: 220px; float: right; margin: 0 0 var(--step) var(--step); }
+
+a.thumbnail.shot { margin-bottom: var(--step); }
+
+
+/* --------------------------------------------------------------------------
+   6. Long-form article body
+   -------------------------------------------------------------------------- */
+
+.blogentry {
+  font-size: 1.0625rem;
+  line-height: 1.62;
+  color: var(--body);
+  overflow-wrap: break-word;
+}
+.blogentry p { margin: 0 0 var(--step); }
+
+/* the old theme bolded the opening paragraph of every entry */
+.blogentry p.first-paragraph,
+.blogentry > p:first-of-type {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.blogentry h1,
+.blogentry h2,
+.blogentry h3,
+.blogentry h4 {
+  margin: calc(var(--step) * 2.2) 0 var(--step);
+  color: var(--ink);
+  font-weight: 700;
+}
+.blogentry h2 { font-size: 1.45rem; }
+.blogentry h3 { font-size: 1.2rem; }
+.blogentry h4 { font-size: 1.05rem; }
+
+.blogentry ul, .blogentry ol { margin: 0 0 var(--step); padding-left: 1.5rem; }
+.blogentry li { padding: 3px 0; }
+
+.blogentry img,
+.blogentry iframe {
+  display: block;
+  max-width: 100%;
+  margin: calc(var(--step) * 1.5) 0;
+}
+
+.articlehead { margin-bottom: calc(var(--step) * 1.5); }
+.articlehead h1 {
+  margin: 0 0 .4rem;
+  font-size: 2rem;
+  line-height: 1.15;
+}
+.articlemeta {
+  font-size: .75rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.articlemeta a { font-weight: 700; }
+
+.articletags { margin-top: var(--step); }
+.articletags a {
+  display: inline-block;
+  margin: 0 .5rem .25rem 0;
+  font-size: .8rem;
+  color: var(--muted);
+  font-weight: 400;
+}
+.articletags a:hover { color: var(--accent); }
+
+/* citation / comments blocks: rules, not boxes */
+.blocknote {
+  margin: calc(var(--step) * 2.5) 0 0;
+  padding-top: var(--step);
+  border-top: 1px solid var(--rule);
+  font-size: .9rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   7. Project tiles
+   -------------------------------------------------------------------------- */
+
+/* Flex rather than Bootstrap's float grid: tile captions vary in height, and
+   floats leave ragged holes when a taller tile pushes the next one down. */
+.tilegrid {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -1rem;
+}
+.tilegrid .thumb-div { flex: 0 0 25%; max-width: 25%; }
+
+@media (max-width: 1100px) { .tilegrid .thumb-div { flex-basis: 33.3333%; max-width: 33.3333%; } }
+@media (max-width: 720px)  { .tilegrid .thumb-div { flex-basis: 50%; max-width: 50%; } }
+@media (max-width: 420px)  { .tilegrid .thumb-div { flex-basis: 100%; max-width: 100%; } }
+
+.thumb-div { padding: 0 1rem calc(var(--step) * 2); }
+
+.thumb-div .thumbnail,
+a.thumbnail {
+  display: block;
+  padding: 0;
+  margin: 0 0 .6rem;
+  border: 1px solid var(--rule);
+  border-radius: 0;
+  background: var(--paper);
+  box-shadow: none;
+  transition: border-color .15s ease-out;
+}
+.thumb-div a.thumbnail:hover,
+a.thumbnail:hover { border-color: var(--accent); }
+
+.thumb-img { width: 100%; height: 160px; object-fit: cover; display: block; }
+
+.thumb-title {
+  margin: 0;
+  font-size: .9rem;
+  line-height: 1.4;
+  text-align: left;
+}
+a.project-title {
+  color: var(--ink);
+  font-weight: 700;
+  text-decoration: none;
+}
+a.project-title:hover { color: var(--accent); background: none; }
+
+.keyword, .keyword-sm {
+  font-style: normal;
+  font-weight: 400;
+  color: var(--muted);
+  text-decoration: none;
+  font-size: .75rem;
+}
+.keyword:hover, .keyword-sm:hover { color: var(--accent); }
+
+
+/* --------------------------------------------------------------------------
+   8. Bootstrap de-chroming
+   Everything below exists only to strip Bootstrap 3's boxes, pills, shadows
+   and gradients back to the old theme's flat typographic surface.
+   -------------------------------------------------------------------------- */
+
+.well {
+  background: none;
+  border: 0;
+  border-left: 5px solid var(--rule);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0 0 0 1.25rem;
+  margin: 0 0 var(--step);
+}
+
+.label {
+  display: inline-block;
+  padding: 0;
+  border-radius: 0;
+  background: none !important;
+  color: var(--muted) !important;
+  font-size: .7rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.label-warning { color: var(--accent) !important; }
+
+.page-header {
+  margin: calc(var(--step) * 1.5) 0 var(--step);
+  padding: 0 0 .4rem;
+  border-bottom: 1px solid var(--rule);
+  font-size: .75rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.lead {
+  font-size: 1.0625rem;
+  font-weight: 400;
+  line-height: 1.62;
+  color: var(--body);
+}
+.lead-plus { font-size: 1.25rem; }
+
+.text-muted { color: var(--muted); }
+.text-dark, .text-black { color: var(--ink); }
+
+.btn {
+  border-radius: 0;
+  box-shadow: none;
+  text-shadow: none;
+  background-image: none;
+  font-weight: 700;
+}
+.btn-xs, .btn-xxs {
+  font-size: .7rem;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  padding: 1px 6px;
+}
+
+.modal-content { border-radius: 0; box-shadow: none; border: 1px solid var(--ink); }
+.modal-header, .modal-footer { border-color: var(--rule); }
+.modal .modal-dialog { width: 800px; max-width: 95%; margin-left: auto; margin-right: auto; }
+.modal-open .modal, a:focus { outline: none; }
+
+.tooltip-inner { max-width: 220px; width: 220px; border-radius: 0; }
+
+/* legacy helpers still referenced by page templates */
+.margin50, .margin50Top, .margin50Bottom,
+.margin20Top, .margin20Bottom, .marginb100 { margin-top: 0; margin-bottom: 0; }
+.margin50Top  { margin-top: calc(var(--step) * 2); }
+.margin50Bottom { margin-bottom: calc(var(--step) * 2); }
+.margin20Top  { margin-top: var(--step); }
+.margin20Bottom { margin-bottom: var(--step); }
+.margin50 { margin-top: calc(var(--step) * 2); margin-bottom: calc(var(--step) * 2); }
+
+.paragraph_embed { margin: calc(var(--step) * 2) 0 var(--step); }
+.code-example { overflow: auto; height: 400px; }
+/* bare URLs: no spaces to break at, so allow breaking anywhere rather than
+   let one long link set the width of its column */
+a.ext_link {
+  color: var(--muted);
+  font-weight: 400;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+a.ext_link:hover { color: var(--accent); }
+
+.quote-title { font-size: 1.6rem; font-weight: 700; color: var(--ink); }
+.quote-block {
+  font-family: var(--sans);
+  font-size: 1.1rem;
+  border-left: 5px solid var(--accent);
+  background: none;
+  margin: 0 0 var(--step);
+  padding: 0 0 0 1.25rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   9. Responsive
+   The old theme had none of this; the offset shell collapses to a single
+   column and the drawer becomes an overlay.
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 1180px) {
+  :root { --rail-gap: 120px; }
+  .site-main { padding-right: 1.5rem; }
+}
+
+@media (max-width: 860px) {
+  :root { --rail-gap: 0px; --rail-w: 230px; }
+
+  .site-head,
+  .site-main,
+  .site-foot {
+    margin-left: 0;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+  }
+  /* clear the handle, which now sits over the page */
+  .site-head { padding-top: 3.25rem; }
+
+  /* hover-open is wrong on touch: only the explicit toggle opens it */
+  .site-rail,
+  .site-rail:hover,
+  .site-rail:focus-within { left: calc(var(--rail-w) * -1); }
+  .site-rail.is-open { left: 0; }
+
+  .site-rail .rail-handle {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: auto;
+    margin: 0;
+    padding: 6px 12px;
+    text-align: left;
+  }
+  .site-rail.is-open .rail-handle { position: static; width: calc(var(--rail-w) + 20px); text-align: right; }
+
+  .ghostdate--xl { font-size: 3rem; }
+  .ghostdate--lg { font-size: 2.25rem; }
+
+  .thumb-img { height: 130px; }
+
+  /* map above the list rather than beside it; hover linking is pointless on
+     touch, so it becomes a plain overview picture */
+  /* align-items must go back to stretch: in a column flex container the
+     desktop `flex-start` sizes each child to its max-content width, which
+     lets a long talk title push the list wider than the viewport */
+  .eventslayout { flex-direction: column; align-items: stretch; gap: 0; }
+  .eventsmap { order: -1; flex-basis: auto; width: 100%; margin-bottom: calc(var(--step) * 2); }
+  .eventsmap-sticky { position: static; }
+  /* tapping a dot pins it, so the detail panel is useful here too - it just
+     must not reserve empty height above the list when nothing is pinned */
+  .eventsmap-detail { min-height: 0; }
+}
+
+@media (max-width: 560px) {
+  body { font-size: .95rem; }
+  .articlehead h1 { font-size: 1.6rem; }
+  .thumb-div { padding: 0 .5rem var(--step); }
+}
+
+@media print {
+  .site-rail, .rail-scrim, .site-head .site-feed { display: none; }
+  .site-head, .site-main, .site-foot { margin-left: 0; max-width: none; }
+  a { color: #000; }
+}

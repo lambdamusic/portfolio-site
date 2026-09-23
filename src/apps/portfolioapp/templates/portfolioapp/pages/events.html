@@ -1,5 +1,4 @@
 {% extends "portfolioapp/components/base.html" %}
-
 {% load static %}
 
 
@@ -7,91 +6,73 @@
   <title>Events | Michele Pasin</title>
 {% endblock pagetitle %}
 
-{% block navbar %}
-
-    {% with thispage="events" %}
-
-    {% include "portfolioapp/components/default-navbar.html" %}
-
-    {% endwith %}
-
-{% endblock navbar %}
+{% comment %} the list sits beside a sticky map, so this page needs the width {% endcomment %}
+{% block bodyclass %}is-wide{% endblock bodyclass %}
 
 
-  {% block bodycontent %}
+{% block bodycontent %}
 
-  <div class="page-header">
-    Events
+  <p class="sectionlabel"><b>Events</b> <span class="sep">/</span> talks, panels, workshops</p>
+
+  <div class="eventslayout">
+
+    <div class="eventslist">
+
+      {% for pub in return_items %}
+
+        {% ifchanged pub.pubdate|date:"Y" %}
+          <p class="ghostdate ghostdate--xl">{{pub.pubdate|date:"Y"}}</p>
+        {% endifchanged %}
+
+        <article class="speakingitem" data-event="{{forloop.counter0}}">
+
+          <p class="eventdate {% if pub.isforthcoming %}is-forthcoming{% endif %}">{{pub.pubdate|date:"d M Y"}}</p>
+
+          <p class="eventtitle"><a href="{{pub.get_absolute_url}}">{{pub.title|capfirst}}</a></p>
+
+          <p class="eventwhere">
+            {% if pub.pubplace %}<span class="eventplace">{{pub.pubplace}}</span>{% endif %}{% if pub.conference %} &middot; {{pub.conference}}{% endif %}{% if pub.extrainfo %} &middot; {{pub.extrainfo|safe}}{% endif %}
+            {% if pub.conferenceurl %}<br><a href="{{pub.conferenceurl}}" target="_blank" class="ext_link">{{pub.conferenceurl|truncatechars:60}}</a>{% endif %}
+          </p>
+
+        </article>
+
+      {% endfor %}
+
+    </div>
+
+    {% comment %}
+      World map of every talk with a known location. Coordinates are frozen
+      in researchapp/pub_locations.py and the map itself is drawn from a
+      vendored TopoJSON file - no tile server, no API key, so the mirrored
+      static site keeps working offline.
+    {% endcomment %}
+    <aside class="eventsmap" aria-label="Map of talk locations">
+      <div class="eventsmap-sticky">
+        <p class="sectionlabel"><b>Been</b> <span class="sep">/</span> {{mapped_count}} talks in {{mapped_places}} places</p>
+        <div id="eventsmap-canvas"></div>
+        <p class="eventsmap-caption" id="eventsmap-caption">&nbsp;</p>
+        <ul class="eventsmap-detail" id="eventsmap-detail"></ul>
+      </div>
+    </aside>
+
   </div>
-
-  <div class="container">
-
-
-			<div class=" row_pubitem">
-
- 			 	<div class="col-sm-10 col-md-10" style="margin-top: 30px; margin-bottom: 60px;">
-
-					{% for pub in return_items %}
-
-						
-						{% ifchanged pub.pubdate|date:"Y" %}
-	
-						<div class='row ' style="margin-bottom: 50px; {% if not forloop.first %}margin-top: 100px;{% endif %}">
-							<div class="col-md-10" style="margin-bottom: -200px; margin-top: -100px;" >
-							<p style="color: #e8e7e791; font-size: 2000%; ">{{pub.pubdate|date:"Y"}}</p>
-							</div>
-						</div>
-							
-						{% endifchanged %}
-							
-
-						<div class='row speakingitem' style="margin-bottom: 10px;">
-
-							
-							<div class="col-xs-2 col-sm-2 col-md-2 col-lg-2" style="margin-bottom: 5px;">
-
-								<span class='label {% if pub.isforthcoming %}label-info{% else %}label-warning{% endif %}'>{{pub.pubdate|date:"d M Y"}}</span>&nbsp;								
-							</div>
-							
-							<div class="col-xs-10 col-sm-10 col-md-10 col-lg-10" style="-padding-left: 30px";>
-								{% if  pub.pubplace %}<span class='pubplace text-black'> {{pub.pubplace}}</span>{% endif %} - {% if  pub.conference %}<span class='conference -text-black'> {{pub.conference}}</span>{% endif %}{% if  pub.extrainfo %}<span class='extrainfo -text-black'> {{pub.extrainfo|safe}}</span>{% endif %}. <a href="{{pub.conferenceurl}}" target="_blank" class="ext_link">{{pub.conferenceurl|truncatechars:40}}</a>
-
-								<br />
-								 "<a href="{{pub.get_absolute_url}}" >{{pub.title|capfirst}}</a>"								
-							</div>
-							
-
-							{% if not forloop.last %}
-								<hr>
-							{% endif %}
-
-
-						</div>
-
-					{% endfor %}
-
- 			 	</div>
-
-
-		</div>
-
-
-
-
-    <div class="row" style="margin-top: 20px;">
-    
-    </div> 
-    {% comment %} second row ends {% endcomment %}
-
-
-
-  </div> <!-- /container -->
-
 
 {% endblock bodycontent %}
 
 
-
 {% block extra_js %}
+
+  <script type="application/json" id="eventsmap-data">{{ map_points_json|safe }}</script>
+
+  <script src="{% static 'libs/d3-v4/d3.min.js' %}"></script>
+  <script src="{% static 'libs/world-atlas/topojson-client.min.js' %}"></script>
+  <script src="{% static 'js/world-map.js' %}"></script>
+  <script src="{% static 'js/events-map.js' %}"></script>
+  <script>
+    initEventsMap({
+      worldUrl: "{% static 'libs/world-atlas/countries-110m.json' %}"
+    });
+  </script>
 
 {% endblock extra_js %}

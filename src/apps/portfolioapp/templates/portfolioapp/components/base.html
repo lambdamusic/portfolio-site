@@ -1,415 +1,92 @@
-{# Bootstrap 3.3.7 #}
-
 {% load static %}
 
+{% comment %}
+  Base layout.
+
+  Design: see src/static/css/parerga.css - the look is ported from the old
+  "Parerga und Paralipomena" blog (archived under /archived/blog/).
+
+  Changes from the previous base template:
+    - all CSS moved out of this file into static/css/parerga.css. It was
+      ~280 lines of stylesheet inlined in a Django template, re-parsed on
+      every render and uncacheable by the browser.
+    - Bootswatch "simplex" dropped in favour of vanilla Bootstrap 3, which is
+      now used for its grid and JS plugins only; parerga.css supplies the
+      whole visual layer.
+    - the fixed top navbar is replaced by the left drawer (site-rail.html).
+      The old "navbar" block is gone; page templates that still override it
+      are simply ignored by Django.
+    - the current section is derived once here from the resolved URL name
+      instead of being restated by hand in every page template.
+    - d3 v3 was loaded on every page and used by none of them; dropped.
+{% endcomment %}
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    
+
     {% include 'portfolioapp/components/ga.html' %}
-
-
-    
-    {% comment %}
-    2022-06-15: try to use a local version TODO verify
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.3/d3.min.js"></script>
-    {% endcomment %}
-
-    <script src="{% static 'libs/d3-v3/d3.v3.min.js' %}"></script>
-
-
 
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
     <meta name="author" content="Michele Pasin">
-  {% block metadescription %}
-    <meta name="description" property="og:description" content="{{return_item.convert_in_meta|default:' Portfolio website of Michele Pasin - computer science ontology knowledge graph digital humanities knowledge engineering pilosophy livecoding algorithmic composition'}}">
-  {% endblock %}
 
+    {% block metadescription %}
+      <meta name="description" property="og:description" content="{{return_item.convert_in_meta|default:' Portfolio website of Michele Pasin - computer science ontology knowledge graph digital humanities knowledge engineering pilosophy livecoding algorithmic composition'}}">
+    {% endblock %}
 
-    <link rel="icon" href="{% static 'favicon.ico' %} ">
+    <link rel="icon" href="{% static 'favicon.ico' %}">
+    <link rel="alternate" type="application/rss+xml" title="michelepasin.org" href="{% url 'portfolioapp:words-feed' %}">
 
-	{% block pagetitle %}
-		<title>Michele Pasin</title>
-	{% endblock pagetitle %}
+    {% block pagetitle %}
+      <title>Michele Pasin</title>
+    {% endblock pagetitle %}
 
-    <!-- Bootstrap core CSS -->
-    {# <link href="{% static 'libs/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">#}
-    <!-- Bootswatch:  -->
-    <!-- cerulean  | cyborg |  flatly |  lumen |  sandstone |   spacelab  |  yeti | cosmo |  darkly |  paper | simplex | superhero |  journal | readable  |   slate |  united -->
-    <link href="{% static 'libs/bootswatch3.2/simplex/bootstrap.min.css' %}" rel="stylesheet">
+    {# Bootstrap: grid + JS plugins only. The visual layer is parerga.css. #}
+    <link href="{% static 'libs/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/parerga.css' %}" rel="stylesheet">
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <link href="{% static 'libs/bootstrap-3.3.7-dist/css/ie10-viewport-bug-workaround.css' %}" rel="stylesheet">
+    {% include "portfolioapp/components/pygments.html" %}
 
-    <!-- Custom styles for this template -->
-    <link href="{% static 'libs/bootstrap-3.3.7-dist/css/sticky-footer-navbar.css' %}" rel="stylesheet">
-
-<style type="text/css">
-
-    .tooltip-inner {
-        max-width: 200px;
-        /* If max-width does not work, try using width instead */
-        width: 200px; 
-    }
-    .lead-plus {font-size: 26.5px;}
-    .label-dark {background: #2c3e50; color: white; padding: 1px;}
-    .margin50 {margin-top: 50px; margin-bottom: 50px;}
-    .marginb100 {margin-bottom: 100px;}
-
-    .breadcrumbs {margin-top: 80px;}
-    .namespaces {background: #ced2d6; width: 100%;}
-    .footer {background-color: #3e3f3a;}
-    .footer a {color: #cac0bf;}
-
-    .margin50Top {margin-top: 50px;}
-    .margin20Top {margin-top: 20px;}
-    .margin50Bottom { margin-bottom: 50px;}
-    .margin20Bottom { margin-bottom: 20px;}
-
-    /*so that the d3plus tooltip panel doesnt cover the top banner*/
-    .navbar {z-index: 3000;}
-
-
-    .navbar-alpha {
-        font-size: 65%;
-        font-style: italic;
-        font-weight: bold;
-        color: darkgoldenrod;
-    }
-
-
-    .btn-xxs {
-    padding: 1px 4px;
-    font-size: 10px;
-    line-height: 1.2;
-    border-radius: 2px;
-    }
-
-
-    .code-example {
-        overflow: auto;
-        height: 400px;
-    }
-
-
-    #side_title a {
-        color: blue;
-        text-decoration: underline;
-
-    }
-    .text-dark {
-        color: #5d5c5c;
-        {% comment %} font-weight: bold; {% endcomment %}
-    }
-
-
-    .paragraph_embed {
-      margin-top: 50px;
-      margin-bottom: 20px;
-    }
-
-
-    .thumb-div {
-      padding: 20px;
-
-    }
-
-    .thumbnail{
-      {% comment %} use to override bootstrap behaviour {% endcomment %}
-
-      {% comment %} border: 0px; {% endcomment %}
-
-    }
-
-    .thumb-img {
-      height: 200px;
-
-    }
-
-    .thumb-title b {
-      font-weight: bold;
-      color: black;
-
-    }
-
-    div.pubitem {
-      margin-top: 15px;
-    }
-
-
-
-    a.project-title {
-      color: black;
-      font-weight: bold;
-      text-decoration: none;
-    }
-
-    a.project-title:hover {
-      background: indianred;
-      color: white;
-    }
-
-    a.project-active {
-      background: #d87064;
-      color: white;
-      padding: 2px;
-    }
-
-    .keyword {
-      font-style: italic;
-      color: grey;
-      text-decoration: none;
-      font-size: 12px;
-    }
-    .keyword-sm {
-      font-style: italic;
-      color: grey;
-      text-decoration: none;
-      font-size: 11px;
-    }
-
-    a.paper-active {
-      background: #d9230f;
-      color: white;
-    }
-
-    a.ext_link {
-      color: darkgrey;
-    }
-
-    .text-black {
-      color: black;
-    }
-
-    a.sounds-active {
-      background: #d9230f;
-      color: white;
-    }
-
-    img.project-screenshots {
-      margin-botton: 30px;
-    }
-
-
-     /* modal google search */ 
-
-    .modal .modal-dialog
-    {
-        width: 800px;
-        max-width: 95%;
-        margin-left: auto;
-        margin-right: auto;
-    }
-
-    .modal-open .modal, a:focus
-    {
-        outline: none !important;
-    }
-
-
-    {% comment %} BLOG SECTION  {% endcomment %}
-
-
-    h2.blogtitle {
-      color: black;
-      margin-top: 40px;
-    }
-
-
-    .blogentry {
-      font-size: 1.3em;
-      margin-top: 50px;
-      margin-bottom: 120px;
-      color: #444;
-      /* font-family: "Helvetica Neue", Helvetica, Arial, Sans-Serif;  */
-    }
-
-    .blogentry p.first-paragraph {
-      font-weight: bold;
-      font-size: 1.1em;
-    }
-
-    .blogentry p {
-      margin-top: 30px;
-      margin-bottom: 30px;
-    }
-
-    .blogentry div {
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-
-    .blogentry blockquote:first-of-type {
-      font-size: 20px;
-      font-weight: normal;
-      background: #f9f9f9;
-      border-left: 10px solid #ccc;
-      margin: 1.5em 10px;
-      padding: 0.7em 10px;
-    }
-
-
-    .blogentry blockquote {
-      font-size: 16px;
-      background: #f9f9f9;
-      margin: 10px 30px 40px 10px; /* top right bottom left */
-      padding: 25px;
-    }
-
-
-    .blogentry  blockquote p:first-child, blockquote ul:first-child, blockquote ol:first-child {
-      margin-top: 0;
-    }
-
-
-    .blogentry pre {
-      margin-bottom: 40px;
-    }
-
-    .blogentry h1,  
-    .blogentry h2,  
-    .blogentry h3,  
-    .blogentry h4  {
-      margin-top: 50px;
-      margin-bottom: 30px;
-      font-weight: bold;
-      color: #000;
-    }
-
-    .blogentry img {
-      max-width: 80%;
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-
-    .blogentry iframe {
-      margin-top: 20px;
-      margin-bottom: 20px;
-    }
-
-    .blogentry ul {
-      margin-bottom: 20px;
-    }
-
-    .blogentry li {
-      padding: 5px;
-    }
-
-
-    .quote-title {
-      font-size: 2.0em;
-      font-weight: bold;
-      color: rgb(0, 0, 0);
-    }
-
-    .quote-block {
-      font-family: sans-serif, Helvetica;
-      font-size: 25px;
-      border-left: 5px solid #ffe700;
-      background: #f9f9f9;
-      margin: 0px 30px 40px 10px;
-      padding: 25px;
-    }
-
-    
-    .quote-block p::first-letter {
-      font-size: 150%;
-      color: rgb(62, 61, 61);
-    }
-
-
-</style>
-
-
-{% include "portfolioapp/components/pygments.html" %}
-
-{% block extra_head %}
-
-{% endblock extra_head %}
-
-
+    {% block extra_head %}{% endblock extra_head %}
 
   </head>
 
-  <body>
+  <body class="{% block bodyclass %}{% endblock bodyclass %}">
 
+    {% with section=request.resolver_match.url_name %}
+      {% include "portfolioapp/components/site-rail.html" %}
+    {% endwith %}
 
+    {% include "portfolioapp/components/site-header.html" %}
 
-{% block navbar %}
+    <main class="site-main">
+      {% block bodycontent %}{% endblock bodycontent %}
+    </main>
 
+    {% block abovefooter %}{% endblock abovefooter %}
 
-    {% include "portfolioapp/default-navbar.html" %}
+    <footer class="site-foot">
+      {% block footer %}
+        <p class="sectionlabel"><b>Elsewhere</b> <span class="sep">/</span> find me also on</p>
+        <p class="foot-links">
+          {% include "portfolioapp/components/outlinks.html" %}
+        </p>
+        <p class="foot-legal">&copy; Michele Pasin. Built with Django, mirrored as a static site.</p>
+      {% endblock footer %}
+    </footer>
 
+    {% include "portfolioapp/components/search-modal.html" %}
 
-
-{% endblock navbar %}
-
-
-
-
-
-
-    <!-- Begin page content -->
-    <div class="container">
-
-
-	{% block bodycontent %}
-
-
-
-	{% endblock bodycontent %}
-
-
-	</div>
-
-
-  {% block abovefooter %}
-
-
-
-  {% endblock abovefooter %}
-
-
-
-
-  <footer class="footer">
-    <div class="container">
-    {% block footer %}
-      <p class="text-muted">Find me also on: &nbsp;
-      {% include "portfolioapp/components/outlinks.html" %}
-      
-      </p>
-    {% endblock footer %}
-    </div>
-  </footer>
-
-
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
     <script src="{% static 'libs/jquery/1.12.4/jquery.min.js' %}"></script>
     <script src="{% static 'libs/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/parerga.js' %}"></script>
 
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{% static 'libs/bootstrap-3.3.7-dist/js/ie10-viewport-bug-workaround.js' %}"></script>
-
-     <!-- Google site search --> 
+    {# Google site search - powers the modal opened from the drawer #}
     <script async src="https://cse.google.com/cse.js?cx=c23e79d025688b327"></script>
 
-    {% block extra_js %}
-
-
-    {% endblock extra_js %}
-
-    
-
-      
-
-
+    {% block extra_js %}{% endblock extra_js %}
 
   </body>
 </html>

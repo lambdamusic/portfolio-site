@@ -1,0 +1,14 @@
+{% load static %}
+
+{% comment %}
+  The thin top strip: site name / tagline, feed link on the right.
+  Same shape as the old blog's #header.
+{% endcomment %}
+
+<header class="site-head">
+  <span class="site-feed">
+    <a href="{% url 'portfolioapp:words-feed' %}" title="RSS feed">RSS</a>
+  </span>
+  <a class="site-name" href="{% url 'portfolioapp:projects' %}">michelepasin.org</a>
+  <span class="site-tagline">/ {{ tagline|default:"code, music, words" }}</span>
+</header>

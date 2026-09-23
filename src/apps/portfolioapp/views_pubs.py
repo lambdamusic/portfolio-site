@@ -7,6 +7,7 @@ from django.utils.http import urlquote
 from django.http import HttpResponse, HttpResponseNotFound
 from django.db.models import Q
 
+import json
 import os
 from time import strftime
 import markdown
@@ -20,10 +21,48 @@ from myutils.myutils import printDebug, add_lazy_loading_to_images
 
 from researchapp.models import *
 from researchapp.topics import *
+from researchapp.pub_locations import coords_for
 
 from researchapp.management.commands.do_blogs_reindex import parse_markdown
 
 APP = "portfolioapp"
+
+BLOG_PUBTYPE_PK = 13
+
+
+def pub_map_data(return_item):
+	"""
+	Data for the little world map on a paper's page: where this one happened.
+
+	Returns None when `pubplace` has no entry in PUB_LOCATIONS, and the
+	template then renders no map at all. That is the right outcome not only
+	for papers with no place, but for the ones whose `pubplace` is really a
+	publisher imprint ("Woodbridge, Suffolk: Boydell and Brewer, ...") - a
+	geocoder would pin those, an opt-in table does not.
+
+	`context` is every *other* mapped place, drawn faintly behind the focused
+	dot, so the map reads as "here, among everywhere" rather than as one dot
+	adrift on an empty world. Coordinates only - the context dots carry no
+	label and need no other field.
+	"""
+	latlon = coords_for(return_item.pubplace)
+	if not latlon:
+		return None
+
+	context = set()
+	for pub in Publication.objects.exclude(pubtype__pk=BLOG_PUBTYPE_PK):
+		other = coords_for(pub.pubplace)
+		if other and other != latlon:
+			context.add(other)
+
+	return {
+		'focus': {
+			'lat': latlon[0],
+			'lon': latlon[1],
+			'place': return_item.pubplace.strip(),
+		},
+		'context': sorted(context),
+	}
 
 
 
@@ -121,11 +160,15 @@ def paper_detail(request, year="", month="", day="", namedetail=""):
 		admin_change_url = None
 
 	# MUST NOT BE A BLOG
-	if return_item.pubtype.pk == 13:  
+	if return_item.pubtype.pk == BLOG_PUBTYPE_PK:
 		return Http404
-	
+
+	map_data = pub_map_data(return_item)
+
 	context = {
 		'return_item' : return_item,
+		'map_place': map_data['focus']['place'] if map_data else None,
+		'map_data_json': json.dumps(map_data) if map_data else None,
 		'admin_change_url' : admin_change_url,
 		'itemtitle': return_item.title,
 		'itempubdate': return_item.pubdate,

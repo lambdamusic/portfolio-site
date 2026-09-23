@@ -1,0 +1,90 @@
+{% comment %}
+  The left rollover drawer - the old blog's "INSIDE <-" menu.
+
+  Opens on hover (desktop, via CSS) and on click/tap/keyboard (parerga.js).
+
+  `section` is the resolved URL name, set once in base.html, so pages no
+  longer have to restate which nav item is active. `ttype` / `ctype` come
+  from the Words view and mark the current sub-view, which lets the drawer
+  double as the Words filter nav that used to be a long inline strip above
+  the listing.
+{% endcomment %}
+
+<nav id="site-rail" class="site-rail" aria-label="Site navigation">
+
+  <button type="button" class="rail-handle" aria-expanded="false" aria-controls="site-rail">
+    Inside <span class="rail-arrow" aria-hidden="true">&larr;</span>
+  </button>
+
+  <div class="rail-body">
+
+  <a class="rail-home" href="{% url 'portfolioapp:projects' %}">michelepasin.org</a>
+
+  <h2>Pages</h2>
+  <ul>
+    <li><a href="{% url 'portfolioapp:projects' %}"
+           {% if section == "projects" or section == "projects-detail" %}class="is-current"{% endif %}>Projects</a></li>
+    <li><a href="{% url 'portfolioapp:words' %}"
+           {% if section == "words" or section == "papers" or section == "blogs-detail" or section == "papers-detail" %}class="is-current"{% endif %}>Words</a></li>
+    <li><a href="{% url 'portfolioapp:music' %}"
+           {% if section == "music" or section == "music-detail" %}class="is-current"{% endif %}>Sounds</a></li>
+    <li><a href="{% url 'portfolioapp:events' %}"
+           {% if section == "events" %}class="is-current"{% endif %}>Events</a></li>
+    <li><a href="{% url 'portfolioapp:about' %}"
+           {% if section == "about" %}class="is-current"{% endif %}>About</a></li>
+    <li><a href="{% url 'portfolioapp:contact' %}"
+           {% if section == "contact" %}class="is-current"{% endif %}>Contact</a></li>
+  </ul>
+
+  <h2>Words</h2>
+  <ul>
+    <li><a href="{% url 'portfolioapp:words' %}?query=date&amp;type=latest"
+           {% if ttype == "latest" %}class="is-current"{% endif %}>latest</a></li>
+    <li><a href="{% url 'portfolioapp:words' %}?query=date&amp;type=blogs"
+           {% if ttype == "blogs" and not ctype %}class="is-current"{% endif %}>blogs</a></li>
+    <li><a href="{% url 'portfolioapp:words' %}?query=date&amp;type=papers"
+           {% if ttype == "papers" %}class="is-current"{% endif %}>papers</a></li>
+    <li><a href="{% url 'portfolioapp:words' %}?query=date&amp;type=tags"
+           {% if ttype == "tags" %}class="is-current"{% endif %}>tags</a></li>
+    <li><a href="{% url 'portfolioapp:words' %}?query=date&amp;type=all"
+           {% if ttype == "all" %}class="is-current"{% endif %}>all</a></li>
+  </ul>
+
+  {% comment %}
+    Controlled vocabulary - see researchapp/category_vocabulary.py.
+    Keep in sync with CATEGORIES there.
+  {% endcomment %}
+  <h2>Categories</h2>
+  <ul>
+    <li><a href="{% url 'portfolioapp:words' %}?query=date&amp;type=blogs&amp;ctype=computermusic"
+           {% if ctype == "computermusic" %}class="is-current"{% endif %}>Computer Music</a></li>
+    <li><a href="{% url 'portfolioapp:words' %}?query=date&amp;type=blogs&amp;ctype=knowledge-engineering"
+           {% if ctype == "knowledge-engineering" %}class="is-current"{% endif %}>Knowledge Engineering</a></li>
+    <li><a href="{% url 'portfolioapp:words' %}?query=date&amp;type=blogs&amp;ctype=research-analytics"
+           {% if ctype == "research-analytics" %}class="is-current"{% endif %}>Research Analytics</a></li>
+    <li><a href="{% url 'portfolioapp:words' %}?query=date&amp;type=blogs&amp;ctype=digital-humanities"
+           {% if ctype == "digital-humanities" %}class="is-current"{% endif %}>Digital Humanities</a></li>
+    <li><a href="{% url 'portfolioapp:words' %}?query=date&amp;type=blogs&amp;ctype=data-science"
+           {% if ctype == "data-science" %}class="is-current"{% endif %}>Data Science</a></li>
+    <li><a href="{% url 'portfolioapp:words' %}?query=date&amp;type=blogs&amp;ctype=techlife"
+           {% if ctype == "techlife" %}class="is-current"{% endif %}>TechLife</a></li>
+    <li><a href="{% url 'portfolioapp:words' %}?query=date&amp;type=blogs&amp;ctype=justblogging"
+           {% if ctype == "justblogging" %}class="is-current"{% endif %}>Just Blogging</a></li>
+  </ul>
+
+  <div class="rail-find">
+    <h2>Find <span class="sep">/</span> Search</h2>
+    {% comment %}
+      Readonly on purpose: the real search is Google CSE inside the modal.
+      A live-looking input that silently swallowed keystrokes would be worse
+      than one that visibly hands over to the real search box.
+    {% endcomment %}
+    <input type="text" class="rail-search" readonly
+           value="Type and hit enter&hellip;"
+           aria-label="Open site search"
+           data-toggle="modal" data-target="#modalSearch">
+  </div>
+
+  </div><!-- /.rail-body -->
+
+</nav>

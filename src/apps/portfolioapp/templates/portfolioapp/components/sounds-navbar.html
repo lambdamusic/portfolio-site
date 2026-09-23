@@ -1,11 +1,12 @@
+{% comment %}
+  Sub-nav for the Sounds section. `thispage` is set by the caller from
+  `sounds_subpage`.
+{% endcomment %}
 
-
-
-  <div class="page-header">
-    Sounds  &nbsp;&nbsp;
-    <a href="?k=livecoding" {% if thispage == "livecoding" %}class="sounds-active"{% endif %}>Livecoding</a> | 
-    <a href="?k=kryos" {% if thispage == "kryos" %}class="sounds-active"{% endif %}>Kryos Project</a> | 
-    <a href="?k=rebirth" {% if thispage == "rebirth" %}class="sounds-active"{% endif %}>Rebirth Fever</a> | 
-    <a href="?k=singles" {% if thispage == "singles" %}class="sounds-active"{% endif %}>Singles</a> 
-  </div>
-
+<p class="sectionlabel">
+  <b>Sounds</b> <span class="sep">/</span>
+  <a href="?k=livecoding" {% if thispage == "livecoding" %}class="is-current"{% endif %}>Livecoding</a> <span class="sep">|</span>
+  <a href="?k=kryos"     {% if thispage == "kryos" %}class="is-current"{% endif %}>Kryos Project</a> <span class="sep">|</span>
+  <a href="?k=rebirth"   {% if thispage == "rebirth" %}class="is-current"{% endif %}>Rebirth Fever</a> <span class="sep">|</span>
+  <a href="?k=singles"   {% if thispage == "singles" %}class="is-current"{% endif %}>Singles</a>
+</p>
