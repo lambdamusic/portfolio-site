@@ -465,7 +465,43 @@ a.project-active:hover { color: #fff !important; }
   white-space: nowrap;
 }
 
-/* events listing + world map
+/* world map
+   ------------------------------------------------------------------------
+   Shared by the interactive map beside /events/ and the static one on a
+   paper's own page. Drawn by static/js/world-map.js. */
+
+.worldmap-svg { display: block; width: 100%; height: auto; }
+
+.worldmap-land path { fill: #e2e2e2; stroke: none; }
+.worldmap-borders  { fill: none; stroke: var(--paper); stroke-width: .7; }
+
+.worldmap-dots circle {
+  fill: var(--accent);
+  fill-opacity: .7;
+  stroke: var(--paper);
+  stroke-width: .8;
+  transition: fill-opacity .12s ease-out;
+}
+
+.worldmap-halo {
+  fill: none;
+  stroke: var(--accent);
+  stroke-width: 1.4;
+  pointer-events: none;
+}
+
+/* the one place a paper's page is about, over its faded neighbours.
+   The context dots are darker than they look they should be: against #e2e2e2
+   land, anything lighter stops registering as a mark at all. */
+.worldmap-dots--context circle { fill: #a0a0a0; fill-opacity: 1; stroke: none; }
+.worldmap-focus {
+  fill: var(--accent);
+  stroke: var(--paper);
+  stroke-width: .8;
+}
+
+
+/* events listing + its map
    ------------------------------------------------------------------------
    The list keeps the site's reading measure; the map sits beside it and
    sticks while the list scrolls past. */
@@ -481,34 +517,21 @@ a.project-active:hover { color: #fff !important; }
 .eventsmap-sticky { position: sticky; top: 1.5rem; }
 .eventsmap-sticky .sectionlabel { margin-top: 0; }
 
-.eventsmap-svg { display: block; width: 100%; height: auto; }
-
-.eventsmap-land path { fill: #e2e2e2; stroke: none; }
-.eventsmap-borders  { fill: none; stroke: var(--paper); stroke-width: .7; }
-
-.eventsmap-dots circle {
-  fill: var(--accent);
-  fill-opacity: .7;
-  stroke: var(--paper);
-  stroke-width: .8;
-  cursor: pointer;
-  transition: fill-opacity .12s ease-out, r .12s ease-out;
-}
-.eventsmap-dots circle:hover,
-.eventsmap-dots circle.is-active { fill-opacity: 1; }
+.eventsmap .worldmap-dots circle { cursor: pointer; }
+.eventsmap .worldmap-dots circle:hover,
+.eventsmap .worldmap-dots circle.is-active { fill-opacity: 1; }
 
 /* while one place is focused, the rest step back */
-.eventsmap-svg.is-focused .eventsmap-dots circle { fill-opacity: .2; }
-.eventsmap-svg.is-focused .eventsmap-dots circle.is-active { fill-opacity: 1; }
+.worldmap-svg.is-focused .worldmap-dots circle { fill-opacity: .2; }
+.worldmap-svg.is-focused .worldmap-dots circle.is-active { fill-opacity: 1; }
 
-.eventsmap-halo {
-  fill: none;
-  stroke: var(--accent);
-  stroke-width: 1.4;
-  pointer-events: none;
-}
 /* a pinned place holds a heavier ring than a hovered one */
-.eventsmap-sticky.is-pinned .eventsmap-halo { stroke-width: 2.4; }
+.eventsmap-sticky.is-pinned .worldmap-halo { stroke-width: 2.4; }
+
+
+/* the map on a paper's own page */
+.pubmap { margin: calc(var(--step) * 2) 0; max-width: 520px; }
+.pubmap .sectionlabel { margin-bottom: .5rem; }
 
 .eventsmap-caption {
   margin: .5rem 0 0;

@@ -20,7 +20,7 @@ from myutils.myutils import add_lazy_loading_to_images
 
 from researchapp.models import *
 from researchapp.topics import *
-from researchapp.event_locations import coords_for
+from researchapp.pub_locations import coords_for
 
 from researchapp.management.commands.do_blogs_reindex import parse_markdown
 
@@ -92,9 +92,9 @@ def events(request):
 	that has a known location, keyed by the same index the template puts on
 	each list row so hovering either side can highlight the other.
 
-	Unmapped places (a `pubplace` string with no entry in EVENT_LOCATIONS)
+	Unmapped places (a `pubplace` string with no entry in PUB_LOCATIONS)
 	are simply skipped - the talk still lists, it just gets no dot. See
-	researchapp/event_locations.py, and `tools/geocode-event-places`.
+	researchapp/pub_locations.py, and `tools/geocode-pub-places`.
 	"""
 
 	return_items = Publication.objects.filter(

@@ -1,15 +1,22 @@
 """
-Coordinates for the places where talks happened, for the map on /events/.
+Coordinates for the places where publications happened - the map beside
+/events/, and the one on a paper's own page.
 
 `Publication.pubplace` is free text typed over twenty years - "London, UK",
 "Pacifico Yokohama, Yokohama, Japan", "Ancona University". Rather than
 geocode that at request time (a network call per page render, and a
 different answer whenever the upstream gazetteer changes), the lookup is
-frozen here: the map is then deterministic, works offline, and the
+frozen here: the maps are then deterministic, work offline, and the
 wget-mirrored static site has no runtime dependency on anyone's API.
 
-Provenance: geocoded once against OpenStreetMap Nominatim on 2026-09-23,
-then hand-corrected where the first hit was wrong or too coarse:
+Being an explicit opt-in table matters for a second reason. Some pubplace
+values are not places at all - "Woodbridge, Suffolk: Boydell and Brewer,
+Studies in Celtic History Series" is a publisher imprint, and a geocoder
+would cheerfully drop a pin on Woodbridge for it. Anything absent from this
+table simply gets no map, which is the right answer for those.
+
+Provenance: geocoded against OpenStreetMap Nominatim on 2026-09-23, then
+hand-corrected where the first hit was wrong or too coarse:
 
     Arlington, USA          Nominatim picked Arlington, Texas; the talk was
                             at the Office of Naval Research in Virginia.
@@ -20,19 +27,24 @@ then hand-corrected where the first hit was wrong or too coarse:
     Royal Holloway, London  resolved to central London; the college is in
                             Egham, Surrey.
     Trento, Italy           was the province centroid, moved to the city.
+    Osaka University, Japan resolved to Osaka University *of Arts*, a
+                            different institution 40km away.
     Ancona University       and The Technical University of Denmark did not
                             resolve at all; set by hand.
 
-ADDING A NEW EVENT: if its `pubplace` string is not a key here the event
-still lists normally, it just gets no dot on the map. Add the string with
-its coordinates - `tools/geocode-event-places` prints the missing ones.
+ADDING A PUBLICATION: if its `pubplace` string is not a key here the item
+still lists and renders normally, it just gets no map. Add the string with
+its coordinates - `tools/geocode-pub-places` reports the missing ones and
+suggests candidates.
 
 Third value is the resolved place name, kept only so a human reviewing this
 file can see what each coordinate pair actually refers to.
 """
 
 # pubplace string (verbatim, as stored) -> (lat, lon, what it resolved to)
-EVENT_LOCATIONS = {
+PUB_LOCATIONS = {
+    'Amsterdam':
+        (52.3731, 4.8925, 'Amsterdam, Noord-Holland, Netherlands'),
     'Ancona University':
         (43.6158, 13.5189, 'Ancona, Marche, Italy'),
     'Arlington, USA':
@@ -55,6 +67,8 @@ EVENT_LOCATIONS = {
         (55.6867, 12.5701, 'København, Københavns Kommune, Region Hovedstaden, 1357, Danmark'),
     'Dublin, Ireland':
         (53.3494, -6.2606, 'Dublin, County Dublin, Leinster, Éire / Ireland'),
+    'Florence':
+        (43.7698, 11.2556, 'Firenze, Toscana, Italia'),
     'Frankfurt, Germany':
         (50.1106, 8.6821, 'Frankfurt am Main, Hessen, Deutschland'),
     'Granada':
@@ -65,9 +79,13 @@ EVENT_LOCATIONS = {
         (35.3391, 25.1333, 'Ηράκλειο, Δημοτική Ενότητα Ηρακλείου, Δήμος Ηρακλείου, Περιφερειακή Ενότητα Ηρακλείου, Περιφέρεια Κρήτης, Αποκεντρωμένη Διοίκηση Κρήτης, 712 02, Ελλάς'),
     'Kirchberg, Austria':
         (47.6167, 15.9833, 'Kirchberg am Wechsel, Lower Austria, Austria'),
+    'Lawrence, Kansas':
+        (38.9719, -95.2359, 'Lawrence, Douglas County, Kansas, United States'),
     'Leeds, UK':
         (53.7974, -1.5438, 'Leeds, West Yorkshire, England, LS1 6AL, United Kingdom'),
     'Leipzig':
+        (51.3406, 12.3747, 'Leipzig, Sachsen, Deutschland'),
+    'Leipzig, Germany':
         (51.3406, 12.3747, 'Leipzig, Sachsen, Deutschland'),
     'London, UK':
         (51.5074, -0.1278, 'Greater London, England, United Kingdom'),
@@ -81,6 +99,8 @@ EVENT_LOCATIONS = {
         (38.9897, -76.9378, 'University of Maryland, College Park, United States'),
     'Milton Keynes, UK':
         (52.0407, -0.7594, 'Milton Keynes, City of Milton Keynes, England, United Kingdom'),
+    'Milton Keynes, UK, The Open University':
+        (52.0245, -0.7093, 'The Open University, Milton Keynes, United Kingdom'),
     'Milton Keynes, United Kingdom':
         (52.0407, -0.7594, 'Milton Keynes, City of Milton Keynes, England, United Kingdom'),
     'Montpellier, France':
@@ -91,6 +111,8 @@ EVENT_LOCATIONS = {
         (48.1371, 11.5754, 'München, Bayern, Deutschland'),
     'New York, USA':
         (40.7127, -74.006, 'New York, United States'),
+    'Osaka University, Japan':
+        (34.8221, 135.5236, 'Osaka University, Suita, Osaka, Japan'),
     'Oxford, UK':
         (51.752, -1.2578, 'Oxford, Oxfordshire, England, United Kingdom'),
     'Pacifico Yokohama, Yokohama, Japan':
@@ -123,10 +145,16 @@ EVENT_LOCATIONS = {
         (46.0679, 11.1211, 'Trento, Trentino-Alto Adige, Italy'),
     'Trondheim, Norway':
         (63.4304, 10.3952, 'Trondheim, Trøndelag, Norge'),
+    "Universita Ca' Foscari, Venice, Italy":
+        (45.4345, 12.3264, "Universita Ca' Foscari, Dorsoduro, Venezia, Italia"),
+    'University of Nebraska–Lincoln':
+        (40.8306, -96.6697, 'University of Nebraska–Lincoln, Nebraska, United States'),
     'University of Strathclyde, Glasgow':
         (55.8619, -4.242, 'University of Strathclyde, Montrose Street, Merchant City, City Centre, Glasgow, Glasgow City, Alba / Scotland, G1 1RX, United Kingdom'),
     'Université de Lausanne':
         (46.5226, 6.5809, "Université de Lausanne, Allée de Dorigny, Quartier Centre, Ecublens, District de l'Ouest lausannois, Vaud, 1022, Schweiz/Suisse/Svizzera/Svizra"),
+    'Vienna, Austria':
+        (48.2084, 16.3725, 'Wien, Osterreich'),
     'Washington, USA':
         (38.8951, -77.0364, 'Washington, District of Columbia, United States'),
     'Whistler, BC, Canada':
@@ -140,5 +168,5 @@ def coords_for(pubplace):
     """(lat, lon) for a pubplace string, or None if it is not mapped."""
     if not pubplace:
         return None
-    entry = EVENT_LOCATIONS.get(pubplace.strip())
+    entry = PUB_LOCATIONS.get(pubplace.strip())
     return (entry[0], entry[1]) if entry else None

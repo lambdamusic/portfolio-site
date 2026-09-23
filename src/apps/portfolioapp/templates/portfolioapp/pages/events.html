@@ -43,7 +43,7 @@
 
     {% comment %}
       World map of every talk with a known location. Coordinates are frozen
-      in researchapp/event_locations.py and the map itself is drawn from a
+      in researchapp/pub_locations.py and the map itself is drawn from a
       vendored TopoJSON file - no tile server, no API key, so the mirrored
       static site keeps working offline.
     {% endcomment %}
@@ -67,6 +67,7 @@
 
   <script src="{% static 'libs/d3-v4/d3.min.js' %}"></script>
   <script src="{% static 'libs/world-atlas/topojson-client.min.js' %}"></script>
+  <script src="{% static 'js/world-map.js' %}"></script>
   <script src="{% static 'js/events-map.js' %}"></script>
   <script>
     initEventsMap({

@@ -1,31 +1,24 @@
-/* events-map.js - the world map beside the /events/ listing.
+/* events-map.js - the interactive map beside the /events/ listing.
  *
  * One dot per talk location, sized by how many talks happened there.
- * Hovering a list row lights up its dot; hovering a dot lights up every row
- * at that place. Coordinates come frozen from the server (see
- * researchapp/event_locations.py) and the outlines from a vendored TopoJSON
- * file, so nothing here talks to a tile server or a geocoding API - which is
- * what lets the wget-mirrored static site keep working.
+ * Hovering a list row rings its dot; hovering a dot names the place and
+ * lists its talks. Clicking a dot pins it, because the point of that list
+ * is to click through to a talk and reaching it means moving the cursor off
+ * the dot - which would clear a hover-only panel before you got there.
  *
- * The d3 v4 build vendored in libs/d3-v4 predates geoNaturalEarth1, hence
- * geoEquirectangular. It suits this data anyway: the talks cluster in the
- * northern mid-latitudes, where equirectangular wastes less height than
- * Mercator and distorts less.
+ * The world itself is drawn by world-map.js, shared with the smaller map on
+ * a paper's own page.
  */
 function initEventsMap(options) {
   'use strict';
 
   var host = document.getElementById('eventsmap-canvas');
   var dataEl = document.getElementById('eventsmap-data');
-  if (!host || !dataEl || typeof d3 === 'undefined' || typeof topojson === 'undefined') {
-    return;
-  }
+  if (!host || !dataEl) { return; }
 
   var points = JSON.parse(dataEl.textContent || '[]');
-  if (!points.length) {
-    host.closest('.eventsmap').style.display = 'none';
-    return;
-  }
+  var panel = host.closest('.eventsmap');
+  if (!points.length) { panel.style.display = 'none'; return; }
 
   var wrap = host.closest('.eventsmap-sticky');
   var caption = document.getElementById('eventsmap-caption');
@@ -55,61 +48,13 @@ function initEventsMap(options) {
     pl.talks.forEach(function (t) { placeByEventIndex[t.i] = pl; });
   });
 
-  // Crop to 84N..56S: no talks happen in Antarctica or the high Arctic, and
-  // dropping those empty bands lets the populated latitudes fill the panel
-  // instead of floating in a tall white box.
-  var WIDTH = 420;
-  var NORTH = 84, SOUTH = -56;
+  WorldMap.draw(host, 420, options.worldUrl, function (world) {
+    if (!world) { panel.style.display = 'none'; return; }
 
-  // equirectangular puts y at translateY - scale * latitude_in_radians, so
-  // pinning NORTH to y=0 fixes the translate and SOUTH fixes the height
-  var scale = WIDTH / (2 * Math.PI);
-  var translateY = scale * NORTH * Math.PI / 180;
-  var HEIGHT = Math.round(translateY - scale * SOUTH * Math.PI / 180);
+    var svg = world.svg;
+    var projection = world.projection;
 
-  var svg = d3.select(host).append('svg')
-    .attr('viewBox', '0 0 ' + WIDTH + ' ' + HEIGHT)
-    .attr('preserveAspectRatio', 'xMidYMid meet')
-    .attr('class', 'eventsmap-svg')
-    // the map restates what the list already says; screen readers get the
-    // list, not a bag of unlabelled circles
-    .attr('aria-hidden', 'true')
-    .attr('focusable', 'false');
-
-  var projection = d3.geoEquirectangular()
-    .scale(scale)
-    .translate([WIDTH / 2, translateY]);
-
-  var path = d3.geoPath().projection(projection);
-
-  // wget rewrites src/href attributes to relative paths when it mirrors the
-  // site, but not URLs sitting inside a script block - those would stay
-  // root-absolute and break if the site were ever served from a sub-path.
-  // Deriving the outlines URL from the topojson <script> that wget *did*
-  // rewrite keeps it correct wherever the mirror is mounted.
-  function worldUrl() {
-    var tag = document.querySelector('script[src$="topojson-client.min.js"]');
-    return tag ? tag.src.replace(/topojson-client\.min\.js$/, 'countries-110m.json')
-               : options.worldUrl;
-  }
-
-  d3.json(worldUrl(), function (error, world) {
-    if (error) {
-      host.closest('.eventsmap').style.display = 'none';
-      return;
-    }
-
-    svg.append('g').attr('class', 'eventsmap-land')
-      .selectAll('path')
-      .data(topojson.feature(world, world.objects.countries).features)
-      .enter().append('path')
-      .attr('d', path);
-
-    svg.append('path').attr('class', 'eventsmap-borders')
-      .datum(topojson.mesh(world, world.objects.countries, function (a, b) { return a !== b; }))
-      .attr('d', path);
-
-    var dots = svg.append('g').attr('class', 'eventsmap-dots')
+    var dots = svg.append('g').attr('class', 'worldmap-dots')
       .selectAll('circle')
       .data(places)
       .enter().append('circle')
@@ -126,14 +71,10 @@ function initEventsMap(options) {
     // A ring drawn over the top: with fifty dots and half of them inside
     // Europe, recolouring one of them is not enough to find it.
     var halo = svg.append('circle')
-      .attr('class', 'eventsmap-halo')
+      .attr('class', 'worldmap-halo')
       .attr('r', 9)
       .style('display', 'none');
 
-    // Hovering only previews. Clicking pins, because the whole point of the
-    // detail list is to click through to a talk, and reaching it means
-    // moving the cursor off the dot - which would clear a hover-only panel
-    // before you got there.
     var pinned = null;
 
     // Set from JS, never in the template: if the map failed to draw there is
