@@ -48,6 +48,7 @@ VOCABULARY = {
     "nlp": "domain",
     "ontology": "domain",
     "philosophy": "domain",
+    "product-management": "domain",
     "programming": "domain",
     "research-analytics": "domain",
     "semantic-web": "domain",

@@ -1,0 +1,468 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Deep Work Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: companion to the Mom Test field guide. One reading column; a concept map up top,
+   the four scheduling philosophies drawn as week strips, then every saved quote in full. */
+:root {
+  --bg: #ffffff;
+  --dot: #cfd3d8;
+  --paper: #ffffff;
+  --ink: #1d1b16;
+  --muted: #645f54;
+  --rule: #dde0e4;
+  --marker: #f5c518;
+  --c-why: #a86a12;
+  --c-shallow: #b5473a;
+  --c-sched: #2f62a3;
+  --c-habits: #1f7a6d;
+  --c-train: #6a4bb0;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111214; --dot: #2c2f34; --paper: #18191c; --ink: #ece8df; --muted: #a49d8f; --rule: #2e3136;
+    --marker: #8f6f06; --c-why: #e0a84d; --c-shallow: #e58a7d; --c-sched: #7fa9e0; --c-habits: #6cc7b8; --c-train: #b39ae8;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111214; --dot: #2c2f34; --paper: #18191c; --ink: #ece8df; --muted: #a49d8f; --rule: #2e3136;
+  --marker: #8f6f06; --c-why: #e0a84d; --c-shallow: #e58a7d; --c-sched: #7fa9e0; --c-habits: #6cc7b8; --c-train: #b39ae8;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+body {
+  margin: 0; color: var(--ink);
+  /* dot-grid notebook page */
+  background: radial-gradient(circle, var(--dot) 1.1px, transparent 1.4px) 0 0 / 20px 20px, var(--bg);
+  font: 16px/1.6 var(--body);
+  padding-inline: 16px; padding-block: 40px 64px;
+}
+main { max-width: 860px; margin-inline: auto; display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.1; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2rem); font-weight: 800; letter-spacing: -0.01em; }
+h3 { font-size: 1.15rem; font-weight: 800; }
+p { margin: 0; max-width: 65ch; }
+a { color: inherit; }
+.eyebrow { font: 500 0.75rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.lede { color: var(--muted); font-size: 1.05rem; }
+section, header { display: grid; gap: 20px; }
+.hl { background: linear-gradient(transparent 55%, var(--marker) 55%, var(--marker) 92%, transparent 92%); padding-inline: 2px; }
+.card { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 20px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+
+/* Hero */
+.defs { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.defs .card { border-top: 4px solid var(--ink); }
+.defs .shallow { border-top-color: var(--c-shallow); }
+.defs .tag { font: 500 0.78rem var(--mono); color: var(--muted); }
+.big { margin: 0; font: 800 clamp(1.3rem, 3vw, 1.75rem)/1.25 var(--display); max-width: 34ch; }
+.big cite { display: block; margin-top: 10px; font: 500 0.8rem var(--mono); color: var(--muted); font-style: normal; }
+
+/* Concept map */
+.map-wrap { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 12px; overflow-x: auto; }
+#map { display: block; width: 100%; min-width: 680px; height: auto; font-family: var(--body); }
+#map .link { fill: none; stroke: var(--rule); stroke-width: 1.5; transition: stroke 150ms; }
+#map .xlink { fill: none; stroke: var(--muted); stroke-width: 1.2; stroke-dasharray: 4 4; opacity: 0.7; }
+#map .xlabel { font: 500 10.5px var(--mono); fill: var(--muted); paint-order: stroke; stroke: var(--paper); stroke-width: 5px; stroke-linejoin: round; }
+#map .root rect { fill: var(--ink); }
+#map .root text { fill: var(--bg); font: 800 17px var(--display); }
+#map .branch rect { fill: var(--paper); stroke-width: 2; }
+#map .branch text { font: 800 14px var(--display); }
+#map .leaf text { fill: var(--ink); font-size: 13px; }
+#map .leaf circle { stroke: var(--paper); stroke-width: 2; }
+#map .leaf:hover text, #map .leaf:focus text { text-decoration: underline; }
+#map .leaf:focus { outline: none; }
+#map .leaf:focus-visible circle { stroke: var(--ink); stroke-width: 2; }
+#map.dim .leaf, #map.dim .link, #map.dim .branch { opacity: 0.25; }
+#map.dim .on { opacity: 1; }
+#map .link.on { stroke: var(--muted); }
+.map-note { font-size: 0.88rem; color: var(--muted); }
+
+/* Philosophies */
+.phils { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; }
+.phil h3 { font-size: 1.2rem; }
+.phil .who { font: 500 0.78rem var(--mono); color: var(--muted); }
+.phil .unit { font: 500 0.82rem var(--mono); color: var(--c-sched); }
+.phil p { font-size: 0.92rem; }
+.week { width: 100%; height: auto; display: block; }
+.week .day { fill: var(--bg); stroke: var(--rule); }
+.week .deep { fill: var(--c-sched); }
+.week text { font: 500 9px var(--mono); fill: var(--muted); }
+.legend { display: flex; flex-wrap: wrap; gap: 6px 16px; font: 500 0.8rem var(--mono); color: var(--muted); align-items: center; }
+.sw { display: inline-block; width: 12px; height: 12px; border-radius: 2px; vertical-align: -1px; margin-right: 6px; }
+
+/* Habits */
+.habits { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.habit { border-left: 4px solid var(--c-habits); }
+.habit.t { border-left-color: var(--c-train); }
+.habit h3 { font-size: 1.05rem; }
+.habit p { font-size: 0.92rem; }
+.habit a { font: 500 0.78rem var(--mono); color: var(--muted); }
+
+/* Quotes */
+.filters { display: flex; flex-wrap: wrap; gap: 8px; }
+.filters button {
+  font: 500 0.85rem/1 var(--body); color: var(--ink); background: transparent;
+  border: 1px solid var(--rule); border-radius: 999px; padding: 8px 14px; cursor: pointer;
+}
+.filters button:hover { border-color: var(--muted); }
+.filters button[aria-pressed="true"] { background: var(--ink); color: var(--bg); border-color: var(--ink); }
+button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.quotes { display: grid; gap: 16px; }
+.quote { background: var(--paper); border: 1px solid var(--rule); border-left: 4px solid var(--b); border-radius: 6px; padding: 18px 20px; display: grid; gap: 10px; scroll-margin-top: 16px; }
+.quote[hidden] { display: none; }
+.quote .top { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.quote .chip { font: 500 0.75rem var(--mono); color: var(--b); }
+.quote blockquote { margin: 0; display: grid; gap: 10px; }
+.quote blockquote p { font-size: 0.97rem; }
+.quote .up { font: 500 0.78rem var(--mono); color: var(--muted); justify-self: start; }
+.quote.flash { animation: flash 1.4s ease-out; }
+@keyframes flash { 0% { box-shadow: 0 0 0 4px var(--marker); } 100% { box-shadow: 0 0 0 4px transparent; } }
+
+footer { color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--rule); padding-top: 16px; }
+
+@media (max-width: 760px) {
+  .defs, .habits { grid-template-columns: minmax(0, 1fr); }
+  .phils { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 460px) {
+  .phils { grid-template-columns: minmax(0, 1fr); }
+}
+</style>
+</head>
+<body>
+<main>
+  <header>
+    <span class="eyebrow">Field guide · Deep Work, Cal Newport (2016)</span>
+    <h1>Focus is getting rarer just as it gets more valuable.</h1>
+    <p class="lede">A map of the book's main ideas: why shallow work wins by default, why depth is worth the effort, and the routines that make room for it. Every quote is in full at the bottom.</p>
+    <div class="defs">
+      <div class="card">
+        <span class="tag">The thing to protect</span>
+        <h3><span class="hl">Deep work</span></h3>
+        <p>Professional activities performed in a state of distraction-free concentration that push your cognitive capabilities to their limit. These efforts create new value, improve your skill, and are hard to replicate.</p>
+      </div>
+      <div class="card shallow">
+        <span class="tag">The default</span>
+        <h3>Shallow work</h3>
+        <p>Noncognitively demanding, logistical-style tasks, often performed while distracted. These efforts tend to not create much new value in the world and are easy to replicate.</p>
+      </div>
+    </div>
+    <blockquote class="big">“The ability to perform deep work is becoming increasingly rare at exactly the same time it is becoming increasingly valuable in our economy.”<cite>The Deep Work Hypothesis</cite></blockquote>
+  </header>
+
+  <section aria-labelledby="map-h" id="map-section">
+    <span class="eyebrow">Concept map</span>
+    <h2 id="map-h">How the ideas fit together</h2>
+    <p class="lede">Five threads run through the book. Hover a thread to isolate it; click any idea to jump to the full quote. Dashed lines connect ideas across threads.</p>
+    <div class="map-wrap"><svg id="map" role="img" aria-label="Concept map of Deep Work: five threads branching from the central idea, each with the ideas and quotes that belong to it"></svg></div>
+  </section>
+
+  <section aria-labelledby="phil-h">
+    <span class="eyebrow">Making room for it</span>
+    <h2 id="phil-h">Four ways to schedule deep work</h2>
+    <p class="lede">Willpower runs out, so don't rely on it. Pick a philosophy that fits your job, then turn it into routines and rituals. Each strip is a sample week from 5am to 10pm.</p>
+    <div class="legend"><span><span class="sw" style="background:var(--c-sched)"></span>deep work</span></div>
+    <div class="phils" id="phils"></div>
+  </section>
+
+  <section aria-labelledby="habit-h">
+    <span class="eyebrow">Habits and training</span>
+    <h2 id="habit-h">Concentration is a skill, so train it</h2>
+    <p class="lede">Treat focus like a muscle, not like flossing. You can't just decide to do it tomorrow.</p>
+    <div class="habits" id="habits"></div>
+  </section>
+
+  <section aria-labelledby="q-h">
+    <span class="eyebrow">The quotes</span>
+    <h2 id="q-h">Every passage, in full</h2>
+    <div class="filters" id="filters" role="group" aria-label="Filter quotes by thread"></div>
+    <div class="quotes" id="quotes"></div>
+  </section>
+
+  <footer>
+    Quotes from <a href="https://www.worldcat.org/title/920740925">Deep Work</a> by Cal Newport (2016), collected in <a href="https://gist.github.com/lambdamusic/7e2cda91fc9bb3b9ab63ea7290e21e1b">this gist</a> by Michele Pasin. Read the <a href="/blog/2023/07/01/deep-work/">blog post</a>.
+  </footer>
+</main>
+
+<script>
+const BRANCHES = [
+  { id: "why", label: "Why depth matters", color: "var(--c-why)" },
+  { id: "shallow", label: "Why shallow wins", color: "var(--c-shallow)" },
+  { id: "sched", label: "Scheduling depth", color: "var(--c-sched)" },
+  { id: "habits", label: "Daily habits", color: "var(--c-habits)" },
+  { id: "train", label: "Training the skill", color: "var(--c-train)" },
+];
+
+const QUOTES = [
+  { id: "hypothesis", b: "why", short: "The Deep Work Hypothesis", title: "The Deep Work Hypothesis", text: [
+    `The ability to perform deep work is becoming increasingly rare at exactly the same time it is becoming increasingly valuable in our economy. As a consequence, the few who cultivate this skill, and then make it the core of their working life, will thrive.`] },
+  { id: "craft", b: "why", short: "Craftsmanship and the good life", title: "Deep work, craftsmanship and the good life", text: [
+    `Ric Furrer is a master craftsman whose work requires him to spend most of his day in a state of depth—even a small slip in concentration can ruin dozens of hours of effort. He’s also someone who clearly finds great meaning in his profession. This connection between deep work and a good life is familiar and widely accepted when considering the world of craftsmen. “The satisfactions of manifesting oneself concretely in the world through manual competence have been known to make a man quiet and easy,” explains Matthew Crawford. And we believe him.`,
+    `But when we shift our attention to knowledge work this connection is muddied. Part of the issue is clarity. Craftsmen like Furrer tackle professional challenges that are simple to define but difficult to execute—a useful imbalance when seeking purpose. Knowledge work exchanges this clarity for ambiguity. It can be hard to define exactly what a given knowledge worker does and how it differs from another: On our worst days, it can seem that all knowledge work boils down to the same exhausting roil of e-mails and PowerPoint, with only the charts used in the slides differentiating one career from another.`] },
+  { id: "flow", b: "why", short: "Flow", title: "Flow and craftsmanship", text: [
+    `Csikszentmihalyi’s work with ESM helped validate a theory he had been developing over the preceding decade: “The best moments usually occur when a person’s body or mind is stretched to its limits in a voluntary effort to accomplish something difficult and worthwhile.” Csikszentmihalyi calls this mental state flow (a term he popularized with a 1990 book of the same title). At the time, this finding pushed back against conventional wisdom. Most people assumed (and still do) that relaxation makes them happy.`] },
+  { id: "sacred", b: "why", short: "Sacredness in craftsmanship", title: "Sacredness is common to craftsmanship", text: [
+    `In 2011, Dreyfus and Kelly published a book, All Things Shining, which explores how notions of sacredness and meaning have evolved throughout the history of human culture. They set out to reconstruct this history because they’re worried about its endpoint in our current era. “The world used to be, in its various forms, a world of sacred, shining things,” Dreyfus and Kelly explain early in the book. “The shining things now seem far away.” As Dreyfus and Kelly explain, such sacredness is common to craftsmanship. The task of a craftsman, they conclude, “is not to generate meaning, but rather to cultivate in himself the skill of discerning the meanings that are already there.” This frees the craftsman of the nihilism of autonomous individualism, providing an ordered world of meaning.`] },
+
+  { id: "spiral", b: "shallow", short: "Shallow work breeds shallow work", title: "Shallow work promotes more shallow work", text: [
+    `Larger efforts that would be well served by deep thinking, such as forming a new business strategy or writing an important grant application, get fragmented into distracted dashes that produce muted quality. To make matters worse for depth, there’s increasing evidence that this shift toward the shallow is not a choice that can be easily reversed. Spend enough time in a state of frenetic shallowness and you permanently reduce your capacity to perform deep work.`] },
+  { id: "offices", b: "shallow", short: "Open offices and instant messaging", title: "Open offices, email and instant messenger systems produce massive distraction", text: [
+    `Open offices, for example, might create more opportunities for collaboration, but they do so at the cost of “massive distraction,” to quote the results of experiments conducted for a British TV special titled The Secret Life of Office Buildings. “If you are just getting into some work and a phone goes off in the background, it ruins what you are concentrating on,” said the neuroscientist who ran the experiments for the show. “Even though you are not aware at the time, the brain responds to distractions.” Similar issues apply to the rise of real-time messaging. E-mail inboxes, in theory, can distract you only when you choose to open them, whereas instant messenger systems are meant to be always active—magnifying the impact of interruption.`] },
+  { id: "least", b: "shallow", short: "The Principle of Least Resistance", title: "The Principle of Least Resistance", text: [
+    `In a business setting, without clear feedback on the impact of various behaviors to the bottom line, we will tend toward behaviors that are easiest in the moment.`] },
+  { id: "meetings", b: "shallow", short: "Regularly occurring meetings", title: "Regularly occurring meetings", text: [
+    `To name another example, consider the common practice of setting up regularly occurring meetings for projects. These meetings tend to pile up and fracture schedules to the point where sustained focus during the day becomes impossible. Why do they persist? They’re easier. For many, these standing meetings become a simple (but blunt) form of personal organization. Instead of trying to manage their time and obligations themselves, they let the impending meeting each week force them to take some action on a given project and more generally provide a highly visible simulacrum of progress.`] },
+  { id: "busyness", b: "shallow", short: "Busyness as proxy for productivity", title: "Busyness as Proxy for Productivity", text: [
+    `Knowledge workers, I’m arguing, are tending toward increasingly visible busyness because they lack a better way to demonstrate their value. Let’s give this tendency a name.`,
+    `Busyness as Proxy for Productivity: In the absence of clear indicators of what it means to be productive and valuable in their jobs, many knowledge workers turn back toward an industrial indicator of productivity: doing lots of stuff in a visible manner.`] },
+  { id: "office", b: "shallow", short: "The office is for shallow work", title: "The office is for shallow work", text: [
+    `“The office,” Dewane explains, “is for low-intensity activity.” To use our terminology, this is the space to complete the shallow efforts required by your project.`] },
+
+  { id: "rituals", b: "sched", short: "Routines and rituals", title: "Routines and Rituals", text: [
+    `This brings me to the motivating idea behind the strategies that follow: The key to developing a deep work habit is to move beyond good intentions and add routines and rituals to your working life designed to minimize the amount of your limited willpower necessary to transition into and maintain a state of unbroken concentration.`] },
+  { id: "knuth", b: "sched", short: "Donald Knuth on email", title: "Donald Knuth on emails", text: [
+    `I have been a happy man ever since January 1, 1990, when I no longer had an email address. I’d used email since about 1975, and it seems to me that 15 years of email is plenty for one lifetime. Email is a wonderful thing for people whose role in life is to be on top of things. But not for me; my role is to be on the bottom of things. What I do takes long hours of studying and uninterruptible concentration.`] },
+  { id: "monastic", b: "sched", short: "Monastic philosophy", title: "The monastic philosophy of deep work scheduling", text: [
+    `Knuth deploys what I call the monastic philosophy of deep work scheduling. This philosophy attempts to maximize deep efforts by eliminating or radically minimizing shallow obligations. Practitioners of the monastic philosophy tend to have a well-defined and highly valued professional goal that they’re pursuing, and the bulk of their professional success comes from doing this one thing exceptionally well.`] },
+  { id: "bimodal", b: "sched", short: "Bimodal philosophy", title: "The bimodal philosophy of deep work scheduling", text: [
+    `Jung did not deploy a monastic approach to deep work. Donald Knuth and Neal Stephenson, our examples from earlier, attempted to completely eliminate distraction and shallowness from their professional lives. Jung, by contrast, sought this elimination only during the periods he spent at his retreat. The rest of Jung’s time was spent in Zurich, where his life was anything but monastic: He ran a busy clinical practice.`,
+    `During the deep time, the bimodal worker will act monastically—seeking intense and uninterrupted concentration. During the shallow time, such focus is not prioritized.`,
+    `The bimodal philosophy believes that deep work can produce extreme productivity, but only if the subject dedicates enough time to such endeavors to reach maximum cognitive intensity—the state in which real breakthroughs occur. This is why the minimum unit of time for deep work in this philosophy tends to be at least one full day. To put aside a few hours in the morning, for example, is too short to count as a deep work stretch for an adherent of this approach.`] },
+  { id: "rhythmic", b: "sched", short: "Rhythmic philosophy", title: "The rhythmic philosophy of deep work scheduling", text: [
+    `This philosophy argues that the easiest way to consistently start deep work sessions is to transform them into a simple regular habit. The goal, in other words, is to generate a rhythm for this work that removes the need for you to invest energy in deciding if and when you’re going to go deep.`,
+    `…It was the glacial writing progress during this year that drove Chappell to embrace the rhythmic method. He made a rule that he would wake up and start working by five thirty every morning. He would then work until seven thirty, make breakfast, and go to work already done with his dissertation obligations for the day.`] },
+  { id: "journalistic", b: "sched", short: "Journalistic philosophy", title: "The journalistic philosophy of deep work scheduling", text: [
+    `Isaacson was methodic: Any time he could find some free time, he would switch into a deep work mode and hammer away at his book. This is how, it turns out, one can write a nine-hundred-page book on the side while spending the bulk of one’s day becoming one of the country’s best magazine writers.`,
+    `I call this approach, in which you fit deep work wherever you can into your schedule, the journalist philosophy. This name is a nod to the fact that journalists, like Walter Isaacson, are trained to shift into a writing mode on a moment’s notice, as is required by the deadline-driven nature of their profession.`,
+    `This approach is not for the deep work novice. As I established in the opening to this rule, the ability to rapidly switch your mind from shallow to deep mode doesn’t come naturally. Without practice, such switches can seriously deplete your finite willpower reserves.`] },
+
+  { id: "wig", b: "habits", short: "Focus on the wildly important", title: "Focus on the wildly important", text: [
+    `As the authors of The 4 Disciplines of Execution explain, “The more you try to do, the less you actually accomplish.” They elaborate that execution should be aimed at a small number of “wildly important goals.” This simplicity will help focus an organization’s energy to a sufficient intensity to ignite real results.`] },
+  { id: "vital", b: "habits", short: "The Law of the Vital Few", title: "The Law of the Vital Few", text: [
+    `In many settings, 80 percent of a given effect is due to just 20 percent of the possible causes.`,
+    `For example, it might be the case that 80 percent of a business’s profits come from just 20 percent of its clients, 80 percent of a nation’s wealth is held by its richest 20 percent of citizens, or 80 percent of computer software crashes come from just 20 percent of the identified bugs. There’s a formal mathematical underpinning to this phenomenon (an 80/20 split is roughly what you would expect when describing a power law distribution over impact—a type of distribution that shows up often when measuring quantities in the real world)…`] },
+  { id: "everyminute", b: "habits", short: "Schedule every minute", title: "Schedule every minute of your day", text: [
+    `These examples underscore an important point: We spend much of our day on autopilot—not giving much thought to what we’re doing with our time. This is a problem. It’s difficult to prevent the trivial from creeping into every corner of your schedule if you don’t face, without flinching, your current balance between deep and shallow work, and then adopt the habit of pausing before action and asking, “What makes the most sense right now?” The strategy described in the following paragraphs is designed to force you into these behaviors. It’s an idea that might seem extreme at first but will soon prove indispensable in your quest to take full advantage of the value of deep work: Schedule every minute of your day.`] },
+  { id: "fixed", b: "habits", short: "Fixed-schedule productivity", title: "Fixed-schedule productivity", text: [
+    `I call this commitment fixed-schedule productivity, as I fix the firm goal of not working past a certain time, then work backward to find productivity strategies that allow me to satisfy this declaration. I’ve practiced fixed-schedule productivity happily for more than half a decade now, and it’s been crucial to my efforts to build a productive professional life centered on deep work. In the pages ahead, I will try to convince you to adopt this strategy as well.`] },
+  { id: "shutdown", b: "habits", short: "Shutdown ritual", title: "Shutdown ritual", text: [
+    `Another key commitment for succeeding with this strategy is to support your commitment to shutting down with a strict shutdown ritual that you use at the end of the workday to maximize the probability that you succeed. In more detail, this ritual should ensure that every incomplete task, goal, or project has been reviewed and that for each you have confirmed that either (1) you have a plan you trust for its completion, or (2) it’s captured in a place where it will be revisited when the time is right.`,
+    `The concept of a shutdown ritual might at first seem extreme, but there’s a good reason for it: the Zeigarnik effect. This effect, which is named for the experimental work of the early-twentieth-century psychologist Bluma Zeigarnik, describes the ability of incomplete tasks to dominate our attention. It tells us that if you simply stop whatever you are doing at five p.m. and declare, “I’m done with work until tomorrow,” you’ll likely struggle to keep your mind clear of professional issues, as the many obligations left unresolved in your mind will, as in Bluma Zeigarnik’s experiments, keep battling for your attention throughout the evening (a battle that they’ll often win).`] },
+  { id: "email", b: "habits", short: "Process-centric email", title: "The process-centric approach to e-mail", text: [
+    `What is the project represented by this message, and what is the most efficient (in terms of messages generated) process for bringing this project to a successful conclusion?`,
+    `Once you’ve answered this question for yourself, replace a quick response with one that takes the time to describe the process you identified, points out the current step, and emphasizes the step that comes next. I call this the process-centric approach to e-mail, and it’s designed to minimize both the number of e-mails you receive and the amount of mental clutter they generate.`] },
+  { id: "lazy", b: "habits", short: "Be lazy", title: "Be lazy", text: [
+    `Idleness is not just a vacation, an indulgence or a vice; it is as indispensable to the brain as vitamin D is to the body, and deprived of it we suffer a mental affliction as disfiguring as rickets… it is, paradoxically, necessary to getting any work done.`] },
+
+  { id: "training", b: "train", short: "Concentration must be trained", title: "Training the deep work skill", text: [
+    `The ability to concentrate intensely is a skill that must be trained. This idea might sound obvious once it’s pointed out, but it represents a departure from how most people understand such matters. In my experience, it’s common to treat undistracted concentration as a habit like flossing—something that you know how to do and know is good for you, but that you’ve been neglecting due to a lack of motivation. This mindset is appealing because it implies you can transform your working life from distracted to focused overnight if you can simply muster enough motivation. But this understanding ignores the difficulty of focus and the hours of practice necessary to strengthen your “mental muscle.” The creative insights that Adam Marlin now experiences in his professional life, in other words, have little to do with a onetime decision to think deeper, and much to do with a commitment to training this ability early every morning.`] },
+  { id: "wrecks", b: "train", short: "Multitaskers are “mental wrecks”", title: "Multitasking makes us mental wrecks", text: [
+    `People who multitask all the time can’t filter out irrelevancy. They can’t manage a working memory. They’re chronically distracted. They initiate much larger parts of their brain that are irrelevant to the task at hand… they’re pretty much mental wrecks.`,
+    `If every moment of potential boredom in your life—say, having to wait five minutes in line or sit alone in a restaurant until a friend arrives—is relieved with a quick glance at your smartphone, then your brain has likely been rewired to a point where, like the “mental wrecks” in Nass’s research, it’s not ready for deep work—even if you regularly schedule time to practice this concentration.`] },
+  { id: "breaks", b: "train", short: "Schedule breaks from focus", title: "An alternative strategy: scheduling breaks from focus", text: [
+    `I propose an alternative to the Internet Sabbath. Instead of scheduling the occasional break from distraction so you can focus, you should instead schedule the occasional break from focus to give in to distraction.`] },
+  { id: "meditation", b: "train", short: "Productive meditation", title: "Productive meditation", text: [
+    `I spent a lot of time on my feet during this period. It was this reality that led me to develop the practice that I’ll now suggest you adopt in your own deep work training: productive meditation.`,
+    `The goal of productive meditation is to take a period in which you’re occupied physically but not mentally—walking, jogging, driving, showering—and focus your attention on a single well-defined professional problem. Depending on your profession, this problem might be outlining an article, writing a talk, making progress on a proof, or attempting to sharpen a business strategy. As in mindfulness meditation, you must continue to bring your attention back to the problem at hand when it wanders or stalls.`] },
+];
+
+// Cross-thread connections drawn as dashed arcs on the map
+// Ordered shortest span first, so arcs nest instead of crossing
+const XLINKS = [
+  ["knuth", "monastic", "an example of"],
+  ["least", "meetings", "explains"],
+  ["busyness", "fixed", "the antidote"],
+  ["spiral", "wrecks", "same damage"],
+];
+
+const SVGNS = "http://www.w3.org/2000/svg";
+const el = (tag, attrs = {}, parent) => {
+  const n = document.createElementNS(SVGNS, tag);
+  for (const [k, v] of Object.entries(attrs)) n.setAttribute(k, v);
+  if (parent) parent.appendChild(n);
+  return n;
+};
+const branchOf = id => BRANCHES.find(b => b.id === id);
+
+/* ---------- Concept map ---------- */
+(function drawMap() {
+  const svg = document.getElementById("map");
+  const W = 860, rowH = 25, gap = 18, top = 14;
+  const rootX = 10, rootW = 112, brX = 160, brW = 164, leafX = 372;
+  let y = top;
+  const pos = {};
+  const brY = {};
+  BRANCHES.forEach(b => {
+    const leaves = QUOTES.filter(q => q.b === b.id);
+    const ys = leaves.map(q => { const yy = y + rowH / 2; pos[q.id] = yy; y += rowH; return yy; });
+    brY[b.id] = (ys[0] + ys[ys.length - 1]) / 2;
+    y += gap;
+  });
+  const H = y - gap + top;
+  svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+  const rootY = (brY[BRANCHES[0].id] + brY[BRANCHES[BRANCHES.length - 1].id]) / 2;
+
+  const links = el("g", {}, svg);
+  const xg = el("g", {}, svg);
+  const nodes = el("g", {}, svg);
+  const curve = (x1, y1, x2, y2) => { const mx = (x1 + x2) / 2; return `M${x1},${y1} C${mx},${y1} ${mx},${y2} ${x2},${y2}`; };
+
+  const root = el("g", { class: "root" }, nodes);
+  el("rect", { x: rootX, y: rootY - 20, width: rootW, height: 40, rx: 20 }, root);
+  el("text", { x: rootX + rootW / 2, y: rootY + 6, "text-anchor": "middle" }, root).textContent = "Deep Work";
+
+  BRANCHES.forEach(b => {
+    el("path", { class: "link", "data-b": b.id, d: curve(rootX + rootW, rootY, brX, brY[b.id]) }, links);
+    const g = el("g", { class: "branch", "data-b": b.id, tabindex: 0 }, nodes);
+    el("rect", { x: brX, y: brY[b.id] - 16, width: brW, height: 32, rx: 16, stroke: b.color }, g);
+    el("text", { x: brX + 16, y: brY[b.id] + 5, fill: b.color }, g).textContent = b.label;
+    g.addEventListener("mouseenter", () => focusBranch(b.id));
+    g.addEventListener("mouseleave", () => focusBranch(null));
+    g.addEventListener("focus", () => focusBranch(b.id));
+    g.addEventListener("blur", () => focusBranch(null));
+    g.addEventListener("click", () => { setFilter(b.id); document.getElementById("q-h").scrollIntoView(); });
+  });
+
+  const textEnd = {};
+  QUOTES.forEach(q => {
+    const b = branchOf(q.b);
+    el("path", { class: "link", "data-b": q.b, d: curve(brX + brW, brY[q.b], leafX - 6, pos[q.id]) }, links);
+    const a = el("a", { class: "leaf", "data-b": q.b, href: "#q-" + q.id }, nodes);
+    el("circle", { cx: leafX, cy: pos[q.id], r: 5, fill: b.color }, a);
+    const t = el("text", { x: leafX + 12, y: pos[q.id] + 4.5 }, a);
+    t.textContent = q.short;
+    textEnd[q.id] = leafX + 12 + t.getComputedTextLength();
+    a.addEventListener("click", e => { e.preventDefault(); jumpTo(q.id); });
+  });
+
+  // Dashed cross-links: arcs to the right of the leaf labels
+  const rightEdge = Math.max(...Object.values(textEnd));
+  XLINKS.forEach(([from, to, label], i) => {
+    const x1 = textEnd[from] + 8, x2 = textEnd[to] + 8, y1 = pos[from], y2 = pos[to];
+    const bulge = Math.min(W - 110, rightEdge + 30 + i * 46);
+    el("path", { class: "xlink", d: `M${x1},${y1} C${bulge},${y1} ${bulge},${y2} ${x2},${y2}` }, xg);
+    const lx = bulge * 0.75 + (x1 + x2) / 8 + 6;
+    el("text", { class: "xlabel", x: lx, y: (y1 + y2) / 2 + 3 }, xg).textContent = label;
+  });
+
+  function focusBranch(id) {
+    svg.classList.toggle("dim", !!id);
+    svg.querySelectorAll("[data-b]").forEach(n => n.classList.toggle("on", n.dataset.b === id));
+  }
+})();
+
+function jumpTo(id) {
+  setFilter("all");
+  const card = document.getElementById("q-" + id);
+  card.scrollIntoView({ block: "start" });
+  card.classList.remove("flash"); void card.offsetWidth; card.classList.add("flash");
+  history.replaceState(null, "", "#q-" + id);
+}
+
+/* ---------- Scheduling philosophies as week strips ---------- */
+(function drawPhils() {
+  const PHILS = [
+    { id: "monastic", name: "Monastic", who: "Donald Knuth", unit: "unit: your whole working life",
+      desc: "Eliminate or radically cut shallow obligations. Suits people with one clear, highly valued goal.",
+      blocks: [[0,8,18],[1,8,18],[2,8,18],[3,8,18],[4,8,18],[5,9,13]] },
+    { id: "bimodal", name: "Bimodal", who: "Carl Jung", unit: "unit: at least a full day",
+      desc: "Go monastic for set stretches, like a retreat, and live a normal busy life the rest of the time.",
+      blocks: [[0,7,21],[1,7,21]] },
+    { id: "rhythmic", name: "Rhythmic", who: "Brian Chappell", unit: "unit: the same slot, every day",
+      desc: "Turn deep work into a regular habit so you never have to decide if and when to go deep.",
+      blocks: [[0,5.5,7.5],[1,5.5,7.5],[2,5.5,7.5],[3,5.5,7.5],[4,5.5,7.5]] },
+    { id: "journalistic", name: "Journalistic", who: "Walter Isaacson", unit: "unit: whenever there's a gap",
+      desc: "Switch into deep mode whenever free time appears. Not for novices: switching costs willpower.",
+      blocks: [[0,13,14],[1,20,21.5],[2,7,8],[4,12,13],[4,17,18],[5,9,11],[6,21,22]] },
+  ];
+  const host = document.getElementById("phils");
+  const H0 = 5, H1 = 22, cw = 22, ch = 102, pad = 4;
+  PHILS.forEach(p => {
+    const card = document.createElement("div");
+    card.className = "card phil";
+    card.innerHTML = `<h3>${p.name}</h3><span class="who">${p.who}</span>`;
+    const svg = el("svg", { class: "week", viewBox: `0 0 ${7 * cw + 8} ${ch + 16}`, role: "img",
+      "aria-label": `${p.name} philosophy: sample week with deep work blocks` });
+    "MTWTFSS".split("").forEach((d, i) => {
+      el("rect", { class: "day", x: i * cw + pad, y: 2, width: cw - 6, height: ch, rx: 3 }, svg);
+      el("text", { x: i * cw + pad + (cw - 6) / 2, y: ch + 13, "text-anchor": "middle" }, svg).textContent = d;
+    });
+    const sy = h => 2 + (h - H0) / (H1 - H0) * ch;
+    p.blocks.forEach(([d, s, e]) => el("rect", { class: "deep", x: d * cw + pad, y: sy(s), width: cw - 6, height: sy(e) - sy(s), rx: 2 }, svg));
+    card.appendChild(svg);
+    const rest = document.createElement("div");
+    rest.style.display = "grid"; rest.style.gap = "8px";
+    rest.innerHTML = `<span class="unit">${p.unit}</span><p>${p.desc}</p><a class="up" href="#q-${p.id}" data-jump="${p.id}" style="font:500 .78rem var(--mono);color:var(--muted)">Read the quote ↓</a>`;
+    card.appendChild(rest);
+    host.appendChild(card);
+  });
+})();
+
+/* ---------- Habits ---------- */
+(function drawHabits() {
+  const HABITS = [
+    ["shutdown", "Shut down properly", "At the end of the day, give every open task a plan you trust or a place it will be revisited. Then stop."],
+    ["everyminute", "Schedule every minute", "Give each block of the day a job. Re-plan when things shift. Ask: what makes the most sense right now?"],
+    ["fixed", "Fix your end time", "Decide when work ends, then work backwards to the strategies that make that possible."],
+    ["wig", "Pick the wildly important", "Aim at a few big goals. The more you try to do, the less you get done."],
+    ["email", "Make email do less", "Reply with the whole process and the next step, not a quick answer that invites three more messages."],
+    ["lazy", "Be lazy", "Idleness is to the brain what vitamin D is to the body. Rest is part of the work."],
+    ["breaks", "Schedule breaks from focus", "Not breaks from distraction. Distraction is the treat you allow at set times.", "t"],
+    ["meditation", "Meditate productively", "Take one hard problem on a walk, run or drive, and keep bringing your attention back to it.", "t"],
+    ["wrecks", "Tolerate boredom", "If every idle moment goes to your phone, your brain won't be ready to go deep when you ask it to.", "t"],
+  ];
+  const host = document.getElementById("habits");
+  HABITS.forEach(([id, h, p, t]) => {
+    const c = document.createElement("div");
+    c.className = "card habit" + (t ? " t" : "");
+    c.innerHTML = `<h3>${h}</h3><p>${p}</p><a href="#q-${id}" data-jump="${id}">Read the quote ↓</a>`;
+    host.appendChild(c);
+  });
+})();
+
+document.addEventListener("click", e => {
+  const a = e.target.closest("[data-jump]");
+  if (a) { e.preventDefault(); jumpTo(a.dataset.jump); }
+});
+
+/* ---------- Quotes + filters ---------- */
+const qHost = document.getElementById("quotes");
+QUOTES.forEach(q => {
+  const b = branchOf(q.b);
+  const art = document.createElement("article");
+  art.className = "quote"; art.id = "q-" + q.id; art.dataset.b = q.b;
+  art.style.setProperty("--b", b.color);
+  art.innerHTML = `<div class="top"><h3>${q.title}</h3><span class="chip">${b.label}</span></div>
+    <blockquote>${q.text.map(t => `<p>${t}</p>`).join("")}</blockquote>
+    <a class="up" href="#map-section">↑ back to the map</a>`;
+  qHost.appendChild(art);
+});
+const fHost = document.getElementById("filters");
+[{ id: "all", label: `All ${QUOTES.length}` }, ...BRANCHES].forEach(b => {
+  const btn = document.createElement("button");
+  btn.type = "button"; btn.dataset.f = b.id;
+  btn.textContent = b.id === "all" ? b.label : `${b.label} · ${QUOTES.filter(q => q.b === b.id).length}`;
+  btn.addEventListener("click", () => setFilter(b.id));
+  fHost.appendChild(btn);
+});
+function setFilter(id) {
+  fHost.querySelectorAll("button").forEach(b => b.setAttribute("aria-pressed", String(b.dataset.f === id)));
+  qHost.querySelectorAll(".quote").forEach(q => { q.hidden = id !== "all" && q.dataset.b !== id; });
+}
+setFilter("all");
+</script>
+</body>
+</html>
