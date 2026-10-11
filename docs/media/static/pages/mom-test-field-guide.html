@@ -1,0 +1,329 @@
+<title>Mom Test Field Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,800&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: an interviewer's field guide. One reading column, sections as pages of a notebook;
+   bad phrasing is struck in muted red, good phrasing marked with a highlighter swipe. */
+:root {
+  --bg: #eef1f4;
+  --paper: #fbfcfd;
+  --ink: #1b2433;
+  --muted: #5b6678;
+  --rule: #d5dbe3;
+  --marker: #f6d36b;
+  --bad: #b5473a;
+  --bad-soft: #f6e3e0;
+  --good: #1f7a6d;
+  --good-soft: #dcefeb;
+  --display: "Bricolage Grotesque", "Helvetica Neue", Arial, sans-serif;
+  --body: "IBM Plex Sans", "Helvetica Neue", Arial, sans-serif;
+  --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #12161d; --paper: #1a2029; --ink: #e6eaf0; --muted: #9aa5b5; --rule: #2d3542;
+    --marker: #8a6d14; --bad: #e58a7d; --bad-soft: #3a2222; --good: #6cc7b8; --good-soft: #17322e;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #12161d; --paper: #1a2029; --ink: #e6eaf0; --muted: #9aa5b5; --rule: #2d3542;
+  --marker: #8a6d14; --bad: #e58a7d; --bad-soft: #3a2222; --good: #6cc7b8; --good-soft: #17322e;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+body {
+  background: var(--bg); color: var(--ink);
+  font: 16px/1.6 var(--body);
+  padding-inline: 16px; padding-block: 40px 64px;
+}
+main { max-width: 860px; margin-inline: auto; display: grid; gap: 56px; }
+h1, h2, h3 { font-family: var(--display); text-wrap: balance; margin: 0; line-height: 1.1; }
+h1 { font-size: clamp(2.2rem, 6vw, 3.6rem); font-weight: 800; letter-spacing: -0.02em; }
+h2 { font-size: clamp(1.5rem, 3.4vw, 2rem); font-weight: 800; letter-spacing: -0.01em; }
+h3 { font-size: 1.15rem; font-weight: 500; }
+p { margin: 0; max-width: 65ch; }
+.eyebrow { font: 500 0.75rem/1 var(--mono); letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); }
+.lede { color: var(--muted); font-size: 1.05rem; }
+section { display: grid; gap: 20px; }
+.hl { background: linear-gradient(transparent 55%, var(--marker) 55%, var(--marker) 92%, transparent 92%); padding-inline: 2px; }
+.said { font-family: var(--mono); font-size: 0.9rem; }
+.no { color: var(--bad); text-decoration: line-through; text-decoration-thickness: 1.5px; }
+.yes { color: var(--good); }
+
+/* Hero: the three rules */
+header { display: grid; gap: 18px; }
+.rules { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.rule { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 20px; display: grid; gap: 10px; align-content: start; }
+.rule .n { font: 800 2.4rem/1 var(--display); color: var(--muted); }
+.rule .do { font: 800 1.35rem/1.15 var(--display); }
+
+/* Sorter */
+.sorter { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 8px 20px; }
+.q { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 8px 16px; align-items: center; padding-block: 14px; border-bottom: 1px solid var(--rule); }
+.q:last-of-type { border-bottom: 0; }
+.q .text { font-family: var(--mono); font-size: 0.95rem; min-width: 0; }
+.btns { display: flex; gap: 6px; }
+button {
+  font: 500 0.85rem/1 var(--body); color: var(--ink); background: transparent;
+  border: 1px solid var(--rule); border-radius: 999px; padding: 8px 14px; cursor: pointer;
+}
+button:hover { border-color: var(--muted); }
+button:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.verdict { grid-column: 1 / -1; font-size: 0.92rem; padding: 10px 12px; border-radius: 4px; }
+.verdict.pass { background: var(--good-soft); }
+.verdict.fail { background: var(--bad-soft); }
+.verdict b { font-weight: 600; }
+.score { font: 500 0.85rem var(--mono); color: var(--muted); display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; padding-block: 12px 6px; }
+.score button { padding: 6px 12px; }
+
+/* Bad data */
+.badgrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.bd { display: grid; gap: 10px; align-content: start; padding-top: 14px; border-top: 3px solid var(--ink); }
+.bd .fix { font: 800 1.2rem/1.2 var(--display); }
+.bd ul { margin: 0; padding-left: 1.1em; display: grid; gap: 4px; }
+
+/* Loop */
+.loop { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0; background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; }
+.phase { padding: 20px; display: grid; gap: 10px; align-content: start; min-width: 0; }
+.phase + .phase { border-left: 1px solid var(--rule); }
+.phase ol { margin: 0; padding-left: 1.2em; display: grid; gap: 6px; font-size: 0.95rem; }
+.back { font: 500 0.82rem var(--mono); color: var(--muted); }
+
+/* Outcomes */
+.outcomes { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+.oc { display: grid; gap: 6px; align-content: start; }
+.oc h3 { font-weight: 800; font-size: 1.3rem; }
+.currency { display: flex; flex-wrap: wrap; gap: 8px; }
+.chip { font: 500 0.8rem var(--mono); border: 1px solid var(--rule); background: var(--paper); border-radius: 999px; padding: 4px 10px; }
+.finishes { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; }
+.finishes ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 8px; }
+.finishes li { font-family: var(--mono); font-size: 0.9rem; padding: 10px 12px; border-radius: 4px; }
+.finishes .b li { background: var(--bad-soft); }
+.finishes .g li { background: var(--good-soft); }
+
+/* Audit */
+.audit { background: var(--paper); border: 1px solid var(--rule); border-radius: 6px; padding: 12px 20px; display: grid; gap: 2px; }
+.audit label { display: flex; gap: 12px; align-items: baseline; padding-block: 8px; cursor: pointer; }
+.audit input { accent-color: var(--bad); transform: translateY(2px); }
+.tally { font: 500 0.9rem var(--mono); padding-block: 10px 4px; }
+.tally.warn { color: var(--bad); }
+
+footer { color: var(--muted); font-size: 0.85rem; border-top: 1px solid var(--rule); padding-top: 16px; }
+footer a { color: inherit; }
+blockquote { margin: 0; font: 500 clamp(1.3rem, 3vw, 1.7rem)/1.25 var(--display); max-width: 30ch; }
+
+@media (max-width: 720px) {
+  .rules, .badgrid, .outcomes, .loop, .finishes { grid-template-columns: minmax(0, 1fr); }
+  .phase + .phase { border-left: 0; border-top: 1px solid var(--rule); }
+  .q { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .verdict { animation: in 180ms ease-out; }
+  @keyframes in { from { opacity: 0.4; transform: translateY(-3px); } to { opacity: 1; transform: none; } }
+}
+</style>
+
+<main>
+  <header>
+    <span class="eyebrow">Field guide · The Mom Test, Rob Fitzpatrick</span>
+    <h1>Even your mom will lie to you about your idea.</h1>
+    <p class="lede">So don't ask her about it. Three rules that make a customer conversation impossible to lie in, and the habits that turn it into facts, commitment and a next step.</p>
+    <div class="rules">
+      <div class="rule">
+        <span class="n">1</span>
+        <span class="said no">your idea</span>
+        <span class="do">Talk about <span class="hl">their life</span></span>
+        <p>Customers can't lie to you if you don't talk to them about your idea.</p>
+      </div>
+      <div class="rule">
+        <span class="n">2</span>
+        <span class="said no">generics, opinions about the future</span>
+        <span class="do">Ask about <span class="hl">specifics in the past</span></span>
+        <p>People are bad at predicting what they'd do and good at describing what they did.</p>
+      </div>
+      <div class="rule">
+        <span class="n">3</span>
+        <span class="said no">pitching</span>
+        <span class="do">Talk less, <span class="hl">listen more</span></span>
+        <p>The more you're talking, the worse you're doing.</p>
+      </div>
+    </div>
+  </header>
+
+  <section aria-labelledby="sorter-h">
+    <span class="eyebrow">Try it</span>
+    <h2 id="sorter-h">Does this question pass the Mom Test?</h2>
+    <p class="lede">Pick a verdict for each one. A question passes if even someone who loves you can't give you a misleading answer.</p>
+    <div class="sorter" id="sorter"></div>
+  </section>
+
+  <section aria-labelledby="bad-h">
+    <span class="eyebrow">Avoiding bad data</span>
+    <h2 id="bad-h">Three kinds of bad data, and what to do with each</h2>
+    <div class="badgrid">
+      <div class="bd">
+        <h3>Compliments</h3>
+        <ul class="said"><li>"That's so cool, I love it!"</li><li>"Great idea."</li></ul>
+        <span class="fix">Deflect them.</span>
+        <p>Approval doesn't make the business better. Steer back to their life.</p>
+      </div>
+      <div class="bd">
+        <h3>Fluff</h3>
+        <ul class="said"><li>"I usually…"</li><li>"I would totally pay for that."</li><li>"I might use something like this."</li></ul>
+        <span class="fix">Anchor it.</span>
+        <p>Pin generic and future claims to a real instance: "When did that last happen?"</p>
+      </div>
+      <div class="bd">
+        <h3>Opinions, ideas, requests, emotions</h3>
+        <ul class="said"><li>"You should add X."</li><li>"That drives me crazy."</li></ul>
+        <span class="fix">Dig beneath them.</span>
+        <p>"What would that let you do? How are you coping without it? Why haven't you fixed this already?"</p>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="loop-h">
+    <span class="eyebrow">The process</span>
+    <h2 id="loop-h">Before, during and after every conversation</h2>
+    <div class="loop">
+      <div class="phase">
+        <h3>Before</h3>
+        <ol>
+          <li>Choose a focused, findable segment.</li>
+          <li>With your team, decide the big 3 learning goals.</li>
+          <li>Decide the ideal next steps and commitments.</li>
+          <li>Write best guesses about what they care about.</li>
+          <li>Answer anything you can with desk research first.</li>
+        </ol>
+      </div>
+      <div class="phase">
+        <h3>During</h3>
+        <ol>
+          <li>Frame it and keep it casual.</li>
+          <li>Ask questions that pass the Mom Test.</li>
+          <li>Deflect compliments, anchor fluff, dig beneath signals.</li>
+          <li>Take good notes.</li>
+          <li>Press for commitment and next steps.</li>
+        </ol>
+      </div>
+      <div class="phase">
+        <h3>After</h3>
+        <ol>
+          <li>Review notes and key quotes with the team.</li>
+          <li>Move notes into permanent storage.</li>
+          <li>Update your beliefs and plans.</li>
+          <li>Decide the next 3 big questions.</li>
+        </ol>
+        <span class="back">↺ back to Before</span>
+      </div>
+    </div>
+    <blockquote>"What do we want to learn from these guys?"</blockquote>
+  </section>
+
+  <section aria-labelledby="out-h">
+    <span class="eyebrow">Results of a good meeting</span>
+    <h2 id="out-h">Facts, commitment, advancement</h2>
+    <div class="outcomes">
+      <div class="oc"><h3>Facts</h3><p>Concrete, specific facts about what they do and why they do it.</p></div>
+      <div class="oc"><h3>Commitment</h3><p>They show they're serious by giving up something they value.</p>
+        <div class="currency"><span class="chip">time</span><span class="chip">reputation</span><span class="chip">cash</span></div></div>
+      <div class="oc"><h3>Advancement</h3><p>They move to the next step of your real-world funnel, closer to a sale.</p></div>
+    </div>
+    <p>It isn't a real lead until you've given them a concrete chance to reject you. If you don't know what happens next, the meeting was pointless.</p>
+    <div class="finishes">
+      <div class="b"><h3 class="no" style="text-decoration:none">Bad finishes</h3><ul>
+        <li>"That's so cool. I love it!"</li><li>"Looks great. Let me know when it launches."</li><li>"I would definitely buy that."</li></ul></div>
+      <div class="g"><h3 class="yes">Good finishes</h3><ul>
+        <li>"What are the next steps?"</li><li>"When can we start the trial?"</li><li>"Can I buy the prototype?"</li><li>"When can you come back to talk to the rest of the team?"</li></ul></div>
+    </div>
+  </section>
+
+  <section aria-labelledby="audit-h">
+    <span class="eyebrow">After your next meeting</span>
+    <h2 id="audit-h">Were you just going through the motions?</h2>
+    <p class="lede">Tick anything that was true.</p>
+    <div class="audit" id="audit"></div>
+  </section>
+
+  <footer>
+    From the cheat sheet in <a href="https://www.momtestbook.com/">The Mom Test</a> by Rob Fitzpatrick, with points from Martin Verrev's TalTech lecture "Talking to Customers".
+  </footer>
+</main>
+
+<script>
+const QUESTIONS = [
+  ["Do you think it's a good idea?", false, "Only the market can tell you that. This asks for an opinion, and invites a compliment."],
+  ["Talk me through the last time that happened.", true, "A specific event in the past. You get what they actually did."],
+  ["Would you buy a product that did X?", false, "A hypothetical about the future. People are optimistic about what they'd do."],
+  ["What else have you tried?", true, "Shows whether the problem matters enough that they've already looked for a fix."],
+  ["How much would you pay for X?", false, "Same problem as the last one: a number they'll never be held to."],
+  ["How are you dealing with it now? What does it cost you?", true, "Their current workaround and its cost tell you if there's real pain, and give a price anchor."],
+  ["Would you use a service like this?", false, "Fluff. A polite yes costs them nothing."],
+  ["Why haven't you been able to fix this already?", true, "Digs beneath an emotional signal to find what's really in the way."],
+];
+const sorter = document.getElementById("sorter");
+let answered = 0, right = 0;
+const score = document.createElement("div");
+score.className = "score";
+function renderScore() {
+  score.innerHTML = `<span>${answered} of ${QUESTIONS.length} sorted · ${right} correct</span>`;
+  const reset = document.createElement("button");
+  reset.type = "button"; reset.textContent = "Start again";
+  reset.addEventListener("click", build);
+  score.appendChild(reset);
+}
+function build() {
+  sorter.innerHTML = ""; answered = 0; right = 0;
+  QUESTIONS.forEach(([text, passes, why], i) => {
+    const row = document.createElement("div");
+    row.className = "q";
+    row.innerHTML = `<span class="text">"${text}"</span>
+      <span class="btns"><button type="button" id="q${i}p" data-v="1">Passes</button><button type="button" id="q${i}f" data-v="0">Fails</button></span>`;
+    row.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {
+      const guess = b.dataset.v === "1";
+      answered++; if (guess === passes) right++;
+      row.querySelector(".btns").remove();
+      const v = document.createElement("div");
+      v.className = "verdict " + (passes ? "pass" : "fail");
+      v.innerHTML = `<b>${passes ? "Passes" : "Fails"}${guess === passes ? " · you got it" : " · not quite"}.</b> ${why}`;
+      row.appendChild(v);
+      renderScore();
+    }));
+    sorter.appendChild(row);
+  });
+  renderScore();
+  sorter.appendChild(score);
+}
+build();
+
+const SIGNS = [
+  "You talked more than they did.",
+  "They complimented you or your idea.",
+  "You told them your idea and don't know what happens next.",
+  "You don't have notes.",
+  "You haven't looked through your notes with your team.",
+  "You got an unexpected answer and it didn't change your idea.",
+  "You weren't scared of any of the questions you asked.",
+  "You aren't sure which big question this was meant to answer.",
+  "You aren't sure why you had the meeting.",
+];
+const audit = document.getElementById("audit");
+const tally = document.createElement("div");
+tally.className = "tally";
+function updateTally() {
+  const n = audit.querySelectorAll("input:checked").length;
+  tally.textContent = n === 0 ? "No warning signs ticked." : `${n} of ${SIGNS.length} warning signs. Go back over your notes and plan the next 3 big questions.`;
+  tally.classList.toggle("warn", n > 0);
+}
+SIGNS.forEach((s, i) => {
+  const l = document.createElement("label");
+  l.setAttribute("for", "sign" + i);
+  l.innerHTML = `<input type="checkbox" id="sign${i}"><span>${s}</span>`;
+  l.querySelector("input").addEventListener("change", updateTally);
+  audit.appendChild(l);
+});
+audit.appendChild(tally);
+updateTally();
+</script>
