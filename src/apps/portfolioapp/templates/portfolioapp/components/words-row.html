@@ -1,0 +1,25 @@
+{% load extrafilters %}{% comment %}
+  One entry in the Words listing, timeline style: month in a narrow left
+  column; title; a one-sentence excerpt (blogs) or the venue (papers and
+  talks, marked with their type); then category and tags. Used by the blogs,
+  category and tag views of pages/words.html. Only blogs carry tags today, so
+  tag views list blogs only, but the non-blog branch is ready for when they do.
+  Expects `pub`, a Publication.
+{% endcomment %}
+<article class="wordrow">
+  <div class="wordrow-month">{{pub.pubdate|date:"M"}}</div>
+  <div class="wordrow-body">
+    <p class="wordrow-title"><a href="{{pub.get_absolute_url}}">{{pub.title|capfirst}}</a></p>
+    {% if pub.pubtype.name == "Blog" %}
+      {% with excerpt=pub.abstract|first_sentence %}{% if excerpt %}<p class="wordrow-excerpt">{{excerpt}}</p>{% endif %}{% endwith %}
+    {% else %}
+      <p class="wordrow-excerpt wordrow-venue">{% if pub.journal %}{{pub.journal}}{% elif pub.conference %}{{pub.conference}}{% endif %}{% if pub.pubplace %}{% if pub.journal or pub.conference %} &middot; {% endif %}{{pub.pubplace}}{% endif %}{% if pub.isforthcoming %} &middot; <span class="forthcoming">forthcoming</span>{% endif %}</p>
+    {% endif %}
+    <p class="wordrow-meta">
+      {% if pub.pubtype.name != "Blog" %}<span class="wordrow-kind">{{pub.pubtype.name}}</span>{% endif %}
+      {% for c in pub.categories.all %}<a class="wordrow-cat" href="?query=date&amp;type=blogs&amp;ctype={{c.name}}">{{c.name|category_label}}</a>{% if not forloop.last %} <span class="sep">/</span> {% endif %}{% endfor %}
+      {% with tags=pub.tags.all %}{% if tags %}<span class="sep">&middot;</span>
+      {% for t in tags %}<a class="wordrow-tag" href="?tag={{t.name}}&amp;type=all">#{{t.name}}</a> {% endfor %}{% endif %}{% endwith %}
+    </p>
+  </div>
+</article>

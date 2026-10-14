@@ -243,3 +243,38 @@ def render_markdown(md):
 
 
 
+
+
+import re
+import html as _html
+
+@register.filter(name='first_sentence')
+def first_sentence(md):
+	"""First sentence of a markdown text, as plain text - the excerpt shown
+	under each post in the Words listings. Empty string if there's no prose
+	(eg a post that opens with an image or an embed)."""
+	try:
+		text = re.sub(r'<[^>]+>', '', markdown.markdown(md or ''))
+	except Exception:
+		text = md or ''
+	text = re.sub(r'\s+', ' ', _html.unescape(text)).strip()
+	m = re.search(r'^(.{40,}?[.!?])(\s|$)', text)
+	return m.group(1) if m else text
+
+
+# display labels for the blog categories - same wording as the left rail
+# (components/site-rail.html); keys are researchapp/category_vocabulary.py
+CATEGORY_LABELS = {
+	"computermusic": "Computer Music",
+	"data-science": "Data Science",
+	"digital-humanities": "Digital Humanities",
+	"justblogging": "Just Blogging",
+	"knowledge-engineering": "Knowledge Engineering",
+	"research-analytics": "Research Analytics",
+	"techlife": "TechLife",
+}
+
+@register.filter(name='category_label')
+@stringfilter
+def category_label(slug):
+	return CATEGORY_LABELS.get(slug, slug)

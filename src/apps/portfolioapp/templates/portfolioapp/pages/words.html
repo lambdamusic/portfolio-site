@@ -81,6 +81,9 @@
 
       {% for pub in group_and_pubs.1 %}
 
+        {% if ttype == 'blogs' or tag %}
+        {% include "portfolioapp/components/words-row.html" %}
+        {% else %}
         <article class="pubitem">
 
           {% if pub.pubtype.name == "Blog" %}
@@ -110,11 +113,12 @@
 
           {% endif %}
 
-          {% if ttype == 'latest' or tag %}
+          {% if ttype == 'latest' %}
             <div class="pubabstract">{{pub.abstract|markdown|striptags}}</div>
           {% endif %}
 
         </article>
+        {% endif %}
 
       {% endfor %}
 

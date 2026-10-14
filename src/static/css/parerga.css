@@ -442,6 +442,51 @@ a.project-active:hover { color: #fff !important; }
   font-size: .95rem;
 }
 
+/* timeline rows (components/words-row.html) - the blogs, category and tag
+   views: month in a narrow left column, then title, a one-sentence excerpt
+   clamped to two lines, and the category and tags in small quiet type */
+.wordrow {
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 0 .75rem;
+  padding: .9rem 0;
+  border-top: 1px solid var(--rule);
+}
+.pubgroup .wordrow:first-of-type { border-top: 0; }
+.wordrow-month {
+  padding-top: .25rem;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.wordrow-title { margin: 0 0 .2rem; font-weight: 700; line-height: 1.35; }
+.wordrow-excerpt {
+  margin: 0 0 .3rem;
+  font-size: .92rem;
+  line-height: 1.5;
+  color: var(--body);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.wordrow-venue { font-style: italic; }
+.wordrow-venue .forthcoming { color: var(--accent); font-style: normal; }
+.wordrow-meta { margin: 0; font-size: .75rem; line-height: 1.5; color: var(--muted); }
+.wordrow-meta a.wordrow-cat,
+.wordrow-kind {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .05em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.wordrow-kind { color: var(--accent); margin-right: .25rem; }
+.wordrow-meta a.wordrow-tag { font-weight: 400; color: var(--muted); white-space: nowrap; }
+.wordrow-meta a:hover { color: var(--accent); }
+
 /* kind marker: "blog" / "paper" - the old theme had no badges, so these
    become small uppercase words rather than coloured pills */
 .kind {
