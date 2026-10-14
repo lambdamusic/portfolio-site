@@ -54,7 +54,7 @@
 
           {% if return_item.datefrom %}
             <dt>Date</dt>
-            <dd>{{return_item.datefrom|date:"M Y"}}{% if return_item.dateto %} &ndash; {{return_item.dateto|date:"M Y"}}{% endif %}</dd>
+            <dd>{{return_item.datefrom|date:"M Y"}}{% if return_item.dateto %} &ndash; {{return_item.dateto|date:"M Y"}}{% elif return_item.isactive %} &ndash; present{% endif %}</dd>
           {% endif %}
 
           {% if return_item.all_urls %}
@@ -87,12 +87,12 @@
     <p class="sectionlabel"><b>Projects</b> <span class="sep">/</span> all of them</p>
     <div class="tilegrid">
       {% for p in ALL_PROJECTS %}
-        <div class="thumb-div">
+        <div class="thumb-div{% if p.id == return_item.id %} is-selected{% endif %}">
           <a href="{{p.get_absolute_url}}" class="thumbnail" title="{{p.title}}: {{p.short_title|truncatewords:10}}">
             <img class="thumb-img" src="{% static 'manual_img/' %}{{ p.urlstub|lower }}/thumb.png" alt="{{p.title}}">
           </a>
           <p class="thumb-title">
-            <a class="project-title {% if p.id == return_item.id %}is-current{% endif %}" href="{{p.get_absolute_url}}">{{p.title}}</a><br>
+            <a class="project-title {% if p.id == return_item.id %}is-current{% endif %}" href="{{p.get_absolute_url}}">{{p.title}}</a><br>{% if p.datefrom %}{% include "portfolioapp/components/project-years.html" %}<br>{% endif %}
             {% for t in p.tags.all %}<a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="keyword-sm">{{t.name}}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
           </p>
         </div>

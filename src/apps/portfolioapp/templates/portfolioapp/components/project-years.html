@@ -1,0 +1,5 @@
+{% comment %}
+  Years line under a project title in the project grids (`/projects/` and the
+  grid under each project page). Start year, then the end year if different;
+  an active project runs to the current year. Expects `p`, a Project.
+{% endcomment %}{% now "Y" as thisyear %}{% with start=p.datefrom|date:"Y" %}<span class="project-year">{{start}}{% if p.isactive %}{% if start != thisyear %}&ndash;{{thisyear}}{% endif %}{% elif p.dateto %}{% with end=p.dateto|date:"Y" %}{% if end != start %}&ndash;{{end}}{% endif %}{% endwith %}{% endif %}</span>{% endwith %}

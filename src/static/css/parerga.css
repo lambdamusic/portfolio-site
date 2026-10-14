@@ -767,6 +767,23 @@ a.project-title {
   text-decoration: none;
 }
 a.project-title:hover { color: var(--accent); background: none; }
+/* years line under the title in the project grids: its own line, so the
+   rows stay aligned however long the range; quiet enough not to compete */
+.project-year {
+  font-weight: 400;
+  font-size: .8rem;
+  line-height: 1.5;
+  color: var(--muted);
+}
+
+/* the project being viewed, in the grid under its detail page: its thumbnail
+   gets a 3px red frame (border + 2px shadow, so the tile doesn't change size and
+   shift its neighbours); the title keeps its .is-current label */
+.thumb-div.is-selected a.thumbnail,
+.thumb-div.is-selected a.thumbnail:hover {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent);
+}
 
 .keyword, .keyword-sm {
   font-style: normal;
