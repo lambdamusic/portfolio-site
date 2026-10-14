@@ -632,6 +632,10 @@ a.project-active:hover { color: #fff !important; }
 
 .embedframe { margin: 0 0 calc(var(--step) * 2); }
 .embedframe iframe { display: block; border: 1px solid var(--rule); max-width: 100%; }
+/* a Google Form brings its own card borders, so no frame of ours; it also
+   centres a card of at most 640px inside a ~32px gutter, so the iframe is
+   pulled left by that gutter to line the card up with the text column */
+.embedframe--form iframe { border: 0; width: calc(100% + 64px); max-width: 704px; margin-left: -32px; }
 .pdfframe { display: block; border: 1px solid var(--rule); margin: var(--step) 0; }
 
 .address { font-size: .95rem; line-height: 1.7; }
@@ -922,6 +926,8 @@ a.ext_link:hover { color: var(--accent); }
   .ghostdate--lg { font-size: 2.25rem; }
 
   .thumb-img { height: 130px; }
+
+  .embedframe--form iframe { width: 100%; margin-left: 0; }
 
   /* map above the list rather than beside it; hover linking is pointless on
      touch, so it becomes a plain overview picture */
