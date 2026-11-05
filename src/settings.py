@@ -49,6 +49,10 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'urls'
 
+# The public site. Pages are rendered from 127.0.0.1:8000 and mirrored with wget,
+# so absolute URLs (canonical, feed, sitemap) must use this, never the request host.
+SITE_URL = 'https://www.michelepasin.org'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -60,6 +64,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'portfolioapp.context_processors.site_url',
             ],
         },
     },

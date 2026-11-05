@@ -34,9 +34,10 @@ APP = "portfolioapp"
 
 def home(request):
 	"""
-	just an index of what's available  in /static for this app
+	the homepage is the projects grid, served at / (not redirected) so the
+	homepage keeps its own URL; its canonical is / too (see pages/projects.html)
 	"""
-	return redirect('/projects')
+	return projects(request)
 
 
 

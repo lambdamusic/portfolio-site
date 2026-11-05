@@ -33,8 +33,16 @@
     <meta name="author" content="Michele Pasin">
 
     {% block metadescription %}
-      <meta name="description" property="og:description" content="{{return_item.convert_in_meta|default:' Portfolio website of Michele Pasin - computer science ontology knowledge graph digital humanities knowledge engineering pilosophy livecoding algorithmic composition'}}">
+      {% with desc=return_item.convert_in_meta|default:"Michele Pasin's website: projects, papers and writing on ontology engineering, knowledge graphs, AI, digital humanities and livecoding." %}
+        <meta name="description" content="{{ desc }}">
+        <meta property="og:description" content="{{ desc }}">
+      {% endwith %}
     {% endblock %}
+
+    {# Canonical is always the clean /x/ URL. Filtered views (?k=, ?query=, ?tag=, ...) #}
+    {# get mirrored by wget as separate files, so keep them out of the index. #}
+    <link rel="canonical" href="{{ SITE_URL }}{% block canonical_path %}{{ request.path }}{% endblock %}">
+    {% block robots %}{% if request.GET %}<meta name="robots" content="noindex,follow">{% endif %}{% endblock robots %}
 
     <link rel="icon" href="{% static 'favicon.ico' %}">
     <link rel="alternate" type="application/rss+xml" title="michelepasin.org" href="{% url 'portfolioapp:words-feed' %}">

@@ -249,6 +249,21 @@ def parse_markdown(full_file_path, verbose=False):
 		
 
 
+def parse_description(full_file_path):
+	"""Return the optional `description:` frontmatter field of a post, or ""."""
+	with open(full_file_path) as f:
+		separators = 0
+		for l in f:
+			if l == "---\n":
+				separators += 1
+				if separators == 2:
+					break
+			elif l.startswith("description: "):
+				return l.replace("description: ", "").strip().strip('"')
+	return ""
+
+
+
 def reset_blogs_db(verbose=False, force=False):
 	"""Utility to delete all blog entries from DB
 	

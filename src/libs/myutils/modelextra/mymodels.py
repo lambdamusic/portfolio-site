@@ -2,11 +2,31 @@
 Django Extensions abstract base model classes.
 """
 
+import re
+
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 import myutils.modelextra.myfields as myfields
+
+
+def meta_description(text, fallback=""):
+    """Plain-text meta description: Markdown/HTML stripped, cut at ~155 chars on
+    a word boundary. Returns `fallback` when nothing is left."""
+    text = str(text or "")
+    text = re.sub(r"```.*?```", "", text, flags=re.S)  # fenced code
+    text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", text)  # images
+    text = re.sub(r"\[([^\]]*)\]\([^)]*\)", r"\1", text)  # links -> their text
+    text = re.sub(r"<[^>]+>", "", text)  # HTML tags
+    text = re.sub(r"[*`#>]+|(?<!\w)_+|_+(?!\w)", "", text)  # Markdown emphasis, headings, quotes
+    text = " ".join(text.split())
+    if not text:
+        return str(fallback or "")
+    if len(text) > 155:
+        text = text[:155].rsplit(" ", 1)[0].rstrip(",;:.-") + "…"
+    return text
+
 
 # the hierarchy:
 
@@ -113,16 +133,11 @@ class EnhancedModel(TimeStampedModel):
 
     @property
     def convert_in_meta(self):
-        """Util to create a meta description text for search engines indexing
+        """Util to create a meta description text for search engines indexing,
+        from the description (see `meta_description`), else the title.
         See https://stackoverflow.com/questions/66930647/can-you-add-html-meta-description-to-django-blog-post-model
         """
-        title = (self.title)[0:50]
-        try:
-            description = (self.description)[0:100]
-        except: 
-            description = ""
-        meta_text = title + str(description)
-        return meta_text
+        return meta_description(getattr(self, "description", ""), getattr(self, "title", ""))
 
 
     class Meta:

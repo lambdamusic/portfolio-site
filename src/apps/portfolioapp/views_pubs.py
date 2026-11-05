@@ -23,7 +23,8 @@ from researchapp.models import *
 from researchapp.topics import *
 from researchapp.pub_locations import coords_for
 
-from researchapp.management.commands.do_blogs_reindex import parse_markdown
+from researchapp.management.commands.do_blogs_reindex import parse_markdown, parse_description
+from myutils.modelextra.mymodels import meta_description
 
 APP = "portfolioapp"
 
@@ -229,6 +230,7 @@ def blog_detail(request, year="", month="", day="", namedetail=""):
 		'itempubdate': return_item.pubdate,
 		'blog_source_file': blog_source_file,
 		'blog_entry': html_blog_entry,
+		'meta_description': parse_description(blog_source_file) or meta_description(PURE_MARKDOWN, return_item.title),
 		'year': return_item.pubdate.year,
 		'all_urls': return_item.all_urls(),
 		'type': pubtypegroup,
