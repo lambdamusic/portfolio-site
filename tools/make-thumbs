@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+#
+# Make the web thumbnail for each project: src/static/manual_img/<urlstub>/thumb.jpg
+# from the thumb.png next to it, which stays the source (add or replace a project's
+# image by dropping in a new thumb.png). The grids load thumb.jpg - the PNGs were
+# ~6MB for the 42 tiles on the homepage, the JPEGs are a fraction of that.
+#
+# - at most 600px wide: the tiles show at ~270px, so this covers 2x screens
+# - quality 80, via macOS `sips` (no extra dependencies)
+# - only redone when thumb.png is newer than thumb.jpg, so it is cheap to run on
+#   every build (tools/site-dump does)
+#
+# NOTE: JPEG has no transparency. On 2026-11-05 none of the thumbnails had any
+# (26 had an alpha channel, all fully opaque); a transparent PNG would come out
+# with its transparent areas filled in.
+
+set -euo pipefail
+
+cd "$(dirname "$0")/../src/static/manual_img"
+
+MAX_W=600
+made=0
+
+for png in */thumb.png; do
+    jpg="${png%.png}.jpg"
+    if [ -f "$jpg" ] && [ "$jpg" -nt "$png" ]; then
+        continue
+    fi
+    w=$(sips -g pixelWidth "$png" | awk '/pixelWidth/{print $2}')
+    if [ "$w" -gt "$MAX_W" ]; then
+        sips -s format jpeg -s formatOptions 80 --resampleWidth "$MAX_W" "$png" --out "$jpg" >/dev/null
+    else
+        sips -s format jpeg -s formatOptions 80 "$png" --out "$jpg" >/dev/null
+    fi
+    made=$((made + 1))
+done
+
+echo "make-thumbs: $made thumbnail(s) written."

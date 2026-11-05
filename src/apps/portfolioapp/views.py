@@ -184,14 +184,14 @@ def projects(request, namedetail=""):
 		# load images from manually managed folder
 
 		project_images_names = []
-		THUMBS_FILE = "thumb.png"
+		THUMBS_FILES = ["thumb.png", "thumb.jpg"]  # the grid thumbnail, not part of the gallery
 
 		project_images_dir = STATICFILES_DIRS[
 			0] + "/manual_img/" + return_item.urlstub
 		if os.path.exists(project_images_dir):
 			for f in os.listdir(project_images_dir):
 				if os.path.isfile(os.path.join(project_images_dir, f)):
-					if not f.startswith(".") and f != THUMBS_FILE:
+					if not f.startswith(".") and f not in THUMBS_FILES:
 						project_images_names += [f]
 
 		if request.user.is_superuser:

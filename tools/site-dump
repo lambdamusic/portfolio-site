@@ -114,6 +114,10 @@ rm -rf $DIR_BUILD/*
 # this directory (-X, plus -nc as a belt-and-braces check) since it's already
 # in place.
 #
+echo -e "\nMAKING PROJECT THUMBNAILS.."
+echo "+++++++++++++++++"
+tools/make-thumbs
+
 echo -e "\nCOLLECTING STATIC ASSETS.."
 echo "+++++++++++++++++"
 src/manage.py collectstatic --noinput -c
