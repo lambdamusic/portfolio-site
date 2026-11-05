@@ -11,7 +11,9 @@ Every URL is absolute and built from SITE_URL, since the pages are rendered on
 """
 
 import json
+import os
 import re
+from urllib.parse import unquote
 
 from django.conf import settings
 from django.templatetags.static import static
@@ -231,6 +233,13 @@ def project_image(p):
 
 
 def first_image(html):
-	"""absolute URL of the first <img> in some rendered HTML, or an empty string"""
-	m = re.search(r'<img[^>]+src="([^"]+)"', html or "")
-	return absolute(m.group(1)) if m else ""
+	"""absolute URL of the first <img> in some rendered HTML that exists, or an
+	empty string. Old posts link some images that were never copied over (#8):
+	skip those rather than put a broken image on the social card."""
+	for src in re.findall(r'<img[^>]+src="([^"]+)"', html or ""):
+		if src.startswith(settings.STATIC_URL):
+			path = os.path.join(settings.STATICFILES_DIRS[0], unquote(src[len(settings.STATIC_URL):]))
+			if not os.path.isfile(path):
+				continue
+		return absolute(src)
+	return ""
