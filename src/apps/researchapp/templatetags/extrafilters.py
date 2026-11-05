@@ -2,6 +2,8 @@ from django import template
 from django.template.defaultfilters import stringfilter
 import random
 
+from myutils.modelextra.mymodels import meta_description as _meta_description
+
 register = template.Library()
 
 
@@ -278,3 +280,10 @@ CATEGORY_LABELS = {
 @stringfilter
 def category_label(slug):
 	return CATEGORY_LABELS.get(slug, slug)
+
+
+
+@register.filter
+def meta_description(value):
+	"""plain-text meta description from Markdown/HTML, cut at ~155 chars"""
+	return _meta_description(value)

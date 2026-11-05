@@ -2,8 +2,8 @@
 # encoding: utf-8
 
 """
-robots.txt and sitemap.xml. Both are fetched explicitly by tools/site-dump,
-since wget only mirrors what pages link to.
+robots.txt, sitemap.xml and the section-root redirects. All are fetched
+explicitly by tools/site-dump, since wget only mirrors what pages link to.
 """
 
 from django.conf import settings
@@ -13,6 +13,11 @@ from django.shortcuts import render
 from django.urls import reverse
 
 from researchapp.models import Publication, Project, Item
+
+
+def section_redirect(request, target="/"):
+	"""a section root with no page of its own, e.g. /blog/ -> /words/"""
+	return render(request, 'portfolioapp/pages/section-redirect.html', {'target': target})
 
 
 def robots_txt(request):

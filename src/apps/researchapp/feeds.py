@@ -1,3 +1,6 @@
+import markdown
+
+from django.conf import settings
 from django.contrib.syndication.views import Feed
 from researchapp.models import *
 from django.urls import reverse
@@ -9,7 +12,8 @@ from settings import BLOGS_ROOT
 
 class LatestPubsFeed(Feed):
 	title = "The news feed of www.michelepasin.org"
-	link = "http://www.michelepasin.org/words/"
+	link = settings.SITE_URL + "/words/"
+	feed_url = settings.SITE_URL + "/feed.xml"  # else the self link is the local dev server
 	description = "Latest articles, blogs posts and news"
 
 	def items(self):
@@ -22,7 +26,9 @@ class LatestPubsFeed(Feed):
 	def item_description(self, item):
 		if "blog" in item.pubtype.name.lower():
 			TITLE, DATE, REVIEW, CATS, TAGS, PURE_MARKDOWN = parse_markdown(BLOGS_ROOT + item.md_file)
-			return str(PURE_MARKDOWN)[:1000] + " ..."
+			html = markdown.markdown(PURE_MARKDOWN, extensions=['fenced_code'])
+			# root-relative links and images only work on the site itself
+			return html.replace('src="/', f'src="{settings.SITE_URL}/').replace('href="/', f'href="{settings.SITE_URL}/')
 		else:
 			return str(item.abstract)
 
@@ -33,8 +39,8 @@ class LatestPubsFeed(Feed):
 
 	def item_link(self, item):
 		url = item.get_absolute_url()
-		# NOTE hardcode url to avoid localhost interference
-		return "https://www.michelepasin.org" + url
+		# NOTE SITE_URL, to avoid localhost interference
+		return settings.SITE_URL + url
 
 
 # class LatestVideosFeed(Feed):

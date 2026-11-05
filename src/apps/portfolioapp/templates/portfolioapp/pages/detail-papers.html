@@ -4,7 +4,7 @@
 
 
 {% block metadescription %}
-  <meta name="description" content="{{itemtitle}} {{abstract|striptags|truncatewords:25}}">
+  {% include "portfolioapp/components/meta-description.html" with desc=abstract|meta_description|default:itemtitle %}
 {% endblock %}
 
 

@@ -142,9 +142,13 @@ cp -R collectstatic/portfolioapp $DIR_BUILD/media/static
 #
 echo -e "\nWGET SITE INTO TEMP BUILD DIRECTORY.."
 echo "+++++++++++++++++"
-# robots.txt and sitemap.xml are listed explicitly: no page links to them, so
-# recursion alone would never fetch them (views_seo.py builds both).
-wget  -P $DIR_BUILD -mkEpnp -nH -nc http://127.0.0.1:8000/ http://127.0.0.1:8000/robots.txt http://127.0.0.1:8000/sitemap.xml --exclude-domains www.michelepasin.org
+# robots.txt, sitemap.xml, the feed and the /blog/ and /papers/ roots are
+# listed explicitly: no page links to them (or only from <head>), so recursion
+# alone might never fetch them (see views_seo.py).
+wget  -P $DIR_BUILD -mkEpnp -nH -nc http://127.0.0.1:8000/ \
+    http://127.0.0.1:8000/robots.txt http://127.0.0.1:8000/sitemap.xml http://127.0.0.1:8000/feed.xml \
+    http://127.0.0.1:8000/blog/ http://127.0.0.1:8000/papers/ http://127.0.0.1:8000/latest/feed/ \
+    --exclude-domains www.michelepasin.org
 
 #
 # PRUNE UNUSED STATIC ASSETS

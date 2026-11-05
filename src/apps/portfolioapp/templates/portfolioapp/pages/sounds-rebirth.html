@@ -1,11 +1,16 @@
 {% extends "portfolioapp/components/base.html" %}
+{% load static %}
+{% load extrafilters %}
 
 {% comment %} a real page behind ?k=, which the static site only has as wget's
    index.html%3Fk=… file: make that file the canonical and keep it indexable {% endcomment %}
 {% block canonical_path %}/sounds/index.html%3Fk=rebirth.html{% endblock canonical_path %}
 {% block robots %}{% endblock robots %}
-{% load static %}
 
+
+{% block metadescription %}
+  {% include "portfolioapp/components/meta-description.html" with desc=items.0.description|meta_description|default:items.0.short_title %}
+{% endblock metadescription %}
 
 {% block pagetitle %}
   <title>Sounds: Rebirth Fever | Michele Pasin</title>
