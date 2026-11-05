@@ -68,12 +68,13 @@ def jsonld(*nodes):
 	return json.dumps(data, ensure_ascii=False, indent=1).replace("</", "<\\/")
 
 
-def seo_context(nodes=(), og_type="website", og_title="", og_image=""):
+def seo_context(nodes=(), og_type="website", og_title="", og_image="", citation_meta=()):
 	return {
 		'jsonld': jsonld(*nodes) if nodes else "",
 		'og_type': og_type,
 		'og_title': og_title,
 		'og_image': og_image,
+		'citation_meta': citation_meta,
 	}
 
 
@@ -151,16 +152,63 @@ def blog_posting(pub, description, image=""):
 	return node
 
 
+def _author_names(pub):
+	"""(first names, surname) of the publication's authors, in order"""
+	people = [(a.person.name or "", a.person.surname or "")
+		for a in pub.authorship_set.all().order_by("order", "id")]
+	return [p for p in people if any(p)] or [("Michele", "Pasin")]
+
+
 def _authors(pub):
 	"""the publication's authors in order, Michele as the shared Person node"""
 	people = []
-	for a in pub.authorship_set.all().order_by("order", "id"):
-		name = " ".join(x for x in [a.person.name, a.person.surname] if x)
-		if name == "Michele Pasin":
-			people.append({"@id": PERSON_ID})
-		elif name:
-			people.append({"@type": "Person", "name": name})
-	return people or [{"@id": PERSON_ID}]
+	for first, last in _author_names(pub):
+		name = " ".join(x for x in [first, last] if x)
+		people.append({"@id": PERSON_ID} if name == "Michele Pasin" else {"@type": "Person", "name": name})
+	return people
+
+
+def _doi(pub):
+	for u in [pub.pdf_url, pub.url1, pub.url2, pub.url3]:
+		if u and "doi.org/" in u:
+			return u.split("doi.org/", 1)[1]
+	return ""
+
+
+def _pdf_url(pub):
+	u = pub.pdf_url or ""
+	return u if u.startswith(("http://", "https://")) else ""
+
+
+# Publication.pubtype name -> the Google Scholar tag for its venue
+VENUE_TAG = {
+	"Journal Article": "citation_journal_title",
+	"Conference article (peer-reviewed)": "citation_conference_title",
+	"Workshop article (peer-reviewed)": "citation_conference_title",
+	"Poster": "citation_conference_title",
+	"Book Chapter": "citation_inbook_title",
+}
+
+
+def citation_meta(pub):
+	"""Google Scholar <meta name="citation_*"> tags for a paper, as (name, value)
+	pairs; none for talks and slides. https://scholar.google.com/intl/en/scholar/inclusion.html"""
+	if pub.pubtype.name not in PUBTYPE_SCHEMA:
+		return []
+	tags = [("citation_title", pub.title)]
+	tags += [("citation_author", ", ".join(x for x in [last, first] if x)) for first, last in _author_names(pub)]
+	tags.append(("citation_publication_date", pub.pubdate.strftime("%Y/%m/%d")))
+	venue = pub.journal or pub.conference
+	if pub.pubtype.name in VENUE_TAG and venue:
+		tags.append((VENUE_TAG[pub.pubtype.name], venue))
+	if pub.pubtype.name == "Thesis" and pub.pubplace:
+		tags.append(("citation_dissertation_institution", pub.pubplace))
+	if _doi(pub):
+		tags.append(("citation_doi", _doi(pub)))
+	if _pdf_url(pub):
+		tags.append(("citation_pdf_url", _pdf_url(pub)))
+	tags.append(("citation_abstract_html_url", absolute(pub.get_absolute_url())))
+	return tags
 
 
 def publication(pub):
@@ -185,13 +233,11 @@ def publication(pub):
 	venue = pub.journal or pub.conference
 	if venue:
 		node["isPartOf"] = {"@type": "Periodical" if pub.journal else "CreativeWork", "name": venue}
-	links = [u for u in [pub.pdf_url, pub.url1, pub.url2, pub.url3] if u]
-	dois = [u for u in links if "doi.org/" in u]
-	if dois:
-		node["identifier"] = {"@type": "PropertyValue", "propertyID": "DOI", "value": dois[0].split("doi.org/", 1)[1]}
-		node["sameAs"] = dois
-	if pub.pdf_url:
-		node["encoding"] = {"@type": "MediaObject", "contentUrl": pub.pdf_url, "encodingFormat": "application/pdf"}
+	if _doi(pub):
+		node["identifier"] = {"@type": "PropertyValue", "propertyID": "DOI", "value": _doi(pub)}
+		node["sameAs"] = "https://doi.org/" + _doi(pub)
+	if _pdf_url(pub):
+		node["encoding"] = {"@type": "MediaObject", "contentUrl": _pdf_url(pub), "encodingFormat": "application/pdf"}
 	return node
 
 

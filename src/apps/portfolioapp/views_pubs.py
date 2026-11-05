@@ -186,7 +186,7 @@ def paper_detail(request, year="", month="", day="", namedetail=""):
 	context.update(seo.seo_context(
 		nodes=[seo.publication(return_item), seo.person(),
 			seo.breadcrumbs(("Home", "/"), ("Words", "/words/"), (return_item.title, None))],
-		og_type="article", og_title=return_item.title))
+		og_type="article", og_title=return_item.title, citation_meta=seo.citation_meta(return_item)))
 
 	templatee = "detail-papers.html"
 

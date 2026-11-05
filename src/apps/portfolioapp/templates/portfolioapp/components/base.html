@@ -51,6 +51,8 @@
     <meta property="og:image" content="{% if og_image %}{{ og_image }}{% else %}{{ SITE_URL }}{% static 'legacy/me_cartoon.jpg' %}{% endif %}">
     <meta name="twitter:card" content="{% if og_image %}summary_large_image{% else %}summary{% endif %}">
     {% if jsonld %}<script type="application/ld+json">{{ jsonld|safe }}</script>{% endif %}
+    {% for name, value in citation_meta %}<meta name="{{ name }}" content="{{ value }}">
+    {% endfor %}
 
     <link rel="icon" href="{% static 'favicon.ico' %}">
     <link rel="alternate" type="application/rss+xml" title="michelepasin.org" href="{% url 'portfolioapp:words-feed' %}">
