@@ -23,6 +23,7 @@ from researchapp.topics import *
 from researchapp.pub_locations import coords_for
 
 from researchapp.management.commands.do_blogs_reindex import parse_markdown
+from . import seo
 
 APP = "portfolioapp"
 
@@ -45,7 +46,7 @@ def about(request):
 	"""
 	bio page
 	"""
-	context = {}
+	context = seo.seo_context(nodes=[seo.profile_page(), seo.person(full=True)], og_title="About | Michele Pasin")
 	return render(request, APP + '/pages/about-bio.html', context)
 
 
@@ -165,7 +166,10 @@ def projects(request, namedetail=""):
 			'projects': projects,
 			'tags': tags,
 			'active_tag': _active_tag,
+			'canonical_path': '/',  # / and /projects/ are the same page
 		}
+		# the grid is the homepage (canonical /): declare the site and its author
+		context.update(seo.seo_context(nodes=[seo.website(), seo.person(full=True)], og_title="Michele Pasin"))
 
 
 	else:
@@ -210,6 +214,10 @@ def projects(request, namedetail=""):
 			'project_images_names': sorted(project_images_names),
 			'ALL_PROJECTS': Project.objects.all().order_by("-datefrom")
 		}
+		context.update(seo.seo_context(
+			nodes=[seo.project(return_item), seo.person(),
+				seo.breadcrumbs(("Home", "/"), (return_item.title, None))],
+			og_title=return_item.title, og_image=seo.project_image(return_item)))
 
 		templatee = "detail-projects.html"
 
@@ -264,6 +272,10 @@ def sounds(request, namedetail=""):
 			'sounds_subpage' : _subpage,
 			'items' : items,
 		}
+		if _subpage != "livecoding":
+			# a real page behind ?k=, which the static site only has as wget's
+			# index.html%3Fk=… file: make that file the canonical
+			context['canonical_path'] = f"/sounds/index.html%3Fk={_subpage}.html"
 
 	else:
 

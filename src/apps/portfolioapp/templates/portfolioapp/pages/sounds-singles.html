@@ -1,8 +1,6 @@
 {% extends "portfolioapp/components/base.html" %}
 
-{% comment %} a real page behind ?k=, which the static site only has as wget's
-   index.html%3Fk=… file: make that file the canonical and keep it indexable {% endcomment %}
-{% block canonical_path %}/sounds/index.html%3Fk=singles.html{% endblock canonical_path %}
+{% comment %} a real page behind ?k=, kept indexable: its canonical is set in views.sounds {% endcomment %}
 {% block robots %}{% endblock robots %}
 {% load static %}
 
@@ -10,6 +8,8 @@
 {% block metadescription %}
   {% include "portfolioapp/components/meta-description.html" with desc="One-off songs and musical experiments by Michele Pasin that haven't made it into an album yet." %}
 {% endblock metadescription %}
+
+{% block og_title %}Sounds: Misc Singles | Michele Pasin{% endblock og_title %}
 
 {% block pagetitle %}
   <title>Sounds: Misc Singles | Michele Pasin</title>

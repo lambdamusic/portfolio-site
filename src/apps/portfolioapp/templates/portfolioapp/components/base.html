@@ -38,8 +38,19 @@
 
     {# Canonical is always the clean /x/ URL. Filtered views (?k=, ?query=, ?tag=, ...) #}
     {# get mirrored by wget as separate files, so keep them out of the index. #}
-    <link rel="canonical" href="{{ SITE_URL }}{% block canonical_path %}{{ request.path }}{% endblock %}">
+    {# canonical_path: set by a view when the page's URL isn't its canonical one #}
+    {% firstof canonical_path request.path as page_path %}
+    <link rel="canonical" href="{{ SITE_URL }}{{ page_path }}">
     {% block robots %}{% if request.GET %}<meta name="robots" content="noindex,follow">{% endif %}{% endblock robots %}
+
+    {# Open Graph / Twitter cards and JSON-LD: og_* and jsonld come from the view (portfolioapp/seo.py) #}
+    <meta property="og:site_name" content="Michele Pasin">
+    <meta property="og:type" content="{{ og_type|default:'website' }}">
+    <meta property="og:title" content="{% block og_title %}{{ og_title|default:'Michele Pasin' }}{% endblock og_title %}">
+    <meta property="og:url" content="{{ SITE_URL }}{{ page_path }}">
+    <meta property="og:image" content="{% if og_image %}{{ og_image }}{% else %}{{ SITE_URL }}{% static 'legacy/me_cartoon.jpg' %}{% endif %}">
+    <meta name="twitter:card" content="{% if og_image %}summary_large_image{% else %}summary{% endif %}">
+    {% if jsonld %}<script type="application/ld+json">{{ jsonld|safe }}</script>{% endif %}
 
     <link rel="icon" href="{% static 'favicon.ico' %}">
     <link rel="alternate" type="application/rss+xml" title="michelepasin.org" href="{% url 'portfolioapp:words-feed' %}">

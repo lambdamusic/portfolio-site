@@ -2,15 +2,15 @@
 {% load static %}
 {% load extrafilters %}
 
-{% comment %} a real page behind ?k=, which the static site only has as wget's
-   index.html%3Fk=… file: make that file the canonical and keep it indexable {% endcomment %}
-{% block canonical_path %}/sounds/index.html%3Fk=kryos.html{% endblock canonical_path %}
+{% comment %} a real page behind ?k=, kept indexable: its canonical is set in views.sounds {% endcomment %}
 {% block robots %}{% endblock robots %}
 
 
 {% block metadescription %}
   {% include "portfolioapp/components/meta-description.html" with desc=items.0.description|meta_description|default:items.0.short_title %}
 {% endblock metadescription %}
+
+{% block og_title %}Sounds: Kryos Project | Michele Pasin{% endblock og_title %}
 
 {% block pagetitle %}
   <title>Sounds: Kryos Project | Michele Pasin</title>

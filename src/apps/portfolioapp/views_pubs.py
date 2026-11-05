@@ -25,6 +25,7 @@ from researchapp.pub_locations import coords_for
 
 from researchapp.management.commands.do_blogs_reindex import parse_markdown, parse_description
 from myutils.modelextra.mymodels import meta_description
+from . import seo
 
 APP = "portfolioapp"
 
@@ -182,6 +183,10 @@ def paper_detail(request, year="", month="", day="", namedetail=""):
 		'all_papers_list' : get_related_pubs(return_item),
 		# 'all_papers_list' : get_pubs('date')
 	}
+	context.update(seo.seo_context(
+		nodes=[seo.publication(return_item), seo.person(),
+			seo.breadcrumbs(("Home", "/"), ("Words", "/words/"), (return_item.title, None))],
+		og_type="article", og_title=return_item.title))
 
 	templatee = "detail-papers.html"
 
@@ -236,6 +241,12 @@ def blog_detail(request, year="", month="", day="", namedetail=""):
 		'type': pubtypegroup,
 		'all_papers_list' : get_related_pubs(return_item),
 	}
+
+	post_image = seo.first_image(html_blog_entry)
+	context.update(seo.seo_context(
+		nodes=[seo.blog_posting(return_item, context['meta_description'], post_image), seo.person(),
+			seo.breadcrumbs(("Home", "/"), ("Words", "/words/"), (return_item.title, None))],
+		og_type="article", og_title=return_item.title, og_image=post_image))
 
 	templatee = "detail-blogs.html"
 
