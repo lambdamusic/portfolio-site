@@ -19,10 +19,6 @@
 
 {% block bodycontent %}
 
-  {% comment %} the homepage's heading, for search and screen readers only: a
-     visible heading/intro is still to be designed (#25) {% endcomment %}
-  <h1 class="sr-only">Michele Pasin: ontology engineering, knowledge graphs and AI</h1>
-
   <p class="sectionlabel">
     <b>Projects</b> <span class="sep">/</span>
     {% if active_tag != "all" %}
@@ -32,6 +28,11 @@
       things i have built
     {% endif %}
   </p>
+
+  {% comment %} the homepage's heading, for search and screen readers only: a
+     visible heading/intro is still to be designed (#25). It sits after
+     the label so `.sectionlabel:first-child` keeps its tighter top margin {% endcomment %}
+  <h1 class="sr-only">Michele Pasin: ontology engineering, knowledge graphs and AI</h1>
 
   <div class="tilegrid">
     {% for p in projects %}
