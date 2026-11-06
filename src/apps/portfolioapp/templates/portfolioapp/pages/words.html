@@ -24,18 +24,18 @@
 
   {% if tag %}
 
-    <p class="sectionlabel">
+    <h1 class="sectionlabel">
       <b>Words</b> <span class="sep">/</span> tagged
       <a class="is-current">#{{tag}}</a>
       <span class="sep">|</span>
       <a href="?query=date&amp;type=tags">all tags</a>
-    </p>
+    </h1>
 
     <p class="ghostdate ghostdate--xl">#{{tag}}</p>
 
   {% else %}
 
-    <p class="sectionlabel">
+    <h1 class="sectionlabel">
       <b>Words</b> <span class="sep">/</span>
       <a href="?query=date&amp;type=latest" {% if ttype == 'latest' %}class="is-current"{% endif %}>latest</a> <span class="sep">|</span>
       <a href="?query=date&amp;type=blogs"  {% if ttype == 'blogs' %}class="is-current"{% endif %}>blogs</a> <span class="sep">|</span>
@@ -46,7 +46,7 @@
         <span class="sep">|</span>
         <a href="?query=date&amp;type=review" class="admin-flag {% if ttype == 'review' %}is-current{% endif %}">review</a>
       {% endif %}
-    </p>
+    </h1>
 
     {% if ttype == 'papers' %}
       <p class="sectionlabel">

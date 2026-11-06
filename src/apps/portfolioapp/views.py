@@ -279,7 +279,8 @@ def sounds(request, namedetail=""):
 
 	else:
 
-		return_item = get_object_or_404(Item, urlstub=namedetail)
+		# the sounds pages link with urlstub|lower, e.g. ATMevent -> atmevent
+		return_item = get_object_or_404(Item, urlstub__iexact=namedetail)
 		next = None
 		prev = None
 
@@ -298,6 +299,9 @@ def sounds(request, namedetail=""):
 			'itemembed2': return_item.embedcode2,
 			'datefrom': return_item.date,
 			'all_urls': return_item.all_urls(),
+			# the sounds pages link here without the trailing slash, so wget
+			# saves sounds/<stub>.html and the static site serves /sounds/<stub>
+			'canonical_path': f"/sounds/{return_item.urlstub.lower()}",
 		}
 		templatee = "detail-sounds.html"
 

@@ -34,7 +34,8 @@ def sitemap_xml(request):
 	"""
 	Every indexable page, as its canonical URL (see components/base.html):
 	https, trailing slash, no index.html, no query strings except the sounds
-	sub-pages, which only exist as wget's index.html%3Fk=… files.
+	sub-pages, which only exist as wget's index.html%3Fk=… files. The sounds
+	detail pages are the exception to the trailing slash.
 	"""
 	urls = []  # (path, lastmod date or None)
 
@@ -47,15 +48,21 @@ def sitemap_xml(request):
 		urls.append((p.get_absolute_url(), p.updated_at.date() if p.updated_at else None))
 
 	# blogs are re-created on every reindex, so updated_at says nothing: use pubdate
-	for p in Publication.objects.exclude(review=True).exclude(permalink="").exclude(permalink__isnull=True).order_by("-pubdate"):
+	# talks are left out of the Words lists and only linked from /events/, which
+	# shows the isspeaking ones: the rest are never mirrored (see views.events)
+	pubs = Publication.objects.exclude(review=True).exclude(permalink="").exclude(permalink__isnull=True)
+	pubs = pubs.exclude(pubtype__pk=12, isspeaking=False)
+	for p in pubs.order_by("-pubdate"):
 		urls.append((p.get_absolute_url(), p.pubdate))
 
-	# the items listed on the sounds pages (see views.sounds)
-	items = Item.objects.exclude(review=True).exclude(urlstub="").filter(
+	# the items listed on the sounds pages (see views.sounds). They link to
+	# their detail pages without the trailing slash, so that is the URL served.
+	# Kryos and Rebirth (7, 34) have their own ?k= pages instead.
+	items = Item.objects.exclude(review=True).exclude(urlstub="").exclude(id__in=[7, 34]).filter(
 		Q(atype__name__iexact="livecoding") | Q(atype__name__iexact="performance")
 		| Q(atype__name__iexact="music"))
 	for i in items:
-		urls.append((reverse('portfolioapp:music-detail', args=[i.urlstub]), i.date))
+		urls.append((f"/sounds/{i.urlstub.lower()}", i.date))
 
 	context = {'urls': [(settings.SITE_URL + path, lastmod) for path, lastmod in urls]}
 	return render(request, 'portfolioapp/sitemap.xml', context, content_type="application/xml")
