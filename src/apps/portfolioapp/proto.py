@@ -13,6 +13,15 @@ while clicking around; `?layout=off` goes back to the current design.
         writing, talks and sounds above a short selection of projects
 
 All three share the unified Words list (pages/words-proto.html).
+
+`?post=rail|quiet|margin` does the same for the blog post page, independently
+of the layout (pages/detail-blogs-proto.html); `?post=off` restores it.
+
+    rail     the article plus a right-hand column: date, reading time,
+             topic, tags, contents and related posts
+    quiet    one column; a single date line under the title, tags and
+             related posts moved to the end of the article
+    margin   the title runs wide; date and tags sit in a left margin
 """
 
 LAYOUTS = {
@@ -28,3 +37,18 @@ def current_layout(request):
     if choice is not None:
         request.session['layout'] = choice if choice in LAYOUTS else ''
     return request.session.get('layout', '')
+
+
+POST_LAYOUTS = {
+    'rail': 'Right rail',
+    'quiet': 'Quiet header',
+    'margin': 'Left margin',
+}
+
+
+def current_post_layout(request):
+    """the active blog-post prototype key, or ''"""
+    choice = request.GET.get('post')
+    if choice is not None:
+        request.session['post_layout'] = choice if choice in POST_LAYOUTS else ''
+    return request.session.get('post_layout', '')

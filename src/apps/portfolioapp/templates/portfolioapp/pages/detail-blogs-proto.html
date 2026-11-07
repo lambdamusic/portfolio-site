@@ -1,0 +1,175 @@
+{% extends "portfolioapp/components/base.html" %}
+{% load extrafilters %}
+{% load static %}
+
+{% comment %}
+  Blog post prototypes (portfolioapp/proto.py, `?post=rail|quiet|margin`).
+  Same article as pages/detail-blogs.html; what changes is where the
+  metadata goes. Extra context from views_pubs.post_proto_context.
+
+    rail     title and a date line on top; tags, contents and related posts
+             in a sticky right-hand column (below the article when narrow)
+    quiet    one column; tags, older/newer and related after the article
+    margin   date, tags and contents in a left margin beside the text
+{% endcomment %}
+
+{% block metadescription %}
+  {% include "portfolioapp/components/meta-description.html" with desc=meta_description %}
+{% endblock %}
+
+{% block pagetitle %}
+  <title>{{return_item.title}} | Blogs | Michele Pasin</title>
+{% endblock pagetitle %}
+
+{% block bodyclass %}is-wide postv-{{ post_layout }}{% endblock bodyclass %}
+
+
+{% block bodycontent %}
+{% with cats=return_item.categories.all tags=return_item.tags.all %}
+
+<div class="post">
+
+  <p class="sectionlabel">
+    <b>Words</b> <span class="sep">/</span>
+    <a href="{% url 'portfolioapp:words' %}?type=blogs">posts</a>
+    {% for c in cats %}<span class="sep">/</span> <a href="{% url 'portfolioapp:words' %}?type=blogs&amp;ctype={{c.name}}">{{c.name|category_label}}</a>{% endfor %}
+  </p>
+
+  <header class="post-head">
+    <h1>{{itemtitle}}</h1>
+    {% if post_layout != "margin" %}
+      <p class="post-dateline">
+        <time datetime="{{itempubdate|date:'Y-m-d'}}">{{itempubdate|date:"j F Y"}}</time>
+        <span class="sep">&middot;</span> {{reading_minutes}} min read
+      </p>
+    {% endif %}
+    {% if admin_change_url %}
+      <p class="admin-note">
+        Hello admin
+        <span class="sep">/</span> <a href="{{admin_change_url}}" target="_blank">edit</a>
+        <span class="sep">|</span> <a href="vscode://file/{{blog_source_file}}">edit in VSCode</a>
+      </p>
+    {% endif %}
+  </header>
+
+  <div class="post-grid">
+
+    {% if post_layout == "margin" %}
+      <aside class="post-margin">
+        <p class="post-date">
+          <time datetime="{{itempubdate|date:'Y-m-d'}}"><b>{{itempubdate|date:"j M"}}</b> {{itempubdate|date:"Y"}}</time>
+        </p>
+        <p class="post-side-meta">{{reading_minutes}} min read</p>
+        {% if tags %}
+          <p class="post-tags">{% for t in tags %}<a href="{% url 'portfolioapp:words' %}?tag={{t.name}}&amp;type=all">#{{t.name}}</a> {% endfor %}</p>
+        {% endif %}
+        {% if toc %}{% include "portfolioapp/proto/post-toc.html" %}{% endif %}
+      </aside>
+    {% endif %}
+
+    <article class="post-body">
+
+      <div class="blogentry">
+        {{blog_entry|safe}}
+      </div>
+
+      {% if post_layout == "quiet" and tags %}
+        <p class="post-filed">
+          <span class="post-filed-label">Filed under</span>
+          {% for t in tags %}<a class="chip chip--quiet" href="{% url 'portfolioapp:words' %}?tag={{t.name}}&amp;type=all">#{{t.name}}</a> {% endfor %}
+        </p>
+      {% endif %}
+
+      <nav class="post-pager" aria-label="Older and newer posts">
+        {% if older_post %}
+          <a class="post-pager-older" href="{{older_post.get_absolute_url}}"><span>&larr; Older</span>{{older_post.title|capfirst}}</a>
+        {% else %}<span></span>{% endif %}
+        {% if newer_post %}
+          <a class="post-pager-newer" href="{{newer_post.get_absolute_url}}"><span>Newer &rarr;</span>{{newer_post.title|capfirst}}</a>
+        {% endif %}
+      </nav>
+
+      {% if post_layout != "rail" and related_posts %}
+        <div class="blocknote">
+          <p class="sectionlabel"><b>Related</b> <span class="sep">/</span> posts with the same tags</p>
+          {% include "portfolioapp/proto/post-related.html" %}
+        </div>
+      {% endif %}
+
+      <div class="blocknote" id="cite">
+        <p class="sectionlabel"><b>Cite</b> <span class="sep">/</span> this blog post</p>
+        <blockquote>
+          Michele Pasin. <a href="{{return_item.get_absolute_url}}">{{return_item.title}}</a>.
+          Blog post on www.michelepasin.org. Published on {{itempubdate}}.
+        </blockquote>
+      </div>
+
+      <div class="blocknote" id="comments">
+        <p class="sectionlabel"><b>Talk back</b> <span class="sep">/</span> comments via github</p>
+        <div class="utterances">
+          <script src="https://utteranc.es/client.js"
+                  repo="lambdamusic/portfolio-site"
+                  issue-term="url"
+                  label="comment"
+                  theme="github-light"
+                  crossorigin="anonymous"
+                  async>
+          </script>
+        </div>
+      </div>
+
+    </article>
+
+    {% if post_layout == "rail" %}
+      <aside class="post-rail">
+        {% if cats %}
+          <p class="post-rail-label">Topic</p>
+          <p class="post-rail-text">{% for c in cats %}<a href="{% url 'portfolioapp:words' %}?type=blogs&amp;ctype={{c.name}}">{{c.name|category_label}}</a>{% if not forloop.last %}, {% endif %}{% endfor %}</p>
+        {% endif %}
+        {% if tags %}
+          <p class="post-rail-label">Tags</p>
+          <p class="post-tags">{% for t in tags %}<a href="{% url 'portfolioapp:words' %}?tag={{t.name}}&amp;type=all">#{{t.name}}</a> {% endfor %}</p>
+        {% endif %}
+        {% if toc %}{% include "portfolioapp/proto/post-toc.html" %}{% endif %}
+        {% if related_posts %}
+          <p class="post-rail-label">Related</p>
+          {% include "portfolioapp/proto/post-related.html" %}
+        {% endif %}
+        <p class="post-rail-links"><a href="#cite">Cite</a> <span class="sep">/</span> <a href="#comments">Comments</a> <span class="sep">/</span> <a href="{% url 'portfolioapp:words-feed' %}">RSS</a></p>
+      </aside>
+    {% endif %}
+
+  </div>
+
+</div>
+
+{% endwith %}
+{% endblock bodycontent %}
+
+
+{% block extra_js %}
+<script>
+  $(document).ready(function () {
+    $("div.blogentry p:first").addClass("first-paragraph");
+  });
+
+  // contents list: mark the section being read
+  (function () {
+    var links = document.querySelectorAll('.post-toc a');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove('is-reading'); });
+        byId[e.target.id].classList.add('is-reading');
+      });
+    }, { rootMargin: '0px 0px -70% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      var h = document.getElementById(id);
+      if (h) obs.observe(h);
+    });
+  })();
+</script>
+{% endblock extra_js %}

@@ -1,0 +1,7 @@
+{# contents list for the post prototypes; `toc` is [(id, heading)] #}
+<nav class="post-toc" aria-label="On this page">
+  <p class="post-rail-label">On this page</p>
+  <ol>
+    {% for id, name in toc %}<li><a href="#{{ id }}">{{ name|safe }}</a></li>{% endfor %}
+  </ol>
+</nav>

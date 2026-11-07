@@ -5,7 +5,7 @@ from django.http.response import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlquote
 from django.http import HttpResponse, HttpResponseNotFound
-from django.db.models import Q
+from django.db.models import Q, Count
 
 import json
 import os
@@ -26,7 +26,7 @@ from researchapp.pub_locations import coords_for
 from researchapp.management.commands.do_blogs_reindex import parse_markdown, parse_description
 from myutils.modelextra.mymodels import meta_description
 from . import seo
-from .proto import current_layout
+from .proto import current_layout, current_post_layout
 from researchapp.category_vocabulary import CATEGORIES
 
 APP = "portfolioapp"
@@ -260,7 +260,45 @@ def blog_detail(request, year="", month="", day="", namedetail=""):
 
 	templatee = "detail-blogs.html"
 
+	post_layout = current_post_layout(request)
+	if post_layout:
+		context.update(post_proto_context(return_item, PURE_MARKDOWN))
+		templatee = "detail-blogs-proto.html"
+
 	return render(request, APP + '/pages/' + templatee, context)
+
+
+def post_proto_context(return_item, pure_markdown):
+	"""
+	Extras for the blog post prototypes (pages/detail-blogs-proto.html):
+	the body re-rendered with heading ids and a contents list, reading time,
+	the neighbouring posts, and related posts ranked by shared tags.
+	"""
+	md = markdown.Markdown(extensions=['fenced_code', 'codehilite', 'toc'])
+	html = add_lazy_loading_to_images(md.convert(pure_markdown))
+	# some posts open with their own H1, so take the section headings
+	# from whichever level holds more than one of them
+	tokens = md.toc_tokens
+	if len(tokens) == 1 and tokens[0]['children']:
+		tokens = tokens[0]['children']
+	toc = [(t['id'], t['name']) for t in tokens]
+
+	blogs = Publication.objects.filter(pubtype__pk=13).exclude(review=True)
+	newer = blogs.filter(pubdate__gt=return_item.pubdate).order_by('pubdate').first()
+	older = blogs.filter(pubdate__lt=return_item.pubdate).order_by('-pubdate').first()
+
+	tags = return_item.tags.all()
+	related = list(blogs.filter(tags__in=tags).exclude(pk=return_item.pk)
+		.annotate(shared=Count('tags')).order_by('-shared', '-pubdate')[:5])
+
+	return {
+		'blog_entry': html,
+		'toc': toc if len(toc) > 2 else [],
+		'reading_minutes': max(1, round(len(pure_markdown.split()) / 220)),
+		'newer_post': newer,
+		'older_post': older,
+		'related_posts': related,
+	}
 
 
 

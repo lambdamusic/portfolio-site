@@ -12,6 +12,7 @@
   .proto-switcher a { padding: .15rem .45rem; font-weight: 700; color: #ddd; }
   .proto-switcher a:hover { color: #fff; text-decoration: none; }
   .proto-switcher a.is-current { background: #f31b1b; color: #fff; }
+  .proto-switcher-break { flex-basis: 100%; height: 0; }
   @media print { .proto-switcher { display: none; } }
 </style>
 
@@ -21,4 +22,12 @@
   {% for key, name in proto_layouts %}
     <a href="{{ request.path }}?layout={{ key }}" {% if layout == key %}class="is-current"{% endif %}>{{ key|upper }} &middot; {{ name }}</a>
   {% endfor %}
+  {% if request.resolver_match.url_name == "blogs-detail" %}
+    <span class="proto-switcher-break"></span>
+    <span class="proto-switcher-label">Post</span>
+    <a href="{{ request.path }}?post=off" {% if not post_layout %}class="is-current"{% endif %}>Current</a>
+    {% for key, name in proto_posts %}
+      <a href="{{ request.path }}?post={{ key }}" {% if post_layout == key %}class="is-current"{% endif %}>{{ name }}</a>
+    {% endfor %}
+  {% endif %}
 </div>

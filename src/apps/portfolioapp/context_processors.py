@@ -8,5 +8,6 @@ def site_url(request):
 
 def layout_proto(request):
     """The layout prototype in use, if any (see portfolioapp/proto.py)."""
-    from .proto import current_layout, LAYOUTS
-    return {'layout': current_layout(request), 'proto_layouts': LAYOUTS.items()}
+    from .proto import current_layout, current_post_layout, LAYOUTS, POST_LAYOUTS
+    return {'layout': current_layout(request), 'proto_layouts': LAYOUTS.items(),
+            'post_layout': current_post_layout(request), 'proto_posts': POST_LAYOUTS.items()}
