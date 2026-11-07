@@ -26,6 +26,8 @@ from researchapp.pub_locations import coords_for
 from researchapp.management.commands.do_blogs_reindex import parse_markdown, parse_description
 from myutils.modelextra.mymodels import meta_description
 from . import seo
+from .proto import current_layout
+from researchapp.category_vocabulary import CATEGORIES
 
 APP = "portfolioapp"
 
@@ -75,8 +77,11 @@ def words(request):
 	"""
 	context = {}
 
+	# layout prototypes (proto.py) open on the whole list, not the latest ten
+	layout = current_layout(request)
+
 	query = request.GET.get('query', 'date')
-	ttype = request.GET.get('type', 'latest')
+	ttype = request.GET.get('type', 'all' if layout else 'latest')
 	ctype = request.GET.get('ctype', 'all')
 	tag = request.GET.get('tag', None)
 	format = request.GET.get('format', 'html')
@@ -93,6 +98,9 @@ def words(request):
 	elif format == 'txt':
 		ttype = "papers" # show only research 
 		templatee = "papers.txt"
+
+	elif layout:
+		templatee = "words-proto.html"
 
 	else:
 		templatee = "words.html"
@@ -122,6 +130,8 @@ def words(request):
 		'tag': tag,
 		'admin_change_url': admin_change_url,
 		'tags': tags,
+		'categories': sorted(CATEGORIES),
+		'item_count': sum(len(x[1]) for x in return_items) if return_items else 0,
 	}
 	
 	return render(request, APP + '/pages/' + templatee, context)

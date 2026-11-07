@@ -1,0 +1,104 @@
+{% extends "portfolioapp/components/base.html" %}
+{% load extrafilters %}
+
+{% comment %}
+  Unified Words list for the layout prototypes (portfolioapp/proto.py).
+
+  One frame for every view: the filter strip stays put and only its state
+  changes, so picking a kind, a topic or a tag never swaps the page
+  around (#21). Every item is a words-row, blog or paper alike, under a
+  plain year heading. Opens on everything (type=all), not the latest ten.
+{% endcomment %}
+
+{% block metadescription %}
+  {% include "portfolioapp/components/meta-description.html" with desc="Blog posts and papers by Michele Pasin on ontology engineering, knowledge graphs, research analytics, digital humanities and computer music." %}
+{% endblock metadescription %}
+
+{% block og_title %}Words | Michele Pasin{% endblock og_title %}
+
+{% block pagetitle %}
+  <title>Words | Michele Pasin</title>
+{% endblock pagetitle %}
+
+
+{% block bodycontent %}
+
+  <h1 class="sectionlabel"><b>Words</b> <span class="sep">/</span> posts, papers and talks</h1>
+
+  <div class="wfilter">
+
+    <div class="wfilter-row">
+      <span class="wfilter-label">Show</span>
+      <span class="wfilter-chips">
+        <a class="chip {% if ttype == 'all' and not tag %}is-current{% endif %}" href="?type=all">Everything</a>
+        <a class="chip {% if ttype == 'blogs' and ctype == 'all' %}is-current{% endif %}" href="?type=blogs">Posts</a>
+        <a class="chip {% if ttype == 'papers' %}is-current{% endif %}" href="?type=papers">Papers</a>
+        <a class="chip" href="{% url 'portfolioapp:events' %}">Talks &rarr;</a>
+      </span>
+    </div>
+
+    <div class="wfilter-row">
+      <span class="wfilter-label">Topic</span>
+      <span class="wfilter-chips">
+        {% for c in categories %}
+          <a class="chip chip--quiet {% if ctype == c %}is-current{% endif %}" href="?type=blogs&amp;ctype={{c}}">{{c|category_label}}</a>
+        {% endfor %}
+      </span>
+    </div>
+
+    <div class="wfilter-row">
+      <span class="wfilter-label">Tag</span>
+      <span class="wfilter-chips">
+        {% if tag %}
+          <a class="chip is-current">#{{tag}}</a>
+          <a class="chip-clear" href="?type=all" title="Clear the tag">&times; clear</a>
+        {% endif %}
+        <a class="chip chip--quiet {% if ttype == 'tags' %}is-current{% endif %}" href="?type=tags">{% if tag %}other tags{% else %}browse all tags{% endif %}</a>
+      </span>
+    </div>
+
+    {% if ttype == 'papers' %}
+      <div class="wfilter-row">
+        <span class="wfilter-label">Order</span>
+        <span class="wfilter-chips">
+          <a class="chip chip--quiet {% if query == 'date' %}is-current{% endif %}" href="?query=date&amp;type=papers">date</a>
+          <a class="chip chip--quiet {% if query == 'type' %}is-current{% endif %}" href="?query=type&amp;type=papers">type</a>
+          <a class="chip chip--quiet {% if query == 'project' %}is-current{% endif %}" href="?query=project&amp;type=papers">project</a>
+        </span>
+      </div>
+    {% endif %}
+
+  </div>
+
+  {% if return_items %}
+    <p class="wcount">{{ item_count }} item{{ item_count|pluralize }}</p>
+  {% endif %}
+
+  {% for group_and_pubs in return_items %}
+    <section class="pubgroup">
+      <h2 class="wyear">{{ group_and_pubs.0 }}</h2>
+      {% for pub in group_and_pubs.1 %}
+        {% include "portfolioapp/components/words-row.html" %}
+      {% endfor %}
+    </section>
+  {% endfor %}
+
+  {% if tags %}
+    <h2 class="wyear">{% if tag %}Related tags{% else %}Tags{% endif %}</h2>
+    <div class="tagcloud">
+      {% for t in tags %}
+        {% if t.1 > 0 %}
+          <a href="?tag={{t.0}}&amp;type=all" style="{{t.1|tagsize}}">{{t.0}}</a>
+        {% endif %}
+      {% endfor %}
+    </div>
+  {% endif %}
+
+  <p class="sectionlabel">
+    <b>Export</b> <span class="sep">/</span>
+    <a href="{% url 'portfolioapp:words-feed' %}">rss</a> <span class="sep">|</span>
+    <a href="?format=txt">txt</a> <span class="sep">|</span>
+    <a href="?format=bibtex&amp;query=type">bibtex</a>
+  </p>
+
+{% endblock bodycontent %}

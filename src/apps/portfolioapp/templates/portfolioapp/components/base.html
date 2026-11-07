@@ -64,6 +64,7 @@
     {# Bootstrap: grid + JS plugins only. The visual layer is parerga.css. #}
     <link href="{% static 'libs/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/parerga.css' %}" rel="stylesheet">
+    {% if layout %}<link href="{% static 'css/proto.css' %}" rel="stylesheet">{% endif %}
 
     {% include "portfolioapp/components/pygments.html" %}
 
@@ -71,13 +72,19 @@
 
   </head>
 
-  <body class="{% block bodyclass %}{% endblock bodyclass %}">
+  <body class="{% block bodyclass %}{% endblock bodyclass %}{% if layout %} layout-{{ layout }}{% endif %}">
 
+    {# layout prototypes (portfolioapp/proto.py): b keeps a sidebar, a and c a top bar #}
     {% with section=request.resolver_match.url_name %}
-      {% include "portfolioapp/components/site-rail.html" %}
+      {% if layout == "b" %}
+        {% include "portfolioapp/proto/nav-sidebar.html" %}
+      {% elif layout %}
+        {% include "portfolioapp/proto/nav-topbar.html" %}
+      {% else %}
+        {% include "portfolioapp/components/site-rail.html" %}
+        {% include "portfolioapp/components/site-header.html" %}
+      {% endif %}
     {% endwith %}
-
-    {% include "portfolioapp/components/site-header.html" %}
 
     <main class="site-main">
       {% block bodycontent %}{% endblock bodycontent %}
@@ -96,6 +103,8 @@
     </footer>
 
     {% include "portfolioapp/components/search-modal.html" %}
+
+    {% include "portfolioapp/proto/switcher.html" %}
 
     <script src="{% static 'libs/jquery/1.12.4/jquery.min.js' %}"></script>
     <script src="{% static 'libs/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>

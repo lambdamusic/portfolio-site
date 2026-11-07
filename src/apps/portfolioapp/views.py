@@ -24,6 +24,7 @@ from researchapp.pub_locations import coords_for
 
 from researchapp.management.commands.do_blogs_reindex import parse_markdown
 from . import seo
+from .proto import current_layout
 
 APP = "portfolioapp"
 
@@ -37,8 +38,33 @@ def home(request):
 	"""
 	the homepage is the projects grid, served at / (not redirected) so the
 	homepage keeps its own URL; its canonical is / too (see pages/projects.html)
+
+	Layout prototype C (proto.py) swaps it for a front page instead: recent
+	writing, talks and sounds above a short selection of projects.
 	"""
+	if current_layout(request) == "c":
+		return home_hub(request)
 	return projects(request)
+
+
+def home_hub(request):
+	"""prototype C's homepage; the full grid stays at /projects/"""
+	talks = PubType.objects.get(pk=12)
+	pubs = Publication.objects.exclude(review=True)
+	sounds = Item.objects.exclude(review=True).exclude(urlstub="").exclude(id__in=[7, 34]).filter(
+		Q(atype__name__iexact="livecoding") | Q(atype__name__iexact="performance")
+		| Q(atype__name__iexact="music")).order_by("-date")
+	projects = Project.objects.exclude(review=True).order_by("-datefrom")
+	context = {
+		'latest_words': pubs.exclude(pubtype=talks).order_by('-pubdate')[:6],
+		'latest_talks': pubs.filter(isspeaking=True).order_by('-pubdate')[:4],
+		'latest_sounds': sounds[:4],
+		'projects': projects[:8],
+		'project_count': projects.count(),
+		'canonical_path': '/',
+	}
+	context.update(seo.seo_context(nodes=[seo.website(), seo.person(full=True)], og_title="Michele Pasin"))
+	return render(request, APP + '/pages/home-hub.html', context)
 
 
 

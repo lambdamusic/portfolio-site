@@ -1,0 +1,287 @@
+/* ==========================================================================
+   proto.css - layout prototypes (branch `layout-prototypes`)
+   --------------------------------------------------------------------------
+   Loaded after parerga.css, and only when a prototype is active (see
+   portfolioapp/proto.py). Every rule is scoped to body.layout-a/-b/-c, so
+   the current design is untouched. Same tokens and type as parerga.css:
+   the prototypes change the frame, not the look.
+
+     A  top bar      - visible nav strip; homepage stays the grid
+     B  sidebar      - the drawer left open as a permanent column
+     C  front page   - top bar, plus a hub homepage (pages/home-hub.html)
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. Shared by all prototypes
+   -------------------------------------------------------------------------- */
+
+/* the red "INSIDE" handle is gone, so the accent moves to a top rule */
+body.layout-a,
+body.layout-b,
+body.layout-c { border-top: 4px solid var(--accent); }
+
+
+/* Unified Words filter strip (pages/words-proto.html) */
+.wfilter { margin: 0 0 var(--step); }
+.wfilter-row {
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+  margin: 0 0 .55rem;
+}
+.wfilter-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.wfilter-label {
+  flex: 0 0 3.5rem;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.chip {
+  display: inline-block;
+  padding: .1rem .5rem;
+  border: 1px solid var(--rule);
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--link);
+}
+.chip--quiet { font-weight: 400; color: var(--body); }
+.chip:hover,
+.chip:focus { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.chip.is-current,
+.chip.is-current:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip-clear { font-size: .75rem; color: var(--muted); }
+.chip-clear:hover { color: var(--accent); }
+
+.wcount {
+  margin: 0;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* plain year headings instead of the ghost numerals: a tag or a "Latest"
+   label can no longer be mistaken for another year (#21) */
+.wyear {
+  margin: calc(var(--step) * 1.5) 0 0;
+  padding-bottom: .3rem;
+  border-bottom: 2px solid var(--ink);
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+
+
+/* Front page (pages/home-hub.html) */
+.hub-intro { max-width: var(--measure); margin: calc(var(--step) * 1.75) 0 calc(var(--step) * 1.5); }
+.hub-name { margin: 0 0 .5rem; font-size: 2.25rem; }
+.hub-lede { margin: 0; font-size: 1.15rem; line-height: 1.55; color: var(--body); }
+.hub-lede .hub-about { white-space: nowrap; font-size: .85rem; }
+
+.hub-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 0 3rem;
+}
+.hub-cols .sectionlabel { margin-top: 0; }
+.hub-side .sectionlabel + .hub-list { margin-top: 0; }
+.hub-side .hub-more + .sectionlabel { margin-top: calc(var(--step) * 1.25); }
+
+.hub-list { list-style: none; margin: 0; padding: 0; }
+.hub-list li { padding: .6rem 0; border-top: 1px solid var(--rule); line-height: 1.35; }
+.hub-list li:first-child { border-top: 0; }
+.hub-list a { font-weight: 700; }
+.hub-list-meta { display: block; margin-top: .15rem; font-size: .75rem; color: var(--muted); }
+
+.hub-more {
+  display: inline-block;
+  margin: .6rem 0 0;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.hub-projects { margin-top: calc(var(--step) * 2); }
+.hub-projects .tilegrid { margin-top: var(--step); }
+
+
+/* --------------------------------------------------------------------------
+   2. A and C: top bar
+   The name and the nav share one left edge with the content, so the page
+   keeps the old theme's asymmetry: a reading column pushed left, not centred.
+   -------------------------------------------------------------------------- */
+
+body.layout-a,
+body.layout-c {
+  --edge: max(1.25rem, calc((100vw - 72rem) / 2));
+  --measure-wide: min(72rem, calc(100vw - 2.5rem));
+}
+
+.topbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: .5rem 2rem;
+  padding: 1.1rem var(--edge) .9rem;
+  border-bottom: 1px solid var(--rule);
+}
+.topbar-name {
+  font-size: .85rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.topbar-name:hover { color: var(--accent); text-decoration: none; }
+.topbar-nav { display: flex; flex-wrap: wrap; align-items: baseline; gap: .25rem 1.4rem; }
+.topbar-nav a,
+.topbar-search {
+  padding: 0 0 .2rem;
+  border: 0;
+  border-bottom: 2px solid transparent;
+  background: none;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+.topbar-nav a:hover { color: var(--accent); text-decoration: none; }
+/* parerga.css's .is-current is the site-wide red block (white text, !important):
+   use it here too rather than fight it, as the drawer and filter strips do */
+.topbar-nav a.is-current { background: var(--accent); padding: 1px 5px; }
+.topbar-search { color: var(--muted); cursor: pointer; }
+.topbar-search:hover { color: var(--accent); }
+
+.layout-a .site-main,
+.layout-a .site-foot,
+.layout-c .site-main,
+.layout-c .site-foot {
+  margin-left: var(--edge);
+  padding-left: 0;
+  padding-right: 1.25rem;
+}
+
+
+/* --------------------------------------------------------------------------
+   3. B: sidebar
+   -------------------------------------------------------------------------- */
+
+body.layout-b {
+  --side-w: 15rem;
+  --side-gap: calc(var(--side-w) + 3rem);
+  --measure-wide: min(72rem, calc(100vw - var(--side-gap) - 2rem));
+}
+
+.sidebar {
+  position: fixed;
+  top: 4px;      /* below the body's accent rule */
+  bottom: 0;
+  left: 0;
+  width: var(--side-w);
+  overflow-y: auto;
+  padding: 1.5rem 1.5rem 2rem;
+  border-right: 1px solid var(--rule);
+  background: var(--paper);
+}
+.sidebar-name {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.sidebar-name:hover { color: var(--accent); text-decoration: none; }
+.sidebar-toggle { display: none; }
+.sidebar-intro { margin: .6rem 0 1.5rem; font-size: .85rem; line-height: 1.5; color: var(--muted); }
+
+.sidebar-nav { list-style: none; margin: 0 0 1.5rem; padding: 0; }
+.sidebar-nav li { margin: 0; }
+.sidebar-nav a {
+  display: block;
+  padding: .3rem 0 .3rem .75rem;
+  border-left: 3px solid transparent;
+  font-weight: 700;
+  color: var(--ink);
+}
+.sidebar-nav a:hover { color: var(--accent); text-decoration: none; }
+.sidebar-nav a.is-current { border-left-color: var(--accent); }
+
+.sidebar-search {
+  display: block;
+  width: 100%;
+  padding: .35rem .5rem;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font-size: .8rem;
+  color: var(--muted);
+  text-align: left;
+  cursor: pointer;
+}
+.sidebar-search:hover { border-color: var(--accent); color: var(--ink); }
+.sidebar-links {
+  margin: 1.25rem 0 0;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.sidebar-links .sep { color: var(--faint); padding: 0 .15rem; }
+
+.layout-b .site-main,
+.layout-b .site-foot {
+  margin-left: var(--side-gap);
+  padding-right: 1.5rem;
+}
+.layout-b .site-main { padding-top: .5rem; }
+
+
+/* --------------------------------------------------------------------------
+   4. Narrow screens
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 860px) {
+  .hub-cols { grid-template-columns: minmax(0, 1fr); }
+  .hub-side { margin-top: calc(var(--step) * 1.5); }
+
+  /* B: the sidebar folds into a top bar with a Menu toggle, and stops
+     reserving its column in the wide-page width */
+  body.layout-b { --side-gap: 0px; }
+  .sidebar {
+    position: static;
+    width: auto;
+    padding: 1rem 1.25rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sidebar-head { display: flex; align-items: center; justify-content: space-between; }
+  .sidebar-name { font-size: 1.1rem; }
+  .sidebar-toggle {
+    display: inline-block;
+    padding: .2rem .6rem;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .sidebar-body { display: none; padding-top: .5rem; }
+  .sidebar.is-open .sidebar-body { display: block; }
+  .layout-b .site-main,
+  .layout-b .site-foot { margin-left: 0; padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+
+@media (max-width: 560px) {
+  /* A and C: the nav becomes one swipeable row under the name */
+  .topbar-nav { flex-wrap: nowrap; overflow-x: auto; width: 100%; gap: 1.1rem; }
+  .topbar-nav a, .topbar-search { white-space: nowrap; }
+  .hub-name { font-size: 1.75rem; }
+  .hub-lede { font-size: 1.05rem; }
+  .wfilter-row { flex-direction: column; gap: .3rem; }
+}

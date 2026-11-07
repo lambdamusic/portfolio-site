@@ -17,9 +17,9 @@
     {% endif %}
     <p class="wordrow-meta">
       {% if pub.pubtype.name != "Blog" %}<span class="wordrow-kind">{{pub.pubtype.name}}</span>{% endif %}
-      {% for c in pub.categories.all %}<a class="wordrow-cat" href="?query=date&amp;type=blogs&amp;ctype={{c.name}}">{{c.name|category_label}}</a>{% if not forloop.last %} <span class="sep">/</span> {% endif %}{% endfor %}
+      {% for c in pub.categories.all %}<a class="wordrow-cat" href="{% url 'portfolioapp:words' %}?query=date&amp;type=blogs&amp;ctype={{c.name}}">{{c.name|category_label}}</a>{% if not forloop.last %} <span class="sep">/</span> {% endif %}{% endfor %}
       {% with tags=pub.tags.all %}{% if tags %}<span class="sep">&middot;</span>
-      {% for t in tags %}<a class="wordrow-tag" href="?tag={{t.name}}&amp;type=all">#{{t.name}}</a> {% endfor %}{% endif %}{% endwith %}
+      {% for t in tags %}<a class="wordrow-tag" href="{% url 'portfolioapp:words' %}?tag={{t.name}}&amp;type=all">#{{t.name}}</a> {% endfor %}{% endif %}{% endwith %}
     </p>
   </div>
 </article>

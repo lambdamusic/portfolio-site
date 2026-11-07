@@ -1,0 +1,85 @@
+{% extends "portfolioapp/components/base.html" %}
+{% load static %}
+
+{% comment %}
+  Prototype C's homepage (views.home_hub): a front page that answers "who is
+  this and what do they do" before the grid, and puts each section one
+  click away. The full project grid stays at /projects/.
+{% endcomment %}
+
+{% block metadescription %}
+  {% include "portfolioapp/components/meta-description.html" with desc="Michele Pasin works on ontology engineering, knowledge graphs and AI. Open-source tools like Ontospy and DimCLI, research projects, papers and livecoded music." %}
+{% endblock metadescription %}
+
+{% block pagetitle %}
+  <title>Michele Pasin | Ontology Engineering, Knowledge Graphs and AI</title>
+{% endblock pagetitle %}
+
+{% block bodyclass %}is-wide{% endblock bodyclass %}
+
+
+{% block bodycontent %}
+
+  <section class="hub-intro">
+    <h1 class="hub-name">Michele Pasin</h1>
+    <p class="hub-lede">I work on ontology engineering, knowledge graphs and AI. This is where I keep the
+      <a href="{% url 'portfolioapp:projects' %}">projects</a>, the
+      <a href="{% url 'portfolioapp:words' %}">writing</a> and the
+      <a href="{% url 'portfolioapp:music' %}">livecoded music</a>.
+      <a class="hub-about" href="{% url 'portfolioapp:about' %}">More about me &rarr;</a></p>
+  </section>
+
+  <div class="hub-cols">
+
+    <section class="hub-main">
+      <h2 class="sectionlabel"><b>Words</b> <span class="sep">/</span> latest posts and papers</h2>
+      {% for pub in latest_words %}
+        {% include "portfolioapp/components/words-row.html" %}
+      {% endfor %}
+      <a class="hub-more" href="{% url 'portfolioapp:words' %}">Everything I've written &rarr;</a>
+    </section>
+
+    <aside class="hub-side">
+      <h2 class="sectionlabel"><b>Events</b> <span class="sep">/</span> recent talks</h2>
+      <ul class="hub-list">
+        {% for pub in latest_talks %}
+          <li>
+            <a href="{{ pub.get_absolute_url }}">{{ pub.title|capfirst }}</a>
+            <span class="hub-list-meta">{{ pub.pubdate|date:"M Y" }}{% if pub.pubplace %} &middot; {{ pub.pubplace }}{% endif %}</span>
+          </li>
+        {% endfor %}
+      </ul>
+      <a class="hub-more" href="{% url 'portfolioapp:events' %}">All talks &rarr;</a>
+
+      <h2 class="sectionlabel"><b>Sounds</b> <span class="sep">/</span> recent music</h2>
+      <ul class="hub-list">
+        {% for s in latest_sounds %}
+          <li>
+            <a href="/sounds/{{ s.urlstub|lower }}">{{ s.title }}</a>
+            {% if s.date %}<span class="hub-list-meta">{{ s.date|date:"M Y" }}</span>{% endif %}
+          </li>
+        {% endfor %}
+      </ul>
+      <a class="hub-more" href="{% url 'portfolioapp:music' %}">All sounds &rarr;</a>
+    </aside>
+
+  </div>
+
+  <section class="hub-projects">
+    <h2 class="sectionlabel"><b>Projects</b> <span class="sep">/</span> recent things I have built</h2>
+    <div class="tilegrid">
+      {% for p in projects %}
+        <div class="thumb-div">
+          <a href="{{p.get_absolute_url}}" class="thumbnail" title="{{p.title}}: {{p.short_title|truncatewords:10}}">
+            <img class="thumb-img" src="{% static 'manual_img/' %}{{ p.urlstub|lower }}/thumb.jpg" alt="{{p.title}}" width="400" height="200" loading="lazy">
+          </a>
+          <p class="thumb-title">
+            <a class="project-title" href="{{p.get_absolute_url}}">{{p.title}}</a><br>{% if p.datefrom %}{% include "portfolioapp/components/project-years.html" %}{% endif %}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+    <a class="hub-more" href="{% url 'portfolioapp:projects' %}">All {{ project_count }} projects &rarr;</a>
+  </section>
+
+{% endblock bodycontent %}

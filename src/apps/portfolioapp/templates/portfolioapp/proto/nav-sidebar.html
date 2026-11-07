@@ -1,0 +1,47 @@
+{% comment %}
+  Prototype B: the drawer left permanently open as a sidebar on wide screens,
+  with who-I-am at the top so the homepage no longer needs its own intro.
+  Below 860px it folds into a top bar with a Menu toggle (the script below).
+  The Words filters live on the Words page itself (words-proto.html).
+{% endcomment %}
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    <a class="sidebar-name" href="{% url 'portfolioapp:home' %}">Michele Pasin</a>
+    <button type="button" class="sidebar-toggle" aria-expanded="false" aria-controls="sidebar-body">Menu</button>
+  </div>
+
+  <div class="sidebar-body" id="sidebar-body">
+    <p class="sidebar-intro">Ontology engineering, knowledge graphs and AI. Also: digital humanities and livecoded music.</p>
+
+    <nav aria-label="Site navigation">
+      <ul class="sidebar-nav">
+        <li><a href="{% url 'portfolioapp:home' %}" {% if section == "home" or section == "projects" or section == "projects-detail" %}class="is-current"{% endif %}>Projects</a></li>
+        <li><a href="{% url 'portfolioapp:words' %}" {% if section == "words" or section == "papers" or section == "blogs-detail" or section == "papers-detail" %}class="is-current"{% endif %}>Words</a></li>
+        <li><a href="{% url 'portfolioapp:music' %}" {% if section == "music" or section == "music-detail" %}class="is-current"{% endif %}>Sounds</a></li>
+        <li><a href="{% url 'portfolioapp:events' %}" {% if section == "events" %}class="is-current"{% endif %}>Events</a></li>
+        <li><a href="{% url 'portfolioapp:about' %}" {% if section == "about" %}class="is-current"{% endif %}>About</a></li>
+        <li><a href="{% url 'portfolioapp:contact' %}" {% if section == "contact" %}class="is-current"{% endif %}>Contact</a></li>
+      </ul>
+    </nav>
+
+    <button type="button" class="sidebar-search" data-toggle="modal" data-target="#modalSearch">Search the site&hellip;</button>
+
+    <p class="sidebar-links">
+      <a href="{% url 'portfolioapp:words-feed' %}">RSS</a> <span class="sep">/</span>
+      <a href="https://github.com/lambdamusic">GitHub</a>
+    </p>
+  </div>
+</aside>
+
+<script>
+  // narrow screens only: the sidebar is a top bar and Menu opens its body
+  (function () {
+    var side = document.getElementById('sidebar');
+    var btn = side.querySelector('.sidebar-toggle');
+    btn.addEventListener('click', function () {
+      var open = side.classList.toggle('is-open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+</script>

@@ -1,0 +1,24 @@
+{% comment %}
+  Floating prototype picker, branch `layout-prototypes` only. Links keep the
+  current path but drop its query string, so a filtered Words view resets.
+{% endcomment %}
+
+{# styles inline: proto.css only loads once a prototype is on, the switcher always shows #}
+<style>
+  .proto-switcher { position: fixed; right: 12px; bottom: 12px; z-index: 2000; display: flex; flex-wrap: wrap; gap: .2rem;
+    max-width: calc(100vw - 24px); padding: .35rem; background: #111; font-size: .72rem; line-height: 1.4;
+    box-shadow: 0 2px 10px rgba(0,0,0,.25); }
+  .proto-switcher-label { padding: .15rem .35rem; letter-spacing: .08em; text-transform: uppercase; color: #888; }
+  .proto-switcher a { padding: .15rem .45rem; font-weight: 700; color: #ddd; }
+  .proto-switcher a:hover { color: #fff; text-decoration: none; }
+  .proto-switcher a.is-current { background: #f31b1b; color: #fff; }
+  @media print { .proto-switcher { display: none; } }
+</style>
+
+<div class="proto-switcher" role="navigation" aria-label="Layout prototypes">
+  <span class="proto-switcher-label">Layout</span>
+  <a href="{{ request.path }}?layout=off" {% if not layout %}class="is-current"{% endif %}>Current</a>
+  {% for key, name in proto_layouts %}
+    <a href="{{ request.path }}?layout={{ key }}" {% if layout == key %}class="is-current"{% endif %}>{{ key|upper }} &middot; {{ name }}</a>
+  {% endfor %}
+</div>
