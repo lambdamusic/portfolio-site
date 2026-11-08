@@ -5,9 +5,10 @@ from django.http.response import Http404
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlquote
 from django.http import HttpResponse, HttpResponseNotFound
-from django.db.models import Q
+from django.db.models import Q, Count
 
 import json
+import re
 import os
 from time import strftime
 import markdown
@@ -26,6 +27,7 @@ from researchapp.pub_locations import coords_for
 from researchapp.management.commands.do_blogs_reindex import parse_markdown, parse_description
 from myutils.modelextra.mymodels import meta_description
 from . import seo
+from researchapp.category_vocabulary import CATEGORIES
 
 APP = "portfolioapp"
 
@@ -76,7 +78,7 @@ def words(request):
 	context = {}
 
 	query = request.GET.get('query', 'date')
-	ttype = request.GET.get('type', 'latest')
+	ttype = request.GET.get('type', 'all')
 	ctype = request.GET.get('ctype', 'all')
 	tag = request.GET.get('tag', None)
 	format = request.GET.get('format', 'html')
@@ -122,6 +124,8 @@ def words(request):
 		'tag': tag,
 		'admin_change_url': admin_change_url,
 		'tags': tags,
+		'categories': sorted(CATEGORIES),
+		'item_count': sum(len(x[1]) for x in return_items) if return_items else 0,
 	}
 	
 	return render(request, APP + '/pages/' + templatee, context)
@@ -180,9 +184,8 @@ def paper_detail(request, year="", month="", day="", namedetail=""):
 		'all_urls': return_item.all_urls(),
 		'type': pubtypegroup,
 		'itemembed1': return_item.embedcode1,
-		'all_papers_list' : get_related_pubs(return_item),
-		# 'all_papers_list' : get_pubs('date')
 	}
+	context.update(paper_margin_context(return_item))
 	context.update(seo.seo_context(
 		nodes=[seo.publication(return_item), seo.person(),
 			seo.breadcrumbs(("Home", "/"), ("Words", "/words/"), (return_item.title, None))],
@@ -191,6 +194,41 @@ def paper_detail(request, year="", month="", day="", namedetail=""):
 	templatee = "detail-papers.html"
 
 	return render(request, APP + '/pages/' + templatee, context)
+
+
+# title words too common to say two papers are related
+RELATED_STOPWORDS = {"using", "with", "from", "into", "towards", "based", "about", "their", "this", "that", "some"}
+
+
+def title_words(title):
+	return {w for w in re.findall(r"[a-z0-9]+", title.lower()) if len(w) > 3} - RELATED_STOPWORDS
+
+
+def paper_margin_context(return_item, limit=5):
+	"""
+	The paper page's right margin: links labelled by site, and related papers -
+	papers only (no blog posts or talks), matched on whole title words, ranked
+	by how many words they share, newest first on a tie.
+	"""
+	from urllib.parse import urlparse
+
+	links = []
+	for url, name in return_item.all_urls():
+		host = urlparse(url).netloc
+		if not name or name.startswith("http"):
+			name = host[4:] if host.startswith("www.") else host
+		links.append((url, name))
+
+	words = title_words(return_item.title)
+	papers = (Publication.objects.exclude(pubtype__pk__in=[12, BLOG_PUBTYPE_PK])
+		.exclude(review=True).exclude(pk=return_item.pk))
+	scored = [(len(words & title_words(p.title)), p) for p in papers]
+	scored = sorted([x for x in scored if x[0]], key=lambda x: (-x[0], -x[1].pubdate.toordinal()))
+
+	return {
+		'paper_links': links,
+		'related_papers': [p for _, p in scored[:limit]],
+	}
 
 
 
@@ -225,8 +263,9 @@ def blog_detail(request, year="", month="", day="", namedetail=""):
 	blog_source_file = BLOGS_ROOT + return_item.md_file
 	TITLE, DATE, REVIEW, CATS, TAGS, PURE_MARKDOWN = parse_markdown(blog_source_file)
 
-	html_blog_entry = markdown.markdown(PURE_MARKDOWN, extensions=['fenced_code', 'codehilite'])
-	html_blog_entry = add_lazy_loading_to_images(html_blog_entry)
+	# the toc extension gives headings ids, for the contents list in the margin
+	md = markdown.Markdown(extensions=['fenced_code', 'codehilite', 'toc'])
+	html_blog_entry = add_lazy_loading_to_images(md.convert(PURE_MARKDOWN))
 
 	context = {
 		'return_item' : return_item,
@@ -239,8 +278,8 @@ def blog_detail(request, year="", month="", day="", namedetail=""):
 		'year': return_item.pubdate.year,
 		'all_urls': return_item.all_urls(),
 		'type': pubtypegroup,
-		'all_papers_list' : get_related_pubs(return_item),
 	}
+	context.update(post_margin_context(return_item, PURE_MARKDOWN, md.toc_tokens))
 
 	post_image = seo.first_image(html_blog_entry)
 	context.update(seo.seo_context(
@@ -251,6 +290,36 @@ def blog_detail(request, year="", month="", day="", namedetail=""):
 	templatee = "detail-blogs.html"
 
 	return render(request, APP + '/pages/' + templatee, context)
+
+
+def post_margin_context(return_item, pure_markdown, toc_tokens):
+	"""
+	The post page's margin and footer: a contents list (posts with three or
+	more sections), reading time, the neighbouring posts, and related posts
+	ranked by shared tags.
+	"""
+	# some posts open with their own H1, so take the section headings
+	# from whichever level holds more than one of them
+	tokens = toc_tokens
+	if len(tokens) == 1 and tokens[0]['children']:
+		tokens = tokens[0]['children']
+	toc = [(t['id'], t['name']) for t in tokens]
+
+	blogs = Publication.objects.filter(pubtype__pk=BLOG_PUBTYPE_PK).exclude(review=True)
+	newer = blogs.filter(pubdate__gt=return_item.pubdate).order_by('pubdate').first()
+	older = blogs.filter(pubdate__lt=return_item.pubdate).order_by('-pubdate').first()
+
+	tags = return_item.tags.all()
+	related = list(blogs.filter(tags__in=tags).exclude(pk=return_item.pk)
+		.annotate(shared=Count('tags')).order_by('-shared', '-pubdate')[:5])
+
+	return {
+		'toc': toc if len(toc) > 2 else [],
+		'reading_minutes': max(1, round(len(pure_markdown.split()) / 220)),
+		'newer_post': newer,
+		'older_post': older,
+		'related_posts': related,
+	}
 
 
 
@@ -365,37 +434,6 @@ def get_pubs(query, ttype, tag, ctype=""):
 		for x in valid_years:
 			return_items.append((x, ddset.filter(pubdate__year=x)))
 		return return_items
-
-
-
-
-
-def get_related_pubs(a_pub):
-	""" retrieves pubs info - with similar title"""
-
-	talks = PubType.objects.get(
-		pk=12)  # used to exclude 'INVITED TALKS' from articles list
-
-	words = a_pub.title.split()
-	words = [x for x in words if len(x) > 3]
-
-	q = Q()
-	for word in words:
-		q |= Q(title__icontains = word)
-	pubs = Publication.objects.exclude(
-				pubtype=talks).exclude(
-				review=True).filter(q)
-
-	valid_years = list(
-		set([
-			x[0].year for x in pubs.values_list('pubdate').distinct()
-		]))
-	return_items = []
-	valid_years.sort(reverse=True)
-	# print valid_years
-	for x in valid_years:
-		return_items.append((x, pubs.filter(pubdate__year=x)))
-	return return_items
 
 
 

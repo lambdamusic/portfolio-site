@@ -27,10 +27,14 @@
     {% endif %}
   </p>
 
-  {% comment %} the homepage's heading, for search and screen readers only: a
-     visible heading/intro is still to be designed (#25). It sits after
-     the label so `.sectionlabel:first-child` keeps its tighter top margin {% endcomment %}
-  <h1 class="sr-only">Michele Pasin: ontology engineering, knowledge graphs and AI</h1>
+  {% comment %} On the homepage the visible H1 is the name at the top of the
+     sidebar (components/site-sidebar.html, #25). /projects/ shows the same
+     grid, so it keeps this heading for search and screen readers only. It
+     sits after the label so `.sectionlabel:first-child` keeps its tighter
+     top margin {% endcomment %}
+  {% if request.resolver_match.url_name != "home" %}
+    <h1 class="sr-only">Michele Pasin: ontology engineering, knowledge graphs, data analytics and AI</h1>
+  {% endif %}
 
   <div class="tilegrid">
     {% for p in projects %}

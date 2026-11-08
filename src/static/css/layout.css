@@ -1,0 +1,549 @@
+/* ==========================================================================
+   layout.css - the 2026-11 layout (#21)
+   --------------------------------------------------------------------------
+   Loaded after parerga.css, which keeps the tokens, type and base styles;
+   this file adds the frame and the page designs chosen on the
+   layout-prototypes branch:
+
+     1  sidebar        - always open; a top bar with a Menu below 860px
+     2  shared         - Words filter strip, year headings, front page
+     3  post margin    - blog posts: date, tags, related, contents
+     4  paper margin   - the same margin on papers, plus citation
+     5  project        - title and facts beside the lead screenshot
+     6  sounds         - pieces as video tiles, albums, singles
+     7  narrow screens
+
+   The post, paper and project grids switch on the width of the content area
+   (container queries), not the window, so they don't depend on the sidebar.
+   ========================================================================== */
+
+
+/* --------------------------------------------------------------------------
+   1. Sidebar
+   -------------------------------------------------------------------------- */
+
+body {
+  border-top: 4px solid var(--accent);   /* the old red drawer handle, as a rule */
+  --side-w: 15rem;
+  --side-gap: calc(var(--side-w) + 3rem);
+  --measure-wide: min(72rem, calc(100vw - var(--side-gap) - 2rem));
+}
+
+.sidebar {
+  position: fixed;
+  top: 4px;      /* below the body's accent rule */
+  bottom: 0;
+  left: 0;
+  width: var(--side-w);
+  overflow-y: auto;
+  padding: 1.5rem 1.5rem 2rem;
+  border-right: 1px solid var(--rule);
+  background: var(--paper);
+}
+.sidebar-name {
+  display: block;
+  font-size: 1.35rem;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--ink);
+}
+.sidebar-name:hover { color: var(--accent); text-decoration: none; }
+/* on the homepage the name is the page's H1, with the link inside */
+h1.sidebar-name { margin: 0; }
+h1.sidebar-name a { color: var(--ink); }
+h1.sidebar-name a:hover { color: var(--accent); text-decoration: none; }
+.sidebar-toggle { display: none; }
+.sidebar-intro { margin: .6rem 0 1.5rem; font-size: .85rem; line-height: 1.5; color: var(--muted); }
+
+.sidebar-nav { list-style: none; margin: 0 0 1.5rem; padding: 0; }
+.sidebar-nav li { margin: 0; }
+.sidebar-nav a {
+  display: block;
+  padding: .3rem 0 .3rem .75rem;
+  border-left: 3px solid transparent;
+  font-weight: 700;
+  color: var(--ink);
+}
+.sidebar-nav a:hover { color: var(--accent); text-decoration: none; }
+.sidebar-nav a.is-current { border-left-color: var(--accent); }
+
+.sidebar-search {
+  display: block;
+  width: 100%;
+  padding: .35rem .5rem;
+  border: 1px solid var(--rule);
+  background: var(--paper);
+  font-size: .8rem;
+  color: var(--muted);
+  text-align: left;
+  cursor: pointer;
+}
+.sidebar-search:hover { border-color: var(--accent); color: var(--ink); }
+.sidebar-links {
+  margin: 1.25rem 0 0;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.sidebar-links .sep { color: var(--faint); padding: 0 .15rem; }
+
+/* `body` outranks parerga.css's .site-main rules, media queries included,
+   which still offset the column for the old drawer */
+body .site-main,
+body .site-foot {
+  margin-left: var(--side-gap);
+  padding-right: 1.5rem;
+}
+body .site-main { padding-top: .5rem; }
+
+
+/* --------------------------------------------------------------------------
+   2. Shared: Words filter, year headings, front page
+   -------------------------------------------------------------------------- */
+
+/* Unified Words filter strip (pages/words.html) */
+.wfilter { margin: 0 0 var(--step); }
+.wfilter-row {
+  display: flex;
+  align-items: baseline;
+  gap: .5rem;
+  margin: 0 0 .55rem;
+}
+.wfilter-chips { display: flex; flex-wrap: wrap; gap: .4rem; }
+.wfilter-label {
+  flex: 0 0 3.5rem;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.chip {
+  display: inline-block;
+  padding: .1rem .5rem;
+  border: 1px solid var(--rule);
+  font-size: .8rem;
+  font-weight: 700;
+  line-height: 1.5;
+  color: var(--link);
+}
+.chip--quiet { font-weight: 400; color: var(--body); }
+.chip:hover,
+.chip:focus { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+.chip.is-current,
+.chip.is-current:hover { background: var(--accent); border-color: var(--accent); color: #fff; }
+.chip-clear { font-size: .75rem; color: var(--muted); }
+.chip-clear:hover { color: var(--accent); }
+
+.wcount {
+  margin: 0;
+  font-size: .7rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+/* plain year headings instead of the ghost numerals: a tag or a "Latest"
+   label can no longer be mistaken for another year (#21) */
+.wyear {
+  margin: calc(var(--step) * 1.5) 0 0;
+  padding-bottom: .3rem;
+  border-bottom: 2px solid var(--ink);
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+/* Events uses them too (pages/events.html); its entries need air below */
+.eventslist .wyear { margin-bottom: 1.1rem; }
+.eventslist .wyear:first-child { margin-top: .5rem; }
+
+
+/* Front page (pages/frontpage.html, the unlinked /frontpage/) */
+.hub-intro { max-width: var(--measure); margin: calc(var(--step) * 1.75) 0 calc(var(--step) * 1.5); }
+.hub-name { margin: 0 0 .5rem; font-size: 2.25rem; }
+.hub-lede { margin: 0; font-size: 1.15rem; line-height: 1.55; color: var(--body); }
+.hub-lede .hub-about { white-space: nowrap; font-size: .85rem; }
+
+.hub-cols {
+  display: grid;
+  grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 0 3rem;
+}
+.hub-cols .sectionlabel { margin-top: 0; }
+.hub-side .sectionlabel + .hub-list { margin-top: 0; }
+.hub-side .hub-more + .sectionlabel { margin-top: calc(var(--step) * 1.25); }
+
+.hub-list { list-style: none; margin: 0; padding: 0; }
+.hub-list li { padding: .6rem 0; border-top: 1px solid var(--rule); line-height: 1.35; }
+.hub-list li:first-child { border-top: 0; }
+.hub-list a { font-weight: 700; }
+.hub-list-meta { display: block; margin-top: .15rem; font-size: .75rem; color: var(--muted); }
+
+.hub-more {
+  display: inline-block;
+  margin: .6rem 0 0;
+  font-size: .75rem;
+  font-weight: 700;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+}
+.hub-projects { margin-top: calc(var(--step) * 2); }
+.hub-projects .tilegrid { margin-top: var(--step); }
+
+
+/* --------------------------------------------------------------------------
+   3. Blog posts: the right-hand margin
+   -------------------------------------------------------------------------- */
+
+.post { container-type: inline-size; }
+.post-head { margin: 0 0 calc(var(--step) * 1.5); max-width: var(--measure); }
+.post-head h1 { margin: 0 0 .5rem; font-size: 2.1rem; line-height: 1.15; }
+.post-body { min-width: 0; max-width: var(--measure); }
+
+/* small uppercase labels, used in the margins */
+.post-rail-label {
+  margin: 1.5rem 0 .4rem;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.post-tags { margin: 0; font-size: .85rem; line-height: 1.7; }
+.post-tags a { display: inline-block; margin-right: .5rem; }
+
+.post-toc ol { list-style: none; margin: 0; padding: 0; counter-reset: toc; }
+.post-toc li { margin: 0; }
+.post-toc a {
+  display: block;
+  padding: .25rem 0 .25rem .7rem;
+  border-left: 2px solid var(--rule);
+  font-size: .82rem;
+  font-weight: 400;      /* quieter than the site nav: only the section being read is bold */
+  line-height: 1.35;
+  color: var(--muted);
+}
+.post-toc a:hover { color: var(--accent); text-decoration: none; }
+.post-toc a.is-reading { border-left-color: var(--accent); color: var(--ink); font-weight: 700; }
+
+.post-related { list-style: none; margin: 0; padding: 0; }
+.post-related li { padding: .45rem 0; border-top: 1px solid var(--rule); font-size: .88rem; line-height: 1.35; }
+.post-related li:first-child { border-top: 0; padding-top: 0; }
+.post-related a { font-weight: 700; }
+.post-related-date { display: block; margin-top: .1rem; font-size: .72rem; color: var(--muted); }
+
+/* older / newer, two halves */
+.post-pager {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  margin: calc(var(--step) * 2) 0 0;
+  padding-top: var(--step);
+  border-top: 2px solid var(--ink);
+}
+.post-pager a { flex: 0 1 48%; font-weight: 700; line-height: 1.3; }
+.post-pager span { display: block; margin-bottom: .2rem; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.post-pager-newer { margin-left: auto; text-align: right; }
+
+/* citation, folded into one line */
+.post-cite { margin: var(--step) 0 0; font-size: .85rem; }
+.post-cite summary {
+  display: inline-block;
+  cursor: pointer;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.post-cite summary:hover { color: var(--accent); }
+.post-cite p { margin: .5rem 0 0; padding-left: .75rem; border-left: 2px solid var(--rule); color: var(--body); }
+
+/* the margin: one compact line under the title when narrow */
+.post-margin { display: flex; flex-wrap: wrap; align-items: baseline; gap: .2rem 1rem; margin: 0 0 var(--step); font-size: .85rem; }
+.post-margin p { margin: 0; }
+.post-margin .post-toc,
+.post-margin-related { display: none; }
+.post-date { color: var(--muted); }
+.post-date b { color: var(--ink); }
+.post-side-meta { color: var(--muted); }
+
+/* the margin as a column to the right of the text, once there is room */
+@container (min-width: 56rem) {
+  .post-grid:has(> .post-margin) {
+    display: grid;
+    grid-template-columns: minmax(0, var(--measure)) 11rem;
+    gap: 0 3rem;
+  }
+  .post-margin {
+    display: block;
+    grid-column: 2;
+    grid-row: 1;
+    position: sticky;
+    top: 1.5rem;
+    align-self: start;
+    max-height: calc(100vh - 3rem);   /* a long margin scrolls inside itself */
+    overflow-y: auto;
+    margin: 0;
+    padding-top: .35rem;
+    border-top: 2px solid var(--ink);
+  }
+  .post-date { font-size: .95rem; }
+  .post-date b { display: block; font-size: 1.6rem; line-height: 1.1; }
+  .post-side-meta { margin-top: .2rem !important; font-size: .78rem; }
+  .post-margin .post-tags { margin-top: 1rem; font-size: .8rem; }
+  .post-margin .post-tags a { display: block; margin: 0; }
+  .post-margin .post-toc { display: block; margin-top: 1.5rem; }
+  .post-margin .post-toc .post-rail-label { margin-bottom: .4rem; }
+  /* with a contents list the margin runs the article's full height and only
+     the list sticks; date, tags and related scroll away above it */
+  .post-margin.has-toc,
+  .post-margin.is-static {
+    position: static;
+    align-self: stretch;
+    max-height: none;
+    overflow: visible;
+  }
+  .post-margin.has-toc .post-toc {
+    position: sticky;
+    top: 1.5rem;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+  }
+
+  /* related posts move into the margin, so the copy after the article goes */
+  .post-margin-related { display: block; margin-top: 1.5rem; }
+  .post-margin-related .post-rail-label { margin: 0 0 .4rem; }
+  .post-margin .post-related li { font-size: .8rem; }
+  .post-related-end--dup { display: none; }
+}
+
+
+/* --------------------------------------------------------------------------
+   4. Papers: the same margin, with citation
+   -------------------------------------------------------------------------- */
+
+/* paper pages (pages/detail-papers.html): the post margin, holding
+   venue, project, links, citation and related papers. Wider than a post's,
+   since it carries a citation; below the article on narrow screens. */
+.post-margin--paper { display: block; order: 1; margin: calc(var(--step) * 2) 0 0; }
+.post-grid:has(> .post-margin--paper) { display: flex; flex-direction: column; }
+.post-grid > .post-related-end--dup { order: 2; }
+.post-margin--paper .post-rail-label { margin: 1.25rem 0 .35rem; }
+.post-margin--paper .post-margin-related { margin-top: 0; }
+.paper-venue { margin-top: .5rem !important; font-size: .85rem; line-height: 1.4; color: var(--body); }
+.paper-project { font-size: .9rem; font-weight: 700; }
+.paper-links { list-style: none; margin: 0; padding: 0; font-size: .85rem; line-height: 1.7; }
+.paper-cite { font-size: .78rem; line-height: 1.5; color: var(--body); }
+.paper-copy {
+  margin-top: .5rem;
+  padding: .2rem .6rem;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+}
+.paper-copy:hover { border-color: var(--accent); background: var(--accent); color: #fff; }
+.paper-abstract-label { margin-top: 0; }
+.blogentry.paper-abstract > p:first-of-type { font-size: inherit; font-weight: 400; color: var(--body); }
+
+@container (min-width: 56rem) {
+  .post-grid:has(> .post-margin--paper) { display: grid; }
+  .post-grid:has(> .post-margin--paper) { grid-template-columns: minmax(0, var(--measure)) 14rem; }
+  .post-margin--paper { order: 0; margin: 0; }
+}
+
+
+/* --------------------------------------------------------------------------
+   5. Project pages
+   -------------------------------------------------------------------------- */
+
+.proj { container-type: inline-size; }
+.proj-head {
+  margin: 0 0 calc(var(--step) * 2);
+  padding-bottom: calc(var(--step) * 1.5);
+  border-bottom: 1px solid var(--rule);
+}
+.proj-title { margin: 0 0 .6rem; font-size: 2.8rem; line-height: 1.05; letter-spacing: -.01em; }
+.proj-tagline { margin: 0; max-width: 40rem; font-size: 1.3rem; line-height: 1.4; color: var(--body); }
+
+.proj-facts { display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; margin: 1.75rem 0 0; }
+.proj-facts dt {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.proj-facts dd { margin: .2rem 0 0; font-size: .95rem; font-weight: 700; color: var(--ink); }
+.proj-facts .project-year { font: inherit; color: inherit; }
+.proj-fact-role { flex: 1 1 16rem; }
+.proj-fact-role dd { max-width: 26rem; font-weight: 400; color: var(--body); }
+.proj-status::before { content: ""; display: inline-block; width: .55rem; height: .55rem; margin-right: .35rem; border-radius: 50%; background: var(--faint); }
+.proj-status.is-active::before { background: #1a9e48; }
+
+.proj-links { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 0; }
+.proj-button {
+  display: inline-block;
+  padding: .45rem .9rem;
+  border: 2px solid var(--ink);
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.proj-button:first-child { background: var(--ink); color: #fff; }
+.proj-button:hover,
+.proj-button:focus { border-color: var(--accent); background: var(--accent); color: #fff; text-decoration: none; }
+
+.proj-body { max-width: var(--measure); }
+
+.proj-section { margin-top: calc(var(--step) * 2.5); }
+.proj-section-title {
+  margin: 0 0 var(--step);
+  padding-bottom: .3rem;
+  border-bottom: 2px solid var(--ink);
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+.proj-section-title span { margin-left: .3rem; font-size: .8rem; font-weight: 400; color: var(--muted); }
+
+.proj-writing { max-width: var(--measure); }
+
+.proj-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 1rem; }
+.proj-gallery img,
+.proj-lead img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  object-position: top left;
+  border: 1px solid var(--rule);
+  background: var(--wash);
+}
+.proj-gallery img { aspect-ratio: 4 / 3; }
+.proj-gallery a:hover img,
+.proj-lead:hover img { border-color: var(--accent); }
+
+/* title and facts beside the lead screenshot, once there is room */
+.proj-lead { display: block; margin-top: var(--step); }
+.proj-lead img { aspect-ratio: 16 / 10; }
+
+@container (min-width: 52rem) {
+  .proj-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 0 3rem;
+    align-items: start;
+  }
+  .proj-lead { margin-top: .4rem; }
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Sounds
+   -------------------------------------------------------------------------- */
+
+.snd-lede { max-width: var(--measure); margin: 0 0 var(--step); font-size: 1.15rem; line-height: 1.55; color: var(--body); }
+
+.snd-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(15rem, 1fr)); gap: 2rem 1.25rem; }
+.snd-grid--albums { grid-template-columns: repeat(auto-fill, minmax(12rem, 15rem)); }
+
+.snd-tile { display: block; color: var(--ink); }
+.snd-tile:hover,
+.snd-tile:focus { color: var(--ink); text-decoration: none; }
+.snd-tile:hover .snd-title { color: var(--accent); }
+
+.snd-thumb,
+.snd-cover { position: relative; display: block; overflow: hidden; background: #111; }
+.snd-thumb { aspect-ratio: 16 / 9; }
+.snd-cover { aspect-ratio: 1; }
+.snd-thumb img,
+.snd-cover img { display: block; width: 100%; height: 100%; object-fit: cover; transition: transform .3s ease; }
+.snd-tile:hover img { transform: scale(1.03); }
+
+/* play mark: a dark disc with a CSS triangle, red on hover */
+.snd-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 3rem;
+  height: 3rem;
+  margin: -1.5rem 0 0 -1.5rem;
+  border-radius: 50%;
+  background: rgba(0, 0, 0, .65);
+  transition: background .2s;
+}
+.snd-play::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  border-style: solid;
+  border-width: .55rem 0 .55rem .9rem;
+  border-color: transparent transparent transparent #fff;
+  transform: translate(-50%, -50%);
+}
+.snd-tile:hover .snd-play { background: var(--accent); }
+
+.snd-cover-type {
+  display: flex;
+  align-items: flex-end;
+  height: 100%;
+  padding: 1rem;
+  background: var(--accent);
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.05;
+  color: #fff;
+}
+
+.snd-title { display: block; margin-top: .6rem; font-weight: 700; line-height: 1.3; }
+.snd-meta { display: block; margin-top: .15rem; font-size: .78rem; font-weight: 400; line-height: 1.4; color: var(--muted); }
+/* post openings can run long: two lines at most */
+.snd-grid .snd-meta { display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.snd-singles { max-width: var(--measure); }
+
+
+/* --------------------------------------------------------------------------
+   7. Narrow screens
+   -------------------------------------------------------------------------- */
+
+@media (max-width: 860px) {
+  .hub-cols { grid-template-columns: minmax(0, 1fr); }
+  .hub-side { margin-top: calc(var(--step) * 1.5); }
+
+  /* the sidebar folds into a top bar with a Menu toggle (js/parerga.js), and
+     stops reserving its column in the wide-page width */
+  body { --side-gap: 0px; }
+  .sidebar {
+    position: static;
+    width: auto;
+    padding: 1rem 1.25rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--rule);
+  }
+  .sidebar-head { display: flex; align-items: center; justify-content: space-between; }
+  .sidebar-name { font-size: 1.1rem; }
+  .sidebar-toggle {
+    display: inline-block;
+    padding: .2rem .6rem;
+    border: 1px solid var(--ink);
+    background: var(--paper);
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--ink);
+  }
+  .sidebar-body { display: none; padding-top: .5rem; }
+  .sidebar.is-open .sidebar-body { display: block; }
+  body .site-main,
+  body .site-foot { margin-left: 0; padding-left: 1.25rem; padding-right: 1.25rem; }
+}
+
+@media (max-width: 560px) {
+  .hub-name { font-size: 1.75rem; }
+  .hub-lede { font-size: 1.05rem; }
+  .wfilter-row { flex-direction: column; gap: .3rem; }
+}

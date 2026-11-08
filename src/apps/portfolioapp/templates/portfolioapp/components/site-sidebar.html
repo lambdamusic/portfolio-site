@@ -1,0 +1,39 @@
+{% comment %}
+  The sidebar: who I am, then the five sections, search, RSS and GitHub.
+  Always open on wide screens; below 860px it folds into a top bar with a
+  Menu button (js/parerga.js). On the homepage the name is the page's H1,
+  since the project grid has no heading of its own (#25). Expects `section`,
+  the resolved URL name, from base.html.
+{% endcomment %}
+
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
+    {% if section == "home" %}
+      <h1 class="sidebar-name"><a href="{% url 'portfolioapp:home' %}">Michele Pasin</a></h1>
+    {% else %}
+      <a class="sidebar-name" href="{% url 'portfolioapp:home' %}">Michele Pasin</a>
+    {% endif %}
+    <button type="button" class="sidebar-toggle" aria-expanded="false" aria-controls="sidebar-body">Menu</button>
+  </div>
+
+  <div class="sidebar-body" id="sidebar-body">
+    <p class="sidebar-intro">Making information easier to explore: ontologies, knowledge graphs, data analytics and AI. Also digital humanities and livecoded music.</p>
+
+    <nav aria-label="Site navigation">
+      <ul class="sidebar-nav">
+        <li><a href="{% url 'portfolioapp:home' %}" {% if section == "home" or section == "projects" or section == "projects-detail" %}class="is-current"{% endif %}>Projects</a></li>
+        <li><a href="{% url 'portfolioapp:words' %}" {% if section == "words" or section == "papers" or section == "blogs-detail" or section == "papers-detail" %}class="is-current"{% endif %}>Words</a></li>
+        <li><a href="{% url 'portfolioapp:music' %}" {% if section == "music" or section == "music-detail" %}class="is-current"{% endif %}>Sounds</a></li>
+        <li><a href="{% url 'portfolioapp:events' %}" {% if section == "events" %}class="is-current"{% endif %}>Events</a></li>
+        <li><a href="{% url 'portfolioapp:about' %}" {% if section == "about" %}class="is-current"{% endif %}>About</a></li>
+      </ul>
+    </nav>
+
+    <button type="button" class="sidebar-search" data-toggle="modal" data-target="#modalSearch">Search the site&hellip;</button>
+
+    <p class="sidebar-links">
+      <a href="{% url 'portfolioapp:words-feed' %}">RSS</a> <span class="sep">/</span>
+      <a href="https://github.com/lambdamusic">GitHub</a>
+    </p>
+  </div>
+</aside>

@@ -1,9 +1,8 @@
-/* parerga.js - behaviour for the left "INSIDE" drawer.
+/* parerga.js - behaviour for the sidebar (components/site-sidebar.html).
  *
- * The original theme opened the drawer on :hover only, which is unreachable
- * on touch devices and invisible to keyboard users. Hover still works (it is
- * handled in CSS); this adds an explicit toggle, Escape-to-close, and a scrim
- * so the drawer is usable everywhere.
+ * On wide screens the sidebar is always open and needs no script. Below 860px
+ * it folds into a top bar, and the Menu button opens and closes its body.
+ * Escape closes it too.
  */
 (function () {
   'use strict';
@@ -14,37 +13,22 @@
   }
 
   ready(function () {
-    var rail = document.getElementById('site-rail');
-    if (!rail) { return; }
-
-    var handle = rail.querySelector('.rail-handle');
-    var scrim = document.createElement('div');
-    scrim.className = 'rail-scrim';
-    document.body.appendChild(scrim);
+    var side = document.getElementById('sidebar');
+    if (!side) { return; }
+    var btn = side.querySelector('.sidebar-toggle');
+    if (!btn) { return; }
 
     function setOpen(open) {
-      rail.classList.toggle('is-open', open);
-      scrim.classList.toggle('is-visible', open);
-      if (handle) { handle.setAttribute('aria-expanded', open ? 'true' : 'false'); }
+      side.classList.toggle('is-open', open);
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     }
 
-    if (handle) {
-      handle.addEventListener('click', function (e) {
-        e.preventDefault();
-        setOpen(!rail.classList.contains('is-open'));
-      });
-    }
-
-    scrim.addEventListener('click', function () { setOpen(false); });
+    btn.addEventListener('click', function () {
+      setOpen(!side.classList.contains('is-open'));
+    });
 
     document.addEventListener('keydown', function (e) {
       if (e.key === 'Escape' || e.keyCode === 27) { setOpen(false); }
-    });
-
-    // Closing on pointer-leave keeps the hover behaviour of the original
-    // feeling the same once the drawer has been opened by hover.
-    rail.addEventListener('mouseleave', function () {
-      if (window.matchMedia('(min-width: 861px)').matches) { setOpen(false); }
     });
   });
 })();

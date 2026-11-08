@@ -1,0 +1,78 @@
+{% extends "portfolioapp/components/base.html" %}
+{% load static %}
+{% load extrafilters %}
+
+{% comment %}
+  The Sounds page (views.sounds_page). One page instead of the old four
+  tabs: the pieces (blog posts with a `video:` line) as video thumbnails,
+  the albums as covers, singles as a list. No players here: each piece's
+  post has its own, which keeps this page light.
+  Thumbnails are YouTube's own images, hotlinked like the embeds were.
+{% endcomment %}
+
+{% block metadescription %}
+  {% include "portfolioapp/components/meta-description.html" with desc="Livecoding performances and algorithmic compositions by Michele Pasin: music written as code and played live." %}
+{% endblock metadescription %}
+
+{% block og_title %}Sounds | Michele Pasin{% endblock og_title %}
+
+{% block pagetitle %}
+  <title>Sounds | Michele Pasin</title>
+{% endblock pagetitle %}
+
+{% block bodyclass %}is-wide{% endblock bodyclass %}
+
+
+{% block bodycontent %}
+
+  <h1 class="sectionlabel"><b>Sounds</b> <span class="sep">/</span> music written as code</h1>
+
+  <p class="snd-lede">I make music by writing code and changing it while it plays, mostly with
+    <a href="https://extemporelang.github.io/">Extempore</a> and Ableton Live. Below are some of the
+    performances, two old albums and a few one-off tracks. New pieces go up on
+    <a href="https://livecoding.michelepasin.org/">The Musical Code</a>.</p>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Livecoding <span>{{ pieces|length }}</span></h2>
+    <div class="snd-grid">
+      {% for p in pieces %}
+        <a class="snd-tile" href="{{ p.get_absolute_url }}">
+          <span class="snd-thumb">
+            <img src="https://i.ytimg.com/vi/{{ p.video }}/hqdefault.jpg" alt="" loading="lazy">
+            <span class="snd-play" aria-hidden="true"></span>
+          </span>
+          <span class="snd-title">{{ p.display_title|capfirst }}</span>
+          <span class="snd-meta">{{ p.pubdate|date:"Y" }}{% with s=p.abstract|first_sentence %}{% if s %} &middot; {{ s }}{% endif %}{% endwith %}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Albums <span>{{ albums|length }}</span></h2>
+    <div class="snd-grid snd-grid--albums">
+      {% for p, link, cover in albums %}
+        <a class="snd-tile" href="{{ link }}">
+          <span class="snd-cover">
+            {% if cover %}<img src="{% static cover %}" alt="" loading="lazy">{% else %}<span class="snd-cover-type">{{ p.title }}</span>{% endif %}
+          </span>
+          <span class="snd-title">{{ p.title }}</span>
+          <span class="snd-meta">{{ p.date|date:"Y" }}{% if p.short_title %} &middot; {{ p.short_title }}{% endif %}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Singles <span>{{ singles|length }}</span></h2>
+    <ul class="hub-list snd-singles">
+      {% for p in singles %}
+        <li>
+          <a href="{{ p.urlstub|lower }}">{{ p.title }}</a>
+          <span class="hub-list-meta">{{ p.date|date:"Y" }}{% if p.short_title %} &middot; {{ p.short_title }}{% endif %}</span>
+        </li>
+      {% endfor %}
+    </ul>
+  </section>
+
+{% endblock bodycontent %}

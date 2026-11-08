@@ -13,9 +13,11 @@
     - Bootswatch "simplex" dropped in favour of vanilla Bootstrap 3, which is
       now used for its grid and JS plugins only; parerga.css supplies the
       whole visual layer.
-    - the fixed top navbar is replaced by the left drawer (site-rail.html).
-      The old "navbar" block is gone; page templates that still override it
-      are simply ignored by Django.
+    - the fixed top navbar is replaced by a sidebar (site-sidebar.html):
+      first a hidden left drawer, then (2026-11-08, #21) an always-open
+      column, which folds into a top bar on narrow screens. The old "navbar"
+      block is gone; page templates that still override it are simply
+      ignored by Django.
     - the current section is derived once here from the resolved URL name
       instead of being restated by hand in every page template.
     - d3 v3 was loaded on every page and used by none of them; dropped.
@@ -64,6 +66,8 @@
     {# Bootstrap: grid + JS plugins only. The visual layer is parerga.css. #}
     <link href="{% static 'libs/bootstrap-3.3.7-dist/css/bootstrap.min.css' %}" rel="stylesheet">
     <link href="{% static 'css/parerga.css' %}" rel="stylesheet">
+    {# the 2026-11 layout (#21): sidebar, Words list, post/paper margins, project, Sounds #}
+    <link href="{% static 'css/layout.css' %}" rel="stylesheet">
 
     {% include "portfolioapp/components/pygments.html" %}
 
@@ -74,10 +78,8 @@
   <body class="{% block bodyclass %}{% endblock bodyclass %}">
 
     {% with section=request.resolver_match.url_name %}
-      {% include "portfolioapp/components/site-rail.html" %}
+      {% include "portfolioapp/components/site-sidebar.html" %}
     {% endwith %}
-
-    {% include "portfolioapp/components/site-header.html" %}
 
     <main class="site-main">
       {% block bodycontent %}{% endblock bodycontent %}
@@ -101,7 +103,7 @@
     <script src="{% static 'libs/bootstrap-3.3.7-dist/js/bootstrap.min.js' %}"></script>
     <script src="{% static 'js/parerga.js' %}"></script>
 
-    {# Google site search - powers the modal opened from the drawer #}
+    {# Google site search - powers the modal opened from the sidebar #}
     <script async src="https://cse.google.com/cse.js?cx=c23e79d025688b327"></script>
 
     {% block extra_js %}{% endblock extra_js %}

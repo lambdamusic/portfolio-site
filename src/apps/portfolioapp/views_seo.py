@@ -39,9 +39,11 @@ def sitemap_xml(request):
 	"""
 	urls = []  # (path, lastmod date or None)
 
-	for name in ['home', 'words', 'music', 'events', 'about', 'contact']:
+	# /contact/ is a redirect to the end of /about/ since 2026-11-08
+	for name in ['home', 'words', 'music', 'events', 'about']:
 		urls.append((reverse('portfolioapp:' + name), None))
-	for k in ['kryos', 'rebirth', 'singles']:
+	# the singles tab is part of the Sounds page since 2026-11-08
+	for k in ['kryos', 'rebirth']:
 		urls.append((f"/sounds/index.html%3Fk={k}.html", None))
 
 	for p in Project.objects.exclude(review=True).order_by("-datefrom"):
@@ -55,12 +57,13 @@ def sitemap_xml(request):
 	for p in pubs.order_by("-pubdate"):
 		urls.append((p.get_absolute_url(), p.pubdate))
 
-	# the items listed on the sounds pages (see views.sounds). They link to
+	# the singles on the Sounds page (see views.sounds_page). They link to
 	# their detail pages without the trailing slash, so that is the URL served.
-	# Kryos and Rebirth (7, 34) have their own ?k= pages instead.
+	# Kryos and Rebirth (7, 34) have their own ?k= pages instead; livecoding
+	# pieces are blog posts now, already listed above, and their old item
+	# pages are redirects.
 	items = Item.objects.exclude(review=True).exclude(urlstub="").exclude(id__in=[7, 34]).filter(
-		Q(atype__name__iexact="livecoding") | Q(atype__name__iexact="performance")
-		| Q(atype__name__iexact="music"))
+		atype__name__iexact="music")
 	for i in items:
 		urls.append((f"/sounds/{i.urlstub.lower()}", i.date))
 

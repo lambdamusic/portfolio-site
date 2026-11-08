@@ -43,6 +43,8 @@ urlpatterns = [
     url(r'^contact/', views.contact, name='contact'),
     url(r'^about/', views.about, name='about'),
     url(r'^$', views.home, name='home'),
+    # kept but unpublished: nothing links here and site-dump doesn't list it
+    url(r'^frontpage/$', views.frontpage, name='frontpage'),
     url(r'^robots\.txt$', views_seo.robots_txt, name='robots'),
     url(r'^sitemap\.xml$', views_seo.sitemap_xml, name='sitemap'),
 ]

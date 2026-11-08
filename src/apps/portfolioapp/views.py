@@ -4,9 +4,10 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlquote
 from django.http import HttpResponse, HttpResponseNotFound
-from django.db.models import Q
+from django.db.models import Q, Count
 
 import json
+import re
 import os
 from time import strftime
 import markdown
@@ -24,6 +25,7 @@ from researchapp.pub_locations import coords_for
 
 from researchapp.management.commands.do_blogs_reindex import parse_markdown
 from . import seo
+from .views_seo import section_redirect
 
 APP = "portfolioapp"
 
@@ -41,6 +43,31 @@ def home(request):
 	return projects(request)
 
 
+def frontpage(request):
+	"""
+	A front page: recent writing, talks and sounds above a short selection of
+	projects. Tried as the homepage and not kept (2026-11-08): the project grid
+	stays the landing page. Served at /frontpage/, which nothing links to and
+	site-dump doesn't list, so the static site never publishes it; its
+	canonical points at / in case it ever escapes.
+	"""
+	talks = PubType.objects.get(pk=12)
+	pubs = Publication.objects.exclude(review=True)
+	# the pieces: blog posts with a `video:` line, as on the Sounds page
+	sounds = pubs.filter(pubtype__pk=13).exclude(video="").order_by("-pubdate")
+	projects = Project.objects.exclude(review=True).order_by("-datefrom")
+	context = {
+		'latest_words': pubs.exclude(pubtype=talks).order_by('-pubdate')[:6],
+		'latest_talks': pubs.filter(isspeaking=True).order_by('-pubdate')[:4],
+		'latest_sounds': sounds[:4],
+		'projects': projects[:8],
+		'project_count': projects.count(),
+		'canonical_path': '/',
+	}
+	context.update(seo.seo_context(nodes=[seo.website(), seo.person(full=True)], og_title="Michele Pasin"))
+	return render(request, APP + '/pages/frontpage.html', context)
+
+
 
 def about(request):
 	"""
@@ -53,10 +80,10 @@ def about(request):
 
 def contact(request):
 	"""
-	bio page
+	the contact form now sits at the end of the About page (2026-11-08); the old
+	URL stays as a redirect page (listed in tools/site-dump, nothing links here)
 	"""
-	context = {}
-	return render(request, APP + '/pages/about-contact.html', context)
+	return section_redirect(request, target="/about/#contact")
 
 
 
@@ -212,10 +239,8 @@ def projects(request, namedetail=""):
 			'return_item': return_item,
 			'return_item_desc': html_description,
 			'project_images_names': sorted(project_images_names),
-			# posts link here via their `project:` front matter, papers via the admin
-			'project_writing': Publication.objects.filter(project=return_item).exclude(review=True).order_by('-pubdate'),
-			'ALL_PROJECTS': Project.objects.all().order_by("-datefrom")
 		}
+		context.update(project_page_context(return_item))
 		context.update(seo.seo_context(
 			nodes=[seo.project(return_item), seo.person(),
 				seo.breadcrumbs(("Home", "/"), (return_item.title, None))],
@@ -230,62 +255,87 @@ def projects(request, namedetail=""):
 
 
 
+def project_page_context(return_item):
+	"""
+	The project page's extras: links labelled by their site when they have no
+	name, the writing linked to the project (posts via their `project:` front
+	matter, papers via the admin), and four neighbours by shared tags.
+	"""
+	from urllib.parse import urlparse
+
+	links = []
+	for url, name in return_item.all_urls():
+		host = urlparse(url).netloc
+		if not name or name.startswith("http"):  # some names are just the URL again
+			name = host[4:] if host.startswith("www.") else host
+		links.append((url, name))
+
+	writing = Publication.objects.filter(project=return_item).exclude(review=True).order_by('-pubdate')
+
+	others = Project.objects.exclude(pk=return_item.pk)
+	related = list(others.filter(tags__in=return_item.tags.all())
+		.annotate(shared=Count('tags')).order_by('-shared', '-datefrom')[:4])
+	if len(related) < 4:
+		taken = [p.pk for p in related]
+		related += list(others.exclude(pk__in=taken).order_by('-datefrom')[:4 - len(related)])
+
+	return {
+		'project_links': links,
+		'project_writing': writing,
+		'related_projects': related,
+		'project_count': Project.objects.count(),
+	}
+
+
+def youtube_id(html):
+	"""the first YouTube video id in an embed code, or an empty string"""
+	found = re.search(r'youtube(?:-nocookie)?\.com/embed/([\w-]{11})', html or "")
+	return found.group(1) if found else ""
+
+
 def sounds(request, namedetail=""):
 	"""
-	new sounds page
+	The Sounds page: the pieces (blog posts with a `video:` line) as video
+	thumbnails, the two albums as covers, singles as a list. The albums keep
+	their own ?k= pages. Old item pages for livecoding pieces redirect to the
+	post with the same video.
 	"""
 
-	_subpage = request.GET.get('k', 'livecoding')
+	_subpage = request.GET.get('k', '')
 	context = {}
 	if not namedetail:
 
-		if _subpage == "livecoding":
-
-			items = Item.objects.exclude(review=True).filter(
-				Q(atype__name__iexact="livecoding")
-				| Q(atype__name__iexact="performance"))
-
-			templatee = "sounds-livecoding.html"
-
-		elif _subpage == "kryos":
-
+		if _subpage == "kryos":
 			items = Item.objects.filter(pk=7)
-
 			templatee = "sounds-kryos.html"
 
 		elif _subpage == "rebirth":
-
 			items = Item.objects.filter(pk=34)
-
 			templatee = "sounds-rebirth.html"
 
-		elif _subpage == "singles":
-
-			items = Item.objects.exclude(review=True).exclude(id__in=[7, 34]).filter(
-			Q(atype__name__iexact="music"))
-
-			templatee = "sounds-singles.html"
-
 		else:
-
-			return HttpResponseNotFound
+			# the landing page; the old ?k=livecoding and ?k=singles tabs are part of it now
+			return sounds_page(request)
 
 		context = {
 			'sounds_subpage' : _subpage,
 			'items' : items,
-		}
-		if _subpage != "livecoding":
 			# a real page behind ?k=, which the static site only has as wget's
 			# index.html%3Fk=… file: make that file the canonical
-			context['canonical_path'] = f"/sounds/index.html%3Fk={_subpage}.html"
+			'canonical_path': f"/sounds/index.html%3Fk={_subpage}.html",
+		}
 
 	else:
 
 		# the sounds pages link with urlstub|lower, e.g. ATMevent -> atmevent
 		return_item = get_object_or_404(Item, urlstub__iexact=namedetail)
-		next = None
-		prev = None
 
+		# livecoding pieces moved to blog posts (2026-11-08): point the old
+		# page at the post that has the same video (listed in tools/site-dump)
+		video = youtube_id(return_item.embedcode1)
+		post = video and Publication.objects.filter(pubtype__pk=13, video=video).first()
+		if post:
+			return section_redirect(request, target=post.get_absolute_url())
 
 		if request.user.is_superuser:
 			admin_change_url = return_item.get_admin_url()
@@ -308,6 +358,33 @@ def sounds(request, namedetail=""):
 		templatee = "detail-sounds.html"
 
 	return render(request, APP + '/pages/' + templatee, context)
+
+
+def sounds_page(request):
+	"""
+	The Sounds landing page (pages/sounds.html): pieces, albums, singles. No
+	players here: each piece's post has its own, which keeps this page light.
+	"""
+	pieces = list(Publication.objects.filter(pubtype__pk=13).exclude(review=True)
+		.exclude(video="").order_by('-pubdate'))
+	for pub in pieces:
+		# "Livecoding: Xanadu" -> "Xanadu": the section heading already says it
+		pub.display_title = re.sub(r"^(Livecoding|Event):\s*", "", pub.title)
+
+	# Kryos and Rebirth Fever only have their ?k= pages; Rebirth has no cover
+	albums = [
+		(Item.objects.get(pk=7), "?k=kryos", "blog_img/Kryos-Noise-Cover.jpg"),
+		(Item.objects.get(pk=34), "?k=rebirth", ""),
+	]
+	singles = Item.objects.exclude(review=True).exclude(id__in=[7, 34]).filter(
+		atype__name__iexact="music").order_by('-date')
+
+	context = {
+		'pieces': pieces,
+		'albums': albums,
+		'singles': singles,
+	}
+	return render(request, APP + '/pages/sounds.html', context)
 
 
 

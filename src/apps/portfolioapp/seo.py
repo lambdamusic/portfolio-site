@@ -24,7 +24,7 @@ WEBSITE_ID = settings.SITE_URL + "/#website"
 
 DEFAULT_IMAGE = "legacy/me_cartoon.jpg"  # static path; the portrait on /about/
 
-# the same profiles the site links to (components/site-rail.html)
+# the same profiles the site links to (components/outlinks.html, in the footer)
 SAME_AS = [
 	"https://orcid.org/0000-0001-8909-7766",
 	"https://github.com/lambdamusic",

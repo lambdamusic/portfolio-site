@@ -149,9 +149,16 @@ echo "+++++++++++++++++"
 # robots.txt, sitemap.xml, the feed and the /blog/ and /papers/ roots are
 # listed explicitly: no page links to them (or only from <head>), so recursion
 # alone might never fetch them (see views_seo.py).
+# Same for the redirect pages left by the 2026-11 layout (#21): /contact/
+# (now the end of /about/) and the old sounds pages of the six livecoding
+# pieces, which are blog posts now (views.sounds). Without them the old URLs
+# would simply 404 once the previous files are deleted from docs/.
+REDIRECT_PAGES="contact/ sounds/2024-01-many-pianos-2-b-minor sounds/bento-2022-05-06 \
+    sounds/rhythmic-cycles-4-21 sounds/strasbourg2011 sounds/xmasclub_goldsmith sounds/atmevent"
 wget  -P $DIR_BUILD -mkEpnp -nH -nc http://127.0.0.1:8000/ \
     http://127.0.0.1:8000/robots.txt http://127.0.0.1:8000/sitemap.xml http://127.0.0.1:8000/feed.xml \
     http://127.0.0.1:8000/blog/ http://127.0.0.1:8000/papers/ http://127.0.0.1:8000/latest/feed/ \
+    $(for p in $REDIRECT_PAGES; do echo "http://127.0.0.1:8000/$p"; done) \
     --exclude-domains www.michelepasin.org
 
 #

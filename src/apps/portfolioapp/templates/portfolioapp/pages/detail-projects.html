@@ -1,6 +1,13 @@
 {% extends "portfolioapp/components/base.html" %}
 {% load static %}
 
+{% comment %}
+  A project (views.projects). Meant to read as a thing that was built, not
+  as an article: title, tagline, facts and link buttons beside the lead
+  screenshot, then the description, screenshots as a gallery, the writing
+  linked to the project, and related projects as tiles. Extra context from
+  views.project_page_context; styles in css/layout.css.
+{% endcomment %}
 
 {% block pagetitle %}
   <title>Project: {{return_item.title}} | Michele Pasin</title>
@@ -10,101 +17,111 @@
 
 
 {% block bodycontent %}
+{% with p=return_item lead=project_images_names.0 %}
+<div class="proj">
 
   <p class="sectionlabel">
     <b>Projects</b> <span class="sep">/</span>
     <a href="{% url 'portfolioapp:projects' %}">all</a>
-    <span class="sep">/</span> {{return_item.title}}
+    {% for t in p.tags.all %}<span class="sep">/</span> <a href="{% url 'portfolioapp:projects' %}?k={{t.name}}">{{t.name}}</a> {% endfor %}
     {% if admin_change_url %}
       <span class="sep">|</span> <a href="{{admin_change_url}}" target="_blank" class="admin-flag">edit</a>
     {% endif %}
   </p>
 
-  <article>
+  <header class="proj-head">
 
-    <header class="articlehead">
-      <h1>{{return_item.title}}</h1>
-      <p class="articlemeta">
-        {% for t in return_item.tags.all %}<a href="{% url 'portfolioapp:projects' %}?k={{t.name}}">#{{t.name}}</a>{% if not forloop.last %} {% endif %}{% endfor %}
-      </p>
-    </header>
+    <div class="proj-intro">
+      <h1 class="proj-title">{{p.title}}</h1>
+      {% if p.short_title %}<p class="proj-tagline">{{p.short_title}}</p>{% endif %}
 
-    <hr>
-
-    <div class="row">
-
-      <div class="col-md-8">
-
-        <div class="blogentry">{{return_item_desc|safe}}</div>
-
-        {% if return_item.embedcode1 %}
-          <div class="paragraph_embed">{{return_item.embedcode1|safe}}</div>
+      <dl class="proj-facts">
+        {% if p.datefrom %}
+          <div>
+            <dt>Years</dt>
+            <dd>{% include "portfolioapp/components/project-years.html" %}</dd>
+          </div>
         {% endif %}
-
-        {% if return_item.embedcode2 %}
-          <div class="paragraph_embed">{{return_item.embedcode2|safe}}</div>
+        <div>
+          <dt>Status</dt>
+          <dd>{% if p.isactive %}<span class="proj-status is-active">Active</span>{% else %}<span class="proj-status">Completed</span>{% endif %}</dd>
+        </div>
+        {% if p.myrole %}
+          <div class="proj-fact-role">
+            <dt>Role</dt>
+            <dd>{{p.myrole|safe}}</dd>
+          </div>
         {% endif %}
+      </dl>
 
-      </div>
-
-      <div class="col-md-4">
-        <dl class="factlist">
-          <dt>Role</dt>
-          <dd>{{return_item.myrole|safe}}</dd>
-
-          {% if return_item.datefrom %}
-            <dt>Date</dt>
-            <dd>{{return_item.datefrom|date:"M Y"}}{% if return_item.dateto %} &ndash; {{return_item.dateto|date:"M Y"}}{% elif return_item.isactive %} &ndash; present{% endif %}</dd>
-          {% endif %}
-
-          {% if return_item.all_urls %}
-            <dt>Links</dt>
-            {% for u in return_item.all_urls %}
-              <dd><a class="url" href="{{u.0}}" target="_blank">{{u.1}}</a></dd>
-            {% endfor %}
-          {% endif %}
-
-          {% if project_writing %}
-            <dt>Writing</dt>
-            {% for pub in project_writing %}
-              <dd><a href="{{pub.get_absolute_url}}">{{pub.title|capfirst}}</a> <span class="project-year">{{pub.pubdate|date:"Y"}}</span></dd>
-            {% endfor %}
-          {% endif %}
-        </dl>
-      </div>
-
+      {% if project_links %}
+        <p class="proj-links">
+          {% for url, label in project_links %}<a class="proj-button" href="{{url}}" target="_blank" rel="noopener">{{label}} <span aria-hidden="true">&nearr;</span></a> {% endfor %}
+        </p>
+      {% endif %}
     </div>
 
-  </article>
+    {% if lead %}
+      <a class="proj-lead" href="#gallery">
+        <img src="{% static 'manual_img/' %}{{ p.urlstub }}/{{ lead }}" alt="{{p.title}} screenshot">
+      </a>
+    {% endif %}
 
+  </header>
+
+  <div class="proj-body">
+
+    <div class="blogentry">{{return_item_desc|safe}}</div>
+
+    {% if p.embedcode1 %}<div class="paragraph_embed">{{p.embedcode1|safe}}</div>{% endif %}
+    {% if p.embedcode2 %}<div class="paragraph_embed">{{p.embedcode2|safe}}</div>{% endif %}
+
+  </div>
 
   {% if project_images_names %}
-    <div class="blocknote">
-      <p class="sectionlabel"><b>Screenshots</b> <span class="sep">/</span> ....</p>
-      {% for img in project_images_names %}
-        <a href="{% static 'manual_img/' %}{{ return_item.urlstub }}/{{ img }}" class="thumbnail shot">
-          <img src="{% static 'manual_img/' %}{{ return_item.urlstub }}/{{ img }}" alt="{{return_item.title}} screenshot">
-        </a>
-      {% endfor %}
-    </div>
+    <section class="proj-section" id="gallery">
+      <h2 class="proj-section-title">Screenshots <span>{{ project_images_names|length }}</span></h2>
+      <div class="proj-gallery">
+        {% for img in project_images_names %}
+          <a href="{% static 'manual_img/' %}{{ p.urlstub }}/{{ img }}" target="_blank">
+            <img src="{% static 'manual_img/' %}{{ p.urlstub }}/{{ img }}" alt="{{p.title}} screenshot {{ forloop.counter }}" loading="lazy">
+          </a>
+        {% endfor %}
+      </div>
+    </section>
   {% endif %}
 
+  {% if project_writing %}
+    <section class="proj-section">
+      <h2 class="proj-section-title">Writing about it <span>{{ project_writing|length }}</span></h2>
+      <ul class="hub-list proj-writing">
+        {% for pub in project_writing %}
+          <li>
+            <a href="{{ pub.get_absolute_url }}">{{ pub.title|capfirst }}</a>
+            <span class="hub-list-meta">{{ pub.pubdate|date:"Y" }} &middot; {{ pub.pubtype.name }}{% if pub.journal %} &middot; {{ pub.journal }}{% elif pub.conference %} &middot; {{ pub.conference }}{% endif %}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </section>
+  {% endif %}
 
-  <div class="blocknote">
-    <p class="sectionlabel"><b>Projects</b> <span class="sep">/</span> all of them</p>
+  <section class="proj-section">
+    <h2 class="proj-section-title">Related projects</h2>
     <div class="tilegrid">
-      {% for p in ALL_PROJECTS %}
-        <div class="thumb-div{% if p.id == return_item.id %} is-selected{% endif %}">
+      {% for p in related_projects %}
+        <div class="thumb-div">
           <a href="{{p.get_absolute_url}}" class="thumbnail" title="{{p.title}}: {{p.short_title|truncatewords:10}}">
             <img class="thumb-img" src="{% static 'manual_img/' %}{{ p.urlstub|lower }}/thumb.jpg" alt="{{p.title}}" width="400" height="200" loading="lazy">
           </a>
           <p class="thumb-title">
-            <a class="project-title {% if p.id == return_item.id %}is-current{% endif %}" href="{{p.get_absolute_url}}">{{p.title}}</a><br>{% if p.datefrom %}{% include "portfolioapp/components/project-years.html" %}<br>{% endif %}
-            {% for t in p.tags.all %}<a href="{% url 'portfolioapp:projects' %}?k={{t.name}}" class="keyword-sm">{{t.name}}</a>{% if not forloop.last %}, {% endif %}{% endfor %}
+            <a class="project-title" href="{{p.get_absolute_url}}">{{p.title}}</a><br>{% if p.datefrom %}{% include "portfolioapp/components/project-years.html" %}{% endif %}
           </p>
         </div>
       {% endfor %}
     </div>
-  </div>
+    <a class="hub-more" href="{% url 'portfolioapp:projects' %}">All {{ project_count }} projects &rarr;</a>
+  </section>
 
+</div>
+{% endwith %}
 {% endblock bodycontent %}

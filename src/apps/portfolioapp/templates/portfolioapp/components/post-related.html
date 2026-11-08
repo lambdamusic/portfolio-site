@@ -1,0 +1,6 @@
+{# related posts for the post and paper margins; `related_posts` ranked by shared tags #}
+<ul class="post-related">
+  {% for p in related_posts %}
+    <li><a href="{{ p.get_absolute_url }}">{{ p.title|capfirst }}</a> <span class="post-related-date">{{ p.pubdate|date:"M Y" }}</span></li>
+  {% endfor %}
+</ul>

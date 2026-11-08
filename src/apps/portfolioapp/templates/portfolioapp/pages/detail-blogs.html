@@ -2,82 +2,120 @@
 {% load extrafilters %}
 {% load static %}
 
+{% comment %}
+  A blog post (views_pubs.blog_detail). The article, with a right-hand margin
+  holding the date, reading time, tags, related posts and - for posts with
+  three or more sections - a contents list that stays in view while reading.
+  On narrow screens the margin folds into one line under the title, and the
+  related posts move after the article. Margin data comes from
+  views_pubs.post_margin_context; styles in css/layout.css.
+{% endcomment %}
 
 {% block metadescription %}
   {% include "portfolioapp/components/meta-description.html" with desc=meta_description %}
 {% endblock %}
 
-
 {% block pagetitle %}
   <title>{{return_item.title}} | Blogs | Michele Pasin</title>
 {% endblock pagetitle %}
 
+{% block bodyclass %}is-wide{% endblock bodyclass %}
+
 
 {% block bodycontent %}
+{% with cats=return_item.categories.all tags=return_item.tags.all %}
+
+<div class="post">
 
   <p class="sectionlabel">
     <b>Words</b> <span class="sep">/</span>
-    <a href="{% url 'portfolioapp:words' %}?query=date&amp;type=blogs">blog</a>
-    <span class="sep">/</span> {{return_item.pubdate|date:"j F Y"}}
+    <a href="{% url 'portfolioapp:words' %}?type=blogs">posts</a>
+    {% for c in cats %}<span class="sep">/</span> <a href="{% url 'portfolioapp:words' %}?type=blogs&amp;ctype={{c.name}}">{{c.name|category_label}}</a>{% endfor %}
   </p>
 
-  <article>
+  <header class="post-head">
+    <h1>{{itemtitle}}</h1>
+    {% if admin_change_url %}
+      <p class="admin-note">
+        Hello admin
+        <span class="sep">/</span> <a href="{{admin_change_url}}" target="_blank">edit</a>
+        <span class="sep">|</span> <a href="vscode://file/{{blog_source_file}}">edit in VSCode</a>
+      </p>
+    {% endif %}
+  </header>
 
-    <header class="articlehead">
-      <h1>{{itemtitle}}</h1>
+  <div class="post-grid">
 
-      {% if return_item.tags.all %}
-        <p class="articlemeta">
-          {% for tag in return_item.tags.all %}<a href="{% url 'portfolioapp:words' %}?tag={{tag.name}}&amp;type=all">#{{tag.name}}</a>{% if not forloop.last %} {% endif %}{% endfor %}
-        </p>
+    <aside class="post-margin{% if toc %} has-toc{% endif %}">
+      <p class="post-date">
+        <time datetime="{{itempubdate|date:'Y-m-d'}}"><b>{{itempubdate|date:"j M"}}</b> {{itempubdate|date:"Y"}}</time>
+      </p>
+      <p class="post-side-meta">{{reading_minutes}} min read</p>
+      {% if tags %}
+        <p class="post-tags">{% for t in tags %}<a href="{% url 'portfolioapp:words' %}?tag={{t.name}}&amp;type=all">#{{t.name}}</a> {% endfor %}</p>
+      {% endif %}
+      {% comment %} Related posts live here on wide screens. The contents list
+        comes last so it alone can stick while the rest scrolls away. {% endcomment %}
+      {% if related_posts %}
+        <div class="post-margin-related">
+          <p class="post-rail-label">Related</p>
+          {% include "portfolioapp/components/post-related.html" %}
+        </div>
+      {% endif %}
+      {% if toc %}{% include "portfolioapp/components/post-toc.html" %}{% endif %}
+    </aside>
+
+    <article class="post-body">
+
+      <div class="blogentry">
+        {{blog_entry|safe}}
+      </div>
+
+      <nav class="post-pager" aria-label="Older and newer posts">
+        {% if older_post %}
+          <a class="post-pager-older" href="{{older_post.get_absolute_url}}"><span>&larr; Older</span>{{older_post.title|capfirst}}</a>
+        {% else %}<span></span>{% endif %}
+        {% if newer_post %}
+          <a class="post-pager-newer" href="{{newer_post.get_absolute_url}}"><span>Newer &rarr;</span>{{newer_post.title|capfirst}}</a>
+        {% endif %}
+      </nav>
+
+      {# narrow screens only: on wide ones these are in the margin #}
+      {% if related_posts %}
+        <div class="blocknote post-related-end--dup">
+          <p class="sectionlabel"><b>Related</b> <span class="sep">/</span> posts with the same tags</p>
+          {% include "portfolioapp/components/post-related.html" %}
+        </div>
       {% endif %}
 
-      {% if admin_change_url %}
-        <p class="admin-note">
-          Hello admin
-          <span class="sep">/</span> <a href="{{admin_change_url}}" target="_blank">edit</a>
-          <span class="sep">|</span> <a href="vscode://file/{{blog_source_file}}">edit in VSCode</a>
-        </p>
-      {% endif %}
-    </header>
+      {# folded away: few readers cite a blog post, so it costs one line, not a section #}
+      <details class="post-cite" id="cite">
+        <summary>Cite this post</summary>
+        <p>Michele Pasin. <a href="{{return_item.get_absolute_url}}">{{return_item.title}}</a>.
+          Blog post on www.michelepasin.org, {{itempubdate|date:"j F Y"}}.</p>
+      </details>
 
-    <hr>
+      <div class="blocknote" id="comments">
+        <p class="sectionlabel"><b>Talk back</b> <span class="sep">/</span> comments via github</p>
+        <div class="utterances">
+          <script src="https://utteranc.es/client.js"
+                  repo="lambdamusic/portfolio-site"
+                  issue-term="url"
+                  label="comment"
+                  theme="github-light"
+                  crossorigin="anonymous"
+                  async>
+          </script>
+        </div>
+      </div>
 
-    <div class="blogentry">
-      {{blog_entry|safe}}
-    </div>
+    </article>
 
-  </article>
-
-
-  <div class="blocknote">
-    <p class="sectionlabel"><b>Cite</b> <span class="sep">/</span> this blog post</p>
-    <blockquote>
-      Michele Pasin. <a href="{{return_item.get_absolute_url}}">{{return_item.title}}</a>.
-      Blog post on www.michelepasin.org. Published on {{itempubdate}}.
-    </blockquote>
   </div>
 
+</div>
 
-  <div class="blocknote">
-    <p class="sectionlabel"><b>Talk back</b> <span class="sep">/</span> comments via github</p>
-    <div class="utterances">
-      <script src="https://utteranc.es/client.js"
-              repo="lambdamusic/portfolio-site"
-              issue-term="url"
-              label="comment"
-              theme="github-light"
-              crossorigin="anonymous"
-              async>
-      </script>
-    </div>
-  </div>
-
-
-  {% comment %} SECTION WITH SIMILAR PAPERS LIST {% endcomment %}
-  {% include "portfolioapp/components/similar-papers.html" %}
-
-
+{% endwith %}
 {% endblock bodycontent %}
 
 
@@ -88,5 +126,24 @@
   $(document).ready(function () {
     $("div.blogentry p:first").addClass("first-paragraph");
   });
+
+  // contents list: mark the section being read
+  (function () {
+    var links = document.querySelectorAll('.post-toc a');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove('is-reading'); });
+        byId[e.target.id].classList.add('is-reading');
+      });
+    }, { rootMargin: '0px 0px -70% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      var h = document.getElementById(id);
+      if (h) obs.observe(h);
+    });
+  })();
 </script>
 {% endblock extra_js %}

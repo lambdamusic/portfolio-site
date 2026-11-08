@@ -1,7 +1,12 @@
 {% extends "portfolioapp/components/base.html" %}
 {% load extrafilters %}
-{% load static %}
 
+{% comment %}
+  The Words list (views_pubs.words). One frame for every view: the filter
+  strip stays put and only its state changes, so picking a kind, a topic or
+  a tag never swaps the page around (#21). Every item is a words-row, blog or paper alike, under a
+  plain year heading. Opens on everything (type=all), not the latest ten.
+{% endcomment %}
 
 {% block metadescription %}
   {% include "portfolioapp/components/meta-description.html" with desc="Blog posts and papers by Michele Pasin on ontology engineering, knowledge graphs, research analytics, digital humanities and computer music." %}
@@ -16,137 +21,76 @@
 
 {% block bodycontent %}
 
-  {% comment %}
-    Filter strip. The drawer carries the same links, but keeping them inline
-    makes the current view legible without opening anything - the old blog
-    did the same with its "TAGS / ...." and "FRESH / LATEST POSTS" headers.
-  {% endcomment %}
+  <h1 class="sectionlabel"><b>Words</b> <span class="sep">/</span> posts, papers and talks</h1>
 
-  {% if tag %}
+  <div class="wfilter">
 
-    <h1 class="sectionlabel">
-      <b>Words</b> <span class="sep">/</span> tagged
-      <a class="is-current">#{{tag}}</a>
-      <span class="sep">|</span>
-      <a href="?query=date&amp;type=tags">all tags</a>
-    </h1>
+    <div class="wfilter-row">
+      <span class="wfilter-label">Show</span>
+      <span class="wfilter-chips">
+        <a class="chip {% if ttype == 'all' and not tag %}is-current{% endif %}" href="?type=all">Everything</a>
+        <a class="chip {% if ttype == 'blogs' and ctype == 'all' %}is-current{% endif %}" href="?type=blogs">Posts</a>
+        <a class="chip {% if ttype == 'papers' %}is-current{% endif %}" href="?type=papers">Papers</a>
+        <a class="chip" href="{% url 'portfolioapp:events' %}">Talks &rarr;</a>
+      </span>
+    </div>
 
-    <p class="ghostdate ghostdate--xl">#{{tag}}</p>
+    <div class="wfilter-row">
+      <span class="wfilter-label">Topic</span>
+      <span class="wfilter-chips">
+        {% for c in categories %}
+          <a class="chip chip--quiet {% if ctype == c %}is-current{% endif %}" href="?type=blogs&amp;ctype={{c}}">{{c|category_label}}</a>
+        {% endfor %}
+      </span>
+    </div>
 
-  {% else %}
-
-    <h1 class="sectionlabel">
-      <b>Words</b> <span class="sep">/</span>
-      <a href="?query=date&amp;type=latest" {% if ttype == 'latest' %}class="is-current"{% endif %}>latest</a> <span class="sep">|</span>
-      <a href="?query=date&amp;type=blogs"  {% if ttype == 'blogs' %}class="is-current"{% endif %}>blogs</a> <span class="sep">|</span>
-      <a href="?query=date&amp;type=papers" {% if ttype == 'papers' %}class="is-current"{% endif %}>papers</a> <span class="sep">|</span>
-      <a href="?query=date&amp;type=tags"   {% if ttype == 'tags' %}class="is-current"{% endif %}>tags</a> <span class="sep">|</span>
-      <a href="?query=date&amp;type=all"    {% if ttype == 'all' %}class="is-current"{% endif %}>all</a>
-      {% if admin_change_url %}
-        <span class="sep">|</span>
-        <a href="?query=date&amp;type=review" class="admin-flag {% if ttype == 'review' %}is-current{% endif %}">review</a>
-      {% endif %}
-    </h1>
+    <div class="wfilter-row">
+      <span class="wfilter-label">Tag</span>
+      <span class="wfilter-chips">
+        {% if tag %}
+          <a class="chip is-current">#{{tag}}</a>
+          <a class="chip-clear" href="?type=all" title="Clear the tag">&times; clear</a>
+        {% endif %}
+        <a class="chip chip--quiet {% if ttype == 'tags' %}is-current{% endif %}" href="?type=tags">{% if tag %}other tags{% else %}browse all tags{% endif %}</a>
+      </span>
+    </div>
 
     {% if ttype == 'papers' %}
-      <p class="sectionlabel">
-        <b>Order</b> <span class="sep">/</span>
-        <a href="?query=date&amp;type=papers"    {% if query == 'date' %}class="is-current"{% endif %}>date</a> <span class="sep">|</span>
-        <a href="?query=type&amp;type=papers"    {% if query == 'type' %}class="is-current"{% endif %}>type</a> <span class="sep">|</span>
-        <a href="?query=project&amp;type=papers" {% if query == 'project' %}class="is-current"{% endif %}>project</a>
-      </p>
+      <div class="wfilter-row">
+        <span class="wfilter-label">Order</span>
+        <span class="wfilter-chips">
+          <a class="chip chip--quiet {% if query == 'date' %}is-current{% endif %}" href="?query=date&amp;type=papers">date</a>
+          <a class="chip chip--quiet {% if query == 'type' %}is-current{% endif %}" href="?query=type&amp;type=papers">type</a>
+          <a class="chip chip--quiet {% if query == 'project' %}is-current{% endif %}" href="?query=project&amp;type=papers">project</a>
+        </span>
+      </div>
     {% endif %}
 
-    {% if ttype == 'blogs' %}
-      {% comment %}
-        Categories are a controlled vocabulary - see
-        researchapp/category_vocabulary.py. Keep in sync with CATEGORIES.
-      {% endcomment %}
-      <p class="sectionlabel">
-        <b>Categories</b> <span class="sep">/</span>
-        <a href="?query=date&amp;type=blogs&amp;ctype=computermusic"        {% if ctype == 'computermusic' %}class="is-current"{% endif %}>ComputerMusic</a> <span class="sep">|</span>
-        <a href="?query=date&amp;type=blogs&amp;ctype=data-science"         {% if ctype == 'data-science' %}class="is-current"{% endif %}>DataScience</a> <span class="sep">|</span>
-        <a href="?query=date&amp;type=blogs&amp;ctype=digital-humanities"   {% if ctype == 'digital-humanities' %}class="is-current"{% endif %}>DigitalHumanities</a> <span class="sep">|</span>
-        <a href="?query=date&amp;type=blogs&amp;ctype=justblogging"         {% if ctype == 'justblogging' %}class="is-current"{% endif %}>JustBlogging</a> <span class="sep">|</span>
-        <a href="?query=date&amp;type=blogs&amp;ctype=knowledge-engineering"{% if ctype == 'knowledge-engineering' %}class="is-current"{% endif %}>KnowledgeEngineering</a> <span class="sep">|</span>
-        <a href="?query=date&amp;type=blogs&amp;ctype=research-analytics"   {% if ctype == 'research-analytics' %}class="is-current"{% endif %}>ResearchAnalytics</a> <span class="sep">|</span>
-        <a href="?query=date&amp;type=blogs&amp;ctype=techlife"             {% if ctype == 'techlife' %}class="is-current"{% endif %}>TechLife</a>
-      </p>
-    {% endif %}
+  </div>
 
+  {% if return_items %}
+    <p class="wcount">{{ item_count }} item{{ item_count|pluralize }}</p>
   {% endif %}
 
-
-  {% comment %} The listing itself, grouped by date (or type / project) {% endcomment %}
-
   {% for group_and_pubs in return_items %}
-
     <section class="pubgroup">
-
-      <p class="ghostdate {% if query == 'date' %}ghostdate--xl{% else %}ghostdate--lg{% endif %}">{{group_and_pubs.0}}</p>
-
+      <h2 class="wyear">{{ group_and_pubs.0 }}</h2>
       {% for pub in group_and_pubs.1 %}
-
-        {% if ttype == 'blogs' or tag %}
         {% include "portfolioapp/components/words-row.html" %}
-        {% else %}
-        <article class="pubitem">
-
-          {% if pub.pubtype.name == "Blog" %}
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="{{pub.get_absolute_url}}">{{pub.title|capfirst}}</a>
-            </p>
-
-            <p class="pubinfo"><b>{{pub.pubdate|date:"M Y"}}</b></p>
-
-          {% else %}
-
-            <p class="pubtitle">
-              <span class="kind kind--paper">paper</span>
-              <a href="{{pub.get_absolute_url}}">{{pub.title|capfirst}}</a>
-            </p>
-
-            <p class="pubinfo">
-              <b>{{pub.pubdate|date:"M Y"}}</b>
-              {% if pub.journal %}<span class="journal">&middot; {{pub.journal}}</span>{% endif %}
-              {% if pub.conference %}<span class="conference">&middot; {{pub.conference}}</span>{% endif %}
-              {% if pub.pubplace %}<span class="pubplace">&middot; {{pub.pubplace}}</span>{% endif %}
-              {% if pub.isforthcoming %}<span class="forthcoming">&middot; forthcoming</span>{% endif %}
-              {% if pub.extrainfo %}<span class="extrainfo">&middot; {{pub.extrainfo|safe}}</span>{% endif %}
-            </p>
-
-          {% endif %}
-
-          {% if ttype == 'latest' %}
-            <div class="pubabstract">{{pub.abstract|markdown|striptags}}</div>
-          {% endif %}
-
-        </article>
-        {% endif %}
-
       {% endfor %}
-
     </section>
-
   {% endfor %}
 
-
   {% if tags %}
-
-    <p class="sectionlabel"><b>{% if tag %}Related {% endif %}Tags</b> <span class="sep">/</span> ....</p>
-
+    <h2 class="wyear">{% if tag %}Related tags{% else %}Tags{% endif %}</h2>
     <div class="tagcloud">
-      {% for tag in tags %}
-        {% if tag.1 > 0 %}
-          <a href="?tag={{tag.0}}&amp;type=all" style="{{tag.1|tagsize}}">{{tag.0}}</a>
+      {% for t in tags %}
+        {% if t.1 > 0 %}
+          <a href="?tag={{t.0}}&amp;type=all" style="{{t.1|tagsize}}">{{t.0}}</a>
         {% endif %}
       {% endfor %}
     </div>
-
   {% endif %}
-
 
   <p class="sectionlabel">
     <b>Export</b> <span class="sep">/</span>
@@ -154,6 +98,5 @@
     <a href="?format=txt">txt</a> <span class="sep">|</span>
     <a href="?format=bibtex&amp;query=type">bibtex</a>
   </p>
-
 
 {% endblock bodycontent %}
