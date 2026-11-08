@@ -351,6 +351,15 @@ class Publication(mymodels.EnhancedModel):
         verbose_name="related to project",
     )
 
+    # blog posts only: set from the post's `video:` front matter (a YouTube
+    # id) by do_blogs_reindex; marks the post as a piece for the Sounds page
+    video = models.CharField(
+        max_length=20,
+        blank=True,
+        default="",
+        verbose_name="YouTube video id",
+    )
+
     embedcode1 = models.TextField(
         null=True,
         blank=True,
