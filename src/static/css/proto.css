@@ -396,7 +396,8 @@ body.layout-b {
   .post-margin .post-toc { display: block; margin-top: 1.5rem; }
   /* with a contents list the margin runs the article's full height and only
      the list sticks; date, tags and related scroll away above it */
-  .post-margin.has-toc {
+  .post-margin.has-toc,
+  .post-margin.is-static {
     position: static;
     align-self: stretch;
     max-height: none;
@@ -423,6 +424,39 @@ body.layout-b {
   .post-margin--right { grid-column: 2; grid-row: 1; text-align: left; }
   .post-margin--right .post-toc .post-rail-label { padding-right: 0; }
   .post-margin--right .post-toc a { padding: .25rem 0 .25rem .7rem; border-right: 0; border-left: 2px solid var(--rule); }
+}
+
+
+/* paper pages (pages/detail-papers-proto.html): the post margin, holding
+   venue, project, links, citation and related papers. Wider than a post's,
+   since it carries a citation; below the article on narrow screens. */
+.post-margin--paper { display: block; order: 1; margin: calc(var(--step) * 2) 0 0; }
+.post-grid:has(> .post-margin--paper) { display: flex; flex-direction: column; }
+.post-grid > .post-related-end--dup { order: 2; }
+.post-margin--paper .post-rail-label { margin: 1.25rem 0 .35rem; }
+.post-margin--paper .post-margin-related { margin-top: 0; }
+.paper-venue { margin-top: .5rem !important; font-size: .85rem; line-height: 1.4; color: var(--body); }
+.paper-project { font-size: .9rem; font-weight: 700; }
+.paper-links { list-style: none; margin: 0; padding: 0; font-size: .85rem; line-height: 1.7; }
+.paper-cite { font-size: .78rem; line-height: 1.5; color: var(--body); }
+.paper-copy {
+  margin-top: .5rem;
+  padding: .2rem .6rem;
+  border: 1px solid var(--ink);
+  background: var(--paper);
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--ink);
+  cursor: pointer;
+}
+.paper-copy:hover { border-color: var(--accent); background: var(--accent); color: #fff; }
+.paper-abstract-label { margin-top: 0; }
+.blogentry.paper-abstract > p:first-of-type { font-size: inherit; font-weight: 400; color: var(--body); }
+
+@container (min-width: 56rem) {
+  .post-grid:has(> .post-margin--paper) { display: grid; }
+  .post-grid:has(> .post-margin--paper.post-margin--right) { grid-template-columns: minmax(0, var(--measure)) 14rem; }
+  .post-margin--paper { order: 0; margin: 0; }
 }
 
 

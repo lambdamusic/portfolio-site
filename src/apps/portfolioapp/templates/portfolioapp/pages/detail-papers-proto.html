@@ -1,0 +1,161 @@
+{% extends "portfolioapp/components/base.html" %}
+{% load extrafilters %}
+{% load static %}
+
+{% comment %}
+  Paper page for the post margin prototypes (`?post=right|margin`, see
+  portfolioapp/proto.py): the same margin as a blog post, holding what a
+  reader of a paper looks for - when and where it appeared, the project it
+  belongs to, links, the citation and related papers. The main column keeps
+  the abstract, the map and the PDF. Extra context from
+  views_pubs.paper_proto_context.
+{% endcomment %}
+
+{% block metadescription %}
+  {% include "portfolioapp/components/meta-description.html" with desc=abstract|meta_description|default:itemtitle %}
+{% endblock %}
+
+{% block pagetitle %}
+  <title>{{itemtitle}} | Papers | Michele Pasin</title>
+{% endblock pagetitle %}
+
+{% block bodyclass %}is-wide postv-{{ post_layout }}{% endblock bodyclass %}
+
+
+{% block bodycontent %}
+{% with p=return_item %}
+
+<div class="post">
+
+  <p class="sectionlabel">
+    <b>Words</b> <span class="sep">/</span>
+    <a href="{% url 'portfolioapp:words' %}?type=papers">papers</a>
+    <span class="sep">/</span> {{p.pubtype.name}}
+  </p>
+
+  <header class="post-head">
+    <h1>{{itemtitle}}</h1>
+    {% if admin_change_url %}
+      <p class="admin-note">
+        Hello admin <span class="sep">/</span>
+        <a href="{{admin_change_url}}" target="_blank">edit</a>
+      </p>
+    {% endif %}
+  </header>
+
+  <div class="post-grid">
+
+    <aside class="post-margin{% if post_layout == "right" %} post-margin--right{% endif %} post-margin--paper is-static">
+
+      <p class="post-date">
+        {% if p.isforthcoming %}<b>Forthcoming</b>{% else %}<time datetime="{{itempubdate|date:'Y-m'}}"><b>{{itempubdate|date:"Y"}}</b> {{itempubdate|date:"F"}}</time>{% endif %}
+      </p>
+      <p class="post-side-meta">{{p.pubtype.name}}</p>
+
+      {% if p.journal or p.conference or p.pubplace %}
+        <p class="paper-venue">{% firstof p.journal p.conference %}{% if p.pubplace %}{% if p.journal or p.conference %}, {% endif %}{{p.pubplace}}{% endif %}</p>
+      {% endif %}
+
+      {% if p.project %}
+        <p class="post-rail-label">Project</p>
+        <p class="paper-project"><a href="{{p.project.get_absolute_url}}">{{p.project.title}}</a></p>
+      {% endif %}
+
+      {% if p.pdf_url or paper_links %}
+        <p class="post-rail-label">Read</p>
+        <ul class="paper-links">
+          {% if p.pdf_url %}<li><a href="{{p.pdf_url}}">PDF</a></li>{% endif %}
+          {% for url, label in paper_links %}<li><a href="{{url}}">{{label}} &nearr;</a></li>{% endfor %}
+        </ul>
+      {% endif %}
+
+      <p class="post-rail-label">Cite</p>
+      <p class="paper-cite" id="paper-cite">{{summary}}</p>
+      <button type="button" class="paper-copy" data-copy="#paper-cite">Copy citation</button>
+
+      {% if related_papers %}
+        <div class="post-margin-related">
+          <p class="post-rail-label">Related papers</p>
+          {% include "portfolioapp/proto/post-related.html" with related_posts=related_papers %}
+        </div>
+      {% endif %}
+
+    </aside>
+
+    <article class="post-body">
+
+      {% if abstract %}
+        <p class="post-rail-label paper-abstract-label">Abstract</p>
+        <div class="blogentry paper-abstract">{{abstract|linebreaks}}</div>
+      {% endif %}
+
+      {% comment %}
+        Where this one happened. Only rendered when the `pubplace` string has
+        coordinates in researchapp/pub_locations.py - see pub_map_data().
+      {% endcomment %}
+      {% if map_data_json %}
+        <div class="pubmap">
+          <p class="sectionlabel"><b>Where</b> <span class="sep">/</span> {{map_place}}</p>
+          <div id="pubmap-canvas"></div>
+        </div>
+      {% endif %}
+
+      {% if itemembed1 %}
+        <div class="paragraph_embed">{{itemembed1|safe}}</div>
+      {% endif %}
+
+      {% if p.pdf_url %}
+        <iframe class="pdfframe" src="{{p.pdf_url}}"
+                title="Article: {{p.title}}"
+                width="100%" height="800" allowfullscreen="true"></iframe>
+      {% endif %}
+
+    </article>
+
+    {# narrow screens only (the margin copy is hidden there), after the facts #}
+    {% if related_papers %}
+      <div class="blocknote post-related-end--dup">
+        <p class="sectionlabel"><b>Related</b> <span class="sep">/</span> papers on similar topics</p>
+        {% include "portfolioapp/proto/post-related.html" with related_posts=related_papers %}
+      </div>
+    {% endif %}
+
+  </div>
+
+</div>
+
+{% endwith %}
+{% endblock bodycontent %}
+
+
+{% block extra_js %}
+
+  <script>
+    // copy the citation as plain text
+    document.querySelectorAll('.paper-copy').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var text = document.querySelector(btn.dataset.copy).innerText.trim();
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(function () {
+          btn.textContent = 'Copied';
+          setTimeout(function () { btn.textContent = 'Copy citation'; }, 1500);
+        });
+      });
+    });
+  </script>
+
+  {% if map_data_json %}
+    <script type="application/json" id="pubmap-data">{{ map_data_json|safe }}</script>
+
+    <script src="{% static 'libs/d3-v4/d3.min.js' %}"></script>
+    <script src="{% static 'libs/world-atlas/topojson-client.min.js' %}"></script>
+    <script src="{% static 'js/world-map.js' %}"></script>
+    <script src="{% static 'js/pub-map.js' %}"></script>
+    <script>
+      initPubMap({
+        worldUrl: "{% static 'libs/world-atlas/countries-110m.json' %}"
+      });
+    </script>
+  {% endif %}
+
+{% endblock extra_js %}

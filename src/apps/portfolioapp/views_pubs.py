@@ -8,6 +8,7 @@ from django.http import HttpResponse, HttpResponseNotFound
 from django.db.models import Q, Count
 
 import json
+import re
 import os
 from time import strftime
 import markdown
@@ -200,7 +201,48 @@ def paper_detail(request, year="", month="", day="", namedetail=""):
 
 	templatee = "detail-papers.html"
 
+	# the post margin prototypes carry over to papers (pages/detail-papers-proto.html)
+	if current_post_layout(request) in ("right", "margin"):
+		context.update(paper_proto_context(return_item))
+		templatee = "detail-papers-proto.html"
+
 	return render(request, APP + '/pages/' + templatee, context)
+
+
+# title words too common to say two papers are related
+RELATED_STOPWORDS = {"using", "with", "from", "into", "towards", "based", "about", "their", "this", "that", "some"}
+
+
+def title_words(title):
+	return {w for w in re.findall(r"[a-z0-9]+", title.lower()) if len(w) > 3} - RELATED_STOPWORDS
+
+
+def paper_proto_context(return_item, limit=5):
+	"""
+	Extras for the paper prototype: links labelled by site, and related
+	papers - the same title-word matching as get_related_pubs, but papers
+	only (no blog posts or talks), whole words, ranked by how many words
+	they share, newest first on a tie.
+	"""
+	from urllib.parse import urlparse
+
+	links = []
+	for url, name in return_item.all_urls():
+		host = urlparse(url).netloc
+		if not name or name.startswith("http"):
+			name = host[4:] if host.startswith("www.") else host
+		links.append((url, name))
+
+	words = title_words(return_item.title)
+	papers = (Publication.objects.exclude(pubtype__pk__in=[12, BLOG_PUBTYPE_PK])
+		.exclude(review=True).exclude(pk=return_item.pk))
+	scored = [(len(words & title_words(p.title)), p) for p in papers]
+	scored = sorted([x for x in scored if x[0]], key=lambda x: (-x[0], -x[1].pubdate.toordinal()))
+
+	return {
+		'paper_links': links,
+		'related_papers': [p for _, p in scored[:limit]],
+	}
 
 
 

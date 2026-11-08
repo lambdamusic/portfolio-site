@@ -22,7 +22,7 @@
   {% for key, name in proto_layouts %}
     <a href="{{ request.path }}?layout={{ key }}" {% if layout == key %}class="is-current"{% endif %}>{{ key|upper }} &middot; {{ name }}</a>
   {% endfor %}
-  {% if request.resolver_match.url_name == "blogs-detail" %}
+  {% if request.resolver_match.url_name == "blogs-detail" or request.resolver_match.url_name == "papers-detail" %}
     <span class="proto-switcher-break"></span>
     <span class="proto-switcher-label">Post</span>
     <a href="{{ request.path }}?post=off" {% if not post_layout %}class="is-current"{% endif %}>Current</a>
