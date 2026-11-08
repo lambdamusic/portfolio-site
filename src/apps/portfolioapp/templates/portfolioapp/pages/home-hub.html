@@ -2,7 +2,7 @@
 {% load static %}
 
 {% comment %}
-  Prototype C's homepage (views.home_hub): a front page that answers "who is
+  Prototype B and C's homepage (views.home_hub): a front page that answers "who is
   this and what do they do" before the grid, and puts each section one
   click away. The full project grid stays at /projects/.
 {% endcomment %}
@@ -55,8 +55,8 @@
       <ul class="hub-list">
         {% for s in latest_sounds %}
           <li>
-            <a href="/sounds/{{ s.urlstub|lower }}">{{ s.title }}</a>
-            {% if s.date %}<span class="hub-list-meta">{{ s.date|date:"M Y" }}</span>{% endif %}
+            <a href="{{ s.get_absolute_url }}">{{ s.title|cut:"Livecoding: " }}</a>
+            <span class="hub-list-meta">{{ s.pubdate|date:"M Y" }}</span>
           </li>
         {% endfor %}
       </ul>

@@ -39,21 +39,20 @@ def home(request):
 	the homepage is the projects grid, served at / (not redirected) so the
 	homepage keeps its own URL; its canonical is / too (see pages/projects.html)
 
-	Layout prototype C (proto.py) swaps it for a front page instead: recent
-	writing, talks and sounds above a short selection of projects.
+	Layout prototypes B and C (proto.py) swap it for a front page instead:
+	recent writing, talks and sounds above a short selection of projects.
 	"""
-	if current_layout(request) == "c":
+	if current_layout(request) in ("b", "c"):
 		return home_hub(request)
 	return projects(request)
 
 
 def home_hub(request):
-	"""prototype C's homepage; the full grid stays at /projects/"""
+	"""prototype B and C's homepage; the full grid stays at /projects/"""
 	talks = PubType.objects.get(pk=12)
 	pubs = Publication.objects.exclude(review=True)
-	sounds = Item.objects.exclude(review=True).exclude(urlstub="").exclude(id__in=[7, 34]).filter(
-		Q(atype__name__iexact="livecoding") | Q(atype__name__iexact="performance")
-		| Q(atype__name__iexact="music")).order_by("-date")
+	# the pieces: blog posts with a `video:` line, as on the Sounds prototype
+	sounds = pubs.filter(pubtype__pk=13).exclude(video="").order_by("-pubdate")
 	projects = Project.objects.exclude(review=True).order_by("-datefrom")
 	context = {
 		'latest_words': pubs.exclude(pubtype=talks).order_by('-pubdate')[:6],

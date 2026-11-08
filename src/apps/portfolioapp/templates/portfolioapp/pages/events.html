@@ -27,7 +27,11 @@
       {% for pub in return_items %}
 
         {% ifchanged pub.pubdate|date:"Y" %}
-          <p class="ghostdate ghostdate--xl">{{pub.pubdate|date:"Y"}}</p>
+          {% if layout %}
+            <h2 class="wyear">{{pub.pubdate|date:"Y"}}</h2>
+          {% else %}
+            <p class="ghostdate ghostdate--xl">{{pub.pubdate|date:"Y"}}</p>
+          {% endif %}
         {% endifchanged %}
 
         <article class="speakingitem" data-event="{{forloop.counter0}}">
