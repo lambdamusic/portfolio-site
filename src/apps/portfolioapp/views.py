@@ -39,16 +39,23 @@ def home(request):
 	the homepage is the projects grid, served at / (not redirected) so the
 	homepage keeps its own URL; its canonical is / too (see pages/projects.html)
 
-	Layout prototypes B and C (proto.py) swap it for a front page instead:
-	recent writing, talks and sounds above a short selection of projects.
+	Layout prototype C (proto.py) swaps it for a front page instead: recent
+	writing, talks and sounds above a short selection of projects. The same
+	front page is kept at the unlinked /?frontpage (see home_hub).
 	"""
-	if current_layout(request) in ("b", "c"):
+	if current_layout(request) == "c" or "frontpage" in request.GET:
 		return home_hub(request)
 	return projects(request)
 
 
 def home_hub(request):
-	"""prototype B and C's homepage; the full grid stays at /projects/"""
+	"""
+	A front page: recent writing, talks and sounds above a short selection of
+	projects. Tried as the homepage and not kept (2026-11-08): the project grid
+	stays the landing page. Still served at /?frontpage, which nothing links
+	to, so the wget mirror never publishes it; its canonical points at /.
+	(A route of its own would need urls.py, which is kept out of git.)
+	"""
 	talks = PubType.objects.get(pk=12)
 	pubs = Publication.objects.exclude(review=True)
 	# the pieces: blog posts with a `video:` line, as on the Sounds prototype
