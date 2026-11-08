@@ -110,6 +110,8 @@
     
     <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../../../../media/static/css/parerga.css" rel="stylesheet">
+    
+    <link href="../../../../../media/static/css/layout.css" rel="stylesheet">
 
     <style>
 
@@ -197,127 +199,107 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
   </head>
 
-  <body class="">
+  <body class="is-wide">
 
     
       
 
-<nav id="site-rail" class="site-rail" aria-label="Site navigation">
-
-  <button type="button" class="rail-handle" aria-expanded="false" aria-controls="site-rail">
-    Inside <span class="rail-arrow" aria-hidden="true">&larr;</span>
-  </button>
-
-  <div class="rail-body">
-
-  <a class="rail-home" href="../../../../../projects/index.html">michelepasin.org</a>
-
-  <h2>Pages</h2>
-  <ul>
-    <li><a href="../../../../../projects/index.html"
-           >Projects</a></li>
-    <li><a href="../../../../../words/index.html"
-           class="is-current">Words</a></li>
-    <li><a href="../../../../../sounds/index.html"
-           >Sounds</a></li>
-    <li><a href="../../../../../events/index.html"
-           >Events</a></li>
-    <li><a href="../../../../../about/index.html"
-           >About</a></li>
-    <li><a href="../../../../../contact/index.html"
-           >Contact</a></li>
-  </ul>
-
-  <h2>Words</h2>
-  <ul>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=latest.html"
-           >latest</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs.html"
-           >blogs</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=papers.html"
-           >papers</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=tags.html"
-           >tags</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=all.html"
-           >all</a></li>
-  </ul>
-
-  
-  <h2>Categories</h2>
-  <ul>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=computermusic.html"
-           >Computer Music</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=data-science.html"
-           >Data Science</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=digital-humanities.html"
-           >Digital Humanities</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=justblogging.html"
-           >Just Blogging</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=knowledge-engineering.html"
-           >Knowledge Engineering</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=research-analytics.html"
-           >Research Analytics</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=techlife.html"
-           >TechLife</a></li>
-  </ul>
-
-  <div class="rail-find">
-    <h2>Find <span class="sep">/</span> Search</h2>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
     
-    <input type="text" class="rail-search" readonly
-           value="Type and hit enter&hellip;"
-           aria-label="Open site search"
-           data-toggle="modal" data-target="#modalSearch">
+      <a class="sidebar-name" href="../../../../../index.html">Michele Pasin</a>
+    
+    <button type="button" class="sidebar-toggle" aria-expanded="false" aria-controls="sidebar-body">Menu</button>
   </div>
 
-  </div><!-- /.rail-body -->
+  <div class="sidebar-body" id="sidebar-body">
+    <p class="sidebar-intro">Making information easier to explore: ontologies, knowledge graphs, data analytics and AI. Also digital humanities and livecoded music.</p>
 
-</nav>
+    <nav aria-label="Site navigation">
+      <ul class="sidebar-nav">
+        <li><a href="../../../../../index.html" >Projects</a></li>
+        <li><a href="../../../../../words/index.html" class="is-current">Words</a></li>
+        <li><a href="../../../../../sounds/index.html" >Sounds</a></li>
+        <li><a href="../../../../../events/index.html" >Events</a></li>
+        <li><a href="../../../../../about/index.html" >About</a></li>
+      </ul>
+    </nav>
+
+    <button type="button" class="sidebar-search" data-toggle="modal" data-target="#modalSearch">Search the site&hellip;</button>
+
+    <p class="sidebar-links">
+      <a href="../../../../../feed.xml">RSS</a> <span class="sep">/</span>
+      <a href="https://github.com/lambdamusic">GitHub</a>
+    </p>
+  </div>
+</aside>
 
     
-
-    
-
-
-
-<header class="site-head">
-  <span class="site-feed">
-    <a href="../../../../../feed.xml" title="RSS feed">RSS</a>
-  </span>
-  <a class="site-name" href="../../../../../projects/index.html">michelepasin.org</a>
-  <span class="site-tagline">/ code, music, words</span>
-</header>
-
 
     <main class="site-main">
       
 
+
+<div class="post">
+
   <p class="sectionlabel">
     <b>Words</b> <span class="sep">/</span>
-    <a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs.html">blog</a>
-    <span class="sep">/</span> 24 January 2012
+    <a href="../../../../../words/index.html%3Ftype=blogs.html">posts</a>
+    <span class="sep">/</span> <a href="../../../../../words/index.html%3Ftype=blogs&amp;ctype=techlife.html">TechLife</a>
   </p>
 
-  <article>
+  <header class="post-head">
+    <h1>Setting up the new &#39;staticfiles&#39; app on Django 1.3</h1>
+    
+  </header>
 
-    <header class="articlehead">
-      <h1>Setting up the new &#39;staticfiles&#39; app on Django 1.3</h1>
+  <div class="post-grid">
 
+    <aside class="post-margin has-toc">
+      <p class="post-date">
+        <time datetime="2012-01-24"><b>24 Jan</b> 2012</time>
+      </p>
+      <p class="post-side-meta">4 min read</p>
       
-        <p class="articlemeta">
-          <a href="../../../../../words/index.html%3Ftag=django&amp;type=all.html">#django</a> <a href="../../../../../words/index.html%3Ftag=web&amp;type=all.html">#web</a>
-        </p>
+        <p class="post-tags"><a href="../../../../../words/index.html%3Ftag=django&amp;type=all.html">#django</a> <a href="../../../../../words/index.html%3Ftag=web&amp;type=all.html">#web</a> </p>
       
-
       
-    </header>
+      
+        <div class="post-margin-related">
+          <p class="post-rail-label">Related</p>
+          
+<ul class="post-related">
+  
+    <li><a href="../../../../2010/08/03/trying-out-django-cms/index.html">Trying out Django-cms</a> <span class="post-related-date">Aug 2010</span></li>
+  
+    <li><a href="../../../../2009/09/28/project-django-soclone/index.html">Project: django SOCLONE</a> <span class="post-related-date">Sep 2009</span></li>
+  
+    <li><a href="../../../../2021/10/29/django-wget-static-site/index.html">A static site generator using Django, Wget and Github Pages</a> <span class="post-related-date">Nov 2021</span></li>
+  
+    <li><a href="../../../../2015/01/05/introducing-resquotes-com/index.html">Take control of your digital annotations with ResQuotes.com</a> <span class="post-related-date">Jan 2015</span></li>
+  
+    <li><a href="../../../../2011/10/12/django-b_project-available-on-github/index.html">Django B_project available on gitHub</a> <span class="post-related-date">Oct 2011</span></li>
+  
+</ul>
 
-    <hr>
+        </div>
+      
+      
+<nav class="post-toc" aria-label="On this page">
+  <p class="post-rail-label">On this page</p>
+  <ol>
+    <li><a href="index.html#1-set-up-the-static-and-media-paths-settings">1. Set up the static and media paths settings</a></li><li><a href="index.html#2-add-context-processors-and-the-app">2. Add context processors and the app</a></li><li><a href="index.html#3-url-configuration">3. Url configuration</a></li><li><a href="index.html#4-on-your-production-server">4. On your production server</a></li>
+  </ol>
+</nav>
 
-    <div class="blogentry">
-      <p>Even though I've been using Django 1.3 for a while now, I've been holding off on some of its new features, such as the new way to handle static files via a <a href="https://docs.djangoproject.com/en/dev/howto/static-files/">new app</a> called (guess what) staticfiles. Essentially, what the new static app does is allow you to leave all static files within the /static directory of each of the Django apps you're using. This is for development; when you're deploying and (most likely) want these files to be served via a (faster) separate server process, the staticfiles app helps you gather all of them into a predefined directory by using a handy shell command.</p>
+    </aside>
+
+    <article class="post-body">
+
+      <div class="blogentry">
+        <p>Even though I've been using Django 1.3 for a while now, I've been holding off on some of its new features, such as the new way to handle static files via a <a href="https://docs.djangoproject.com/en/dev/howto/static-files/">new app</a> called (guess what) staticfiles. Essentially, what the new static app does is allow you to leave all static files within the /static directory of each of the Django apps you're using. This is for development; when you're deploying and (most likely) want these files to be served via a (faster) separate server process, the staticfiles app helps you gather all of them into a predefined directory by using a handy shell command.</p>
 <p>That's the gist of it. I finally took a look at django.contrib.staticfiles last week, so here's a brief report on how to get it to work. (P.S. A couple of related threads on Stack Overflow can be found <a href="http://stackoverflow.com/questions/7620307/how-do-i-serve-css-to-django-in-development">here</a> and <a href="http://stackoverflow.com/questions/4565935/django-staticfiles-app-help">here</a>.)</p>
-<h3>1. Set up the static and media paths settings</h3>
+<h3 id="1-set-up-the-static-and-media-paths-settings">1. Set up the static and media paths settings</h3>
 <p>My previous settings looked like this:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># the site root is one level up from where settings.py is</span>
 <span class="n">SITE_ROOT</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">dirname</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">realpath</span><span class="p">(</span><span class="vm">__file__</span><span class="p">))</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>\<span class="p">[</span><span class="mi">0</span><span class="p">]</span>
@@ -357,7 +339,7 @@ Alias<span class="w"> </span>/media/static/<span class="w"> </span>/path/to/mysi
 <p>The STATIC_ROOT directory is not necessary in the development server: in fact, it is only used if you call the collectstatic management command. It's not needed to add the directory to the STATICFILES_DIRS setting to serve your static files!</p>
 <p>Furthermore, the STATICFILES_DIRS variable tells Django the location of static files which are not within specific applications. Note that during the 'collection' operations, these files will also be copied into the STATIC_ROOT directory.</p>
 </blockquote>
-<h3>2. Add context processors and the app</h3>
+<h3 id="2-add-context-processors-and-the-app">2. Add context processors and the app</h3>
 <p>Add the required context processor in setting.py:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">TEMPLATE_CONTEXT_PROCESSORS</span> <span class="o">+=</span> <span class="s1">&#39;django.core.context_processors.static&#39;</span>
 
@@ -373,7 +355,7 @@ Alias<span class="w"> </span>/media/static/<span class="w"> </span>/path/to/mysi
 <blockquote>
 <p>Keep in mind that it's very likely that in your templates you will have to manually change all references to <code>MEDIA_URL</code> into <code>STATIC_URL</code>!</p>
 </blockquote>
-<h3>3. Url configuration</h3>
+<h3 id="3-url-configuration">3. Url configuration</h3>
 <p>On your <strong>development</strong> server, this is what you would do:</p>
 <div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.contrib.staticfiles.urls</span> <span class="kn">import</span> <span class="n">staticfiles_urlpatterns</span>
 <span class="c1"># ... the rest of your URLconf goes here ...</span>
@@ -402,7 +384,7 @@ Alias<span class="w"> </span>/media/static/<span class="w"> </span>/path/to/mysi
         <span class="p">)</span>
 </code></pre></div>
 
-<h3>4. On your production server</h3>
+<h3 id="4-on-your-production-server">4. On your production server</h3>
 <p>Easy: in your urlconf there's no need to do anything, as static URLs are usually handled by Apache directly. However, for that to happen, what you have to do is collect all static files into the directory that Apache is looking into—that is, the one specified with the STATIC_ROOT setting. This is how you do it:</p>
 <div class="codehilite"><pre><span></span><code>$<span class="w"> </span><span class="sb">`</span>python<span class="w"> </span>manage.py<span class="w"> </span>collectstatic<span class="sb">`</span>
 </code></pre></div>
@@ -410,483 +392,65 @@ Alias<span class="w"> </span>/media/static/<span class="w"> </span>/path/to/mysi
 <p>This shell command will: a) look in the <code>/static/</code> directory of each of the apps in your <code>INSTALLED_APPS</code> setting, and b) look in directories you specify in the <code>STATICFILES_DIRS</code> setting.</p>
 <p>It will then copy whatever it finds into the <code>STATIC_ROOT</code> directory, as defined in your settings (P.S. It will preserve the original directory structure).</p>
 <p>That's all folks!</p>
-    </div>
+      </div>
 
-  </article>
+      <nav class="post-pager" aria-label="Older and newer posts">
+        
+          <a class="post-pager-older" href="../../13/special-issue-of-cmj-dvd-on-livecoding/index.html"><span>&larr; Older</span>Special issue of CMJ DVD on livecoding</a>
+        
+        
+          <a class="post-pager-newer" href="../../../02/08/html5-canvas-cookbook/index.html"><span>Newer &rarr;</span>Book Summary: HTML5 Canvas Cookbook</a>
+        
+      </nav>
 
+      
+      
+        <div class="blocknote post-related-end--dup">
+          <p class="sectionlabel"><b>Related</b> <span class="sep">/</span> posts with the same tags</p>
+          
+<ul class="post-related">
+  
+    <li><a href="../../../../2010/08/03/trying-out-django-cms/index.html">Trying out Django-cms</a> <span class="post-related-date">Aug 2010</span></li>
+  
+    <li><a href="../../../../2009/09/28/project-django-soclone/index.html">Project: django SOCLONE</a> <span class="post-related-date">Sep 2009</span></li>
+  
+    <li><a href="../../../../2021/10/29/django-wget-static-site/index.html">A static site generator using Django, Wget and Github Pages</a> <span class="post-related-date">Nov 2021</span></li>
+  
+    <li><a href="../../../../2015/01/05/introducing-resquotes-com/index.html">Take control of your digital annotations with ResQuotes.com</a> <span class="post-related-date">Jan 2015</span></li>
+  
+    <li><a href="../../../../2011/10/12/django-b_project-available-on-github/index.html">Django B_project available on gitHub</a> <span class="post-related-date">Oct 2011</span></li>
+  
+</ul>
 
-  <div class="blocknote">
-    <p class="sectionlabel"><b>Cite</b> <span class="sep">/</span> this blog post</p>
-    <blockquote>
-      Michele Pasin. <a href="index.html">Setting up the new &#39;staticfiles&#39; app on Django 1.3</a>.
-      Blog post on www.michelepasin.org. Published on Jan. 24, 2012.
-    </blockquote>
+        </div>
+      
+
+      
+      <details class="post-cite" id="cite">
+        <summary>Cite this post</summary>
+        <p>Michele Pasin. <a href="index.html">Setting up the new &#39;staticfiles&#39; app on Django 1.3</a>.
+          Blog post on www.michelepasin.org, 24 January 2012.</p>
+      </details>
+
+      <div class="blocknote" id="comments">
+        <p class="sectionlabel"><b>Talk back</b> <span class="sep">/</span> comments via github</p>
+        <div class="utterances">
+          <script src="https://utteranc.es/client.js"
+                  repo="lambdamusic/portfolio-site"
+                  issue-term="url"
+                  label="comment"
+                  theme="github-light"
+                  crossorigin="anonymous"
+                  async>
+          </script>
+        </div>
+      </div>
+
+    </article>
+
   </div>
-
-
-  <div class="blocknote">
-    <p class="sectionlabel"><b>Talk back</b> <span class="sep">/</span> comments via github</p>
-    <div class="utterances">
-      <script src="https://utteranc.es/client.js"
-              repo="lambdamusic/portfolio-site"
-              issue-term="url"
-              label="comment"
-              theme="github-light"
-              crossorigin="anonymous"
-              async>
-      </script>
-    </div>
-  </div>
-
-
-  
-  
-
-
-
-
-<div class="blocknote">
-
-  <p class="sectionlabel"><b>See also</b> <span class="sep">/</span> related writing</p>
-
-  
-
-    <section class="pubgroup">
-
-      <p class="ghostdate ghostdate--lg">2021</p>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2021/10/29/django-wget-static-site/index.html">A static site generator using Django, Wget and Github Pages</a>
-            </p>
-            <p class="pubinfo"><b>Nov 2021</b></p>
-
-          
-
-        </article>
-
-      
-
-    </section>
-
-  
-
-    <section class="pubgroup">
-
-      <p class="ghostdate ghostdate--lg">2012</p>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a class="is-current" title="The article on this page">Setting up the new &#39;staticfiles&#39; app on Django 1.3</a>
-            </p>
-            <p class="pubinfo"><b>Jan 2012</b></p>
-
-          
-
-        </article>
-
-      
-
-    </section>
-
-  
-
-    <section class="pubgroup">
-
-      <p class="ghostdate ghostdate--lg">2011</p>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2011/10/12/django-b_project-available-on-github/index.html">Django B_project available on gitHub</a>
-            </p>
-            <p class="pubinfo"><b>Oct 2011</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2011/06/09/djfacet-a-django-faceted-browser/index.html">DJFacet: a faceted browser for Django</a>
-            </p>
-            <p class="pubinfo"><b>Jun 2011</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2011/02/08/installing-pil-on-djangostack-1-1-1/index.html">Installing PIL on Djangostack 1.1.1/1.2/1.3</a>
-            </p>
-            <p class="pubinfo"><b>Feb 2011</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2011/01/14/setting-up-django-registration/index.html">Setting up Django Registration</a>
-            </p>
-            <p class="pubinfo"><b>Jan 2011</b></p>
-
-          
-
-        </article>
-
-      
-
-    </section>
-
-  
-
-    <section class="pubgroup">
-
-      <p class="ghostdate ghostdate--lg">2010</p>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2010/11/17/preloading-stuff-in-djangos-interactive-shell/index.html">Preloading stuff in django&#39;s interactive shell</a>
-            </p>
-            <p class="pubinfo"><b>Nov 2010</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2010/08/03/trying-out-django-cms/index.html">Trying out Django-cms</a>
-            </p>
-            <p class="pubinfo"><b>Aug 2010</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2010/07/20/the-power-of-djangos-q-objects/index.html">The power of django&#39;s Q objects</a>
-            </p>
-            <p class="pubinfo"><b>Jul 2010</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2010/06/30/djangocon-europe-2010/index.html">DjangoCon Europe 2010</a>
-            </p>
-            <p class="pubinfo"><b>Jun 2010</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2010/05/24/django-debug-toolbar/index.html">Django debug toolbar</a>
-            </p>
-            <p class="pubinfo"><b>May 2010</b></p>
-
-          
-
-        </article>
-
-      
-
-    </section>
-
-  
-
-    <section class="pubgroup">
-
-      <p class="ghostdate ghostdate--lg">2009</p>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/12/03/creating-questionnaires-with-django/index.html">Creating Questionnaires with Django</a>
-            </p>
-            <p class="pubinfo"><b>Dec 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/11/11/django-signals/index.html">Django signals</a>
-            </p>
-            <p class="pubinfo"><b>Nov 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/11/02/django-1-1-logout-links-apparently-broken/index.html">Django 1.1: LogOut links apparently broken</a>
-            </p>
-            <p class="pubinfo"><b>Nov 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/10/20/uml-to-django/index.html">UML to django</a>
-            </p>
-            <p class="pubinfo"><b>Oct 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/10/12/autocomplete-in-django-2/index.html">Autocomplete in Django #2</a>
-            </p>
-            <p class="pubinfo"><b>Oct 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/index.html">Using jquery&#39;s autocomplete in Django&#39;s admin: what about &#39;inlines&#39;?</a>
-            </p>
-            <p class="pubinfo"><b>Sep 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/09/28/project-django-soclone/index.html">Project: django SOCLONE</a>
-            </p>
-            <p class="pubinfo"><b>Sep 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/09/15/using-django-mptt-lessons-learned/index.html">Using Django-MPTT: lessons learned...</a>
-            </p>
-            <p class="pubinfo"><b>Sep 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/09/11/weird-example-com-urls-appearing-on-my-django-site/index.html">Weird &#39;example.com&#39; urls appearing on my django site...</a>
-            </p>
-            <p class="pubinfo"><b>Sep 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/08/18/django-admin-and-mptt-2/index.html">Django admin and MPTT #2</a>
-            </p>
-            <p class="pubinfo"><b>Aug 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/08/06/representing-hierarchical-data-with-django-and-mptt/index.html">Representing hierarchical data with Django and MPTT</a>
-            </p>
-            <p class="pubinfo"><b>Aug 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/05/27/snippet-to-quickly-load-stuff-in-the-django-shell/index.html">Snippet to load stuff quickly in the Django shell</a>
-            </p>
-            <p class="pubinfo"><b>May 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/04/29/offline-django-docs/index.html">Offline django docs</a>
-            </p>
-            <p class="pubinfo"><b>Apr 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-    </section>
-
-  
 
 </div>
-
 
 
 
@@ -955,6 +519,25 @@ Alias<span class="w"> </span>/media/static/<span class="w"> </span>/path/to/mysi
   $(document).ready(function () {
     $("div.blogentry p:first").addClass("first-paragraph");
   });
+
+  // contents list: mark the section being read
+  (function () {
+    var links = document.querySelectorAll('.post-toc a');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove('is-reading'); });
+        byId[e.target.id].classList.add('is-reading');
+      });
+    }, { rootMargin: '0px 0px -70% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      var h = document.getElementById(id);
+      if (h) obs.observe(h);
+    });
+  })();
 </script>
 
 

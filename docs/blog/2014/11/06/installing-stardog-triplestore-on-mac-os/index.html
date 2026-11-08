@@ -111,6 +111,8 @@
     
     <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../../../../media/static/css/parerga.css" rel="stylesheet">
+    
+    <link href="../../../../../media/static/css/layout.css" rel="stylesheet">
 
     <style>
 
@@ -198,128 +200,108 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
   </head>
 
-  <body class="">
+  <body class="is-wide">
 
     
       
 
-<nav id="site-rail" class="site-rail" aria-label="Site navigation">
-
-  <button type="button" class="rail-handle" aria-expanded="false" aria-controls="site-rail">
-    Inside <span class="rail-arrow" aria-hidden="true">&larr;</span>
-  </button>
-
-  <div class="rail-body">
-
-  <a class="rail-home" href="../../../../../projects/index.html">michelepasin.org</a>
-
-  <h2>Pages</h2>
-  <ul>
-    <li><a href="../../../../../projects/index.html"
-           >Projects</a></li>
-    <li><a href="../../../../../words/index.html"
-           class="is-current">Words</a></li>
-    <li><a href="../../../../../sounds/index.html"
-           >Sounds</a></li>
-    <li><a href="../../../../../events/index.html"
-           >Events</a></li>
-    <li><a href="../../../../../about/index.html"
-           >About</a></li>
-    <li><a href="../../../../../contact/index.html"
-           >Contact</a></li>
-  </ul>
-
-  <h2>Words</h2>
-  <ul>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=latest.html"
-           >latest</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs.html"
-           >blogs</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=papers.html"
-           >papers</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=tags.html"
-           >tags</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=all.html"
-           >all</a></li>
-  </ul>
-
-  
-  <h2>Categories</h2>
-  <ul>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=computermusic.html"
-           >Computer Music</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=data-science.html"
-           >Data Science</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=digital-humanities.html"
-           >Digital Humanities</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=justblogging.html"
-           >Just Blogging</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=knowledge-engineering.html"
-           >Knowledge Engineering</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=research-analytics.html"
-           >Research Analytics</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=techlife.html"
-           >TechLife</a></li>
-  </ul>
-
-  <div class="rail-find">
-    <h2>Find <span class="sep">/</span> Search</h2>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
     
-    <input type="text" class="rail-search" readonly
-           value="Type and hit enter&hellip;"
-           aria-label="Open site search"
-           data-toggle="modal" data-target="#modalSearch">
+      <a class="sidebar-name" href="../../../../../index.html">Michele Pasin</a>
+    
+    <button type="button" class="sidebar-toggle" aria-expanded="false" aria-controls="sidebar-body">Menu</button>
   </div>
 
-  </div><!-- /.rail-body -->
+  <div class="sidebar-body" id="sidebar-body">
+    <p class="sidebar-intro">Making information easier to explore: ontologies, knowledge graphs, data analytics and AI. Also digital humanities and livecoded music.</p>
 
-</nav>
+    <nav aria-label="Site navigation">
+      <ul class="sidebar-nav">
+        <li><a href="../../../../../index.html" >Projects</a></li>
+        <li><a href="../../../../../words/index.html" class="is-current">Words</a></li>
+        <li><a href="../../../../../sounds/index.html" >Sounds</a></li>
+        <li><a href="../../../../../events/index.html" >Events</a></li>
+        <li><a href="../../../../../about/index.html" >About</a></li>
+      </ul>
+    </nav>
+
+    <button type="button" class="sidebar-search" data-toggle="modal" data-target="#modalSearch">Search the site&hellip;</button>
+
+    <p class="sidebar-links">
+      <a href="../../../../../feed.xml">RSS</a> <span class="sep">/</span>
+      <a href="https://github.com/lambdamusic">GitHub</a>
+    </p>
+  </div>
+</aside>
 
     
-
-    
-
-
-
-<header class="site-head">
-  <span class="site-feed">
-    <a href="../../../../../feed.xml" title="RSS feed">RSS</a>
-  </span>
-  <a class="site-name" href="../../../../../projects/index.html">michelepasin.org</a>
-  <span class="site-tagline">/ code, music, words</span>
-</header>
-
 
     <main class="site-main">
       
 
+
+<div class="post">
+
   <p class="sectionlabel">
     <b>Words</b> <span class="sep">/</span>
-    <a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs.html">blog</a>
-    <span class="sep">/</span> 6 November 2014
+    <a href="../../../../../words/index.html%3Ftype=blogs.html">posts</a>
+    <span class="sep">/</span> <a href="../../../../../words/index.html%3Ftype=blogs&amp;ctype=knowledge-engineering.html">Knowledge Engineering</a><span class="sep">/</span> <a href="../../../../../words/index.html%3Ftype=blogs&amp;ctype=techlife.html">TechLife</a>
   </p>
 
-  <article>
+  <header class="post-head">
+    <h1>Installing Stardog triplestore on mac os</h1>
+    
+  </header>
 
-    <header class="articlehead">
-      <h1>Installing Stardog triplestore on mac os</h1>
+  <div class="post-grid">
 
+    <aside class="post-margin has-toc">
+      <p class="post-date">
+        <time datetime="2014-11-06"><b>6 Nov</b> 2014</time>
+      </p>
+      <p class="post-side-meta">6 min read</p>
       
-        <p class="articlemeta">
-          <a href="../../../../../words/index.html%3Ftag=rdf&amp;type=all.html">#rdf</a> <a href="../../../../../words/index.html%3Ftag=triplestore&amp;type=all.html">#triplestore</a>
-        </p>
+        <p class="post-tags"><a href="../../../../../words/index.html%3Ftag=rdf&amp;type=all.html">#rdf</a> <a href="../../../../../words/index.html%3Ftag=triplestore&amp;type=all.html">#triplestore</a> </p>
       
-
       
-    </header>
+      
+        <div class="post-margin-related">
+          <p class="post-rail-label">Related</p>
+          
+<ul class="post-related">
+  
+    <li><a href="../../../10/27/getting-started-with-a-triplestore-on-mac-os-cliopatria/index.html">Installing ClioPatria triplestore on mac os</a> <span class="post-related-date">Oct 2014</span></li>
+  
+    <li><a href="../../../10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/index.html">Installing GraphDB (aka OWLIM) triplestore on mac os</a> <span class="post-related-date">Oct 2014</span></li>
+  
+    <li><a href="../../../../2026/11/06/semantics-ladder/index.html">What does an LLM need to know about your data? Climbing the semantics ladder</a> <span class="post-related-date">Nov 2026</span></li>
+  
+    <li><a href="../../../../2023/02/03/rip-scigraph/index.html">SciGraph 2017-2023</a> <span class="post-related-date">Feb 2023</span></li>
+  
+    <li><a href="../../../../2019/03/22/sn-scigraph-latest-release-patents-clinical-trials-and-many-new-features/index.html">SN SciGraph Latest Release: Patents, Clinical Trials and many new features</a> <span class="post-related-date">Mar 2019</span></li>
+  
+</ul>
 
-    <hr>
+        </div>
+      
+      
+<nav class="post-toc" aria-label="On this page">
+  <p class="post-rail-label">On this page</p>
+  <ol>
+    <li><a href="index.html#1-requirements">1. Requirements</a></li><li><a href="index.html#2-setting-up">2. Setting up</a></li><li><a href="index.html#3-running-stardog">3. Running Stardog</a></li><li><a href="index.html#4-loading-a-big-dataset">4. Loading a big dataset</a></li><li><a href="index.html#5-useful-resources">5. Useful resources</a></li>
+  </ol>
+</nav>
 
-    <div class="blogentry">
-      <p><a href="http://www.stardog.com/">Stardog</a> is an enterprise-level triplestore developed by <a href="http://clarkparsia.com/">clarkparsia.com</a>. It combines tools to store and query RDF data with more advanced features for inference and data analytics - in particular via the built-in <a href="http://clarkparsia.com/pellet/">Pellet Java reasoner</a>. All of this is combined with a user experience that is arguably the best you can currently find in the market.</p>
-<h3>1. Requirements</h3>
+    </aside>
+
+    <article class="post-body">
+
+      <div class="blogentry">
+        <p><a href="http://www.stardog.com/">Stardog</a> is an enterprise-level triplestore developed by <a href="http://clarkparsia.com/">clarkparsia.com</a>. It combines tools to store and query RDF data with more advanced features for inference and data analytics - in particular via the built-in <a href="http://clarkparsia.com/pellet/">Pellet Java reasoner</a>. All of this is combined with a user experience that is arguably the best you can currently find in the market.</p>
+<h3 id="1-requirements">1. Requirements</h3>
 <p><strong>OSX</strong>: Mavericks 10.9.5 (that's what I used, but it'll work on older versions too). <strong>JAVA</strong>: available <a href="http://support.apple.com/kb/dl1572">from Apple</a>. <strong>Stardog</strong>: grab the free <em>community</em> edition at <a href="http://www.stardog.com/">http://www.stardog.com/</a> (you can also get the 'developer' version for a 30-days trial, which is actually what I did).</p>
-<h3>2. Setting up</h3>
+<h3 id="2-setting-up">2. Setting up</h3>
 <p>Good news, it can't get any simpler than this. Just unpack the Stardog installer, and you're pretty much done (see the <a href="http://docs.stardog.com/quick-start/">online docs</a> for more info).</p>
 <p>Stardog needs to know where to store its databases, so you do that by adding a couple of lines to your .bash_profile file:</p>
 <p>export STARDOG_HOME="/Users/michele.pasin/Data/Stardog"  # databases will be stored here
@@ -327,7 +309,7 @@ export PATH="/Applications/stardog-2.2.2/bin:$PATH"  # add stardog commands to t
 alias cdstardog="cd /Applications/stardog-2.2.2"  # just a handy shortcut</p>
 <p>Finally, copy the license key file (which should have come together with the installer) into the data folder:</p>
 <p>$ cp stardog-license-key.bin $STARDOG_HOME</p>
-<h3>3. Running Stardog</h3>
+<h3 id="3-running-stardog">3. Running Stardog</h3>
 <p>The <code>stardog-admin server start</code> command is used to start and stop the server. Then you can use the <code>stardog-admin db create</code> command to create a database and load some data. For example:</p>
 <p>[michele.pasin]@Tartaruga:~&gt;cdstardog </p>
 <p>[michele.pasin]@l5611:/Applications/stardog-2.2.2&gt;stardog-admin server start</p>
@@ -395,7 +377,7 @@ Bulk load complete.  Loaded 8,521 triples from 1 file(s) in 00:00:01 @ 8.4K trip
 <p>There's a <strong>fancy user interface</strong> too, which can be accessed by going to http://localhost:5820 (note: by default, you can log in with username/password = admin).</p>
 <p><img loading="lazy" alt="Stardog1" src="../../../../../media/static/blog_img/stardog1.png" title="stardog1.png" /></p>
 <p><img loading="lazy" alt="Stardog2" src="../../../../../media/static/blog_img/stardog2.png" title="stardog2.png" /></p>
-<h3>4. Loading a big dataset</h3>
+<h3 id="4-loading-a-big-dataset">4. Loading a big dataset</h3>
 <p>As in my <a href="http://www.michelepasin.org/blog/2014/10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/">previous post</a>, I tried loading the <a href="http://data.nature.com/downloads/2012-07-16/articles.2012-07-16.nq.tar.gz">NPG Articles</a> dataset available at nature.com's legacy linked data site <a href="http://www.nature.com/developers/documentation/linked-data-platform/releases/snapshot-downloads/">data.nature.com</a>. The dataset contains around <strong>40M triples</strong> describing (at the metadata level) all that's been published by NPG and Scientific American from 1845 until now. The file size is <strong>~6 GB</strong>, so it's not a huge dataset. Still, it's something big enough to pose a challenge to my MacBook Pro (8GB RAM).</p>
 <p>First off, I tried loading the dataset via the command line by passing an extra argument when creating a new database:</p>
 <p>[michele.pasin]@Tartaruga:~/Downloads/NPGcitationsGraph/articles.2012-07-16&gt;stardog-admin db create -n npgArticles articles.nq 
@@ -437,209 +419,73 @@ Inserted 39,262,620 unique triples from 39,384,548 read triples in 00:07:51.402 
 Bulk load complete.  Loaded 39,262,620 triples from 1 file(s) in 00:07:51 @ 83.3K triples/sec.</p>
 <p>Successfully created database 'articlesNPG2'.</p>
 <p>Job done in around <strong>7 minutes</strong>!</p>
-<h4>Conclusion</h4>
+<h4 id="conclusion">Conclusion</h4>
 <p>Extremely <strong>easy to install</strong>, <strong>efficient</strong>, and packed with <strong>advanced features</strong> (inferencing and data-checking among the most useful ones, in my opinion). Also, as far as the UX and web interface go, I doubt you can get any better than this with triplestores.</p>
 <p>It's a commercial product, of course, so you may not expect anything less than that. However, the community edition (which is free) allows for 10 databases and 25M triples per database - which may be just fine for many projects.</p>
 <p>If we had more tools as accessible as this one, I do think RDF triplestores would have a much higher uptake by now!</p>
-<h3>5. Useful resources</h3>
+<h3 id="5-useful-resources">5. Useful resources</h3>
 <p><strong>Documentation</strong> - <a href="http://docs.stardog.com/">http://docs.stardog.com/</a></p>
 <p><strong>Mailing list</strong> - <a href="https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog">https://groups.google.com/a/clarkparsia.com/forum/#!forum/stardog</a></p>
 <p><strong>Python API</strong> - If you're a <em>pythonista</em>, this small library can be useful: <a href="https://github.com/knorex/pystardog/wiki">https://github.com/knorex/pystardog/wiki</a></p>
-    </div>
+      </div>
 
-  </article>
+      <nav class="post-pager" aria-label="Older and newer posts">
+        
+          <a class="post-pager-older" href="../../../10/27/getting-started-with-a-triplestore-on-mac-os-cliopatria/index.html"><span>&larr; Older</span>Installing ClioPatria triplestore on mac os</a>
+        
+        
+          <a class="post-pager-newer" href="../../25/iswc14-paper-a-hybrid-semantic-publishing-architecture-combining-xml-and-rdf/index.html"><span>Newer &rarr;</span>ISWC14 paper: a hybrid semantic publishing architecture combining XML and RDF</a>
+        
+      </nav>
 
+      
+      
+        <div class="blocknote post-related-end--dup">
+          <p class="sectionlabel"><b>Related</b> <span class="sep">/</span> posts with the same tags</p>
+          
+<ul class="post-related">
+  
+    <li><a href="../../../10/27/getting-started-with-a-triplestore-on-mac-os-cliopatria/index.html">Installing ClioPatria triplestore on mac os</a> <span class="post-related-date">Oct 2014</span></li>
+  
+    <li><a href="../../../10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/index.html">Installing GraphDB (aka OWLIM) triplestore on mac os</a> <span class="post-related-date">Oct 2014</span></li>
+  
+    <li><a href="../../../../2026/11/06/semantics-ladder/index.html">What does an LLM need to know about your data? Climbing the semantics ladder</a> <span class="post-related-date">Nov 2026</span></li>
+  
+    <li><a href="../../../../2023/02/03/rip-scigraph/index.html">SciGraph 2017-2023</a> <span class="post-related-date">Feb 2023</span></li>
+  
+    <li><a href="../../../../2019/03/22/sn-scigraph-latest-release-patents-clinical-trials-and-many-new-features/index.html">SN SciGraph Latest Release: Patents, Clinical Trials and many new features</a> <span class="post-related-date">Mar 2019</span></li>
+  
+</ul>
 
-  <div class="blocknote">
-    <p class="sectionlabel"><b>Cite</b> <span class="sep">/</span> this blog post</p>
-    <blockquote>
-      Michele Pasin. <a href="index.html">Installing Stardog triplestore on mac os</a>.
-      Blog post on www.michelepasin.org. Published on Nov. 6, 2014.
-    </blockquote>
+        </div>
+      
+
+      
+      <details class="post-cite" id="cite">
+        <summary>Cite this post</summary>
+        <p>Michele Pasin. <a href="index.html">Installing Stardog triplestore on mac os</a>.
+          Blog post on www.michelepasin.org, 6 November 2014.</p>
+      </details>
+
+      <div class="blocknote" id="comments">
+        <p class="sectionlabel"><b>Talk back</b> <span class="sep">/</span> comments via github</p>
+        <div class="utterances">
+          <script src="https://utteranc.es/client.js"
+                  repo="lambdamusic/portfolio-site"
+                  issue-term="url"
+                  label="comment"
+                  theme="github-light"
+                  crossorigin="anonymous"
+                  async>
+          </script>
+        </div>
+      </div>
+
+    </article>
+
   </div>
-
-
-  <div class="blocknote">
-    <p class="sectionlabel"><b>Talk back</b> <span class="sep">/</span> comments via github</p>
-    <div class="utterances">
-      <script src="https://utteranc.es/client.js"
-              repo="lambdamusic/portfolio-site"
-              issue-term="url"
-              label="comment"
-              theme="github-light"
-              crossorigin="anonymous"
-              async>
-      </script>
-    </div>
-  </div>
-
-
-  
-  
-
-
-
-
-<div class="blocknote">
-
-  <p class="sectionlabel"><b>See also</b> <span class="sep">/</span> related writing</p>
-
-  
-
-    <section class="pubgroup">
-
-      <p class="ghostdate ghostdate--lg">2014</p>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a class="is-current" title="The article on this page">Installing Stardog triplestore on mac os</a>
-            </p>
-            <p class="pubinfo"><b>Nov 2014</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../10/27/getting-started-with-a-triplestore-on-mac-os-cliopatria/index.html">Installing ClioPatria triplestore on mac os</a>
-            </p>
-            <p class="pubinfo"><b>Oct 2014</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../10/16/getting-started-with-a-triplestore-on-mac-os-graphdb-aka-owlim/index.html">Installing GraphDB (aka OWLIM) triplestore on mac os</a>
-            </p>
-            <p class="pubinfo"><b>Oct 2014</b></p>
-
-          
-
-        </article>
-
-      
-
-    </section>
-
-  
-
-    <section class="pubgroup">
-
-      <p class="ghostdate ghostdate--lg">2011</p>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2011/02/08/installing-pil-on-djangostack-1-1-1/index.html">Installing PIL on Djangostack 1.1.1/1.2/1.3</a>
-            </p>
-            <p class="pubinfo"><b>Feb 2011</b></p>
-
-          
-
-        </article>
-
-      
-
-    </section>
-
-  
-
-    <section class="pubgroup">
-
-      <p class="ghostdate ghostdate--lg">2010</p>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2010/12/01/installing-mercurial-on-osx-10-6-5/index.html">Installing Mercurial on OSx 10.6.5</a>
-            </p>
-            <p class="pubinfo"><b>Dec 2010</b></p>
-
-          
-
-        </article>
-
-      
-
-    </section>
-
-  
-
-    <section class="pubgroup">
-
-      <p class="ghostdate ghostdate--lg">2009</p>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/10/14/installing-pygraphviz-tested-on-osx-leopard/index.html">Installing PyGraphviz [tested on OSx Leopard]</a>
-            </p>
-            <p class="pubinfo"><b>Oct 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/05/07/installing-rdflib-on-osx/index.html">Installing RDFlib on osX</a>
-            </p>
-            <p class="pubinfo"><b>May 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-    </section>
-
-  
 
 </div>
-
 
 
 
@@ -708,6 +554,25 @@ Bulk load complete.  Loaded 39,262,620 triples from 1 file(s) in 00:07:51 @ 83.3
   $(document).ready(function () {
     $("div.blogentry p:first").addClass("first-paragraph");
   });
+
+  // contents list: mark the section being read
+  (function () {
+    var links = document.querySelectorAll('.post-toc a');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove('is-reading'); });
+        byId[e.target.id].classList.add('is-reading');
+      });
+    }, { rootMargin: '0px 0px -70% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      var h = document.getElementById(id);
+      if (h) obs.observe(h);
+    });
+  })();
 </script>
 
 

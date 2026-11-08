@@ -110,6 +110,8 @@
     
     <link href="../../../../../media/static/libs/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="../../../../../media/static/css/parerga.css" rel="stylesheet">
+    
+    <link href="../../../../../media/static/css/layout.css" rel="stylesheet">
 
     <style>
 
@@ -197,125 +199,105 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
   </head>
 
-  <body class="">
+  <body class="is-wide">
 
     
       
 
-<nav id="site-rail" class="site-rail" aria-label="Site navigation">
-
-  <button type="button" class="rail-handle" aria-expanded="false" aria-controls="site-rail">
-    Inside <span class="rail-arrow" aria-hidden="true">&larr;</span>
-  </button>
-
-  <div class="rail-body">
-
-  <a class="rail-home" href="../../../../../projects/index.html">michelepasin.org</a>
-
-  <h2>Pages</h2>
-  <ul>
-    <li><a href="../../../../../projects/index.html"
-           >Projects</a></li>
-    <li><a href="../../../../../words/index.html"
-           class="is-current">Words</a></li>
-    <li><a href="../../../../../sounds/index.html"
-           >Sounds</a></li>
-    <li><a href="../../../../../events/index.html"
-           >Events</a></li>
-    <li><a href="../../../../../about/index.html"
-           >About</a></li>
-    <li><a href="../../../../../contact/index.html"
-           >Contact</a></li>
-  </ul>
-
-  <h2>Words</h2>
-  <ul>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=latest.html"
-           >latest</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs.html"
-           >blogs</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=papers.html"
-           >papers</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=tags.html"
-           >tags</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=all.html"
-           >all</a></li>
-  </ul>
-
-  
-  <h2>Categories</h2>
-  <ul>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=computermusic.html"
-           >Computer Music</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=data-science.html"
-           >Data Science</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=digital-humanities.html"
-           >Digital Humanities</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=justblogging.html"
-           >Just Blogging</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=knowledge-engineering.html"
-           >Knowledge Engineering</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=research-analytics.html"
-           >Research Analytics</a></li>
-    <li><a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs&amp;ctype=techlife.html"
-           >TechLife</a></li>
-  </ul>
-
-  <div class="rail-find">
-    <h2>Find <span class="sep">/</span> Search</h2>
+<aside class="sidebar" id="sidebar">
+  <div class="sidebar-head">
     
-    <input type="text" class="rail-search" readonly
-           value="Type and hit enter&hellip;"
-           aria-label="Open site search"
-           data-toggle="modal" data-target="#modalSearch">
+      <a class="sidebar-name" href="../../../../../index.html">Michele Pasin</a>
+    
+    <button type="button" class="sidebar-toggle" aria-expanded="false" aria-controls="sidebar-body">Menu</button>
   </div>
 
-  </div><!-- /.rail-body -->
+  <div class="sidebar-body" id="sidebar-body">
+    <p class="sidebar-intro">Making information easier to explore: ontologies, knowledge graphs, data analytics and AI. Also digital humanities and livecoded music.</p>
 
-</nav>
+    <nav aria-label="Site navigation">
+      <ul class="sidebar-nav">
+        <li><a href="../../../../../index.html" >Projects</a></li>
+        <li><a href="../../../../../words/index.html" class="is-current">Words</a></li>
+        <li><a href="../../../../../sounds/index.html" >Sounds</a></li>
+        <li><a href="../../../../../events/index.html" >Events</a></li>
+        <li><a href="../../../../../about/index.html" >About</a></li>
+      </ul>
+    </nav>
+
+    <button type="button" class="sidebar-search" data-toggle="modal" data-target="#modalSearch">Search the site&hellip;</button>
+
+    <p class="sidebar-links">
+      <a href="../../../../../feed.xml">RSS</a> <span class="sep">/</span>
+      <a href="https://github.com/lambdamusic">GitHub</a>
+    </p>
+  </div>
+</aside>
 
     
-
-    
-
-
-
-<header class="site-head">
-  <span class="site-feed">
-    <a href="../../../../../feed.xml" title="RSS feed">RSS</a>
-  </span>
-  <a class="site-name" href="../../../../../projects/index.html">michelepasin.org</a>
-  <span class="site-tagline">/ code, music, words</span>
-</header>
-
 
     <main class="site-main">
       
 
+
+<div class="post">
+
   <p class="sectionlabel">
     <b>Words</b> <span class="sep">/</span>
-    <a href="../../../../../words/index.html%3Fquery=date&amp;type=blogs.html">blog</a>
-    <span class="sep">/</span> 20 July 2010
+    <a href="../../../../../words/index.html%3Ftype=blogs.html">posts</a>
+    <span class="sep">/</span> <a href="../../../../../words/index.html%3Ftype=blogs&amp;ctype=techlife.html">TechLife</a>
   </p>
 
-  <article>
+  <header class="post-head">
+    <h1>The power of django&#39;s Q objects</h1>
+    
+  </header>
 
-    <header class="articlehead">
-      <h1>The power of django&#39;s Q objects</h1>
+  <div class="post-grid">
 
+    <aside class="post-margin has-toc">
+      <p class="post-date">
+        <time datetime="2010-07-20"><b>20 Jul</b> 2010</time>
+      </p>
+      <p class="post-side-meta">5 min read</p>
       
-        <p class="articlemeta">
-          <a href="../../../../../words/index.html%3Ftag=django&amp;type=all.html">#django</a> <a href="../../../../../words/index.html%3Ftag=search&amp;type=all.html">#search</a>
-        </p>
+        <p class="post-tags"><a href="../../../../../words/index.html%3Ftag=django&amp;type=all.html">#django</a> <a href="../../../../../words/index.html%3Ftag=search&amp;type=all.html">#search</a> </p>
       
-
       
-    </header>
+      
+        <div class="post-margin-related">
+          <p class="post-rail-label">Related</p>
+          
+<ul class="post-related">
+  
+    <li><a href="../../../../2021/10/29/django-wget-static-site/index.html">A static site generator using Django, Wget and Github Pages</a> <span class="post-related-date">Nov 2021</span></li>
+  
+    <li><a href="../../../../2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/index.html">Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</a> <span class="post-related-date">Apr 2017</span></li>
+  
+    <li><a href="../../../../2015/01/05/introducing-resquotes-com/index.html">Take control of your digital annotations with ResQuotes.com</a> <span class="post-related-date">Jan 2015</span></li>
+  
+    <li><a href="../../../../2012/05/16/djfacet-0-9-7-mptt-hierarchical-facets-now-supported/index.html">DJFacet 0.9.7: MPTT hierarchical facets now supported!</a> <span class="post-related-date">May 2012</span></li>
+  
+    <li><a href="../../../../2012/01/24/setting-up-the-new-staticfiles-app-on-django-1-3/index.html">Setting up the new &#39;staticfiles&#39; app on Django 1.3</a> <span class="post-related-date">Jan 2012</span></li>
+  
+</ul>
 
-    <hr>
+        </div>
+      
+      
+<nav class="post-toc" aria-label="On this page">
+  <p class="post-rail-label">On this page</p>
+  <ol>
+    <li><a href="index.html#what-are-q-objects-handy-for">What are Q Objects Handy for?</a></li><li><a href="index.html#dynamic-query-building">Dynamic Query Building</a></li><li><a href="index.html#query-expansion-and-q-objects">Query Expansion and Q Objects</a></li><li><a href="index.html#other-resources">Other Resources</a></li>
+  </ol>
+</nav>
 
-    <div class="blogentry">
-      <p>I've been spending some time today doing research on how to best use django's <a href="https://docs.djangoproject.com/en/3.2/topics/db/queries/#complex-lookups-with-q-objects">Q objects</a>. Then I did a bit of testing myself and decided to put this whole thing together for future's sake, you know, for the time when I'll find myself lost and in need some coding recipe.</p>
+    </aside>
+
+    <article class="post-body">
+
+      <div class="blogentry">
+        <p>I've been spending some time today doing research on how to best use django's <a href="https://docs.djangoproject.com/en/3.2/topics/db/queries/#complex-lookups-with-q-objects">Q objects</a>. Then I did a bit of testing myself and decided to put this whole thing together for future's sake, you know, for the time when I'll find myself lost and in need some coding recipe.</p>
 <p>First things first: the <strong>official documentation</strong>.</p>
 <ul>
 <li>Django doc: <a href="http://docs.djangoproject.com/en/dev/topics/db/queries/#complex-lookups-with-q-objects">Complex lookups with Q objects</a> The main intro</li>
@@ -339,7 +321,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">p</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
 </code></pre></div>
 
-<h2>What are Q Objects Handy for?</h2>
+<h2 id="what-are-q-objects-handy-for">What are Q Objects Handy for?</h2>
 <p>In a nutshell, the main reason why you might want to use them is because you need to do <strong>complex queries</strong>, for example involving OR and AND statements a the same time.</p>
 <p>Imagine that you want to retrieve all polls whose question <strong>contains the word 'dinner' OR 'meal'</strong>. The usual 'filter' option lets you do the following:</p>
 <div class="codehilite"><pre><span></span><code><span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">)</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;meal&#39;</span><span class="p">)</span>
@@ -370,7 +352,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="n">shall</span> <span class="n">I</span> <span class="n">make</span> <span class="o">**</span><span class="k">for</span><span class="o">**</span> <span class="n">dinner</span><span class="o">&gt;</span><span class="p">]</span>
 </code></pre></div>
 
-<h2>Dynamic Query Building</h2>
+<h2 id="dynamic-query-building">Dynamic Query Building</h2>
 <p>Now, it is likely that you want to build up queries like the ones above dynamically. This is another place where Q objects can save lots of time....for example, when constructing <strong>search engines</strong> or <strong>faceted browsers</strong> where the interface lets a user <strong>accumulate search filters</strong> in an incremental manner.</p>
 <p>One way to handle this situation is by creating <strong>lists of Q objects</strong>, and then <strong>combining them together</strong> using python's <a href="http://docs.python.org/library/operator.html#operator.and_">operator</a> and <a href="http://docs.python.org/library/functions.html#reduce">reduce</a> methods:</p>
 <div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">operator</span>
@@ -406,7 +388,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="p">[]</span>
 </code></pre></div>
 
-<h2>Query Expansion and Q Objects</h2>
+<h2 id="query-expansion-and-q-objects">Query Expansion and Q Objects</h2>
 <p>Using query expansion syntax you could normally do things <strong>like this</strong>:</p>
 <div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="n">mydict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;question__contains&#39;</span><span class="p">:</span> <span class="s1">&#39;omelette&#39;</span><span class="p">,</span> <span class="s1">&#39;pub_date&#39;</span> <span class="p">:</span> <span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()}</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">**</span><span class="n">mydict</span><span class="p">)</span>
@@ -425,7 +407,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </code></pre></div>
 
 <p>In the <strong>first</strong> case, we have one result only because, although the OR constraint on <em>q_list</em> is would match more stuff by itself, _<strong>mydict_ is exploded as a series of constraints connected by AND, thus making <em>[Poll: how do you make omelettes?]</em> the only matchable object. In the </strong>second** case instead there are no results at all simply because we are asking for a Poll instance that satisfies simultaneously all the constraints (which doesn't exist)!</p>
-<h2>Other Resources</h2>
+<h2 id="other-resources">Other Resources</h2>
 <p>That's all for now! As I said, I found quite a <strong>few very good posts</strong> about the subject online and I strongly advise you to <strong>check them out too</strong> in order to have a clearer picture of how Q objects work.</p>
 <ul>
 <li><a href="http://bradmontgomery.blogspot.com/2009/06/adding-q-objects-in-django.html">Adding Q objects in Django</a> Shows another method to chain Q objects together using 'add'</li>
@@ -433,159 +415,65 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li><a href="http://www.djangozen.com/blog/the-power-of-q">The power of Q</a> Really nice article that overviews all the major features of Q objects (and, or, negation, picking)</li>
 <li><a href="http://www.nomadjourney.com/2009/04/dynamic-django-queries-with-kwargs/">Dynamic Django queries (or why kwargs is your friend)</a> Overview of dynamic querying with django</li>
 </ul>
-    </div>
+      </div>
 
-  </article>
+      <nav class="post-pager" aria-label="Older and newer posts">
+        
+          <a class="post-pager-older" href="../../13/space-invaders-for-iphone/index.html"><span>&larr; Older</span>Space Invaders for iPhone</a>
+        
+        
+          <a class="post-pager-newer" href="../../26/knowledge-representation-workshop-cch/index.html"><span>Newer &rarr;</span>Knowledge Representation workshop @ CCH</a>
+        
+      </nav>
 
+      
+      
+        <div class="blocknote post-related-end--dup">
+          <p class="sectionlabel"><b>Related</b> <span class="sep">/</span> posts with the same tags</p>
+          
+<ul class="post-related">
+  
+    <li><a href="../../../../2021/10/29/django-wget-static-site/index.html">A static site generator using Django, Wget and Github Pages</a> <span class="post-related-date">Nov 2021</span></li>
+  
+    <li><a href="../../../../2017/04/06/exploring-scigraph-data-using-elastic-search-and-kibana/index.html">Exploring SciGraph data using JSON-LD, Elastic Search and Kibana</a> <span class="post-related-date">Apr 2017</span></li>
+  
+    <li><a href="../../../../2015/01/05/introducing-resquotes-com/index.html">Take control of your digital annotations with ResQuotes.com</a> <span class="post-related-date">Jan 2015</span></li>
+  
+    <li><a href="../../../../2012/05/16/djfacet-0-9-7-mptt-hierarchical-facets-now-supported/index.html">DJFacet 0.9.7: MPTT hierarchical facets now supported!</a> <span class="post-related-date">May 2012</span></li>
+  
+    <li><a href="../../../../2012/01/24/setting-up-the-new-staticfiles-app-on-django-1-3/index.html">Setting up the new &#39;staticfiles&#39; app on Django 1.3</a> <span class="post-related-date">Jan 2012</span></li>
+  
+</ul>
 
-  <div class="blocknote">
-    <p class="sectionlabel"><b>Cite</b> <span class="sep">/</span> this blog post</p>
-    <blockquote>
-      Michele Pasin. <a href="index.html">The power of django&#39;s Q objects</a>.
-      Blog post on www.michelepasin.org. Published on July 20, 2010.
-    </blockquote>
+        </div>
+      
+
+      
+      <details class="post-cite" id="cite">
+        <summary>Cite this post</summary>
+        <p>Michele Pasin. <a href="index.html">The power of django&#39;s Q objects</a>.
+          Blog post on www.michelepasin.org, 20 July 2010.</p>
+      </details>
+
+      <div class="blocknote" id="comments">
+        <p class="sectionlabel"><b>Talk back</b> <span class="sep">/</span> comments via github</p>
+        <div class="utterances">
+          <script src="https://utteranc.es/client.js"
+                  repo="lambdamusic/portfolio-site"
+                  issue-term="url"
+                  label="comment"
+                  theme="github-light"
+                  crossorigin="anonymous"
+                  async>
+          </script>
+        </div>
+      </div>
+
+    </article>
+
   </div>
-
-
-  <div class="blocknote">
-    <p class="sectionlabel"><b>Talk back</b> <span class="sep">/</span> comments via github</p>
-    <div class="utterances">
-      <script src="https://utteranc.es/client.js"
-              repo="lambdamusic/portfolio-site"
-              issue-term="url"
-              label="comment"
-              theme="github-light"
-              crossorigin="anonymous"
-              async>
-      </script>
-    </div>
-  </div>
-
-
-  
-  
-
-
-
-
-<div class="blocknote">
-
-  <p class="sectionlabel"><b>See also</b> <span class="sep">/</span> related writing</p>
-
-  
-
-    <section class="pubgroup">
-
-      <p class="ghostdate ghostdate--lg">2018</p>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2018/08/01/sn-scigraph-latest-website-release-make-it-easier-to-discover-related-content/index.html">SN SciGraph: more related objects links increase discoverability of content</a>
-            </p>
-            <p class="pubinfo"><b>Aug 2018</b></p>
-
-          
-
-        </article>
-
-      
-
-    </section>
-
-  
-
-    <section class="pubgroup">
-
-      <p class="ghostdate ghostdate--lg">2010</p>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../11/17/preloading-stuff-in-djangos-interactive-shell/index.html">Preloading stuff in django&#39;s interactive shell</a>
-            </p>
-            <p class="pubinfo"><b>Nov 2010</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a class="is-current" title="The article on this page">The power of django&#39;s Q objects</a>
-            </p>
-            <p class="pubinfo"><b>Jul 2010</b></p>
-
-          
-
-        </article>
-
-      
-
-    </section>
-
-  
-
-    <section class="pubgroup">
-
-      <p class="ghostdate ghostdate--lg">2009</p>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/index.html">Using jquery&#39;s autocomplete in Django&#39;s admin: what about &#39;inlines&#39;?</a>
-            </p>
-            <p class="pubinfo"><b>Sep 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-        <article class="pubitem">
-
-          
-
-            <p class="pubtitle">
-              <span class="kind kind--blog">blog</span>
-              <a href="../../../../2009/05/18/python-pitfall-passing-mutable-objects-as-default-args/index.html">Python pitfall: Passing Mutable Objects as Default Args</a>
-            </p>
-            <p class="pubinfo"><b>May 2009</b></p>
-
-          
-
-        </article>
-
-      
-
-    </section>
-
-  
 
 </div>
-
 
 
 
@@ -654,6 +542,25 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   $(document).ready(function () {
     $("div.blogentry p:first").addClass("first-paragraph");
   });
+
+  // contents list: mark the section being read
+  (function () {
+    var links = document.querySelectorAll('.post-toc a');
+    if (!links.length || !('IntersectionObserver' in window)) return;
+    var byId = {};
+    links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+    var obs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.classList.remove('is-reading'); });
+        byId[e.target.id].classList.add('is-reading');
+      });
+    }, { rootMargin: '0px 0px -70% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      var h = document.getElementById(id);
+      if (h) obs.observe(h);
+    });
+  })();
 </script>
 
 
