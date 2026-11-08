@@ -65,7 +65,15 @@
         {% if tags %}
           <p class="post-tags">{% for t in tags %}<a href="{% url 'portfolioapp:words' %}?tag={{t.name}}&amp;type=all">#{{t.name}}</a> {% endfor %}</p>
         {% endif %}
-        {% if toc %}{% include "portfolioapp/proto/post-toc.html" %}{% endif %}
+        {% if toc %}
+          {% include "portfolioapp/proto/post-toc.html" %}
+        {% elif related_posts %}
+          {# no contents list: related posts fill the margin instead (wide screens only, see proto.css) #}
+          <div class="post-margin-related">
+            <p class="post-rail-label">Related</p>
+            {% include "portfolioapp/proto/post-related.html" %}
+          </div>
+        {% endif %}
       </aside>
     {% endif %}
 
@@ -92,7 +100,7 @@
       </nav>
 
       {% if post_layout != "rail" and related_posts %}
-        <div class="blocknote">
+        <div class="blocknote{% if not toc %}{% if post_layout == "margin" or post_layout == "right" %} post-related-end--dup{% endif %}{% endif %}">
           <p class="sectionlabel"><b>Related</b> <span class="sep">/</span> posts with the same tags</p>
           {% include "portfolioapp/proto/post-related.html" %}
         </div>
