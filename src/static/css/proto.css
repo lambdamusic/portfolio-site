@@ -314,6 +314,20 @@ body.layout-b {
 .post-pager span { display: block; margin-bottom: .2rem; font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
 .post-pager-newer { margin-left: auto; text-align: right; }
 
+/* citation, folded into one line */
+.post-cite { margin: var(--step) 0 0; font-size: .85rem; }
+.post-cite summary {
+  display: inline-block;
+  cursor: pointer;
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.post-cite summary:hover { color: var(--accent); }
+.post-cite p { margin: .5rem 0 0; padding-left: .75rem; border-left: 2px solid var(--rule); color: var(--body); }
+
 /* quiet: tags as a closing line */
 .post-filed { display: flex; flex-wrap: wrap; align-items: baseline; gap: .4rem; margin: calc(var(--step) * 1.5) 0 0; }
 .post-filed-label { margin-right: .25rem; font-size: .68rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
@@ -379,6 +393,21 @@ body.layout-b {
   .post-margin .post-tags { margin-top: 1rem; font-size: .8rem; }
   .post-margin .post-tags a { display: block; margin: 0; }
   .post-margin .post-toc { display: block; margin-top: 1.5rem; }
+  /* with a contents list the margin runs the article's full height and only
+     the list sticks; date, tags and related scroll away above it */
+  .post-margin.has-toc {
+    position: static;
+    align-self: stretch;
+    max-height: none;
+    overflow: visible;
+  }
+  .post-margin.has-toc .post-toc {
+    position: sticky;
+    top: 1.5rem;
+    max-height: calc(100vh - 3rem);
+    overflow-y: auto;
+  }
+
   /* related posts move into the margin, so the copy after the article goes */
   .post-margin-related { display: block; margin-top: 1.5rem; }
   .post-margin-related .post-rail-label { margin: 0 0 .4rem; }

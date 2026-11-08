@@ -57,7 +57,7 @@
   <div class="post-grid">
 
     {% if post_layout == "margin" or post_layout == "right" %}
-      <aside class="post-margin{% if post_layout == "right" %} post-margin--right{% endif %}">
+      <aside class="post-margin{% if post_layout == "right" %} post-margin--right{% endif %}{% if toc %} has-toc{% endif %}">
         <p class="post-date">
           <time datetime="{{itempubdate|date:'Y-m-d'}}"><b>{{itempubdate|date:"j M"}}</b> {{itempubdate|date:"Y"}}</time>
         </p>
@@ -65,15 +65,15 @@
         {% if tags %}
           <p class="post-tags">{% for t in tags %}<a href="{% url 'portfolioapp:words' %}?tag={{t.name}}&amp;type=all">#{{t.name}}</a> {% endfor %}</p>
         {% endif %}
-        {% if toc %}
-          {% include "portfolioapp/proto/post-toc.html" %}
-        {% elif related_posts %}
-          {# no contents list: related posts fill the margin instead (wide screens only, see proto.css) #}
+        {% comment %} related posts live here on wide screens (proto.css); the contents list
+           comes last so it alone can stick while the rest scrolls away {% endcomment %}
+        {% if related_posts %}
           <div class="post-margin-related">
             <p class="post-rail-label">Related</p>
             {% include "portfolioapp/proto/post-related.html" %}
           </div>
         {% endif %}
+        {% if toc %}{% include "portfolioapp/proto/post-toc.html" %}{% endif %}
       </aside>
     {% endif %}
 
@@ -100,19 +100,18 @@
       </nav>
 
       {% if post_layout != "rail" and related_posts %}
-        <div class="blocknote{% if not toc %}{% if post_layout == "margin" or post_layout == "right" %} post-related-end--dup{% endif %}{% endif %}">
+        <div class="blocknote{% if post_layout == "margin" or post_layout == "right" %} post-related-end--dup{% endif %}">
           <p class="sectionlabel"><b>Related</b> <span class="sep">/</span> posts with the same tags</p>
           {% include "portfolioapp/proto/post-related.html" %}
         </div>
       {% endif %}
 
-      <div class="blocknote" id="cite">
-        <p class="sectionlabel"><b>Cite</b> <span class="sep">/</span> this blog post</p>
-        <blockquote>
-          Michele Pasin. <a href="{{return_item.get_absolute_url}}">{{return_item.title}}</a>.
-          Blog post on www.michelepasin.org. Published on {{itempubdate}}.
-        </blockquote>
-      </div>
+      {# folded away: few readers cite a blog post, so it costs one line, not a section #}
+      <details class="post-cite" id="cite">
+        <summary>Cite this post</summary>
+        <p>Michele Pasin. <a href="{{return_item.get_absolute_url}}">{{return_item.title}}</a>.
+          Blog post on www.michelepasin.org, {{itempubdate|date:"j F Y"}}.</p>
+      </details>
 
       <div class="blocknote" id="comments">
         <p class="sectionlabel"><b>Talk back</b> <span class="sep">/</span> comments via github</p>
