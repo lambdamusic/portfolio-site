@@ -263,19 +263,17 @@ def projects(request, namedetail=""):
 def sounds_proto(request):
 	"""
 	Prototype Sounds landing page (pages/sounds-proto.html): everything on one
-	page, livecoding pieces as YouTube thumbnails (the player is on the
-	detail page), the two albums as covers, singles as a list.
+	page. The pieces are blog posts with a `video:` front matter line, shown as
+	YouTube thumbnails linking to the post (which has the player); the two
+	albums as covers, singles as a list.
 	"""
 	import re
 
-	def youtube_id(item):
-		found = re.search(r'youtube(?:-nocookie)?\.com/embed/([\w-]{11})', item.embedcode1 or "")
-		return found.group(1) if found else ""
-
-	livecoding = list(Item.objects.exclude(review=True).filter(
-		Q(atype__name__iexact="livecoding") | Q(atype__name__iexact="performance")).order_by('-date'))
-	for item in livecoding:
-		item.youtube_id = youtube_id(item)
+	pieces = list(Publication.objects.filter(pubtype__pk=13).exclude(review=True)
+		.exclude(video="").order_by('-pubdate'))
+	for pub in pieces:
+		# "Livecoding: Xanadu" -> "Xanadu": the section heading already says it
+		pub.display_title = re.sub(r"^(Livecoding|Event):\s*", "", pub.title)
 
 	# Kryos and Rebirth Fever only have their ?k= pages; Rebirth has no cover
 	albums = [
@@ -286,7 +284,7 @@ def sounds_proto(request):
 		atype__name__iexact="music").order_by('-date')
 
 	context = {
-		'livecoding': livecoding,
+		'pieces': pieces,
 		'albums': albums,
 		'singles': singles,
 	}

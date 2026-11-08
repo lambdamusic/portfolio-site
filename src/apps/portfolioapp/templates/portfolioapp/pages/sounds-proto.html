@@ -1,11 +1,13 @@
 {% extends "portfolioapp/components/base.html" %}
 {% load static %}
+{% load extrafilters %}
 
 {% comment %}
   Sounds landing page prototype (portfolioapp/proto.py, `?sounds=tiles`;
-  views.sounds_proto). One page instead of four tabs: livecoding pieces as
-  video thumbnails, the albums as covers, singles as a list. No players
-  here: each piece's detail page has its own, which keeps this page light.
+  views.sounds_proto). One page instead of four tabs: the pieces (blog
+  posts with a `video:` line) as video thumbnails, the albums as covers,
+  singles as a list. No players here: each piece's post has its own, which
+  keeps this page light.
   Thumbnails are YouTube's own images, hotlinked like the embeds were.
 {% endcomment %}
 
@@ -32,16 +34,16 @@
     <a href="https://livecoding.michelepasin.org/">The Musical Code</a>.</p>
 
   <section class="proj-section">
-    <h2 class="proj-section-title">Livecoding <span>{{ livecoding|length }}</span></h2>
+    <h2 class="proj-section-title">Livecoding <span>{{ pieces|length }}</span></h2>
     <div class="snd-grid">
-      {% for p in livecoding %}
-        <a class="snd-tile" href="{{ p.urlstub|lower }}">
+      {% for p in pieces %}
+        <a class="snd-tile" href="{{ p.get_absolute_url }}">
           <span class="snd-thumb">
-            {% if p.youtube_id %}<img src="https://i.ytimg.com/vi/{{ p.youtube_id }}/hqdefault.jpg" alt="" loading="lazy">{% endif %}
+            <img src="https://i.ytimg.com/vi/{{ p.video }}/hqdefault.jpg" alt="" loading="lazy">
             <span class="snd-play" aria-hidden="true"></span>
           </span>
-          <span class="snd-title">{{ p.title }}</span>
-          <span class="snd-meta">{{ p.date|date:"Y" }}{% if p.short_title %} &middot; {{ p.short_title }}{% endif %}</span>
+          <span class="snd-title">{{ p.display_title|capfirst }}</span>
+          <span class="snd-meta">{{ p.pubdate|date:"Y" }}{% with s=p.abstract|first_sentence %}{% if s %} &middot; {{ s }}{% endif %}{% endwith %}</span>
         </a>
       {% endfor %}
     </div>
