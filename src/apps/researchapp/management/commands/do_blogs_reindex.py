@@ -16,6 +16,7 @@
 1. ID is stored in the `md_file` field of Publications. The DB ID is the auto-increment number as usual.
 1. Blogs permalink is similar to the Wordpress one, eg "/2018/11/23/exploring-scholarly-publications-via-dbpedia/"
 1. An optional `project:` field (a Project urlstub, eg `project: "naples44"`) links the post to that project, so it appears in the project's writing. Unknown names are reported at the end and ignored.
+1. An optional `video:` field (a YouTube id, eg `video: "x1837exEEN0"`) marks the post as a piece of music for the Sounds page, with that video as its picture.
 
 
 
@@ -159,6 +160,7 @@ def do_parse_md_folder(verbose=False, force=False):
 					OFF_VOCABULARY[tag_name].append(filename)
 
 			PROJECT = parse_project(BLOGS_SOURCE_DIR+"/"+filename)
+			VIDEO = parse_field(BLOGS_SOURCE_DIR+"/"+filename, "video")
 			if PROJECT and not Project.objects.filter(urlstub=PROJECT).exists():
 				UNKNOWN_PROJECTS[PROJECT].append(filename)
 				PROJECT = ""
@@ -172,7 +174,8 @@ def do_parse_md_folder(verbose=False, force=False):
 										PURE_MARKDOWN, 
 										verbose,
 										force,
-										PROJECT
+										PROJECT,
+										VIDEO
 										)
 			
 			if result == "NEW": 
@@ -335,8 +338,8 @@ def do_cleanup_db(filenames_list, verbose=False, force=False):
 
 
 
-def parse_project(full_file_path):
-	"""Return the optional `project:` frontmatter field of a post (a Project urlstub), or ""."""
+def parse_field(full_file_path, field):
+	"""Return a single-line frontmatter field of a post, eg `project` or `video`, or ""."""
 	with open(full_file_path) as f:
 		separators = 0
 		for l in f:
@@ -344,11 +347,16 @@ def parse_project(full_file_path):
 				separators += 1
 				if separators == 2:
 					break
-			elif l.startswith("project: "):
-				return l.replace("project: ", "").strip().strip('"')
+			elif l.startswith(field + ": "):
+				return l[len(field) + 2:].strip().strip('"')
 	return ""
 
-def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN, verbose=False, force=False, PROJECT=""):
+
+def parse_project(full_file_path):
+	"""Return the optional `project:` frontmatter field of a post (a Project urlstub), or ""."""
+	return parse_field(full_file_path, "project")
+
+def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN, verbose=False, force=False, PROJECT="", VIDEO=""):
 	"""Write a record to DB, if it is new or modified. 
 	Existing records that have same metadata are not touched, so to improve performance.
 
@@ -403,6 +411,11 @@ def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN,
 			if force or click.confirm(f"Update record in database?"):
 				flag = "MODIFIED"
 
+		if pub.video != VIDEO:
+			printDebug(f"=> VIDEO has changed for: {FILENAMEID}", "red")
+			if force or click.confirm(f"Update record in database?"):
+				flag = "MODIFIED"
+
 		test_cats = sorted([c.name for c in pub.categories.all()])
 		if test_cats != sorted(CATS): 
 			printDebug(f"=> CATS has changed for: {FILENAMEID}", "red")
@@ -454,6 +467,7 @@ def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN,
 		pub.pubtype = blogType
 		pub.review = REVIEW
 		pub.project = Project.objects.filter(urlstub=PROJECT).first() if PROJECT else None
+		pub.video = VIDEO
 
 		#
 		pub.save()
