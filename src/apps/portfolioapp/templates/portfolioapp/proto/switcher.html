@@ -30,6 +30,14 @@
       <a href="{{ request.path }}?post={{ key }}" {% if post_layout == key %}class="is-current"{% endif %}>{{ name }}</a>
     {% endfor %}
   {% endif %}
+  {% if request.resolver_match.url_name == "music" %}
+    <span class="proto-switcher-break"></span>
+    <span class="proto-switcher-label">Sounds</span>
+    <a href="{{ request.path }}?sounds=off" {% if not sounds_layout %}class="is-current"{% endif %}>Current</a>
+    {% for key, name in proto_sounds %}
+      <a href="{{ request.path }}?sounds={{ key }}" {% if sounds_layout == key %}class="is-current"{% endif %}>{{ name }}</a>
+    {% endfor %}
+  {% endif %}
   {% if request.resolver_match.url_name == "projects-detail" %}
     <span class="proto-switcher-break"></span>
     <span class="proto-switcher-label">Project</span>

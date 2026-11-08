@@ -31,6 +31,12 @@ of the layout (pages/detail-blogs-proto.html); `?post=off` restores it.
               link buttons) across the page; one column below, no margin
     showcase  a two-column header: title, tagline and facts beside the lead
               screenshot
+
+`?sounds=tiles` does the same for the Sounds landing page
+(pages/sounds-proto.html); `?sounds=off` restores it.
+
+    tiles     one page instead of four tabs: livecoding pieces as video
+              thumbnails, the albums as covers, singles as a short list
 """
 
 LAYOUTS = {
@@ -76,3 +82,16 @@ def current_project_layout(request):
     if choice is not None:
         request.session['project_layout'] = choice if choice in PROJECT_LAYOUTS else ''
     return request.session.get('project_layout', '')
+
+
+SOUNDS_LAYOUTS = {
+    'tiles': 'Tiles',
+}
+
+
+def current_sounds_layout(request):
+    """the active Sounds prototype key, or ''"""
+    choice = request.GET.get('sounds')
+    if choice is not None:
+        request.session['sounds_layout'] = choice if choice in SOUNDS_LAYOUTS else ''
+    return request.session.get('sounds_layout', '')

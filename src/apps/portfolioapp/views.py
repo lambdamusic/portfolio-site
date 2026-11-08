@@ -24,7 +24,7 @@ from researchapp.pub_locations import coords_for
 
 from researchapp.management.commands.do_blogs_reindex import parse_markdown
 from . import seo
-from .proto import current_layout, current_project_layout
+from .proto import current_layout, current_project_layout, current_sounds_layout
 
 APP = "portfolioapp"
 
@@ -260,6 +260,39 @@ def projects(request, namedetail=""):
 
 
 
+def sounds_proto(request):
+	"""
+	Prototype Sounds landing page (pages/sounds-proto.html): everything on one
+	page, livecoding pieces as YouTube thumbnails (the player is on the
+	detail page), the two albums as covers, singles as a list.
+	"""
+	import re
+
+	def youtube_id(item):
+		found = re.search(r'youtube(?:-nocookie)?\.com/embed/([\w-]{11})', item.embedcode1 or "")
+		return found.group(1) if found else ""
+
+	livecoding = list(Item.objects.exclude(review=True).filter(
+		Q(atype__name__iexact="livecoding") | Q(atype__name__iexact="performance")).order_by('-date'))
+	for item in livecoding:
+		item.youtube_id = youtube_id(item)
+
+	# Kryos and Rebirth Fever only have their ?k= pages; Rebirth has no cover
+	albums = [
+		(Item.objects.get(pk=7), "?k=kryos", "blog_img/Kryos-Noise-Cover.jpg"),
+		(Item.objects.get(pk=34), "?k=rebirth", ""),
+	]
+	singles = Item.objects.exclude(review=True).exclude(id__in=[7, 34]).filter(
+		atype__name__iexact="music").order_by('-date')
+
+	context = {
+		'livecoding': livecoding,
+		'albums': albums,
+		'singles': singles,
+	}
+	return render(request, APP + '/pages/sounds-proto.html', context)
+
+
 def project_proto_context(return_item):
 	"""
 	Extras for the project page prototypes (pages/detail-projects-proto.html):
@@ -300,6 +333,10 @@ def sounds(request, namedetail=""):
 	_subpage = request.GET.get('k', 'livecoding')
 	context = {}
 	if not namedetail:
+
+		if _subpage == "livecoding" and current_sounds_layout(request):
+
+			return sounds_proto(request)
 
 		if _subpage == "livecoding":
 
