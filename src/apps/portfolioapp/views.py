@@ -4,7 +4,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlquote
 from django.http import HttpResponse, HttpResponseNotFound
-from django.db.models import Q
+from django.db.models import Q, Count
 
 import json
 import os
@@ -24,7 +24,7 @@ from researchapp.pub_locations import coords_for
 
 from researchapp.management.commands.do_blogs_reindex import parse_markdown
 from . import seo
-from .proto import current_layout
+from .proto import current_layout, current_project_layout
 
 APP = "portfolioapp"
 
@@ -247,11 +247,47 @@ def projects(request, namedetail=""):
 
 		templatee = "detail-projects.html"
 
+		if current_project_layout(request):
+			context.update(project_proto_context(return_item))
+			templatee = "detail-projects-proto.html"
+
 
 	return render(request, APP + '/pages/' + templatee, context)
 
 
 
+
+
+def project_proto_context(return_item):
+	"""
+	Extras for the project page prototypes (pages/detail-projects-proto.html):
+	links labelled by their site when they have no name, the writing linked
+	to the project, and a few neighbours by shared tags for the footer.
+	"""
+	from urllib.parse import urlparse
+
+	links = []
+	for url, name in return_item.all_urls():
+		host = urlparse(url).netloc
+		if not name or name.startswith("http"):  # some names are just the URL again
+			name = host[4:] if host.startswith("www.") else host
+		links.append((url, name))
+
+	writing = Publication.objects.filter(project=return_item).exclude(review=True).order_by('-pubdate')
+
+	others = Project.objects.exclude(pk=return_item.pk)
+	related = list(others.filter(tags__in=return_item.tags.all())
+		.annotate(shared=Count('tags')).order_by('-shared', '-datefrom')[:4])
+	if len(related) < 4:
+		taken = [p.pk for p in related]
+		related += list(others.exclude(pk__in=taken).order_by('-datefrom')[:4 - len(related)])
+
+	return {
+		'project_links': links,
+		'project_writing': writing,
+		'related_projects': related,
+		'project_count': Project.objects.count(),
+	}
 
 
 def sounds(request, namedetail=""):

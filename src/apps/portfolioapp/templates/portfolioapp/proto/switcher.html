@@ -30,4 +30,12 @@
       <a href="{{ request.path }}?post={{ key }}" {% if post_layout == key %}class="is-current"{% endif %}>{{ name }}</a>
     {% endfor %}
   {% endif %}
+  {% if request.resolver_match.url_name == "projects-detail" %}
+    <span class="proto-switcher-break"></span>
+    <span class="proto-switcher-label">Project</span>
+    <a href="{{ request.path }}?project=off" {% if not project_layout %}class="is-current"{% endif %}>Current</a>
+    {% for key, name in proto_projects %}
+      <a href="{{ request.path }}?project={{ key }}" {% if project_layout == key %}class="is-current"{% endif %}>{{ name }}</a>
+    {% endfor %}
+  {% endif %}
 </div>

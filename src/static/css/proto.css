@@ -10,6 +10,7 @@
      B  sidebar      - the drawer left open as a permanent column
      C  front page   - top bar, plus a hub homepage (pages/home-hub.html)
 
+   Section 6 holds the project page variants (body.projv-*).
    Section 5 holds the blog post variants (body.postv-rail/-quiet/-margin,
    pages/detail-blogs-proto.html), which combine with any of the above.
    ========================================================================== */
@@ -422,6 +423,97 @@ body.layout-b {
   .post-margin--right { grid-column: 2; grid-row: 1; text-align: left; }
   .post-margin--right .post-toc .post-rail-label { padding-right: 0; }
   .post-margin--right .post-toc a { padding: .25rem 0 .25rem .7rem; border-right: 0; border-left: 2px solid var(--rule); }
+}
+
+
+/* --------------------------------------------------------------------------
+   6. Project page variants (body.projv-sheet/-showcase,
+   pages/detail-projects-proto.html). A project should read as a thing that
+   was built, not as an article: bigger title, a tagline, facts and buttons
+   where a post has a date, and pictures as a gallery.
+   -------------------------------------------------------------------------- */
+
+.proj { container-type: inline-size; }
+.proj-head { margin: 0 0 calc(var(--step) * 2); }
+.proj-title { margin: 0 0 .6rem; font-size: 2.8rem; line-height: 1.05; letter-spacing: -.01em; }
+.proj-tagline { margin: 0; max-width: 40rem; font-size: 1.3rem; line-height: 1.4; color: var(--body); }
+
+.proj-facts { display: flex; flex-wrap: wrap; gap: 1rem 2.5rem; margin: 1.75rem 0 0; }
+.proj-facts dt {
+  font-size: .68rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+.proj-facts dd { margin: .2rem 0 0; font-size: .95rem; font-weight: 700; color: var(--ink); }
+.proj-facts .project-year { font: inherit; color: inherit; }
+.proj-fact-role { flex: 1 1 16rem; }
+.proj-fact-role dd { max-width: 26rem; font-weight: 400; color: var(--body); }
+.proj-status::before { content: ""; display: inline-block; width: .55rem; height: .55rem; margin-right: .35rem; border-radius: 50%; background: var(--faint); }
+.proj-status.is-active::before { background: #1a9e48; }
+
+.proj-links { display: flex; flex-wrap: wrap; gap: .5rem; margin: 1.5rem 0 0; }
+.proj-button {
+  display: inline-block;
+  padding: .45rem .9rem;
+  border: 2px solid var(--ink);
+  font-size: .85rem;
+  font-weight: 700;
+  color: var(--ink);
+}
+.proj-button:first-child { background: var(--ink); color: #fff; }
+.proj-button:hover,
+.proj-button:focus { border-color: var(--accent); background: var(--accent); color: #fff; text-decoration: none; }
+
+.proj-body { max-width: var(--measure); }
+
+.proj-section { margin-top: calc(var(--step) * 2.5); }
+.proj-section-title {
+  margin: 0 0 var(--step);
+  padding-bottom: .3rem;
+  border-bottom: 2px solid var(--ink);
+  font-size: 1.15rem;
+  color: var(--ink);
+}
+.proj-section-title span { margin-left: .3rem; font-size: .8rem; font-weight: 400; color: var(--muted); }
+
+.proj-writing { max-width: var(--measure); }
+
+.proj-gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(13rem, 1fr)); gap: 1rem; }
+.proj-gallery img,
+.proj-lead img {
+  display: block;
+  width: 100%;
+  object-fit: cover;
+  object-position: top left;
+  border: 1px solid var(--rule);
+  background: var(--wash);
+}
+.proj-gallery img { aspect-ratio: 4 / 3; }
+.proj-gallery a:hover img,
+.proj-lead:hover img { border-color: var(--accent); }
+
+/* sheet: the facts become a band across the page */
+.projv-sheet .proj-facts {
+  padding: 1rem 1.25rem;
+  border-top: 2px solid var(--ink);
+  background: var(--wash);
+}
+
+/* showcase: title and facts beside the lead screenshot */
+.proj-lead { display: block; margin-top: var(--step); }
+.proj-lead img { aspect-ratio: 16 / 10; }
+.projv-showcase .proj-head { padding-bottom: calc(var(--step) * 1.5); border-bottom: 1px solid var(--rule); }
+
+@container (min-width: 52rem) {
+  .projv-showcase .proj-head {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    gap: 0 3rem;
+    align-items: start;
+  }
+  .proj-lead { margin-top: .4rem; }
 }
 
 

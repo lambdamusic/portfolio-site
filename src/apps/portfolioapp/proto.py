@@ -23,6 +23,14 @@ of the layout (pages/detail-blogs-proto.html); `?post=off` restores it.
              related posts moved to the end of the article
     margin   the title runs wide; date and tags sit in a left margin
     right    the same margin, on the right of the text
+
+`?project=sheet|showcase` does the same for the project page
+(pages/detail-projects-proto.html); `?project=off` restores it.
+
+    sheet     title and tagline, then a band of facts (role, years, status,
+              link buttons) across the page; one column below, no margin
+    showcase  a two-column header: title, tagline and facts beside the lead
+              screenshot
 """
 
 LAYOUTS = {
@@ -54,3 +62,17 @@ def current_post_layout(request):
     if choice is not None:
         request.session['post_layout'] = choice if choice in POST_LAYOUTS else ''
     return request.session.get('post_layout', '')
+
+
+PROJECT_LAYOUTS = {
+    'sheet': 'Fact sheet',
+    'showcase': 'Showcase',
+}
+
+
+def current_project_layout(request):
+    """the active project-page prototype key, or ''"""
+    choice = request.GET.get('project')
+    if choice is not None:
+        request.session['project_layout'] = choice if choice in PROJECT_LAYOUTS else ''
+    return request.session.get('project_layout', '')
