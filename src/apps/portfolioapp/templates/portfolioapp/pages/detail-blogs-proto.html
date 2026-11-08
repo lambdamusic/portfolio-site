@@ -3,7 +3,7 @@
 {% load static %}
 
 {% comment %}
-  Blog post prototypes (portfolioapp/proto.py, `?post=rail|quiet|margin`).
+  Blog post prototypes (portfolioapp/proto.py, `?post=rail|quiet|margin|right`).
   Same article as pages/detail-blogs.html; what changes is where the
   metadata goes. Extra context from views_pubs.post_proto_context.
 
@@ -11,6 +11,8 @@
              in a sticky right-hand column (below the article when narrow)
     quiet    one column; tags, older/newer and related after the article
     margin   date, tags and contents in a left margin beside the text
+    right    the same margin, on the right (CSS moves it; it stays first
+             in the markup so it sits under the title on narrow screens)
 {% endcomment %}
 
 {% block metadescription %}
@@ -37,7 +39,7 @@
 
   <header class="post-head">
     <h1>{{itemtitle}}</h1>
-    {% if post_layout != "margin" %}
+    {% if post_layout != "margin" and post_layout != "right" %}
       <p class="post-dateline">
         <time datetime="{{itempubdate|date:'Y-m-d'}}">{{itempubdate|date:"j F Y"}}</time>
         <span class="sep">&middot;</span> {{reading_minutes}} min read
@@ -54,8 +56,8 @@
 
   <div class="post-grid">
 
-    {% if post_layout == "margin" %}
-      <aside class="post-margin">
+    {% if post_layout == "margin" or post_layout == "right" %}
+      <aside class="post-margin{% if post_layout == "right" %} post-margin--right{% endif %}">
         <p class="post-date">
           <time datetime="{{itempubdate|date:'Y-m-d'}}"><b>{{itempubdate|date:"j M"}}</b> {{itempubdate|date:"Y"}}</time>
         </p>

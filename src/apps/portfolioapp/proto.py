@@ -14,7 +14,7 @@ while clicking around; `?layout=off` goes back to the current design.
 
 All three share the unified Words list (pages/words-proto.html).
 
-`?post=rail|quiet|margin` does the same for the blog post page, independently
+`?post=rail|quiet|margin|right` does the same for the blog post page, independently
 of the layout (pages/detail-blogs-proto.html); `?post=off` restores it.
 
     rail     the article plus a right-hand column: date, reading time,
@@ -22,6 +22,7 @@ of the layout (pages/detail-blogs-proto.html); `?post=off` restores it.
     quiet    one column; a single date line under the title, tags and
              related posts moved to the end of the article
     margin   the title runs wide; date and tags sit in a left margin
+    right    the same margin, on the right of the text
 """
 
 LAYOUTS = {
@@ -43,6 +44,7 @@ POST_LAYOUTS = {
     'rail': 'Right rail',
     'quiet': 'Quiet header',
     'margin': 'Left margin',
+    'right': 'Right margin',
 }
 
 

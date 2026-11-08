@@ -379,6 +379,12 @@ body.layout-b {
   .post-margin .post-toc .post-rail-label { margin-bottom: .4rem; padding-right: calc(.7rem + 2px); }
   .post-margin .post-toc a { padding: .25rem .7rem .25rem 0; border-left: 0; border-right: 2px solid var(--rule); }
   .post-margin .post-toc a.is-reading { border-right-color: var(--accent); }
+
+  /* right: the same margin mirrored, aligned to the text it sits beside */
+  .post-grid:has(> .post-margin--right) { grid-template-columns: minmax(0, var(--measure)) 11rem; }
+  .post-margin--right { grid-column: 2; grid-row: 1; text-align: left; }
+  .post-margin--right .post-toc .post-rail-label { padding-right: 0; }
+  .post-margin--right .post-toc a { padding: .25rem 0 .25rem .7rem; border-right: 0; border-left: 2px solid var(--rule); }
 }
 
 
