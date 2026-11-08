@@ -63,6 +63,13 @@
               <dd><a class="url" href="{{u.0}}" target="_blank">{{u.1}}</a></dd>
             {% endfor %}
           {% endif %}
+
+          {% if project_writing %}
+            <dt>Writing</dt>
+            {% for pub in project_writing %}
+              <dd><a href="{{pub.get_absolute_url}}">{{pub.title|capfirst}}</a> <span class="project-year">{{pub.pubdate|date:"Y"}}</span></dd>
+            {% endfor %}
+          {% endif %}
         </dl>
       </div>
 

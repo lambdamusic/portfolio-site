@@ -15,6 +15,7 @@
 1. The ID of blog entries is the file name, stored in `md_file` field. So new contents and same filename = update data in DB
 1. ID is stored in the `md_file` field of Publications. The DB ID is the auto-increment number as usual.
 1. Blogs permalink is similar to the Wordpress one, eg "/2018/11/23/exploring-scholarly-publications-via-dbpedia/"
+1. An optional `project:` field (a Project urlstub, eg `project: "naples44"`) links the post to that project, so it appears in the project's writing. Unknown names are reported at the end and ignored.
 
 
 
@@ -46,6 +47,9 @@ from researchapp.tag_vocabulary import VOCABULARY
 # tags seen during this run that are not in the controlled vocabulary,
 # reported in one block at the end rather than buried in the per-file noise
 OFF_VOCABULARY = defaultdict(list)
+
+# `project:` values that match no Project urlstub, reported the same way
+UNKNOWN_PROJECTS = defaultdict(list)
 
 
 class Command(BaseCommand):
@@ -93,6 +97,7 @@ class Command(BaseCommand):
 		do_cleanup_db(filenames_list, verbose, force)
 
 		report_off_vocabulary()
+		report_unknown_projects()
 
 		print("----------\nDone")
 
@@ -114,6 +119,15 @@ def report_off_vocabulary():
 		printDebug(f"  {tag_name}  ({len(files)}): {', '.join(files[:3])}", "red")
 	printDebug("Add them to VOCABULARY / ALIASES / DROP in researchapp/tag_vocabulary.py,")
 	printDebug("then run: src/manage.py tags_apply")
+
+
+def report_unknown_projects():
+	"""Warn about `project:` values that don't name an existing project."""
+	if not UNKNOWN_PROJECTS:
+		return
+	printDebug(f"\n{len(UNKNOWN_PROJECTS)} project names don't match a Project urlstub (ignored):", "red")
+	for name in sorted(UNKNOWN_PROJECTS):
+		printDebug(f"  {name}: {', '.join(UNKNOWN_PROJECTS[name])}", "red")
 
 
 def do_parse_md_folder(verbose=False, force=False):
@@ -144,6 +158,11 @@ def do_parse_md_folder(verbose=False, force=False):
 				if tag_name not in VOCABULARY:
 					OFF_VOCABULARY[tag_name].append(filename)
 
+			PROJECT = parse_project(BLOGS_SOURCE_DIR+"/"+filename)
+			if PROJECT and not Project.objects.filter(urlstub=PROJECT).exists():
+				UNKNOWN_PROJECTS[PROJECT].append(filename)
+				PROJECT = ""
+
 			result = try_write_record(filename, 
 										TITLE, 
 										DATE, 
@@ -152,7 +171,8 @@ def do_parse_md_folder(verbose=False, force=False):
 										REVIEW,
 										PURE_MARKDOWN, 
 										verbose,
-										force
+										force,
+										PROJECT
 										)
 			
 			if result == "NEW": 
@@ -315,7 +335,20 @@ def do_cleanup_db(filenames_list, verbose=False, force=False):
 
 
 
-def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN, verbose=False, force=False):
+def parse_project(full_file_path):
+	"""Return the optional `project:` frontmatter field of a post (a Project urlstub), or ""."""
+	with open(full_file_path) as f:
+		separators = 0
+		for l in f:
+			if l == "---\n":
+				separators += 1
+				if separators == 2:
+					break
+			elif l.startswith("project: "):
+				return l.replace("project: ", "").strip().strip('"')
+	return ""
+
+def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN, verbose=False, force=False, PROJECT=""):
 	"""Write a record to DB, if it is new or modified. 
 	Existing records that have same metadata are not touched, so to improve performance.
 
@@ -364,6 +397,11 @@ def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN,
 			if force or click.confirm(f"Update record in database?"):
 				flag = "MODIFIED"
 				# print(ABSTRACT)
+
+		if (pub.project.urlstub if pub.project else "") != PROJECT:
+			printDebug(f"=> PROJECT has changed for: {FILENAMEID}", "red")
+			if force or click.confirm(f"Update record in database?"):
+				flag = "MODIFIED"
 
 		test_cats = sorted([c.name for c in pub.categories.all()])
 		if test_cats != sorted(CATS): 
@@ -415,6 +453,7 @@ def try_write_record(FILENAMEID, TITLE, DATE, CATS, TAGS, REVIEW, PURE_MARKDOWN,
 		blogType = PubType.objects.get(pk=13)
 		pub.pubtype = blogType
 		pub.review = REVIEW
+		pub.project = Project.objects.filter(urlstub=PROJECT).first() if PROJECT else None
 
 		#
 		pub.save()
