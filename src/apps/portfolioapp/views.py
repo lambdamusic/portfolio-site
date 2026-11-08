@@ -212,6 +212,8 @@ def projects(request, namedetail=""):
 			'return_item': return_item,
 			'return_item_desc': html_description,
 			'project_images_names': sorted(project_images_names),
+			# posts link here via their `project:` front matter, papers via the admin
+			'project_writing': Publication.objects.filter(project=return_item).exclude(review=True).order_by('-pubdate'),
 			'ALL_PROJECTS': Project.objects.all().order_by("-datefrom")
 		}
 		context.update(seo.seo_context(
