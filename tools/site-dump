@@ -234,12 +234,17 @@ while changed:
                 used.add(target)
                 changed = True
 
+# Phase 3: pages/ holds standalone hand-built HTML pages (field guides etc.)
+# whose assets can be referenced from JS, e.g. `faces/${id}.jpg`, which no
+# regex can resolve. It's small, so keep the whole subtree.
+KEEP_DIRS = [os.path.normpath(os.path.join(STATIC_DIR, "pages"))]
+
 before = after = 0
 for root, _, files in os.walk(STATIC_DIR):
     for fn in files:
         fp = os.path.normpath(os.path.join(root, fn))
         before += 1
-        if fp in used:
+        if fp in used or any(fp.startswith(d + os.sep) for d in KEEP_DIRS):
             after += 1
         else:
             os.remove(fp)
