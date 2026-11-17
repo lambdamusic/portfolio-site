@@ -1,0 +1,738 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quiver, don't Quake Field Guide</title>
+<meta name="description" content="Michele Pasin's interactive reading notes on Nadim Sadek's Quiver, don't Quake (2025): quotes, nine themes with sources, the critics and Sadek's replies, and a quiver/quake dial.">
+<style>
+/* Layout: the michelepasin.org "Parerga" language. White paper, black bold sans headings, #444 copy,
+   bold blue links that turn red, uppercase "LABEL / descriptor" headers, rules and whitespace instead of cards.
+   Deliberately light-only, like the site. The dial slides the accent from the site's link blue to its red. */
+:root {
+  --paper: #fff;
+  --ink: #000;
+  --body: #444;
+  --muted: #8a8a8a;
+  --rule: #e6e6e6;
+  --wash: #f8f8f8;
+  --quiver: #06c;
+  --quake: #f31b1b;
+  --ok: #2e7d32;
+  --mix: 0%;
+  --accent: color-mix(in srgb, var(--quake) var(--mix), var(--quiver));
+  --sans: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
+  --mono: "SF Mono", Menlo, "Courier New", Courier, monospace;
+  color-scheme: light;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+img { max-width: 100%; }
+body { background: var(--paper); color: var(--body); font: 400 1rem/1.55 var(--sans); }
+a { color: var(--quiver); font-weight: 700; text-decoration: none; }
+a:hover, a:focus { color: var(--quake); }
+button { font: inherit; color: inherit; }
+:focus-visible { outline: 2px solid var(--quake); outline-offset: 2px; }
+.wrap { max-width: 1080px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3, h4 { color: var(--ink); font-family: var(--sans); font-weight: 700; line-height: 1.15; margin: 0; text-wrap: balance; }
+strong { color: var(--ink); }
+.label { font-size: .72rem; line-height: 1.4; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.label b { color: var(--ink); }
+
+/* Hero */
+.strip { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding-block: 0; }
+.handle { background: var(--quake); color: #fff; font-weight: 700; font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; padding: 5px 10px; }
+.hero { padding-block: 28px 32px; display: grid; gap: 20px; }
+.hero h1 { font-size: clamp(2.5rem, 7vw, 4.6rem); letter-spacing: -.025em; line-height: 1; }
+.hero h1 .q { color: var(--accent); transition: color .3s; }
+.byline { font-size: 1.1rem; max-width: 62ch; margin: 0; }
+.seismo { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); }
+.seismo canvas { display: block; width: 100%; height: 120px; }
+.seismo-foot { display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between; padding: 10px 0; border-top: 1px solid var(--rule); }
+.dial { display: flex; align-items: center; gap: 12px; flex: 1 1 320px; min-width: 0; }
+.dial span { font-size: .75rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; white-space: nowrap; }
+.dial .lq { color: var(--quiver); } .dial .lk { color: var(--quake); }
+.dial input { flex: 1; min-width: 0; accent-color: var(--accent); }
+.readout { font-size: .8rem; color: var(--muted); }
+.thesis { margin: 0; padding-left: 1.25rem; border-left: 5px solid var(--rule); font-size: 1.3rem; line-height: 1.4; color: var(--ink); max-width: 56ch; }
+.thesis small { display: block; margin-top: 6px; font-size: .72rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+nav.toc { display: flex; flex-wrap: wrap; gap: 4px 0; font-size: .85rem; }
+nav.toc a + a::before { content: "/"; color: var(--muted); font-weight: 400; padding: 0 .55rem; }
+
+section.part { padding-block: 40px; }
+.part-head { display: grid; gap: 10px; margin-bottom: 26px; }
+.part-head h2 { font-size: clamp(1.6rem, 3.6vw, 2.2rem); padding-bottom: .35rem; border-bottom: 2px solid var(--ink); }
+.part-head p { margin: 0; max-width: 68ch; font-size: 1.05rem; }
+
+/* Quotes */
+.qgrid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 26px 28px; }
+.qitem { margin: 0; padding-left: 1.1rem; border-left: 5px solid var(--rule); display: flex; flex-direction: column; gap: 8px; min-width: 0; transition: border-color .2s; }
+.qitem blockquote { transition: color .2s; }
+.qitem:hover { border-left-color: var(--quake); }
+.qitem:hover blockquote { color: var(--ink); }
+.qitem:hover figcaption { color: var(--quake); }
+.qitem blockquote { margin: 0; font-size: 1.05rem; line-height: 1.5; color: var(--body); }
+.qitem figcaption { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.qitem.lead { grid-column: 1 / -1; border-left-color: var(--accent); }
+.qitem.lead blockquote { font-size: clamp(1.35rem, 3vw, 1.85rem); line-height: 1.35; color: var(--ink); font-weight: 700; max-width: 44ch; letter-spacing: -.01em; }
+
+/* Themes */
+.reader { display: grid; grid-template-columns: 210px minmax(0, 1fr); gap: 32px; }
+.rail { display: flex; flex-direction: column; position: sticky; top: calc(env(safe-area-inset-top, 0px) + 16px); align-self: start; }
+.rail button { text-align: left; background: none; border: 0; border-left: 2px solid var(--rule); padding: 6px 0 6px 12px; cursor: pointer; font-size: .92rem; line-height: 1.3; color: var(--quiver); font-weight: 700; }
+.rail button .n { display: block; font-size: .7rem; font-weight: 400; color: var(--muted); margin-top: 2px; }
+.rail button:hover { color: var(--quake); }
+.rail button[aria-current="true"] { border-left-color: var(--quake); color: var(--ink); }
+.chapter { min-width: 0; }
+.ch-top { display: flex; flex-wrap: wrap; gap: 12px 24px; justify-content: space-between; align-items: end; margin-bottom: 12px; }
+.ch-top h3 { font-size: clamp(1.4rem, 3vw, 1.9rem); margin-top: 4px; }
+.gist { margin: 0 0 16px; font-size: 1.15rem; line-height: 1.45; color: var(--ink); max-width: 62ch; }
+.layers-toggle { display: flex; gap: 6px; flex-wrap: wrap; }
+.chip { display: inline-block; padding: .15rem .6rem; border: 1px solid var(--rule); background: var(--paper); font-size: .8rem; font-weight: 700; line-height: 1.5; color: var(--quiver); cursor: pointer; }
+.chip:hover { border-color: var(--quake); color: var(--quake); }
+.chip[aria-pressed="true"] { background: var(--quake); border-color: var(--quake); color: #fff; }
+.concepts { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 24px; padding: 0; list-style: none; }
+.concepts li { padding: .1rem .5rem; border: 1px solid var(--rule); font-size: .8rem; color: var(--body); }
+.layers { display: grid; gap: 24px; }
+.layers.two { grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr); align-items: start; }
+.layer { min-width: 0; }
+.layer > .label { display: block; margin-bottom: 8px; font-weight: 700; color: var(--ink); }
+.layer ul { margin: 0; padding-left: 1.1em; display: grid; gap: 9px; }
+.layer li::marker { color: var(--muted); }
+.layer.ctx { background: var(--wash); padding: 16px 18px; font-size: .95rem; }
+.layer.ctx > .label { color: var(--accent); }
+.ch-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 28px; padding-top: 12px; border-top: 1px solid var(--rule); }
+.ch-nav button { background: none; border: 0; padding: 0; cursor: pointer; font-size: .9rem; font-weight: 700; color: var(--quiver); }
+.ch-nav button:hover { color: var(--quake); }
+.ch-nav button:disabled { visibility: hidden; }
+
+/* Critics */
+.critics { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 240px), 1fr)); gap: 0 24px; }
+.critic { text-align: left; background: none; border: 0; border-top: 2px solid var(--ink); padding: 12px 0 18px; cursor: pointer; display: grid; grid-template-columns: 64px minmax(0, 1fr); gap: 0 12px; align-items: start; }
+.critic img { width: 64px; height: 64px; object-fit: cover; filter: grayscale(1) contrast(1.05); display: block; }
+.critic .ct { display: grid; gap: 3px; min-width: 0; }
+.credit { margin-top: 14px; font-size: .75rem; color: var(--muted); }
+.credit a { font-weight: 400; color: var(--muted); }
+.critic b { font-size: 1.1rem; color: var(--ink); }
+.critic small { font-size: .85rem; color: var(--body); }
+.critic .status { font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-top: 4px; }
+.critic:hover b { color: var(--quake); }
+.critic[aria-pressed="true"] { border-top-color: var(--quake); }
+.critic[aria-pressed="true"] b { color: var(--quake); }
+.detail { margin-top: 8px; background: var(--wash); padding: 22px 24px; display: grid; grid-template-columns: minmax(0, 1.6fr) minmax(0, 1fr); gap: 24px 36px; }
+.detail h3 { font-size: 1.5rem; margin: 4px 0 10px; }
+.detail h4 { font-size: 1.05rem; margin: 4px 0 8px; }
+.detail p { margin: 0 0 12px; max-width: 70ch; }
+.detail .block + .block { margin-top: 18px; padding-top: 16px; border-top: 1px solid var(--rule); }
+.quote { margin: 0 0 12px; padding-left: 1.1rem; border-left: 5px solid var(--rule); }
+.quote blockquote { margin: 0 0 4px; font-size: 1.05rem; line-height: 1.5; color: var(--ink); }
+.quote figcaption { font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.reading ul { margin: 8px 0 0; padding-left: 1.1em; display: grid; gap: 6px; font-size: .95rem; }
+
+/* Dial pairs */
+.dial-big { border-top: 2px solid var(--ink); border-bottom: 1px solid var(--rule); padding: 12px 0; margin-bottom: 22px; display: flex; flex-wrap: wrap; gap: 10px 20px; align-items: center; justify-content: space-between; }
+.pairs { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 26px 28px; }
+.pair { display: grid; gap: 8px; min-width: 0; padding-left: 1.1rem; border-left: 5px solid var(--accent); transition: border-color .3s; }
+.pair .topic { font-size: .72rem; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--accent); }
+.pair .faces { display: grid; }
+.pair .face { grid-area: 1 / 1; transition: opacity .35s; }
+.pair .face p { margin: 0 0 6px; font-size: 1.05rem; color: var(--ink); }
+.pair .face cite { font-style: normal; font-size: .75rem; color: var(--muted); }
+.pair .face[aria-hidden="true"] { opacity: 0; visibility: hidden; }
+.pair { cursor: pointer; }
+.pair.show-q { border-left-color: var(--quiver); } .pair.show-q .topic { color: var(--quiver); }
+.pair.show-k { border-left-color: var(--quake); } .pair.show-k .topic { color: var(--quake); }
+.pair .faces.flipping { animation: flip .35s ease; }
+@keyframes flip { 0% { transform: rotateY(0); } 50% { transform: rotateY(90deg); } 100% { transform: rotateY(0); } }
+.pair .hint { font-size: .68rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.shake .pair { animation: tremble var(--dur, .4s) infinite; }
+@keyframes tremble { 0%,100% { transform: translate(0,0); } 25% { transform: translate(var(--amp), 0); } 75% { transform: translate(calc(-1 * var(--amp)), 0); } }
+
+/* My take */
+.take { max-width: 68ch; }
+.take p { margin: 0 0 1.1rem; font-size: 1.1rem; line-height: 1.6; }
+.take .take-lead { font-size: clamp(1.35rem, 3vw, 1.85rem); line-height: 1.3; font-weight: 700; letter-spacing: -.01em; color: var(--ink); padding-left: 1.1rem; border-left: 5px solid var(--quake); margin-bottom: 1.6rem; }
+
+footer { padding-block: 24px 48px; border-top: 1px solid var(--rule); color: var(--muted); font-size: .85rem; }
+footer p { margin: 0 0 6px; max-width: 75ch; }
+
+@media (max-width: 800px) {
+  .reader { grid-template-columns: minmax(0, 1fr); gap: 16px; }
+  .rail { position: static; flex-direction: row; overflow-x: auto; padding-bottom: 6px; }
+  .rail button { white-space: nowrap; flex: none; border-left: 0; border-bottom: 2px solid var(--rule); padding: 6px 12px; }
+  .rail button[aria-current="true"] { border-bottom-color: var(--quake); }
+  .rail button .n { display: none; }
+  .layers.two, .detail { grid-template-columns: minmax(0, 1fr); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .shake .pair { animation: none; }
+  .pair .face, .pair, .hero h1 .q { transition: none; }
+  .pair .faces.flipping { animation: none; }
+}
+</style>
+</head>
+<body>
+<div class="wrap strip"><span class="handle">Reading notes</span><span class="label"><b>Michele Pasin</b> / Sept–Nov 2026</span></div>
+<header class="wrap hero">
+  <h1><span class="q" id="titleWord">Quiver</span>, don't Quake</h1>
+  <p class="byline">Notes on <a href="https://www.nadimsadek.com/quiver-dont-quake"><em>Quiver, don't Quake: How Creativity Can Embrace AI</em></a> by Nadim Sadek (Mensch, 2025). His site is <a href="https://thepanthropic.ai/" target="_blank" rel="noopener">thepanthropic.ai</a>. What the book argues, and the evidence on either side.</p>
+  <div class="seismo">
+    <canvas id="seismo" aria-label="A trace that trembles gently when the dial is set to quiver and violently when set to quake"></canvas>
+    <div class="seismo-foot">
+      <label class="dial" for="dialTop"><span class="lq">Quiver</span><input type="range" id="dialTop" min="0" max="100" value="0" aria-label="Quiver to quake"><span class="lk">Quake</span></label>
+      <span class="readout" id="readoutTop">Same tremor, read as excitement</span>
+    </div>
+  </div>
+  <nav class="toc" aria-label="Sections">
+    <a href="#quotes">Quotes</a><a href="#themes">Themes</a><a href="#critics">Critics</a><a href="#dial">Quiver or quake?</a><a href="#take">My take</a>
+  </nav>
+</header>
+
+<main>
+  <section class="part" id="quotes">
+    <div class="wrap">
+      <div class="part-head">
+        <span class="label"><b>Quotes</b> / from the book</span>
+        <h2>Inspiring quotes</h2>
+        <p>Sadek at his most quotable, in the order they appear in the book.</p>
+      </div>
+      <div class="qgrid" id="quotesGrid"></div>
+    </div>
+  </section>
+
+  <section class="part" id="themes">
+    <div class="wrap">
+      <div class="part-head">
+        <span class="label"><b>Part 1</b> / nine threads</span>
+        <h2>Themes</h2>
+        <p>Nine threads that run through the book. <strong>Sadek</strong> shows what the book says about each one, and where. <strong>Context</strong> has the counterpoints, the evidence and links to background reading. Switch the layers on and off.</p>
+      </div>
+      <div class="reader">
+        <div class="rail" id="rail" role="tablist" aria-label="Themes"></div>
+        <article class="chapter" id="chapter" aria-live="polite"></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="part" id="critics">
+    <div class="wrap">
+      <div class="part-head">
+        <span class="label"><b>Part 2</b> / chapter 9</span>
+        <h2>Critics worth reading</h2>
+        <p>Chapter 9 sets out the case against AI creativity. This is a selection of the critics it discusses, chosen because they're interesting rather than to be complete. Pick one to see the critique, Sadek's reply and where to read more.</p>
+      </div>
+      <div class="critics" id="criticsGrid"></div>
+      <div class="detail" id="criticDetail" aria-live="polite"></div>
+    </div>
+  </section>
+
+  <section class="part" id="dial">
+    <div class="wrap">
+      <div class="part-head">
+        <span class="label"><b>Part 3</b> / the title, read two ways</span>
+        <h2>Quiver or quake?</h2>
+        <p>The title describes one tremor that you can read as excitement or as fear. Slide towards quiver for the book's reading of each topic, and towards quake for the counter-reading from critics and research. Hover over a card, or tap it, to flip just that one.</p>
+      </div>
+      <div class="dial-big">
+        <label class="dial" for="dialMain"><span class="lq">Quiver</span><input type="range" id="dialMain" min="0" max="100" value="0" aria-label="Quiver to quake"><span class="lk">Quake</span></label>
+        <span class="readout" id="readoutMain">Same tremor, read as excitement</span>
+      </div>
+      <div class="pairs" id="pairs"></div>
+    </div>
+  </section>
+
+  <section class="part" id="take">
+    <div class="wrap">
+      <div class="part-head">
+        <span class="label"><b>Coda</b> / my take</span>
+        <h2>My take</h2>
+      </div>
+      <div class="take">
+        <p>This was an inspiring read. Most of what I read about AI and creativity is either hype or alarm. Sadek is optimistic without being naive: he gives a whole interlude to why we should quake, and a chapter to his critics. What stays with me is the reframe in the title, the same tremor read as excitement instead of fear, and the practical advice that goes with it: treat AI as a partner in a conversation rather than a vending machine, ask for fifty ideas and have the confidence to discard forty-nine, and defend your why. It made me want to make things, which is more than most books on AI do.</p>
+        <p class="take-lead">In a world of frictionless creation, the scarce thing is human taste in service of a purpose, and taste is formed by exactly the friction AI removes.</p>
+        <p>That's my working thesis after reading Sadek. I agree with him that once generating things is cheap, selection and taste are what count. Where I part ways is on where taste comes from. Juniors learn it doing routine work, musicians learn it at the instrument, and those are the parts AI is best at taking away. The value of the Panthropic is real, but the "someone" in the conversation is you.</p>
+        <p>Sadek gives a whole chapter to his critics and answers most of them. Two get only a general closing: Jaron Lanier on provenance and Cory Doctorow on attention. They're also the two closest to my own work, and where I think there's more to say than the book does.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <p>Notes by <a href="https://www.michelepasin.org/">Michele Pasin</a>, November 2026. Book passages are paraphrased unless quoted; quotes are transcribed from the book.</p>
+  <p>Written up on the blog: <a href="/blog/2026/11/13/quiver-dont-quake/">Book Summary: Quiver, don't Quake</a>.</p>
+</footer>
+
+<script>
+const THEMES = [
+  { id: 'selection', short: 'Creativity as selection', title: 'Creativity: variation and selection', chapters: 'ch. 1, 4, 10',
+    gist: `AI makes variation almost free, so the value moves to selection: taste, judgement, and a purpose to select towards.`,
+    concepts: ['variation + selection', 'divergence + convergence', 'drafts as provocations', 'master curator', 'defend your why', 'design fixation'],
+    book: [
+      `Creativity as **variation + selection**: explore variations on a known concept, keep the most promising (ch. 1).`,
+      `The creative process is "wild divergence and disciplined convergence," a "looping, spiraling dance" (ch. 4).`,
+      `AI drafts are "provocations rather than solutions": they show what you're trying to make by showing what you're not (ch. 4).`,
+      `The worst failure loop is losing the why, becoming "a curator of AI output rather than a creator with something to say" (ch. 4).`,
+      `**Master curator:** "the most valuable human skill is taste." Ask for 50 ideas and have the confidence to discard 49. **Defend your why:** guard the project's intent and emotional core (ch. 10).`
+    ],
+    ctx: [
+      `Variation + selection is Donald Campbell's ["blind variation and selective retention"](https://doi.org/10.1037/h0040373) (1960), later developed by Dean Keith Simonton into a Darwinian theory of creativity.`,
+      `Divergent and convergent thinking go back to J.P. Guilford in the 1950s. The Design Council's [Double Diamond](https://www.designcouncil.org.uk/our-resources/framework-for-innovation) (2005) is built on alternating the two.`,
+      `In practice AI is often the spark and the human does the shaping. Sadek's own drafting loop admits this.`,
+      `Chapter 4 warns against becoming "a curator of AI output," while chapter 10 praises the master curator. The difference is purpose: selection guided by intent.`,
+      `**Design fixation** ([Jansson & Smith, 1991](https://doi.org/10.1016/0142-694X(91)90003-F)): designers shown an example copy its features, flaws included. Ask for very different drafts, or sketch your own first.`,
+      `Fifty ideas has a cost in decision fatigue, and the choice is only as good as the taste doing it.`
+    ] },
+  { id: 'apprenticeship', short: 'The apprenticeship problem', title: 'The apprenticeship problem', chapters: 'ch. 1, Interlude, 4, 7, 9',
+    gist: `Guilds kept people out, but they were also where people learned. AI may remove the gate and the school together.`,
+    concepts: ['craft as gatekeeper', 'creativity as a practice', 'the easy-button trap', 'skill atrophy', 'retention vs synthesis'],
+    book: [
+      `**Craft as gatekeeper:** the Académie des Beaux-Arts and the guilds controlled who could master a craft. How many masterpieces were lost "for lack of a key to the workshop"? (ch. 1)`,
+      `Creativity is **a practice**: something cultivated and worked at as part of daily life, not a gift you either have or don't (ch. 1).`,
+      `**The easy-button trap:** like GPS and our sense of direction, a generation may never develop foundational craft skills (Interlude).`,
+      `Failure loop 1: over-reliance leads to skill atrophy. The fix is dialogue and discovery, not delegation (ch. 4).`,
+      `Education should move from retention to synthesis and critical thinking (ch. 7). His reply to Turkle: teach AI collaboration as a skill, as an instrument makes you a better listener (ch. 9).`
+    ],
+    ctx: [
+      `Juniors build judgement through routine work. If AI takes the bottom rungs, the next generation has fewer places to learn what the top of the value chain needs. Sadek's own "creativity is a practice" pillar supports this.`,
+      `Taste is built through friction. Ira Glass's ["taste gap"](https://www.themarginalian.org/2014/01/29/ira-glass-success-daniel-sax/): beginners can tell their work falls short of their taste, and the gap closes only by making a lot of work.`,
+      `Early evidence for skill atrophy: ["Your Brain on ChatGPT"](https://arxiv.org/abs/2506.08872) (Kosmyna et al., 2025, preprint) and [Lee et al.](https://doi.org/10.1145/3706598.3713778) (CHI 2025), where more confidence in AI went with less critical thinking.`,
+      `The GPS evidence comes from neuroscience: Maguire's [London taxi drivers](https://doi.org/10.1073/pnas.070039597) (2000) and Dahmani & Bohbot on [GPS and spatial memory](https://doi.org/10.1038/s41598-020-62877-0) (2020).`,
+      `Sadek's case for dropping memorisation assumes thinking skills can work on knowledge looked up as needed. Cognitive scientists Daniel Willingham ([*Why Don't Students Like School?*](https://en.wikipedia.org/wiki/Why_Don%27t_Students_Like_School%3F)) and Daisy Christodoulou ([*Seven Myths About Education*](https://en.wikipedia.org/wiki/Seven_Myths_About_Education)) argue the opposite: critical thinking isn't a general skill, it depends on what you already know. Working memory is small, so reasoning runs on knowledge stored in long-term memory, and you can't synthesise ideas, or spot an AI's mistakes, in a field you don't know. Even [Dylan Wiliam](https://en.wikipedia.org/wiki/Dylan_Wiliam), Sadek's source on assessment, champions [cognitive load theory](https://en.wikipedia.org/wiki/Cognitive_load).`,
+      `Plato's [*Phaedrus*](https://en.wikipedia.org/wiki/Phaedrus_(dialogue)): Socrates warns that writing will destroy memory. The warning turned out partly wrong and partly right.`
+    ] },
+  { id: 'panthropic', short: 'The Panthropic', title: 'The Panthropic: real value, wrong "someone"', chapters: 'Prologue, ch. 1, 2, 9',
+    gist: `Sadek frames AI as a dialogue with the whole of human knowledge. The open question is who, if anyone, is on the other side of that dialogue.`,
+    concepts: ['the Panthropic', 'collective memory', 'grounding', 'coverage', 'lossy compression', 'an invisible editor'],
+    book: [
+      `**The Panthropic:** a dialogue with "the distilled essence of all human knowledge, accomplishment, and creativity." Unlike anthropomorphism, we don't pretend the machine is human (Prologue).`,
+      `AI as "our collective memory made interactive" (ch. 1) and "a collective unconscious made suddenly articulate" (ch. 2).`,
+      `Sadek feels "in a relationship with the entirety of humanity" (ch. 2).`,
+      `His reply to Bender: AI lacks grounding, but in partnership the human brings it. To Gebru: build AI better, with diverse voices and paid creators (ch. 9).`
+    ],
+    ctx: [
+      `*Panthropic* is pan + anthropos, "all of humanity." The vocabulary (*commune*, *gateway*, *essence*) edges towards the religious.`,
+      `[**"On the Dangers of Stochastic Parrots"**](https://doi.org/10.1145/3442188.3445922) (Bender, Gebru et al., 2021) warned that fluent text makes us attribute a mind to the machine. "Dialogue" and "commune" pull the Panthropic back towards a partner with a perspective.`,
+      `Four weaknesses. It isn't someone: no lived experience, stakes or biography. It isn't everything: the data skews English, digital and recent, the internet's memory rather than humanity's. It's lossy, so rare voices are lost first. And it isn't neutral: its makers' choices act as an invisible editor.`,
+      `The grounding problem goes back to Harnad's [symbol grounding problem](https://en.wikipedia.org/wiki/Symbol_grounding_problem) (1990). Bender & Koller's [octopus paper](https://aclanthology.org/2020.acl-main.463) (2020) is the best illustration.`,
+      `"[Data colonialism](https://en.wikipedia.org/wiki/Data_colonialism)" is Couldry & Mejías's term. The reservoir is thinnest for exactly the voices Sadek wants to empower, like the grandmother in Lagos.`,
+      `Jobs said creativity connects *experiences*. The machine widens the connections, but the experiences still come from us. See also Nick Cave in [*The Red Hand Files* #218](https://www.theredhandfiles.com/chat-gpt-what-do-you-think/).`,
+      `An alternative reading of the Panthropic: a library that answers back.`
+    ] },
+  { id: 'claims', short: 'What AI understands', title: 'What AI understands', chapters: 'ch. 2, 4',
+    gist: `How far the evidence goes for the book's claims about emergence, understanding and the psychology of AI.`,
+    concepts: ['emergence', 'world models', 'the Centaur study', 'digital life', 'ghost in the machine', 'sycophancy'],
+    book: [
+      `"Stochastic parrots" is "somewhat too dismissive": with scale come emergent behaviours such as reasoning and planning (ch. 2).`,
+      `Four aspects of AI psychology, ending with "a new philosophical category," a kind of digital life that makes judgements (ch. 2).`,
+      `The Centaur model, fine-tuned on Psych-101, has learned "a model of how we think" (ch. 2).`,
+      `As wetness emerges from molecules and thought from neurons, capabilities emerge from scale. Since we can't define consciousness, AI may have a form of understanding alien to us (ch. 2).`,
+      `In the polish phase, AI can reveal "the deeper currents of our work" (ch. 4).`
+    ],
+    ctx: [
+      `Internal representations are real in narrow cases: [Othello-GPT](https://arxiv.org/abs/2210.13382) built a model of the board from moves alone. That doesn't add up to "a psychology."`,
+      `Emergence is contested: Schaeffer et al., ["Are Emergent Abilities of LLMs a Mirage?"](https://arxiv.org/abs/2304.15004) (2023), show many sudden jumps come from the metric used.`,
+      `Centaur: the [original study](https://www.nature.com/articles/s41586-025-09215-4) (Nature, 2025) and a [critique by Liu & Ding](https://doi.org/10.1360/nso/20250053). Prediction isn't explanation, and the participants are mostly Western students.`,
+      `Wetness is weak emergence and fully explicable; consciousness is the strong case (Chalmers). Not being able to define it supports agnosticism. See [the hard problem](https://en.wikipedia.org/wiki/Hard_problem_of_consciousness) and Nagel's ["What Is It Like to Be a Bat?"](https://en.wikipedia.org/wiki/What_Is_It_Like_to_Be_a_Bat%3F).`,
+      `Gilbert Ryle coined [**"ghost in the machine"**](https://en.wikipedia.org/wiki/Ghost_in_the_machine) (1949) to deny that there is a ghost.`,
+      `The experts he cites don't agree with each other. [Yann LeCun](https://en.wikipedia.org/wiki/Yann_LeCun) argues that LLMs lack a model of the world, the opposite of [Geoffrey Hinton](https://en.wikipedia.org/wiki/Geoffrey_Hinton)'s view, and [Sam Altman](https://en.wikipedia.org/wiki/Sam_Altman), as OpenAI's CEO, has a commercial stake in how capable they seem.`,
+      `Polish-phase "insight" can't be fact-checked, and models produce plausible readings of anything (the [Barnum effect](https://en.wikipedia.org/wiki/Barnum_effect)). "Your flaws are hidden strengths" is what a sycophantic model would say.`
+    ] },
+  { id: 'style', short: 'Toy, threat, style', title: 'Toy → threat → style', chapters: 'ch. 4, 6',
+    gist: `New tools look like toys, then threats, then styles. The style tends to arrive when artists use the tool's artefacts on purpose.`,
+    concepts: ['the AI aesthetic', 'toy → threat → style', 'collaborator, not tool', 'mirror, sounding board, sparring partner'],
+    book: [
+      `"Every new tool first looks like a toy, then like a threat, and finally like a positive choice of style" (ch. 6).`,
+      `Van Gogh, the Impressionists and *The Rite of Spring* were all railed against before audiences got used to them. Photography was denounced as corrupt art, and Baudelaire attacked it (ch. 6).`,
+      `AI is a collaborator rather than a tool, because it can hold a dialogue: a mirror, a sounding board, a sparring partner (ch. 4).`
+    ],
+    ctx: [
+      `[Baudelaire](https://en.wikipedia.org/wiki/Charles_Baudelaire), in his [review of the Salon of 1859](https://gallowayexploringart.wordpress.com/wp-content/uploads/2014/08/baudelaire_the-modern-public-photography.pdf), wanted photography kept to a servant role: documenting, preserving, helping science. That's today's "tool, not author" line. Photography then freed painting from realism and became an art in its own right.`,
+      `Better cases than Van Gogh or Stravinsky ([*The Rite of Spring*](https://en.wikipedia.org/wiki/The_Rite_of_Spring), 1913), who brought new visions rather than new tools: synthesisers, the 808, Auto-Tune. In each, the style came when artists used the tool's artefacts deliberately.`,
+      `[Survivorship bias](https://en.wikipedia.org/wiki/Survivorship_bias): we remember the mocked work that became canon, not the larger amount that stayed rejected.`,
+      `Older tools also respond in ways the maker didn't plan, and makers work with it: guitar [feedback](https://en.wikipedia.org/wiki/Audio_feedback) started as a fault and became part of [Jimi Hendrix](https://en.wikipedia.org/wiki/Jimi_Hendrix)'s sound. [Donald Schön](https://en.wikipedia.org/wiki/Donald_Sch%C3%B6n) called design a "reflective conversation with the situation". On this view, the difference between a tool and a collaborator may be one of degree.`,
+      `Mirror, sounding board and sparring partner form a scale of agency. Only the sparring partner needs a real other, and that's where AI's tendency to agree is weakest.`
+    ] },
+  { id: 'attention', short: 'The aristocracy of attention', title: 'The aristocracy of attention', chapters: 'Interlude, ch. 6, 9',
+    gist: `Cheap creation means far more work competing for the same attention, and the platforms that hand out attention decay over time.`,
+    concepts: ['RODE', 'the RODE paradox', 'up the value chain', 'homogenisation', 'enshittification'],
+    book: [
+      `**RODE (Ratio of Dream to Effort):** AI cuts the effort per unit of dream from 100 to 10 or 1. Specialists move up the value chain (ch. 6).`,
+      `**The RODE paradox:** "The democratization of creation leads inevitably to the aristocracy of attention." The new scarcity is authentic perspective, curatorial brilliance and emotional connection (ch. 6).`,
+      `Homogenisation: millions using the same few models drift towards a bland "AI-inflected mean" (Interlude).`,
+      `Cory Doctorow's critique: the bottleneck becomes getting noticed, AI creates a new elite of attention-capturers, and small voices are drowned out. It's close to Sadek's RODE paradox (ch. 9).`
+    ],
+    ctx: [
+      `Herbert Simon (1971): a wealth of information creates a poverty of attention (the [attention economy](https://en.wikipedia.org/wiki/Attention_economy)).`,
+      `The [long tail](https://en.wikipedia.org/wiki/Long_tail) predicted that attention would spread out. [Sherwin Rosen](https://en.wikipedia.org/wiki/Sherwin_Rosen)'s ["economics of superstars"](https://www.jstor.org/stable/1803469) (1981) predicted concentration, which is closer to what happened.`,
+      `The [Jevons paradox](https://en.wikipedia.org/wiki/Jevons_paradox): make something cheaper and you get vastly more of it, exactly Sadek's "thousands of experiments."`,
+      `Gatekeepers moved from production to distribution, and those platforms decay: [enshittification](https://en.wikipedia.org/wiki/Enshittification) is Doctorow's term for it.`,
+      `[Douglas Rushkoff](https://en.wikipedia.org/wiki/Douglas_Rushkoff): a homogenised culture is a fragile monoculture, like a crop monoculture.`,
+      `Sadek's own company, [Shimmr](https://shimmr.ai/), uses AI to generate and place ads for under-discovered books. It's a business built on the problem this theme describes: when anyone can publish, getting noticed becomes the scarce thing, and tools for winning attention join the competition for it.`,
+      `Scholarly publishing shows the same pattern: the number of papers keeps growing, citations concentrate on a small share of them, and tools like [Altmetric](https://www.altmetric.com) now measure the attention research gets online.`
+    ] },
+  { id: 'flow', short: 'Flow, courage and hiding', title: 'Flow, courage and hiding', chapters: 'ch. 1, 6, 9, 10',
+    gist: `Flow puts intuition and structure in one head. Splitting them between human and machine adds hand-offs, and gives us somewhere to hide.`,
+    concepts: ['System 1 / System 2', 'flow', 'courage', 'human spark, machine structure', 'the cyborg approach'],
+    book: [
+      `Creativity is a negotiation between Kahneman's System 1 and System 2. The antidote to too much of either is **flow**: time disappears and the inner critic falls silent (ch. 1).`,
+      `Creativity **requires courage**: making something means risk and vulnerability (ch. 1).`,
+      `The partnership: humans as "intuitive spark providers," AI as analytical debater, facilitator and sometimes executor (ch. 1).`,
+      `The **cyborg approach** (from Mollick): a tight, fluid loop, a conversation rather than a command (ch. 10). His reply to Cave: AI amplifies the human soul (ch. 9).`
+    ],
+    ctx: [
+      `[System 1/2](https://en.wikipedia.org/wiki/Thinking,_Fast_and_Slow) was coined by Stanovich & West and popularised by Kahneman ([dual process theory](https://en.wikipedia.org/wiki/Dual_process_theory)). Plain LLMs look more like System 1, and reasoning models try to add System 2.`,
+      `[Flow](https://en.wikipedia.org/wiki/Flow_(psychology)) (Csikszentmihalyi) needs challenge matched to skill, clear goals and immediate feedback.`,
+      `Limb & Braun's [jazz improvisation fMRI study](https://doi.org/10.1371/journal.pone.0001679) (2008): self-monitoring areas quieten during improvisation. Flow may be System 2 stepping aside after practice.`,
+      `Splitting spark and structure between human and machine creates hand-offs, which is the opposite of flow. Ethan Mollick's [cyborg mode](https://www.oneusefulthing.org/p/centaurs-and-cyborgs-on-the-jagged), where human and AI work in one tight loop, may soften this.`,
+      `RODE treats effort as friction between dream and result, but effort also shapes the dream: the orchestra changes the symphony.`,
+      `AI lowers the emotional risk of creating, but also gives somewhere to hide ("the AI made it"). For Cave, the vulnerability is part of the meaning.`
+    ] },
+  { id: 'trust', short: 'Calibrated trust', title: 'Calibrated trust', chapters: 'ch. 2, Interlude, 10',
+    gist: `Trusting AI as much as it deserves and no more. Calibration depends on knowing where it fails.`,
+    concepts: ['calibrated trust', 'hallucination', 'editor-in-chief', 'the jagged frontier'],
+    book: [
+      `Treat AI as "a brilliant but flawed partner." Lean on its speed, memory and computation; privilege our intuition, empathy and lived experience (ch. 2).`,
+      `Hallucinations: AI is "a brilliant research assistant, but a terrible fact checker" (Interlude).`,
+      `AI is never the final arbiter of fact or taste. You're the director, the editor-in-chief (ch. 10).`
+    ],
+    ctx: [
+      `Calibrated trust comes from decades of automation research: Lee & See, ["Trust in Automation"](https://doi.org/10.1518/hfes.46.1.50_30392) (2004), and automation bias in aviation.`,
+      `The best evidence is the **jagged frontier** ([Dell'Acqua et al., 2023](https://papers.ssrn.com/abstract=4573321); 758 BCG consultants). Inside the AI's capabilities they were 25.1% faster with higher quality; on a task just outside, 19 percentage points less likely to be correct. The boundary was invisible.`,
+      `Sadek's advice to lean on AI's "memory and computation" is partly backwards. On their own, LLMs are unreliable at exact recall and arithmetic, unless they're connected to search or a calculator. Their real strength is fluency, which also makes their errors sound convincing.`,
+      `The lawyer with the invented case law was Steven Schwartz, [*Mata v. Avianca*](https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.) (2023).`,
+      `The Panthropic framing ("a relationship with all humanity") invites more trust, not better-calibrated trust.`,
+      `Mollick's "be the human in the loop" ([One Useful Thing](https://www.oneusefulthing.org)) only works if the human knows enough to spot the failures, which leads back to the apprenticeship problem.`
+    ] },
+  { id: 'provenance', short: 'Provenance and attribution', title: 'Provenance and attribution', chapters: 'Interlude, ch. 6, 9',
+    gist: `Who made what, and from whose work? Credit, copyright and tracing what a model learned from.`,
+    concepts: ['copyright', 'the provenance puzzle', 'AI co-authorship', 'the burden of proof flips', 'data dignity'],
+    book: [
+      `Copyright: who owns what we co-make? We need infrastructure that traces lineage and training influences, plus new licences and regulation (Interlude).`,
+      `AI co-authorship will resolve through a new category for AI use, not AI authors. Eventually the question flips to "what was uniquely human about your contribution?" (ch. 6)`,
+      `Lanier's critique gets only the general closing of chapter 9. The reply to Gebru does call for training that compensates creators.`
+    ],
+    ctx: [
+      `Lanier's positive proposal is **data dignity**: trace contributions and pay creators ([There Is No A.I.](https://longreads.com/2023/04/25/there-is-no-a-i/), New Yorker, 2023).`,
+      `Co-authorship is partly settled: [COPE](https://publicationethics.org/cope-position-statements/ai-author), ICMJE, Nature and Science say AI can't be an author because it can't take responsibility, and use must be disclosed. Disclosure is free text, though, and hard to analyse at scale.`,
+      `The natural home for Sadek's new category is [CRediT](https://credit.niso.org), the Contributor Roles Taxonomy. An AI-use extension would make disclosure machine-readable and countable.`,
+      `Provenance is half solved: [C2PA](https://c2pa.org) content credentials label how something was made, but tracing which training data shaped an output is unsolved.`
+    ] }
+];
+
+// Chapter 9's closing passage: the only reply given to Lanier and Doctorow.
+const CLOSING = `The path forward advocated here accepts that AI isn't a mind like ours. Its strength lies in remarkable analytical execution, not in non-existent intuitive feeling. It cannot suffer, cannot truly understand, cannot participate in culture as we do. But it can still be a partner. I support a model of collaborative creativity where the human provides vision, taste, lived experience and ethics. The panthropic connection isn't a replacement for individual perspective, but an unprecedented knowledge tool that can enlarge it. The key is maintaining human agency, human judgment, human soul at the center of the creative act.`;
+
+const NODES = {
+  critics: [
+    { id: 'bender', name: 'Emily Bender', tag: 'stochastic parrots, grounding', status: 'ans9',
+      reply: `Yes, AI lacks grounded understanding, but in partnership with humans we do have that grounding. It becomes a liberating tool for exploring and articulating human experience. The AI helps us understand our own grounding better.`,
+      text: `Fluent mimicry of statistical patterns without meaning. The model knows "cat" co-occurs with "whiskers," but has never felt fur.` },
+    { id: 'cave', name: 'Nick Cave', tag: 'data, not life', status: 'ans9',
+      reply: `Exactly right, AI has no soul. That's why human creativity remains essential. The AI amplifies human soul, it doesn't replace it. Cave's suffering, Bateman's embodiment, Scaman's cultural insights: these remain uniquely human contributions.`,
+      text: `Creativity is transmuting lived experience into form; it comes from mortality, suffering and joy. See [*The Red Hand Files* #218](https://www.theredhandfiles.com/chat-gpt-what-do-you-think/).` },
+    { id: 'lanier', name: 'Jaron Lanier', tag: 'untraceable remix', status: 'gen', reply: CLOSING, general: true,
+      text: `Creators are obscured while profit flows to model owners. His positive proposal is **data dignity**: trace contributions and pay creators.` },
+    { id: 'gebru', name: 'Timnit Gebru', tag: 'data colonialism', status: 'ans9',
+      reply: `This is why I advocate for ethical AI training that compensates creators and includes diverse voices. The solution isn't to abandon AI but to build it better, with equity and representation at its core.`,
+      text: `Models trained mostly on English text from wealthy nations embed specific worldviews; local voices drown. The Lagos grandmother problem.` },
+    { id: 'marcus', name: 'Gary Marcus', tag: 'brittleness', status: 'ans',
+      text: `Sonnets yes, arithmetic no; invented case law. Outside the patterns, models fail unpredictably.` },
+    { id: 'rushkoff', name: 'Douglas Rushkoff', tag: 'homogenisation', status: 'ans',
+      text: `A homogenised culture is a weakened one, less able to adapt or challenge power. A creative monoculture is fragile, like a crop monoculture.` },
+    { id: 'turkle', name: 'Sherry Turkle', tag: 'deskilling', status: 'ans9',
+      reply: `We must teach AI collaboration as a skill that enhances rather than replaces human capabilities. Like learning to play an instrument makes you a better listener, learning to work with AI should make you a better thinker.`,
+      text: `As tools grow more capable, humans grow less so. Students outsource the thinking, not just the writing.` },
+    { id: 'doctorow', name: 'Cory Doctorow', tag: 'enshittification', status: 'gen', reply: CLOSING, general: true,
+      text: `The bottleneck becomes getting noticed, and the platforms that allocate attention decay. This is Sadek's own RODE paradox.` }
+  ],
+  answers: [
+    { id: 'ground', name: 'Humans bring the grounding', tag: 'ch. 9 · partnership',
+      text: `AI lacks grounding and has no soul; the human partner supplies both, and AI amplifies them. Sadek's reply to Bender and Cave.` },
+    { id: 'better', name: 'Build it better', tag: 'ch. 9 · ethical training',
+      text: `Don't abandon AI: train it ethically, compensate creators, include diverse voices, with equity and representation at its core. Sadek's reply to Gebru.` },
+    { id: 'teach', name: 'Teach AI collaboration', tag: 'ch. 9 · a skill to learn',
+      text: `Working with AI is a skill to be taught, one that should enhance human capabilities rather than replace them, as an instrument trains the ear. Sadek's reply to Turkle.` },
+    { id: 'curator', name: 'Master curator', tag: 'taste is the key skill',
+      text: `"In an age of infinite, frictionless generation, the most valuable human skill is taste." Answers homogenisation, as long as the taste is independent.` },
+    { id: 'trust', name: 'Editor-in-chief', tag: 'calibrated trust',
+      text: `AI is never the final arbiter of fact or taste. Answers brittleness, if you know where the frontier is.` },
+    { id: 'gap', name: 'Keep the human at the centre', tag: 'ch. 9 · closing, general reply', gap: true,
+      text: `No specific reply to Lanier or Doctorow. Chapter 9 closes instead with a general answer: AI isn't a mind like ours, so the human provides vision, taste, lived experience and ethics.` }
+  ]
+};
+const EDGES = [
+  ['bender', 'ground'], ['cave', 'ground'], ['gebru', 'better'], ['turkle', 'teach'],
+  ['marcus', 'trust'], ['rushkoff', 'curator'], ['lanier', 'gap'], ['doctorow', 'gap']
+];
+// Display order of the critics; each critic's reply comes from EDGES.
+const MAP_ORDER = {
+  critics: ['bender', 'cave', 'gebru', 'turkle', 'marcus', 'rushkoff', 'lanier', 'doctorow'],
+  answers: ['ground', 'better', 'teach', 'trust', 'curator', 'gap']
+};
+const STATUS = { ans: ['ans', 'Answered in ch. 10'], ans9: ['ans', 'Answered in ch. 9'], gen: ['gapx', 'General reply only'], gap: ['gapx', 'Never answered'], none: ['none', 'No direct reply'] };
+const READING = {
+  bender: [['Emily M. Bender', 'https://en.wikipedia.org/wiki/Emily_M._Bender'], ['On the Dangers of Stochastic Parrots (2021)', 'https://doi.org/10.1145/3442188.3445922'], ['Climbing towards NLU: the octopus paper (2020)', 'https://aclanthology.org/2020.acl-main.463'], ['The AI Con, with Alex Hanna (2025)', 'https://thecon.ai'], ['The symbol grounding problem', 'https://en.wikipedia.org/wiki/Symbol_grounding_problem']],
+  cave: [['Nick Cave', 'https://en.wikipedia.org/wiki/Nick_Cave'], ['The Red Hand Files #218 (2023)', 'https://www.theredhandfiles.com/chat-gpt-what-do-you-think/'], ['Justine Bateman on AI, labor and the future of entertainment (Tech Policy Press)', 'https://techpolicy.press/justine-bateman-on-ai-labor-and-the-future-of-entertainment']],
+  lanier: [['Jaron Lanier', 'https://en.wikipedia.org/wiki/Jaron_Lanier'], ['There Is No A.I. (New Yorker, 2023)', 'https://longreads.com/2023/04/25/there-is-no-a-i/']],
+  gebru: [['Timnit Gebru', 'https://en.wikipedia.org/wiki/Timnit_Gebru'], ['On the Dangers of Stochastic Parrots (2021)', 'https://doi.org/10.1145/3442188.3445922'], ['Datasheets for Datasets (2018)', 'https://arxiv.org/abs/1803.09010'],['Data colonialism (Couldry & Mejías)', 'https://en.wikipedia.org/wiki/Data_colonialism']],
+  marcus: [['Gary Marcus', 'https://en.wikipedia.org/wiki/Gary_Marcus'], ['Deep Learning Is Hitting a Wall (Nautilus, 2022)', 'https://nautil.us/deep-learning-is-hitting-a-wall-238440/'],['Mata v. Avianca: the invented case law (2023)', 'https://en.wikipedia.org/wiki/Mata_v._Avianca,_Inc.']],
+  rushkoff: [['Douglas Rushkoff', 'https://en.wikipedia.org/wiki/Douglas_Rushkoff']],
+  turkle: [['Sherry Turkle', 'https://en.wikipedia.org/wiki/Sherry_Turkle'], ['London taxi drivers and the hippocampus (2000)', 'https://doi.org/10.1073/pnas.070039597'], ['GPS use and spatial memory (2020)', 'https://doi.org/10.1038/s41598-020-62877-0']],
+  doctorow: [['Cory Doctorow', 'https://en.wikipedia.org/wiki/Cory_Doctorow'], ['Enshittification', 'https://en.wikipedia.org/wiki/Enshittification'], ['The attention economy', 'https://en.wikipedia.org/wiki/Attention_economy']],
+  trust: [['Lee & See: Trust in Automation (2004)', 'https://doi.org/10.1518/hfes.46.1.50_30392'], ['Navigating the Jagged Technological Frontier (2023)', 'https://papers.ssrn.com/abstract=4573321']]
+};
+
+const PAIRS = [
+  { topic: 'Who gets to create',
+    q: [`AI could unlock the creativity of all 8 billion people on Earth, including the grandmother in Lagos who never had a key to the workshop.`, `Sadek, prologue and ch. 4`],
+    k: [`The reservoir is thinnest for her. Models are weaker in Yoruba and in oral traditions, so she may end up telling her stories in the internet's average voice.`, `Gebru · data colonialism`] },
+  { topic: 'The cost of a dream',
+    q: [`AI cuts the effort per unit of dream from 100 to 10, or even 1, so visions that once died unborn can get made.`, `Sadek, ch. 6 (RODE)`],
+    k: [`Effort shapes the dream as well as its cost. Writing for an orchestra changes the symphony, so taking the effort away changes what gets imagined.`, `Counter-reading · effort and form`] },
+  { topic: 'Attention',
+    q: [`When anyone can make anything, what becomes scarce is authentic perspective, curatorial brilliance and genuine emotional connection.`, `Sadek, ch. 6`],
+    k: [`Authenticity can be faked at scale, and algorithms decide who gets attention. The long tail predicted spread; what we got was Rosen's economics of superstars.`, `Rosen 1981 · Doctorow`] },
+  { topic: 'Work',
+    q: [`Colourists, animators and junior copywriters aren't eliminated. They move up the value chain, to supervision, curation and refinement.`, `Sadek, ch. 6`],
+    k: [`Juniors learn taste by doing the routine work at the bottom. If AI takes those rungs, it isn't clear where the next generation learns what the top of the ladder needs.`, `Turkle · deskilling`] },
+  { topic: 'The Panthropic',
+    q: [`Talking to an AI is a dialogue with "the distilled essence of all human knowledge, accomplishment, and creativity."`, `Sadek, prologue`],
+    k: [`It isn't someone, and it isn't everyone. It holds the internet's memory rather than humanity's, compressed so that rare voices go first, and shaped by whoever trained it.`, `Bender · Cave · Gebru`] },
+  { topic: 'First drafts',
+    q: [`AI drafts are provocations: they show what you're trying to make by showing what you're not.`, `Sadek, ch. 4`],
+    k: [`Designers shown an example tend to copy its features, flaws included, so the provocation can become the default.`, `Jansson & Smith, 1991`] },
+  { topic: 'School',
+    q: [`With knowledge in every pocket, school can move from memorising to synthesis and critical thinking.`, `Sadek, ch. 7`],
+    k: [`Knowledge in memory is what you think with. Without it you can't synthesise ideas or judge what the AI gives you.`, `Willingham · Christodoulou`] },
+  { topic: 'Trust',
+    q: [`Treat AI as a brilliant but flawed partner, and lean on its speed and memory.`, `Sadek, ch. 2`],
+    k: [`In the Harvard/BCG study, consultants using AI were 19 percentage points less likely to get a task right when it fell just outside what the AI could do, and nobody could see where that line was.`, `Dell'Acqua et al., 2023`] },
+  { topic: 'Style',
+    q: [`Every new tool first looks like a toy, then like a threat, and finally like a positive choice of style. Photography was attacked as corrupt art before it became one.`, `Sadek, ch. 6`],
+    k: [`We remember the mocked work that became canon and forget the rest. With the 808 and Auto-Tune, the style came when artists started using the tool's artefacts on purpose.`, `Survivorship bias`] }
+];
+
+// Sadek's own words, transcribed while reading; the first one is shown large.
+const QUOTES = [
+  [`The feeling isn't one of fear, but of a thrilling drama. The feeling of standing on the verge of an opportunity to be creative in ways we're only just beginning to imagine.`, `Prologue`],
+  [`We're entering into what I call Panthropism, a dialogue with the distilled essence of all human knowledge, accomplishment, and creativity.`, `Prologue`],
+  [`Inside every human being dwells something creative. It's a foundational human impulse, a fizzing, energetic voice that pushes us to make a mark, to express an inner state, to connect with others through a shared vision.`, `Chapter 1`],
+  [`For every masterpiece we celebrate, how many more were lost? Not for lack of creative spark, but for lack of a key to the workshop.`, `Chapter 1`],
+  [`AI isn't our competitor, it's our collective memory made interactive, our shared wisdom made accessible, our creative potential made manifest.`, `Chapter 1`],
+  [`It's as if you could have a conversation with a collective unconscious made suddenly articulate.`, `Chapter 2`],
+  [`Re-acquainting ourselves with earlier artistic scandals can help us to see the so called 'AI aesthetic' not so much as a glitch but as the next chapter in the evolution of style.`, `Chapter 6`],
+  [`Every new tool first looks like a toy, then like a threat, and finally like a positive choice of style.`, `Chapter 6`],
+  [`The democratization of creation leads inevitably to the aristocracy of attention.`, `Chapter 6`],
+  [`Like learning to play an instrument makes you a better listener, learning to work with AI should make you a better thinker.`, `Chapter 9`],
+  [`The AI amplifies human soul, it doesn't replace it.`, `Chapter 9`],
+  [`The key is maintaining human agency, human judgment, human soul at the center of the creative act.`, `Chapter 9`],
+  [`In an age of infinite, frictionless generation, the most valuable human skill is taste.`, `Chapter 10`]
+];
+
+// ---------- helpers ----------
+const $ = s => document.querySelector(s);
+function esc(s) { return s.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); }
+function md(s) {
+  return esc(s)
+    .replace(/\[([^\]]+)\]\(((?:[^()\s]|\([^()\s]*\))+)\)/g, '<a href="$2" target="_blank" rel="noopener">$1</a>')
+    .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g, '<em>$1</em>');
+}
+const list = items => '<ul>' + items.map(i => `<li>${md(i)}</li>`).join('') + '</ul>';
+
+// ---------- Part 1: themes ----------
+const layers = { book: true, ctx: true };
+let current = 0;
+function renderRail() {
+  $('#rail').innerHTML = THEMES.map((c, i) =>
+    `<button role="tab" data-i="${i}" aria-current="${i === current}">${esc(c.short)}<span class="n">${esc(c.chapters)}</span></button>`
+  ).join('');
+}
+function renderChapter() {
+  const c = THEMES[current];
+  const two = layers.book && layers.ctx;
+  const bookHtml = layers.book ? `<div class="layer book"><span class="label">Sadek</span>${list(c.book)}</div>` : '';
+  const ctxHtml = layers.ctx ? `<div class="layer ctx"><span class="label">Context</span>${list(c.ctx)}</div>` : '';
+  const none = !layers.book && !layers.ctx ? '<p class="label">Switch on a layer to read this theme.</p>' : '';
+  const prev = THEMES[current - 1], next = THEMES[current + 1];
+  $('#chapter').innerHTML = `
+    <div class="ch-top">
+      <div><span class="label">Theme · ${esc(c.chapters)}</span><h3>${esc(c.title)}</h3></div>
+      <div class="layers-toggle" role="group" aria-label="Layers">
+        ${['book', 'ctx'].map(k => `<button class="chip" data-layer="${k}" aria-pressed="${layers[k]}">${{ book: 'Sadek', ctx: 'Context' }[k]}</button>`).join('')}
+      </div>
+    </div>
+    <p class="gist">${md(c.gist)}</p>
+    <ul class="concepts">${c.concepts.map(x => `<li>${esc(x)}</li>`).join('')}</ul>
+    <div class="layers ${two ? 'two' : ''}">${bookHtml}${ctxHtml}${none}</div>
+    <div class="ch-nav">
+      <button data-step="-1" ${prev ? '' : 'disabled'}>← ${prev ? esc(prev.short) : ''}</button>
+      <button data-step="1" ${next ? '' : 'disabled'}>${next ? esc(next.short) : ''} →</button>
+    </div>`;
+}
+function go(i, scroll) {
+  current = Math.max(0, Math.min(THEMES.length - 1, i));
+  renderRail(); renderChapter();
+  if (scroll) $('#themes').scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
+}
+$('#rail').addEventListener('click', e => { const b = e.target.closest('button'); if (b) go(+b.dataset.i); });
+$('#chapter').addEventListener('click', e => {
+  const l = e.target.closest('[data-layer]');
+  if (l) { layers[l.dataset.layer] = !layers[l.dataset.layer]; renderChapter(); return; }
+  const s = e.target.closest('[data-step]');
+  if (s) go(current + +s.dataset.step, true);
+});
+
+// ---------- Part 2: critics ----------
+const byId = Object.fromEntries([...NODES.critics, ...NODES.answers].map(n => [n.id, n]));
+const REPLY_OF = Object.fromEntries(EDGES);
+// Portraits from Wikimedia Commons, cropped and converted to black and white: [author, licence, file page].
+const PHOTOS = {
+  bender: ['King of Hearts', 'CC BY-SA 4.0', 'https://commons.wikimedia.org/wiki/File:Emily_M_Bender_CHM_Mountain_View_March_2025.jpg'],
+  cave: ['Raph_PH', 'CC BY 2.0', 'https://commons.wikimedia.org/wiki/File:Nick_Cave_(2021).jpg'],
+  gebru: ['TechCrunch', 'CC BY 2.0', 'https://commons.wikimedia.org/wiki/File:Timnit_Gebru_crop.jpg'],
+  turkle: ['jeanbaptisteparis', 'CC BY-SA 2.0', 'https://commons.wikimedia.org/wiki/File:Sherry_Turkle.jpg'],
+  marcus: ['Web Summit', 'CC BY 2.0', 'https://commons.wikimedia.org/wiki/File:Gary_Marcus_at_Web_Summit_2022.jpeg'],
+  rushkoff: ['Fuzheado', 'CC BY 4.0', 'https://commons.wikimedia.org/wiki/File:Sxsw-20230311-rushkoff-PORTRAIT.jpg'],
+  lanier: ['JD Lasica', 'CC BY 2.0', 'https://commons.wikimedia.org/wiki/File:Jaron_Lanier_in_2010_(cropped).jpg'],
+  doctorow: ['Dominik Butzmann / re:publica', 'CC BY-SA 2.0', 'https://commons.wikimedia.org/wiki/File:Re_publica_faces_2019_(32858497617).jpg']
+};
+let selected = MAP_ORDER.critics[0];
+function renderCritics() {
+  $('#criticsGrid').innerHTML = MAP_ORDER.critics.map(id => {
+    const n = byId[id];
+    return `<button class="critic" data-id="${id}" aria-pressed="${id === selected}" aria-controls="criticDetail"><img src="quiver-dont-quake-faces/${id}.jpg" alt="" width="64" height="64" loading="lazy"><span class="ct"><b>${esc(n.name)}</b><small>${esc(n.tag)}</small></span></button>`;
+  }).join('');
+}
+function renderDetail() {
+  const n = byId[selected], a = byId[REPLY_OF[selected]];
+  const caption = n.general ? 'Sadek, closing chapter 9 · no specific reply' : 'Sadek · chapter 9';
+  const quote = n.reply ? `<figure class="quote"><blockquote>${esc(n.reply)}</blockquote><figcaption>${caption}</figcaption></figure>` : '';
+  const reading = READING[selected] || [];
+  $('#criticDetail').innerHTML = `
+    <div>
+      <div class="block"><span class="label"><b>The critique</b> / ${esc(n.tag)}</span><h3>${esc(n.name)}</h3><p>${md(n.text)}</p></div>
+      <div class="block"><span class="label"><b>Sadek's reply</b> / ${STATUS[n.status][1].toLowerCase()}</span><h4>${esc(a.name)}</h4>${quote}<p>${md(a.text)}</p></div>
+    </div>
+    <div class="reading"><span class="label"><b>Background reading</b></span><ul>${reading.map(([t, u]) => `<li><a href="${u}" target="_blank" rel="noopener">${esc(t)}</a></li>`).join('')}</ul>${
+      PHOTOS[selected] ? `<p class="credit">Photo: <a href="${PHOTOS[selected][2]}" target="_blank" rel="noopener">${esc(PHOTOS[selected][0])}</a>, ${PHOTOS[selected][1]}, via Wikimedia Commons (cropped, black and white).</p>` : ''}</div>`;
+}
+$('#criticsGrid').addEventListener('click', e => {
+  const b = e.target.closest('.critic'); if (!b) return;
+  selected = b.dataset.id;
+  renderCritics(); renderDetail();
+});
+renderCritics(); renderDetail();
+
+// ---------- Part 3: dial ----------
+$('#pairs').innerHTML = PAIRS.map(p => `
+  <div class="pair" role="button" tabindex="0" aria-pressed="false"><span class="topic">${esc(p.topic)}</span>
+    <div class="faces">
+      <div class="face q"><p>${md(p.q[0])}</p><cite>${esc(p.q[1])}</cite></div>
+      <div class="face k" aria-hidden="true"><p>${md(p.k[0])}</p><cite>${esc(p.k[1])}</cite></div>
+    </div></div>`).join('');
+$('#quotesGrid').innerHTML = QUOTES.map(([t, src], i) => `<figure class="qitem${i === 0 ? ' lead' : ''}"><blockquote>${esc(t)}</blockquote><figcaption>Sadek · ${esc(src)}</figcaption></figure>`).join('');
+
+let t = 0;
+const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+function readout(v) {
+  if (v < 35) return 'Same tremor, read as excitement';
+  if (v < 50) return 'Still a thrill, mostly';
+  if (v < 65) return 'Starting to feel like fear';
+  return 'Same tremor, read as fear';
+}
+function setDial(v) {
+  t = v;
+  $('#dialTop').value = v; $('#dialMain').value = v;
+  document.documentElement.style.setProperty('--mix', v + '%');
+  $('#readoutTop').textContent = $('#readoutMain').textContent = readout(v);
+  $('#titleWord').textContent = v < 50 ? 'Quiver' : 'Quake';
+  const quake = v >= 50;
+  document.querySelectorAll('.pair').forEach(paintPair);
+  const pairs = $('#pairs');
+  pairs.classList.toggle('shake', quake && !reduced.matches);
+  pairs.style.setProperty('--amp', ((v - 50) / 50 * 1.6).toFixed(2) + 'px');
+  pairs.style.setProperty('--dur', (0.5 - (v - 50) / 50 * 0.35).toFixed(2) + 's');
+  if (reduced.matches) drawSeismo(0);
+}
+['#dialTop', '#dialMain'].forEach(s => $(s).addEventListener('input', e => setDial(+e.target.value)));
+
+// A card shows the dial's side unless it is hovered (mouse) or pinned (click, tap, Enter).
+function paintPair(p) {
+  const flipped = p.dataset.hover === '1' || p.dataset.pin === '1';
+  const showK = (t >= 50) !== flipped;
+  p.querySelector('.q').setAttribute('aria-hidden', showK);
+  p.querySelector('.k').setAttribute('aria-hidden', !showK);
+  p.classList.toggle('show-k', showK);
+  p.classList.toggle('show-q', !showK);
+  p.setAttribute('aria-pressed', p.dataset.pin === '1');
+  if (p.dataset.shown !== String(showK)) {
+    if (p.dataset.shown !== undefined) {
+      const f = p.querySelector('.faces');
+      f.classList.remove('flipping'); void f.offsetWidth; f.classList.add('flipping');
+    }
+    p.dataset.shown = String(showK);
+  }
+}
+function togglePin(p) { p.dataset.pin = p.dataset.pin === '1' ? '0' : '1'; paintPair(p); }
+const pairsEl = $('#pairs');
+pairsEl.addEventListener('pointerover', e => {
+  const p = e.target.closest('.pair');
+  if (p && e.pointerType === 'mouse' && p.dataset.hover !== '1') { p.dataset.hover = '1'; paintPair(p); }
+});
+pairsEl.addEventListener('pointerout', e => {
+  const p = e.target.closest('.pair');
+  if (p && e.pointerType === 'mouse' && !p.contains(e.relatedTarget)) { p.dataset.hover = '0'; paintPair(p); }
+});
+pairsEl.addEventListener('click', e => { const p = e.target.closest('.pair'); if (p && !e.target.closest('a')) togglePin(p); });
+pairsEl.addEventListener('keydown', e => {
+  const p = e.target.closest('.pair');
+  if (p && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); togglePin(p); }
+});
+
+// Seismograph: a gentle fast shimmer at quiver, large irregular bursts at quake.
+const cv = $('#seismo'), cx = cv.getContext('2d');
+let phase = 0;
+function rand(i) { const x = Math.sin(i * 127.1) * 43758.5453; return x - Math.floor(x); }
+function drawSeismo(dt) {
+  const dpr = window.devicePixelRatio || 1;
+  const w = cv.clientWidth, h = cv.clientHeight;
+  if (cv.width !== Math.round(w * dpr)) { cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr); }
+  cx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  cx.clearRect(0, 0, w, h);
+  const css = getComputedStyle(document.documentElement);
+  const k = t / 100, mid = h / 2;
+  cx.strokeStyle = css.getPropertyValue('--rule');
+  cx.lineWidth = 1;
+  for (let x = 0; x < w; x += 40) { cx.beginPath(); cx.moveTo(x + .5, 0); cx.lineTo(x + .5, h); cx.stroke(); }
+  cx.beginPath(); cx.moveTo(0, mid + .5); cx.lineTo(w, mid + .5); cx.stroke();
+  phase += dt * (0.05 + k * 0.04);
+  cx.strokeStyle = getComputedStyle(cv).color;
+  cx.lineWidth = 1.6;
+  cx.beginPath();
+  for (let x = 0; x <= w; x += 2) {
+    const s = x + phase * 60;
+    const fine = Math.sin(s * 0.35) * (4 + 3 * Math.sin(s * 0.013));
+    const burstEnv = Math.max(0, Math.sin(s * 0.006)) ** 3;
+    const jag = (rand(Math.floor(s / 3)) - 0.5) * 2;
+    const y = mid + fine * (1 - k * 0.5) + jag * burstEnv * k * (h * 0.42) + Math.sin(s * 0.04) * k * 10;
+    x === 0 ? cx.moveTo(x, y) : cx.lineTo(x, y);
+  }
+  cx.stroke();
+}
+cv.style.color = 'var(--accent)';
+let last = performance.now();
+function loop(now) {
+  drawSeismo(Math.min(50, now - last) / 16);
+  last = now;
+  if (!reduced.matches) requestAnimationFrame(loop);
+}
+requestAnimationFrame(loop);
+window.addEventListener('resize', () => { if (reduced.matches) drawSeismo(0); });
+
+// ---------- boot ----------
+go(0);
+setDial(0);
+</script>
+</body>
+</html>
