@@ -40,8 +40,8 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="MultimediaN semantic navigator">
     <meta property="og:url" content="https://www.michelepasin.org/blog/2006/11/23/multimedian-semantic-navigator/">
-    <meta property="og:image" content="https://www.michelepasin.org/media/static/legacy/me_cartoon.jpg">
-    <meta name="twitter:card" content="summary">
+    <meta property="og:image" content="https://www.michelepasin.org/media/static/blog_img/multimedia-demonstrator.jpg">
+    <meta name="twitter:card" content="summary_large_image">
     <script type="application/ld+json">{
  "@context": "https://schema.org",
  "@graph": [
@@ -67,7 +67,8 @@
     "art",
     "navigation",
     "semantic-web"
-   ]
+   ],
+   "image": "https://www.michelepasin.org/media/static/blog_img/multimedia-demonstrator.jpg"
   },
   {
    "@type": "Person",
@@ -246,7 +247,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <p class="sectionlabel">
     <b>Words</b> <span class="sep">/</span>
     <a href="../../../../../words/index.html%3Ftype=blogs.html">posts</a>
-    <span class="sep">/</span> <a href="../../../../../words/index.html%3Ftype=blogs&amp;ctype=digital-humanities.html">Digital Humanities</a><span class="sep">/</span> <a href="../../../../../words/index.html%3Ftype=blogs&amp;ctype=knowledge-engineering.html">Knowledge Engineering</a>
+    <span class="sep">/</span> <a href="../../../../../words/index.html%3Ftype=blogs&amp;ctype=digital-humanities.html">Digital Humanities</a><span class="sep">/</span> <a href="../../../../../words/index.html%3Ftype=blogs&amp;ctype=knowledge-engineering.html">AI &amp; Knowledge Graphs</a>
   </p>
 
   <header class="post-head">
@@ -256,7 +257,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
   <div class="post-grid">
 
-    <aside class="post-margin">
+    <aside class="post-margin has-toc">
       <p class="post-date">
         <time datetime="2006-11-23"><b>23 Nov</b> 2006</time>
       </p>
@@ -286,6 +287,13 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         </div>
       
       
+<nav class="post-toc" aria-label="On this page">
+  <p class="post-rail-label">On this page</p>
+  <ol>
+    <li><a href="index.html#features">Features</a></li><li><a href="index.html#walkthrough">Walkthrough</a></li><li><a href="index.html#conclusion">Conclusion</a></li>
+  </ol>
+</nav>
+
     </aside>
 
     <article class="post-body">
@@ -296,6 +304,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>[...] the development of a set of e-culture demonstrators providing multimedia <strong>access to distributed collections of cultural heritage objects</strong>. The demonstrators are intended to show various levels of syntactic and semantic interoperability between collections and various types of personalized and context--dependent presentation generation.</p>
 <p>[...] to demonstrate the use of semantic interoperability, semantic information access and visualization, and <strong>context-specific presentation generation</strong>. The project integrates results from computer science in the areas of: semantic Web technology, multimedia indexing and search, and web interfacing and data visualization to facilitate display of (part of) our cultural heritage.</p>
 </blockquote>
+<h2 id="features">Features</h2>
 <p>A quick list of features:</p>
 <ul>
 <li>indexing and search support for virtual collections</li>
@@ -311,20 +320,24 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <li>knowledge integration derived semi-automatically from texts on art history + grammars and parsing to match and enhance the various knowledge sources</li>
 <li>annotation of new user-selected images: categories based on VRA3.0 (subset of dublin core for images)</li>
 </ul>
-<p><strong>I tried a few queries</strong> to see how the results are ordered, and the navigation organized. If we search for <em>impressionism</em> <strong>we get various results</strong>, ordered in the following manner: <strong><em>the first ones</em></strong> directly match the string queried in their main description (label)</p>
-<p><a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Pasted%20Graphic%204.jpg" title="Pasted Graphic 4.jpg"><img loading="lazy" alt="Pasted Graphic 4.jpg" src="http://127.0.0.1:8000/media/static/blog_img/Pasted%20Graphic%204.jpg" /></a></p>
-<p><strong><em>Second line</em></strong> (AAT refers to the Art and Architecture Thesaurus): results from another metadata set, where the slot label matches the slot hasStyle</p>
-<p><a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Pasted%20Graphic%205.jpg" title="Pasted Graphic 5.jpg"><img loading="lazy" alt="Pasted Graphic 5.jpg" src="http://127.0.0.1:8000/media/static/blog_img/Pasted%20Graphic%205.jpg" /></a></p>
-<p><em><strong>Third line</strong></em>: results from neighboring values to impressionism, for the slot hasStyle <a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Pasted%20Graphic%206.jpg" title="Pasted Graphic 6.jpg"><img loading="lazy" alt="Pasted Graphic 6.jpg" src="http://127.0.0.1:8000/media/static/blog_img/Pasted%20Graphic%206.jpg" /></a></p>
-<p><em><strong>Fourth line</strong></em>: results from teachers of the artists producers of the works above, marked up as impressionist <a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Pasted%20Graphic%208.jpg" title="Pasted Graphic 8.jpg"><img loading="lazy" alt="Pasted Graphic 8.jpg" src="http://127.0.0.1:8000/media/static/blog_img/Pasted%20Graphic%208.jpg" /></a></p>
-<p><em><strong>Fifth line</strong></em>: same as above, but for the student-of relation</p>
-<p><a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Pasted%20Graphic%209.jpg" title="Pasted Graphic 9.jpg"><img loading="lazy" alt="Pasted Graphic 9.jpg" src="http://127.0.0.1:8000/media/static/blog_img/Pasted%20Graphic%209.jpg" /></a></p>
-<p><em><strong>Sixth line</strong></em>: inferred closure of an artist who worked in the same style of an artist matched above. That is, the rationale is that if they worked at least in one similar style, they are likely to be related even through other styles.</p>
-<p><a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Pasted%20Graphic%2010.jpg" title="Pasted Graphic 10.jpg"></a><a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Pasted%20Graphic%2010.jpg" title="Pasted Graphic 10.jpg"><img loading="lazy" alt="Pasted Graphic 10.jpg" src="http://127.0.0.1:8000/media/static/blog_img/Pasted%20Graphic%2010.jpg" /></a> At the <em><strong>bottom</strong></em>, there's an automatically created timeline, which results a little confusing sometimes:</p>
-<p><a href="http://people.kmi.open.ac.uk/mikele/blog/wp-content/uploads/2006/11/Pasted%20Graphic%2011.jpg" title="Pasted Graphic 11.jpg"><img loading="lazy" alt="Pasted Graphic 11.jpg" src="http://127.0.0.1:8000/media/static/blog_img/Pasted%20Graphic%2011.jpg" /></a></p>
-<p>There's many other features, which I am not covering here. However, one remark. What's the purpose of this cool application? Probably it just wants to exhibit the semi-automatic agglomeration of data integrated from different and distributed sources. But <strong>they just remain data, they are not given any shape</strong> (e.g. thanks to the "semantic description") and they do not even reach the level of information, from my point of view (and also from an information visualization perspective see --&gt; [Information Visualization, Robert Spence] ) .</p>
-<p>Too many clickable links... I have the impression that these navigations, beyond being a technological show-off for data-integration and clustering techniques, very often fall short of being helpful in understanding a resource collection, but produce an overwhelming amount of results and links.</p>
-<p>A reflection: we are using semantic data to get out of the "syntactic" data overload on the internet - but <strong>we are going straight into a "semantic" data overload</strong> .... The semantics we should support, instead, is HUMAN semantics, not just a formal semantic ......</p>
+<p><img loading="lazy" alt="Pasted Graphic 11.jpg" src="../../../../../media/static/blog_img/multimedia-demonstrator.jpg" /></p>
+<h2 id="walkthrough">Walkthrough</h2>
+<p><strong>I tried a few queries</strong> to see how the results are ordered, and the navigation organized. If we search for <em>impressionism</em> <strong>we get various results</strong>, ordered in the following manner: </p>
+<ul>
+<li><strong><em>the first ones</em></strong> directly match the string queried in their main description (label)</li>
+<li><strong><em>Second line</em></strong> (AAT refers to the Art and Architecture Thesaurus): results from another metadata set, where the slot label matches the slot hasStyle</li>
+<li><em><strong>Third line</strong></em>: results from neighboring values to impressionism, for the slot hasStyle </li>
+<li><em><strong>Fourth line</strong></em>: results from teachers of the artists producers of the works above, marked up as impressionist </li>
+<li><em><strong>Fifth line</strong></em>: same as above, but for the student-of relation</li>
+<li><em><strong>Sixth line</strong></em>: inferred closure of an artist who worked in the same style of an artist matched above. That is, the rationale is that if they worked at least in one similar style, they are likely to be related even through other styles.</li>
+<li>At the <em><strong>bottom</strong></em>, there's an automatically created timeline, which results a little confusing sometimes:</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>There are many other features, which I am not covering here. I do have a remark though: what's the purpose of this cool application? </p>
+<p>Probably it just wants to exhibit the semi-automatic agglomeration of data integrated from different and distributed sources. But <strong>it just remains data, it is not given any context or shape</strong> (e.g. thanks to the "semantic description") and hence it does not even reach the level of information, from my point of view (and also from an information visualization perspective see --&gt; <a href="https://link.springer.com/book/10.1007/978-3-319-07341-5">Information Visualization by Robert Spence</a>).</p>
+<p>Too many clickable links... I have the impression that this morass of pathways, beyond being a technological show-off for data-integration and clustering techniques, very often fall short of being helpful in understanding a resource collection, but produce an overwhelming amount of results and links.</p>
+<p>A reflection: we set out to use semantic data in order to address the problems derived from the "syntactic" data overload on the internet - however we should avoid <strong>going straight into a "semantic" data overload</strong> .... </p>
+<p>The semantics we should support, instead, is HUMAN semantics, not just a formal semantics!</p>
       </div>
 
       <nav class="post-pager" aria-label="Older and newer posts">
@@ -332,7 +345,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
           <a class="post-pager-older" href="../../21/web-30/index.html"><span>&larr; Older</span>Web 3.0 ?</a>
         
         
-          <a class="post-pager-newer" href="../../28/pathway-wiki-semantic-navigator/index.html"><span>Newer &rarr;</span>Pathway: Wiki Semantic Navigator</a>
+          <a class="post-pager-newer" href="../../28/the-nora-project/index.html"><span>Newer &rarr;</span>The Nora Project</a>
         
       </nav>
 

@@ -40,7 +40,7 @@
     <meta property="og:type" content="article">
     <meta property="og:title" content="Using jquery&#39;s autocomplete in Django&#39;s admin: what about &#39;inlines&#39;?">
     <meta property="og:url" content="https://www.michelepasin.org/blog/2009/09/30/using-jquerys-autocomplete-in-django-admin-how-about-inlines/">
-    <meta property="og:image" content="https://www.michelepasin.org/media/static/blog_img/picture-11.png">
+    <meta property="og:image" content="https://www.michelepasin.org/media/static/blog_img/2009-09-30-using-jquerys-autocomplete-in-django-admin-1.png">
     <meta name="twitter:card" content="summary_large_image">
     <script type="application/ld+json">{
  "@context": "https://schema.org",
@@ -67,7 +67,7 @@
     "django",
     "faceted-search"
    ],
-   "image": "https://www.michelepasin.org/media/static/blog_img/picture-11.png"
+   "image": "https://www.michelepasin.org/media/static/blog_img/2009-09-30-using-jquerys-autocomplete-in-django-admin-1.png"
   },
   {
    "@type": "Person",
@@ -246,7 +246,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   <p class="sectionlabel">
     <b>Words</b> <span class="sep">/</span>
     <a href="../../../../../words/index.html%3Ftype=blogs.html">posts</a>
-    <span class="sep">/</span> <a href="../../../../../words/index.html%3Ftype=blogs&amp;ctype=techlife.html">TechLife</a>
+    <span class="sep">/</span> <a href="../../../../../words/index.html%3Ftype=blogs&amp;ctype=techlife.html">Tech &amp; Tools</a>
   </p>
 
   <header class="post-head">
@@ -297,7 +297,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>[..] my question is, if this could be done on a more abstract level for enhancing relations. when having a foreignkey, you get the browse-icon (lens) right near the input-field. it´d be awesome to search the relations just by typing something into the field … the autocomplete-functionality should then search the related entries on the basis of the defined search-fields.</p>
 </blockquote>
 <p>Here's a nice <strong>screencast</strong> of the the result [UPDATE: unfortunately the screencast is not available anymore - instead an unsettling image of mad nazi soldiers]:</p>
-<p><a href="../../../../../media/static/blog_img/picture-11.png"><img loading="lazy" alt="Picture 1" src="../../../../../media/static/blog_img/picture-11.png" title="Picture 1" /></a></p>
+<p><a href="../../../../../media/static/blog_img/2009-09-30-using-jquerys-autocomplete-in-django-admin-1.png"><img loading="lazy" alt="Picture 1" src="../../../../../media/static/blog_img/2009-09-30-using-jquerys-autocomplete-in-django-admin-1.png" title="Picture 1" /></a></p>
 <p><strong>Leidel's solution is not a <em>copy-paste</em> type of thing</strong>, but it's very useful to study his code so to understand what's going on there, and then replicate it in your specific user-scenario. That's exactly what several people have done.</p>
 <p>Nonetheless, <strong>reusing is more agile that doing things from scratch</strong>, isn't it? So, after a bit of research I reached the conclusion that the most interesting and reusable (meaning, plug-and-play) django implementations of jquery's autocomplete are the following two.</p>
 <h3 id="1-the-admin-extensions-section-of-the-django-extensions-project-on-google-code">1. The <a href="http://code.google.com/p/django-command-extensions/wiki/AdminExtensions"><em>admin extensions</em> section of the django-extensions project</a> on google code</h3>
@@ -312,7 +312,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>After having a go with both of them I decided to use the first one [the admin extensions section of the <a href="http://code.google.com/p/django-command-extensions/wiki/AdminExtensions">django-extensions project</a>], cause I don't need many2many support and I really liked the fact that the standard 'raw-id' behaviour is still available. </p>
 <p>Here's a nice screencast (by the way I just realized that this one has been made by Jannis Leidel too, so I guess it's sort of an evolution of the previous one) [UPDATE #2: also this screencast is not available anymore! what's going on with mr Leidel?]:</p>
-<p><a href="http://www.flickr.com/photos/jannis/3246408003/"><img loading="lazy" alt="Picture 3" src="../../../../../media/static/blog_img/picture-31.png" title="Picture 3" /></a></p>
+<p><a href="http://www.flickr.com/photos/jannis/3246408003/"><img loading="lazy" alt="Picture 3" src="../../../../../media/static/blog_img/2009-09-30-using-jquerys-autocomplete-in-django-admin-2.png" title="Picture 3" /></a></p>
 <p>Conclusion: there's only one BIG problem - <strong>it doesn't work with <a href="http://docs.djangoproject.com/en/dev/ref/contrib/admin/#inlinemodeladmin-objects">inlines</a></strong> out-of-the-box ! I'm looking at extending it now... will keep you posted!</p>
       </div>
 
