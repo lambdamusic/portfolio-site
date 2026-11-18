@@ -267,13 +267,13 @@ def first_sentence(md):
 # display labels for the blog categories - same wording as the left rail
 # (components/site-rail.html); keys are researchapp/category_vocabulary.py
 CATEGORY_LABELS = {
-	"computermusic": "Computer Music",
-	"data-science": "Data Science",
+	"computermusic": "Music & Art",
+	"data-science": "Data & Visualisation",
 	"digital-humanities": "Digital Humanities",
-	"justblogging": "Just Blogging",
-	"knowledge-engineering": "Knowledge Engineering",
+	"knowledge-engineering": "AI & Knowledge Graphs",
 	"research-analytics": "Research Analytics",
-	"techlife": "TechLife",
+	"reviews": "Reviews & Opinions",
+	"techlife": "Tech & Tools",
 }
 
 @register.filter(name='category_label')
