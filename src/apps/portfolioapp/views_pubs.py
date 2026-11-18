@@ -28,6 +28,7 @@ from researchapp.management.commands.do_blogs_reindex import parse_markdown, par
 from myutils.modelextra.mymodels import meta_description
 from . import seo
 from researchapp.category_vocabulary import CATEGORIES
+from researchapp.templatetags.extrafilters import CATEGORY_LABELS
 
 APP = "portfolioapp"
 
@@ -124,7 +125,8 @@ def words(request):
 		'tag': tag,
 		'admin_change_url': admin_change_url,
 		'tags': tags,
-		'categories': sorted(CATEGORIES),
+		# in the order readers see them: by label, not by slug
+		'categories': sorted(CATEGORIES, key=lambda c: CATEGORY_LABELS.get(c, c).lower()),
 		'item_count': sum(len(x[1]) for x in return_items) if return_items else 0,
 	}
 	
