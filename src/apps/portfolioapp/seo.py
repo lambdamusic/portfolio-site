@@ -92,6 +92,11 @@ def person(full=False):
 			"image": static_url(DEFAULT_IMAGE),
 			"mainEntityOfPage": settings.SITE_URL + "/about/",
 			"identifier": {"@type": "PropertyValue", "propertyID": "ORCID", "value": "0000-0001-8909-7766"},
+			# as on /about/ (about-bio.html)
+			"alumniOf": [
+				{"@type": "CollegeOrUniversity", "name": "The Open University", "url": "https://www.open.ac.uk/"},
+				{"@type": "CollegeOrUniversity", "name": "Ca' Foscari University of Venice", "url": "https://www.unive.it/"},
+			],
 			"knowsAbout": ["Ontology engineering", "Knowledge graphs", "Artificial intelligence",
 				"Data architecture", "Digital humanities", "Research analytics", "Livecoding"],
 			"sameAs": SAME_AS,

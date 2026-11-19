@@ -16,7 +16,8 @@
 {% endblock %}
 
 {% block pagetitle %}
-  <title>{{return_item.title}} | Blogs | Michele Pasin</title>
+  {# no section label: it only takes room from the title in search results (#25) #}
+  <title>{{return_item.title}} | Michele Pasin</title>
 {% endblock pagetitle %}
 
 {% block bodyclass %}is-wide{% endblock bodyclass %}
@@ -50,7 +51,7 @@
       <p class="post-date">
         <time datetime="{{itempubdate|date:'Y-m-d'}}"><b>{{itempubdate|date:"j M"}}</b> {{itempubdate|date:"Y"}}</time>
       </p>
-      <p class="post-side-meta">{{reading_minutes}} min read</p>
+      <p class="post-side-meta">By <a href="{% url 'portfolioapp:about' %}" rel="author">Michele Pasin</a> &middot; {{reading_minutes}} min read</p>
       {% if tags %}
         <p class="post-tags">{% for t in tags %}<a href="{% url 'portfolioapp:words' %}?tag={{t.name}}&amp;type=all">#{{t.name}}</a> {% endfor %}</p>
       {% endif %}
