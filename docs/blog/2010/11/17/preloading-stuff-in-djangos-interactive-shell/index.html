@@ -380,12 +380,12 @@ from optparse import make_option  </p>
 <p>c. The code tries to <strong>load the best python shell</strong> available: iPython if present, otherwise the normal python shell with the necessary libraries are called.</p>
 <p>...</p>
 <p>That's all. The key line to look at is therefore the last one, that is:</p>
-<div class="codehilite"><pre><span></span><code># .......
+<div class="codehilite"><pre><span></span><code><span class="gh">#</span> .......
 code.interact(local=imported_objects)
 </code></pre></div>
 
 <p>That's what launches the interpreter and initializes it with the <em><strong>imported_objects</strong></em> dictionary; this dictionary contains all the (extra) symbols that we want to make available through the new python interpreter instance. So in order to have more stuff there all we have to do is add more elements to that dictionary, eg:</p>
-<div class="codehilite"><pre><span></span><code># .......
+<div class="codehilite"><pre><span></span><code><span class="gh">#</span> .......
 alist = range(1000)
 imported_objects[&#39;alist&#39;] = alist
 code.interact(local=imported_objects)

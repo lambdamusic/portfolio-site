@@ -379,12 +379,12 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
                             (fn [[tx ty] [x y]]
                               [(<strong>+</strong> tx x), (<strong>+</strong> ty y)]))
                           (<strong>map</strong> #(int (<strong>/</strong> % 4))))</p>
-<div class="codehilite"><pre><span></span><code><span class="w">      </span><span class="nv">rotated</span><span class="w"> </span><span class="ss">(</span><span class="o">**</span><span class="nv">map</span><span class="o">**</span><span class="w"> </span><span class="ss">(</span><span class="nv">fn</span><span class="w"> </span>\[\[<span class="nv">x</span><span class="w"> </span><span class="nv">y</span>\]\]
-<span class="w">                     </span>\[<span class="ss">(</span><span class="nv">int</span><span class="w"> </span><span class="ss">(</span><span class="o">**+**</span><span class="w"> </span><span class="nv">avg</span><span class="o">-</span><span class="nv">x</span><span class="w"> </span><span class="ss">(</span><span class="o">**</span>\<span class="o">-**</span><span class="w"> </span><span class="nv">y</span><span class="w"> </span><span class="nv">avg</span><span class="o">-</span><span class="nv">y</span><span class="ss">)))</span>
-<span class="w">                      </span><span class="ss">(</span><span class="nv">int</span><span class="w"> </span><span class="ss">(</span><span class="o">**</span>\<span class="o">-**</span><span class="w"> </span><span class="nv">avg</span><span class="o">-</span><span class="nv">y</span><span class="w"> </span><span class="ss">(</span><span class="o">**</span>\<span class="o">-**</span><span class="w"> </span><span class="nv">x</span><span class="w"> </span><span class="nv">avg</span><span class="o">-</span><span class="nv">x</span><span class="ss">)))</span>\]<span class="ss">)</span>
-<span class="w">                </span><span class="nv">shape</span><span class="ss">)</span>\]
-<span class="w">  </span><span class="ss">(</span><span class="o">**</span><span class="k">if</span><span class="o">**</span><span class="w"> </span><span class="ss">(</span><span class="nv">collides</span>?<span class="w"> </span><span class="nv">board</span><span class="w"> </span><span class="nv">rotated</span><span class="ss">)</span>
-<span class="w">    </span><span class="nv">shape</span><span class="w"> </span><span class="nv">rotated</span><span class="ss">))))</span>
+<div class="codehilite"><pre><span></span><code>      rotated (**map** (fn \[\[x y\]\]
+                     \[(int (**+** avg-x (**\-** y avg-y)))
+                      (int (**\-** avg-y (**\-** x avg-x)))\])
+                shape)\]
+  (**if** (collides? board rotated)
+    shape rotated))))
 </code></pre></div>
 
 <p>(defn shift [board shape]
@@ -444,10 +444,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
         g       (.getDrawGraphics buffer)]
     (try
       (draw-fn g)</p>
-<div class="codehilite"><pre><span></span><code><span class="w">  </span><span class="ss">(</span><span class="nv">finally</span><span class="w"> </span><span class="ss">(</span>.<span class="nv">dispose</span><span class="w"> </span><span class="nv">g</span><span class="ss">)))</span>
-<span class="ss">(</span><span class="o">**</span><span class="k">if</span><span class="o">**</span><span class="w"> </span><span class="ss">(</span><span class="o">**</span><span class="nv">not</span><span class="o">**</span><span class="w"> </span><span class="ss">(</span>.<span class="nv">contentsLost</span><span class="w"> </span><span class="nv">buffer</span><span class="ss">))</span>
-<span class="w">  </span><span class="ss">(</span>.<span class="w"> </span><span class="nv">buffer</span><span class="w"> </span><span class="k">show</span><span class="ss">))</span>
-<span class="ss">(</span>..<span class="w"> </span><span class="nv">Toolkit</span><span class="w"> </span><span class="ss">(</span><span class="nv">getDefaultToolkit</span><span class="ss">)</span><span class="w"> </span><span class="ss">(</span><span class="nv">sync</span><span class="ss">))))</span>
+<div class="codehilite"><pre><span></span><code>  (finally (.dispose g)))
+(**if** (**not** (.contentsLost buffer))
+  (. buffer show))
+(.. Toolkit (getDefaultToolkit) (sync))))
 </code></pre></div>
 
 <p>(defn draw-square [x y #^Graphics g]

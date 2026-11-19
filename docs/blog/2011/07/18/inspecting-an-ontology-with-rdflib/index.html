@@ -316,7 +316,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h3 id="hullo-rdflib">Hullo, RDFlib</h3>
 <p>After quickly ascertaining that it's not a total waste of time to work with RDF, it's time to get practical and experiment a bit with RDFLib. This is a great Python library because it lets you process RDF data <em>very easily</em>. Example:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># open a graph </span>
-<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">rdflib</span> 
+<span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">rdflib</span> 
 <span class="o">&gt;&gt;&gt;</span> <span class="n">graph</span> <span class="o">=</span> <span class="n">rdflib</span><span class="o">.</span><span class="n">Graph</span><span class="p">()</span>  
 
 <span class="c1"># load some data </span>
@@ -359,17 +359,17 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h3 id="inspecting-an-ontology-using-rdflib">Inspecting an ontology using RDFLib</h3>
 <p>I created a small class called '<strong>OntoInspector</strong>' that you can instantiate with an RDFS/OWL ontology and then query to find out basic information about that ontology. I know—all of this could have been done using one of the many (and constantly increasing) ontology editing tools—but hey, this is all about learning, isn't it? You can find all the source code on <a href="https://github.com/lambdamusic/ontosPy">GitHub</a>. Feel free to download it and modify as needed. Also, I integrated this Python toolkit within a <strong>Django application</strong> that lets you browse ontologies online (beware—it's just a hack, really). This is called (surprise!) <strong>OntoView</strong> (no longer online).</p>
 <p>The first thing to do in our class definition is (obviously) to load the RDFLib library. I developed this using RDFLib 2.4, but recently tested it with 3.0 (the latest release available) and it all still works fine. By loading the RDF and RDFS modules, we'll have access to all the constants needed to query for classes and subclasses. Note that I added an OWL module as that is not part of RDFLib. You can find it in the source code—it's just a list of all predicates in the <a href="http://www.w3.org/TR/owl-guide/">OWL vocabulary</a>.</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">ConjunctiveGraph</span><span class="p">,</span> <span class="n">Namespace</span><span class="p">,</span> <span class="n">exceptions</span>  
-<span class="kn">from</span> <span class="nn">rdflib</span> <span class="kn">import</span> <span class="n">URIRef</span><span class="p">,</span> <span class="n">RDFS</span><span class="p">,</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">BNode</span>  
-<span class="kn">import</span> <span class="nn">OWL</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">rdflib</span><span class="w"> </span><span class="kn">import</span> <span class="n">ConjunctiveGraph</span><span class="p">,</span> <span class="n">Namespace</span><span class="p">,</span> <span class="n">exceptions</span>  
+<span class="kn">from</span><span class="w"> </span><span class="nn">rdflib</span><span class="w"> </span><span class="kn">import</span> <span class="n">URIRef</span><span class="p">,</span> <span class="n">RDFS</span><span class="p">,</span> <span class="n">RDF</span><span class="p">,</span> <span class="n">BNode</span>  
+<span class="kn">import</span><span class="w"> </span><span class="nn">OWL</span>
 </code></pre></div>
 
 <p>Now let's set up the basic structure of the OntoInspector class. In principle, an OntoInspector object should contain all the information necessary to query an ontology. An ontology is referred to using its URI, so that's all is needed for creating an instance of OntoInspector too:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">class</span> <span class="nc">OntoInspector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+<div class="codehilite"><pre><span></span><code><span class="k">class</span><span class="w"> </span><span class="nc">OntoInspector</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;Class that includes methods for querying an RDFS/OWL ontology&quot;&quot;&quot;</span>        
 
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uri</span><span class="p">,</span> <span class="n">language</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">):</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">OntoInspector</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
 
         <span class="bp">self</span><span class="o">.</span><span class="n">rdfGraph</span> <span class="o">=</span> <span class="n">ConjunctiveGraph</span><span class="p">()</span>
@@ -389,20 +389,20 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
             <span class="bp">self</span><span class="o">.</span><span class="n">tree</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">__getTree</span><span class="p">()</span>
 
 
-    <span class="k">def</span> <span class="nf">get_OntologyURI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">....</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">get_OntologyURI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">....</span><span class="p">):</span>
         <span class="c1"># todo</span>
         <span class="k">pass</span>
 
-    <span class="k">def</span> <span class="nf">__getAllClasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">....</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__getAllClasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">....</span><span class="p">):</span>
         <span class="c1"># todo</span>
         <span class="k">pass</span>
 
 
-    <span class="k">def</span> <span class="nf">__getTopclasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">....</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__getTopclasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">....</span><span class="p">):</span>
         <span class="k">pass</span>
 
 
-    <span class="k">def</span> <span class="nf">__getTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">....</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="nf">__getTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">....</span><span class="p">):</span>
         <span class="c1"># todo</span>
         <span class="k">pass</span>
 </code></pre></div>
@@ -410,7 +410,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>As you can see the <code>__init__</code> method tries to load the ontology file (which can be expressed in either rdf/xml or n3 format) and then sets up 4 class attributes. These attributes will contain some key information about the ontology: its <strong>URI</strong>, a list of <strong>all the classes</strong> available, the classes in the <strong>top layer</strong> and the main <strong>taxonomical tree</strong> of the ontology. We're now going to implement the methods needed to fill out these 4 attributes.</p>
 <h3 id="getting-the-ontology-uri">Getting the ontology URI</h3>
 <p>If we're dealing with an OWL ontology, it may be the case that the URI we have just used to retrieve the ontology file is not the 'official' URI of the ontology. In fact OWL provides a construct that can be used to 'state' which is the base URI of an ontology (essentially, this is equivalent to stating that an RDF resource has rdf:type http://www.w3.org/2002/07/owl#Ontology). So in the following method first we check if an URI of rdf:type OWL:Ontology exists, and return that if available (when we return None, the URI value defaults to the URI originally provided when creating the OntoInspector object - see the constructor code above):</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">get_OntologyURI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">return_as_string</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">get_OntologyURI</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">return_as_string</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; </span>
 <span class="sd">    In [15]: [x for x in o.rdfGraph.triples((None, RDF.type, OWL.Ontology))]</span>
 <span class="sd">    Out[15]: </span>
@@ -439,7 +439,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>someURI - rdf:type - rdf:Class OR owl:Class .</p>
 <p>This approach will work in the majority of cases. However, things are complicated by the fact that people are sometimes sloppy when they define ontologies, or because they use different tools that automatically generate different styles of RDF code. For example, often an entity is defined as being an rdfs:subclassOf another entity, without explicitly declaring that both of them are (rdfs, or owl) classes; another common case is that one of classes mentioned in the domain/range values of properties (via the rdfs.domain and rdfs.range properties) but not declared explicitly.</p>
 <p>Since we want to be as comprehensive as possible when looking for *all* the classes present in an ontology, I added a couple of methods that deal with these borderline cases. If you don't want to include all of this stuff, you can still bypass these extra checks by using the <em>classPredicate</em> argument.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">__getAllClasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classPredicate</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">removeBlankNodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__getAllClasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classPredicate</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="n">removeBlankNodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;  </span>
 <span class="sd">    Extracts all the classes from a model</span>
 <span class="sd">    We use the RDFS and OWL predicate by default; also, we extract non explicitly declared classes</span>
@@ -492,7 +492,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>Next, we want to be able to <strong>move around the ontology hierarchy</strong>. So we need methods to get <em>super</em> and <em>sub</em> classes from a given class. This is easily done by querying the graph for triples containing the rdfs.subClassOf predicate:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># methods for getting ancestors and descendants of classes: by default, we do not include blank nodes</span>
 
-<span class="k">def</span> <span class="nf">get_classDirectSupers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_classDirectSupers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
     <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="n">aClass</span><span class="p">,</span> <span class="n">RDFS</span><span class="o">.</span><span class="n">subClassOf</span> <span class="p">,</span> <span class="kc">None</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">excludeBnodes</span><span class="p">:</span>
@@ -504,7 +504,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="k">return</span> <span class="n">sort_uri_list_by_name</span><span class="p">(</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">returnlist</span><span class="p">))</span> 
 
 
-<span class="k">def</span> <span class="nf">get_classDirectSubs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_classDirectSubs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
     <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">s</span><span class="p">,</span> <span class="n">v</span><span class="p">,</span> <span class="n">o</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">rdfGraph</span><span class="o">.</span><span class="n">triples</span><span class="p">((</span><span class="kc">None</span><span class="p">,</span> <span class="n">RDFS</span><span class="o">.</span><span class="n">subClassOf</span> <span class="p">,</span> <span class="n">aClass</span><span class="p">)):</span>
         <span class="k">if</span> <span class="n">excludeBnodes</span><span class="p">:</span>
@@ -517,7 +517,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
     <span class="k">return</span> <span class="n">sort_uri_list_by_name</span><span class="p">(</span><span class="n">remove_duplicates</span><span class="p">(</span><span class="n">returnlist</span><span class="p">))</span>
 
 
-<span class="k">def</span> <span class="nf">get_classAllSubs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_classAllSubs</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
     <span class="k">for</span> <span class="n">sub</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_classDirectSubs</span><span class="p">(</span><span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span><span class="p">):</span>
         <span class="n">returnlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sub</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_classAllSubs</span><span class="p">(</span><span class="n">sub</span><span class="p">,</span> <span class="n">returnlist</span><span class="p">,</span> <span class="n">excludeBnodes</span><span class="p">)</span>
@@ -525,7 +525,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
 
-<span class="k">def</span> <span class="nf">get_classAllSupers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_classAllSupers</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span> <span class="p">):</span>
     <span class="k">for</span> <span class="n">ssuper</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_classDirectSupers</span><span class="p">(</span><span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span><span class="p">):</span>
         <span class="n">returnlist</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ssuper</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">get_classAllSupers</span><span class="p">(</span><span class="n">ssuper</span><span class="p">,</span> <span class="n">returnlist</span><span class="p">,</span> <span class="n">excludeBnodes</span><span class="p">)</span>
@@ -533,7 +533,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 
 
-<span class="k">def</span> <span class="nf">get_classSiblings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">get_classSiblings</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span> <span class="o">=</span> <span class="kc">True</span><span class="p">):</span>
     <span class="n">returnlist</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">for</span> <span class="n">father</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_classDirectSupers</span><span class="p">(</span><span class="n">aClass</span><span class="p">,</span> <span class="n">excludeBnodes</span><span class="p">):</span>
         <span class="k">for</span> <span class="n">child</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_classDirectSubs</span><span class="p">(</span><span class="n">father</span><span class="p">,</span> <span class="n">excludeBnodes</span><span class="p">):</span>
@@ -545,7 +545,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <h3 id="getting-the-top-layer">Getting the top layer</h3>
 <p>We're now all set for retrieving the classes at the top of the taxonomic hierarchy of our ontology, that is, its 'top-layer'. This can be done by reusing the get_classDirectSupers method previously defined, so to search for all classes that have no superclasses:</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">__getTopclasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classPredicate</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__getTopclasses</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">classPredicate</span> <span class="o">=</span> <span class="s1">&#39;&#39;</span><span class="p">):</span>
 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Finds the topclass in an ontology (works also when we have more than on superclass)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -563,7 +563,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <h3 id="reconstructing-the-ontology-tree">Reconstructing the ontology tree</h3>
 <p>Now that we know which are the top classes in our taxonomy, we can parse the tree recursively using the get_classDirectSubs method defined above, and reconstruct the whole taxonomical structure of the ontology.</p>
-<div class="codehilite"><pre><span></span><code><span class="k">def</span> <span class="nf">__getTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">father</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+<div class="codehilite"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">__getTree</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">father</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">out</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
 
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Reconstructs the taxonomical tree of an ontology, from the &#39;topClasses&#39; (= classes with no supers, see below)</span>
 <span class="sd">        Returns a dictionary in which each class is a key, and its direct subs are the values.</span>
@@ -597,7 +597,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h3 id="wrapping-up">Wrapping up</h3>
 <p>The <a href="https://github.com/lambdamusic/ontosPy">source code on GitHub</a> contains also other utilities I added, eg for handling class comments, namespaces, for nice-printing of classes' names, and for outputting the ontology tree as an image, using the <a href="http://www.graphviz.org/">Graphviz</a> library (which needs to be installed separately).</p>
 <p>Here's an example of how OntoInspector can be used in the python interactive shell for inspecting the <a href="http://xmlns.com/foaf/spec/">Friend Of A Friend</a> lightweight ontology:</p>
-<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span> <span class="nn">onto_inspector</span> <span class="kn">import</span> <span class="o">*</span>
+<div class="codehilite"><pre><span></span><code><span class="n">In</span> <span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="kn">from</span><span class="w"> </span><span class="nn">onto_inspector</span><span class="w"> </span><span class="kn">import</span> <span class="o">*</span>
 
 <span class="n">In</span> <span class="p">[</span><span class="mi">2</span><span class="p">]:</span> <span class="n">onto</span> <span class="o">=</span> <span class="n">OntoInspector</span><span class="p">(</span><span class="s2">&quot;http://xmlns.com/foaf/spec/20100809.rdf&quot;</span><span class="p">)</span>         
 

@@ -305,11 +305,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <p>A mimimal example usage of <code>mptt.register</code> is given below, where the
 model being set up for MPTT is suitable for use with the default
 arguments which specify fields and the tree manager attribute::</p>
-<div class="codehilite"><pre><span></span><code><span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
+<div class="codehilite"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">django.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
 
-<span class="kn">import</span> <span class="nn">mptt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">mptt</span>
 
-<span class="k">class</span> <span class="nc">Genre</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Genre</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
     <span class="n">name</span> \<span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="nb">max</span>\<span class="n">_length</span>\<span class="o">=</span><span class="mi">50</span><span class="p">,</span> <span class="n">unique</span>\<span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="n">parent</span> \<span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">ForeignKey</span><span class="p">(</span><span class="s1">&#39;self&#39;</span><span class="p">,</span> <span class="n">null</span>\<span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">blank</span>\<span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">related</span>\<span class="n">_name</span>\<span class="o">=</span><span class="s1">&#39;children&#39;</span><span class="p">)</span>
 

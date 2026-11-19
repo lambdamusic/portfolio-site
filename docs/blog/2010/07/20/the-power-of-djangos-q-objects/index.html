@@ -311,10 +311,10 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </ul>
 <p>Now... let's get started by resurrecting the simple model used in the <a href="http://docs.djangoproject.com/en/dev/intro/tutorial01/">django Tutorial</a>, <strong>Polls</strong>, and adding a few <strong>instances</strong> to play with:</p>
 <div class="codehilite"><pre><span></span><code><span class="c1"># ==&gt; in models.py</span>
-<span class="kn">from</span> <span class="nn">django.db</span> <span class="kn">import</span> <span class="n">models</span>
-<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">django.db</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">datetime</span>
 
-<span class="k">class</span> <span class="nc">Poll</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
+<span class="k">class</span><span class="w"> </span><span class="nc">Poll</span><span class="p">(</span><span class="n">models</span><span class="o">.</span><span class="n">Model</span><span class="p">):</span>
         <span class="n">question</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">CharField</span><span class="p">(</span><span class="n">max_length</span><span class="o">=</span><span class="mi">200</span><span class="p">)</span>
         <span class="n">pub_date</span> <span class="o">=</span> <span class="n">models</span><span class="o">.</span><span class="n">DateTimeField</span><span class="p">(</span><span class="s1">&#39;date published&#39;</span><span class="p">)</span>
 
@@ -334,7 +334,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 </code></pre></div>
 
 <p>But this is <strong>not really what we want</strong>, is it? We just got a <strong>concatenation of AND</strong> statements (= all constraints need to be satisfied), while <strong>we wanted an OR</strong> (=at least one of the constraints needs to be satisfied). This is where Q objects become useful:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span> <span class="nn">django.db.models</span> <span class="kn">import</span> <span class="n">Q</span>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">from</span><span class="w"> </span><span class="nn">django.db.models</span><span class="w"> </span><span class="kn">import</span> <span class="n">Q</span>
 <span class="c1"># a simple query</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">))</span>
 <span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="n">shall</span> <span class="n">I</span> <span class="n">make</span> <span class="o">**</span><span class="k">for</span><span class="o">**</span> <span class="n">dinner</span><span class="o">&gt;</span><span class="p">]</span>
@@ -370,7 +370,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <h2 id="dynamic-query-building">Dynamic Query Building</h2>
 <p>Now, it is likely that you want to build up queries like the ones above dynamically. This is another place where Q objects can save lots of time....for example, when constructing <strong>search engines</strong> or <strong>faceted browsers</strong> where the interface lets a user <strong>accumulate search filters</strong> in an incremental manner.</p>
 <p>One way to handle this situation is by creating <strong>lists of Q objects</strong>, and then <strong>combining them together</strong> using python's <a href="http://docs.python.org/library/operator.html#operator.and_">operator</a> and <a href="http://docs.python.org/library/functions.html#reduce">reduce</a> methods:</p>
-<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">operator</span>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span><span class="w"> </span><span class="nn">operator</span>
 <span class="c1"># create a list of Q objects</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">mylist</span> <span class="o">=</span> <span class="p">[</span><span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">),</span> <span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;meal&#39;</span><span class="p">)]</span>
 <span class="c1"># OR</span>

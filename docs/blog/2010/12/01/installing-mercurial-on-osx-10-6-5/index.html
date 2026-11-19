@@ -312,11 +312,11 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
 <h3 id="fixing-the-errors">Fixing the errors</h3>
 <p>Mercurial couldn't find the python libraries it needs to run; after a bit of googling I <a href="http://stackoverflow.com/questions/1461374/installing-mercurial-on-mac-os-x-10-6-snow-leopard">found out</a> that installing Mercurial from the Mac Disk Image will cause its files to end up here:</p>
-<div class="codehilite"><pre><span></span><code>/Library/Python/2.6/site-packages/
+<div class="codehilite"><pre><span></span><code><span class="o">/</span><span class="nx">Library</span><span class="o">/</span><span class="nx">Python</span><span class="o">/</span><span class="m m-Double">2.6</span><span class="o">/</span><span class="nx">site</span><span class="o">-</span><span class="nx">packages</span><span class="o">/</span>
 </code></pre></div>
 
 <p>Apparently the default python installation that comes with 10.6.5 puts all the python packages somewhere else, that is, in the Frameworks directory:</p>
-<div class="codehilite"><pre><span></span><code>/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages
+<div class="codehilite"><pre><span></span><code><span class="o">/</span><span class="nx">Library</span><span class="o">/</span><span class="nx">Frameworks</span><span class="o">/</span><span class="nx">Python</span><span class="p">.</span><span class="nx">framework</span><span class="o">/</span><span class="nx">Versions</span><span class="o">/</span><span class="m m-Double">2.6</span><span class="o">/</span><span class="nx">lib</span><span class="o">/</span><span class="nx">python2</span><span class="m m-Double">.6</span><span class="o">/</span><span class="nx">site</span><span class="o">-</span><span class="nx">packages</span>
 </code></pre></div>
 
 <p>That's why Mercurial couldn't find them - by default OSx expects python libraries to be somewhere else. Adding the missing library location to the pythonpath in ~/.bash_profile fixed that:</p>
