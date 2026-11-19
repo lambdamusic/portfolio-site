@@ -2,7 +2,7 @@
 # encoding: utf-8
 
 """
-robots.txt, sitemap.xml and the section-root redirects. All are fetched
+robots.txt, sitemap.xml, 404.html and the section-root redirects. All are fetched
 explicitly by tools/site-dump, since wget only mirrors what pages link to.
 """
 
@@ -18,6 +18,11 @@ from researchapp.models import Publication, Project, Item
 def section_redirect(request, target="/"):
 	"""a section root with no page of its own, e.g. /blog/ -> /words/"""
 	return render(request, 'portfolioapp/pages/section-redirect.html', {'target': target})
+
+
+def not_found(request):
+	"""docs/404.html, which GitHub Pages serves for every missing URL"""
+	return render(request, 'portfolioapp/pages/404.html')
 
 
 def robots_txt(request):

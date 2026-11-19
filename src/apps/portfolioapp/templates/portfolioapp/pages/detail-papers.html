@@ -15,7 +15,8 @@
 {% endblock %}
 
 {% block pagetitle %}
-  <title>{{itemtitle}} | Papers | Michele Pasin</title>
+  {# a talk given in more than one place keeps its title, so name the place (#25) #}
+  <title>{{itemtitle}} | {% if return_item.isspeaking and return_item.pubplace %}Talk, {{ return_item.pubplace }}{% else %}Papers{% endif %} | Michele Pasin</title>
 {% endblock pagetitle %}
 
 {% block bodyclass %}is-wide{% endblock bodyclass %}

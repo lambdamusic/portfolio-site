@@ -27,6 +27,9 @@
 <html lang="en">
   <head>
 
+    {# only the 404 page sets one: GitHub Pages serves it at whatever path was asked for #}
+    {% block base_href %}{% endblock base_href %}
+
     {% include 'portfolioapp/components/ga.html' %}
 
     <meta charset="utf-8">
@@ -42,7 +45,7 @@
     {# get mirrored by wget as separate files, so keep them out of the index. #}
     {# canonical_path: set by a view when the page's URL isn't its canonical one #}
     {% firstof canonical_path request.path as page_path %}
-    <link rel="canonical" href="{{ SITE_URL }}{{ page_path }}">
+    {% block canonical %}<link rel="canonical" href="{{ SITE_URL }}{{ page_path }}">{% endblock canonical %}
     {% block robots %}{% if request.GET %}<meta name="robots" content="noindex,follow">{% endif %}{% endblock robots %}
 
     {# Open Graph / Twitter cards and JSON-LD: og_* and jsonld come from the view (portfolioapp/seo.py) #}

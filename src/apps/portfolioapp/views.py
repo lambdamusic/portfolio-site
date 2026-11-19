@@ -222,7 +222,7 @@ def projects(request, namedetail=""):
 		if os.path.exists(project_images_dir):
 			for f in os.listdir(project_images_dir):
 				if os.path.isfile(os.path.join(project_images_dir, f)):
-					if not f.startswith(".") and f not in THUMBS_FILES:
+					if not f.startswith((".", "~")) and f not in THUMBS_FILES:
 						project_images_names += [f]
 
 		if request.user.is_superuser:

@@ -47,5 +47,6 @@ urlpatterns = [
     url(r'^frontpage/$', views.frontpage, name='frontpage'),
     url(r'^robots\.txt$', views_seo.robots_txt, name='robots'),
     url(r'^sitemap\.xml$', views_seo.sitemap_xml, name='sitemap'),
+    url(r'^404\.html$', views_seo.not_found, name='not-found'),
 ]
 

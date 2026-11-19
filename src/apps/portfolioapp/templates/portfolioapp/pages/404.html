@@ -1,0 +1,44 @@
+{% extends "portfolioapp/components/base.html" %}
+
+{% comment %}
+  docs/404.html: GitHub Pages serves it for any missing URL, at that URL, so
+  wget's relative links ("about/", "media/static/...") would resolve against
+  the wrong folder. An absolute base href makes wget resolve every link
+  against the live site, which it doesn't mirror, so it writes them out as
+  absolute URLs (and leaves an empty, harmless <base href="">).
+  Many 404s come from the old WordPress blog, retired in 2026-11 (#25): its
+  posts that were kept live on in Words.
+{% endcomment %}
+
+{% block base_href %}<base href="{{ SITE_URL }}/">{% endblock base_href %}
+{% block canonical %}{% endblock canonical %}
+{% block robots %}<meta name="robots" content="noindex,follow">{% endblock robots %}
+
+{% block metadescription %}{% endblock metadescription %}
+{% block og_title %}Page not found | Michele Pasin{% endblock og_title %}
+
+{% block pagetitle %}
+  <title>Page not found | Michele Pasin</title>
+{% endblock pagetitle %}
+
+{% block bodycontent %}
+
+  <h1 class="sectionlabel"><b>Not found</b> <span class="sep">/</span> this page doesn't exist</h1>
+
+  <div class="post-body">
+    <p>The page may have moved, or the link may be out of date.
+      Pages from the old blog (<code>/archived/blog/</code>) have been retired: the posts
+      worth keeping are in <a href="{% url 'portfolioapp:words' %}">Words</a>.</p>
+
+    <ul>
+      <li><a href="{% url 'portfolioapp:words' %}">Words</a>: blog posts and papers</li>
+      <li><a href="{% url 'portfolioapp:projects' %}">Projects</a></li>
+      <li><a href="{% url 'portfolioapp:music' %}">Sounds</a></li>
+      <li><a href="{% url 'portfolioapp:about' %}">About</a></li>
+      <li><a href="{% url 'portfolioapp:home' %}">Home</a></li>
+    </ul>
+
+    <p><button type="button" class="sidebar-search" data-toggle="modal" data-target="#modalSearch">Search the site&hellip;</button></p>
+  </div>
+
+{% endblock bodycontent %}
