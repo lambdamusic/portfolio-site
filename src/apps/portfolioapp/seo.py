@@ -27,6 +27,7 @@ DEFAULT_IMAGE = "legacy/me_cartoon.jpg"  # static path; the portrait on /about/
 # the same profiles the site links to (components/outlinks.html, in the footer)
 SAME_AS = [
 	"https://orcid.org/0000-0001-8909-7766",
+	"https://www.wikidata.org/wiki/Q142213643",  # created 2026-11-19
 	"https://github.com/lambdamusic",
 	"https://scholar.google.com/citations?user=zj-99x0AAAAJ",
 	"https://www.linkedin.com/pub/michele-pasin/1/223/a0",
