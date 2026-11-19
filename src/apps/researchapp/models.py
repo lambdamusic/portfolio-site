@@ -681,7 +681,25 @@ class Project(mymodels.EnhancedModel):
         blank=True,
         related_name='projects',
         verbose_name="tags",
+        help_text="Not shown since #18; only python/lisp are kept, for the JSON-LD programmingLanguage",
     )
+
+    # the projects page keywords (#18): the blog's topic categories, and one type
+    categories = models.ManyToManyField(
+        'BlogCategory',
+        blank=True,
+        related_name='projects',
+        verbose_name="topics",
+        help_text="The same five topics as the blog (not reviews or techlife)",
+    )
+    PTYPES = [
+        ("tool", "Tool"),
+        ("website", "Website"),
+        ("visualisation", "Visualisation"),
+        ("dashboard", "Dashboard"),
+        ("data", "Data & ontologies"),
+    ]
+    ptype = models.CharField(max_length=20, choices=PTYPES, blank=True, verbose_name="type")
 
     def get_admin_url(self):
         return reverse('admin:researchapp_project_change', args=(self.id,))
@@ -719,7 +737,7 @@ class Project(mymodels.EnhancedModel):
         list_display = ('id', 'title', 'urlstub', 'myrole', 'datefrom',
                         'dateto')
         list_editable = ('urlstub', 'myrole')
-        filter_horizontal = ('tags',)
+        filter_horizontal = ('tags', 'categories')
         # radio_fields = {"ltbrole": admin.VERTICAL}
         list_filter = [
             'isactive',
@@ -753,6 +771,8 @@ class Project(mymodels.EnhancedModel):
                     ('url2', 'url2name'),
                     ('url3', 'url3name'),
                     'img',
+                    'categories',
+                    'ptype',
                     'tags',
                 ]
             }),

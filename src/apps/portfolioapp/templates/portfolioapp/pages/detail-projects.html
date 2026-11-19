@@ -1,5 +1,6 @@
 {% extends "portfolioapp/components/base.html" %}
 {% load static %}
+{% load extrafilters %}
 
 {% comment %}
   A project (views.projects). Meant to read as a thing that was built, not
@@ -23,7 +24,9 @@
   <p class="sectionlabel">
     <b>Projects</b> <span class="sep">/</span>
     <a href="{% url 'portfolioapp:projects' %}">all</a>
-    {% for t in p.tags.all %}<span class="sep">/</span> <a href="{% url 'portfolioapp:projects' %}?k={{t.name}}">{{t.name}}</a> {% endfor %}
+    {# the project's topics and type, linking to the filtered grid (#18, js/projects-filter.js) #}
+    {% for c in p.categories.all %}<span class="sep">/</span> <a href="{% url 'portfolioapp:home' %}#topic={{c.name}}">{{c.name|category_label}}</a> {% endfor %}
+    {% if p.ptype %}<span class="sep">/</span> <a href="{% url 'portfolioapp:home' %}#type={{p.ptype}}">{{p.get_ptype_display}}</a>{% endif %}
     {% if admin_change_url %}
       <span class="sep">|</span> <a href="{{admin_change_url}}" target="_blank" class="admin-flag">edit</a>
     {% endif %}

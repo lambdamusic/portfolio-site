@@ -18,6 +18,8 @@ from urllib.parse import unquote
 from django.conf import settings
 from django.templatetags.static import static
 
+from researchapp.templatetags.extrafilters import CATEGORY_LABELS
+
 
 PERSON_ID = settings.SITE_URL + "/#person"
 WEBSITE_ID = settings.SITE_URL + "/#website"
@@ -262,13 +264,16 @@ def project(p):
 		"author": {"@id": PERSON_ID},
 		"isPartOf": {"@id": WEBSITE_ID},
 		"image": project_image(p),
-		"keywords": [t.name for t in p.tags.all()],
+		# the topics and type the projects page shows (#18)
+		"keywords": [CATEGORY_LABELS.get(c.name, c.name) for c in p.categories.all()]
+			+ ([p.get_ptype_display()] if p.ptype else []),
 	}
 	if p.datefrom:
 		node["dateCreated"] = p.datefrom.isoformat()
 	if repos:
 		node["codeRepository"] = repos[0]
-		languages = [LANGUAGE_TAGS[t] for t in node["keywords"] if t in LANGUAGE_TAGS]
+		# python/lisp: kept as tags for this alone, no longer shown on the page
+		languages = [LANGUAGE_TAGS[t.name] for t in p.tags.all() if t.name in LANGUAGE_TAGS]
 		if languages:
 			node["programmingLanguage"] = languages
 	return node

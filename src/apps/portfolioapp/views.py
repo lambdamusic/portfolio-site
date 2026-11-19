@@ -4,8 +4,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils.http import urlquote
 from django.http import HttpResponse, HttpResponseNotFound
-from django.db.models import Q, Count
+from django.db.models import Q, Count, Case, When, Value, IntegerField
+from django.db.models.functions import ExtractYear
 
+import datetime
+from collections import Counter
 import json
 import re
 import os
@@ -35,6 +38,41 @@ APP = "portfolioapp"
 # ===========
 
 
+# the blog's five topic categories, in the order the Words filter shows them
+PROJECT_TOPICS = ["knowledge-engineering", "research-analytics", "data-science", "digital-humanities", "computermusic"]
+
+
+def by_last_active(projects):
+	"""
+	Projects grouped by the year they ended, most recent first, with active ones
+	(`isactive`, or no end date) counting as ending this year; within a year,
+	newest start first (#34). So a project that ran in 2026 comes before one
+	running since 2022, and long-running active work (Ontospy, since 2014) sits
+	above everything that ended before this year: by start date alone it came
+	25th of 41.
+	"""
+	this_year = datetime.date.today().year
+	end_year = Case(When(Q(isactive=True) | Q(dateto__isnull=True), then=Value(this_year)),
+		default=ExtractYear("dateto"), output_field=IntegerField())
+	return projects.annotate(_end_year=end_year).order_by("-_end_year", "-datefrom")
+
+
+def project_filters(projects):
+	"""
+	The Topic and Type rows above the projects grid (#18): each value with the
+	number of projects carrying it. The filtering itself happens in the browser
+	(static/js/projects-filter.js), so wget mirrors a single page, not one per
+	combination of topic and type.
+	"""
+	topics = Counter(c.name for p in projects for c in p.categories.all())
+	types = Counter(p.ptype for p in projects)
+	return {
+		'project_topics': [(slug, topics[slug]) for slug in PROJECT_TOPICS if topics[slug]],
+		'project_types': sorted([(key, label, types[key]) for key, label in Project.PTYPES if types[key]],
+			key=lambda t: t[1]),  # alphabetical by label
+	}
+
+
 def home(request):
 	"""
 	the homepage is the projects grid, served at / (not redirected) so the
@@ -55,7 +93,7 @@ def frontpage(request):
 	pubs = Publication.objects.exclude(review=True)
 	# the pieces: blog posts with a `video:` line, as on the Sounds page
 	sounds = pubs.filter(pubtype__pk=13).exclude(video="").order_by("-pubdate")
-	projects = Project.objects.exclude(review=True).order_by("-datefrom")
+	projects = by_last_active(Project.objects.exclude(review=True))
 	context = {
 		'latest_words': pubs.exclude(pubtype=talks).order_by('-pubdate')[:6],
 		'latest_talks': pubs.filter(isspeaking=True).order_by('-pubdate')[:4],
@@ -171,30 +209,20 @@ def projects(request, namedetail=""):
 		# PROJECTS LIST PAGE
 
 		_format = request.GET.get('format', 'html')
-		_active_tag = request.GET.get('k', 'all')
-		# print active_tag
 
 		if _format == 'txt':
-			tags = []
 			projects = Project.objects.all()
 			templatee = 'projects.txt'
-
 		else:
-			tags = Project.all_used_tags()
-			if _active_tag not in tags:
-				_active_tag = "all"
-				projects = Project.objects.all().order_by("-datefrom")
-			else:
-				projects = Project.objects.filter(tags__name=_active_tag).order_by("-datefrom")
+			projects = by_last_active(Project.objects.all()).prefetch_related('categories')
 			templatee = 'projects.html'
-
 
 		context = {
 			'projects': projects,
-			'tags': tags,
-			'active_tag': _active_tag,
 			'canonical_path': '/',  # / and /projects/ are the same page
 		}
+		if _format != 'txt':
+			context.update(project_filters(projects))
 		# the grid is the homepage (canonical /): declare the site and its author
 		context.update(seo.seo_context(nodes=[seo.website(), seo.person(full=True)], og_title="Michele Pasin"))
 
@@ -272,9 +300,11 @@ def project_page_context(return_item):
 
 	writing = Publication.objects.filter(project=return_item).exclude(review=True).order_by('-pubdate')
 
+	# neighbours: most topics in common, then the same type, then most recent
 	others = Project.objects.exclude(pk=return_item.pk)
-	related = list(others.filter(tags__in=return_item.tags.all())
-		.annotate(shared=Count('tags')).order_by('-shared', '-datefrom')[:4])
+	same_type = Case(When(ptype=return_item.ptype, then=Value(0)), default=Value(1), output_field=IntegerField())
+	related = list(others.filter(categories__in=return_item.categories.all())
+		.annotate(shared=Count('categories'), _type=same_type).order_by('-shared', '_type', '-datefrom')[:4])
 	if len(related) < 4:
 		taken = [p.pk for p in related]
 		related += list(others.exclude(pk__in=taken).order_by('-datefrom')[:4 - len(related)])
