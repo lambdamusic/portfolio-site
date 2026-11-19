@@ -12,8 +12,9 @@ import myutils.modelextra.myfields as myfields
 
 
 def meta_description(text, fallback=""):
-    """Plain-text meta description: Markdown/HTML stripped, cut at ~155 chars on
-    a word boundary. Returns `fallback` when nothing is left."""
+    """Plain-text meta description: Markdown/HTML stripped, cut at ~155 chars at
+    the end of a sentence if one ends after 100 chars, else on a word boundary.
+    Returns `fallback` when nothing is left."""
     text = str(text or "")
     text = re.sub(r"```.*?```", "", text, flags=re.S)  # fenced code
     text = re.sub(r"!\[[^\]]*\]\([^)]*\)", "", text)  # images
@@ -24,6 +25,10 @@ def meta_description(text, fallback=""):
     if not text:
         return str(fallback or "")
     if len(text) > 155:
+        # a whole sentence reads better than one cut off with "…"
+        ends = [m.end() for m in re.finditer(r"[.!?](?=\s)", text[:156]) if m.end() >= 100]
+        if ends:
+            return text[:ends[-1]]
         text = text[:155].rsplit(" ", 1)[0].rstrip(",;:.-") + "…"
     return text
 
