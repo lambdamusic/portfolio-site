@@ -3,18 +3,30 @@
 
 SECONDS=0
 
+# port of the local Django server; override with e.g. PORT=8011 tools/site-dump
+PORT="${PORT:-8000}"
+HOST="http://127.0.0.1:$PORT"
+
 echo "================="
 echo "PREREQUISITE"
-echo "Ensure site is running on 127.0.0.1:8000..."
+echo "Ensure site is running on $HOST..."
 echo "================="
 
 
-if lsof -Pi :8000 -sTCP:LISTEN -t >/dev/null ; then
+if lsof -Pi :$PORT -sTCP:LISTEN -t >/dev/null ; then
     echo ">>>>>>> DJANGO is RUNNING! "
     echo "================="
 else
     echo "********* Django not running **********"
     echo ".. Exiting process. Please run the django server first."
+    exit 1
+fi
+
+# another project's server on the same port would get mirrored over docs/
+# (2026-11-19: extempore's docs server was on 8000; the build checks caught it)
+if ! curl -s "$HOST/" | grep -q "<title>Michele Pasin" ; then
+    echo "********* $HOST is not serving michelepasin.org **********"
+    echo ".. Exiting process. Is another project's server on port $PORT?"
     exit 1
 fi
 
@@ -155,10 +167,10 @@ echo "+++++++++++++++++"
 # would simply 404 once the previous files are deleted from docs/.
 REDIRECT_PAGES="contact/ sounds/2024-01-many-pianos-2-b-minor sounds/bento-2022-05-06 \
     sounds/rhythmic-cycles-4-21 sounds/strasbourg2011 sounds/xmasclub_goldsmith sounds/atmevent"
-wget  -P $DIR_BUILD -mkEpnp -nH -nc http://127.0.0.1:8000/ \
-    http://127.0.0.1:8000/robots.txt http://127.0.0.1:8000/sitemap.xml http://127.0.0.1:8000/404.html http://127.0.0.1:8000/feed.xml \
-    http://127.0.0.1:8000/blog/ http://127.0.0.1:8000/papers/ http://127.0.0.1:8000/latest/feed/ \
-    $(for p in $REDIRECT_PAGES; do echo "http://127.0.0.1:8000/$p"; done) \
+wget  -P $DIR_BUILD -mkEpnp -nH -nc "$HOST"/ \
+    "$HOST"/robots.txt "$HOST"/sitemap.xml "$HOST"/404.html "$HOST"/feed.xml \
+    "$HOST"/blog/ "$HOST"/papers/ "$HOST"/latest/feed/ \
+    $(for p in $REDIRECT_PAGES; do echo "$HOST/$p"; done) \
     --exclude-domains www.michelepasin.org
 
 #
@@ -305,74 +317,26 @@ PYEOF
 #
 # CHECK THE BUILD
 # Runs before the rsync, so a broken build never reaches docs/ (#25 Phase 4).
-# Fails on: a missing robots.txt, sitemap.xml, 404.html or feed; a page
-# without a canonical; a link or image pointing at the dev server (wget
-# writes those for links it couldn't mirror, e.g. "data.nature.com" with no
-# scheme); an internal link or image that resolves to no file.
+# First the files Google needs, which nothing links to; then tools/check-links
+# (shared with the init-django-static-site skill and wittgensteiniana), which
+# fails on: a page without a canonical on www.michelepasin.org; a link or image
+# pointing at the dev server (wget writes those for links it couldn't mirror,
+# e.g. "data.nature.com" with no scheme); an internal link, image, srcset, CSS
+# url(), meta-refresh target or sitemap <loc> that resolves to no file,
+# absolute links to www.michelepasin.org included.
 #
 echo -e "\nCHECKING THE BUILD.."
 echo "+++++++++++++++++"
-python3 - "$DIR_BUILD" <<'PYEOF' || { echo -e "\nBUILD CHECKS FAILED: docs/ left as it was."; exit 1; }
-import os, re, sys
-from urllib.parse import unquote
-
-BUILD_DIR = sys.argv[1]
-SITE_URL = "https://www.michelepasin.org"
-REQUIRED = ["index.html", "robots.txt", "sitemap.xml", "feed.xml", "404.html"]
-NO_CANONICAL = {"404.html"}  # served at every missing URL, so it has none
-
-problems = {}
-def flag(check, msg):
-    problems.setdefault(check, []).append(msg)
-
-for f in REQUIRED:
-    if not os.path.isfile(os.path.join(BUILD_DIR, f)):
-        flag("missing file", f)
-
-attr = re.compile(r'(?:href|src)="([^"]*)"')
-canonical = re.compile(r'<link rel="canonical" href="([^"]*)"')
-pages = 0
-for root, dirs, files in os.walk(BUILD_DIR):
-    if root == BUILD_DIR and "media" in dirs:
-        dirs.remove("media")  # hand-built pages under media/static/pages
-    for fn in files:
-        if not fn.endswith(".html"):
-            continue
-        fp = os.path.join(root, fn)
-        rel = os.path.relpath(fp, BUILD_DIR)
-        with open(fp, encoding="utf-8", errors="ignore") as f:
-            html = f.read()
-        if "<html" not in html[:2000]:
-            continue  # a feed or a ?format=bibtex export wget saved as .html
-        pages += 1
-        if rel not in NO_CANONICAL:
-            m = canonical.search(html)
-            if not m:
-                flag("no canonical", rel)
-            elif not m.group(1).startswith(SITE_URL + "/"):
-                flag("bad canonical", f"{rel}: {m.group(1)}")
-        for ref in attr.findall(html):
-            if "127.0.0.1:8000" in ref or "localhost:8000" in ref:
-                flag("dev server link", f"{rel}: {ref}")
-                continue
-            if not ref or rel in NO_CANONICAL or re.match(r"[a-zA-Z][a-zA-Z0-9+.-]*:|//|#", ref):
-                continue
-            path = unquote(ref.split("#", 1)[0].replace("&amp;", "&"))
-            target = os.path.normpath(os.path.join(root, path))
-            if os.path.isdir(target):
-                target = os.path.join(target, "index.html")
-            if not os.path.exists(target):
-                flag("broken internal link", f"{rel}: {ref}")
-
-print(f"Checked {pages} pages.")
-for check, msgs in problems.items():
-    print(f"\n{check}: {len(msgs)}")
-    for m in msgs[:10]:
-        print("  " + m)
-    if len(msgs) > 10:
-        print(f"  ... and {len(msgs) - 10} more")
-sys.exit(1 if problems else 0)
-PYEOF
+for f in index.html robots.txt sitemap.xml feed.xml 404.html; do
+    if [ ! -f "$DIR_BUILD/$f" ]; then
+        echo -e "\nBUILD CHECKS FAILED: $f missing. docs/ left as it was."
+        exit 1
+    fi
+done
+if ! ./tools/check-links --canonical $DIR_BUILD ; then
+    echo -e "\nBUILD CHECKS FAILED: docs/ left as it was."
+    exit 1
+fi
 
 # a log file marking when the dump ran, kept with the backups (in docs/ it
 # was published with the site)
