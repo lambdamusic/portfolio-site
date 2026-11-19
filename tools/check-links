@@ -39,6 +39,9 @@ SKIP_SCHEMES = ("mailto:", "data:", "javascript:", "tel:")
 LOCAL_HOSTS = ("127.0.0.1", "localhost")
 CSS_URL = re.compile(r"""url\(\s*['"]?([^'")]+)['"]?\s*\)""")
 CSS_COMMENT = re.compile(r"/\*.*?\*/", re.S)
+# a data: URI is self-contained; an inline SVG inside one can hold url(#id)
+# references of its own, which aren't links
+CSS_DATA_URI = re.compile(r"""url\(\s*(?:"data:[^"]*"|'data:[^']*'|data:[^)]*)\s*\)""", re.I)
 SITEMAP_LOC = re.compile(r"<loc>([^<]+)</loc>")
 REFRESH_URL = re.compile(r"url\s*=\s*['\"]?([^'\"]+)", re.I)
 CANONICAL = re.compile(r'<link rel="canonical" href="([^"]*)"')
@@ -114,7 +117,7 @@ def links_in(path, text):
         parser.feed(text)
         return parser.links
     if path.endswith(".css"):
-        return CSS_URL.findall(CSS_COMMENT.sub("", text))
+        return CSS_URL.findall(CSS_DATA_URI.sub("", CSS_COMMENT.sub("", text)))
     if path.endswith("sitemap.xml"):
         return SITEMAP_LOC.findall(text)
     return []
