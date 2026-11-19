@@ -8,15 +8,15 @@
      - Helvetica Neue / system sans, black bold headings, #444 body copy
      - bold blue links (#06c) turning red (#f31b1b) on hover, never underlined
      - the "LABEL / descriptor" uppercase section headers
-     - the left rollover drawer with its red "INSIDE" handle
+     - the red of the old drawer handle, now the accent rule across the top
+       (the drawer itself went in the 2026-11 layout, #21; css/layout.css)
      - an asymmetric page: narrow measure, pushed off the left edge
      - no cards, no shadows, no rounded chrome - rules and whitespace only
 
    What is deliberately NOT carried over:
      - the 894px fixed-width, non-responsive shell
      - the `font-size: 62.5%` / em-cascade sizing hack
-     - hover-only navigation (unusable on touch) - the drawer is now
-       click/tap/keyboard operable as well as hover
+     - hover-only navigation (unusable on touch)
 
    This file is loaded AFTER vanilla Bootstrap 3 and intentionally overrides
    large parts of it: Bootstrap is kept for its grid and JS plugins only.
@@ -43,13 +43,8 @@
   --sans: "Helvetica Neue", Helvetica, Arial, "Segoe UI", sans-serif;
   --mono: "SF Mono", "Menlo", "Courier New", Courier, monospace;
 
-  --rail-w:    250px;   /* drawer width */
-  --rail-gap:  265px;   /* content offset - the old theme's margin-left */
   --measure:   46rem;   /* reading column, ~736px */
-  /* wide pages never exceed what is left of the viewport once the rail gap
-     and Bootstrap's -15px row gutter are accounted for, so nothing on the
-     site can produce a horizontal scrollbar */
-  --measure-wide: min(72rem, calc(100vw - var(--rail-gap) - 2.5rem));
+  /* --measure-wide is set on body in css/layout.css, from the sidebar width */
 
   --step: 1.5rem;       /* vertical rhythm unit */
 }
@@ -158,151 +153,12 @@ pre code { background: none; border: 0; padding: 0; }
 
 
 /* --------------------------------------------------------------------------
-   3. Shell: header strip, drawer, content column, footer
+   3. Shell: content column, footer (the sidebar is in css/layout.css)
    -------------------------------------------------------------------------- */
-
-/* --- top strip: site name / tagline / feed ------------------------------- */
-
-.site-head {
-  margin-left: var(--rail-gap);
-  padding: 1.35rem 0 0 0;
-  max-width: var(--measure);
-  font-size: .75rem;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  line-height: 1.5;
-}
-.site-head a.site-name {
-  color: var(--ink);
-  font-weight: 700;
-}
-.site-head a.site-name:hover { color: var(--accent); }
-.site-head .site-tagline {
-  color: var(--muted);
-  font-weight: 400;
-}
-.site-head .site-feed { float: right; }
-.site-head .site-feed a { color: var(--muted); font-weight: 700; }
-.site-head .site-feed a:hover { color: var(--accent); }
-
-
-/* --- left drawer --------------------------------------------------------- */
-
-/* The panel sits fully off-canvas; only the red handle, which is deliberately
-   wider than the panel, pokes into view. Same trick as the original theme's
-   `#sidebar p.menu { left: -20px; width: 250px }` against a 180px sidebar. */
-.site-rail {
-  position: fixed;
-  top: 0;
-  left: calc(var(--rail-w) * -1);
-  width: var(--rail-w);
-  height: 100%;
-  padding: 0 10px 2rem 10px;
-  background: var(--paper);
-  text-align: right;
-  font-size: .8rem;
-  overflow: visible;   /* must not clip the overhanging handle */
-  z-index: 3000;
-  transition: left .18s ease-out;
-}
-.site-rail:hover,
-.site-rail:focus-within,
-.site-rail.is-open { left: 0; }
-
-/* the scrollable part, so a short viewport doesn't lose the lower sections */
-.site-rail .rail-body {
-  max-height: calc(100% - 2.5rem);
-  overflow-y: auto;
-  overflow-x: hidden;
-}
-
-/* the red handle - "INSIDE <-" in the original */
-.site-rail .rail-handle {
-  display: block;
-  width: calc(var(--rail-w) + 100px);
-  margin: 5px 0 0 -10px;
-  padding: 5px 10px;
-  background: var(--accent);
-  color: #fff;
-  font-weight: 700;
-  font-size: .75rem;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  text-align: right;
-  border: 0;
-  cursor: pointer;
-}
-/* once open the handle pulls back to the panel's own width, so it stops
-   short of the content column instead of covering the header */
-.site-rail:hover .rail-handle,
-.site-rail:focus-within .rail-handle,
-.site-rail.is-open .rail-handle { width: calc(var(--rail-w) + 10px); }
-
-.site-rail .rail-handle:hover,
-.site-rail .rail-handle:focus { color: #fff; background: #d81414; }
-.site-rail .rail-handle .rail-arrow { display: inline-block; margin-left: .5rem; }
-
-.site-rail .rail-home {
-  display: block;
-  margin: 1.25rem 0 1.5rem;
-  font-weight: 700;
-}
-
-.site-rail h2 {
-  margin: 1.5rem 0 .4rem;
-  font-size: .8rem;
-  font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-  color: var(--ink);
-}
-
-.site-rail ul {
-  list-style: none;
-  margin: 0 0 .5rem;
-  padding: 0;
-}
-.site-rail li { padding: 2px 0; }
-.site-rail a { font-weight: 700; }
-.site-rail a.is-current {
-  background: var(--accent);
-  color: #fff;
-  padding: 1px 4px;
-}
-
-.site-rail .rail-find { margin-top: 2rem; }
-.site-rail .rail-search {
-  width: 100%;
-  margin-top: .4rem;
-  padding: 3px 5px;
-  border: 1px solid var(--rule);
-  border-radius: 0;
-  background: var(--paper);
-  font-family: var(--sans);
-  font-size: .8rem;
-  color: var(--muted);
-  cursor: pointer;
-  text-align: right;
-}
-.site-rail .rail-search:hover { border-color: var(--accent); color: var(--ink); }
-
-/* dim the page while the drawer is open (touch/click mode only) */
-.rail-scrim {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, .12);
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity .18s ease-out;
-  z-index: 2500;
-}
-.rail-scrim.is-visible { opacity: 1; pointer-events: auto; }
-
 
 /* --- content column ------------------------------------------------------ */
 
 .site-main {
-  margin-left: var(--rail-gap);
   max-width: var(--measure);
   padding: 0 0 calc(var(--step) * 4) 0;
 }
@@ -310,12 +166,11 @@ pre code { background: none; border: 0; padding: 0; }
 /* Pages whose content genuinely needs the room (tile grids, media embeds)
    set `body.is-wide`; header, content and footer widen together so the
    right-hand edge stays a single line down the page. */
-.is-wide .site-head,
 .is-wide .site-main,
 .is-wide .site-foot { max-width: var(--measure-wide); }
 
 /* Bootstrap's .container is centred and width-stepped; inside our offset
-   shell it must be inert so the left rail alignment survives. */
+   shell it must be inert so the column's left edge stays put. */
 .site-main .container,
 .site-main .container-fluid {
   width: auto;
@@ -329,7 +184,6 @@ pre code { background: none; border: 0; padding: 0; }
 /* --- footer -------------------------------------------------------------- */
 
 .site-foot {
-  margin-left: var(--rail-gap);
   max-width: var(--measure);
   padding: var(--step) 0 calc(var(--step) * 3) 0;
   border-top: 1px solid var(--rule);
@@ -921,6 +775,9 @@ a.project-title:hover { color: var(--accent); background: none; }
 .margin50 { margin-top: calc(var(--step) * 2); margin-bottom: calc(var(--step) * 2); }
 
 .paragraph_embed { margin: calc(var(--step) * 2) 0 var(--step); }
+/* video embeds keep their 560px width on desktop but shrink on phones */
+.paragraph_embed iframe[src*="youtube"],
+.paragraph_embed iframe[src*="vimeo"] { display: block; max-width: 100%; height: auto; aspect-ratio: 16 / 9; }
 .code-example { overflow: auto; height: 400px; }
 /* bare URLs: no spaces to break at, so allow breaking anywhere rather than
    let one long link set the width of its column */
@@ -945,45 +802,11 @@ a.ext_link:hover { color: var(--accent); }
 
 /* --------------------------------------------------------------------------
    9. Responsive
-   The old theme had none of this; the offset shell collapses to a single
-   column and the drawer becomes an overlay.
+   The old theme had none of this. The column offsets and the sidebar's
+   narrow-screen top bar are in css/layout.css.
    -------------------------------------------------------------------------- */
 
-@media (max-width: 1180px) {
-  :root { --rail-gap: 120px; }
-  .site-main { padding-right: 1.5rem; }
-}
-
 @media (max-width: 860px) {
-  :root { --rail-gap: 0px; --rail-w: 230px; }
-
-  .site-head,
-  .site-main,
-  .site-foot {
-    margin-left: 0;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-  /* clear the handle, which now sits over the page */
-  .site-head { padding-top: 3.25rem; }
-
-  /* hover-open is wrong on touch: only the explicit toggle opens it */
-  .site-rail,
-  .site-rail:hover,
-  .site-rail:focus-within { left: calc(var(--rail-w) * -1); }
-  .site-rail.is-open { left: 0; }
-
-  .site-rail .rail-handle {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: auto;
-    margin: 0;
-    padding: 6px 12px;
-    text-align: left;
-  }
-  .site-rail.is-open .rail-handle { position: static; width: calc(var(--rail-w) + 20px); text-align: right; }
-
   .ghostdate--xl { font-size: 3rem; }
   .ghostdate--lg { font-size: 2.25rem; }
 
@@ -1008,10 +831,4 @@ a.ext_link:hover { color: var(--accent); }
   body { font-size: .95rem; }
   .articlehead h1 { font-size: 1.6rem; }
   .thumb-div { padding: 0 .5rem var(--step); }
-}
-
-@media print {
-  .site-rail, .rail-scrim, .site-head .site-feed { display: none; }
-  .site-head, .site-main, .site-foot { margin-left: 0; max-width: none; }
-  a { color: #000; }
 }

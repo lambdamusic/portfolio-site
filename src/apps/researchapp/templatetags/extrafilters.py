@@ -199,7 +199,9 @@ def tagsize(num):
 	lheight = 50+num*2
 	if lheight > 190:
 		lheight = 190
-	return "font-size: %spx; line-height: %s%%;" % (size, lheight)
+	# never wider than the screen allows: the biggest tags ("visualization", ~59px)
+	# overflowed a phone's width. 10vw is over 100px on desktop, so no change there.
+	return "font-size: min(%spx, 10vw); line-height: %s%%;" % (size, lheight)
 
 
 
