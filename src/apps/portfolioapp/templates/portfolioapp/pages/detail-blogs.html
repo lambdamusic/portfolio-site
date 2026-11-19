@@ -55,6 +55,11 @@
       {% if tags %}
         <p class="post-tags">{% for t in tags %}<a href="{% url 'portfolioapp:words' %}?tag={{t.name}}&amp;type=all">#{{t.name}}</a> {% endfor %}</p>
       {% endif %}
+      {# the post's project (front matter `project:`), as on paper pages; the project page lists it back #}
+      {% if return_item.project %}
+        <p class="post-rail-label">Project</p>
+        <p class="paper-project"><a href="{{return_item.project.get_absolute_url}}">{{return_item.project.title}}</a></p>
+      {% endif %}
       {% comment %} Related posts live here on wide screens. The contents list
         comes last so it alone can stick while the rest scrolls away. {% endcomment %}
       {% if related_posts %}
