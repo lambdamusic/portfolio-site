@@ -26,8 +26,8 @@
 
     
       
-<meta name="description" content="Ontospy is a lightweight Python library and command line tool for inspecting and visualizing vocabularies encoded using W3C Semantic Web standards, that…">
-<meta property="og:description" content="Ontospy is a lightweight Python library and command line tool for inspecting and visualizing vocabularies encoded using W3C Semantic Web standards, that…">
+<meta name="description" content="Ontospy is a Python library and command-line tool for inspecting and visualizing RDF vocabularies: OWL ontologies, RDFS schemas and SKOS taxonomies.">
+<meta property="og:description" content="Ontospy is a Python library and command-line tool for inspecting and visualizing RDF vocabularies: OWL ontologies, RDFS schemas and SKOS taxonomies.">
 
     
 
@@ -54,7 +54,7 @@
    "mainEntityOfPage": "https://www.michelepasin.org/projects/ontospy/",
    "url": "https://www.michelepasin.org/projects/ontospy/",
    "name": "Ontospy",
-   "description": "Ontospy is a lightweight Python library and command line tool for inspecting and visualizing vocabularies encoded using W3C Semantic Web standards, that…",
+   "description": "Ontospy is a Python library and command-line tool for inspecting and visualizing RDF vocabularies: OWL ontologies, RDFS schemas and SKOS taxonomies.",
    "author": {
     "@id": "https://www.michelepasin.org/#person"
    },
@@ -68,7 +68,7 @@
     "tool"
    ],
    "dateCreated": "2014-09-01",
-   "codeRepository": "https://github.com/lambdamusic/Ontospy",
+   "codeRepository": "https://github.com/lambdamusic/ontospy",
    "programmingLanguage": [
     "Python"
    ]
@@ -274,7 +274,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
       
         <p class="proj-links">
-          <a class="proj-button" href="https://github.com/lambdamusic/Ontospy" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&nearr;</span></a> 
+          <a class="proj-button" href="https://github.com/lambdamusic/ontospy" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&nearr;</span></a> <a class="proj-button" href="https://pypi.org/project/ontospy/" target="_blank" rel="noopener">PyPI <span aria-hidden="true">&nearr;</span></a> <a class="proj-button" href="https://lambdamusic.github.io/Ontospy/" target="_blank" rel="noopener">Docs <span aria-hidden="true">&nearr;</span></a> 
         </p>
       
     </div>
@@ -289,14 +289,48 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
   <div class="proj-body">
 
-    <div class="blogentry"><p>Ontospy is a lightweight Python library and command line tool for inspecting and visualizing vocabularies encoded using W3C Semantic Web standards, that is, RDF or any of its dialects (RDFS, OWL, SKOS).</p>
-<p>The basic workflow is simple: load a graph by instantiating the <code>Ontospy</code> class with a file containing RDFS, OWL or SKOS definitions. You get back a object that lets you interrogate the ontology. That's all!</p>
-<p>The same functionalities are accessible also via a command line application. This is an interactive environment (like a REPL) that allows to load ontologies from a local repository, interrogate them and cache them so that they can be quickly reloaded for inspection later on.</p>
+    <div class="blogentry"><p>Ontospy is a Python library and command-line tool for inspecting and visualizing RDF vocabularies: OWL ontologies, RDFS schemas and SKOS taxonomies.</p>
+<p>Point it at a file, a URL or a SPARQL endpoint and you get back the classes, properties, SKOS concepts and SHACL shapes the model defines, with their hierarchies, ready to explore from Python or the terminal. It can also generate HTML documentation for an ontology, pretty much out of the box.</p>
+<h2>Install</h2>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>ontospy
+</code></pre></div>
+
+<p>Ontospy needs Python 3.10 or later. The documentation generator is included by default since version 2.0.</p>
+<h2>A quick example</h2>
+<p>Load the <a href="http://xmlns.com/foaf/spec/">FOAF</a> vocabulary and look around:</p>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">ontospy</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">model</span> <span class="o">=</span> <span class="n">ontospy</span><span class="o">.</span><span class="n">Ontospy</span><span class="p">(</span><span class="s2">&quot;http://xmlns.com/foaf/0.1/&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">all_classes</span><span class="p">),</span> <span class="nb">len</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">all_properties</span><span class="p">)</span>
+<span class="p">(</span><span class="mi">15</span><span class="p">,</span> <span class="mi">68</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">model</span><span class="o">.</span><span class="n">printClassTree</span><span class="p">()</span>
+<span class="n">foaf</span><span class="p">:</span><span class="n">Agent</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Group</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Organization</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Person</span>
+<span class="n">foaf</span><span class="p">:</span><span class="n">Document</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">Image</span>
+<span class="o">----</span><span class="n">foaf</span><span class="p">:</span><span class="n">PersonalProfileDocument</span>
+<span class="o">...</span>
+</code></pre></div>
+
+<h2>From the command line</h2>
+<p>Installing Ontospy also installs the <code>ontospy</code> command:</p>
+<ul>
+<li><code>ontospy scan &lt;source&gt;</code> prints a report of the ontologies, classes and properties in an RDF file, URL or SPARQL endpoint.</li>
+<li><code>ontospy gendocs &lt;source&gt;</code> generates browsable HTML or Markdown documentation.</li>
+<li><code>ontospy shell</code> opens an interactive environment (like a REPL) for loading ontologies from a local library, interrogating them and caching them for quick reloading.</li>
+<li><code>ontospy lib</code> manages that local library, and <code>ontospy ser</code> converts an RDF graph to another serialization.</li>
+</ul>
 <h2>Generating ontology documentation</h2>
-<p>Ontospy can be used to generate HTML documentation for an ontology pretty much out-of-the-box. </p>
-<p>See the website <a href="https://lambdamusic.github.io/ontospy-examples/index.html">Examples of ontology documentation generated via Ontospy</a>, or jump straight to the sample <a href="https://lambdamusic.github.io/ontospy-examples/cidoccrm_ecrm-2022-11owlxml/index.html">CIDOC-CRM</a> or <a href="https://lambdamusic.github.io/ontospy-examples/foafrdf/index.html">FOAF</a> documentation pages.</p>
-<h3>Note</h3>
-<p>Originally this was developed as a way to familiarize with Python's <a href="http://www.rdflib.net/">RDFLib</a> library. The blog post <a href="https://www.michelepasin.org/blog/2011/07/18/inspecting-an-ontology-with-rdflib/">Inspecting an ontology with rdflib</a> contains some early reflections about that experience.</p>
+<p>See <a href="https://lambdamusic.github.io/ontospy-examples/index.html">Examples of ontology documentation generated via Ontospy</a>, or jump straight to the sample <a href="https://lambdamusic.github.io/ontospy-examples/cidoccrm_ecrm-2022-11owlxml/index.html">CIDOC-CRM</a> or <a href="https://lambdamusic.github.io/ontospy-examples/foafrdf/index.html">FOAF</a> documentation pages.</p>
+<h2>Status</h2>
+<p>I started Ontospy in 2014, originally as a way to get familiar with Python's <a href="https://rdflib.readthedocs.io/">RDFLib</a> library: the post <a href="https://www.michelepasin.org/blog/2011/07/18/inspecting-an-ontology-with-rdflib/">Inspecting an ontology with RDFLib</a> has some early reflections on that. It's still maintained, mostly with bug fixes and dependency updates, and pull requests are welcome. The posts below follow its releases.</p>
+<h2>Links</h2>
+<ul>
+<li><a href="https://lambdamusic.github.io/Ontospy/">Documentation</a> and <a href="https://lambdamusic.github.io/Ontospy/pages/changelog.html">changelog</a></li>
+<li><a href="https://pypi.org/project/ontospy/">Ontospy on PyPI</a></li>
+<li><a href="https://github.com/lambdamusic/ontospy">Source code on GitHub</a></li>
+</ul>
 <p><strong>Technology</strong></p>
 <ul>
 <li>Python</li>

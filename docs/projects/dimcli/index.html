@@ -26,8 +26,8 @@
 
     
       
-<meta name="description" content="DimCLI is an open-source Python client for accessing the Dimensions DSL, a domain specific language for research analysis and scientometrics studies.">
-<meta property="og:description" content="DimCLI is an open-source Python client for accessing the Dimensions DSL, a domain specific language for research analysis and scientometrics studies.">
+<meta name="description" content="DimCLI is an open-source Python client and command-line tool for the Dimensions API: it handles authentication, runs DSL queries and returns dataframes.">
+<meta property="og:description" content="DimCLI is an open-source Python client and command-line tool for the Dimensions API: it handles authentication, runs DSL queries and returns dataframes.">
 
     
 
@@ -54,7 +54,7 @@
    "mainEntityOfPage": "https://www.michelepasin.org/projects/dimcli/",
    "url": "https://www.michelepasin.org/projects/dimcli/",
    "name": "DimCLI",
-   "description": "DimCLI is an open-source Python client for accessing the Dimensions DSL, a domain specific language for research analysis and scientometrics studies.",
+   "description": "DimCLI is an open-source Python client and command-line tool for the Dimensions API: it handles authentication, runs DSL queries and returns dataframes.",
    "author": {
     "@id": "https://www.michelepasin.org/#person"
    },
@@ -68,7 +68,7 @@
     "tool"
    ],
    "dateCreated": "2019-03-24",
-   "codeRepository": "https://github.com/lambdamusic/dimcli",
+   "codeRepository": "https://github.com/digital-science/dimcli",
    "programmingLanguage": [
     "Python"
    ]
@@ -274,7 +274,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
       
         <p class="proj-links">
-          <a class="proj-button" href="https://github.com/lambdamusic/dimcli" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&nearr;</span></a> 
+          <a class="proj-button" href="https://github.com/digital-science/dimcli" target="_blank" rel="noopener">GitHub <span aria-hidden="true">&nearr;</span></a> <a class="proj-button" href="https://pypi.org/project/dimcli/" target="_blank" rel="noopener">PyPI <span aria-hidden="true">&nearr;</span></a> <a class="proj-button" href="https://digital-science.github.io/dimcli/" target="_blank" rel="noopener">Docs <span aria-hidden="true">&nearr;</span></a> 
         </p>
       
     </div>
@@ -289,15 +289,36 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 
   <div class="proj-body">
 
-    <div class="blogentry"><p><a href="https://digital-science.github.io/dimcli/getting-started.html">DimCLI</a> is an open-source Python client for accessing the Dimensions DSL, a domain specific language for research analysis and scientometrics studies. DimCLI makes it easier to learn the language, authenticate against the API, send queries to it and process the JSON data being returned.</p>
-<p>The <a href="https://www.dimensions.ai/products/all-products/dimensions-api/">Dimensions DSL API</a> provides full-text search and data retrieval for use in complex analyses and visualizations. The API uses an intuitive query language specifically developed for Dimensions data. You can retrieve, aggregate, and sort data from highly specific requests in a single API call. Additional services like text categorization are also available, allowing you to efficiently classify and interpret large datasets based on your unique requirements.  </p>
-<p><strong>DimCLI Main features:</strong></p>
+    <div class="blogentry"><p>DimCLI is an open-source Python client and command-line tool for the Dimensions API: it handles authentication, runs DSL queries and returns dataframes.</p>
+<p>The <a href="https://www.dimensions.ai/products/all-products/dimensions-api/">Dimensions API</a> gives access to publications, grants, patents, clinical trials and policy documents through the Dimensions Search Language (DSL), a domain-specific query language for research analytics and scientometrics. DimCLI makes it easier to learn the language, send queries and work with the JSON that comes back.</p>
+<h2>Install</h2>
+<div class="codehilite"><pre><span></span><code>$<span class="w"> </span>pip<span class="w"> </span>install<span class="w"> </span>dimcli
+</code></pre></div>
+
+<p>You'll need a Dimensions API key: the <a href="https://digital-science.github.io/dimcli/getting-started.html">Getting started</a> tutorial explains how to set it up.</p>
+<h2>A quick example</h2>
+<div class="codehilite"><pre><span></span><code><span class="o">&gt;&gt;&gt;</span> <span class="kn">import</span> <span class="nn">dimcli</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">dimcli</span><span class="o">.</span><span class="n">login</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="s2">&quot;your-api-key&quot;</span><span class="p">,</span> <span class="n">endpoint</span><span class="o">=</span><span class="s2">&quot;https://app.dimensions.ai/api/dsl/v2&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">dsl</span> <span class="o">=</span> <span class="n">dimcli</span><span class="o">.</span><span class="n">Dsl</span><span class="p">()</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">res</span> <span class="o">=</span> <span class="n">dsl</span><span class="o">.</span><span class="n">query</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;search grants for &quot;malaria&quot; return researchers&quot;&quot;&quot;</span><span class="p">)</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">res</span><span class="o">.</span><span class="n">as_dataframe</span><span class="p">()</span><span class="o">.</span><span class="n">head</span><span class="p">()</span>
+</code></pre></div>
+
+<h2>Main features</h2>
 <ul>
-<li>Autocomplete and support for writing <a href="https://docs.dimensions.ai/dsl/">Dimensions Search Language (DSL)</a> queries</li>
-<li>Python module and interactive REPL-style interface: calling <code>dimcli</code> from the terminal opens an interactive query console with syntax autocomplete, persistent history across sessions, pretty-printing and preview of JSON results, export to HTML and CSV, and more.</li>
-<li>Handles authentication locally and globally on a single machine</li>
-<li>Jupyter notebooks integration: Dimcli includes a number of features that simplify working with the Dimensions API within Jupyter notebooks e.g. maing commands, custom renderers etc..</li>
-<li>Functionalities to export API results into dataframes and other data formats</li>
+<li><strong>Interactive console.</strong> Running <code>dimcli</code> in a terminal opens a query console with DSL autocomplete, history across sessions, pretty-printed and previewed JSON results, and export to HTML and CSV.</li>
+<li><strong>Authentication</strong> handled once, locally or globally on a machine.</li>
+<li><strong>Jupyter integration</strong>: magic commands for querying the API, and custom renderers for the results.</li>
+<li><strong>Data wrangling</strong>: results come back as Python objects that convert to pandas dataframes and other formats, and long queries are paged through automatically.</li>
+<li><strong>Learning the DSL</strong>: autocomplete and in-console help for the <a href="https://docs.dimensions.ai/dsl/">Dimensions Search Language</a>.</li>
+</ul>
+<h2>Background</h2>
+<p>I created DimCLI in 2019 while working on the Dimensions API at Digital Science, to make the DSL easier to learn and to use from notebooks. It now lives in the Digital Science GitHub organisation. The post <a href="https://www.michelepasin.org/blog/2019/05/24/introducing-dimcli-a-python-cli-for-dimensions-api/">Introducing DimCli</a> tells the story of the first release.</p>
+<h2>Links</h2>
+<ul>
+<li><a href="https://digital-science.github.io/dimcli/">Documentation</a> and the <a href="https://digital-science.github.io/dimcli/getting-started.html">Getting started tutorial</a></li>
+<li><a href="https://pypi.org/project/dimcli/">DimCLI on PyPI</a></li>
+<li><a href="https://github.com/digital-science/dimcli">Source code on GitHub</a></li>
 </ul>
 <p><strong>Technology</strong></p>
 <ul>
