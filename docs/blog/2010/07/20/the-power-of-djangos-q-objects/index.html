@@ -26,8 +26,8 @@
 
     
   
-<meta name="description" content="I&#39;ve been spending some time today doing research on how to best use django&#39;s Q objects. Then I did a bit of testing myself and decided to put this whole…">
-<meta property="og:description" content="I&#39;ve been spending some time today doing research on how to best use django&#39;s Q objects. Then I did a bit of testing myself and decided to put this whole…">
+<meta name="description" content="Django Q objects with examples: combining queryset filters with OR (|), AND (&amp;) and NOT (~Q), nesting them, and building queries dynamically.">
+<meta property="og:description" content="Django Q objects with examples: combining queryset filters with OR (|), AND (&amp;) and NOT (~Q), nesting them, and building queries dynamically.">
 
 
 
@@ -41,7 +41,7 @@
     
     <meta property="og:site_name" content="Michele Pasin">
     <meta property="og:type" content="article">
-    <meta property="og:title" content="The power of django&#39;s Q objects">
+    <meta property="og:title" content="Django Q objects: complex queries with OR, AND and NOT">
     <meta property="og:url" content="https://www.michelepasin.org/blog/2010/07/20/the-power-of-djangos-q-objects/">
     <meta property="og:image" content="https://www.michelepasin.org/media/static/legacy/me_cartoon.jpg">
     <meta name="twitter:card" content="summary">
@@ -53,8 +53,8 @@
    "@id": "https://www.michelepasin.org/blog/2010/07/20/the-power-of-djangos-q-objects/#post",
    "mainEntityOfPage": "https://www.michelepasin.org/blog/2010/07/20/the-power-of-djangos-q-objects/",
    "url": "https://www.michelepasin.org/blog/2010/07/20/the-power-of-djangos-q-objects/",
-   "headline": "The power of django's Q objects",
-   "description": "I've been spending some time today doing research on how to best use django's Q objects. Then I did a bit of testing myself and decided to put this whole…",
+   "headline": "Django Q objects: complex queries with OR, AND and NOT",
+   "description": "Django Q objects with examples: combining queryset filters with OR (|), AND (&) and NOT (~Q), nesting them, and building queries dynamically.",
    "datePublished": "2010-07-20",
    "inLanguage": "en",
    "author": {
@@ -95,7 +95,7 @@
     {
      "@type": "ListItem",
      "position": 3,
-     "name": "The power of django's Q objects"
+     "name": "Django Q objects: complex queries with OR, AND and NOT"
     }
    ]
   }
@@ -107,7 +107,8 @@
     <link rel="alternate" type="application/rss+xml" title="michelepasin.org" href="../../../../../feed.xml">
 
     
-  <title>The power of django&#39;s Q objects | Blogs | Michele Pasin</title>
+  
+  <title>Django Q objects: complex queries with OR, AND and NOT | Michele Pasin</title>
 
 
     
@@ -252,7 +253,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
   </p>
 
   <header class="post-head">
-    <h1>The power of django&#39;s Q objects</h1>
+    <h1>Django Q objects: complex queries with OR, AND and NOT</h1>
     
   </header>
 
@@ -262,7 +263,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
       <p class="post-date">
         <time datetime="2010-07-20"><b>20 Jul</b> 2010</time>
       </p>
-      <p class="post-side-meta">5 min read</p>
+      <p class="post-side-meta">By <a href="../../../../../about/" rel="author">Michele Pasin</a> &middot; 5 min read</p>
       
         <p class="post-tags"><a href="../../../../../words/index.html%3Ftag=django&amp;type=all.html">#django</a> <a href="../../../../../words/index.html%3Ftag=search&amp;type=all.html">#search</a> </p>
       
@@ -341,6 +342,15 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
 <span class="c1"># two constraints linked by OR - that&#39;s it!</span>
 <span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">)</span> <span class="o">|</span> <span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;meal&#39;</span><span class="p">))</span>
 <span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="n">shall</span> <span class="n">I</span> <span class="n">make</span> <span class="o">**</span><span class="k">for</span><span class="o">**</span> <span class="n">dinner</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="o">**</span><span class="ow">is</span><span class="o">**</span> <span class="n">your</span> <span class="n">favourite</span> <span class="n">meal</span><span class="err">?</span><span class="o">&gt;</span><span class="p">]</span>
+</code></pre></div>
+
+<p>A <code>~</code> in front of a Q object negates it (NOT), and it combines with the other operators like any other Q:</p>
+<div class="codehilite"><pre><span></span><code><span class="c1"># NOT: every poll whose question doesn&#39;t mention dinner</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">~</span><span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">))</span>
+<span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">what</span> <span class="ow">is</span> <span class="n">your</span> <span class="n">favourite</span> <span class="n">meal</span><span class="err">?</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">how</span> <span class="n">do</span> <span class="n">you</span> <span class="n">make</span> <span class="n">omelettes</span><span class="err">?</span><span class="o">&gt;</span><span class="p">]</span>
+<span class="c1"># NOT combined with AND: today&#39;s polls, except the dinner one</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="n">Poll</span><span class="o">.</span><span class="n">objects</span><span class="o">.</span><span class="n">filter</span><span class="p">(</span><span class="o">~</span><span class="n">Q</span><span class="p">(</span><span class="n">question__contains</span><span class="o">=</span><span class="s1">&#39;dinner&#39;</span><span class="p">)</span> <span class="o">&amp;</span> <span class="n">Q</span><span class="p">(</span><span class="n">pub_date</span><span class="o">=</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()))</span>
+<span class="p">[</span><span class="o">&lt;</span><span class="n">Poll</span><span class="p">:</span> <span class="n">how</span> <span class="n">do</span> <span class="n">you</span> <span class="n">make</span> <span class="n">omelettes</span><span class="err">?</span><span class="o">&gt;</span><span class="p">]</span>
 </code></pre></div>
 
 <p>Note that if you don't specify any logical connector the Q sequence is implicitly interpreted as AND:</p>
@@ -454,7 +464,7 @@ span.linenos.special { color: #000000; background-color: #ffffc0; padding-left: 
       
       <details class="post-cite" id="cite">
         <summary>Cite this post</summary>
-        <p>Michele Pasin. <a href="./">The power of django&#39;s Q objects</a>.
+        <p>Michele Pasin. <a href="./">Django Q objects: complex queries with OR, AND and NOT</a>.
           Blog post on www.michelepasin.org, 20 July 2010.</p>
       </details>
 
