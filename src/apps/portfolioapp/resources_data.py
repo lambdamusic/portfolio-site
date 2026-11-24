@@ -157,3 +157,12 @@ DECKS = [
 		"Digital Humanities 2009, Maryland", "2009-06-dh09-conceptual-foundations-data-integration",
 		pub=1, slideshare="https://www.slideshare.net/mpasin/digital-humanities-2009-laying-out-the-conceptual-foundations-for-data-integration-in-the-humanities"),
 ]
+
+
+def slides_by_pub():
+	"""Publication id -> deck PDF URL: each deck's `pub`, and the talks in its `also`."""
+	slides = {}
+	for d in DECKS:
+		for pub_id in ((d["pub"],) if d["pub"] else ()) + tuple(d["also"]):
+			slides[pub_id] = d["pdf"]
+	return slides

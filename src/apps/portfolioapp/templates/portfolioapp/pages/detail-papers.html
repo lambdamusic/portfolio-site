@@ -61,11 +61,13 @@
         <p class="paper-project"><a href="{{p.project.get_absolute_url}}">{{p.project.title}}</a></p>
       {% endif %}
 
-      {% if p.pdf_url or paper_links %}
+      {% if p.pdf_url or slides_pdf or paper_links or event_url %}
         <p class="post-rail-label">Read</p>
         <ul class="paper-links">
           {% if p.pdf_url %}<li><a href="{{p.pdf_url}}">PDF</a></li>{% endif %}
+          {% if slides_pdf %}<li><a href="{{slides_pdf}}">Slides (PDF)</a></li>{% endif %}
           {% for url, label in paper_links %}<li><a href="{{url}}">{{label}} &nearr;</a></li>{% endfor %}
+          {% if event_url %}<li><a href="{{event_url}}">Event site &nearr;</a></li>{% endif %}
         </ul>
       {% endif %}
 
@@ -107,6 +109,11 @@
       {% if p.pdf_url %}
         <iframe class="pdfframe" src="{{p.pdf_url}}"
                 title="Article: {{p.title}}"
+                width="100%" height="800" allowfullscreen="true"></iframe>
+      {% elif slides_embed %}
+        {# a talk with no PDF of its own shows its slides (Resources page, #22) #}
+        <iframe class="pdfframe" src="{{slides_embed}}"
+                title="Slides: {{p.title}}"
                 width="100%" height="800" allowfullscreen="true"></iframe>
       {% endif %}
 

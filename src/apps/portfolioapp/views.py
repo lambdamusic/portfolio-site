@@ -28,7 +28,7 @@ from researchapp.pub_locations import coords_for
 
 from researchapp.management.commands.do_blogs_reindex import parse_markdown
 from . import seo
-from .resources_data import GUIDES, DECKS, DRAFT
+from .resources_data import GUIDES, DECKS, DRAFT, slides_by_pub
 from .views_seo import section_redirect
 
 APP = "portfolioapp"
@@ -171,10 +171,7 @@ def events(request):
 	return_items = Publication.objects.filter(
 		isspeaking=True).order_by('-pubdate')
 
-	slides = {}
-	for d in DECKS:
-		for pub_id in ((d["pub"],) if d["pub"] else ()) + tuple(d["also"]):
-			slides[pub_id] = d["pdf"]
+	slides = slides_by_pub()
 	for pub in return_items:
 		pub.slides_pdf = slides.get(pub.id, "")
 

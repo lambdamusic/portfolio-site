@@ -27,6 +27,7 @@ from researchapp.pub_locations import coords_for
 from researchapp.management.commands.do_blogs_reindex import parse_markdown, parse_description
 from myutils.modelextra.mymodels import meta_description
 from . import seo
+from .resources_data import slides_by_pub
 from researchapp.category_vocabulary import CATEGORIES
 from researchapp.templatetags.extrafilters import CATEGORY_LABELS
 
@@ -211,6 +212,11 @@ def paper_margin_context(return_item, limit=5):
 	The paper page's right margin: links labelled by site, and related papers -
 	papers only (no blog posts or talks), matched on whole title words, ranked
 	by how many words they share, newest first on a tie.
+
+	Also the event's own site (`conferenceurl`) unless a link already points
+	there, and the talk's slides from the Resources page unless the record's
+	PDF is that file (then there's nothing to add) or one of its links is (then
+	only the embed is added, not a second link).
 	"""
 	from urllib.parse import urlparse
 
@@ -227,8 +233,19 @@ def paper_margin_context(return_item, limit=5):
 	scored = [(len(words & title_words(p.title)), p) for p in papers]
 	scored = sorted([x for x in scored if x[0]], key=lambda x: (-x[0], -x[1].pubdate.toordinal()))
 
+	event_url = return_item.conferenceurl or ""
+	if event_url in [url for url, _ in links]:
+		event_url = ""
+	slides_embed = slides_by_pub().get(return_item.pk, "")
+	if slides_embed == return_item.pdf_url:
+		slides_embed = ""
+	slides_pdf = "" if slides_embed in [url for url, _ in links] else slides_embed
+
 	return {
 		'paper_links': links,
+		'event_url': event_url,
+		'slides_pdf': slides_pdf,
+		'slides_embed': slides_embed,
 		'related_papers': [p for _, p in scored[:limit]],
 	}
 
