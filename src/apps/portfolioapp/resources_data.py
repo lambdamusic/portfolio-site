@@ -3,11 +3,11 @@ What the Resources page lists (#22, prototype). Hand-kept for now: guides are
 the interactive one-pagers in static/pages/, decks are talk slides.
 
 A deck's `pdf` is a file on the support site, by default
-public_slides/<thumb>.pdf (copied there 2026-11-24 from the researcher
-backlog, plans/022-resources-page/decks/). Set `hosted=False` on a new deck
-until its PDF is uploaded; with DRAFT on, the page marks it.
-The decks that were on SlideShare were downloaded from there on 2026-11-24
-(plans/022-resources-page/slideshare/, with the account's inventory CSV).
+public_slides/<thumb>.pdf (support.michelepasin.org repo, docs/public_slides/).
+Set `hosted=False` on a new deck until its PDF is uploaded; with DRAFT on, the
+page marks it. The decks that were on SlideShare were downloaded from there on
+2026-11-24; the account's inventory CSV is in the researcher backlog,
+plans/022-resources-page/slideshare/.
 `pub` is the Publication id the deck belongs to, `post` a blog post that
 presents it. Thumbnails are static/resources/decks/<thumb>.jpg.
 """
