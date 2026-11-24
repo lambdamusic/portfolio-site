@@ -28,6 +28,7 @@ from researchapp.pub_locations import coords_for
 
 from researchapp.management.commands.do_blogs_reindex import parse_markdown
 from . import seo
+from .resources_data import GUIDES, DECKS, DRAFT
 from .views_seo import section_redirect
 
 APP = "portfolioapp"
@@ -416,6 +417,27 @@ def sounds_page(request):
 	}
 	return render(request, APP + '/pages/sounds.html', context)
 
+
+
+def resources(request):
+	"""
+	The Resources page (pages/resources.html, #22 prototype): things a reader
+	can use rather than read. Interactive guides as tiles, then talk slides as
+	PDFs, each linked to its paper page or blog post. The list is in
+	resources_data.py.
+	"""
+	pubs = Publication.objects.in_bulk([d["pub"] for d in DECKS if d["pub"]])
+	decks = []
+	for d in DECKS:
+		pub = pubs.get(d["pub"])
+		decks.append(dict(d, year=d["date"][:4], pub_url=pub.get_absolute_url() if pub else ""))
+	context = {
+		'guides': GUIDES,
+		'decks': decks,
+		'unhosted': sum(1 for d in decks if not d["hosted"]),
+		'draft': DRAFT,
+	}
+	return render(request, APP + '/pages/resources.html', context)
 
 
 # # ===========

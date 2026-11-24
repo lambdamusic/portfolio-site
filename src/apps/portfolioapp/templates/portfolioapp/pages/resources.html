@@ -1,0 +1,70 @@
+{% extends "portfolioapp/components/base.html" %}
+{% load static %}
+
+{% comment %}
+  The Resources page (views.resources, #22 prototype): things a reader can
+  use rather than read. Interactive guides as tiles, then talk slides as PDFs
+  newest first. The list is in resources_data.py.
+  While DRAFT is on (resources_data.py), decks whose PDF is not uploaded yet
+  are marked; turn it off before the page is published.
+{% endcomment %}
+
+{% block metadescription %}
+  {% include "portfolioapp/components/meta-description.html" with desc="Slides from talks on ontologies, linked data and digital humanities, and interactive field guides to books, by Michele Pasin." %}
+{% endblock metadescription %}
+
+{% block og_title %}Resources | Michele Pasin{% endblock og_title %}
+
+{% block pagetitle %}
+  <title>Resources | Michele Pasin</title>
+{% endblock pagetitle %}
+
+{% block bodyclass %}is-wide{% endblock bodyclass %}
+
+
+{% block bodycontent %}
+
+  <h1 class="sectionlabel"><b>Resources</b> <span class="sep">/</span> slides and guides</h1>
+
+  <p class="snd-lede">Things to use rather than read: interactive guides to books I found useful, and
+    the slides from my talks, as PDFs. Each one links to the post or paper that goes with it.
+    The talks themselves are listed on <a href="{% url 'portfolioapp:events' %}">Events</a>.</p>
+
+  {% if draft and unhosted %}
+    <p class="res-draft">Prototype: {{ unhosted }} of {{ decks|length }} PDFs are not uploaded to the support site yet (marked below).</p>
+  {% endif %}
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Interactive guides <span>{{ guides|length }}</span></h2>
+    <div class="snd-grid">
+      {% for g in guides %}
+        <div class="snd-tile">
+          <a class="snd-thumb" href="{{ g.url }}"><img src="{% static g.img %}" alt="" loading="lazy"></a>
+          <a class="snd-title" href="{{ g.url }}">{{ g.title }}</a>
+          <span class="snd-meta">{{ g.meta }} &middot; <a href="{{ g.post }}">the post</a></span>
+        </div>
+      {% endfor %}
+    </div>
+  </section>
+
+  <section class="proj-section">
+    <h2 class="proj-section-title">Slides <span>{{ decks|length }}</span></h2>
+    <div class="snd-grid res-decks">
+      {% for d in decks %}
+          <div class="snd-tile{% if draft and not d.hosted %} res-unhosted{% endif %}">
+            <a class="res-slide" href="{{ d.pdf }}"><img src="{% static 'resources/decks/' %}{{ d.thumb }}.jpg" alt="" loading="lazy"></a>
+            <a class="snd-title" href="{{ d.pdf }}">{{ d.title }}</a>
+            <span class="snd-meta">{{ d.year }} &middot; {{ d.event }}</span>
+            <span class="res-links">
+              <a href="{{ d.pdf }}">PDF</a>
+              {% if d.pub_url %} &middot; <a href="{{ d.pub_url }}">talk page</a>{% endif %}
+              {% if d.post %} &middot; <a href="{{ d.post }}">blog post</a>{% endif %}
+              {% if d.slideshare %} &middot; <a href="{{ d.slideshare }}">SlideShare</a>{% endif %}
+            </span>
+            {% if draft and d.note %}<span class="res-note">{{ d.note }}</span>{% endif %}
+          </div>
+      {% endfor %}
+    </div>
+  </section>
+
+{% endblock bodycontent %}

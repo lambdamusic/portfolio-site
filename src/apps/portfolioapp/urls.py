@@ -39,6 +39,7 @@ urlpatterns = [
     url(r'^sounds/$', views.sounds, name='music'),
     url(r'^sounds/(?P<namedetail>[\w-]+)/$', views.sounds, name='music-detail'),
     url(r'^events/', views.events, name='events'),
+    url(r'^resources/$', views.resources, name='resources'),
     # url(r'^photos/', views.photos, name='photos'),
     url(r'^contact/', views.contact, name='contact'),
     url(r'^about/', views.about, name='about'),
