@@ -9,7 +9,8 @@ page marks it. The decks that were on SlideShare were downloaded from there on
 2026-11-24; the account's inventory CSV is in the researcher backlog,
 plans/022-resources-page/slideshare/.
 `pub` is the Publication id the deck belongs to, `post` a blog post that
-presents it. Thumbnails are static/resources/decks/<thumb>.jpg.
+presents it, `also` the ids of other talks that used the same deck (Events
+links them to it too). Thumbnails are static/resources/decks/<thumb>.jpg.
 """
 
 # Marks the decks not uploaded yet, and the match notes. Off when publishing.
@@ -46,11 +47,12 @@ GUIDES = [
 
 
 def _deck(date, title, event, thumb, pdf=None, hosted=True, pub=None, post=None,
-		slideshare=None, note=""):
+		slideshare=None, note="", also=()):
 	return {
 		"date": date, "title": title, "event": event, "thumb": thumb,
 		"pdf": pdf or SLIDES + thumb + ".pdf", "hosted": hosted,
 		"pub": pub, "post": post, "slideshare": slideshare, "note": note,
+		"also": also,
 	}
 
 
@@ -63,7 +65,7 @@ DECKS = [
 		post="/blog/2026/04/21/funding-flows-global-south-clacso/"),
 	_deck("2025-06", "Performing research analytics at scale using Dimensions and BigQuery",
 		"Invited talk, NSLP 2025 workshop at ESWC, Portorož; also KMI, The Open University, May 2025",
-		"2025-06-eswc-nslp-research-analytics-dimensions-bigquery", pub=541),
+		"2025-06-eswc-nslp-research-analytics-dimensions-bigquery", pub=541, also=(542,)),
 	_deck("2023-07", "Designing great dashboards: tips from data visualization and information architecture",
 		"A slide deck for dashboard developers", "2023-07-designing-great-dashboards",
 		post="/blog/2023/07/06/designing-great-dashboards/",

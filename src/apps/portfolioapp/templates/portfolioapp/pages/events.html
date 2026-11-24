@@ -37,7 +37,7 @@
           <p class="eventtitle"><a href="{{pub.get_absolute_url}}">{{pub.title|capfirst}}</a></p>
 
           <p class="eventwhere">
-            {% if pub.pubplace %}<span class="eventplace">{{pub.pubplace}}</span>{% endif %}{% if pub.conference %} &middot; {{pub.conference}}{% endif %}{% if pub.extrainfo %} &middot; {{pub.extrainfo|safe}}{% endif %}
+            {% if pub.pubplace %}<span class="eventplace">{{pub.pubplace}}</span>{% endif %}{% if pub.conference %} &middot; {{pub.conference}}{% endif %}{% if pub.extrainfo %} &middot; {{pub.extrainfo|safe}}{% endif %}{% if pub.slides_pdf %} &middot; <a href="{{pub.slides_pdf}}" target="_blank">slides (PDF)</a>{% endif %}
             {% if pub.conferenceurl %}<br><a href="{{pub.conferenceurl}}" target="_blank" class="ext_link">{{pub.conferenceurl|truncatechars:60}}</a>{% endif %}
           </p>
 

@@ -163,10 +163,20 @@ def events(request):
 	Unmapped places (a `pubplace` string with no entry in PUB_LOCATIONS)
 	are simply skipped - the talk still lists, it just gets no dot. See
 	researchapp/pub_locations.py, and `tools/geocode-pub-places`.
+
+	A talk with a deck on the Resources page (resources_data.py, matched by
+	`pub`) gets a link to its slides.
 	"""
 
 	return_items = Publication.objects.filter(
 		isspeaking=True).order_by('-pubdate')
+
+	slides = {}
+	for d in DECKS:
+		for pub_id in ((d["pub"],) if d["pub"] else ()) + tuple(d["also"]):
+			slides[pub_id] = d["pdf"]
+	for pub in return_items:
+		pub.slides_pdf = slides.get(pub.id, "")
 
 	map_points = []
 	for i, pub in enumerate(return_items):
