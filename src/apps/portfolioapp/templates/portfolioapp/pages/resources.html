@@ -2,11 +2,9 @@
 {% load static %}
 
 {% comment %}
-  The Resources page (views.resources, #22 prototype): things a reader can
-  use rather than read. Interactive guides as tiles, then talk slides as PDFs
-  newest first. The list is in resources_data.py.
-  While DRAFT is on (resources_data.py), decks whose PDF is not uploaded yet
-  are marked; turn it off before the page is published.
+  The Resources page (views.resources, #22): things a reader can use rather
+  than read. Interactive guides as tiles, then talk slides as PDFs, newest
+  first: the publications with a slides_url, plus resources_data.EXTRA_DECKS.
 {% endcomment %}
 
 {% block metadescription %}
@@ -30,10 +28,6 @@
     the slides from my talks, as PDFs. Each one links to the post or paper that goes with it.
     The talks themselves are listed on <a href="{% url 'portfolioapp:events' %}">Events</a>.</p>
 
-  {% if draft and unhosted %}
-    <p class="res-draft">Prototype: {{ unhosted }} of {{ decks|length }} PDFs are not uploaded to the support site yet (marked below).</p>
-  {% endif %}
-
   <section class="proj-section">
     <h2 class="proj-section-title">Interactive guides <span>{{ guides|length }}</span></h2>
     <div class="snd-grid">
@@ -51,17 +45,16 @@
     <h2 class="proj-section-title">Slides <span>{{ decks|length }}</span></h2>
     <div class="snd-grid res-decks">
       {% for d in decks %}
-          <div class="snd-tile{% if draft and not d.hosted %} res-unhosted{% endif %}">
+          <div class="snd-tile">
             <a class="res-slide" href="{{ d.pdf }}"><img src="{% static 'resources/decks/' %}{{ d.thumb }}.jpg" alt="" loading="lazy"></a>
             <a class="snd-title" href="{{ d.pdf }}">{{ d.title }}</a>
             <span class="snd-meta">{{ d.year }} &middot; {{ d.event }}</span>
             <span class="res-links">
               <a href="{{ d.pdf }}">PDF</a>
-              {% if d.pub_url %} &middot; <a href="{{ d.pub_url }}">talk page</a>{% endif %}
+              {% if d.pub_url %} &middot; <a href="{{ d.pub_url }}">{{ d.pub_label }}</a>{% endif %}
               {% if d.post %} &middot; <a href="{{ d.post }}">blog post</a>{% endif %}
               {% if d.slideshare %} &middot; <a href="{{ d.slideshare }}">SlideShare</a>{% endif %}
             </span>
-            {% if draft and d.note %}<span class="res-note">{{ d.note }}</span>{% endif %}
           </div>
       {% endfor %}
     </div>

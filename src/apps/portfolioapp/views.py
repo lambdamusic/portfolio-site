@@ -28,7 +28,7 @@ from researchapp.pub_locations import coords_for
 
 from researchapp.management.commands.do_blogs_reindex import parse_markdown
 from . import seo
-from .resources_data import GUIDES, DECKS, DRAFT, slides_by_pub
+from .resources_data import GUIDES, EXTRA_DECKS, deck_thumb
 from .views_seo import section_redirect
 
 APP = "portfolioapp"
@@ -164,16 +164,12 @@ def events(request):
 	are simply skipped - the talk still lists, it just gets no dot. See
 	researchapp/pub_locations.py, and `tools/geocode-pub-places`.
 
-	A talk with a deck on the Resources page (resources_data.py, matched by
-	`pub`) gets a link to its slides.
+	A talk with a deck (`slides_url`) gets a link to its slides.
 	"""
 
 	return_items = Publication.objects.filter(
 		isspeaking=True).order_by('-pubdate')
 
-	slides = slides_by_pub()
-	for pub in return_items:
-		pub.slides_pdf = slides.get(pub.id, "")
 
 	map_points = []
 	for i, pub in enumerate(return_items):
@@ -428,21 +424,39 @@ def sounds_page(request):
 
 def resources(request):
 	"""
-	The Resources page (pages/resources.html, #22 prototype): things a reader
-	can use rather than read. Interactive guides as tiles, then talk slides as
-	PDFs, each linked to its paper page or blog post. The list is in
-	resources_data.py.
+	The Resources page (pages/resources.html, #22): things a reader can use
+	rather than read. Interactive guides as tiles, then talk slides as PDFs.
+
+	The decks are the publications with a `slides_url`, plus the few with no
+	record (resources_data.EXTRA_DECKS). A deck given at more than one event
+	(the same `slides_url`) is one tile, under its latest talk, with the others
+	named in the event line. Its blog post and SlideShare copy are read from
+	the record's links (url1-3).
 	"""
-	pubs = Publication.objects.in_bulk([d["pub"] for d in DECKS if d["pub"]])
-	decks = []
-	for d in DECKS:
-		pub = pubs.get(d["pub"])
-		decks.append(dict(d, year=d["date"][:4], pub_url=pub.get_absolute_url() if pub else ""))
+	decks, by_pdf = [], {}
+	pubs = (Publication.objects.exclude(slides_url="").exclude(slides_url__isnull=True)
+		.exclude(review=True).order_by("-pubdate"))
+	for p in pubs:
+		place = ", ".join(x.strip(" ,") for x in (p.conference, p.pubplace) if x and x.strip(" ,"))
+		if p.slides_url in by_pdf:
+			by_pdf[p.slides_url]["event"] += "; also %s, %s" % (place, p.pubdate.strftime("%B %Y"))
+			continue
+		links = [url for url, _ in p.all_urls()]
+		deck = {
+			"date": p.pubdate.strftime("%Y-%m"), "year": p.pubdate.year,
+			"title": p.title, "event": place,
+			"pdf": p.slides_url, "thumb": deck_thumb(p.slides_url),
+			"pub_url": p.get_absolute_url(),
+			"pub_label": "talk page" if p.pubtype_id in (8, 12) else "paper",
+			"post": next((u for u in links if "/blog/" in u), ""),
+			"slideshare": next((u for u in links if "slideshare.net" in u), ""),
+		}
+		by_pdf[p.slides_url] = deck
+		decks.append(deck)
+	decks = sorted(decks + EXTRA_DECKS, key=lambda d: d["date"], reverse=True)
 	context = {
 		'guides': GUIDES,
 		'decks': decks,
-		'unhosted': sum(1 for d in decks if not d["hosted"]),
-		'draft': DRAFT,
 	}
 	return render(request, APP + '/pages/resources.html', context)
 

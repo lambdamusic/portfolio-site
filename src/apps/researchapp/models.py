@@ -300,6 +300,15 @@ class Publication(mymodels.EnhancedModel):
         help_text=
         "The main PDF version of the publication."
         )
+    slides_url = models.URLField(
+        max_length=200,
+        blank=True,
+        default="",
+        verbose_name="slides",
+        help_text=
+        "The talk's slide deck as a PDF, usually on the support site "
+        "(public_slides/). Lists it on the Resources page."
+        )
     url1 = models.URLField(
         max_length=200,
         null=True,
@@ -486,6 +495,7 @@ class Publication(mymodels.EnhancedModel):
             form.base_fields['permalink'].widget.attrs['style'] = 'width: 45em;'
             form.base_fields['md_file'].widget.attrs['style'] = 'width: 45em;'
             form.base_fields['pdf_url'].widget.attrs['style'] = 'width: 45em;'
+            form.base_fields['slides_url'].widget.attrs['style'] = 'width: 45em;'
             form.base_fields['extrainfo'].widget.attrs['style'] = 'width: 45em;'
             form.base_fields['title'].widget.attrs['style'] = 'width: 45em;'
             return form
@@ -538,6 +548,7 @@ class Publication(mymodels.EnhancedModel):
                     'abstract',
                     'project',
                     'pdf_url',
+                    'slides_url',
                     ('url1', 'url1name'),
                     ('url2', 'url2name'),
                     ('url3', 'url3name'),
