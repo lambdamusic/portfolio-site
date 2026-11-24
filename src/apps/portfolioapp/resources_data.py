@@ -63,7 +63,4 @@ EXTRA_DECKS = [
 		"A slide deck for dashboard developers", "2023-07-designing-great-dashboards",
 		post="/blog/2023/07/06/designing-great-dashboards/",
 		slideshare="https://www.slideshare.net/slideshow/designing-great-dashboards-a-slidedeck-for-dashboard-developers/259009125"),
-	_deck("2021-11", "The Dimensions APIs: harness the full power of Dimensions data",
-		"API training for the US National Institutes of Health (NIH)",
-		"2021-11-nih-dimensions-api-training"),
 ]
